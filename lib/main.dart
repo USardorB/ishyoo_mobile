@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/app.dart';
+import 'package:mobile/core/configs/di/configure_dependencies.dart';
+import 'package:mobile/features/auth/presentation/controllers/auth_cubit.dart';
 
 void main() {
-  runApp(const MainApp());
-}
+  WidgetsFlutterBinding.ensureInitialized();
+  configureDependencies();
 
-class MainApp extends StatelessWidget {
-  const MainApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
-    );
-  }
+  runApp(
+    BlocProvider(
+      create: (_) => sl<AuthCubit>(),
+      child: const MainApp(),
+    ),
+  );
 }
