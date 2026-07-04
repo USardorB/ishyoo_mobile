@@ -14,6 +14,7 @@ class MainLayoutPage extends StatelessWidget {
     return AutoTabsScaffold(
       routes: [
         HrDashboardRoute(),
+        ApplicantsRoute(),
       ],
       extendBody: true,
       bottomNavigationBuilder: (context, tabsRouter) {
@@ -65,7 +66,9 @@ class MainLayoutPage extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            onPressed: () {},
+                            onPressed: () {
+                              tabsRouter.setActiveIndex(0);
+                            },
                           ),
                         ),
                       ),
@@ -87,7 +90,9 @@ class MainLayoutPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            tabsRouter.setActiveIndex(1);
+                          },
                         ),
                       ),
                       Expanded(
@@ -108,7 +113,9 @@ class MainLayoutPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            tabsRouter.setActiveIndex(2);
+                          },
                         ),
                       ),
                       Expanded(
@@ -129,7 +136,9 @@ class MainLayoutPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          onPressed: () {},
+                          onPressed: () {
+                            tabsRouter.setActiveIndex(3);
+                          },
                         ),
                       ),
                     ],

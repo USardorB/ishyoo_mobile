@@ -8,6 +8,11 @@ abstract final class AppThemeData {
       primary: appLightColors.brandDefault,
       error: appDarkColors.danger,
     ),
+    scaffoldBackgroundColor: appLightColors.brightMutable,
+    appBarTheme: AppBarTheme(
+      backgroundColor: appLightColors.brightMutable,
+      surfaceTintColor: Colors.transparent,
+    ),
     brightness: Brightness.light,
     extensions: <ThemeExtension<dynamic>>[
       appLightColors,
@@ -19,6 +24,11 @@ abstract final class AppThemeData {
     colorScheme: ColorScheme.dark(
       primary: appDarkColors.brandDefault,
       error: appDarkColors.danger,
+    ),
+    scaffoldBackgroundColor: appDarkColors.brightMutable,
+    appBarTheme: AppBarTheme(
+      backgroundColor: appDarkColors.brightMutable,
+      surfaceTintColor: Colors.transparent,
     ),
     brightness: Brightness.dark,
     extensions: <ThemeExtension<dynamic>>[

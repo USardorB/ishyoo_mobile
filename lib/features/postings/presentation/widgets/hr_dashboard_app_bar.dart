@@ -16,7 +16,6 @@ class HrDashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: Container(
         margin: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
         decoration: BoxDecoration(
-          color: context.colors.bgSecondary,
           borderRadius: BorderRadius.circular(10),
         ),
         child: Center(
