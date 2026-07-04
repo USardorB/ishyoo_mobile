@@ -21,7 +21,7 @@ class MainApp extends StatelessWidget {
             boldText: false,
             disableAnimations: false,
             alwaysUse24HourFormat: true,
-            // highContrast: false,
+            highContrast: false,
           ),
           child: child!,
         );
