@@ -15,10 +15,15 @@ class AppInputField extends StatelessWidget {
   final Widget? suffixIcon;
   final bool obscureText;
   final bool readOnly;
+  final int? minLines;
+  final int? maxLines;
+
   const AppInputField({
     super.key,
     this.controller,
     this.validator,
+    this.minLines,
+    this.maxLines = 1,
     this.hintText,
     this.enabled = true,
     this.onTap,
@@ -46,6 +51,8 @@ class AppInputField extends StatelessWidget {
           SizedBox(height: 8),
         ],
         TextFormField(
+          minLines: minLines,
+          maxLines: maxLines,
           readOnly: readOnly,
           style: context.textThemes.buttonLarge,
           autofillHints: autofillHints,

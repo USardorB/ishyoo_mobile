@@ -19,7 +19,6 @@ class MainApp extends StatelessWidget {
           data: MediaQuery.of(context).copyWith(
             textScaler: TextScaler.noScaling,
             boldText: false,
-            disableAnimations: false,
             alwaysUse24HourFormat: true,
             highContrast: false,
           ),

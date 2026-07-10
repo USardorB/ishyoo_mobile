@@ -55,6 +55,9 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: NotificationDetailsRoute.page),
     AutoRoute(page: TalentsSearchResultRoute.page),
     AutoRoute(page: ApplicantDetailsRoute.page),
+    AutoRoute(page: ChatDetailsRoute.page),
+    AutoRoute(page: SettingsRoute.page),
+    AutoRoute(page: EditCompanyInfoRoute.page),
 
     AutoRoute(
       initial: true,
@@ -63,6 +66,8 @@ class AppRouter extends RootStackRouter {
       children: [
         AutoRoute(page: HrDashboardRoute.page),
         AutoRoute(page: ApplicantsRoute.page),
+        AutoRoute(page: ChatsRoute.page),
+        AutoRoute(page: HRProfileRoute.page),
       ],
     ),
   ];

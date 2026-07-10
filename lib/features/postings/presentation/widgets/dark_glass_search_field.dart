@@ -2,10 +2,13 @@ import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 
 class DarkGlassSearchField extends StatelessWidget {
-  const DarkGlassSearchField({super.key});
+  final Widget? prefixIcon;
+  final String? hintText;
+  const DarkGlassSearchField({super.key, this.prefixIcon, this.hintText});
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +47,13 @@ class DarkGlassSearchField extends StatelessWidget {
                 ),
               ),
               child: SearchBar(
+                hintText: hintText ?? "Search",
+                hintStyle: WidgetStatePropertyAll(
+                  context.textThemes.buttonLarge.copyWith(
+                    color: context.colors.textSecondary,
+                  ),
+                ),
+                leading: prefixIcon,
                 onTap: () {
                   if (context.routeData.name != TalentsSearchResultRoute.name) {
                     context.pushRoute(TalentsSearchResultRoute());

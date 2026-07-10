@@ -15,6 +15,8 @@ class MainLayoutPage extends StatelessWidget {
       routes: [
         HrDashboardRoute(),
         ApplicantsRoute(),
+        ChatsRoute(),
+        HRProfileRoute(),
       ],
       extendBody: true,
       bottomNavigationBuilder: (context, tabsRouter) {
