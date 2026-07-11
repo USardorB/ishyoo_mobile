@@ -11,12 +11,20 @@ class MainLayoutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isCandidate = true;
     return AutoTabsScaffold(
       routes: [
-        HrDashboardRoute(),
-        ApplicantsRoute(),
-        ChatsRoute(),
-        HRProfileRoute(),
+        if (isCandidate) ...[
+          HrDashboardRoute(),
+          ApplicantsRoute(),
+          ChatsRoute(),
+          HRProfileRoute(),
+        ] else ...[
+          HrDashboardRoute(),
+          ApplicantsRoute(),
+          ChatsRoute(),
+          HRProfileRoute(),
+        ],
       ],
       extendBody: true,
       bottomNavigationBuilder: (context, tabsRouter) {

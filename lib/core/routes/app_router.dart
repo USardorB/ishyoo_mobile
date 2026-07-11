@@ -58,6 +58,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: ChatDetailsRoute.page),
     AutoRoute(page: SettingsRoute.page),
     AutoRoute(page: EditCompanyInfoRoute.page),
+    AutoRoute(page: CreateVacancyRoute.page),
 
     AutoRoute(
       initial: true,

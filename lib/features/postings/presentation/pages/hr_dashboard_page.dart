@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/painters/dashed_outline_border.dart';
 import 'package:mobile/features/postings/presentation/widgets/hr_dashboard_app_bar.dart';
 import 'package:mobile/features/postings/presentation/widgets/posting_actions_sheet.dart';
@@ -514,7 +515,7 @@ class HrDashboardPage extends StatelessWidget {
             ),
             SizedBox(height: 12),
             FilledButton.icon(
-              onPressed: () {},
+              onPressed: () => context.pushRoute(CreateVacancyRoute()),
               icon: Icon(Icons.add),
               label: Text("Vakansiya yaratish"),
               style: FilledButton.styleFrom(
