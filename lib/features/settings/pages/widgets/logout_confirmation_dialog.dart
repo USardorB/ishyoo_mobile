@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 
 class LogoutConfirmationDialog extends StatelessWidget {
@@ -44,7 +45,7 @@ class LogoutConfirmationDialog extends StatelessWidget {
               Flexible(
                 child: AppButton(
                   onTap: () {
-                    // context.router.replace(const OnboardingRoute());
+                    context.router.replaceAll([const ChooseLanguageRoute()]);
                   },
                   label: "Chiqish",
                   color: context.colors.danger,

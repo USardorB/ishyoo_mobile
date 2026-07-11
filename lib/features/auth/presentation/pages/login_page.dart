@@ -112,7 +112,7 @@ class LoginPage extends HookWidget {
 
             SizedBox(height: 16),
             AppButton(
-              onTap: () {},
+              onTap: () => context.router.replaceAll([const MainLayoutRoute()]),
               label: 'Kirish',
             ),
             SizedBox(height: 12),
@@ -139,7 +139,7 @@ class LoginPage extends HookWidget {
             ),
             Align(
               child: TextButton(
-                onPressed: () {},
+                onPressed: () => context.router.replaceAll([const MainLayoutRoute()]),
                 style: TextButton.styleFrom(
                   tapTargetSize: .shrinkWrap,
                   visualDensity: .compact,

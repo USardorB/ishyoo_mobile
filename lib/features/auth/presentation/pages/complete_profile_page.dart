@@ -6,6 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile/core/consts/app_assets.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/auth/presentation/controllers/auth_cubit.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
@@ -106,13 +107,13 @@ class CompleteProfilePage extends HookWidget {
                 },
                 controller: birthDateController,
               ),
-              Spacer(),
-              AppButton(
-                onTap: () {},
-                label: 'Davom etish',
-              ),
-              Flexible(flex: 0, child: SizedBox(height: 12)),
             ],
+            Spacer(),
+            AppButton(
+              onTap: () => context.router.replaceAll([const MainLayoutRoute()]),
+              label: 'Davom etish',
+            ),
+            Flexible(flex: 0, child: SizedBox(height: 12)),
           ],
         ),
       ),

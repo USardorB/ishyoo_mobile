@@ -47,7 +47,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: RegisterRoute.page),
     AutoRoute(page: OnboardingRoute.page),
     AutoRoute(page: ChooseLanguageRoute.page),
-    AutoRoute(page: SplashRoute.page),
+    AutoRoute(page: SplashRoute.page, initial: true),
     AutoRoute(page: OtpConfirmationRoute.page),
     AutoRoute(page: ConfirmPasswordRoute.page),
     AutoRoute(page: CompleteProfileRoute.page),
@@ -61,7 +61,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: CreateVacancyRoute.page),
 
     AutoRoute(
-      initial: true,
+
       path: '/home',
       page: MainLayoutRoute.page,
       children: [
