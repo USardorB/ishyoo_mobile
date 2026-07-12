@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/themes/app_colors.dart';
 
+enum ButtonWidthType {
+  shrink,
+  expand,
+}
+
 class AppButton extends StatelessWidget {
   final VoidCallback onTap;
   final bool enabled;
@@ -10,7 +15,9 @@ class AppButton extends StatelessWidget {
   final Color? color;
   final TextStyle? labelStyle;
   final Color? foregroundColor;
+  final ButtonWidthType widthType;
   const AppButton({
+    this.widthType = ButtonWidthType.expand,
     this.foregroundColor,
     this.labelStyle,
     super.key,
@@ -31,7 +38,7 @@ class AppButton extends StatelessWidget {
         : context.colors.brightImmutable;
 
     return Column(
-      crossAxisAlignment: .stretch,
+      crossAxisAlignment: widthType == .expand ? .stretch : .center,
       mainAxisSize: .min,
       children: [
         FilledButton(

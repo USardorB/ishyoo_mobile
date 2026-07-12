@@ -15,7 +15,7 @@ class MainLayoutPage extends StatelessWidget {
     return AutoTabsScaffold(
       routes: [
         if (isCandidate) ...[
-          HrDashboardRoute(),
+          CandidateHomeRoute(),
           ApplicantsRoute(),
           ChatsRoute(),
           HRProfileRoute(),
