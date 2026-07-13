@@ -16,9 +16,9 @@ class MainLayoutPage extends StatelessWidget {
       routes: [
         if (isCandidate) ...[
           CandidateHomeRoute(),
-          ApplicantsRoute(),
+          ApplicationsRoute(),
           ChatsRoute(),
-          HRProfileRoute(),
+          CandidateProfileRoute(),
         ] else ...[
           HrDashboardRoute(),
           ApplicantsRoute(),
@@ -68,9 +68,9 @@ class MainLayoutPage extends StatelessWidget {
                               mainAxisAlignment: .center,
                               // mainAxisSize: .min,
                               children: [
-                                Icon(Icons.home, size: 24),
+                                Icon(Icons.home_outlined, size: 24),
                                 Text(
-                                  'Home',
+                                  'Bosh sahifa',
                                   maxLines: 1,
                                   overflow: .ellipsis,
                                 ),
@@ -92,11 +92,11 @@ class MainLayoutPage extends StatelessWidget {
                             mainAxisAlignment: .center,
                             // mainAxisSize: .min,
                             children: [
-                              Icon(Icons.list, size: 24),
+                              Icon(Icons.assignment_outlined, size: 24),
                               Text(
-                                'Applications',
+                                'Javoblar',
                                 maxLines: 1,
-                                // overflow: .ellipsis,
+                                overflow: .ellipsis,
                               ),
                             ],
                           ),

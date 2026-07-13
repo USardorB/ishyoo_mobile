@@ -61,6 +61,14 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: CreateVacancyRoute.page),
     AutoRoute(page: VacancyDetailsRoute.page),
     AutoRoute(page: NearbyJobsRoute.page),
+    AutoRoute(page: EditCandidateProfileRoute.page),
+    AutoRoute(page: ResumeDetailsRoute.page),
+    AutoRoute(page: CreateResumeFlowRoute.page),
+    AutoRoute(page: ResumeSuccessRoute.page),
+    AutoRoute(page: EditResumeContactsRoute.page),
+    AutoRoute(page: EditResumeExperienceRoute.page),
+    AutoRoute(page: EditResumeEducationRoute.page),
+    AutoRoute(page: EditResumeSkillsRoute.page),
 
     AutoRoute(
       initial: true,
@@ -72,6 +80,8 @@ class AppRouter extends RootStackRouter {
         AutoRoute(page: ChatsRoute.page),
         AutoRoute(page: HRProfileRoute.page),
         AutoRoute(page: CandidateHomeRoute.page),
+        AutoRoute(page: ApplicationsRoute.page),
+        AutoRoute(page: CandidateProfileRoute.page),
       ],
     ),
   ];
