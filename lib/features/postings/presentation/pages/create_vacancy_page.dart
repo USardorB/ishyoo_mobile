@@ -21,7 +21,9 @@ class _CreateVacancyPageState extends State<CreateVacancyPage> {
   // Step 1 Controllers & State
   final _titleController = TextEditingController(text: 'UX/UI Dizayner');
   String? _selectedCategory = 'Bank · Moliya';
-  final _addressController = TextEditingController(text: 'Toshkent, O\'zbekiston');
+  final _addressController = TextEditingController(
+    text: 'Toshkent, O\'zbekiston',
+  );
   final _salaryFromController = TextEditingController();
   final _salaryToController = TextEditingController();
   final _phoneController = TextEditingController(text: '+998 90 123 45 67');
@@ -29,7 +31,16 @@ class _CreateVacancyPageState extends State<CreateVacancyPage> {
 
   // Step 2 Controllers & State
   final _descriptionController = TextEditingController(
-    text: "Bizning jamoaga UX/UI dizayner kerak.\nVazifalar:\n• Mobil ilova interfeyslarini yaratish\n• Foydalanuvchi tadqiqotlari",
+    text:
+        "Bizning jamoamizga UX/UI dizayner kerak. Bank ilovasi va veb-saytining interfeysini yaratish, foydalanuvchi tajribasini yaxshilash va dizayn tizimini rivojlantirish.",
+  );
+  final _tasksController = TextEditingController(
+    text:
+        "• Mobil ilova va veb-sayt uchun interfeys yaratish\n• Foydalanuvchilar bilan tadqiqotlar o'tkazish\n• Dizayn tizimini rivojlantirish va qo'llab-quvvatlash\n• Mahsulot va muhandislik jamoalari bilan ishlash",
+  );
+  final _requirementsController = TextEditingController(
+    text:
+        "• 2+ yil UX/UI dizayn tajribasi\n• Figma'da yuqori darajadagi mahorat\n• Dizayn tizimlari bilan ishlash tajribasi\n• Ingliz tili - B2 darajasidan past emas",
   );
   List<String> _selectedSkills = ['Figma', 'Prototyping'];
   ExperienceLevel _selectedExperience = ExperienceLevel.oneToThree;
@@ -86,21 +97,27 @@ class _CreateVacancyPageState extends State<CreateVacancyPage> {
                 CreateVacancyBasicInfoStep(
                   titleController: _titleController,
                   selectedCategory: _selectedCategory,
-                  onCategorySelected: (val) => setState(() => _selectedCategory = val),
+                  onCategorySelected: (val) =>
+                      setState(() => _selectedCategory = val),
                   addressController: _addressController,
                   salaryFromController: _salaryFromController,
                   salaryToController: _salaryToController,
                   phoneController: _phoneController,
                   selectedJobType: _selectedJobType,
-                  onJobTypeSelected: (val) => setState(() => _selectedJobType = val),
+                  onJobTypeSelected: (val) =>
+                      setState(() => _selectedJobType = val),
                   onNext: _nextStep,
                 ),
                 CreateVacancyRequirementsStep(
                   descriptionController: _descriptionController,
+                  tasksController: _tasksController,
+                  requirementsController: _requirementsController,
                   selectedSkills: _selectedSkills,
-                  onSkillsChanged: (val) => setState(() => _selectedSkills = val),
+                  onSkillsChanged: (val) =>
+                      setState(() => _selectedSkills = val),
                   selectedExperience: _selectedExperience,
-                  onExperienceSelected: (val) => setState(() => _selectedExperience = val),
+                  onExperienceSelected: (val) =>
+                      setState(() => _selectedExperience = val),
                   onNext: _nextStep,
                 ),
                 CreateVacancySummaryStep(
@@ -132,7 +149,9 @@ class _CreateVacancyPageState extends State<CreateVacancyPage> {
               margin: EdgeInsets.only(right: index < 2 ? 8.0 : 0),
               height: 2,
               decoration: BoxDecoration(
-                color: isActive ? context.colors.brandDefault : context.colors.bgTertiary,
+                color: isActive
+                    ? context.colors.brandDefault
+                    : context.colors.bgTertiary,
                 borderRadius: BorderRadius.circular(2),
               ),
             ),

@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/features/profile/presentation/widgets/candidate_education_section.dart';
+import 'package:mobile/features/profile/presentation/widgets/candidate_experience_section.dart';
+import 'package:mobile/features/profile/presentation/widgets/candidate_languages_section.dart';
 import 'package:mobile/features/profile/presentation/widgets/candidate_profile_header.dart';
 import 'package:mobile/features/profile/presentation/widgets/candidate_resumes_section.dart';
-import 'package:mobile/features/profile/presentation/widgets/candidate_experience_section.dart';
-import 'package:mobile/features/profile/presentation/widgets/candidate_education_section.dart';
-import 'package:mobile/features/profile/presentation/widgets/candidate_languages_section.dart';
 
 @RoutePage()
 class CandidateProfilePage extends StatelessWidget {
