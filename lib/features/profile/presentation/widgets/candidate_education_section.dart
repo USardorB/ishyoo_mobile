@@ -3,12 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/features/resume/data/models/resume.dart';
 
 class CandidateEducationSection extends StatelessWidget {
-  const CandidateEducationSection({super.key});
+  final List<ResumeEducation> educations;
+
+  const CandidateEducationSection({super.key, required this.educations});
 
   @override
   Widget build(BuildContext context) {
+    if (educations.isEmpty) {
+      return Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: context.colors.bgSecondary,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: const Text("Ta'lim ma'lumotlari yo'q"),
+      );
+    }
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -18,19 +32,19 @@ class CandidateEducationSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildEducationItem(
-            context,
-            title: "Gurlan tumani 1-praktikum kasb hunar maktabi",
-            subtitle: "Grafuk dizayner",
-            date: "2023 yil O'rta maxsus ta'lim",
-          ),
-          Divider(color: context.colors.bgTertiary, height: 24),
-          _buildEducationItem(
-            context,
-            title: "Gurlan tumani 1-praktikum kasb hunar maktabi",
-            subtitle: "Grafuk dizayner",
-            date: "2023 yil O'rta maxsus ta'lim",
-          ),
+          ...educations.map((edu) {
+            final startStr = edu.startDate != null ? "${edu.startDate!.year} yil" : "";
+            final endStr = edu.endDate != null ? "${edu.endDate!.year} yil" : "hozir";
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: _buildEducationItem(
+                context,
+                title: edu.school,
+                subtitle: edu.degree,
+                date: "$startStr - $endStr",
+              ),
+            );
+          }),
           const SizedBox(height: 16),
           AppButton(
             onTap: () {

@@ -4,12 +4,17 @@ import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/applications/presentation/widgets/application_menu_sheet.dart';
 import 'package:mobile/features/applications/presentation/widgets/reject_application_dialog.dart';
 
+import '../../data/models/application.dart';
+import 'package:intl/intl.dart';
+
 class ApplicationCard extends StatelessWidget {
-  final String status;
+  final Application application;
+  final VoidCallback onRefuse;
 
   const ApplicationCard({
     super.key,
-    required this.status,
+    required this.application,
+    required this.onRefuse,
   });
 
   @override
@@ -17,13 +22,26 @@ class ApplicationCard extends StatelessWidget {
     Color statusBgColor;
     Color statusTextColor = Colors.white;
 
-    if (status == "Rad etildi") {
-      statusBgColor = context.colors.danger;
-    } else if (status == "Ko'rib chiqdi") {
-      statusBgColor = context.colors.success;
-    } else {
-      statusBgColor = context.colors.bgTertiary;
-      statusTextColor = context.colors.textPrimary;
+    String displayStatus;
+    switch (application.status) {
+      case 'rejected':
+        displayStatus = "Rad etildi";
+        statusBgColor = context.colors.danger;
+        break;
+      case 'invited':
+        displayStatus = "Suhbatga chaqirildi";
+        statusBgColor = context.colors.success;
+        break;
+      case 'archived':
+        displayStatus = "Arxivlandi";
+        statusBgColor = context.colors.textSecondary;
+        break;
+      case 'pending':
+      default:
+        displayStatus = "Kutilmoqda";
+        statusBgColor = context.colors.bgTertiary;
+        statusTextColor = context.colors.textPrimary;
+        break;
     }
 
     return Container(
@@ -38,7 +56,7 @@ class ApplicationCard extends StatelessWidget {
           Row(
             children: [
               Text(
-                "Uzum Bank",
+                application.vacancy?.organization?.name ?? "Kompaniya",
                 style: context.textThemes.c2.copyWith(
                   color: context.colors.textSecondary,
                 ),
@@ -51,7 +69,7 @@ class ApplicationCard extends StatelessWidget {
                   borderRadius: .circular(8),
                 ),
                 child: Text(
-                  status,
+                  displayStatus,
                   style: context.textThemes.c2.copyWith(color: statusTextColor),
                 ),
               ),
@@ -66,7 +84,9 @@ class ApplicationCard extends StatelessWidget {
                   context: context,
                   isScrollControlled: true,
                   backgroundColor: Colors.transparent,
-                  builder: (_) => const ApplicationMenuSheet(),
+                  builder: (_) => ApplicationMenuSheet(
+                    onRefuse: onRefuse,
+                  ),
                 ),
                 icon: Icon(Icons.more_vert, size: 24),
               ),
@@ -74,12 +94,12 @@ class ApplicationCard extends StatelessWidget {
           ),
           const SizedBox(height: 12),
           Text(
-            "UX/UI Dizayner",
+            application.vacancy?.jobTitle ?? "Vakansiya",
             style: context.textThemes.s1,
           ),
           const SizedBox(height: 12),
           Text(
-            "Toshkent • To'liq stavka • Tajriba 1-3 yil",
+            "${application.vacancy?.location?.split(',').first ?? 'Manzil'} • ${application.vacancy?.jobType?.replaceAll('_', ' ') ?? ''}",
             style: context.textThemes.b1.copyWith(
               color: context.colors.textSecondary,
             ),
@@ -94,7 +114,9 @@ class ApplicationCard extends StatelessWidget {
               ),
               const SizedBox(width: 6),
               Text(
-                "Mar 31, 2024",
+                application.createdAt != null
+                    ? DateFormat('MMM dd, yyyy').format(application.createdAt!)
+                    : "",
                 style: context.textThemes.b2.copyWith(
                   color: context.colors.textSecondary,
                 ),
@@ -115,20 +137,23 @@ class ApplicationCard extends StatelessWidget {
                   spacing: 2,
                   children: [
                     Text(
-                      "15 mln so'm",
+                      application.vacancy?.salaryFrom != null 
+                        ? "${application.vacancy!.salaryFrom} ${application.vacancy!.currency ?? 'so\'m'}"
+                        : "Kelishilgan",
                       style: context.textThemes.s2,
                     ),
-                    Text(
-                      "oyiga",
-                      style: context.textThemes.c2.copyWith(
-                        color: context.colors.textSecondary,
+                    if (application.vacancy?.salaryFrom != null)
+                      Text(
+                        "oyiga",
+                        style: context.textThemes.c2.copyWith(
+                          color: context.colors.textSecondary,
+                        ),
                       ),
-                    ),
                   ],
                 ),
               ),
               Text(
-                "12 минут назад",
+                "",
                 style: context.textThemes.b1.copyWith(
                   color: context.colors.textSecondary,
                 ),
@@ -156,7 +181,9 @@ class ApplicationCard extends StatelessWidget {
                   child: AppButton(
                     onTap: () => showDialog(
                       context: context,
-                      builder: (_) => const RejectApplicationDialog(),
+                      builder: (_) => RejectApplicationDialog(
+                        onConfirm: onRefuse,
+                      ),
                     ),
                     label: "Rad qilish",
                     color: context.colors.bgTertiary,

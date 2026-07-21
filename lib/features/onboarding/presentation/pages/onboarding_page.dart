@@ -8,6 +8,7 @@ import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/onboarding/presentation/widgets/onboarding_page_view_item.dart';
 import 'package:mobile/features/onboarding/presentation/widgets/page_view_indicator.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 @RoutePage()
 class OnboardingPage extends HookWidget {
@@ -103,12 +104,13 @@ class OnboardingPage extends HookWidget {
   }
 
   void navigateToAuth(BuildContext context, UserRole role) async {
-    // final isFromNamangan = await showDialog<bool>(
-    //   context: context,
-    //   builder: (_) => ConfirmationDialog(),
-    // );
+    // Gracefully ask for location and notification permissions before onboarding finishes
+    await [
+      Permission.notification,
+      Permission.locationWhenInUse,
+    ].request();
 
-    // if (isFromNamangan == null || !context.mounted) return;
+    if (!context.mounted) return;
     context.pushRoute(LoginRoute(role: role));
   }
 }

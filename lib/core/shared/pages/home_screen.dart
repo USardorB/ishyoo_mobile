@@ -2,8 +2,11 @@ import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/core/enums/user_role.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
+import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 
 @RoutePage()
 class MainLayoutPage extends StatelessWidget {
@@ -11,7 +14,7 @@ class MainLayoutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isCandidate = true;
+    final isCandidate = context.read<AuthBloc>().state.userRole == UserRole.job_seeker;
     return AutoTabsScaffold(
       routes: [
         if (isCandidate) ...[

@@ -3,12 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/features/resume/data/models/resume.dart';
 
 class CandidateExperienceSection extends StatelessWidget {
-  const CandidateExperienceSection({super.key});
+  final List<ResumeExperience> experiences;
+
+  const CandidateExperienceSection({super.key, required this.experiences});
 
   @override
   Widget build(BuildContext context) {
+    if (experiences.isEmpty) {
+      return Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: context.colors.bgSecondary,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: const Text("Ish tajribasi yo'q"),
+      );
+    }
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -18,21 +32,20 @@ class CandidateExperienceSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildTimelineItem(
-            context,
-            title: "UX/UI Dizayner",
-            subtitle: "Click",
-            date: "2023 yil yanvar - hozir - 1 y 4 oy",
-            isActive: true,
-          ),
-          Divider(color: context.colors.bgTertiary, height: 24),
-          _buildTimelineItem(
-            context,
-            title: "Junior Designer",
-            subtitle: "Espay",
-            date: "2021 yil iyul - 2022 yil dekabr - 1 y 6 oy",
-            isActive: false,
-          ),
+          ...experiences.map((exp) {
+            final startStr = exp.startDate != null ? "${exp.startDate!.year} yil" : "";
+            final endStr = exp.endDate != null ? "${exp.endDate!.year} yil" : "hozir";
+            return Padding(
+              padding: const EdgeInsets.only(bottom: 16),
+              child: _buildTimelineItem(
+                context,
+                title: exp.position,
+                subtitle: exp.companyName,
+                date: "$startStr - $endStr",
+                isActive: exp.endDate == null,
+              ),
+            );
+          }),
           const SizedBox(height: 16),
           AppButton(
             onTap: () {

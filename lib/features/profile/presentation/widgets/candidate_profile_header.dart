@@ -1,11 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 
 class CandidateProfileHeader extends StatelessWidget {
   const CandidateProfileHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final user = context.read<AuthBloc>().state.user;
+    final name = user?.name ?? 'Kiritilmagan';
+    final phone = user?.phoneNumber ?? '';
+    final initials = name.isNotEmpty ? name.substring(0, 1).toUpperCase() : '?';
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -23,7 +30,7 @@ class CandidateProfileHeader extends StatelessWidget {
             ),
             alignment: Alignment.center,
             child: Text(
-              "KM",
+              initials,
               style: context.textThemes.s1.copyWith(
                 color: context.colors.brandProgress,
               ),
@@ -35,11 +42,11 @@ class CandidateProfileHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Komilov Muxriddin",
+                  name,
                   style: context.textThemes.s1,
                 ),
                 Text(
-                  "+998 88 554 88 88",
+                  phone,
                   style: context.textThemes.c1.copyWith(
                     color: context.colors.textSecondary,
                   ),

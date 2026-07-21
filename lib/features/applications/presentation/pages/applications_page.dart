@@ -4,20 +4,49 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/applications/presentation/widgets/application_card.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/core/configs/di/configure_dependencies.dart';
+import '../bloc/applications_bloc.dart';
+
 @RoutePage()
 class ApplicationsPage extends HookWidget {
   const ApplicationsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (context) => sl<ApplicationsBloc>(),
+      child: const _ApplicationsPageView(),
+    );
+  }
+}
+
+class _ApplicationsPageView extends HookWidget {
+  const _ApplicationsPageView();
+
+  @override
+  Widget build(BuildContext context) {
     final tabs = [
-      "Barchasi",
-      "Suhbat",
-      "Kutilmoqda",
-      "Rad etildi",
-      "Saralanganlar",
+      {"name": "Barchasi", "status": null},
+      {"name": "Suhbat", "status": "invited"},
+      {"name": "Kutilmoqda", "status": "pending"},
+      {"name": "Rad etildi", "status": "rejected"},
+      {"name": "Saralanganlar", "status": "archived"},
     ];
     final tabController = useTabController(initialLength: tabs.length);
+
+    useEffect(() {
+      final bloc = context.read<ApplicationsBloc>();
+      bloc.add(LoadApplications(tabs[tabController.index]["status"]));
+      
+      void listener() {
+        if (!tabController.indexIsChanging) {
+          bloc.add(LoadApplications(tabs[tabController.index]["status"]));
+        }
+      }
+      tabController.addListener(listener);
+      return () => tabController.removeListener(listener);
+    }, [tabController]);
 
     return Scaffold(
       appBar: AppBar(
@@ -51,7 +80,7 @@ class ApplicationsPage extends HookWidget {
                   unselectedLabelColor: context.colors.textSecondary,
                   labelStyle: context.textThemes.buttonMedium,
                   unselectedLabelStyle: context.textThemes.buttonMedium,
-                  tabs: tabs.map((tab) => Tab(text: tab)).toList(),
+                  tabs: tabs.map((tab) => Tab(text: tab["name"]!)).toList(),
                 ),
               ),
             ),
@@ -61,18 +90,39 @@ class ApplicationsPage extends HookWidget {
             child: TabBarView(
               controller: tabController,
               children: List.generate(tabs.length, (tabIndex) {
-                return ListView.separated(
-                  padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
-                    bottom: MediaQuery.paddingOf(context).bottom + 16,
-                  ),
-                  itemCount: 4,
-                  separatorBuilder: (_, _) => const SizedBox(height: 12),
-                  itemBuilder: (context, index) {
-                    // Mock data for UI demonstration
-                    return ApplicationCard(
-                      status: tabIndex == 3
-                          ? "Rad etildi"
-                          : (index % 2 == 0 ? "Ko'rib chiqdi" : "Ko'rilmadi"),
+                return BlocBuilder<ApplicationsBloc, ApplicationsState>(
+                  builder: (context, state) {
+                    if (state.isLoading && state.applications == null) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+
+                    if (state.error != null && state.applications == null) {
+                      return Center(child: Text(state.error!));
+                    }
+
+                    final applications = state.applications ?? [];
+
+                    if (applications.isEmpty) {
+                      return const Center(child: Text("Hozircha ma'lumot yo'q"));
+                    }
+
+                    return ListView.separated(
+                      padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
+                        bottom: MediaQuery.paddingOf(context).bottom + 16,
+                      ),
+                      itemCount: applications.length,
+                      separatorBuilder: (_, _) => const SizedBox(height: 12),
+                      itemBuilder: (context, index) {
+                        final application = applications[index];
+                        return ApplicationCard(
+                          application: application,
+                          onRefuse: () {
+                            context.read<ApplicationsBloc>().add(
+                              UpdateApplicationStatus(application.id.toString(), "rejected"),
+                            );
+                          },
+                        );
+                      },
                     );
                   },
                 );
@@ -84,3 +134,4 @@ class ApplicationsPage extends HookWidget {
     );
   }
 }
+

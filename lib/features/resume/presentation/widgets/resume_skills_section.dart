@@ -6,10 +6,23 @@ import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/resume/presentation/widgets/resume_skill_chip.dart';
 
 class ResumeSkillsSection extends StatelessWidget {
-  const ResumeSkillsSection({super.key});
+  final List<String> skills;
+
+  const ResumeSkillsSection({super.key, required this.skills});
 
   @override
   Widget build(BuildContext context) {
+    if (skills.isEmpty) {
+      return Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: context.colors.bgSecondary,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: const Text("Ko'nikmalar kiritilmagan"),
+      );
+    }
+
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
@@ -22,14 +35,7 @@ class ResumeSkillsSection extends StatelessWidget {
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: const [
-              ResumeSkillChip(label: "Figma"),
-              ResumeSkillChip(label: "UX UI Design"),
-              ResumeSkillChip(label: "Design System"),
-              ResumeSkillChip(label: "Adobe Photoshop"),
-              ResumeSkillChip(label: "Wiframes"),
-              ResumeSkillChip(label: "Adobe Illustrator"),
-            ],
+            children: skills.map((skill) => ResumeSkillChip(label: skill)).toList(),
           ),
           const SizedBox(height: 16),
           AppButton(

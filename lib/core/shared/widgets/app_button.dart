@@ -16,6 +16,7 @@ class AppButton extends StatelessWidget {
   final TextStyle? labelStyle;
   final Color? foregroundColor;
   final ButtonWidthType widthType;
+  final bool isLoading;
   const AppButton({
     this.widthType = ButtonWidthType.expand,
     this.foregroundColor,
@@ -26,6 +27,7 @@ class AppButton extends StatelessWidget {
     this.enabled = true,
     this.color,
     this.icon,
+    this.isLoading = false,
   });
 
   @override
@@ -49,24 +51,36 @@ class AppButton extends StatelessWidget {
             padding: .all(14),
             shape: RoundedRectangleBorder(borderRadius: .circular(12)),
           ),
-          onPressed: enabled ? onTap : null,
-          child: Row(
-            mainAxisSize: .min,
-            crossAxisAlignment: .center,
-            mainAxisAlignment: .center,
-            spacing: 4,
-            children: [
-              if (icon != null) Icon(icon, color: foregroundColor ?? textColor),
-              if (label != null)
-                Flexible(
-                  child: Text(
-                    label!,
-                    style: (labelStyle ?? context.textThemes.buttonLarge)
-                        .copyWith(color: foregroundColor ?? textColor),
+          onPressed: (enabled && !isLoading) ? onTap : null,
+          child: isLoading
+              ? SizedBox(
+                  width: 24,
+                  height: 24,
+                  child: CircularProgressIndicator(
+                    strokeWidth: 2.5,
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      foregroundColor ?? textColor,
+                    ),
                   ),
+                )
+              : Row(
+                  mainAxisSize: .min,
+                  crossAxisAlignment: .center,
+                  mainAxisAlignment: .center,
+                  spacing: 4,
+                  children: [
+                    if (icon != null)
+                      Icon(icon, color: foregroundColor ?? textColor),
+                    if (label != null)
+                      Flexible(
+                        child: Text(
+                          label!,
+                          style: (labelStyle ?? context.textThemes.buttonLarge)
+                              .copyWith(color: foregroundColor ?? textColor),
+                        ),
+                      ),
+                  ],
                 ),
-            ],
-          ),
         ),
       ],
     );

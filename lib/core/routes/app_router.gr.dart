@@ -11,7 +11,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i35;
 import 'package:flutter/material.dart' as _i36;
-import 'package:mobile/core/enums/user_role.dart' as _i37;
+import 'package:mobile/core/enums/user_role.dart' as _i38;
 import 'package:mobile/core/shared/pages/home_screen.dart' as _i22;
 import 'package:mobile/core/shared/pages/splash_screen.dart' as _i32;
 import 'package:mobile/features/applicants/presentation/pages/applicant_details_page.dart'
@@ -60,6 +60,7 @@ import 'package:mobile/features/profile/presentation/pages/edit_company_info_pag
     as _i14;
 import 'package:mobile/features/profile/presentation/pages/hr_profile_page.dart'
     as _i19;
+import 'package:mobile/features/resume/data/models/resume.dart' as _i37;
 import 'package:mobile/features/resume/presentation/pages/create_resume_flow_page.dart'
     as _i11;
 import 'package:mobile/features/resume/presentation/pages/edit_resume_contacts_page.dart'
@@ -138,7 +139,7 @@ class CandidateHomeRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i4.CandidateHomePage();
+      return _i35.WrappedRoute(child: const _i4.CandidateHomePage());
     },
   );
 }
@@ -209,18 +210,55 @@ class ChooseLanguageRoute extends _i35.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i9.CompleteProfilePage]
-class CompleteProfileRoute extends _i35.PageRouteInfo<void> {
-  const CompleteProfileRoute({List<_i35.PageRouteInfo>? children})
-    : super(CompleteProfileRoute.name, initialChildren: children);
+class CompleteProfileRoute
+    extends _i35.PageRouteInfo<CompleteProfileRouteArgs> {
+  CompleteProfileRoute({
+    _i36.Key? key,
+    String? phoneNumber,
+    List<_i35.PageRouteInfo>? children,
+  }) : super(
+         CompleteProfileRoute.name,
+         args: CompleteProfileRouteArgs(key: key, phoneNumber: phoneNumber),
+         initialChildren: children,
+       );
 
   static const String name = 'CompleteProfileRoute';
 
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i9.CompleteProfilePage();
+      final args = data.argsAs<CompleteProfileRouteArgs>(
+        orElse: () => const CompleteProfileRouteArgs(),
+      );
+      return _i9.CompleteProfilePage(
+        key: args.key,
+        phoneNumber: args.phoneNumber,
+      );
     },
   );
+}
+
+class CompleteProfileRouteArgs {
+  const CompleteProfileRouteArgs({this.key, this.phoneNumber});
+
+  final _i36.Key? key;
+
+  final String? phoneNumber;
+
+  @override
+  String toString() {
+    return 'CompleteProfileRouteArgs{key: $key, phoneNumber: $phoneNumber}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CompleteProfileRouteArgs) return false;
+    return key == other.key && phoneNumber == other.phoneNumber;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ phoneNumber.hashCode;
 }
 
 /// generated route for
@@ -241,18 +279,52 @@ class ConfirmPasswordRoute extends _i35.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i11.CreateResumeFlowPage]
-class CreateResumeFlowRoute extends _i35.PageRouteInfo<void> {
-  const CreateResumeFlowRoute({List<_i35.PageRouteInfo>? children})
-    : super(CreateResumeFlowRoute.name, initialChildren: children);
+class CreateResumeFlowRoute
+    extends _i35.PageRouteInfo<CreateResumeFlowRouteArgs> {
+  CreateResumeFlowRoute({
+    _i36.Key? key,
+    _i37.Resume? resume,
+    List<_i35.PageRouteInfo>? children,
+  }) : super(
+         CreateResumeFlowRoute.name,
+         args: CreateResumeFlowRouteArgs(key: key, resume: resume),
+         initialChildren: children,
+       );
 
   static const String name = 'CreateResumeFlowRoute';
 
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i11.CreateResumeFlowPage();
+      final args = data.argsAs<CreateResumeFlowRouteArgs>(
+        orElse: () => const CreateResumeFlowRouteArgs(),
+      );
+      return _i11.CreateResumeFlowPage(key: args.key, resume: args.resume);
     },
   );
+}
+
+class CreateResumeFlowRouteArgs {
+  const CreateResumeFlowRouteArgs({this.key, this.resume});
+
+  final _i36.Key? key;
+
+  final _i37.Resume? resume;
+
+  @override
+  String toString() {
+    return 'CreateResumeFlowRouteArgs{key: $key, resume: $resume}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! CreateResumeFlowRouteArgs) return false;
+    return key == other.key && resume == other.resume;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ resume.hashCode;
 }
 
 /// generated route for
@@ -321,34 +393,108 @@ class EditResumeContactsRoute extends _i35.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i16.EditResumeEducationPage]
-class EditResumeEducationRoute extends _i35.PageRouteInfo<void> {
-  const EditResumeEducationRoute({List<_i35.PageRouteInfo>? children})
-    : super(EditResumeEducationRoute.name, initialChildren: children);
+class EditResumeEducationRoute
+    extends _i35.PageRouteInfo<EditResumeEducationRouteArgs> {
+  EditResumeEducationRoute({
+    _i36.Key? key,
+    _i37.ResumeEducation? education,
+    List<_i35.PageRouteInfo>? children,
+  }) : super(
+         EditResumeEducationRoute.name,
+         args: EditResumeEducationRouteArgs(key: key, education: education),
+         initialChildren: children,
+       );
 
   static const String name = 'EditResumeEducationRoute';
 
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i16.EditResumeEducationPage();
+      final args = data.argsAs<EditResumeEducationRouteArgs>(
+        orElse: () => const EditResumeEducationRouteArgs(),
+      );
+      return _i16.EditResumeEducationPage(
+        key: args.key,
+        education: args.education,
+      );
     },
   );
 }
 
+class EditResumeEducationRouteArgs {
+  const EditResumeEducationRouteArgs({this.key, this.education});
+
+  final _i36.Key? key;
+
+  final _i37.ResumeEducation? education;
+
+  @override
+  String toString() {
+    return 'EditResumeEducationRouteArgs{key: $key, education: $education}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! EditResumeEducationRouteArgs) return false;
+    return key == other.key && education == other.education;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ education.hashCode;
+}
+
 /// generated route for
 /// [_i17.EditResumeExperiencePage]
-class EditResumeExperienceRoute extends _i35.PageRouteInfo<void> {
-  const EditResumeExperienceRoute({List<_i35.PageRouteInfo>? children})
-    : super(EditResumeExperienceRoute.name, initialChildren: children);
+class EditResumeExperienceRoute
+    extends _i35.PageRouteInfo<EditResumeExperienceRouteArgs> {
+  EditResumeExperienceRoute({
+    _i36.Key? key,
+    _i37.ResumeExperience? experience,
+    List<_i35.PageRouteInfo>? children,
+  }) : super(
+         EditResumeExperienceRoute.name,
+         args: EditResumeExperienceRouteArgs(key: key, experience: experience),
+         initialChildren: children,
+       );
 
   static const String name = 'EditResumeExperienceRoute';
 
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i17.EditResumeExperiencePage();
+      final args = data.argsAs<EditResumeExperienceRouteArgs>(
+        orElse: () => const EditResumeExperienceRouteArgs(),
+      );
+      return _i17.EditResumeExperiencePage(
+        key: args.key,
+        experience: args.experience,
+      );
     },
   );
+}
+
+class EditResumeExperienceRouteArgs {
+  const EditResumeExperienceRouteArgs({this.key, this.experience});
+
+  final _i36.Key? key;
+
+  final _i37.ResumeExperience? experience;
+
+  @override
+  String toString() {
+    return 'EditResumeExperienceRouteArgs{key: $key, experience: $experience}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! EditResumeExperienceRouteArgs) return false;
+    return key == other.key && experience == other.experience;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ experience.hashCode;
 }
 
 /// generated route for
@@ -404,7 +550,7 @@ class HrDashboardRoute extends _i35.PageRouteInfo<void> {
 class LoginRoute extends _i35.PageRouteInfo<LoginRouteArgs> {
   LoginRoute({
     _i36.Key? key,
-    required _i37.UserRole role,
+    required _i38.UserRole role,
     List<_i35.PageRouteInfo>? children,
   }) : super(
          LoginRoute.name,
@@ -428,7 +574,7 @@ class LoginRouteArgs {
 
   final _i36.Key? key;
 
-  final _i37.UserRole role;
+  final _i38.UserRole role;
 
   @override
   String toString() {
@@ -473,7 +619,7 @@ class NearbyJobsRoute extends _i35.PageRouteInfo<void> {
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i23.NearbyJobsPage();
+      return _i35.WrappedRoute(child: const _i23.NearbyJobsPage());
     },
   );
 }
@@ -671,18 +817,49 @@ class RegisterRouteArgs {
 
 /// generated route for
 /// [_i29.ResumeDetailsPage]
-class ResumeDetailsRoute extends _i35.PageRouteInfo<void> {
-  const ResumeDetailsRoute({List<_i35.PageRouteInfo>? children})
-    : super(ResumeDetailsRoute.name, initialChildren: children);
+class ResumeDetailsRoute extends _i35.PageRouteInfo<ResumeDetailsRouteArgs> {
+  ResumeDetailsRoute({
+    _i36.Key? key,
+    required String id,
+    List<_i35.PageRouteInfo>? children,
+  }) : super(
+         ResumeDetailsRoute.name,
+         args: ResumeDetailsRouteArgs(key: key, id: id),
+         initialChildren: children,
+       );
 
   static const String name = 'ResumeDetailsRoute';
 
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i29.ResumeDetailsPage();
+      final args = data.argsAs<ResumeDetailsRouteArgs>();
+      return _i29.ResumeDetailsPage(key: args.key, id: args.id);
     },
   );
+}
+
+class ResumeDetailsRouteArgs {
+  const ResumeDetailsRouteArgs({this.key, required this.id});
+
+  final _i36.Key? key;
+
+  final String id;
+
+  @override
+  String toString() {
+    return 'ResumeDetailsRouteArgs{key: $key, id: $id}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! ResumeDetailsRouteArgs) return false;
+    return key == other.key && id == other.id;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ id.hashCode;
 }
 
 /// generated route for
@@ -751,16 +928,53 @@ class TalentsSearchResultRoute extends _i35.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i34.VacancyDetailsPage]
-class VacancyDetailsRoute extends _i35.PageRouteInfo<void> {
-  const VacancyDetailsRoute({List<_i35.PageRouteInfo>? children})
-    : super(VacancyDetailsRoute.name, initialChildren: children);
+class VacancyDetailsRoute extends _i35.PageRouteInfo<VacancyDetailsRouteArgs> {
+  VacancyDetailsRoute({
+    _i36.Key? key,
+    required String id,
+    List<_i35.PageRouteInfo>? children,
+  }) : super(
+         VacancyDetailsRoute.name,
+         args: VacancyDetailsRouteArgs(key: key, id: id),
+         rawPathParams: {'id': id},
+         initialChildren: children,
+       );
 
   static const String name = 'VacancyDetailsRoute';
 
   static _i35.PageInfo page = _i35.PageInfo(
     name,
     builder: (data) {
-      return const _i34.VacancyDetailsPage();
+      final pathParams = data.inheritedPathParams;
+      final args = data.argsAs<VacancyDetailsRouteArgs>(
+        orElse: () => VacancyDetailsRouteArgs(id: pathParams.getString('id')),
+      );
+      return _i35.WrappedRoute(
+        child: _i34.VacancyDetailsPage(key: args.key, id: args.id),
+      );
     },
   );
+}
+
+class VacancyDetailsRouteArgs {
+  const VacancyDetailsRouteArgs({this.key, required this.id});
+
+  final _i36.Key? key;
+
+  final String id;
+
+  @override
+  String toString() {
+    return 'VacancyDetailsRouteArgs{key: $key, id: $id}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! VacancyDetailsRouteArgs) return false;
+    return key == other.key && id == other.id;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ id.hashCode;
 }

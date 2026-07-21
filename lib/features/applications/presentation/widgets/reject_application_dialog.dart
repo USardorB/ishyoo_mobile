@@ -4,7 +4,9 @@ import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 
 class RejectApplicationDialog extends StatelessWidget {
-  const RejectApplicationDialog({super.key});
+  final VoidCallback onConfirm;
+
+  const RejectApplicationDialog({super.key, required this.onConfirm});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,10 @@ class RejectApplicationDialog extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             AppButton(
-              onTap: context.pop,
+              onTap: () {
+                context.pop();
+                onConfirm();
+              },
               label: "Ha",
               color: context.colors.brandDefault,
             ),

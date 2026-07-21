@@ -1,48 +1,80 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/features/resume/data/models/resume.dart';
+import 'package:mobile/features/resume/presentation/bloc/resume_form_bloc.dart';
 
 class ResumeExperienceListStep extends StatelessWidget {
   const ResumeExperienceListStep({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(height: 16),
-        Text(
-          "3 yil 6 oy",
-          style: context.textThemes.s1,
-        ),
-        const SizedBox(height: 16),
-        _buildExperienceCard(context),
-        const SizedBox(height: 12),
-        _buildExperienceCard(context),
-        const SizedBox(height: 12),
-        _buildExperienceCard(context),
-        const SizedBox(height: 24),
-        AppButton(
-          onTap: () {
-            context.pushRoute(const EditResumeExperienceRoute());
-          },
-          icon: Icons.add,
-          label: "Ish tajribasini qo'shish",
-          color: context.colors.brandProgress.withValues(alpha: 0.15),
-          foregroundColor: context.colors.brandProgress,
-          labelStyle: context.textThemes.b2,
-        ),
-        const SizedBox(height: 24),
-      ],
+    return BlocBuilder<ResumeFormBloc, ResumeFormState>(
+      builder: (context, state) {
+        final List<dynamic> rawExperiences = state.formData['experiences'] ?? [];
+        final experiences = rawExperiences.map((e) => ResumeExperience.fromJson(Map<String, dynamic>.from(e))).toList();
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 16),
+            if (experiences.isNotEmpty)
+              Text(
+                "${experiences.length} ta ish joyi",
+                style: context.textThemes.s1,
+              ),
+            const SizedBox(height: 16),
+            ...experiences.asMap().entries.map((entry) {
+              final index = entry.key;
+              final exp = entry.value;
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: _buildExperienceCard(context, exp, index),
+              );
+            }),
+            const SizedBox(height: 24),
+            AppButton(
+              onTap: () async {
+                final result = await context.pushRoute(EditResumeExperienceRoute());
+                if (result != null && result is Map<String, dynamic> && result['action'] == 'save') {
+                  final newExperiences = List<Map<String, dynamic>>.from(state.formData['experiences'] ?? []);
+                  newExperiences.add(result);
+                  context.read<ResumeFormBloc>().add(UpdateFormData({'experiences': newExperiences}));
+                }
+              },
+              icon: Icons.add,
+              label: "Ish tajribasini qo'shish",
+              color: context.colors.brandProgress.withValues(alpha: 0.15),
+              foregroundColor: context.colors.brandProgress,
+              labelStyle: context.textThemes.b2,
+            ),
+            const SizedBox(height: 24),
+          ],
+        );
+      },
     );
   }
 
-  Widget _buildExperienceCard(BuildContext context) {
+  Widget _buildExperienceCard(BuildContext context, ResumeExperience exp, int index) {
     return InkWell(
-      onTap: () {
-        context.pushRoute(const EditResumeExperienceRoute());
+      onTap: () async {
+        final result = await context.pushRoute(EditResumeExperienceRoute(experience: exp));
+        if (result != null && result is Map<String, dynamic>) {
+          final bloc = context.read<ResumeFormBloc>();
+          final currentData = bloc.state.formData;
+          final newExperiences = List<Map<String, dynamic>>.from(currentData['experiences'] ?? []);
+          
+          if (result['action'] == 'delete') {
+            newExperiences.removeAt(index);
+          } else if (result['action'] == 'save') {
+            newExperiences[index] = result;
+          }
+          
+          bloc.add(UpdateFormData({'experiences': newExperiences}));
+        }
       },
       borderRadius: BorderRadius.circular(16),
       child: Container(
@@ -58,7 +90,7 @@ class ResumeExperienceListStep extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "UX/UI Dizayner",
+                  exp.position,
                   style: context.textThemes.s1,
                 ),
                 Icon(
@@ -70,31 +102,33 @@ class ResumeExperienceListStep extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              "Click",
+              exp.companyName,
               style: context.textThemes.b2.copyWith(
                 color: context.colors.textSecondary,
               ),
             ),
             const SizedBox(height: 4),
             Text(
-              "2023 yil yanvar - hozir - 1 y 4 oy",
+              "${exp.startDate?.year ?? ''} - ${exp.endDate?.year ?? 'hozir'}",
               style: context.textThemes.c1.copyWith(
                 color: context.colors.textSecondary,
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              child: Container(
-                height: 1,
-                color: context.colors.bgTertiary,
+            if (exp.description != null && exp.description!.isNotEmpty) ...[
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: Container(
+                  height: 1,
+                  color: context.colors.bgTertiary,
+                ),
               ),
-            ),
-            Text(
-              "Raqamli mahsulotlarning UX UI dizaynini ishlab chiqish",
-              style: context.textThemes.b2,
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
+              Text(
+                exp.description!,
+                style: context.textThemes.b2,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ],
           ],
         ),
       ),

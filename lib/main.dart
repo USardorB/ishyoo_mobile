@@ -2,15 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/app.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
-import 'package:mobile/features/auth/presentation/controllers/auth_cubit.dart';
+import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  configureDependencies();
+  await configureDependencies();
 
   runApp(
-    BlocProvider(
-      create: (_) => sl<AuthCubit>(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => sl<AuthBloc>()),
+      ],
       child: const MainApp(),
     ),
   );

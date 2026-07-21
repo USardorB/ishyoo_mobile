@@ -1,7 +1,13 @@
 import 'package:auto_route/annotations.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
+import 'package:mobile/core/configs/di/configure_dependencies.dart';
+import 'package:mobile/core/enums/user_role.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
+
+import '../bloc/notification_detail_bloc.dart';
 
 @RoutePage()
 class NotificationDetailsPage extends StatelessWidget {
@@ -16,56 +22,54 @@ class NotificationDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: ListView(
-        padding: .all(16),
-        children: [
-          Text(
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
-            style: context.textThemes.s2,
-          ),
-          SizedBox(height: 8),
-          Text(
-            "21-Apr, 16:40",
-            style: context.textThemes.b2.copyWith(
-              color: context.colors.textSecondary,
-            ),
-          ),
-          SizedBox(height: 18),
-          Container(
-            clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(
-              borderRadius: .circular(12),
-            ),
-            constraints: BoxConstraints(maxHeight: 200),
-            child: CachedNetworkImage(
-              imageUrl: "https://picsum.photos/400/200",
-              maxWidthDiskCache: 400,
-              maxHeightDiskCache: 200,
-            ),
-          ),
-          SizedBox(height: 12),
-          Text(
-            """2019-yilda Toshkent shahrida tashkil etilgan CAU qisqa vaqt ichida mintaqadagi eng jadal rivojlanayotgan
-xususiy universitetlardan biriga aylandi.CAU global akademik makonda o‘z mavqeini izchil mustahkamlamoqda:
-•
-Round University Ranking jahon reytingining top-1000 taligi (2025)
-•
-THE Impact Rankings 2025 reytingida debyut
-• 4
-ta’lim va ishga joylashish ko‘rsatkichlari yuqori bo‘lgan QS Stars yulduzlari
-•
-AD Scientific Index ma’lumotlariga ko‘ra, O‘zbekistondagi yosh universitetlar orasida 1-o‘rin
-•
-2025-yilda mamlakatning eng yaxshi nodavlat universiteti deb e’tirof etilishi
-Bu universitetning xalqaro
-standartlar mantig‘idagi sifati va tizimli ishining tasdig‘idir. Xodimlar va nomzodlar uchun bu - ular muhitga bilan kelganliklarini anglash demakdir.""",
-          ),
-        ],
+    final role = context.read<AuthBloc>().state.userRole;
+    final roleString = role == UserRole.job_seeker ? 'candidate' : 'employer';
+
+    return BlocProvider(
+      create: (context) => sl<NotificationDetailBloc>()..add(LoadNotificationDetail(roleString, id)),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(title),
+        ),
+        body: BlocBuilder<NotificationDetailBloc, NotificationDetailState>(
+          builder: (context, state) {
+            if (state.isLoading) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            if (state.error != null) {
+              return Center(child: Text(state.error!));
+            }
+
+            if (state.notification == null) {
+              return const Center(child: Text("Ma'lumot topilmadi"));
+            }
+
+            final notification = state.notification!;
+
+            return ListView(
+              padding: const EdgeInsets.all(16),
+              children: [
+                Text(
+                  notification.message,
+                  style: context.textThemes.s2,
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  notification.createdAt != null
+                      ? DateFormat('dd-MMM, HH:mm').format(notification.createdAt!)
+                      : "",
+                  style: context.textThemes.b2.copyWith(
+                    color: context.colors.textSecondary,
+                  ),
+                ),
+                const SizedBox(height: 18),
+              ],
+            );
+          },
+        ),
       ),
     );
   }
 }
+

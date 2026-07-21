@@ -18,6 +18,14 @@ enum JobType {
     JobType.contract => 'Shartnoma',
     JobType.internship => 'Stajirovka',
   };
+
+  String get serverValue => switch (this) {
+    JobType.fullTime => 'full_time',
+    JobType.partTime => 'part_time',
+    JobType.freelance => 'freelance',
+    JobType.contract => 'contract',
+    JobType.internship => 'internship',
+  };
 }
 
 enum ExperienceLevel {
@@ -32,10 +40,52 @@ enum ExperienceLevel {
     ExperienceLevel.threeToSix => '3-6 yil',
     ExperienceLevel.moreThanSix => '6 yildan ortiq',
   };
+
+  String get serverValue => switch (this) {
+    ExperienceLevel.inexperienced => 'inexperienced',
+    ExperienceLevel.oneToThree => 'one_to_three',
+    ExperienceLevel.threeToSix => 'three_to_six',
+    ExperienceLevel.moreThanSix => 'more_than_six',
+  };
 }
 
-class TallentFilterSheet extends StatelessWidget {
-  const TallentFilterSheet({super.key});
+class TallentFilterSheet extends StatefulWidget {
+  final void Function(
+    String? jobType,
+    String? experienceLevel,
+    String? specialization,
+  )?
+  onApply;
+
+  const TallentFilterSheet({super.key, this.onApply});
+
+  @override
+  State<TallentFilterSheet> createState() => _TallentFilterSheetState();
+}
+
+class _TallentFilterSheetState extends State<TallentFilterSheet> {
+  JobType? _selectedJobType;
+  ExperienceLevel? _selectedExperienceLevel;
+  String? _specialization; // For now kept as null/unimplemented UI
+
+  void _clearFilters() {
+    setState(() {
+      _selectedJobType = null;
+      _selectedExperienceLevel = null;
+      _specialization = null;
+    });
+  }
+
+  void _applyFilters() {
+    if (widget.onApply != null) {
+      widget.onApply!(
+        _selectedJobType?.serverValue,
+        _selectedExperienceLevel?.serverValue,
+        _specialization,
+      );
+    }
+    context.pop();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -107,7 +157,7 @@ class TallentFilterSheet extends StatelessWidget {
             ),
             SizedBox(height: 20),
             AppButton(
-              onTap: () {},
+              onTap: _applyFilters,
               label: "Filtrni qo‘llash",
             ),
           ],
@@ -141,7 +191,7 @@ class TallentFilterSheet extends StatelessWidget {
         child: Align(
           alignment: Alignment.centerRight,
           child: TextButton(
-            onPressed: () {},
+            onPressed: _clearFilters,
             style: TextButton.styleFrom(
               textStyle: context.textThemes.buttonLarge,
               visualDensity: .compact,
@@ -162,17 +212,25 @@ class TallentFilterSheet extends StatelessWidget {
 
   Widget _wrapJobChoiceChip(JobType jobType) {
     return FilterChip(
-      selected: jobType == JobType.fullTime,
+      selected: _selectedJobType == jobType,
       label: Text(jobType.title),
-      onSelected: (bool value) {},
+      onSelected: (bool value) {
+        setState(() {
+          _selectedJobType = value ? jobType : null;
+        });
+      },
     );
   }
 
   Widget _wrapExperienceChoiceChip(ExperienceLevel experienceLevel) {
     return FilterChip(
-      selected: experienceLevel == ExperienceLevel.oneToThree,
+      selected: _selectedExperienceLevel == experienceLevel,
       label: Text(experienceLevel.title),
-      onSelected: (bool value) {},
+      onSelected: (bool value) {
+        setState(() {
+          _selectedExperienceLevel = value ? experienceLevel : null;
+        });
+      },
     );
   }
 }

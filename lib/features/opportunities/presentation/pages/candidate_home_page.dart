@@ -1,9 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/consts/app_assets.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
+import 'package:mobile/features/opportunities/presentation/bloc/vacancy_feed_bloc.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/candidate_home_banner.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/candidate_quick_access_cards.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/trending_vacancy_card.dart';
@@ -11,8 +14,16 @@ import 'package:mobile/features/postings/presentation/widgets/dark_glass_search_
 import 'package:mobile/features/postings/presentation/widgets/tallent_filter_sheet.dart';
 
 @RoutePage()
-class CandidateHomePage extends StatelessWidget {
+class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
   const CandidateHomePage({super.key});
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider(
+      create: (_) => sl<VacancyFeedBloc>()..add(const LoadVacancyFeed()),
+      child: this,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -20,42 +31,57 @@ class CandidateHomePage extends StatelessWidget {
       appBar: AppBar(
         toolbarHeight: kToolbarHeight + 20,
         title: Padding(
-          padding: .only(left: 6),
+          padding: const EdgeInsets.only(left: 6),
           child: SvgPicture.asset(AppAssets.ishYoo, height: 24),
         ),
         centerTitle: false,
         actions: [
           IconButton.filled(
             onPressed: () {},
-            icon: Icon(Icons.headset_mic_outlined),
+            icon: const Icon(Icons.headset_mic_outlined),
             style: IconButton.styleFrom(
               backgroundColor: context.colors.bgSecondary,
             ),
           ),
           IconButton.filled(
-            onPressed: () => context.pushRoute(NotificationsRoute()),
-            icon: Icon(Icons.notifications_none_outlined),
+            onPressed: () => context.pushRoute(const NotificationsRoute()),
+            icon: const Icon(Icons.notifications_none_outlined),
             style: IconButton.styleFrom(
               backgroundColor: context.colors.bgSecondary,
             ),
           ),
         ],
-        actionsPadding: .only(right: 16),
+        actionsPadding: const EdgeInsets.only(right: 16),
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(48),
+          preferredSize: const Size.fromHeight(48),
           child: Padding(
-            padding: .all(16),
+            padding: const EdgeInsets.all(16),
             child: Row(
               children: [
-                Flexible(child: DarkGlassSearchField()),
-                SizedBox(width: 12),
+                Flexible(
+                  child: DarkGlassSearchField(
+                    onTap: () {
+                      // Navigate to search page where title can be searched
+                      // context.pushRoute(const CandidateSearchRoute());
+                    },
+                  ),
+                ),
+                const SizedBox(width: 12),
                 IconButton(
                   onPressed: () => showModalBottomSheet(
                     context: context,
                     isScrollControlled: true,
-                    builder: (_) => TallentFilterSheet(),
+                    builder: (_) => TallentFilterSheet(
+                      onApply: (jobType, experienceLevel, specialization) {
+                        context.read<VacancyFeedBloc>().add(LoadVacancyFeed(
+                              jobType: jobType,
+                              experienceLevel: experienceLevel,
+                              specialization: specialization,
+                            ));
+                      },
+                    ),
                   ),
-                  icon: Icon(Icons.tune),
+                  icon: const Icon(Icons.tune),
                 ),
               ],
             ),
@@ -99,8 +125,35 @@ class CandidateHomePage extends StatelessWidget {
               style: context.textThemes.s2,
             ),
             const SizedBox(height: 16),
-            const TrendingVacancyCard(isLiked: true),
-            const TrendingVacancyCard(),
+            BlocBuilder<VacancyFeedBloc, VacancyFeedState>(
+              builder: (context, state) {
+                if (state is VacancyFeedLoading) {
+                  return const Center(child: CircularProgressIndicator());
+                } else if (state is VacancyFeedError) {
+                  return Center(
+                    child: Text(
+                      state.message,
+                      style: TextStyle(color: context.colors.textSecondary),
+                    ),
+                  );
+                } else if (state is VacancyFeedLoaded) {
+                  if (state.vacancies.isEmpty) {
+                    return Center(
+                      child: Text(
+                        "Hozircha e'lonlar yo'q",
+                        style: TextStyle(color: context.colors.textSecondary),
+                      ),
+                    );
+                  }
+                  return Column(
+                    children: state.vacancies
+                        .map((vacancy) => TrendingVacancyCard(vacancy: vacancy))
+                        .toList(),
+                  );
+                }
+                return const SizedBox.shrink();
+              },
+            ),
           ],
         ),
       ),

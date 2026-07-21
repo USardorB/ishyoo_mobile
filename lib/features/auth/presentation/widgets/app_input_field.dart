@@ -17,6 +17,8 @@ class AppInputField extends StatelessWidget {
   final bool readOnly;
   final int? minLines;
   final int? maxLines;
+  final ValueChanged<String>? onChanged;
+  final ValueChanged<String>? onFieldSubmitted;
 
   const AppInputField({
     super.key,
@@ -35,6 +37,8 @@ class AppInputField extends StatelessWidget {
     this.label,
     this.suffixIcon,
     this.obscureText = false,
+    this.onChanged,
+    this.onFieldSubmitted,
   });
 
   @override
@@ -60,6 +64,8 @@ class AppInputField extends StatelessWidget {
           keyboardType: keyboardType,
           enabled: enabled,
           onTap: onTap,
+          onChanged: onChanged,
+          onFieldSubmitted: onFieldSubmitted,
           onTapOutside: (event) => FocusScope.of(context).unfocus(),
           validator: validator,
           controller: controller,

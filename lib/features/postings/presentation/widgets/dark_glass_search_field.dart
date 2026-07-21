@@ -8,7 +8,8 @@ import 'package:mobile/core/routes/app_router.gr.dart';
 class DarkGlassSearchField extends StatelessWidget {
   final Widget? prefixIcon;
   final String? hintText;
-  const DarkGlassSearchField({super.key, this.prefixIcon, this.hintText});
+  final VoidCallback? onTap;
+  const DarkGlassSearchField({super.key, this.prefixIcon, this.hintText, this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +19,7 @@ class DarkGlassSearchField extends StatelessWidget {
         borderRadius: BorderRadius.circular(32),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.1),
+            color: Colors.black.withValues(alpha: 0.1),
             blurRadius: 10,
             offset: const Offset(0, 4),
           ),
@@ -55,7 +56,9 @@ class DarkGlassSearchField extends StatelessWidget {
                 ),
                 leading: prefixIcon,
                 onTap: () {
-                  if (context.routeData.name != TalentsSearchResultRoute.name) {
+                  if (onTap != null) {
+                    onTap!();
+                  } else if (context.routeData.name != TalentsSearchResultRoute.name) {
                     context.pushRoute(TalentsSearchResultRoute());
                   }
                 },

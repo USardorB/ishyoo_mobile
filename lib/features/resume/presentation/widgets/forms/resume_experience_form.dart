@@ -1,30 +1,54 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
-class ResumeExperienceForm extends HookWidget {
-  final VoidCallback? onMonthTapped;
+class ResumeExperienceForm extends StatelessWidget {
+  final TextEditingController companyController;
+  final TextEditingController positionController;
+  final TextEditingController descriptionController;
+  final String location;
+  final DateTime? startDate;
+  final DateTime? endDate;
+  final bool isWorking;
+  final ValueChanged<bool> onWorkingChanged;
+  final VoidCallback? onStartMonthTapped;
+  final VoidCallback? onEndMonthTapped;
+  final VoidCallback? onLocationTapped;
 
-  const ResumeExperienceForm({super.key, this.onMonthTapped});
+  const ResumeExperienceForm({
+    super.key,
+    required this.companyController,
+    required this.positionController,
+    required this.descriptionController,
+    required this.location,
+    required this.startDate,
+    required this.endDate,
+    required this.isWorking,
+    required this.onWorkingChanged,
+    this.onStartMonthTapped,
+    this.onEndMonthTapped,
+    this.onLocationTapped,
+  });
 
   @override
   Widget build(BuildContext context) {
-    final currentlyWorking = useState(false);
+    final startStr = startDate != null ? "${startDate!.month}/${startDate!.year}" : "Tanlang";
+    final endStr = endDate != null ? "${endDate!.month}/${endDate!.year}" : "Tanlang";
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 16),
-        _buildTextField(context, "Kompaniya nomi", "Uzum bank"),
+        _buildTextField(context, "Kompaniya nomi", "Masalan: Uzum bank", controller: companyController),
         const SizedBox(height: 24),
-        _buildTextField(context, "Lavozim yoki kasb", "UX/UI Dizayner"),
+        _buildTextField(context, "Lavozim yoki kasb", "Masalan: UX/UI Dizayner", controller: positionController),
         const SizedBox(height: 24),
-        _buildActionField(context, "Shahar", "Toshkent"),
+        _buildActionField(context, "Hudud", location, onTap: onLocationTapped),
         const SizedBox(height: 24),
         _buildTextField(
           context,
           "Vazifalar va yutuqlar",
-          "Raqamli mahsulotlarning UX/UI dizaynini ishlab chiqish; oziq-ovqat yetkazib berish mobil ilovasi, taksi ilovasi va onlayn kinoteatr dizaynini ishlab chiqish",
+          "Vazifalaringizni kiriting",
+          controller: descriptionController,
           maxLines: 4,
         ),
         const SizedBox(height: 24),
@@ -33,52 +57,24 @@ class ResumeExperienceForm extends HookWidget {
           style: context.textThemes.c2.copyWith(color: context.colors.textSecondary),
         ),
         const SizedBox(height: 8),
-        Row(
-          spacing: 12,
-          children: [
-            Expanded(
-              child: _buildActionField(context, "", "May", hasLabel: false, onTap: onMonthTapped),
-            ),
-            Expanded(
-              child: _buildTextField(context, "", "2025", hasLabel: false),
-            ),
-          ],
-        ),
+        _buildActionField(context, "", startStr, hasLabel: false, onTap: onStartMonthTapped),
         const SizedBox(height: 24),
         Text(
           "Ishning tugash sanasi",
           style: context.textThemes.c2.copyWith(color: context.colors.textSecondary),
         ),
         const SizedBox(height: 8),
-        Row(
-          spacing: 12,
-          children: [
-            Expanded(
-              child: _buildActionField(
-                context,
-                "",
-                currentlyWorking.value ? "Oy" : "May",
-                hasLabel: false,
-                isPlaceholder: currentlyWorking.value,
-                onTap: currentlyWorking.value ? null : onMonthTapped,
-              ),
-            ),
-            Expanded(
-              child: _buildTextField(
-                context,
-                "",
-                currentlyWorking.value ? "Yill" : "2025",
-                hasLabel: false,
-                isPlaceholder: currentlyWorking.value,
-              ),
-            ),
-          ],
+        _buildActionField(
+          context,
+          "",
+          isWorking ? "Hozir ishlayapman" : endStr,
+          hasLabel: false,
+          isPlaceholder: isWorking,
+          onTap: isWorking ? null : onEndMonthTapped,
         ),
         const SizedBox(height: 24),
         InkWell(
-          onTap: () {
-            currentlyWorking.value = !currentlyWorking.value;
-          },
+          onTap: () => onWorkingChanged(!isWorking),
           child: Row(
             children: [
               Text(
@@ -90,13 +86,13 @@ class ResumeExperienceForm extends HookWidget {
                 width: 24,
                 height: 24,
                 decoration: BoxDecoration(
-                  color: currentlyWorking.value ? context.colors.brandProgress : Colors.transparent,
+                  color: isWorking ? context.colors.brandProgress : Colors.transparent,
                   border: Border.all(
-                    color: currentlyWorking.value ? context.colors.brandProgress : context.colors.textSecondary,
+                    color: isWorking ? context.colors.brandProgress : context.colors.textSecondary,
                   ),
                   borderRadius: BorderRadius.circular(4),
                 ),
-                child: currentlyWorking.value
+                child: isWorking
                     ? const Icon(Icons.check, color: Colors.black, size: 16)
                     : null,
               ),
@@ -107,7 +103,7 @@ class ResumeExperienceForm extends HookWidget {
     );
   }
 
-  Widget _buildTextField(BuildContext context, String label, String hint, {int maxLines = 1, bool hasLabel = true, bool isPlaceholder = false}) {
+  Widget _buildTextField(BuildContext context, String label, String hint, {required TextEditingController controller, int maxLines = 1, bool hasLabel = true, bool isPlaceholder = false}) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -127,12 +123,12 @@ class ResumeExperienceForm extends HookWidget {
             borderRadius: BorderRadius.circular(12),
           ),
           child: TextField(
-            controller: isPlaceholder ? null : TextEditingController(text: hint),
+            controller: controller,
             style: context.textThemes.b2,
             maxLines: maxLines,
             enabled: !isPlaceholder,
             decoration: InputDecoration(
-              hintText: isPlaceholder ? hint : null,
+              hintText: hint,
               hintStyle: context.textThemes.b2.copyWith(color: context.colors.textSecondary),
               border: InputBorder.none,
               enabledBorder: InputBorder.none,

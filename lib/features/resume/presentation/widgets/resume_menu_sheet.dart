@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/resume/presentation/widgets/delete_resume_dialog.dart';
@@ -33,29 +34,25 @@ class ResumeMenuSheet extends StatelessWidget {
           _MenuItem(
             icon: Icons.file_download_outlined,
             label: "Yuklab olish",
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: context.pop,
           ),
           Divider(color: context.colors.bgTertiary, height: 1),
           _MenuItem(
             icon: Icons.copy_outlined,
             label: "Nusxa qilish",
-            onTap: () {
-              Navigator.pop(context);
-            },
+            onTap: context.pop,
           ),
           Divider(color: context.colors.bgTertiary, height: 1),
           _MenuItem(
             icon: Icons.delete_outline,
             label: "O'chirish",
             isDestructive: true,
-            onTap: () {
-              Navigator.pop(context);
-              showDialog(
+            onTap: () async {
+              await showDialog(
                 context: context,
                 builder: (_) => const DeleteResumeDialog(),
               );
+              if (context.mounted) context.pop();
             },
           ),
         ],
@@ -79,7 +76,9 @@ class _MenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final color = isDestructive ? context.colors.danger : context.colors.textPrimary;
+    final color = isDestructive
+        ? context.colors.danger
+        : context.colors.textPrimary;
     return InkWell(
       onTap: onTap,
       child: Padding(

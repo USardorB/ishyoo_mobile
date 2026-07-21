@@ -4,7 +4,9 @@ import 'package:mobile/features/applications/presentation/widgets/delete_applica
 import 'package:mobile/features/applications/presentation/widgets/reject_application_dialog.dart';
 
 class ApplicationMenuSheet extends StatelessWidget {
-  const ApplicationMenuSheet({super.key});
+  final VoidCallback onRefuse;
+
+  const ApplicationMenuSheet({super.key, required this.onRefuse});
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +64,9 @@ class ApplicationMenuSheet extends StatelessWidget {
               Navigator.pop(context);
               showDialog(
                 context: context,
-                builder: (_) => const RejectApplicationDialog(),
+                builder: (_) => RejectApplicationDialog(
+                  onConfirm: onRefuse,
+                ),
               );
             },
           ),

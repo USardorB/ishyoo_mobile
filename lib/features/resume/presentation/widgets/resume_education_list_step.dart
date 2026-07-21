@@ -1,41 +1,74 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/features/resume/data/models/resume.dart';
+import 'package:mobile/features/resume/presentation/bloc/resume_form_bloc.dart';
 
 class ResumeEducationListStep extends StatelessWidget {
   const ResumeEducationListStep({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(height: 16),
-        _buildEducationCard(context),
-        const SizedBox(height: 12),
-        _buildEducationCard(context),
-        const SizedBox(height: 24),
-        AppButton(
-          onTap: () {
-            context.pushRoute(const EditResumeEducationRoute());
-          },
-          icon: Icons.add,
-          label: "Ta'lim ma'lumotini qo'shish",
-          color: context.colors.brandProgress.withValues(alpha: 0.15),
-          foregroundColor: context.colors.brandProgress,
-          labelStyle: context.textThemes.b2,
-        ),
-        const SizedBox(height: 24),
-      ],
+    return BlocBuilder<ResumeFormBloc, ResumeFormState>(
+      builder: (context, state) {
+        final List<dynamic> rawEducations = state.formData['educations'] ?? [];
+        final educations = rawEducations.map((e) => ResumeEducation.fromJson(Map<String, dynamic>.from(e))).toList();
+
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const SizedBox(height: 16),
+            ...educations.asMap().entries.map((entry) {
+              final index = entry.key;
+              final edu = entry.value;
+              return Padding(
+                padding: const EdgeInsets.only(bottom: 12),
+                child: _buildEducationCard(context, edu, index),
+              );
+            }),
+            const SizedBox(height: 24),
+            AppButton(
+              onTap: () async {
+                final result = await context.pushRoute(EditResumeEducationRoute());
+                if (result != null && result is Map<String, dynamic> && result['action'] == 'save') {
+                  final newEducations = List<Map<String, dynamic>>.from(state.formData['educations'] ?? []);
+                  newEducations.add(result);
+                  context.read<ResumeFormBloc>().add(UpdateFormData({'educations': newEducations}));
+                }
+              },
+              icon: Icons.add,
+              label: "Ta'lim ma'lumotini qo'shish",
+              color: context.colors.brandProgress.withValues(alpha: 0.15),
+              foregroundColor: context.colors.brandProgress,
+              labelStyle: context.textThemes.b2,
+            ),
+            const SizedBox(height: 24),
+          ],
+        );
+      },
     );
   }
 
-  Widget _buildEducationCard(BuildContext context) {
+  Widget _buildEducationCard(BuildContext context, ResumeEducation edu, int index) {
     return InkWell(
-      onTap: () {
-        context.pushRoute(const EditResumeEducationRoute());
+      onTap: () async {
+        final result = await context.pushRoute(EditResumeEducationRoute(education: edu));
+        if (result != null && result is Map<String, dynamic>) {
+          final bloc = context.read<ResumeFormBloc>();
+          final currentData = bloc.state.formData;
+          final newEducations = List<Map<String, dynamic>>.from(currentData['educations'] ?? []);
+          
+          if (result['action'] == 'delete') {
+            newEducations.removeAt(index);
+          } else if (result['action'] == 'save') {
+            newEducations[index] = result;
+          }
+          
+          bloc.add(UpdateFormData({'educations': newEducations}));
+        }
       },
       borderRadius: BorderRadius.circular(16),
       child: Container(
@@ -50,9 +83,13 @@ class ResumeEducationListStep extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  "Gurlan tumani 1-praktikum kasb...",
-                  style: context.textThemes.s1,
+                Expanded(
+                  child: Text(
+                    edu.school,
+                    style: context.textThemes.s1,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
                 Icon(
                   Icons.chevron_right,
@@ -63,14 +100,14 @@ class ResumeEducationListStep extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              "Grafik dizayner",
+              edu.degree,
               style: context.textThemes.b2.copyWith(
                 color: context.colors.textSecondary,
               ),
             ),
             const SizedBox(height: 4),
             Text(
-              "2023 yil O'rta maxsus ta'lim",
+              "${edu.startDate?.year ?? ''} - ${edu.endDate?.year ?? 'hozir'}",
               style: context.textThemes.c1.copyWith(
                 color: context.colors.textSecondary,
               ),
