@@ -94,7 +94,13 @@ class PostingsBloc extends Bloc<PostingsEvent, PostingsState> {
   }
 
   Future<void> _onLoad(LoadPostings event, Emitter<PostingsState> emit) async {
-    emit(state.copyWith(isLoading: true, error: null, currentPage: 1, hasReachedMax: false));
+    emit(state.copyWith(
+      isLoading: true,
+      error: null,
+      currentPage: 1,
+      hasReachedMax: false,
+      isCreateSuccess: false,
+    ));
     
     final result = await Future.wait([
       _postingsRepository.getVacancies(page: 1, limit: 10),
@@ -144,11 +150,11 @@ class PostingsBloc extends Bloc<PostingsEvent, PostingsState> {
   Future<void> _onCreate(CreatePosting event, Emitter<PostingsState> emit) async {
     emit(state.copyWith(isSubmitting: true, error: null));
     final result = await _postingsRepository.createVacancy(event.body);
-    result.fold(
-      (failure) => emit(state.copyWith(isSubmitting: false, error: failure.message)),
-      (vacancy) {
+    await result.fold(
+      (failure) async => emit(state.copyWith(isSubmitting: false, error: failure.message)),
+      (vacancy) async {
+        await _postingsRepository.publishVacancy(vacancy.id);
         emit(state.copyWith(isSubmitting: false, isCreateSuccess: true));
-        add(LoadPostings()); // refresh list
       },
     );
   }
@@ -156,11 +162,11 @@ class PostingsBloc extends Bloc<PostingsEvent, PostingsState> {
   Future<void> _onUpdate(UpdatePosting event, Emitter<PostingsState> emit) async {
     emit(state.copyWith(isSubmitting: true, error: null));
     final result = await _postingsRepository.updateVacancy(event.id, event.body);
-    result.fold(
-      (failure) => emit(state.copyWith(isSubmitting: false, error: failure.message)),
-      (vacancy) {
+    await result.fold(
+      (failure) async => emit(state.copyWith(isSubmitting: false, error: failure.message)),
+      (vacancy) async {
+        await _postingsRepository.publishVacancy(vacancy.id);
         emit(state.copyWith(isSubmitting: false, isCreateSuccess: true));
-        add(LoadPostings()); // refresh list
       },
     );
   }

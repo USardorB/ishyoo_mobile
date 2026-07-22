@@ -41,6 +41,11 @@ class PostingsRepositoryImpl implements PostingsRepository {
   }
 
   @override
+  Future<Either<Failure, Vacancy>> publishVacancy(String id) {
+    return remoteDataSource.publishVacancy(id).asEither();
+  }
+
+  @override
   Future<Either<Failure, List<Specialization>>> getSpecializations() {
     return remoteDataSource.getSpecializations().asEither();
   }

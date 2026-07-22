@@ -1,13 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/core/extensions/app_theme_extension.dart';
-import 'package:mobile/core/shared/widgets/app_button.dart';
-import 'package:mobile/features/opportunities/presentation/widgets/vacancy_map_placeholder.dart';
-import 'package:mobile/features/opportunities/presentation/widgets/apply_vacancy_sheet.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
+import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/opportunities/presentation/bloc/vacancy_details_bloc.dart';
+import 'package:mobile/features/opportunities/presentation/widgets/apply_vacancy_sheet.dart';
+import 'package:mobile/features/opportunities/presentation/widgets/vacancy_map_placeholder.dart';
 
 @RoutePage()
 class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
@@ -73,18 +72,21 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                 icon: const Icon(Icons.share_outlined),
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Ulashish tez orada qo'shiladi")),
+                    const SnackBar(
+                      content: Text("Ulashish tez orada qo'shiladi"),
+                    ),
                   );
                 },
               ),
               IconButton(
-                icon: Icon(isSaved ? Icons.favorite : Icons.favorite_border,
-                    color: isSaved ? Colors.red : null),
+                icon: Icon(
+                  isSaved ? Icons.favorite : Icons.favorite_border,
+                  color: isSaved ? Colors.red : null,
+                ),
                 onPressed: () {
                   context.read<VacancyDetailsBloc>().add(
-                        ToggleSaveVacancy(
-                            id: vacancy.id, currentlySaved: isSaved),
-                      );
+                    ToggleSaveVacancy(id: vacancy.id, currentlySaved: isSaved),
+                  );
                 },
               ),
             ],
@@ -92,8 +94,8 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
           body: SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8)
                 .copyWith(
-              bottom: MediaQuery.paddingOf(context).bottom + 100,
-            ),
+                  bottom: MediaQuery.paddingOf(context).bottom + 100,
+                ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -109,7 +111,9 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                       child: Center(
                         child: Text(
                           (vacancy.organization?.name?.isNotEmpty == true)
-                              ? vacancy.organization!.name!.substring(0, 1).toUpperCase()
+                              ? vacancy.organization!.name!
+                                    .substring(0, 1)
+                                    .toUpperCase()
                               : 'O',
                           style: context.textThemes.h3.copyWith(
                             color: context.colors.brandDefault,
@@ -186,7 +190,7 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                               const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
-                                  "95 kishi allaqachon javob berdi", // Hardcoded per design
+                                  "${vacancy.totalApplicationsCount} kishi allaqachon javob berdi",
                                   style: context.textThemes.b2.copyWith(
                                     color: context.colors.brandDefault,
                                   ),
@@ -257,9 +261,12 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                     style: context.textThemes.s2,
                   ),
                   const SizedBox(height: 12),
-                  ...vacancy.responsibilities!.split('\n').where((s) => s.trim().isNotEmpty).map(
-                    (res) => _buildBulletPoint(context, res),
-                  ),
+                  ...vacancy.responsibilities!
+                      .split('\n')
+                      .where((s) => s.trim().isNotEmpty)
+                      .map(
+                        (res) => _buildBulletPoint(context, res),
+                      ),
                   const SizedBox(height: 24),
                 ],
                 if (vacancy.requirements != null &&
@@ -269,9 +276,12 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                     style: context.textThemes.s2,
                   ),
                   const SizedBox(height: 12),
-                  ...vacancy.requirements!.split('\n').where((s) => s.trim().isNotEmpty).map(
-                    (req) => _buildBulletPoint(context, req),
-                  ),
+                  ...vacancy.requirements!
+                      .split('\n')
+                      .where((s) => s.trim().isNotEmpty)
+                      .map(
+                        (req) => _buildBulletPoint(context, req),
+                      ),
                   const SizedBox(height: 24),
                 ],
                 if (vacancy.keySkills != null &&
@@ -296,15 +306,41 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                 ),
                 const SizedBox(height: 12),
                 const VacancyMapPlaceholder(),
+                const SizedBox(height: 24),
+                if (vacancy.contact != null &&
+                    vacancy.contact!.phoneNumber?.isNotEmpty == true) ...[
+                  Text(
+                    "Aloqa uchun",
+                    style: context.textThemes.s2,
+                  ),
+                  const SizedBox(height: 12),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.phone,
+                        color: context.colors.textSecondary,
+                        size: 20,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        vacancy.contact!.phoneNumber!,
+                        style: context.textThemes.b2.copyWith(
+                          color: context.colors.textPrimary,
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                ],
               ],
             ),
           ),
           bottomSheet: Container(
             color: context.colors.bgPrimary,
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 12).copyWith(
-              bottom: MediaQuery.paddingOf(context).bottom + 12,
-            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12)
+                .copyWith(
+                  bottom: MediaQuery.paddingOf(context).bottom + 12,
+                ),
             child: AppButton(
               onTap: () {
                 if (vacancy.hasApplied == true) return;
@@ -314,14 +350,16 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                   builder: (_) => ApplyVacancySheet(
                     onApply: (resumeId, coverLetter) {
                       context.read<VacancyDetailsBloc>().add(
-                            ApplyToVacancy(vacancy.id, resumeId, coverLetter),
-                          );
+                        ApplyToVacancy(vacancy.id, resumeId, coverLetter),
+                      );
                     },
                   ),
                 );
               },
               isLoading: isApplying,
-              label: vacancy.hasApplied == true ? "Javob berilgan" : "Javob qaytarish",
+              label: vacancy.hasApplied == true
+                  ? "Javob berilgan"
+                  : "Javob qaytarish",
             ),
           ),
         );

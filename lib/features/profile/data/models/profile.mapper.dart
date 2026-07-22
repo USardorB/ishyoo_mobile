@@ -45,6 +45,32 @@ class ProfileMapper extends ClassMapperBase<Profile> {
     key: r'last_name',
     opt: true,
   );
+  static String? _$name(Profile v) => v.name;
+  static const Field<Profile, String> _f$name = Field(
+    'name',
+    _$name,
+    opt: true,
+  );
+  static String? _$role(Profile v) => v.role;
+  static const Field<Profile, String> _f$role = Field(
+    'role',
+    _$role,
+    opt: true,
+  );
+  static String? _$networkStatus(Profile v) => v.networkStatus;
+  static const Field<Profile, String> _f$networkStatus = Field(
+    'networkStatus',
+    _$networkStatus,
+    key: r'network_status',
+    opt: true,
+  );
+  static String? _$lastSeen(Profile v) => v.lastSeen;
+  static const Field<Profile, String> _f$lastSeen = Field(
+    'lastSeen',
+    _$lastSeen,
+    key: r'last_seen',
+    opt: true,
+  );
   static String? _$email(Profile v) => v.email;
   static const Field<Profile, String> _f$email = Field(
     'email',
@@ -80,6 +106,10 @@ class ProfileMapper extends ClassMapperBase<Profile> {
     #avatarUrl: _f$avatarUrl,
     #firstName: _f$firstName,
     #lastName: _f$lastName,
+    #name: _f$name,
+    #role: _f$role,
+    #networkStatus: _f$networkStatus,
+    #lastSeen: _f$lastSeen,
     #email: _f$email,
     #phoneNumber: _f$phoneNumber,
     #city: _f$city,
@@ -93,6 +123,10 @@ class ProfileMapper extends ClassMapperBase<Profile> {
       avatarUrl: data.dec(_f$avatarUrl),
       firstName: data.dec(_f$firstName),
       lastName: data.dec(_f$lastName),
+      name: data.dec(_f$name),
+      role: data.dec(_f$role),
+      networkStatus: data.dec(_f$networkStatus),
+      lastSeen: data.dec(_f$lastSeen),
       email: data.dec(_f$email),
       phoneNumber: data.dec(_f$phoneNumber),
       city: data.dec(_f$city),
@@ -163,6 +197,10 @@ abstract class ProfileCopyWith<$R, $In extends Profile, $Out>
     String? avatarUrl,
     String? firstName,
     String? lastName,
+    String? name,
+    String? role,
+    String? networkStatus,
+    String? lastSeen,
     String? email,
     String? phoneNumber,
     String? city,
@@ -186,6 +224,10 @@ class _ProfileCopyWithImpl<$R, $Out>
     Object? avatarUrl = $none,
     Object? firstName = $none,
     Object? lastName = $none,
+    Object? name = $none,
+    Object? role = $none,
+    Object? networkStatus = $none,
+    Object? lastSeen = $none,
     Object? email = $none,
     Object? phoneNumber = $none,
     Object? city = $none,
@@ -197,6 +239,10 @@ class _ProfileCopyWithImpl<$R, $Out>
       if (avatarUrl != $none) #avatarUrl: avatarUrl,
       if (firstName != $none) #firstName: firstName,
       if (lastName != $none) #lastName: lastName,
+      if (name != $none) #name: name,
+      if (role != $none) #role: role,
+      if (networkStatus != $none) #networkStatus: networkStatus,
+      if (lastSeen != $none) #lastSeen: lastSeen,
       if (email != $none) #email: email,
       if (phoneNumber != $none) #phoneNumber: phoneNumber,
       if (city != $none) #city: city,
@@ -210,6 +256,10 @@ class _ProfileCopyWithImpl<$R, $Out>
     avatarUrl: data.get(#avatarUrl, or: $value.avatarUrl),
     firstName: data.get(#firstName, or: $value.firstName),
     lastName: data.get(#lastName, or: $value.lastName),
+    name: data.get(#name, or: $value.name),
+    role: data.get(#role, or: $value.role),
+    networkStatus: data.get(#networkStatus, or: $value.networkStatus),
+    lastSeen: data.get(#lastSeen, or: $value.lastSeen),
     email: data.get(#email, or: $value.email),
     phoneNumber: data.get(#phoneNumber, or: $value.phoneNumber),
     city: data.get(#city, or: $value.city),

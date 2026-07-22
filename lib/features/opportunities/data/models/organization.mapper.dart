@@ -28,6 +28,7 @@ class OrganizationMapper extends ClassMapperBase<Organization> {
   static const Field<Organization, String> _f$logo = Field(
     'logo',
     _$logo,
+    key: r'logo_url',
     opt: true,
   );
   static String? _$name(Organization v) => v.name;
@@ -64,6 +65,33 @@ class OrganizationMapper extends ClassMapperBase<Organization> {
   static const Field<Organization, String> _f$location = Field(
     'location',
     _$location,
+    opt: true,
+  );
+  static String? _$phoneNumber(Organization v) => v.phoneNumber;
+  static const Field<Organization, String> _f$phoneNumber = Field(
+    'phoneNumber',
+    _$phoneNumber,
+    key: r'phone_number',
+    opt: true,
+  );
+  static int? _$since(Organization v) => v.since;
+  static const Field<Organization, int> _f$since = Field(
+    'since',
+    _$since,
+    opt: true,
+  );
+  static int? _$onMarket(Organization v) => v.onMarket;
+  static const Field<Organization, int> _f$onMarket = Field(
+    'onMarket',
+    _$onMarket,
+    key: r'on_market',
+    opt: true,
+  );
+  static String? _$profileId(Organization v) => v.profileId;
+  static const Field<Organization, String> _f$profileId = Field(
+    'profileId',
+    _$profileId,
+    key: r'profile_id',
     opt: true,
   );
   static DateTime? _$createdAt(Organization v) => v.createdAt;
@@ -117,6 +145,10 @@ class OrganizationMapper extends ClassMapperBase<Organization> {
     #website: _f$website,
     #description: _f$description,
     #location: _f$location,
+    #phoneNumber: _f$phoneNumber,
+    #since: _f$since,
+    #onMarket: _f$onMarket,
+    #profileId: _f$profileId,
     #createdAt: _f$createdAt,
     #balance: _f$balance,
     #clientNumber: _f$clientNumber,
@@ -135,6 +167,10 @@ class OrganizationMapper extends ClassMapperBase<Organization> {
       website: data.dec(_f$website),
       description: data.dec(_f$description),
       location: data.dec(_f$location),
+      phoneNumber: data.dec(_f$phoneNumber),
+      since: data.dec(_f$since),
+      onMarket: data.dec(_f$onMarket),
+      profileId: data.dec(_f$profileId),
       createdAt: data.dec(_f$createdAt),
       balance: data.dec(_f$balance),
       clientNumber: data.dec(_f$clientNumber),
@@ -216,6 +252,10 @@ abstract class OrganizationCopyWith<$R, $In extends Organization, $Out>
     String? website,
     String? description,
     String? location,
+    String? phoneNumber,
+    int? since,
+    int? onMarket,
+    String? profileId,
     DateTime? createdAt,
     double? balance,
     int? clientNumber,
@@ -253,6 +293,10 @@ class _OrganizationCopyWithImpl<$R, $Out>
     Object? website = $none,
     Object? description = $none,
     Object? location = $none,
+    Object? phoneNumber = $none,
+    Object? since = $none,
+    Object? onMarket = $none,
+    Object? profileId = $none,
     Object? createdAt = $none,
     Object? balance = $none,
     Object? clientNumber = $none,
@@ -269,6 +313,10 @@ class _OrganizationCopyWithImpl<$R, $Out>
       if (website != $none) #website: website,
       if (description != $none) #description: description,
       if (location != $none) #location: location,
+      if (phoneNumber != $none) #phoneNumber: phoneNumber,
+      if (since != $none) #since: since,
+      if (onMarket != $none) #onMarket: onMarket,
+      if (profileId != $none) #profileId: profileId,
       if (createdAt != $none) #createdAt: createdAt,
       if (balance != $none) #balance: balance,
       if (clientNumber != $none) #clientNumber: clientNumber,
@@ -287,6 +335,10 @@ class _OrganizationCopyWithImpl<$R, $Out>
     website: data.get(#website, or: $value.website),
     description: data.get(#description, or: $value.description),
     location: data.get(#location, or: $value.location),
+    phoneNumber: data.get(#phoneNumber, or: $value.phoneNumber),
+    since: data.get(#since, or: $value.since),
+    onMarket: data.get(#onMarket, or: $value.onMarket),
+    profileId: data.get(#profileId, or: $value.profileId),
     createdAt: data.get(#createdAt, or: $value.createdAt),
     balance: data.get(#balance, or: $value.balance),
     clientNumber: data.get(#clientNumber, or: $value.clientNumber),

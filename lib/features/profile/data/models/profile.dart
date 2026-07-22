@@ -11,6 +11,12 @@ class Profile with ProfileMappable {
   final String? firstName;
   @MappableField(key: 'last_name')
   final String? lastName;
+  final String? name;
+  final String? role;
+  @MappableField(key: 'network_status')
+  final String? networkStatus;
+  @MappableField(key: 'last_seen')
+  final String? lastSeen;
   final String? email;
   @MappableField(key: 'phone_number')
   final String? phoneNumber;
@@ -24,6 +30,10 @@ class Profile with ProfileMappable {
     this.avatarUrl,
     this.firstName,
     this.lastName,
+    this.name,
+    this.role,
+    this.networkStatus,
+    this.lastSeen,
     this.email,
     this.phoneNumber,
     this.city,

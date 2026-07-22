@@ -37,14 +37,27 @@ class BaseResult<T> with BaseResultMappable<T> {
     return BaseResult<T>(
       success: json['success'] as bool? ?? false,
       message: json['message'] as String?,
-      data: json['data'] != null
-          ? fromJsonT(json['data'])
-          : json['metadata'] != null
-          ? fromJsonT(json['metadata'])
-          : null,
+      data: _parseDataWithMetadata(json, fromJsonT),
       pagination: json['pagination'] != null
           ? Pagination.fromJson(json['pagination'] as Map<String, dynamic>)
           : null,
     );
+  }
+
+  static T? _parseDataWithMetadata<T>(
+    Map<String, dynamic> json,
+    T Function(Object? json) fromJsonT,
+  ) {
+    if (json['data'] != null) {
+      final data = json['data'];
+      if (data is Map<String, dynamic> && json['metadata'] != null) {
+        // Inject metadata into data map so models can access it
+        data['metadata'] = json['metadata'];
+      }
+      return fromJsonT(data);
+    } else if (json['metadata'] != null) {
+      return fromJsonT(json['metadata']);
+    }
+    return null;
   }
 }

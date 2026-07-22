@@ -185,6 +185,36 @@ class _PostingsRemoteDataSource implements PostingsRemoteDataSource {
   }
 
   @override
+  Future<BaseResult<Vacancy>> publishVacancy(String id) async {
+    final _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    const Map<String, dynamic>? _data = null;
+    final _options = _setStreamType<BaseResult<Vacancy>>(
+      Options(method: 'POST', headers: _headers, extra: _extra)
+          .compose(
+            _dio.options,
+            '/mobile/employer/vacancy/${id}/publish',
+            queryParameters: queryParameters,
+            data: _data,
+          )
+          .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
+    );
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late BaseResult<Vacancy> _value;
+    try {
+      _value = BaseResult<Vacancy>.fromJson(
+        _result.data!,
+        (json) => Vacancy.fromJson(json as Map<String, dynamic>),
+      );
+    } on Object catch (e, s) {
+      errorLogger?.logError(e, s, _options, response: _result);
+      rethrow;
+    }
+    return _value;
+  }
+
+  @override
   Future<BaseResult<List<Specialization>>> getSpecializations() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};

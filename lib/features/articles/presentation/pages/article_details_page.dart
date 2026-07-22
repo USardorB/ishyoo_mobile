@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+
 import '../bloc/article_details_bloc.dart';
 
 @RoutePage()
@@ -18,7 +19,8 @@ class ArticleDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<ArticleDetailsBloc>()..add(LoadArticleDetails(id)),
+      create: (context) =>
+          sl<ArticleDetailsBloc>()..add(LoadArticleDetails(id)),
       child: const _ArticleDetailsPageView(),
     );
   }
@@ -32,7 +34,7 @@ class _ArticleDetailsPageView extends StatelessWidget {
     return BlocBuilder<ArticleDetailsBloc, ArticleDetailsState>(
       builder: (context, state) {
         final article = state.article;
-        
+
         return Scaffold(
           appBar: AppBar(
             actions: [
@@ -76,7 +78,7 @@ class _ArticleDetailsPageView extends StatelessWidget {
                         width: double.infinity,
                         height: 200,
                         fit: BoxFit.cover,
-                        errorBuilder: (_, __, ___) => const SizedBox.shrink(),
+                        errorBuilder: (_, _, _) => const SizedBox.shrink(),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -84,7 +86,10 @@ class _ArticleDetailsPageView extends StatelessWidget {
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
+                        ),
                         decoration: BoxDecoration(
                           color: context.colors.brandProgress,
                           borderRadius: BorderRadius.circular(8),
@@ -114,18 +119,30 @@ class _ArticleDetailsPageView extends StatelessWidget {
                   const SizedBox(height: 12),
                   Row(
                     children: [
-                      Icon(Icons.remove_red_eye_outlined, size: 18, color: context.colors.textSecondary),
+                      Icon(
+                        Icons.remove_red_eye_outlined,
+                        size: 18,
+                        color: context.colors.textSecondary,
+                      ),
                       const SizedBox(width: 4),
                       Text(
                         "${article.viewsCount ?? 0} marta ko'rilgan",
-                        style: context.textThemes.c1.copyWith(color: context.colors.textSecondary),
+                        style: context.textThemes.c1.copyWith(
+                          color: context.colors.textSecondary,
+                        ),
                       ),
                       const Spacer(),
-                      Icon(Icons.access_time, size: 18, color: context.colors.textSecondary),
+                      Icon(
+                        Icons.access_time,
+                        size: 18,
+                        color: context.colors.textSecondary,
+                      ),
                       const SizedBox(width: 4),
                       Text(
                         "${article.readTimeMinutes ?? 1} daqiqa",
-                        style: context.textThemes.c1.copyWith(color: context.colors.textSecondary),
+                        style: context.textThemes.c1.copyWith(
+                          color: context.colors.textSecondary,
+                        ),
                       ),
                     ],
                   ),

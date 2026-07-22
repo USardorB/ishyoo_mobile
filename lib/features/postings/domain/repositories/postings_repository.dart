@@ -10,6 +10,7 @@ abstract class PostingsRepository {
   Future<Either<Failure, Vacancy>> createVacancy(Map<String, dynamic> body);
   Future<Either<Failure, Vacancy>> updateVacancy(String id, Map<String, dynamic> body);
   Future<Either<Failure, Vacancy>> archiveVacancy(String id);
+  Future<Either<Failure, Vacancy>> publishVacancy(String id);
   Future<Either<Failure, List<Specialization>>> getSpecializations();
   Future<Either<Failure, EmployerStats>> getEmployerStats();
 }

@@ -185,23 +185,18 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                 width: 8,
                 height: 8,
                 decoration: BoxDecoration(
-                  color: context.colors.brandDefault,
+                  color: _getStatusColor(context, vacancy.status),
                   shape: BoxShape.circle,
                 ),
               ),
               const SizedBox(width: 8),
               Text(
-                "E'lon faol",
-                style: context.textThemes.b3.copyWith(
-                  color: context.colors.textSecondary,
-                ),
+                _getStatusText(vacancy.status),
+                style: context.textThemes.b3.copyWith(color: context.colors.textSecondary),
               ),
-              // Note: Views and applicants count mocked here until API is updated
               Text(
-                " • 247 ko'rish • 12 javob",
-                style: context.textThemes.b3.copyWith(
-                  color: context.colors.textSecondary,
-                ),
+                " • ${vacancy.totalApplicationsCount} javob",
+                style: context.textThemes.b3.copyWith(color: context.colors.textSecondary),
               ),
             ],
           ),
@@ -295,4 +290,33 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
     ],
     child: this,
   );
+
+  Color _getStatusColor(BuildContext context, String? status) {
+    switch (status) {
+      case 'published':
+        return context.colors.brandDefault;
+      case 'draft':
+      case 'archived':
+        return context.colors.textSecondary;
+      case 'rejected':
+        return context.colors.danger;
+      default:
+        return context.colors.textSecondary;
+    }
+  }
+
+  String _getStatusText(String? status) {
+    switch (status) {
+      case 'published':
+        return "E'lon faol";
+      case 'draft':
+        return "Qoralama";
+      case 'archived':
+        return "Arxivlangan";
+      case 'rejected':
+        return "Rad etilgan";
+      default:
+        return "Noma'lum";
+    }
+  }
 }

@@ -45,6 +45,9 @@ class Vacancy with VacancyMappable {
   @MappableField(key: 'has_saved')
   final bool? hasSaved;
   final double? distance;
+  final Map<String, dynamic>? metadata;
+
+  int get totalApplicationsCount => metadata?['total_applications_count'] as int? ?? 0;
 
   const Vacancy({
     required this.id,
@@ -73,6 +76,7 @@ class Vacancy with VacancyMappable {
     this.hasApplied,
     this.hasSaved,
     this.distance,
+    this.metadata,
   });
 
   factory Vacancy.fromJson(Map<String, dynamic> json) => VacancyMapper.fromMap(json);

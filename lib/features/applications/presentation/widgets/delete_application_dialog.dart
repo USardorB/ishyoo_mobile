@@ -4,7 +4,9 @@ import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 
 class DeleteApplicationDialog extends StatelessWidget {
-  const DeleteApplicationDialog({super.key});
+  final VoidCallback onDeleteTap;
+
+  const DeleteApplicationDialog({super.key, required this.onDeleteTap});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class DeleteApplicationDialog extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             AppButton(
-              onTap: context.pop,
+              onTap: onDeleteTap,
               label: "O'chirish",
               color: context.colors.bgTertiary,
               foregroundColor: context.colors.danger,

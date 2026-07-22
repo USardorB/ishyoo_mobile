@@ -26,7 +26,7 @@ class HrProfileAvatarSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final name = profile != null
-        ? '${profile!.firstName ?? ''} ${profile!.lastName ?? ''}'.trim()
+        ? (profile!.name ?? '${profile!.firstName ?? ''} ${profile!.lastName ?? ''}').trim()
         : 'HR Manager';
     final initials = name.isNotEmpty
         ? name.split(' ').take(2).map((e) => e.isNotEmpty ? e[0].toUpperCase() : '').join()
@@ -72,13 +72,32 @@ class HrProfileAvatarSection extends StatelessWidget {
                   ),
                 ],
               ),
-              const SizedBox(height: 4),
-              Text(
-                profile?.city ?? 'Toshkent',
-                style: context.textThemes.c1.copyWith(
-                  color: context.colors.textSecondary,
+              if (profile?.role != null && profile!.role!.isNotEmpty) ...[
+                const SizedBox(height: 4),
+                Text(
+                  profile!.role![0].toUpperCase() + profile!.role!.substring(1),
+                  style: context.textThemes.c1.copyWith(
+                    color: context.colors.textSecondary,
+                  ),
                 ),
-              ),
+              ],
+              if (profile?.email != null) ...[
+                const SizedBox(height: 4),
+                Text(
+                  profile!.email!,
+                  style: context.textThemes.c1.copyWith(
+                    color: context.colors.textSecondary,
+                  ),
+                ),
+              ] else if (profile?.phoneNumber != null) ...[
+                const SizedBox(height: 4),
+                Text(
+                  profile!.phoneNumber!,
+                  style: context.textThemes.c1.copyWith(
+                    color: context.colors.textSecondary,
+                  ),
+                ),
+              ],
             ],
           ),
         ],

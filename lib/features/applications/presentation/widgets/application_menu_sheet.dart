@@ -1,12 +1,20 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/routes/app_router.gr.dart';
+import 'package:mobile/features/applications/data/models/application.dart';
 import 'package:mobile/features/applications/presentation/widgets/delete_application_dialog.dart';
 import 'package:mobile/features/applications/presentation/widgets/reject_application_dialog.dart';
 
 class ApplicationMenuSheet extends StatelessWidget {
   final VoidCallback onRefuse;
+  final Application application;
 
-  const ApplicationMenuSheet({super.key, required this.onRefuse});
+  const ApplicationMenuSheet({
+    super.key,
+    required this.onRefuse,
+    required this.application,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +45,10 @@ class ApplicationMenuSheet extends StatelessWidget {
             icon: Icons.chat_bubble_outline,
             label: "Chatga yozish",
             onTap: () {
-              Navigator.pop(context);
+              context.pop();
+              context.pushRoute(
+                ChatDetailsRoute(chatId: "application.chatId!"),
+              );
             },
           ),
           _buildDivider(context),
@@ -45,7 +56,10 @@ class ApplicationMenuSheet extends StatelessWidget {
             icon: Icons.description_outlined,
             label: "Vakansiyani ko'rish",
             onTap: () {
-              Navigator.pop(context);
+              context.pop();
+              context.pushRoute(
+                VacancyDetailsRoute(id: application.vacancyId!),
+              );
             },
           ),
           _buildDivider(context),
@@ -53,7 +67,14 @@ class ApplicationMenuSheet extends StatelessWidget {
             icon: Icons.business_center_outlined,
             label: "Kompaniyani ko'rish",
             onTap: () {
-              Navigator.pop(context);
+              context.pop();
+              if (application.vacancy?.organization != null) {
+                context.pushRoute(
+                  CompanyDetailsRoute(
+                    organization: application.vacancy!.organization!,
+                  ),
+                );
+              }
             },
           ),
           _buildDivider(context),
@@ -61,7 +82,7 @@ class ApplicationMenuSheet extends StatelessWidget {
             icon: Icons.cancel_outlined,
             label: "Rad etish",
             onTap: () {
-              Navigator.pop(context);
+              context.pop();
               showDialog(
                 context: context,
                 builder: (_) => RejectApplicationDialog(
@@ -76,10 +97,15 @@ class ApplicationMenuSheet extends StatelessWidget {
             label: "Javobni o'chirish",
             isDestructive: true,
             onTap: () {
-              Navigator.pop(context);
+              context.pop();
               showDialog(
                 context: context,
-                builder: (_) => const DeleteApplicationDialog(),
+                builder: (_) => DeleteApplicationDialog(
+                  onDeleteTap: () {
+                    throw UnimplementedError();
+                    // context.read<>()
+                  },
+                ),
               );
             },
           ),

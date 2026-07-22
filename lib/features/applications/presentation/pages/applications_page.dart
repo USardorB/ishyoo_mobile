@@ -1,11 +1,11 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/applications/presentation/widgets/application_card.dart';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import '../bloc/applications_bloc.dart';
 
 @RoutePage()
@@ -31,19 +31,20 @@ class _ApplicationsPageView extends HookWidget {
       {"name": "Suhbat", "status": "invited"},
       {"name": "Kutilmoqda", "status": "pending"},
       {"name": "Rad etildi", "status": "rejected"},
-      {"name": "Saralanganlar", "status": "archived"},
+      {"name": "Arxivlangan", "status": "archived"},
     ];
     final tabController = useTabController(initialLength: tabs.length);
 
     useEffect(() {
       final bloc = context.read<ApplicationsBloc>();
       bloc.add(LoadApplications(tabs[tabController.index]["status"]));
-      
+
       void listener() {
         if (!tabController.indexIsChanging) {
           bloc.add(LoadApplications(tabs[tabController.index]["status"]));
         }
       }
+
       tabController.addListener(listener);
       return () => tabController.removeListener(listener);
     }, [tabController]);
@@ -103,13 +104,16 @@ class _ApplicationsPageView extends HookWidget {
                     final applications = state.applications ?? [];
 
                     if (applications.isEmpty) {
-                      return const Center(child: Text("Hozircha ma'lumot yo'q"));
+                      return const Center(
+                        child: Text("Hozircha ma'lumot yo'q"),
+                      );
                     }
 
                     return ListView.separated(
-                      padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
-                        bottom: MediaQuery.paddingOf(context).bottom + 16,
-                      ),
+                      padding: const EdgeInsets.symmetric(horizontal: 16)
+                          .copyWith(
+                            bottom: MediaQuery.paddingOf(context).bottom + 16,
+                          ),
                       itemCount: applications.length,
                       separatorBuilder: (_, _) => const SizedBox(height: 12),
                       itemBuilder: (context, index) {
@@ -118,7 +122,10 @@ class _ApplicationsPageView extends HookWidget {
                           application: application,
                           onRefuse: () {
                             context.read<ApplicationsBloc>().add(
-                              UpdateApplicationStatus(application.id.toString(), "rejected"),
+                              UpdateApplicationStatus(
+                                application.id.toString(),
+                                "rejected",
+                              ),
                             );
                           },
                         );
@@ -134,4 +141,3 @@ class _ApplicationsPageView extends HookWidget {
     );
   }
 }
-

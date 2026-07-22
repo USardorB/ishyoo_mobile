@@ -184,6 +184,12 @@ class VacancyMapper extends ClassMapperBase<Vacancy> {
     _$distance,
     opt: true,
   );
+  static Map<String, dynamic>? _$metadata(Vacancy v) => v.metadata;
+  static const Field<Vacancy, Map<String, dynamic>> _f$metadata = Field(
+    'metadata',
+    _$metadata,
+    opt: true,
+  );
 
   @override
   final MappableFields<Vacancy> fields = const {
@@ -213,6 +219,7 @@ class VacancyMapper extends ClassMapperBase<Vacancy> {
     #hasApplied: _f$hasApplied,
     #hasSaved: _f$hasSaved,
     #distance: _f$distance,
+    #metadata: _f$metadata,
   };
 
   static Vacancy _instantiate(DecodingData data) {
@@ -243,6 +250,7 @@ class VacancyMapper extends ClassMapperBase<Vacancy> {
       hasApplied: data.dec(_f$hasApplied),
       hasSaved: data.dec(_f$hasSaved),
       distance: data.dec(_f$distance),
+      metadata: data.dec(_f$metadata),
     );
   }
 
@@ -306,6 +314,8 @@ abstract class VacancyCopyWith<$R, $In extends Vacancy, $Out>
   ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>? get keySkills;
   VacancyContactCopyWith<$R, VacancyContact, VacancyContact>? get contact;
   OrganizationCopyWith<$R, Organization, Organization>? get organization;
+  MapCopyWith<$R, String, dynamic, ObjectCopyWith<$R, dynamic, dynamic>?>?
+  get metadata;
   $R call({
     String? id,
     String? jobTitle,
@@ -333,6 +343,7 @@ abstract class VacancyCopyWith<$R, $In extends Vacancy, $Out>
     bool? hasApplied,
     bool? hasSaved,
     double? distance,
+    Map<String, dynamic>? metadata,
   });
   VacancyCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -361,6 +372,15 @@ class _VacancyCopyWithImpl<$R, $Out>
   OrganizationCopyWith<$R, Organization, Organization>? get organization =>
       $value.organization?.copyWith.$chain((v) => call(organization: v));
   @override
+  MapCopyWith<$R, String, dynamic, ObjectCopyWith<$R, dynamic, dynamic>?>?
+  get metadata => $value.metadata != null
+      ? MapCopyWith(
+          $value.metadata!,
+          (v, t) => ObjectCopyWith(v, $identity, t),
+          (v) => call(metadata: v),
+        )
+      : null;
+  @override
   $R call({
     String? id,
     String? jobTitle,
@@ -388,6 +408,7 @@ class _VacancyCopyWithImpl<$R, $Out>
     Object? hasApplied = $none,
     Object? hasSaved = $none,
     Object? distance = $none,
+    Object? metadata = $none,
   }) => $apply(
     FieldCopyWithData({
       if (id != null) #id: id,
@@ -416,6 +437,7 @@ class _VacancyCopyWithImpl<$R, $Out>
       if (hasApplied != $none) #hasApplied: hasApplied,
       if (hasSaved != $none) #hasSaved: hasSaved,
       if (distance != $none) #distance: distance,
+      if (metadata != $none) #metadata: metadata,
     }),
   );
   @override
@@ -446,6 +468,7 @@ class _VacancyCopyWithImpl<$R, $Out>
     hasApplied: data.get(#hasApplied, or: $value.hasApplied),
     hasSaved: data.get(#hasSaved, or: $value.hasSaved),
     distance: data.get(#distance, or: $value.distance),
+    metadata: data.get(#metadata, or: $value.metadata),
   );
 
   @override

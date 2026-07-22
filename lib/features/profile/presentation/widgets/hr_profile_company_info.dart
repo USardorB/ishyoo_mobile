@@ -48,7 +48,38 @@ class HrProfileCompanyInfo extends StatelessWidget {
                       value: organization!.location!,
                     ),
                   ],
-                  if (organization?.website == null && organization?.location == null)
+                  if (organization?.phoneNumber != null) ...[
+                    if (organization?.website != null || organization?.location != null) const Divider(),
+                    _buildContactTile(
+                      context,
+                      icon: Icons.phone_outlined,
+                      label: 'Telefon',
+                      value: organization!.phoneNumber!,
+                    ),
+                  ],
+                  if (organization?.since != null) ...[
+                    if (organization?.website != null || organization?.location != null || organization?.phoneNumber != null) const Divider(),
+                    _buildContactTile(
+                      context,
+                      icon: Icons.calendar_today_outlined,
+                      label: 'Tashkil topgan yili',
+                      value: organization!.since.toString(),
+                    ),
+                  ],
+                  if (organization?.onMarket != null) ...[
+                    if (organization?.website != null || organization?.location != null || organization?.phoneNumber != null || organization?.since != null) const Divider(),
+                    _buildContactTile(
+                      context,
+                      icon: Icons.storefront_outlined,
+                      label: 'Bozordagi yillari',
+                      value: organization!.onMarket.toString(),
+                    ),
+                  ],
+                  if (organization?.website == null && 
+                      organization?.location == null && 
+                      organization?.phoneNumber == null &&
+                      organization?.since == null &&
+                      organization?.onMarket == null)
                     Text(
                       "Aloqa ma'lumotlari kiritilmagan",
                       style: context.textThemes.b2.copyWith(color: context.colors.textSecondary),

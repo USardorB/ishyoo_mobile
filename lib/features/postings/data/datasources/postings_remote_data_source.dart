@@ -33,6 +33,9 @@ abstract class PostingsRemoteDataSource {
   @PUT('/mobile/employer/vacancy/{id}/archive')
   Future<BaseResult<Vacancy>> archiveVacancy(@Path('id') String id);
 
+  @POST('/mobile/employer/vacancy/{id}/publish')
+  Future<BaseResult<Vacancy>> publishVacancy(@Path('id') String id);
+
   @GET('/mobile/employer/vacancy/specialization')
   Future<BaseResult<List<Specialization>>> getSpecializations();
 
