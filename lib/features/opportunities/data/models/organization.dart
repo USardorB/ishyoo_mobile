@@ -4,9 +4,9 @@ part 'organization.mapper.dart';
 
 @MappableClass()
 class Organization with OrganizationMappable {
-  final String id;
+  final String? id;
   final String? logo;
-  final String name;
+  final String? name;
   final String? industry;
   final String? size;
   final String? website;
@@ -24,9 +24,9 @@ class Organization with OrganizationMappable {
   final String? userId;
 
   const Organization({
-    required this.id,
+    this.id,
     this.logo,
-    required this.name,
+    this.name,
     this.industry,
     this.size,
     this.website,

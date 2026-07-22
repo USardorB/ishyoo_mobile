@@ -1,9 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 
+import 'package:mobile/features/opportunities/data/models/organization.dart';
+
 class AboutTheCompany extends StatelessWidget {
-  const AboutTheCompany({super.key});
+  final Organization? organization;
+  const AboutTheCompany({super.key, this.organization});
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +30,9 @@ class AboutTheCompany extends StatelessWidget {
               Row(
                 mainAxisAlignment: .spaceAround,
                 children: [
-                  _buildStats(context, "Xodimlar", "2 540 ta"),
+                  _buildStats(context, "Xodimlar", organization?.size ?? "-"),
                   _buildStats(context, "Bozorda", "8 yil"),
-                  _buildStats(context, "Asoschisi", "2017"),
+                  _buildStats(context, "Yaratilgan", organization?.createdAt?.year.toString() ?? "-"),
                 ],
               ),
               Divider(
@@ -36,12 +41,14 @@ class AboutTheCompany extends StatelessWidget {
                 height: 25,
               ),
               Text(
-                "Uzum Bank — O'zbekistondagi yetakchi raqamli bank. Biz mijozlarga zamonaviy moliyaviy xizmatlar va innovatsion mahsulotlar taqdim etamiz.",
+                organization?.description ?? "Kompaniya haqida ma'lumot kiritilmagan.",
                 style: context.textThemes.b2,
               ),
               SizedBox(height: 12),
               AppButton(
-                onTap: () {},
+                onTap: () {
+                  context.pushRoute(const EditCompanyInfoRoute());
+                },
                 label: "Tahrirlash",
                 color: context.colors.bgSecondary,
               ),

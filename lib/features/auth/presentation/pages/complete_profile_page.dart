@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -16,14 +15,15 @@ import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/auth/data/models/auth_request.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_event.dart';
-import 'package:mobile/features/auth/presentation/bloc/auth_state.dart' as bloc_state;
+import 'package:mobile/features/auth/presentation/bloc/auth_state.dart'
+    as bloc_state;
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:uuid/uuid.dart';
 
 @RoutePage()
 class CompleteProfilePage extends HookWidget {
   final String? phoneNumber;
-  
+
   const CompleteProfilePage({
     super.key,
     this.phoneNumber,
@@ -38,7 +38,8 @@ class CompleteProfilePage extends HookWidget {
     final passwordController = useTextEditingController();
     final isObscured = useState(true);
 
-    final isCompany = context.read<AuthBloc>().state.userRole == UserRole.employer;
+    final isCompany =
+        context.read<AuthBloc>().state.userRole == UserRole.employer;
 
     Future<void> onRegister() async {
       if (firstNameController.text.isEmpty || passwordController.text.isEmpty) {
@@ -49,22 +50,12 @@ class CompleteProfilePage extends HookWidget {
         return;
       }
 
-      final deviceInfo = DeviceInfoPlugin();
-      String deviceName = 'Unknown';
-      try {
-        if (Platform.isAndroid) {
-          final info = await deviceInfo.androidInfo;
-          deviceName = info.model;
-        } else if (Platform.isIOS) {
-          final info = await deviceInfo.iosInfo;
-          deviceName = info.name;
-        }
-      } catch (_) {}
+      String deviceName = '${Platform.operatingSystem} ${Platform.operatingSystemVersion}';
 
       final deviceId = const Uuid().v4();
       final role = context.read<AuthBloc>().state.userRole;
       final roleString = role == UserRole.job_seeker ? 'candidate' : 'employer';
-      
+
       final authState = context.read<AuthBloc>().state;
       final requestId = authState.requestId;
 
@@ -76,23 +67,26 @@ class CompleteProfilePage extends HookWidget {
         return;
       }
 
-      final formattedNumber = phoneNumber != null ? '+998${phoneNumber!.replaceAll(' ', '')}' : null;
+      final formattedNumber = phoneNumber != null
+          ? '+998${phoneNumber!.replaceAll(' ', '')}'
+          : null;
 
       context.read<AuthBloc>().add(
-            AuthRegisterRequested(
-              roleString,
-              RegisterRequest(
-                requestId: requestId,
-                name: '${firstNameController.text} ${lastNameController.text}'.trim(),
-                password: passwordController.text,
-                deviceId: deviceId,
-                deviceName: deviceName,
-                companyName: isCompany ? companyNameController.text : null,
-                phoneNumber: isCompany ? formattedNumber : null,
-                isWaitlistedUser: false,
-              ),
-            ),
-          );
+        AuthRegisterRequested(
+          roleString,
+          RegisterRequest(
+            requestId: requestId,
+            name: '${firstNameController.text} ${lastNameController.text}'
+                .trim(),
+            password: passwordController.text,
+            deviceId: deviceId,
+            deviceName: deviceName,
+            companyName: isCompany ? companyNameController.text : null,
+            phoneNumber: isCompany ? formattedNumber : null,
+            isWaitlistedUser: false,
+          ),
+        ),
+      );
     }
 
     return Scaffold(
@@ -179,7 +173,9 @@ class CompleteProfilePage extends HookWidget {
                           context: context,
                           firstDate: DateTime(1900),
                           lastDate: DateTime.now(),
-                          initialDate: DateTime.tryParse(birthDateController.text),
+                          initialDate: DateTime.tryParse(
+                            birthDateController.text,
+                          ),
                           currentDate: DateTime.now(),
                         );
                         if (date == null) return;

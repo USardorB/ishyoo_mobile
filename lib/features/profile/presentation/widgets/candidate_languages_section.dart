@@ -1,8 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
-import 'package:mobile/core/routes/app_router.gr.dart';
-import 'package:mobile/core/shared/widgets/app_button.dart';
 
 class CandidateLanguagesSection extends StatelessWidget {
   const CandidateLanguagesSection({super.key});
@@ -16,7 +13,7 @@ class CandidateLanguagesSection extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Wrap(
             spacing: 8,
@@ -26,16 +23,6 @@ class CandidateLanguagesSection extends StatelessWidget {
               _buildLanguageChip(context, "Ingliz tili, A1 - Boshlang'ich"),
               _buildLanguageChip(context, "Rus tili, S2 - Mukammal"),
             ],
-          ),
-          const SizedBox(height: 16),
-          AppButton(
-            onTap: () {
-              context.pushRoute(const EditCandidateProfileRoute());
-            },
-            label: "Tahrirlash",
-            color: context.colors.bgPrimary,
-            foregroundColor: context.colors.textPrimary,
-            labelStyle: context.textThemes.b2,
           ),
         ],
       ),

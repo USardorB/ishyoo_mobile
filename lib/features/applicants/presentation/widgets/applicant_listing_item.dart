@@ -2,16 +2,27 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
+import 'package:mobile/features/applicants/data/models/applicant.dart';
 import 'package:mobile/features/applicants/presentation/widgets/new_applicant_action_buttons.dart';
 
 class ApplicantListingItem extends StatelessWidget {
-  const ApplicantListingItem({super.key});
+  final Applicant applicant;
+  final String vacancyId;
+
+  const ApplicantListingItem({
+    super.key,
+    required this.applicant,
+    required this.vacancyId,
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.pushRoute(ApplicantDetailsRoute());
+        context.pushRoute(ApplicantDetailsRoute(
+          vacancyId: vacancyId,
+          applicantId: applicant.id,
+        ));
       },
       child: Container(
         padding: .all(18),
@@ -42,17 +53,17 @@ class ApplicantListingItem extends StatelessWidget {
                       height: 12,
                     ),
                     Text(
-                      'UX/UI Dizayner',
+                      applicant.specialization ?? 'Lavozim kiritilmagan',
                       style: context.textThemes.s1,
                     ),
                     SizedBox(height: 8),
                     Text(
-                      'Fozilov Muzaffar • 29 yosh • Toshkent',
+                      '${applicant.user?.name ?? ''} • ${applicant.user?.email ?? 'Noma\'lum'}',
                       style: context.textThemes.b2,
                     ),
                     SizedBox(height: 8),
                     Text(
-                      '20 000 000 UZS',
+                      applicant.expectedSalary != null ? '${applicant.expectedSalary} ${applicant.currency ?? 'UZS'}' : 'Kelishilgan',
                       style: context.textThemes.s3,
                     ),
                     SizedBox(height: 12),
@@ -105,39 +116,15 @@ class ApplicantListingItem extends StatelessWidget {
             ),
             SizedBox(height: 6),
             Text(
-              '7 yil 6 oy',
+              applicant.applicationStatus ?? 'Noma\'lum',
               style: context.textThemes.b2,
             ),
             SizedBox(height: 16),
-            Text(
-              'O‘xshash lavozimlarda tajriba',
-              style: context.textThemes.c1.copyWith(
-                color: context.colors.textSecondary,
+            if (applicant.applicationStatus == 'applied')
+              NewApplicantActionButtons(
+                vacancyId: vacancyId,
+                applicantId: applicant.id,
               ),
-            ),
-            SizedBox(height: 6),
-            Text(
-              '7 yil 6 oy',
-              style: context.textThemes.b2.copyWith(
-                color: context.colors.brandDefault,
-              ),
-            ),
-            SizedBox(height: 16),
-            Text(
-              'O‘xshash lavozimlarda tajriba',
-              style: context.textThemes.c1.copyWith(
-                color: context.colors.textSecondary,
-              ),
-            ),
-            SizedBox(height: 6),
-            Text(
-              '''Flexobo corp.
-    UX/UI dizayner • 1 yil 1 oy
-    (2025-yil may - 2026-yil may)''',
-              style: context.textThemes.b2,
-            ),
-            SizedBox(height: 16),
-            NewApplicantActionButtons(),
           ],
         ),
       ),

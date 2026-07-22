@@ -1,9 +1,14 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 
+import 'package:mobile/features/opportunities/data/models/organization.dart';
+
 class FieldOfActivity extends StatelessWidget {
-  const FieldOfActivity({super.key});
+  final Organization? organization;
+  const FieldOfActivity({super.key, this.organization});
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +28,20 @@ class FieldOfActivity extends StatelessWidget {
             spacing: 12,
             crossAxisAlignment: .stretch,
             children: [
-              Wrap(
-                spacing: 8,
-                runSpacing: 12,
-                children: _exampleSkillsets
-                    .map((e) => _buildPill(context, e))
-                    .toList(),
-              ),
+              if (organization?.industry != null)
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 12,
+                  children: [
+                    _buildPill(context, organization!.industry!)
+                  ],
+                )
+              else
+                Text("Kiritilmagan", style: context.textThemes.b2),
               AppButton(
-                onTap: () {},
+                onTap: () {
+                  context.pushRoute(const EditCompanyInfoRoute());
+                },
                 label: "Tahrirlash",
                 color: context.colors.bgSecondary,
               ),
@@ -42,27 +52,17 @@ class FieldOfActivity extends StatelessWidget {
     );
   }
 
-  Container _buildPill(BuildContext context, String text) {
+  Widget _buildPill(BuildContext context, String title) {
     return Container(
-      padding: .symmetric(horizontal: 8, vertical: 4),
+      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       decoration: BoxDecoration(
         color: context.colors.bgSecondary,
-        borderRadius: .circular(6),
+        borderRadius: BorderRadius.circular(100),
       ),
       child: Text(
-        text,
-        style: context.textThemes.b1.copyWith(
-          color: context.colors.textSecondary,
-        ),
+        title,
+        style: context.textThemes.b2,
       ),
     );
   }
-
-  static const _exampleSkillsets = [
-    'Bank',
-    'Moliya',
-    'Fintech',
-    'Raqamli xizmatlar',
-    'IT mahsulotlari',
-  ];
 }

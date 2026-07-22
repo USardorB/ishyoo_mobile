@@ -1,0 +1,380 @@
+Found 38 candidate requests (out of 73 total).
+
+========================================
+Testing: Candidate > Profile > Get profile
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/profile
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Profile > Edit profile
+Method:  PUT
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/profile
+Body:    {
+    "email": "olimboevjoshqin@gmail.com",
+    "city": "Tashkent",
+    "birth_date": "14.11.2004",
+    "bio": "Backend Developer с более чем 2-летним опытом разработки серверных приложений на Node.js и TypeScript. Основной стек — NestJS, PostgreSQL, Redis и Docker. Занимаюсь проектированием и разработкой REST API, реализацией бизнес-логики, интеграцией внешних сервисов и сопровождением production-систем. Имею опыт разработки и поддержки крупных backend-сервисов в команде, настройки аутентификации и авторизации пользователей, работы с базами данных и оптимизации производительности приложений. Использую Redis для хранения временных данных и кодов подтверждения, Docker для контейнеризации сервисов, Firebase Cloud Messaging для отправки push-уведомлений мобильным приложениям. В работе придерживаюсь принципов SOLID, Clean Architecture и пишу поддерживаемый код с акцентом на качество и долгосрочное развитие проекта. Интересуюсь высоконагруженными системами, распределённой архитектурой и современными подходами к построению backend-платформ."
+}
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Articles > List
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/article
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Articles > Detail
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/article/ee7f5af7-a127-4c25-ba79-731a319544a8
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Articles > View article
+Method:  POST
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/article/ee7f5af7-a127-4c25-ba79-731a319544a8/view
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Articles > Saved articles
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/article/saved
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Articles > Save article
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/article/ee7f5af7-a127-4c25-ba79-731a319544a8/save
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Articles > Delete from saved articles
+Method:  DELETE
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/article/ee7f5af7-a127-4c25-ba79-731a319544a8/save
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Resume > List
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/resume
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Resume > Detail
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/resume/996df0c1-e67b-4867-9419-9bece50eb0c4
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Resume > Insert
+Method:  POST
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/resume
+Body:    {
+    "specialization": "Backend Developer",
+    "expected_salary": 800,
+    "currency": "usd",
+    "employment_type": [
+        "freelance"
+    ],
+    "work_format": [
+        "remote"
+    ],
+    "skills": [
+        "Node.js",
+        "Express.js"
+    ],
+    "educations": [
+        {
+            "school": "IT Center in Khorezm region",
+            "degree": "Frontend development",
+            "start_date": "2022-04-01",
+            "end_date": "2023-04-01"
+        },
+        {
+            "school": "Astrum IT Academy",
+            "degree": "Full-stack development",
+            "start_date": "2023-07-01",
+            "end_date": "2024-07-01"
+        }
+    ],
+    "experiences": [
+        {
+            "company_name": "IT Center in Khorezm region",
+            "position": "Mentor",
+            "description": "Learned 400+k students",
+            "start_date": "2022-09-01",
+            "end_date": "2022-11-01"
+        },
+        {
+            "company_name": "AstraDevs Group",
+            "position": "Full-stack developer",
+            "description": "Develop many big systems",
+            "start_date": "2024-09-01",
+            "end_date": "2025-12-31"
+        },
+        {
+            "company_name": "BBP LTD",
+            "position": "Node.js backend developer",
+            "description": "Develop many big systems",
+            "start_date": "2026-03-01",
+            "end_date": "2026-06-01"
+        }
+    ],
+    "status": "active"
+}
+Status:  201
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Resume > Update
+Method:  PUT
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/resume/974827b8-463d-40d3-870f-48ff7798b7f8
+Body:    {
+    "specialization": "Backend Developer"
+}
+Status:  404
+Result:  ❌ Failed
+Response: {"success":false,"message":"Resume not found"}
+
+========================================
+Testing: Candidate > Resume > Delete
+Method:  DELETE
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/resume/974827b8-463d-40d3-870f-48ff7798b7f8
+Status:  404
+Result:  ❌ Failed
+Response: {"success":false,"message":"Resume not found"}
+
+========================================
+Testing: Candidate > Resume > Boost resume
+Method:  POST
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/resume/996df0c1-e67b-4867-9419-9bece50eb0c4/boost
+Status:  400
+Result:  ❌ Failed
+Response: {"success":false,"message":"You can boost your resume again after 7/22/2026"}
+
+========================================
+Testing: Candidate > Resume > Specializations
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/resume/specialization
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Application > List
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/application
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Application > Detail
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/application/1
+Status:  404
+Result:  ❌ Failed
+Response: {"success":false,"message":"Application not found"}
+
+========================================
+Testing: Candidate > Application > Refuse
+Method:  PUT
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/application/1/refuse
+Body:    {
+    "status": "invited"
+}
+
+Status:  500
+Result:  ❌ Failed
+Response: {"success":false,"message":"\nInvalid `this.model.update()` invocation in\n/var/www/dev.api.ishyoo.uz/dist/src/infrastructure/libraries/prisma/base-prisma.repository.js:30:33\n\n  27 }\n  28 async update(params) {\n  29     const { where, data } = params;\n→ 30     return await this.model.update(\nAn operation failed because it depends on one or more records that were required but not found. No record was found for an update."}
+
+========================================
+Testing: Candidate > Chat > Message > Send message
+Method:  POST
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/chat/1/message
+Body:    {
+    "files": [
+        {
+            "originalName": "XiaomiRedmiNote11Pro4G.JPG",
+            "filename": "1774292250797-569284666.JPG",
+            "mimeType": "image/jpeg",
+            "size": 53163,
+            "type": "image",
+            "path": "/chat-uploads/1774292250797-569284666.JPG"
+        }
+    ] // not required if user send text message
+}
+Status:  400
+Result:  ❌ Failed
+Response: {"success":false,"message":"Expected ',' or '}' after property value in JSON at position 314 (line 11 column 7)"}
+
+========================================
+Testing: Candidate > Chat > Message > Update mesage
+Method:  PUT
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/chat/1/message/1
+Body:    {
+    "content": "yangilangan"
+}
+Status:  500
+Result:  ❌ Failed
+Response: {"success":false,"message":"\nInvalid `this.model.update()` invocation in\n/var/www/dev.api.ishyoo.uz/dist/src/infrastructure/libraries/prisma/base-prisma.repository.js:30:33\n\n  27 }\n  28 async update(params) {\n  29     const { where, data } = params;\n→ 30     return await this.model.update(\nAn operation failed because it depends on one or more records that were required but not found. No record was found for an update."}
+
+========================================
+Testing: Candidate > Chat > Message > Delete message
+Method:  DELETE
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/chat/1/message/1
+Status:  500
+Result:  ❌ Failed
+Response: {"success":false,"message":"\nInvalid `this.model.delete()` invocation in\n/var/www/dev.api.ishyoo.uz/dist/src/infrastructure/libraries/prisma/base-prisma.repository.js:33:39\n\n  30     return await this.model.update({ where, data });\n  31 }\n  32 async delete(where) {\n→ 33     return await this.model.delete(\nAn operation failed because it depends on one or more records that were required but not found. No record was found for a delete."}
+
+========================================
+Testing: Candidate > Chat > Message > File upload
+Method:  POST
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/chat/1/file
+Status:  500
+Result:  ❌ Failed
+Response: {"success":false,"message":"Cannot read properties of undefined (reading 'mimetype')"}
+
+========================================
+Testing: Candidate > Chat > Message > View file
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/chat/1/file/1
+Status:  404
+Result:  ❌ Failed
+Response: {"success":false,"message":"File not found"}
+
+========================================
+Testing: Candidate > Chat > List
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/chat
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Chat > Detail
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/chat/1
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Chat > Read chat messages
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/chat/1/read-messages
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Simple vacancies > Feed
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/vacancy/feed
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Simple vacancies > Detail
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/vacancy/feed/1
+Status:  404
+Result:  ❌ Failed
+Response: {"success":false,"message":"Vacancy not found"}
+
+========================================
+Testing: Candidate > Simple vacancies > Apply
+Method:  POST
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/vacancy/1/apply
+Body:    {
+    "resume_id": "b9057d1d-72f8-4cf9-b4e6-bb4c165917ad",
+    "cover_letter": "Добрый день! Меня зовут Джушкин Алимбаев, я Fullstack разработчик с 2 летным коммерческим опытом разработки на React.js/Next.js и Node. (NestJS). Мне заинтересовалась ваш вакансия. Буду рад обсудить возможные варианты сотрудничества и рассказать подробнее о своём опыте и выполнить тестовое задание при необходимости."
+}
+Status:  404
+Result:  ❌ Failed
+Response: {"success":false,"message":"Vacancy not found"}
+
+========================================
+Testing: Candidate > Simple vacancies > Save
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/vacancy/b5054257-d239-4177-bad4-68117949a552/save
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Simple vacancies > Delete from saved
+Method:  DELETE
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/vacancy/b5054257-d239-4177-bad4-68117949a552/save
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Saved vacancies > Saved vacancies list
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/vacancy/saved
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Notifications > List
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/notifications
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Notifications > Detail
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/notifications/1
+Status:  500
+Result:  ❌ Failed
+Response: {"success":false,"message":"\nInvalid `this.model.update()` invocation in\n/var/www/dev.api.ishyoo.uz/dist/src/infrastructure/libraries/prisma/base-prisma.repository.js:30:33\n\n  27 }\n  28 async update(params) {\n  29     const { where, data } = params;\n→ 30     return await this.model.update(\nAn operation failed because it depends on one or more records that were required but not found. No record was found for an update."}
+
+========================================
+Testing: Candidate > Notifications > Read all
+Method:  PUT
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/notifications
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Settings > User settings
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/settings
+Status:  200
+Result:  ✅ Success
+
+========================================
+Testing: Candidate > Settings > Update
+Method:  PUT
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/settings
+Body:    {
+    "emailEnabled": false,
+    "pushEnabled": false,
+    "smsEnabled": false,
+    "applicationUpdates": false,
+    "messages": false,
+    "interviews": false,
+    "recommendations": false
+}
+Status:  500
+Result:  ❌ Failed
+Response: {"success":false,"message":"\nInvalid `this.model.update()` invocation in\n/var/www/dev.api.ishyoo.uz/dist/src/infrastructure/libraries/prisma/base-prisma.repository.js:30:33\n\n  27 }\n  28 async update(params) {\n  29     const { where, data } = params;\n→ 30     return await this.model.update({\n           where: {\n             profile_id: \"4b07a8d7-83c4-446b-8f58-4b57866601c6\"\n           },\n           data: {\n             emailEnabled: false,\n             ~~~~~~~~~~~~\n             pushEnabled: false,\n             smsEnabled: false,\n             applicationUpdates: false,\n             messages: false,\n             interviews: false,\n             recommendations: false,\n         ?   id?: String | StringFieldUpdateOperationsInput,\n         ?   email_enabled?: Boolean | BoolFieldUpdateOperationsInput,\n         ?   push_enabled?: Boolean | BoolFieldUpdateOperationsInput,\n         ?   sms_enabled?: Boolean | BoolFieldUpdateOperationsInput,\n         ?   application_updates?: Boolean | BoolFieldUpdateOperationsInput,\n         ?   created_at?: DateTime | DateTimeFieldUpdateOperationsInput,\n         ?   updated_at?: DateTime | DateTimeFieldUpdateOperationsInput,\n         ?   profile?: ProfileUpdateOneRequiredWithoutNotification_settingsNestedInput,\n         ?   settings?: SettingsUpdateOneRequiredWithoutNotificationsNestedInput\n           }\n         })\n\nUnknown argument `emailEnabled`. Did you mean `email_enabled`? Available options are marked with ?."}
+
+========================================
+Testing: Candidate > Nearby Jobs > Get list
+Method:  GET
+URL:     https://dev.api.ishyoo.uz/api/v1/mobile/candidate/nearby-jobs
+Status:  400
+Result:  ❌ Failed
+Response: {"success":false,"message":["latitude must be a latitude string or number","longitude must be a longitude string or number"]}
+
+========================================
+--- Summary ---
+Total: 38, Success: 23, Failed: 15

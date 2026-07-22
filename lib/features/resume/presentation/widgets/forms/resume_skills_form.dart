@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/features/resume/presentation/bloc/resume_form_bloc.dart';
@@ -15,7 +15,9 @@ class ResumeSkillsForm extends HookWidget {
 
     return BlocBuilder<ResumeFormBloc, ResumeFormState>(
       builder: (context, state) {
-        final List<String> skills = List<String>.from(state.formData['skills'] ?? []);
+        final List<String> skills = List<String>.from(
+          state.formData['skills'] ?? [],
+        );
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -25,9 +27,11 @@ class ResumeSkillsForm extends HookWidget {
               label: "Ko'nikmalar",
               hintText: "Ko'nikma kiriting (Masalan: Figma)",
               controller: controller,
+              keyboardType: TextInputType.text,
               onFieldSubmitted: (value) {
                 if (value.trim().isNotEmpty && !skills.contains(value.trim())) {
-                  final newSkills = List<String>.from(skills)..add(value.trim());
+                  final newSkills = List<String>.from(skills)
+                    ..add(value.trim());
                   bloc.add(UpdateFormData({'skills': newSkills}));
                   controller.clear();
                 }
@@ -37,10 +41,15 @@ class ResumeSkillsForm extends HookWidget {
             Wrap(
               spacing: 8,
               runSpacing: 8,
-              children: skills.map((skill) => _buildSkillChip(context, skill, () {
-                final newSkills = List<String>.from(skills)..remove(skill);
-                bloc.add(UpdateFormData({'skills': newSkills}));
-              })).toList(),
+              children: skills
+                  .map(
+                    (skill) => _buildSkillChip(context, skill, () {
+                      final newSkills = List<String>.from(skills)
+                        ..remove(skill);
+                      bloc.add(UpdateFormData({'skills': newSkills}));
+                    }),
+                  )
+                  .toList(),
             ),
           ],
         );
@@ -48,7 +57,11 @@ class ResumeSkillsForm extends HookWidget {
     );
   }
 
-  Widget _buildSkillChip(BuildContext context, String label, VoidCallback onRemove) {
+  Widget _buildSkillChip(
+    BuildContext context,
+    String label,
+    VoidCallback onRemove,
+  ) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(

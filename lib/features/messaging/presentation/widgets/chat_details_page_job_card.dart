@@ -3,7 +3,9 @@ import 'package:mobile/core/extensions/app_theme_extension.dart';
 
 class ChatDetailsPageJobCard extends StatelessWidget
     implements PreferredSizeWidget {
-  const ChatDetailsPageJobCard({super.key});
+  final String title;
+  
+  const ChatDetailsPageJobCard({super.key, required this.title});
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight + 10);
@@ -48,7 +50,7 @@ class ChatDetailsPageJobCard extends StatelessWidget
                     ),
                   ),
                   Text(
-                    "UX/UI Dizayner",
+                    title,
                     style: context.textThemes.b3,
                   ),
                 ],

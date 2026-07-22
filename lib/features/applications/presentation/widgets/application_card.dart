@@ -168,7 +168,11 @@ class ApplicationCard extends StatelessWidget {
                 child: SizedBox(
                   height: 48,
                   child: AppButton(
-                    onTap: () {},
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Chat tez orada qo'shiladi")),
+                      );
+                    },
                     label: "Chatga yozish",
                     color: context.colors.brandProgress,
                     foregroundColor: context.colors.brandDefault,

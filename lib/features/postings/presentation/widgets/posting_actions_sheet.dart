@@ -1,5 +1,10 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/routes/app_router.gr.dart';
+import 'package:mobile/features/opportunities/data/models/vacancy.dart';
+import 'package:mobile/features/postings/presentation/bloc/postings_bloc.dart';
 
 enum PostingAction {
   view,
@@ -33,7 +38,8 @@ enum PostingAction {
 }
 
 class PostingActionsSheet extends StatelessWidget {
-  const PostingActionsSheet({super.key});
+  final Vacancy vacancy;
+  const PostingActionsSheet({super.key, required this.vacancy});
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +63,11 @@ class PostingActionsSheet extends StatelessWidget {
         ...ListTile.divideTiles(
           color: context.colors.lineSecondary,
           tiles: PostingAction.values
-              .where((action) => action != PostingAction.pause)
+              .where(
+                (action) =>
+                    action != PostingAction.pause &&
+                    action != PostingAction.copy,
+              )
               .map((action) => listTile(context, action)),
         ),
       ],
@@ -78,11 +88,38 @@ class PostingActionsSheet extends StatelessWidget {
       ),
       horizontalTitleGap: 8,
       titleTextStyle: context.textThemes.buttonLarge,
-      iconColor: action == .delete
+      iconColor: action == PostingAction.delete
           ? context.colors.danger
           : context.colors.textSecondary,
-      textColor: action == .delete ? context.colors.danger : null,
+      textColor: action == PostingAction.delete ? context.colors.danger : null,
       title: Text(action.title),
+      onTap: () {
+        Navigator.pop(context);
+        switch (action) {
+          case PostingAction.view:
+            context.pushRoute(HrVacancyDetailsRoute(id: vacancy.id));
+            break;
+          case PostingAction.edit:
+            context.pushRoute(CreateVacancyRoute(vacancyToEdit: vacancy));
+            break;
+          case PostingAction.archive:
+            context.read<PostingsBloc>().add(ArchivePosting(vacancy.id));
+            break;
+          case PostingAction.delete:
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text("O'chirish tez orada qo'shiladi")),
+            );
+            break;
+          case PostingAction.share:
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text("Ulashish tez orada qo'shiladi")),
+            );
+            break;
+          case PostingAction.pause:
+          case PostingAction.copy:
+            break;
+        }
+      },
     );
   }
 }

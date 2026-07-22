@@ -65,7 +65,11 @@ class VacancyMapPlaceholder extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Tez orada qo'shiladi")),
+                      );
+                    },
                     child: const Padding(
                       padding: EdgeInsets.all(10.0),
                       child: Icon(Icons.add, color: Colors.white, size: 20),
@@ -77,7 +81,11 @@ class VacancyMapPlaceholder extends StatelessWidget {
                     color: context.colors.bgTertiary,
                   ),
                   InkWell(
-                    onTap: () {},
+                    onTap: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text("Tez orada qo'shiladi")),
+                      );
+                    },
                     child: const Padding(
                       padding: EdgeInsets.all(10.0),
                       child: Icon(Icons.remove, color: Colors.white, size: 20),

@@ -1,61 +1,78 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/features/resume/presentation/bloc/resume_form_bloc.dart';
 import 'package:mobile/features/resume/presentation/widgets/delete_resume_dialog.dart';
 
 class ResumeMenuSheet extends StatelessWidget {
-  const ResumeMenuSheet({super.key});
+  final String resumeId;
+  const ResumeMenuSheet({super.key, required this.resumeId});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12).copyWith(
-        bottom: MediaQuery.paddingOf(context).bottom + 16,
-      ),
-      decoration: BoxDecoration(
-        color: context.colors.bgPrimary,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Center(
-            child: Container(
-              width: 40,
-              height: 4,
-              decoration: BoxDecoration(
-                color: context.colors.bgTertiary,
-                borderRadius: BorderRadius.circular(2),
+    return BlocListener<ResumeFormBloc, ResumeFormState>(
+      listener: (context, state) {
+        if (state.isDeleted) {
+          context.pop(); // close sheet
+          context.maybePop(); // go back from details page
+        } else if (state.error != null) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(state.error!)),
+          );
+        }
+      },
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12).copyWith(
+          bottom: MediaQuery.paddingOf(context).bottom + 16,
+        ),
+        decoration: BoxDecoration(
+          color: context.colors.bgPrimary,
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Center(
+              child: Container(
+                width: 40,
+                height: 4,
+                decoration: BoxDecoration(
+                  color: context.colors.bgTertiary,
+                  borderRadius: BorderRadius.circular(2),
+                ),
               ),
             ),
-          ),
-          const SizedBox(height: 24),
-          _MenuItem(
-            icon: Icons.file_download_outlined,
-            label: "Yuklab olish",
-            onTap: context.pop,
-          ),
-          Divider(color: context.colors.bgTertiary, height: 1),
-          _MenuItem(
-            icon: Icons.copy_outlined,
-            label: "Nusxa qilish",
-            onTap: context.pop,
-          ),
-          Divider(color: context.colors.bgTertiary, height: 1),
-          _MenuItem(
-            icon: Icons.delete_outline,
-            label: "O'chirish",
-            isDestructive: true,
-            onTap: () async {
-              await showDialog(
-                context: context,
-                builder: (_) => const DeleteResumeDialog(),
-              );
-              if (context.mounted) context.pop();
-            },
-          ),
-        ],
+            const SizedBox(height: 24),
+            _MenuItem(
+              icon: Icons.rocket_launch_outlined,
+              label: "Rezyumeni yuqoriga ko'tarish",
+              onTap: () {
+                context.read<ResumeFormBloc>().add(BoostResume(resumeId));
+                context.pop();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("Rezyume yuqoriga ko'tarildi!")),
+                );
+              },
+            ),
+            Divider(color: context.colors.bgTertiary, height: 1),
+            _MenuItem(
+              icon: Icons.delete_outline,
+              label: "O'chirish",
+              isDestructive: true,
+              onTap: () async {
+                final confirmed = await showDialog<bool>(
+                  context: context,
+                  builder: (_) => const DeleteResumeDialog(),
+                );
+                if (confirmed == true && context.mounted) {
+                  context.read<ResumeFormBloc>().add(DeleteResume(resumeId));
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

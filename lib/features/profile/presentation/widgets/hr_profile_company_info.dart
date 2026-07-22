@@ -1,9 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/features/opportunities/data/models/organization.dart';
 
 class HrProfileCompanyInfo extends StatelessWidget {
-  const HrProfileCompanyInfo({super.key});
+  final Organization? organization;
+  const HrProfileCompanyInfo({super.key, this.organization});
 
   @override
   Widget build(BuildContext context) {
@@ -14,32 +18,48 @@ class HrProfileCompanyInfo extends StatelessWidget {
       ),
       child: Builder(
         builder: (context) => Column(
-          crossAxisAlignment: .stretch,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text('Aloqa va manzil', style: context.textThemes.s2),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Container(
-              padding: .all(12),
+              padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: context.colors.bgPrimary,
-                borderRadius: .circular(16),
+                borderRadius: BorderRadius.circular(16),
               ),
               child: Column(
-                spacing: 12,
-                crossAxisAlignment: .stretch,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  ...ListTile.divideTiles(
-                    context: context,
-                    tiles: List.generate(
-                      3,
-                      (index) => _buildContactTile(context),
+                  if (organization?.website != null)
+                    _buildContactTile(
+                      context,
+                      icon: Icons.language_outlined,
+                      label: 'Veb-sayt',
+                      value: organization!.website!,
                     ),
-                  ),
+                  if (organization?.location != null) ...[
+                    if (organization?.website != null) const Divider(),
+                    _buildContactTile(
+                      context,
+                      icon: Icons.location_on_outlined,
+                      label: 'Manzil',
+                      value: organization!.location!,
+                    ),
+                  ],
+                  if (organization?.website == null && organization?.location == null)
+                    Text(
+                      "Aloqa ma'lumotlari kiritilmagan",
+                      style: context.textThemes.b2.copyWith(color: context.colors.textSecondary),
+                    ),
+                  const SizedBox(height: 12),
                   AppButton(
-                    onTap: () {},
-                    label: "Tahrirlash",
                     color: context.colors.bgSecondary,
+                    onTap: () {
+                      context.pushRoute(const EditCompanyInfoRoute());
+                    },
+                    label: "Tahrirlash",
                   ),
                 ],
               ),
@@ -50,20 +70,20 @@ class HrProfileCompanyInfo extends StatelessWidget {
     );
   }
 
-  Widget _buildContactTile(BuildContext context) {
+  Widget _buildContactTile(BuildContext context, {required IconData icon, required String label, required String value}) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Row(
-        spacing: 12,
         children: [
-          Icon(Icons.call_outlined, color: context.colors.textSecondary),
+          Icon(icon, color: context.colors.textSecondary),
+          const SizedBox(width: 12),
           Expanded(
             child: Column(
-              spacing: 4,
-              crossAxisAlignment: .stretch,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Telefon', style: context.textThemes.s3),
-                Text('+998 90 123 45 67', style: context.textThemes.b2),
+                Text(label, style: context.textThemes.s3),
+                const SizedBox(height: 4),
+                Text(value, style: context.textThemes.b2),
               ],
             ),
           ),

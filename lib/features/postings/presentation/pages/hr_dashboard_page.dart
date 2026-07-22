@@ -4,7 +4,12 @@ import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/painters/dashed_outline_border.dart';
 import 'package:mobile/features/postings/presentation/widgets/hr_dashboard_app_bar.dart';
-import 'package:mobile/features/postings/presentation/widgets/posting_actions_sheet.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/core/configs/di/configure_dependencies.dart';
+import 'package:mobile/features/postings/presentation/bloc/postings_bloc.dart';
+import 'package:mobile/features/profile/presentation/bloc/employer_organization_bloc.dart';
+import 'package:mobile/features/postings/presentation/widgets/hr_vacancy_card.dart';
+import 'package:mobile/features/opportunities/data/models/vacancy.dart';
 
 @RoutePage()
 class HrDashboardPage extends StatelessWidget {
@@ -12,69 +17,71 @@ class HrDashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: HrDashboardAppBar(),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.symmetric(
-          horizontal: 16,
-        ).copyWith(bottom: MediaQuery.paddingOf(context).bottom),
-        child: Column(
-          crossAxisAlignment: .stretch,
-          children: [
-            Text(
-              'Salom, Aziza!',
-              style: context.textThemes.h5,
-            ),
-            Text(
-              "Bugun 12 ta yangi javob va 47 ta ko'rish",
-              style: context.textThemes.b2.copyWith(
-                color: context.colors.textSecondary,
-              ),
-            ),
-            SizedBox(height: 16),
-            Row(
-              spacing: 8,
-              children: List.generate(
-                3,
-                (index) => Expanded(
-                  child: Material(
-                    color: context.colors.bgSecondary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(12),
-                      child: Column(
-                        crossAxisAlignment: .stretch,
-                        children: [
-                          Text(
-                            "KO'RISHLAR",
-                            style: context.textThemes.c1.copyWith(
-                              color: context.colors.textSecondary,
-                            ),
-                          ),
-                          SizedBox(height: 6),
-                          Text("47", style: context.textThemes.h3),
-                          SizedBox(height: 8),
-                          Row(
-                            spacing: 4,
-                            children: [
-                              Icon(Icons.trending_up, size: 12),
-                              Text(
-                                '+12%',
-                                style: context.textThemes.c1.copyWith(
-                                  color: context.colors.textSecondary,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
-                      ),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => sl<PostingsBloc>()..add(LoadPostings()),
+        ),
+        BlocProvider(
+          create: (context) => sl<EmployerOrganizationBloc>()..add(LoadEmployerOrganization()),
+        ),
+      ],
+      child: BlocBuilder<PostingsBloc, PostingsState>(
+        builder: (context, state) {
+          final stats = state.stats;
+
+          return Scaffold(
+            appBar: HrDashboardAppBar(),
+            body: SingleChildScrollView(
+              padding: EdgeInsets.symmetric(
+                horizontal: 16,
+              ).copyWith(bottom: MediaQuery.paddingOf(context).bottom),
+              child: Column(
+                crossAxisAlignment: .stretch,
+                children: [
+                  Text(
+                    'Salom, Aziza!',
+                    style: context.textThemes.h5,
+                  ),
+                  Text(
+                    "Bugun ${stats?.newApplicantsCount ?? 0} ta yangi javob va ${stats?.activeVacanciesCount ?? 0} ta aktiv vakansiya",
+                    style: context.textThemes.b2.copyWith(
+                      color: context.colors.textSecondary,
                     ),
                   ),
-                ),
-              ),
-            ),
+                  SizedBox(height: 16),
+                  Row(
+                    spacing: 8,
+                    children: [
+                      Expanded(
+                        child: _buildStatCard(
+                          context,
+                          title: "INTERVYULAR",
+                          value: "${stats?.interviewsTodayCount ?? 0}",
+                          bottomText: "bugun",
+                          isPrimary: true,
+                        ),
+                      ),
+                      Expanded(
+                        child: _buildStatCard(
+                          context,
+                          title: "JAVOBLAR",
+                          value: "${stats?.newApplicantsCount ?? 0}",
+                          bottomText: "yangi",
+                        ),
+                      ),
+                      Expanded(
+                        child: _buildStatCard(
+                          context,
+                          title: "AKTIV",
+                          value: "${stats?.activeVacanciesCount ?? 0}",
+                          bottomText: "vakansiya",
+                          showTrendingIcon: false,
+                        ),
+                      ),
+                    ],
+                  ),
+
 
             SizedBox(height: 16),
 
@@ -86,7 +93,7 @@ class HrDashboardPage extends StatelessWidget {
                 ),
                 Spacer(),
                 TextButton.icon(
-                  onPressed: () {},
+                  onPressed: () => context.pushRoute(MyVacanciesRoute()),
                   icon: Icon(Icons.arrow_forward_ios_rounded),
                   label: Text("Barchasi"),
                   style: TextButton.styleFrom(
@@ -98,424 +105,39 @@ class HrDashboardPage extends StatelessWidget {
               ],
             ),
             SizedBox(height: 12),
-            Material(
-              color: context.colors.bgPrimary,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Padding(
-                padding: .all(12),
-                child: Column(
-                  mainAxisSize: .min,
-                  crossAxisAlignment: .stretch,
-                  children: [
-                    Flexible(
-                      child: Row(
-                        spacing: 8,
-                        children: [
-                          Flexible(
-                            child: SizedBox(
-                              height: 40,
-                              child: SingleChildScrollView(
-                                scrollDirection: .horizontal,
-                                child: Row(
-                                  spacing: 8,
-                                  children: [
-                                    Material(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(
-                                          8,
-                                        ),
-                                      ),
-                                      color: context.colors.bgSecondary,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 12,
-                                          vertical: 8,
-                                        ),
-                                        child: Text(
-                                          "Toshkent",
-                                          style: context.textThemes.b3,
-                                        ),
-                                      ),
-                                    ),
-                                    Material(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(
-                                          8,
-                                        ),
-                                      ),
-                                      color: context.colors.bgSecondary,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 12,
-                                          vertical: 8,
-                                        ),
-                                        child: Text(
-                                          "To'liq stavka",
-                                          style: context.textThemes.b3,
-                                        ),
-                                      ),
-                                    ),
-                                    Material(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(
-                                          8,
-                                        ),
-                                      ),
-                                      color: context.colors.bgSecondary,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 12,
-                                          vertical: 8,
-                                        ),
-                                        child: Text(
-                                          "Tajriba 1-3 yil",
-                                          style: context.textThemes.b3,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () => showModalBottomSheet(
-                              context: context,
-                              isScrollControlled: true,
-                              builder: (_) => PostingActionsSheet(),
-                            ),
-                            icon: Icon(Icons.more_vert),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 12),
-                    Text(
-                      "Senior UX/UI Dizayner",
-                      style: context.textThemes.s1,
-                    ),
-                    Divider(
-                      thickness: .5,
-                      height: 25,
-                      color: context.colors.textSecondary,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "10–15 mln so'm",
-                          style: context.textThemes.s2.copyWith(
-                            color: context.colors.brandDefault,
-                          ),
-                        ),
-                        Spacer(),
-                        Row(
-                          spacing: 6,
-                          children: [
-                            Icon(
-                              Icons.calendar_month,
-                              size: 20,
-                              color: context.colors.textSecondary,
-                            ),
-                            Text(
-                              "Mar 31,2024",
-                              style: context.textThemes.b2.copyWith(
-                                color: context.colors.textSecondary,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 16),
-                    Material(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      color: context.colors.bgSecondary,
-                      child: SizedBox(
-                        height: 64,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Row(
-                              children: [
-                                Row(
-                                  children: [
-                                    Icon(Icons.remove_red_eye),
-                                    SizedBox(width: 12),
-                                    Column(
-                                      crossAxisAlignment: .start,
-                                      mainAxisSize: .min,
-                                      children: [
-                                        Text(
-                                          "245",
-                                          style: context.textThemes.buttonGiant,
-                                        ),
-                                        Text(
-                                          "Ko'rishlar",
-                                          style: context.textThemes.buttonMedium
-                                              .copyWith(
-                                                color: context
-                                                    .colors
-                                                    .textSecondary,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            VerticalDivider(),
-                            Row(
-                              children: [
-                                Row(
-                                  children: [
-                                    Icon(Icons.remove_red_eye),
-                                    SizedBox(width: 12),
-                                    Column(
-                                      crossAxisAlignment: .start,
-                                      mainAxisSize: .min,
-                                      children: [
-                                        Text(
-                                          "245",
-                                          style: context.textThemes.buttonGiant,
-                                        ),
-                                        Text(
-                                          "Ko'rishlar",
-                                          style: context.textThemes.buttonMedium
-                                              .copyWith(
-                                                color: context
-                                                    .colors
-                                                    .textSecondary,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ],
+            if (state.isLoading)
+              const Padding(
+                padding: EdgeInsets.all(24.0),
+                child: Center(child: CircularProgressIndicator()),
+              )
+            else if (state.vacancies?.isEmpty ?? true)
+              Padding(
+                padding: const EdgeInsets.all(24.0),
+                child: Center(
+                  child: Text(
+                    "Vakansiyalar topilmadi",
+                    style: context.textThemes.b2.copyWith(color: context.colors.textSecondary),
+                  ),
                 ),
-              ),
-            ),
-            SizedBox(height: 12),
-            Material(
-              color: context.colors.bgPrimary,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Padding(
-                padding: .all(12),
-                child: Column(
-                  mainAxisSize: .min,
-                  crossAxisAlignment: .stretch,
-                  children: [
-                    Flexible(
-                      child: Row(
-                        spacing: 8,
-                        children: [
-                          Flexible(
-                            child: SizedBox(
-                              height: 40,
-                              child: SingleChildScrollView(
-                                scrollDirection: .horizontal,
-                                child: Row(
-                                  spacing: 8,
-                                  children: [
-                                    Material(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(
-                                          8,
-                                        ),
-                                      ),
-                                      color: context.colors.bgSecondary,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 12,
-                                          vertical: 8,
-                                        ),
-                                        child: Text(
-                                          "Toshkent",
-                                          style: context.textThemes.b3,
-                                        ),
-                                      ),
-                                    ),
-                                    Material(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(
-                                          8,
-                                        ),
-                                      ),
-                                      color: context.colors.bgSecondary,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 12,
-                                          vertical: 8,
-                                        ),
-                                        child: Text(
-                                          "To'liq stavka",
-                                          style: context.textThemes.b3,
-                                        ),
-                                      ),
-                                    ),
-                                    Material(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(
-                                          8,
-                                        ),
-                                      ),
-                                      color: context.colors.bgSecondary,
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                          horizontal: 12,
-                                          vertical: 8,
-                                        ),
-                                        child: Text(
-                                          "Tajriba 1-3 yil",
-                                          style: context.textThemes.b3,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.more_vert,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(height: 12),
-                    Text(
-                      "Senior UX/UI Dizayner",
-                      style: context.textThemes.s1,
-                    ),
-                    Divider(
-                      thickness: .5,
-                      height: 25,
-                      color: context.colors.textSecondary,
-                    ),
-                    Row(
-                      children: [
-                        Text(
-                          "10–15 mln so'm",
-                          style: context.textThemes.s2.copyWith(
-                            color: context.colors.brandDefault,
-                          ),
-                        ),
-                        Spacer(),
-                        Row(
-                          spacing: 6,
-                          children: [
-                            Icon(
-                              Icons.calendar_month,
-                              size: 20,
-                              color: context.colors.textSecondary,
-                            ),
-                            Text(
-                              "Mar 31,2024",
-                              style: context.textThemes.b2.copyWith(
-                                color: context.colors.textSecondary,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 16),
-                    Material(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      color: context.colors.bgSecondary,
-                      child: SizedBox(
-                        height: 64,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Row(
-                              children: [
-                                Row(
-                                  children: [
-                                    Icon(Icons.remove_red_eye),
-                                    SizedBox(width: 12),
-                                    Column(
-                                      crossAxisAlignment: .start,
-                                      mainAxisSize: .min,
-                                      children: [
-                                        Text(
-                                          "245",
-                                          style: context.textThemes.buttonGiant,
-                                        ),
-                                        Text(
-                                          "Ko'rishlar",
-                                          style: context.textThemes.buttonMedium
-                                              .copyWith(
-                                                color: context
-                                                    .colors
-                                                    .textSecondary,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                            VerticalDivider(),
-                            Row(
-                              children: [
-                                Row(
-                                  children: [
-                                    Icon(Icons.remove_red_eye),
-                                    SizedBox(width: 12),
-                                    Column(
-                                      crossAxisAlignment: .start,
-                                      mainAxisSize: .min,
-                                      children: [
-                                        Text(
-                                          "245",
-                                          style: context.textThemes.buttonGiant,
-                                        ),
-                                        Text(
-                                          "Ko'rishlar",
-                                          style: context.textThemes.buttonMedium
-                                              .copyWith(
-                                                color: context
-                                                    .colors
-                                                    .textSecondary,
-                                              ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+              )
+            else
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  for (final vacancy in state.vacancies?.take(5) ?? <Vacancy>[]) ...[
+                    HrVacancyCard(vacancy: vacancy),
+                    const SizedBox(height: 12),
                   ],
-                ),
+                ],
               ),
-            ),
-            SizedBox(height: 12),
+
             FilledButton.icon(
-              onPressed: () => context.pushRoute(CreateVacancyRoute()),
+              onPressed: () async {
+                final result = await context.pushRoute(CreateVacancyRoute());
+                if (result == true && context.mounted) {
+                  context.read<PostingsBloc>().add(LoadPostings());
+                }
+              },
               icon: Icon(Icons.add),
               label: Text("Vakansiya yaratish"),
               style: FilledButton.styleFrom(
@@ -528,6 +150,64 @@ class HrDashboardPage extends StatelessWidget {
                 foregroundColor: context.colors.brandDefault,
                 backgroundColor: context.colors.bgPrimary,
               ),
+            ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  Widget _buildStatCard(
+    BuildContext context, {
+    required String title,
+    required String value,
+    required String bottomText,
+    bool isPrimary = false,
+    bool showTrendingIcon = true,
+  }) {
+    final bgColor = isPrimary ? context.colors.brandDefault : context.colors.bgSecondary;
+    final titleColor = isPrimary ? context.colors.bgPrimary : context.colors.textSecondary;
+    final valueColor = isPrimary ? context.colors.bgPrimary : context.colors.textPrimary;
+    final bottomColor = isPrimary ? context.colors.bgPrimary : (showTrendingIcon ? context.colors.success : context.colors.textSecondary);
+    final iconColor = isPrimary ? context.colors.bgPrimary : context.colors.success;
+
+    return Material(
+      color: bgColor,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              title,
+              style: context.textThemes.c1.copyWith(color: titleColor),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+            ),
+            const SizedBox(height: 6),
+            Text(value, style: context.textThemes.h3.copyWith(color: valueColor)),
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                if (showTrendingIcon) ...[
+                  Icon(Icons.trending_up, size: 16, color: iconColor),
+                  const SizedBox(width: 4),
+                ],
+                Expanded(
+                  child: Text(
+                    bottomText,
+                    style: context.textThemes.c1.copyWith(color: bottomColor),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
+              ],
             ),
           ],
         ),

@@ -1,8 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
-import 'package:mobile/core/routes/app_router.gr.dart';
-import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/resume/presentation/widgets/resume_skill_chip.dart';
 
 class ResumeSkillsSection extends StatelessWidget {
@@ -35,16 +32,9 @@ class ResumeSkillsSection extends StatelessWidget {
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: skills.map((skill) => ResumeSkillChip(label: skill)).toList(),
-          ),
-          const SizedBox(height: 16),
-          AppButton(
-            onTap: () {
-              context.pushRoute(const EditResumeSkillsRoute());
-            },
-            label: "Tahrirlash",
-            color: context.colors.bgTertiary,
-            foregroundColor: context.colors.textPrimary,
+            children: skills
+                .map((skill) => ResumeSkillChip(label: skill))
+                .toList(),
           ),
         ],
       ),

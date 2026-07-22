@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/features/profile/presentation/bloc/candidate_profile_bloc.dart';
 import 'package:mobile/features/profile/presentation/widgets/candidate_education_section.dart';
 import 'package:mobile/features/profile/presentation/widgets/candidate_experience_section.dart';
@@ -26,7 +27,7 @@ class CandidateProfilePage extends StatelessWidget {
           automaticallyImplyLeading: false,
           actions: [
             IconButton(
-              onPressed: () {},
+              onPressed: () => context.pushRoute(const SettingsRoute()),
               icon: const Icon(Icons.settings_outlined),
             ),
           ],
@@ -59,6 +60,32 @@ class CandidateProfilePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const CandidateProfileHeader(),
+                  const SizedBox(height: 16),
+                  ListTile(
+                    onTap: () => context.pushRoute(const SavedVacanciesRoute()),
+                    leading: Icon(
+                      Icons.bookmark_border,
+                      color: context.colors.brandDefault,
+                    ),
+                    title: Text(
+                      "Saqlangan vakansiyalar",
+                      style: context.textThemes.buttonLarge,
+                    ),
+                    trailing: const Icon(Icons.chevron_right),
+                    tileColor: context.colors.bgSecondary,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  // ListTile(
+                  //   onTap: () => context.pushRoute(const ArticlesRoute()),
+                  //   leading: Icon(Icons.article_outlined, color: context.colors.brandDefault),
+                  //   title: Text("Maqolalar", style: context.textThemes.buttonLarge),
+                  //   trailing: const Icon(Icons.chevron_right),
+                  //   tileColor: context.colors.bgSecondary,
+                  //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                  // ),
                   const SizedBox(height: 24),
                   _buildSectionTitle(context, "Mening rezyumelarim"),
                   const SizedBox(height: 12),

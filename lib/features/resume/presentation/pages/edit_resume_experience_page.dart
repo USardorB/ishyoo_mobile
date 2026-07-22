@@ -93,29 +93,25 @@ class EditResumeExperiencePage extends HookWidget {
                   }
                 },
                 onStartMonthTapped: () async {
-                  final String? picked = await showModalBottomSheet<String>(
+                  final DateTime? picked = await showModalBottomSheet<DateTime>(
                     context: context,
                     isScrollControlled: true,
                     backgroundColor: Colors.transparent,
-                    builder: (context) => const MonthPickerSheet(),
+                    builder: (context) => MonthPickerSheet(initialDate: startDate.value),
                   );
                   if (picked != null) {
-                    final months = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avgust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"];
-                    final monthIndex = months.indexOf(picked) + 1;
-                    startDate.value = DateTime(DateTime.now().year, monthIndex, 1);
+                    startDate.value = DateTime(picked.year, picked.month, 1);
                   }
                 },
                 onEndMonthTapped: () async {
-                  final String? picked = await showModalBottomSheet<String>(
+                  final DateTime? picked = await showModalBottomSheet<DateTime>(
                     context: context,
                     isScrollControlled: true,
                     backgroundColor: Colors.transparent,
-                    builder: (context) => const MonthPickerSheet(),
+                    builder: (context) => MonthPickerSheet(initialDate: endDate.value),
                   );
                   if (picked != null) {
-                    final months = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avgust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"];
-                    final monthIndex = months.indexOf(picked) + 1;
-                    endDate.value = DateTime(DateTime.now().year, monthIndex, 1);
+                    endDate.value = DateTime(picked.year, picked.month, 1);
                   }
                 },
               ),

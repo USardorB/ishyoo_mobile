@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import 'package:location/location.dart';
+import 'package:geolocator/geolocator.dart';
 
 import '../../data/models/vacancy.dart';
 import '../../domain/usecases/get_nearby_jobs_usecase.dart';
@@ -14,7 +14,7 @@ class NearbyJobsBloc extends Bloc<NearbyJobsEvent, NearbyJobsState> {
   final GetNearbyJobsUseCase _getNearbyJobsUseCase;
 
   NearbyJobsBloc(this._getNearbyJobsUseCase)
-      : super(const NearbyJobsInitial()) {
+    : super(const NearbyJobsInitial()) {
     on<LoadNearbyJobs>(_onLoadNearbyJobs);
   }
 
@@ -28,36 +28,35 @@ class NearbyJobsBloc extends Bloc<NearbyJobsEvent, NearbyJobsState> {
     double longitude = 69.27975;
 
     try {
-      final location = Location();
-      
-      bool serviceEnabled = await location.serviceEnabled();
+      bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
       if (!serviceEnabled) {
-        serviceEnabled = await location.requestService();
-        if (!serviceEnabled) {
-          emit(const NearbyJobsLocationError('Joylashuv xizmatlari o\'chirilgan.'));
-          return;
-        }
+        emit(
+          const NearbyJobsLocationError('Joylashuv xizmatlari o\'chirilgan.'),
+        );
+        return;
       }
 
-      PermissionStatus permissionGranted = await location.hasPermission();
-      if (permissionGranted == PermissionStatus.denied) {
-        permissionGranted = await location.requestPermission();
-        if (permissionGranted != PermissionStatus.granted && 
-            permissionGranted != PermissionStatus.grantedLimited) {
+      LocationPermission permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
           emit(const NearbyJobsLocationError('Joylashuvga ruxsat berilmadi.'));
           return;
         }
       }
 
-      if (permissionGranted == PermissionStatus.granted || 
-          permissionGranted == PermissionStatus.grantedLimited) {
-        // Reduced timeout to 1 second to avoid long loading delays on emulators without a GPS fix
-        final locData = await location.getLocation().timeout(const Duration(seconds: 1));
-        if (locData.latitude != null && locData.longitude != null) {
-          latitude = locData.latitude!;
-          longitude = locData.longitude!;
-        }
+      if (permission == LocationPermission.deniedForever) {
+        emit(const NearbyJobsLocationError('Joylashuvga ruxsat butunlay cheklangan.'));
+        return;
       }
+
+      final position = await Geolocator.getCurrentPosition(
+        locationSettings: const LocationSettings(
+          timeLimit: Duration(seconds: 1),
+        ),
+      );
+      latitude = position.latitude;
+      longitude = position.longitude;
     } catch (e) {
       // Ignore location errors and use fallback
     }

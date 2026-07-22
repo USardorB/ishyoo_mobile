@@ -8,6 +8,9 @@ class CreateVacancySummaryStep extends StatelessWidget {
   final JobType jobType;
   final ExperienceLevel experience;
   final String description;
+  final String? salaryFrom;
+  final String? salaryTo;
+  final String location;
   final VoidCallback onEditBasicInfo;
   final VoidCallback onEditRequirements;
   final VoidCallback onPost;
@@ -19,6 +22,9 @@ class CreateVacancySummaryStep extends StatelessWidget {
     required this.jobType,
     required this.experience,
     required this.description,
+    this.salaryFrom,
+    this.salaryTo,
+    required this.location,
     required this.onEditBasicInfo,
     required this.onEditRequirements,
     required this.onPost,
@@ -61,13 +67,17 @@ class CreateVacancySummaryStep extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 12),
-                Text(title, style: context.textThemes.h4),
+                Text(title.isEmpty ? 'Vakansiya nomi' : title, style: context.textThemes.h4),
                 const SizedBox(height: 4),
-                Text("10–15 mln so'm", style: context.textThemes.h5.copyWith(color: context.colors.brandDefault)),
+                if (salaryFrom != null || salaryTo != null)
+                  Text(
+                    "${salaryFrom?.isNotEmpty == true ? salaryFrom : '0'}–${salaryTo?.isNotEmpty == true ? salaryTo : '0'} so'm",
+                    style: context.textThemes.h5.copyWith(color: context.colors.brandDefault),
+                  ),
                 const SizedBox(height: 12),
                 Row(
                   children: [
-                    _buildSmallTag(context, "Toshkent"),
+                    _buildSmallTag(context, location.isEmpty ? 'Manzil' : location),
                     const SizedBox(width: 8),
                     _buildSmallTag(context, jobType.title),
                     const SizedBox(width: 8),

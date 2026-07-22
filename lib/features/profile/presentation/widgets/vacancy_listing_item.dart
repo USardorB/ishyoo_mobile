@@ -44,7 +44,16 @@ class VacancyListingItem extends StatelessWidget {
                     padding: .zero,
                     visualDensity: .compact,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    // TODO: Replace with actual vacancy data when available.
+                    // showModalBottomSheet(
+                    //   context: context,
+                    //   builder: (_) => PostingActionsSheet(vacancy: vacancy),
+                    // );
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(content: Text("Tez orada qo'shiladi")),
+                    );
+                  },
                   icon: Icon(Icons.more_vert),
                 ),
               ),

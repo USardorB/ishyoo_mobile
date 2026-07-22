@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
-import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -48,17 +47,7 @@ class LoginPage extends HookWidget {
         return;
       }
 
-      final deviceInfo = DeviceInfoPlugin();
-      String deviceName = 'Unknown';
-      try {
-        if (Platform.isAndroid) {
-          final info = await deviceInfo.androidInfo;
-          deviceName = info.model;
-        } else if (Platform.isIOS) {
-          final info = await deviceInfo.iosInfo;
-          deviceName = info.name;
-        }
-      } catch (_) {}
+      String deviceName = '${Platform.operatingSystem} ${Platform.operatingSystemVersion}';
 
       final deviceId = const Uuid().v4();
       final roleString = role == UserRole.job_seeker ? 'candidate' : 'employer';

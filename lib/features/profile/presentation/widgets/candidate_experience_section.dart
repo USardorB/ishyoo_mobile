@@ -1,8 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
-import 'package:mobile/core/routes/app_router.gr.dart';
-import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/resume/data/models/resume.dart';
 
 class CandidateExperienceSection extends StatelessWidget {
@@ -33,8 +30,12 @@ class CandidateExperienceSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ...experiences.map((exp) {
-            final startStr = exp.startDate != null ? "${exp.startDate!.year} yil" : "";
-            final endStr = exp.endDate != null ? "${exp.endDate!.year} yil" : "hozir";
+            final startStr = exp.startDate != null
+                ? "${exp.startDate!.year} yil"
+                : "";
+            final endStr = exp.endDate != null
+                ? "${exp.endDate!.year} yil"
+                : "hozir";
             return Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: _buildTimelineItem(
@@ -46,22 +47,18 @@ class CandidateExperienceSection extends StatelessWidget {
               ),
             );
           }),
-          const SizedBox(height: 16),
-          AppButton(
-            onTap: () {
-              context.pushRoute(const EditCandidateProfileRoute());
-            },
-            label: "Tahrirlash",
-            color: context.colors.bgPrimary,
-            foregroundColor: context.colors.textPrimary,
-            labelStyle: context.textThemes.b2,
-          ),
         ],
       ),
     );
   }
 
-  Widget _buildTimelineItem(BuildContext context, {required String title, required String subtitle, required String date, required bool isActive}) {
+  Widget _buildTimelineItem(
+    BuildContext context, {
+    required String title,
+    required String subtitle,
+    required String date,
+    required bool isActive,
+  }) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -70,7 +67,9 @@ class CandidateExperienceSection extends StatelessWidget {
           width: 10,
           height: 10,
           decoration: BoxDecoration(
-            color: isActive ? context.colors.brandProgress : context.colors.bgTertiary,
+            color: isActive
+                ? context.colors.brandProgress
+                : context.colors.bgTertiary,
             shape: BoxShape.circle,
           ),
         ),
@@ -85,7 +84,9 @@ class CandidateExperienceSection extends StatelessWidget {
               const SizedBox(height: 2),
               Text(
                 date,
-                style: context.textThemes.c2.copyWith(color: context.colors.textSecondary),
+                style: context.textThemes.c2.copyWith(
+                  color: context.colors.textSecondary,
+                ),
               ),
             ],
           ),

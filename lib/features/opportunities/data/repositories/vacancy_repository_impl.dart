@@ -73,4 +73,10 @@ class VacancyRepositoryImpl implements VacancyRepository {
   Future<Either<Failure, Unit>> unsaveVacancy(String id) async {
     return remoteDataSource.unsaveVacancy('candidate', id).asEither();
   }
+
+  @override
+  Future<Either<Failure, List<Vacancy>>> getSavedVacancies() {
+    return remoteDataSource.getSavedVacancies('candidate').asEither();
+  }
 }
+

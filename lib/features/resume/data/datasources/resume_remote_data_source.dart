@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
+
 import '../../../../core/shared/models/base_result.dart';
 import '../models/resume.dart';
+import '../models/specialization.dart';
 
 part 'resume_remote_data_source.g.dart';
 
@@ -22,7 +24,10 @@ abstract class ResumeRemoteDataSource {
   Future<BaseResult<Resume>> createResume(@Body() Map<String, dynamic> body);
 
   @PUT('/mobile/candidate/resume/{id}')
-  Future<BaseResult<Resume>> updateResume(@Path('id') String id, @Body() Map<String, dynamic> body);
+  Future<BaseResult<Resume>> updateResume(
+    @Path('id') String id,
+    @Body() Map<String, dynamic> body,
+  );
 
   @DELETE('/mobile/candidate/resume/{id}')
   Future<BaseResult<dynamic>> deleteResume(@Path('id') String id);
@@ -31,5 +36,5 @@ abstract class ResumeRemoteDataSource {
   Future<BaseResult<dynamic>> boostResume(@Path('id') String id);
 
   @GET('/mobile/candidate/resume/specialization')
-  Future<BaseResult<List<String>>> getSpecializations();
+  Future<BaseResult<List<Specialization>>> getSpecializations();
 }

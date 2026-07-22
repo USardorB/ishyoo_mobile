@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 
 class CandidateProfileHeader extends StatelessWidget {
@@ -52,6 +54,17 @@ class CandidateProfileHeader extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
+          ),
+          IconButton(
+            style: IconButton.styleFrom(
+              visualDensity: .compact,
+              padding: .zero,
+            ),
+            onPressed: () => context.pushRoute(EditCandidateProfileRoute()),
+            icon: Icon(
+              Icons.edit,
+              color: context.colors.textPrimary,
             ),
           ),
         ],

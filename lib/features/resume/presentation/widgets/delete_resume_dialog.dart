@@ -1,3 +1,4 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
@@ -36,7 +37,7 @@ class DeleteResumeDialog extends StatelessWidget {
               children: [
                 Expanded(
                   child: AppButton(
-                    onTap: () => Navigator.pop(context),
+                    onTap: context.pop,
                     label: "Bekor qilish",
                     color: context.colors.bgTertiary,
                     foregroundColor: context.colors.textPrimary,
@@ -44,7 +45,7 @@ class DeleteResumeDialog extends StatelessWidget {
                 ),
                 Expanded(
                   child: AppButton(
-                    onTap: () => Navigator.pop(context),
+                    onTap: () => context.pop(true),
                     label: "O'chirish",
                     color: context.colors.danger,
                     foregroundColor: Colors.white,

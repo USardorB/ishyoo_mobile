@@ -21,4 +21,5 @@ abstract class VacancyRepository {
   Future<Either<Failure, ApplicationResponse>> applyToVacancy(String id, Map<String, dynamic> request);
   Future<Either<Failure, Unit>> saveVacancy(String id);
   Future<Either<Failure, Unit>> unsaveVacancy(String id);
+  Future<Either<Failure, List<Vacancy>>> getSavedVacancies();
 }

@@ -32,7 +32,7 @@ class AppInputField extends StatelessWidget {
     this.readOnly = false,
     this.autofillHints = const [],
     this.textInputAction = TextInputAction.next,
-    this.keyboardType = TextInputType.phone,
+    this.keyboardType = TextInputType.text,
     this.prefixIcon,
     this.label,
     this.suffixIcon,

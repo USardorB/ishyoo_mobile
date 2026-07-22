@@ -29,10 +29,16 @@ class ResumeExperienceForm extends StatelessWidget {
     this.onLocationTapped,
   });
 
+  String _formatDate(DateTime? date) {
+    if (date == null) return "Tanlang";
+    final months = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avgust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"];
+    return "${months[date.month - 1]} ${date.year}";
+  }
+
   @override
   Widget build(BuildContext context) {
-    final startStr = startDate != null ? "${startDate!.month}/${startDate!.year}" : "Tanlang";
-    final endStr = endDate != null ? "${endDate!.month}/${endDate!.year}" : "Tanlang";
+    final startStr = _formatDate(startDate);
+    final endStr = _formatDate(endDate);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

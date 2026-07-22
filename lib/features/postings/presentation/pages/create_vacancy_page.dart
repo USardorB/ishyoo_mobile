@@ -1,6 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/features/opportunities/data/models/vacancy.dart';
+import 'package:mobile/features/postings/presentation/bloc/postings_bloc.dart';
 import 'package:mobile/features/postings/presentation/widgets/create_vacancy_basic_info_step.dart';
 import 'package:mobile/features/postings/presentation/widgets/create_vacancy_requirements_step.dart';
 import 'package:mobile/features/postings/presentation/widgets/create_vacancy_summary_step.dart';
@@ -8,7 +12,9 @@ import 'package:mobile/features/postings/presentation/widgets/tallent_filter_she
 
 @RoutePage()
 class CreateVacancyPage extends StatefulWidget {
-  const CreateVacancyPage({super.key});
+  final Vacancy? vacancyToEdit;
+
+  const CreateVacancyPage({super.key, this.vacancyToEdit});
 
   @override
   State<CreateVacancyPage> createState() => _CreateVacancyPageState();
@@ -18,32 +24,49 @@ class _CreateVacancyPageState extends State<CreateVacancyPage> {
   final PageController _pageController = PageController();
   int _currentStep = 0;
 
+  bool get _isEditMode => widget.vacancyToEdit != null;
+
   // Step 1 Controllers & State
-  final _titleController = TextEditingController(text: 'UX/UI Dizayner');
-  String? _selectedCategory = 'Bank · Moliya';
-  final _addressController = TextEditingController(
-    text: 'Toshkent, O\'zbekiston',
-  );
+  final _titleController = TextEditingController();
+  String? _selectedSpecialization;
+  final _addressController = TextEditingController();
   final _salaryFromController = TextEditingController();
   final _salaryToController = TextEditingController();
-  final _phoneController = TextEditingController(text: '+998 90 123 45 67');
+  final _phoneController = TextEditingController();
   JobType _selectedJobType = JobType.fullTime;
 
   // Step 2 Controllers & State
-  final _descriptionController = TextEditingController(
-    text:
-        "Bizning jamoamizga UX/UI dizayner kerak. Bank ilovasi va veb-saytining interfeysini yaratish, foydalanuvchi tajribasini yaxshilash va dizayn tizimini rivojlantirish.",
-  );
-  final _tasksController = TextEditingController(
-    text:
-        "• Mobil ilova va veb-sayt uchun interfeys yaratish\n• Foydalanuvchilar bilan tadqiqotlar o'tkazish\n• Dizayn tizimini rivojlantirish va qo'llab-quvvatlash\n• Mahsulot va muhandislik jamoalari bilan ishlash",
-  );
-  final _requirementsController = TextEditingController(
-    text:
-        "• 2+ yil UX/UI dizayn tajribasi\n• Figma'da yuqori darajadagi mahorat\n• Dizayn tizimlari bilan ishlash tajribasi\n• Ingliz tili - B2 darajasidan past emas",
-  );
-  List<String> _selectedSkills = ['Figma', 'Prototyping'];
+  final _descriptionController = TextEditingController();
+  final _tasksController = TextEditingController();
+  final _requirementsController = TextEditingController();
+  List<String> _selectedSkills = [];
   ExperienceLevel _selectedExperience = ExperienceLevel.oneToThree;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.vacancyToEdit != null) {
+      final v = widget.vacancyToEdit!;
+      _titleController.text = v.jobTitle;
+      _selectedSpecialization = v.specialization;
+      _addressController.text = v.location ?? '';
+      _salaryFromController.text = v.salaryFrom?.toString() ?? '';
+      _salaryToController.text = v.salaryTo?.toString() ?? '';
+      _phoneController.text = v.contact?.phoneNumber ?? '';
+      _selectedJobType = JobType.values.firstWhere(
+        (e) => e.serverValue == v.jobType,
+        orElse: () => JobType.fullTime,
+      );
+      _descriptionController.text = v.description ?? '';
+      _tasksController.text = v.responsibilities ?? '';
+      _requirementsController.text = v.requirements ?? '';
+      _selectedSkills = v.keySkills ?? [];
+      _selectedExperience = ExperienceLevel.values.firstWhere(
+        (e) => e.serverValue == v.experienceLevel,
+        orElse: () => ExperienceLevel.oneToThree,
+      );
+    }
+  }
 
   void _nextStep() {
     if (_currentStep < 2) {
@@ -64,76 +87,127 @@ class _CreateVacancyPageState extends State<CreateVacancyPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Yangi vakansiya'),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            if (_currentStep > 0) {
-              _pageController.previousPage(
-                duration: const Duration(milliseconds: 300),
-                curve: Curves.easeInOut,
-              );
-            } else {
-              context.pop();
-            }
-          },
-        ),
-      ),
-      body: Column(
-        children: [
-          _buildStepIndicator(),
-          Expanded(
-            child: PageView(
-              controller: _pageController,
-              physics: const NeverScrollableScrollPhysics(),
-              onPageChanged: (index) {
-                setState(() {
-                  _currentStep = index;
-                });
+    return BlocProvider(
+      create: (_) => sl<PostingsBloc>()..add(LoadPostings()),
+      child: BlocListener<PostingsBloc, PostingsState>(
+        listener: (context, state) {
+          if (state.isCreateSuccess) {
+            context.pop(true);
+          }
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            title: Text(_isEditMode ? 'Tahrirlash' : 'Yangi vakansiya'),
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                if (_currentStep > 0) {
+                  _pageController.previousPage(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
+                } else {
+                  context.pop();
+                }
               },
-              children: [
-                CreateVacancyBasicInfoStep(
-                  titleController: _titleController,
-                  selectedCategory: _selectedCategory,
-                  onCategorySelected: (val) =>
-                      setState(() => _selectedCategory = val),
-                  addressController: _addressController,
-                  salaryFromController: _salaryFromController,
-                  salaryToController: _salaryToController,
-                  phoneController: _phoneController,
-                  selectedJobType: _selectedJobType,
-                  onJobTypeSelected: (val) =>
-                      setState(() => _selectedJobType = val),
-                  onNext: _nextStep,
-                ),
-                CreateVacancyRequirementsStep(
-                  descriptionController: _descriptionController,
-                  tasksController: _tasksController,
-                  requirementsController: _requirementsController,
-                  selectedSkills: _selectedSkills,
-                  onSkillsChanged: (val) =>
-                      setState(() => _selectedSkills = val),
-                  selectedExperience: _selectedExperience,
-                  onExperienceSelected: (val) =>
-                      setState(() => _selectedExperience = val),
-                  onNext: _nextStep,
-                ),
-                CreateVacancySummaryStep(
-                  title: _titleController.text,
-                  jobType: _selectedJobType,
-                  experience: _selectedExperience,
-                  description: _descriptionController.text,
-                  onEditBasicInfo: () => _goToStep(0),
-                  onEditRequirements: () => _goToStep(1),
-                  onPost: () => context.pop(),
-                  onSaveDraft: () => context.pop(),
-                ),
-              ],
             ),
           ),
-        ],
+          body: Column(
+            children: [
+              _buildStepIndicator(),
+              Expanded(
+                child: BlocBuilder<PostingsBloc, PostingsState>(
+                  builder: (context, state) {
+                    return PageView(
+                      controller: _pageController,
+                      physics: const NeverScrollableScrollPhysics(),
+                      onPageChanged: (index) {
+                        setState(() {
+                          _currentStep = index;
+                        });
+                      },
+                      children: [
+                        CreateVacancyBasicInfoStep(
+                          titleController: _titleController,
+                          selectedSpecialization: _selectedSpecialization,
+                          specializations: state.specializations ?? [],
+                          onSpecializationSelected: (val) =>
+                              setState(() => _selectedSpecialization = val),
+                          addressController: _addressController,
+                          salaryFromController: _salaryFromController,
+                          salaryToController: _salaryToController,
+                          phoneController: _phoneController,
+                          selectedJobType: _selectedJobType,
+                          onJobTypeSelected: (val) =>
+                              setState(() => _selectedJobType = val),
+                          onNext: _nextStep,
+                        ),
+                        CreateVacancyRequirementsStep(
+                          descriptionController: _descriptionController,
+                          tasksController: _tasksController,
+                          requirementsController: _requirementsController,
+                          selectedSkills: _selectedSkills,
+                          onSkillsChanged: (val) =>
+                              setState(() => _selectedSkills = val),
+                          selectedExperience: _selectedExperience,
+                          onExperienceSelected: (val) =>
+                              setState(() => _selectedExperience = val),
+                          onNext: _nextStep,
+                        ),
+                        CreateVacancySummaryStep(
+                          title: _titleController.text,
+                          jobType: _selectedJobType,
+                          experience: _selectedExperience,
+                          description: _descriptionController.text,
+                          salaryFrom: _salaryFromController.text,
+                          salaryTo: _salaryToController.text,
+                          location: _addressController.text,
+                          onEditBasicInfo: () => _goToStep(0),
+                          onEditRequirements: () => _goToStep(1),
+                          onPost: () {
+                            final body = {
+                              'job_title': _titleController.text,
+                              'specialization': _selectedSpecialization,
+                              'location': _addressController.text,
+                              'salary_from': int.tryParse(
+                                _salaryFromController.text,
+                              ),
+                              'salary_to': int.tryParse(
+                                _salaryToController.text,
+                              ),
+                              'currency': 'uzs',
+                              'contact': {
+                                'phone_number': _phoneController.text,
+                              },
+                              'job_type': _selectedJobType.serverValue,
+                              'description': _descriptionController.text,
+                              'responsibilities': _tasksController.text,
+                              'requirements': _requirementsController.text,
+                              'key_skills': _selectedSkills,
+                              'experience_level':
+                                  _selectedExperience.serverValue,
+                              'is_temporary': false,
+                            };
+                            if (_isEditMode) {
+                              context.read<PostingsBloc>().add(
+                                UpdatePosting(widget.vacancyToEdit!.id, body),
+                              );
+                            } else {
+                              context.read<PostingsBloc>().add(
+                                CreatePosting(body),
+                              );
+                            }
+                          },
+                          onSaveDraft: () => context.pop(),
+                        ),
+                      ],
+                    );
+                  },
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

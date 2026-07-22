@@ -2,11 +2,44 @@ import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/messaging/presentation/widgets/attatchment_options_sheet.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/core/enums/user_role.dart';
+import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:mobile/features/messaging/presentation/bloc/messaging_bloc.dart';
+
 // TODO(Sardor) Rename for better readability
-class ChatPageBottomPart extends StatelessWidget {
-  const ChatPageBottomPart({
-    super.key,
-  });
+class ChatPageBottomPart extends StatefulWidget {
+  final String chatId;
+  const ChatPageBottomPart({super.key, required this.chatId});
+
+  @override
+  State<ChatPageBottomPart> createState() => _ChatPageBottomPartState();
+}
+
+class _ChatPageBottomPartState extends State<ChatPageBottomPart> {
+  final TextEditingController _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  void _sendMessage() {
+    final text = _controller.text.trim();
+    if (text.isEmpty) return;
+
+    final isEmployer = context.read<AuthBloc>().state.userRole == UserRole.employer;
+    
+    context.read<MessagingBloc>().add(
+      SendMessage(
+        id: widget.chatId,
+        content: text,
+        isEmployer: isEmployer,
+      ),
+    );
+    _controller.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +52,7 @@ class ChatPageBottomPart extends StatelessWidget {
             onPressed: () => showModalBottomSheet(
               context: context,
               isScrollControlled: true,
-              builder: (_) => AttatchmentOptionsSheet(),
+              builder: (_) => AttatchmentOptionsSheet(chatId: widget.chatId),
             ),
             style: IconButton.styleFrom(
               backgroundColor: context.colors.bgPrimary,
@@ -30,6 +63,8 @@ class ChatPageBottomPart extends StatelessWidget {
           ),
           Flexible(
             child: TextField(
+              controller: _controller,
+              onSubmitted: (_) => _sendMessage(),
               decoration: InputDecoration(
                 hintText: "Xabar yozing...",
                 fillColor: context.colors.bgPrimary,
@@ -47,7 +82,7 @@ class ChatPageBottomPart extends StatelessWidget {
               backgroundColor: context.colors.bgPrimary,
               foregroundColor: context.colors.textSecondary,
             ),
-            onPressed: () {},
+            onPressed: _sendMessage,
             icon: Icon(Icons.send),
           ),
         ],

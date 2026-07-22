@@ -6,6 +6,7 @@ import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/resume/data/models/resume.dart';
 import 'package:mobile/features/resume/presentation/bloc/resume_form_bloc.dart';
 import 'package:mobile/features/resume/presentation/widgets/forms/resume_contacts_form.dart';
@@ -21,20 +22,25 @@ class CreateResumeFlowPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.read<AuthBloc>().state.user;
+    
     return BlocProvider(
       create: (context) {
-        final bloc = sl<ResumeFormBloc>();
+        final data = <String, dynamic>{
+          'email': user?.email ?? '',
+          'phone': user?.phoneNumber ?? '',
+        };
+        
         if (resume != null) {
-          final data = {
+          data.addAll({
             'specialization': resume!.specialization,
-            'expected_salary': resume!.expectedSalary,
+            'expected_salary': resume!.expectedSalary?.toString(),
             'experiences': resume!.experiences?.map((e) => e.toMap()).toList() ?? [],
             'educations': resume!.educations?.map((e) => e.toMap()).toList() ?? [],
             'skills': resume!.skills ?? [],
-          };
-          bloc.add(UpdateFormData(data));
+          });
         }
-        return bloc;
+        return sl<ResumeFormBloc>(param1: data);
       },
       child: _CreateResumeFlowContent(resumeId: resume?.id),
     );

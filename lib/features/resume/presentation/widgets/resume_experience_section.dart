@@ -1,8 +1,5 @@
-import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
-import 'package:mobile/core/routes/app_router.gr.dart';
-import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/resume/data/models/resume.dart';
 import 'package:mobile/features/resume/presentation/widgets/resume_timeline_item.dart';
 
@@ -34,8 +31,12 @@ class ResumeExperienceSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ...experiences.map((exp) {
-            final startStr = exp.startDate != null ? "${exp.startDate!.year} yil" : "";
-            final endStr = exp.endDate != null ? "${exp.endDate!.year} yil" : "hozir";
+            final startStr = exp.startDate != null
+                ? "${exp.startDate!.year} yil"
+                : "";
+            final endStr = exp.endDate != null
+                ? "${exp.endDate!.year} yil"
+                : "hozir";
             return Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: ResumeTimelineItem(
@@ -46,15 +47,6 @@ class ResumeExperienceSection extends StatelessWidget {
               ),
             );
           }),
-          const SizedBox(height: 16),
-          AppButton(
-            onTap: () {
-              context.pushRoute(EditResumeExperienceRoute());
-            },
-            label: "Tahrirlash",
-            color: context.colors.bgTertiary,
-            foregroundColor: context.colors.textPrimary,
-          ),
         ],
       ),
     );

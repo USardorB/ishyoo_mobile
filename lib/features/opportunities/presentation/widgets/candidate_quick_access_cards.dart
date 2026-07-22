@@ -24,7 +24,11 @@ class CandidateQuickAccessCards extends StatelessWidget {
             title: "Rezyumeni yaxshilash",
             icon: Icons.insights_outlined,
             iconColor: context.colors.success,
-            onTap: () {},
+            onTap: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text("Tez orada qo'shiladi")),
+              );
+            },
           ),
         ),
         Expanded(
@@ -32,7 +36,7 @@ class CandidateQuickAccessCards extends StatelessWidget {
             title: "Karyera maqolalari",
             icon: Icons.assignment_outlined,
             iconColor: context.colors.warning,
-            onTap: () {},
+            onTap: () => context.pushRoute(const ArticlesRoute()),
           ),
         ),
       ],

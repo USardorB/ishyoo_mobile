@@ -1,46 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/features/resume/data/models/resume.dart';
 
 class ApplicantWorkHistory extends StatelessWidget {
-  const ApplicantWorkHistory({super.key});
+  final List<ResumeExperience> experiences;
+  final String label;
+
+  const ApplicantWorkHistory({
+    super.key,
+    required this.experiences,
+    this.label = 'Ish tajribasi',
+  });
+
+  String _formatDate(DateTime? date) {
+    if (date == null) return 'hozir';
+    return '${date.year} yil';
+  }
 
   @override
   Widget build(BuildContext context) {
+    if (experiences.isEmpty) return const SizedBox.shrink();
+
     return Column(
-      crossAxisAlignment: .stretch,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
-          'Ish tajribasi: 3 yil 6 oy',
-          style: context.textThemes.s2,
-        ),
-        SizedBox(height: 16),
+        Text(label, style: context.textThemes.s2),
+        const SizedBox(height: 16),
         Container(
           decoration: BoxDecoration(
             color: context.colors.bgPrimary,
             borderRadius: BorderRadius.circular(16),
           ),
-          padding: .all(12),
+          padding: const EdgeInsets.all(12),
           child: Column(
-            crossAxisAlignment: .stretch,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              _buildVacancy(
-                context,
-                title: 'UX/UI Dizayner',
-                company: 'Click',
-                duration: '2023 yil yanvar — hozir',
-                isCurrent: true,
-              ),
-              Divider(
-                height: 13,
-                color: context.colors.lineSecondary,
-              ),
-              _buildVacancy(
-                context,
-                title: 'UX/UI Dizayner',
-                company: 'Payme',
-                duration: '2022 yil yanvar — 2023 yil yanvar',
-                isCurrent: false,
-              ),
+              for (int i = 0; i < experiences.length; i++) ...[
+                if (i > 0)
+                  Divider(height: 24, color: context.colors.lineSecondary),
+                _buildEntry(context, experiences[i]),
+              ],
             ],
           ),
         ),
@@ -48,52 +47,51 @@ class ApplicantWorkHistory extends StatelessWidget {
     );
   }
 
-  Row _buildVacancy(
-    BuildContext context, {
-    required String title,
-    required String company,
-    required String duration,
-    required bool isCurrent,
-  }) {
+  Widget _buildEntry(BuildContext context, ResumeExperience exp) {
+    final isCurrent = exp.endDate == null;
+    final duration = '${_formatDate(exp.startDate)} — ${_formatDate(exp.endDate)}';
+
     return Row(
-      spacing: 12,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // if (isCurrent)
-        CircleAvatar(
-          radius: 8.5,
-          backgroundColor: isCurrent
-              ? context.colors.brandProgress
-              : context.colors.bgSecondary,
-          child: Icon(
-            Icons.circle,
-            size: 12,
-            color: isCurrent
-                ? context.colors.brandDefault
+        Padding(
+          padding: const EdgeInsets.only(top: 4),
+          child: CircleAvatar(
+            radius: 8.5,
+            backgroundColor: isCurrent
+                ? context.colors.brandProgress
                 : context.colors.bgSecondary,
+            child: Icon(
+              Icons.circle,
+              size: 10,
+              color: isCurrent
+                  ? context.colors.brandDefault
+                  : context.colors.textSecondary,
+            ),
           ),
         ),
-        Column(
-          crossAxisAlignment: .start,
-          children: [
-            Text(
-              title,
-              style: context.textThemes.s2,
-            ),
-            SizedBox(height: 4),
-            Text(
-              company,
-              style: context.textThemes.b1.copyWith(
-                color: context.colors.textSecondary,
+        const SizedBox(width: 12),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(exp.position, style: context.textThemes.s2),
+              const SizedBox(height: 4),
+              Text(
+                exp.companyName,
+                style: context.textThemes.b1.copyWith(
+                  color: context.colors.textSecondary,
+                ),
               ),
-            ),
-            SizedBox(height: 6),
-            Text(
-              duration,
-              style: context.textThemes.b2.copyWith(
-                color: context.colors.textSecondary,
+              const SizedBox(height: 6),
+              Text(
+                duration,
+                style: context.textThemes.b2.copyWith(
+                  color: context.colors.textSecondary,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ],
     );

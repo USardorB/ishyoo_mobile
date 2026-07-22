@@ -6,6 +6,7 @@ import '../../../../core/extensions/repository_extension.dart';
 import '../../domain/repositories/resume_repository.dart';
 import '../datasources/resume_remote_data_source.dart';
 import '../models/resume.dart';
+import '../models/specialization.dart';
 
 @LazySingleton(as: ResumeRepository)
 class ResumeRepositoryImpl implements ResumeRepository {
@@ -44,7 +45,7 @@ class ResumeRepositoryImpl implements ResumeRepository {
   }
 
   @override
-  Future<Either<Failure, List<String>>> getSpecializations() {
+  Future<Either<Failure, List<Specialization>>> getSpecializations() {
     return remoteDataSource.getSpecializations().asEither();
   }
 }

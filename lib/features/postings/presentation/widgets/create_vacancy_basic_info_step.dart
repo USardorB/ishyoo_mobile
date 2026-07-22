@@ -4,11 +4,13 @@ import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/features/postings/presentation/widgets/category_selection_sheet.dart';
 import 'package:mobile/features/postings/presentation/widgets/tallent_filter_sheet.dart';
+import 'package:mobile/features/resume/data/models/specialization.dart';
 
 class CreateVacancyBasicInfoStep extends StatelessWidget {
   final TextEditingController titleController;
-  final String? selectedCategory;
-  final ValueChanged<String?> onCategorySelected;
+  final String? selectedSpecialization;
+  final ValueChanged<String?> onSpecializationSelected;
+  final List<Specialization> specializations;
   final TextEditingController addressController;
   final TextEditingController salaryFromController;
   final TextEditingController salaryToController;
@@ -20,8 +22,9 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
   const CreateVacancyBasicInfoStep({
     super.key,
     required this.titleController,
-    required this.selectedCategory,
-    required this.onCategorySelected,
+    required this.selectedSpecialization,
+    required this.onSpecializationSelected,
+    required this.specializations,
     required this.addressController,
     required this.salaryFromController,
     required this.salaryToController,
@@ -46,10 +49,13 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           AppInputField(
-            label: "KATEGORIYA",
-            hintText: selectedCategory ?? "Kategoriya tanlang",
+            label: "MUTAXASSISLIK",
+            hintText: selectedSpecialization ?? "Mutaxassislik tanlang",
             readOnly: true,
-            suffixIcon: Icon(Icons.chevron_right, color: context.colors.textSecondary),
+            suffixIcon: Icon(
+              Icons.chevron_right,
+              color: context.colors.textSecondary,
+            ),
             onTap: () async {
               final result = await showModalBottomSheet<String>(
                 context: context,
@@ -58,10 +64,11 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
                 shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
                 ),
-                builder: (context) => const CategorySelectionSheet(),
+                builder: (context) =>
+                    CategorySelectionSheet(specializations: specializations),
               );
               if (result != null) {
-                onCategorySelected(result);
+                onSpecializationSelected(result);
               }
             },
           ),
@@ -102,32 +109,37 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
           const SizedBox(height: 8),
           Wrap(
             spacing: 8,
-            children: [
-              JobType.fullTime,
-              JobType.partTime,
-              JobType.contract,
-            ].map((type) {
-              final isSelected = selectedJobType == type;
-              return ChoiceChip(
-                label: Text(type.title),
-                selected: isSelected,
-                onSelected: (selected) {
-                  if (selected) onJobTypeSelected(type);
-                },
-                showCheckmark: false,
-                backgroundColor: context.colors.bgSecondary,
-                selectedColor: context.colors.brandDefault,
-                side: BorderSide(
-                  color: isSelected ? context.colors.brandDefault : context.colors.bgSecondary,
-                ),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                labelStyle: context.textThemes.b3.copyWith(
-                  color: isSelected ? context.colors.midnightImmutable : context.colors.textSecondary,
-                ),
-              );
-            }).toList(),
+            children:
+                [
+                  JobType.fullTime,
+                  JobType.partTime,
+                  JobType.contract,
+                ].map((type) {
+                  final isSelected = selectedJobType == type;
+                  return ChoiceChip(
+                    label: Text(type.title),
+                    selected: isSelected,
+                    onSelected: (selected) {
+                      if (selected) onJobTypeSelected(type);
+                    },
+                    showCheckmark: false,
+                    backgroundColor: context.colors.bgSecondary,
+                    selectedColor: context.colors.brandDefault,
+                    side: BorderSide(
+                      color: isSelected
+                          ? context.colors.brandDefault
+                          : context.colors.bgSecondary,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    labelStyle: context.textThemes.b3.copyWith(
+                      color: isSelected
+                          ? context.colors.midnightImmutable
+                          : context.colors.textSecondary,
+                    ),
+                  );
+                }).toList(),
           ),
           const SizedBox(height: 32),
           AppButton(

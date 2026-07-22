@@ -61,14 +61,14 @@ class ResumeContactsForm extends HookWidget {
           label: "Email",
           controller: emailController,
           keyboardType: TextInputType.emailAddress,
-          onChanged: (_) => updateData(),
+          readOnly: true,
         ),
         const SizedBox(height: 24),
         AppInputField(
           label: "Telefon",
           controller: phoneController,
           keyboardType: TextInputType.phone,
-          onChanged: (_) => updateData(),
+          readOnly: true,
         ),
       ],
     );

@@ -55,4 +55,10 @@ abstract class VacancyRemoteDataSource {
     @Path('role') String role,
     @Path('id') String id,
   );
+
+  @GET('/mobile/{role}/vacancy/saved')
+  Future<BaseResult<List<Vacancy>>> getSavedVacancies(
+    @Path('role') String role,
+  );
 }
+

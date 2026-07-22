@@ -14,7 +14,8 @@ class MainLayoutPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isCandidate = context.read<AuthBloc>().state.userRole == UserRole.job_seeker;
+    final isCandidate =
+        context.read<AuthBloc>().state.userRole == UserRole.job_seeker;
     return AutoTabsScaffold(
       routes: [
         if (isCandidate) ...[
@@ -53,108 +54,61 @@ class MainLayoutPage extends StatelessWidget {
                 child: IntrinsicHeight(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Expanded(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: context.colors.brandDefault.withValues(
-                              alpha: 0.25,
-                            ),
-                            borderRadius: BorderRadius.circular(40),
-                          ),
-                          child: TextButton.icon(
-                            style: TextButton.styleFrom(
-                              visualDensity: .comfortable,
-                              textStyle: context.textThemes.buttonSmall,
-                            ),
-                            label: Column(
-                              mainAxisAlignment: .center,
-                              // mainAxisSize: .min,
-                              children: [
-                                Icon(Icons.home_outlined, size: 24),
-                                Text(
-                                  'Bosh sahifa',
-                                  maxLines: 1,
-                                  overflow: .ellipsis,
+                    children:
+                        [
+                          ('Bosh sahifa', Icons.home_outlined),
+                          ('Javoblar', Icons.assignment_outlined),
+                          ('Chat', Icons.chat),
+                          ('Profile', Icons.person),
+                        ].asMap().entries.map((entry) {
+                          final index = entry.key;
+                          final label = entry.value.$1;
+                          final icon = entry.value.$2;
+                          final isActive = tabsRouter.activeIndex == index;
+
+                          return Expanded(
+                            child: Container(
+                              decoration: isActive
+                                  ? BoxDecoration(
+                                      color: context.colors.brandDefault
+                                          .withValues(alpha: 0.25),
+                                      borderRadius: BorderRadius.circular(40),
+                                    )
+                                  : null,
+                              child: TextButton(
+                                style: TextButton.styleFrom(
+                                  visualDensity: VisualDensity.comfortable,
+                                  textStyle: context.textThemes.buttonSmall,
                                 ),
-                              ],
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      icon,
+                                      size: 24,
+                                      color: isActive
+                                          ? context.colors.brandDefault
+                                          : context.colors.textSecondary,
+                                    ),
+                                    Text(
+                                      label,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: TextStyle(
+                                        color: isActive
+                                            ? context.colors.brandDefault
+                                            : context.colors.textSecondary,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                onPressed: () {
+                                  tabsRouter.setActiveIndex(index);
+                                },
+                              ),
                             ),
-                            onPressed: () {
-                              tabsRouter.setActiveIndex(0);
-                            },
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                            visualDensity: .comfortable,
-                            textStyle: context.textThemes.buttonSmall,
-                          ),
-                          child: Column(
-                            mainAxisAlignment: .center,
-                            // mainAxisSize: .min,
-                            children: [
-                              Icon(Icons.assignment_outlined, size: 24),
-                              Text(
-                                'Javoblar',
-                                maxLines: 1,
-                                overflow: .ellipsis,
-                              ),
-                            ],
-                          ),
-                          onPressed: () {
-                            tabsRouter.setActiveIndex(1);
-                          },
-                        ),
-                      ),
-                      Expanded(
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                            visualDensity: .comfortable,
-                            textStyle: context.textThemes.buttonSmall,
-                          ),
-                          child: Column(
-                            mainAxisAlignment: .center,
-                            // mainAxisSize: .min,
-                            children: [
-                              Icon(Icons.chat, size: 24),
-                              Text(
-                                'Chat',
-                                maxLines: 1,
-                                overflow: .ellipsis,
-                              ),
-                            ],
-                          ),
-                          onPressed: () {
-                            tabsRouter.setActiveIndex(2);
-                          },
-                        ),
-                      ),
-                      Expanded(
-                        child: TextButton(
-                          style: TextButton.styleFrom(
-                            visualDensity: .comfortable,
-                            textStyle: context.textThemes.buttonSmall,
-                          ),
-                          child: Column(
-                            mainAxisAlignment: .center,
-                            // mainAxisSize: .min,
-                            children: [
-                              Icon(Icons.person, size: 24),
-                              Text(
-                                'Profile',
-                                maxLines: 1,
-                                overflow: .ellipsis,
-                              ),
-                            ],
-                          ),
-                          onPressed: () {
-                            tabsRouter.setActiveIndex(3);
-                          },
-                        ),
-                      ),
-                    ],
+                          );
+                        }).toList(),
                   ),
                 ),
               ),

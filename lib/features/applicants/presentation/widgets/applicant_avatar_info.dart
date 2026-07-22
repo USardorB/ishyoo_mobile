@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/features/applicants/data/models/applicant.dart';
 
 class ApplicantAvatarInfo extends StatelessWidget {
-  const ApplicantAvatarInfo({super.key});
+  final Applicant? applicant;
+  const ApplicantAvatarInfo({super.key, this.applicant});
 
   @override
   Widget build(BuildContext context) {
+    final name = applicant?.user?.name ?? 'Noma\'lum';
+    final workFormats = [
+      ...(applicant?.employmentType ?? []),
+      ...(applicant?.workFormat ?? []),
+    ].join(' • ');
+
     return Column(
       children: [
         Container(
@@ -13,25 +21,34 @@ class ApplicantAvatarInfo extends StatelessWidget {
           height: 80,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(20),
-            image: DecorationImage(
-              image: NetworkImage('https://i.pravatar.cc/150?img=66'),
-              fit: BoxFit.cover,
-            ),
+            color: context.colors.bgSecondary,
           ),
+          child: const Icon(Icons.person, size: 40),
         ),
-        SizedBox(height: 12),
+        const SizedBox(height: 12),
         Text(
-          'Shoira Ravshanova',
+          name,
           style: context.textThemes.s1,
         ),
-        SizedBox(height: 6),
-        Text(
-          "Doimiy ish joyi • Ish joyida ish beruvchi,\nGibrid • Tayyor xizmat safarlariga",
-          style: context.textThemes.b3.copyWith(
-            color: context.colors.textSecondary,
+        const SizedBox(height: 6),
+        if (workFormats.isNotEmpty)
+          Text(
+            workFormats,
+            style: context.textThemes.b3.copyWith(
+              color: context.colors.textSecondary,
+            ),
+            textAlign: TextAlign.center,
           ),
-          textAlign: .center,
-        ),
+        if (applicant?.specialization != null) ...[
+          const SizedBox(height: 4),
+          Text(
+            applicant!.specialization!,
+            style: context.textThemes.b3.copyWith(
+              color: context.colors.textSecondary,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ],
     );
   }

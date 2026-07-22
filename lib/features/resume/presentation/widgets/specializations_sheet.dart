@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/usecase.dart';
+import 'package:mobile/features/resume/data/models/specialization.dart';
 import 'package:mobile/features/resume/domain/usecases/get_specializations_use_case.dart';
 
 class SpecializationsSheet extends StatefulWidget {
@@ -14,7 +15,7 @@ class SpecializationsSheet extends StatefulWidget {
 class _SpecializationsSheetState extends State<SpecializationsSheet> {
   final _getSpecializationsUseCase = sl<GetSpecializationsUseCase>();
   
-  List<String>? _specializations;
+  List<Specialization>? _specializations;
   String? _error;
 
   @override
@@ -98,17 +99,18 @@ class _SpecializationsSheetState extends State<SpecializationsSheet> {
                 ),
                 itemBuilder: (context, index) {
                   final spec = _specializations![index];
-                  return InkWell(
-                    onTap: () {
-                      Navigator.of(context).pop(spec);
-                    },
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: Text(
-                        spec,
-                        style: context.textThemes.b2,
-                      ),
-                    ),
+                  if (spec.children != null && spec.children!.isNotEmpty) {
+                    return ExpansionTile(
+                      title: Text(spec.name, style: context.textThemes.b2),
+                      children: spec.children!.map((child) => ListTile(
+                        title: Text(child.name, style: context.textThemes.b2),
+                        onTap: () => Navigator.of(context).pop(child.name),
+                      )).toList(),
+                    );
+                  }
+                  return ListTile(
+                    title: Text(spec.name, style: context.textThemes.b2),
+                    onTap: () => Navigator.of(context).pop(spec.name),
                   );
                 },
               ),

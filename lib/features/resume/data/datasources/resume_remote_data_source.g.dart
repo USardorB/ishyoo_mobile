@@ -211,12 +211,12 @@ class _ResumeRemoteDataSource implements ResumeRemoteDataSource {
   }
 
   @override
-  Future<BaseResult<List<String>>> getSpecializations() async {
+  Future<BaseResult<List<Specialization>>> getSpecializations() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<BaseResult<List<String>>>(
+    final _options = _setStreamType<BaseResult<List<Specialization>>>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
@@ -227,12 +227,16 @@ class _ResumeRemoteDataSource implements ResumeRemoteDataSource {
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late BaseResult<List<String>> _value;
+    late BaseResult<List<Specialization>> _value;
     try {
-      _value = BaseResult<List<String>>.fromJson(
+      _value = BaseResult<List<Specialization>>.fromJson(
         _result.data!,
         (json) => json is List<dynamic>
-            ? json.map<String>((i) => i as String).toList()
+            ? json
+                  .map<Specialization>(
+                    (i) => Specialization.fromJson(i as Map<String, dynamic>),
+                  )
+                  .toList()
             : List.empty(),
       );
     } on Object catch (e, s) {

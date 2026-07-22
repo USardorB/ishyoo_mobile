@@ -15,8 +15,18 @@ import 'package:injectable/injectable.dart' as _i526;
 import 'package:mobile/core/configs/di/app_modules.dart' as _i385;
 import 'package:mobile/core/configs/network/auth_interceptor.dart' as _i726;
 import 'package:mobile/core/shared/services/token_service.dart' as _i910;
-import 'package:mobile/features/applications/data/datasources/application_remote_data_source.dart'
+import 'package:mobile/features/applicants/data/datasources/applicants_remote_data_source.dart'
     as _i1044;
+import 'package:mobile/features/applicants/data/repositories/applicants_repository_impl.dart'
+    as _i392;
+import 'package:mobile/features/applicants/domain/repositories/applicants_repository.dart'
+    as _i777;
+import 'package:mobile/features/applicants/presentation/bloc/applicant_detail_bloc.dart'
+    as _i763;
+import 'package:mobile/features/applicants/presentation/bloc/applicants_bloc.dart'
+    as _i1060;
+import 'package:mobile/features/applications/data/datasources/application_remote_data_source.dart'
+    as _i1045;
 import 'package:mobile/features/applications/data/repositories/application_repository_impl.dart'
     as _i495;
 import 'package:mobile/features/applications/domain/repositories/application_repository.dart'
@@ -27,6 +37,16 @@ import 'package:mobile/features/applications/domain/usecases/update_application_
     as _i974;
 import 'package:mobile/features/applications/presentation/bloc/applications_bloc.dart'
     as _i458;
+import 'package:mobile/features/articles/data/datasources/articles_remote_data_source.dart'
+    as _i363;
+import 'package:mobile/features/articles/data/repositories/articles_repository_impl.dart'
+    as _i57;
+import 'package:mobile/features/articles/domain/repositories/articles_repository.dart'
+    as _i864;
+import 'package:mobile/features/articles/presentation/bloc/article_details_bloc.dart'
+    as _i971;
+import 'package:mobile/features/articles/presentation/bloc/articles_bloc.dart'
+    as _i224;
 import 'package:mobile/features/auth/data/datasources/auth_remote_data_source.dart'
     as _i996;
 import 'package:mobile/features/auth/data/repositories/auth_repository_impl.dart'
@@ -46,12 +66,20 @@ import 'package:mobile/features/location/domain/usecases/get_districts_use_case.
     as _i677;
 import 'package:mobile/features/location/domain/usecases/get_regions_use_case.dart'
     as _i737;
+import 'package:mobile/features/messaging/data/datasources/messaging_remote_data_source.dart'
+    as _i645;
+import 'package:mobile/features/messaging/data/repositories/messaging_repository_impl.dart'
+    as _i717;
+import 'package:mobile/features/messaging/domain/repositories/messaging_repository.dart'
+    as _i205;
+import 'package:mobile/features/messaging/presentation/bloc/messaging_bloc.dart'
+    as _i931;
 import 'package:mobile/features/notifications/data/datasources/notification_remote_data_source.dart'
     as _i906;
 import 'package:mobile/features/notifications/data/repositories/notification_repository_impl.dart'
     as _i312;
 import 'package:mobile/features/notifications/domain/repositories/notification_repository.dart'
-    as _i224;
+    as _i225;
 import 'package:mobile/features/notifications/domain/usecases/get_notification_detail_usecase.dart'
     as _i627;
 import 'package:mobile/features/notifications/domain/usecases/get_notifications_usecase.dart'
@@ -82,12 +110,34 @@ import 'package:mobile/features/opportunities/domain/usecases/unsave_vacancy_use
     as _i360;
 import 'package:mobile/features/opportunities/presentation/bloc/nearby_jobs_bloc.dart'
     as _i557;
+import 'package:mobile/features/opportunities/presentation/bloc/saved_vacancies_bloc.dart'
+    as _i165;
 import 'package:mobile/features/opportunities/presentation/bloc/vacancy_details_bloc.dart'
     as _i437;
 import 'package:mobile/features/opportunities/presentation/bloc/vacancy_feed_bloc.dart'
     as _i328;
+import 'package:mobile/features/postings/data/datasources/postings_remote_data_source.dart'
+    as _i252;
+import 'package:mobile/features/postings/data/repositories/postings_repository_impl.dart'
+    as _i1002;
+import 'package:mobile/features/postings/domain/repositories/postings_repository.dart'
+    as _i1031;
+import 'package:mobile/features/postings/presentation/bloc/hr_vacancy_details_bloc.dart'
+    as _i1053;
+import 'package:mobile/features/postings/presentation/bloc/postings_bloc.dart'
+    as _i339;
+import 'package:mobile/features/profile/data/datasources/profile_remote_data_source.dart'
+    as _i1012;
+import 'package:mobile/features/profile/data/repositories/profile_repository_impl.dart'
+    as _i335;
+import 'package:mobile/features/profile/domain/repositories/profile_repository.dart'
+    as _i728;
 import 'package:mobile/features/profile/presentation/bloc/candidate_profile_bloc.dart'
     as _i410;
+import 'package:mobile/features/profile/presentation/bloc/employer_organization_bloc.dart'
+    as _i113;
+import 'package:mobile/features/profile/presentation/bloc/employer_profile_bloc.dart'
+    as _i637;
 import 'package:mobile/features/resume/data/datasources/resume_remote_data_source.dart'
     as _i721;
 import 'package:mobile/features/resume/data/repositories/resume_repository_impl.dart'
@@ -112,6 +162,22 @@ import 'package:mobile/features/resume/presentation/bloc/resume_detail_bloc.dart
     as _i865;
 import 'package:mobile/features/resume/presentation/bloc/resume_form_bloc.dart'
     as _i1043;
+import 'package:mobile/features/settings/data/datasources/settings_remote_data_source.dart'
+    as _i501;
+import 'package:mobile/features/settings/data/repositories/settings_repository_impl.dart'
+    as _i948;
+import 'package:mobile/features/settings/domain/repositories/settings_repository.dart'
+    as _i362;
+import 'package:mobile/features/settings/presentation/bloc/settings_bloc.dart'
+    as _i293;
+import 'package:mobile/features/talents/data/datasources/talents_remote_data_source.dart'
+    as _i850;
+import 'package:mobile/features/talents/data/repositories/talents_repository_impl.dart'
+    as _i875;
+import 'package:mobile/features/talents/domain/repositories/talents_repository.dart'
+    as _i809;
+import 'package:mobile/features/talents/presentation/bloc/talents_bloc.dart'
+    as _i53;
 import 'package:shared_preferences/shared_preferences.dart' as _i460;
 
 extension GetItInjectableX on _i174.GetIt {
@@ -144,8 +210,14 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i361.Dio>(
       () => networkModule.dio(gh<_i726.AuthInterceptor>()),
     );
-    gh.lazySingleton<_i1044.ApplicationRemoteDataSource>(
-      () => _i1044.ApplicationRemoteDataSource(gh<_i361.Dio>()),
+    gh.lazySingleton<_i1044.ApplicantsRemoteDataSource>(
+      () => _i1044.ApplicantsRemoteDataSource(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i1045.ApplicationRemoteDataSource>(
+      () => _i1045.ApplicationRemoteDataSource(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i363.ArticlesRemoteDataSource>(
+      () => _i363.ArticlesRemoteDataSource(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i996.AuthRemoteDataSource>(
       () => _i996.AuthRemoteDataSource(gh<_i361.Dio>()),
@@ -153,27 +225,57 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i917.LocationRemoteDataSource>(
       () => _i917.LocationRemoteDataSource(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i645.MessagingRemoteDataSource>(
+      () => _i645.MessagingRemoteDataSource(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i906.NotificationRemoteDataSource>(
       () => _i906.NotificationRemoteDataSource(gh<_i361.Dio>()),
     );
     gh.lazySingleton<_i970.VacancyRemoteDataSource>(
       () => _i970.VacancyRemoteDataSource(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i252.PostingsRemoteDataSource>(
+      () => _i252.PostingsRemoteDataSource(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i1012.ProfileRemoteDataSource>(
+      () => _i1012.ProfileRemoteDataSource(gh<_i361.Dio>()),
+    );
     gh.lazySingleton<_i721.ResumeRemoteDataSource>(
       () => _i721.ResumeRemoteDataSource(gh<_i361.Dio>()),
     );
+    gh.lazySingleton<_i501.SettingsRemoteDataSource>(
+      () => _i501.SettingsRemoteDataSource(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i850.TalentsRemoteDataSource>(
+      () => _i850.TalentsRemoteDataSource(gh<_i361.Dio>()),
+    );
+    gh.lazySingleton<_i809.TalentsRepository>(
+      () => _i875.TalentsRepositoryImpl(gh<_i850.TalentsRemoteDataSource>()),
+    );
     gh.lazySingleton<_i148.ApplicationRepository>(
       () => _i495.ApplicationRepositoryImpl(
-        gh<_i1044.ApplicationRemoteDataSource>(),
+        gh<_i1045.ApplicationRemoteDataSource>(),
       ),
     );
     gh.lazySingleton<_i111.VacancyRepository>(
       () => _i547.VacancyRepositoryImpl(gh<_i970.VacancyRemoteDataSource>()),
     );
-    gh.lazySingleton<_i224.NotificationRepository>(
+    gh.lazySingleton<_i864.ArticlesRepository>(
+      () => _i57.ArticlesRepositoryImpl(gh<_i363.ArticlesRemoteDataSource>()),
+    );
+    gh.factory<_i971.ArticleDetailsBloc>(
+      () => _i971.ArticleDetailsBloc(gh<_i864.ArticlesRepository>()),
+    );
+    gh.factory<_i224.ArticlesBloc>(
+      () => _i224.ArticlesBloc(gh<_i864.ArticlesRepository>()),
+    );
+    gh.lazySingleton<_i225.NotificationRepository>(
       () => _i312.NotificationRepositoryImpl(
         gh<_i906.NotificationRemoteDataSource>(),
       ),
+    );
+    gh.factory<_i53.TalentsBloc>(
+      () => _i53.TalentsBloc(gh<_i809.TalentsRepository>()),
     );
     gh.lazySingleton<_i716.ResumeRepository>(
       () => _i690.ResumeRepositoryImpl(gh<_i721.ResumeRemoteDataSource>()),
@@ -234,31 +336,76 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i907.UpdateResumeUseCase>(
       () => _i907.UpdateResumeUseCase(gh<_i716.ResumeRepository>()),
     );
+    gh.factoryParam<_i1043.ResumeFormBloc, Map<String, dynamic>?, dynamic>(
+      (initialData, _) => _i1043.ResumeFormBloc(
+        gh<_i1024.CreateResumeUseCase>(),
+        gh<_i907.UpdateResumeUseCase>(),
+        gh<_i131.DeleteResumeUseCase>(),
+        gh<_i320.BoostResumeUseCase>(),
+        initialData,
+      ),
+    );
+    gh.lazySingleton<_i728.ProfileRepository>(
+      () => _i335.ProfileRepositoryImpl(gh<_i1012.ProfileRemoteDataSource>()),
+    );
+    gh.factory<_i165.SavedVacanciesBloc>(
+      () => _i165.SavedVacanciesBloc(gh<_i111.VacancyRepository>()),
+    );
+    gh.lazySingleton<_i205.MessagingRepository>(
+      () =>
+          _i717.MessagingRepositoryImpl(gh<_i645.MessagingRemoteDataSource>()),
+    );
+    gh.lazySingleton<_i1031.PostingsRepository>(
+      () => _i1002.PostingsRepositoryImpl(gh<_i252.PostingsRemoteDataSource>()),
+    );
+    gh.lazySingleton<_i362.SettingsRepository>(
+      () => _i948.SettingsRepositoryImpl(gh<_i501.SettingsRemoteDataSource>()),
+    );
+    gh.lazySingleton<_i777.ApplicantsRepository>(
+      () => _i392.ApplicantsRepositoryImpl(
+        gh<_i1044.ApplicantsRemoteDataSource>(),
+      ),
+    );
     gh.lazySingleton<_i651.LocationRepository>(
       () => _i247.LocationRepositoryImpl(gh<_i917.LocationRemoteDataSource>()),
     );
-    gh.factory<_i410.CandidateProfileBloc>(
-      () => _i410.CandidateProfileBloc(gh<_i264.GetCandidateResumesUseCase>()),
-    );
     gh.factory<_i557.NearbyJobsBloc>(
       () => _i557.NearbyJobsBloc(gh<_i291.GetNearbyJobsUseCase>()),
+    );
+    gh.factory<_i931.MessagingBloc>(
+      () => _i931.MessagingBloc(gh<_i205.MessagingRepository>()),
+    );
+    gh.factory<_i339.PostingsBloc>(
+      () => _i339.PostingsBloc(gh<_i1031.PostingsRepository>()),
+    );
+    gh.factory<_i637.EmployerProfileBloc>(
+      () => _i637.EmployerProfileBloc(gh<_i728.ProfileRepository>()),
+    );
+    gh.factory<_i410.CandidateProfileBloc>(
+      () => _i410.CandidateProfileBloc(
+        gh<_i264.GetCandidateResumesUseCase>(),
+        gh<_i728.ProfileRepository>(),
+      ),
     );
     gh.factory<_i328.VacancyFeedBloc>(
       () => _i328.VacancyFeedBloc(
         getVacancyFeedUseCase: gh<_i933.GetVacancyFeedUseCase>(),
       ),
     );
+    gh.factory<_i763.ApplicantDetailBloc>(
+      () => _i763.ApplicantDetailBloc(gh<_i777.ApplicantsRepository>()),
+    );
     gh.lazySingleton<_i627.GetNotificationDetailUseCase>(
       () => _i627.GetNotificationDetailUseCase(
-        gh<_i224.NotificationRepository>(),
+        gh<_i225.NotificationRepository>(),
       ),
     );
     gh.lazySingleton<_i900.GetNotificationsUseCase>(
-      () => _i900.GetNotificationsUseCase(gh<_i224.NotificationRepository>()),
+      () => _i900.GetNotificationsUseCase(gh<_i225.NotificationRepository>()),
     );
     gh.lazySingleton<_i397.MarkAllNotificationsAsReadUseCase>(
       () => _i397.MarkAllNotificationsAsReadUseCase(
-        gh<_i224.NotificationRepository>(),
+        gh<_i225.NotificationRepository>(),
       ),
     );
     gh.factory<_i573.NotificationsBloc>(
@@ -266,6 +413,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i900.GetNotificationsUseCase>(),
         gh<_i397.MarkAllNotificationsAsReadUseCase>(),
       ),
+    );
+    gh.factory<_i1053.HrVacancyDetailsBloc>(
+      () => _i1053.HrVacancyDetailsBloc(gh<_i1031.PostingsRepository>()),
     );
     gh.factory<_i316.RequestSmsUseCase>(
       () => _i316.RequestSmsUseCase(gh<_i202.AuthRepository>()),
@@ -288,6 +438,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i316.LogoutUseCase>(
       () => _i316.LogoutUseCase(gh<_i202.AuthRepository>()),
     );
+    gh.factory<_i113.EmployerOrganizationBloc>(
+      () => _i113.EmployerOrganizationBloc(gh<_i728.ProfileRepository>()),
+    );
     gh.factory<_i437.VacancyDetailsBloc>(
       () => _i437.VacancyDetailsBloc(
         gh<_i808.GetVacancyDetailUseCase>(),
@@ -299,11 +452,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i865.ResumeDetailBloc>(
       () => _i865.ResumeDetailBloc(gh<_i140.GetResumeDetailUseCase>()),
     );
-    gh.factory<_i1043.ResumeFormBloc>(
-      () => _i1043.ResumeFormBloc(
-        gh<_i1024.CreateResumeUseCase>(),
-        gh<_i907.UpdateResumeUseCase>(),
-      ),
+    gh.factory<_i1060.ApplicantsBloc>(
+      () => _i1060.ApplicantsBloc(gh<_i777.ApplicantsRepository>()),
     );
     gh.factory<_i656.NotificationDetailBloc>(
       () => _i656.NotificationDetailBloc(
@@ -325,6 +475,9 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i316.GetMeUseCase>(),
         gh<_i316.LogoutUseCase>(),
       ),
+    );
+    gh.factory<_i293.SettingsBloc>(
+      () => _i293.SettingsBloc(gh<_i362.SettingsRepository>()),
     );
     return this;
   }

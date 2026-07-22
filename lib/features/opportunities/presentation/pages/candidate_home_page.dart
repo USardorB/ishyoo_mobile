@@ -37,7 +37,11 @@ class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
         centerTitle: false,
         actions: [
           IconButton.filled(
-            onPressed: () {},
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(content: Text("Xizmat tez orada qo'shiladi")),
+              );
+            },
             icon: const Icon(Icons.headset_mic_outlined),
             style: IconButton.styleFrom(
               backgroundColor: context.colors.bgSecondary,
@@ -61,8 +65,7 @@ class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
                 Flexible(
                   child: DarkGlassSearchField(
                     onTap: () {
-                      // Navigate to search page where title can be searched
-                      // context.pushRoute(const CandidateSearchRoute());
+                      context.pushRoute(const VacancySearchRoute());
                     },
                   ),
                 ),
@@ -99,25 +102,7 @@ class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const CandidateHomeBanner(),
-            const SizedBox(height: 12),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: List.generate(
-                6,
-                (index) => Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 4),
-                  width: index == 3 ? 10 : 6,
-                  height: index == 3 ? 10 : 6,
-                  decoration: BoxDecoration(
-                    color: index == 3
-                        ? context.colors.brandDefault
-                        : context.colors.bgTertiary,
-                    shape: BoxShape.circle,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 24),
             const CandidateQuickAccessCards(),
             const SizedBox(height: 32),
             Text(

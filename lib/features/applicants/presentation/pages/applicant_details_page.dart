@@ -2,6 +2,9 @@ import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/core/configs/di/configure_dependencies.dart';
+import 'package:mobile/features/applicants/presentation/bloc/applicant_detail_bloc.dart';
 import 'package:mobile/features/applicants/presentation/widgets/applicant_avatar_info.dart';
 import 'package:mobile/features/applicants/presentation/widgets/applicant_contacts.dart';
 import 'package:mobile/features/applicants/presentation/widgets/applicant_page_more_actions.dart';
@@ -13,55 +16,100 @@ import 'package:mobile/features/applicants/presentation/widgets/respond_applicat
 
 @RoutePage()
 class ApplicantDetailsPage extends StatelessWidget {
-  const ApplicantDetailsPage({super.key});
+  final String vacancyId;
+  final String applicantId;
+
+  const ApplicantDetailsPage({
+    super.key,
+    required this.vacancyId,
+    required this.applicantId,
+  });
 
   @override
   Widget build(BuildContext context) {
     final bottom = Platform.isIOS ? 12.0 : MediaQuery.paddingOf(context).bottom;
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          IconButton(
-            onPressed: () => showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              builder: (_) => RespondApplicationSheet(),
-            ),
-            icon: Icon(Icons.share),
+
+    return BlocProvider(
+      create: (_) => sl<ApplicantDetailBloc>()
+        ..add(LoadApplicantDetail(
+          vacancyId: vacancyId,
+          applicantId: applicantId,
+        )),
+      child: BlocListener<ApplicantDetailBloc, ApplicantDetailState>(
+        listener: (context, state) {
+          if (state.error != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.error!)),
+            );
+          }
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            actions: [
+              BlocBuilder<ApplicantDetailBloc, ApplicantDetailState>(
+                builder: (context, state) => IconButton(
+                  onPressed: () => showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (_) => const RespondApplicationSheet(),
+                  ),
+                  icon: const Icon(Icons.share),
+                ),
+              ),
+              IconButton(
+                onPressed: () => showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  builder: (_) => const ApplicantPageMoreActions(),
+                ),
+                icon: const Icon(Icons.more_vert),
+              ),
+            ],
           ),
-          IconButton(
-            onPressed: () => showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              builder: (_) => ApplicantPageMoreActions(),
-            ),
-            icon: Icon(Icons.more_vert),
+          body: BlocBuilder<ApplicantDetailBloc, ApplicantDetailState>(
+            builder: (context, state) {
+              if (state.isLoading) {
+                return const Center(child: CircularProgressIndicator());
+              }
+              if (state.error != null && state.applicant == null) {
+                return Center(child: Text(state.error!));
+              }
+              final applicant = state.applicant;
+              return ListView(
+                padding: EdgeInsets.symmetric(horizontal: 16).copyWith(
+                  bottom: 80 + bottom,
+                ),
+                children: [
+                  ApplicantAvatarInfo(applicant: applicant),
+                  const SizedBox(height: 16),
+                  ApplicantStatusHeader(
+                    applicant: applicant,
+                    vacancyId: vacancyId,
+                    applicantId: applicantId,
+                  ),
+                  const SizedBox(height: 24),
+                  ApplicantContacts(applicant: applicant),
+                  const SizedBox(height: 24),
+                  ApplicantWorkHistory(
+                    experiences: applicant?.experiences ?? [],
+                    label: 'Ish tajribasi',
+                  ),
+                  const SizedBox(height: 24),
+                  ApplicantSkills(skills: applicant?.skills ?? []),
+                ],
+              );
+            },
           ),
-        ],
-      ),
-      body: ListView(
-        padding: EdgeInsets.symmetric(horizontal: 16).copyWith(
-          bottom: 80 + bottom,
+          bottomSheet: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12).copyWith(
+              bottom: 12 + bottom,
+            ),
+            child: NewApplicantActionButtons(
+              vacancyId: vacancyId,
+              applicantId: applicantId,
+            ),
+          ),
         ),
-        children: [
-          ApplicantAvatarInfo(),
-          SizedBox(height: 16),
-          ApplicantStatusHeader(),
-          SizedBox(height: 24),
-          ApplicantContacts(),
-          SizedBox(height: 24),
-          ApplicantWorkHistory(),
-          SizedBox(height: 24),
-          ApplicantWorkHistory(),
-          SizedBox(height: 24),
-          ApplicantSkills(),
-        ],
-      ),
-      bottomSheet: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12).copyWith(
-          bottom: 12 + bottom,
-        ),
-        child: NewApplicantActionButtons(),
       ),
     );
   }

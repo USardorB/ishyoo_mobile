@@ -1,20 +1,54 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/features/applicants/data/models/applicant.dart';
+import 'package:mobile/features/applicants/presentation/bloc/applicant_detail_bloc.dart';
 
 class ApplicantStatusHeader extends StatelessWidget {
-  const ApplicantStatusHeader({super.key});
+  final Applicant? applicant;
+  final String vacancyId;
+  final String applicantId;
+
+  const ApplicantStatusHeader({
+    super.key,
+    this.applicant,
+    required this.vacancyId,
+    required this.applicantId,
+  });
+
+  String _statusLabel(String? status) {
+    switch (status) {
+      case 'applied':
+        return 'Ariza topshirildi';
+      case 'interview':
+        return 'Intervyu';
+      case 'offered':
+        return 'Taklif yuborildi';
+      case 'rejected':
+        return 'Rad etildi';
+      case 'hired':
+        return 'Qabul qilindi';
+      default:
+        return status ?? 'Noma\'lum';
+    }
+  }
+
+  String _formattedDate(DateTime? date) {
+    if (date == null) return '';
+    return '${date.day.toString().padLeft(2, '0')}.${date.month.toString().padLeft(2, '0')}.${date.year}';
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: .all(12),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: context.colors.bgPrimary,
-        borderRadius: .circular(16),
+        borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
-        crossAxisAlignment: .start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "Status",
@@ -22,40 +56,69 @@ class ApplicantStatusHeader extends StatelessWidget {
               color: context.colors.textSecondary,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Row(
-            mainAxisAlignment: .spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "To‘g‘ri kelmaydi",
+                _statusLabel(applicant?.applicationStatus),
                 style: context.textThemes.s1,
               ),
-              Row(
-                children: [
-                  Icon(
-                    Icons.calendar_month,
-                    size: 20,
-                    color: context.colors.textSecondary,
-                  ),
-                  SizedBox(width: 6),
-                  Text(
-                    "Mar 31,2024",
-                    style: context.textThemes.b2.copyWith(
+              if (applicant?.updatedAt != null)
+                Row(
+                  children: [
+                    Icon(
+                      Icons.calendar_month,
+                      size: 20,
                       color: context.colors.textSecondary,
                     ),
-                  ),
-                ],
-              ),
+                    const SizedBox(width: 6),
+                    Text(
+                      _formattedDate(applicant!.updatedAt),
+                      style: context.textThemes.b2.copyWith(
+                        color: context.colors.textSecondary,
+                      ),
+                    ),
+                  ],
+                ),
             ],
           ),
-          SizedBox(height: 16),
-          AppButton(
-            onTap: () {},
-            color: context.colors.brandProgress,
-            foregroundColor: context.colors.brandDefault,
-            label: "Statusni o‘zgartirish",
+          const SizedBox(height: 16),
+          BlocBuilder<ApplicantDetailBloc, ApplicantDetailState>(
+            builder: (context, state) {
+              return AppButton(
+                onTap: () => _showStatusPicker(context),
+                enabled: !state.isUpdating,
+                color: context.colors.brandProgress,
+                foregroundColor: context.colors.brandDefault,
+                label: state.isUpdating ? "Yuklanmoqda..." : "Statusni o'zgartirish",
+              );
+            },
           ),
         ],
+      ),
+    );
+  }
+
+  void _showStatusPicker(BuildContext context) {
+    final statuses = ['applied', 'interview', 'offered', 'rejected', 'hired'];
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) => ListView(
+        shrinkWrap: true,
+        children: statuses.map((s) => ListTile(
+          title: Text(_statusLabel(s)),
+          onTap: () {
+            Navigator.pop(ctx);
+            context.read<ApplicantDetailBloc>().add(
+                  UpdateApplicantDetailStatus(
+                    vacancyId: vacancyId,
+                    applicantId: applicantId,
+                    status: s,
+                  ),
+                );
+          },
+        )).toList(),
       ),
     );
   }

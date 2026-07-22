@@ -1,0 +1,151 @@
+--- API Documentation Flow Test ---
+
+### 1. General Endpoints
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/regions
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[{"id":1,"name":"Andijon viloyati","districts":[{"id":1,"name":"Oltinko'l tumani","region_id":1},{"id":2,"name":"Andijon tumani","region_id":1},{"id":3,"name":"Baliqchi tumani","region_id":1},{"id":4,"name":"Bo'z tumani","region_id":1},{"id":5,"name":"Buloqboshi tumani","region_id":1},{"id":6,"name":"Jalaquduq tumani","region_id":1},{"id":7,"name":"Izboskan tumani","region_id":1},{"id":8,"name":"Ulug'nor tumani","region_id":1},{"id":9,"name":"Qo'rg'ontepa tumani","region_id":1},{"id":10,"name":"Asaka tumani","region_id":1},{"id":11,"name":"Marxamat tumani","region_id":1},{"id":12,"name":"Shahrixon tumani","region_id":1},{"id":13,"name":"Paxtaobod tumani","region_id":1},{"id":14,"name":"Xo'jaobod tumani","region_id":1},{"id":15,"name":"Andijon","region_id":1},{"id":16,"name":"Xonobod","region_id":1}]},{"id":2,"name":"Buxoro viloyati","districts":[{"id":17,"name":"Olot tumani","region_id":2},{"id":18,"name":"Buxoro tumani","region_id":2},{"id":19,"name":"Vobkent tumani","region_id":2},{"id":20,"name":"G'ijduvon tumani","region_id":2},{"id":21,"name":"Kogon tumani","region_id":2},{"id":22,"name":"Qorako'l tumani","region_id":2},{"id":23,"name":"Qorovulbozor tumani","region_id":2},{"id":24,"name":"Peshku tumani","region_id":2},{"id":25,"name":"Romitan tumani","region_id":2},{"id":26,"name":"Jondor tumani","region_id":2},{"id":27,"name":"Shofirkon tumani","region_id":2},{"id":28,"name":"Buxoro","region_id":2},{"id":29,"name":"Kogon","region_id":2}]},{"id":3,"name":"Jizzax viloyati","districts":[{"id":30,"name":"Arnasoy tumani","region_id":3},{"id":31,"name":"Baxmal tumani","region_id":3},{"id":32,"name":"G'allaorol tumani","region_id":3},{"id":33,"name":"Do'stlik tumani","region_id":3},{"id":34,"name":"Zomin tumani","region_id":3},{"id":35,"name":"Zarbdor tumani","region_id":3},{"id":36,"name":"Mirzacho'l tumani","region_id":3},{"id":37,"name":"Zafarobod tumani","region_id":3},{"id":38,"name":"Paxtakor tumani","region_id":3},{"id":39,"name":"Forish tumani","region_id":3},{"id":40,"name":"Yangiobod tumani","region_id":3},{"id":41,"name":"Jizzax","region_id":3},{"id":197,"name":"Sh.Rashidov tumani","region_id":3}]},{"id":4,"name":"Qashqadaryo viloyati","districts":[{"id":42,"name":"G'uzor tumani","region_id":4},{"id":43,"name":"Dehqonobod tumani","region_id":4},{"id":44,"name":"Qamashi tumani","region_id":4},{"id":45,"name":"Qarshi tumani","region_id":4},{"id":46,"name":"Koson tumani","region_id":4},{"id":47,"name":"Kitob tumani","region_id":4},{"id":48,"name":"Mirishkor tumani","region_id":4},{"id":49,"name":"Muborak tumani","region_id":4},{"id":50,"name":"Nishon tumani","region_id":4},{"id":51,"name":"Kasbi tumani","region_id":4},{"id":52,"name":"Chiroqchi tumani","region_id":4},{"id":53,"name":"Shahrisabz tumani","region_id":4},{"id":54,"name":"Yakkabog' tumani","region_id":4},{"id":55,"name":"Qarshi","region_id":4},{"id":56,"name":"Shahrisabz","region_id":4},{"id":208,"name":"Ko‘kdala tumani","region_id":4}]},{"id":5,"name":"Navoiy viloyati","districts":[{"id":57,"name":"Konimex tumani","region_id":5},{"id":58,"name":"Qiziltepa tumani","region_id":5},{"id":59,"name":"Navbahor tumani","region_id":5},{"id":60,"name":"Karmana tumani","region_id":5},{"id":61,"name":"Nurota tumani","region_id":5},{"id":62,"name":"Tomdi tumani","region_id":5},{"id":63,"name":"Uchquduq tumani","region_id":5},{"id":64,"name":"Xatirchi tumani","region_id":5},{"id":65,"name":"Navoiy","region_id":5},{"id":198,"name":"Zarafshon","region_id":5},{"id":206,"name":"G‘ozg‘on tumani","region_id":5}]},{"id":6,"name":"Namangan viloyati","districts":[{"id":66,"name":"Mingbuloq tumani","region_id":6},{"id":67,"name":"Kosonsoy tumani","region_id":6},{"id":68,"name":"Namangan tumani","region_id":6},{"id":69,"name":"Norin tumani","region_id":6},{"id":70,"name":"Pop tumani","region_id":6},{"id":71,"name":"To'raqo'rg'on tumani","region_id":6},{"id":72,"name":"Uychi tumani","region_id":6},{"id":73,"name":"Uchqo'rg'on tumani","region_id":6},{"id":74,"name":"Chortoq tumani","region_id":6},{"id":75,"name":"Chust tumani","region_id":6},{"id":76,"name":"Yangiqo'rg'on tumani","region_id":6},{"id":77,"name":"Namangan","region_id":6},{"id":209,"name":"Davlatobod tumani","region_id":6},{"id":210,"name":"Yangi Namangan tumani","region_id":6}]},{"id":7,"name":"Samarqand viloyati","districts":[{"id":78,"name":"Oqdaryo tumani","region_id":7},{"id":79,"name":"Bulung'ur tumani","region_id":7},{"id":80,"name":"Jomboy tumani","region_id":7},{"id":81,"name":"Ishtixon tumani","region_id":7},{"id":82,"name":"Kattaqo'rg'on tumani","region_id":7},{"id":83,"name":"Qo'shrabot tumani","region_id":7},{"id":84,"name":"Narpay tumani","region_id":7},{"id":85,"name":"Payariq tumani","region_id":7},{"id":86,"name":"Pastdarg'om tumani","region_id":7},{"id":87,"name":"Paxtachi tumani","region_id":7},{"id":88,"name":"Samarqand tumani","region_id":7},{"id":89,"name":"Nurobod tumani","region_id":7},{"id":90,"name":"Urgut tumani","region_id":7},{"id":91,"name":"Tayloq tumani","region_id":7},{"id":92,"name":"Samarqand","region_id":7},{"id":93,"name":"Kattaqo'rg'on","region_id":7}]},{"id":8,"name":"Sirdaryo viloyati","districts":[{"id":107,"name":"Oqoltin tumani","region_id":8},{"id":108,"name":"Boyovut tumani","region_id":8},{"id":109,"name":"Sayxunobod tumani","region_id":8},{"id":110,"name":"Guliston tumani","region_id":8},{"id":111,"name":"Sardoba tumani","region_id":8},{"id":112,"name":"Mirzaobod tumani","region_id":8},{"id":113,"name":"Sirdaryo tumani","region_id":8},{"id":114,"name":"Xovos tumani","region_id":8},{"id":115,"name":"Guliston","region_id":8},{"id":116,"name":"Shirin","region_id":8},{"id":117,"name":"Yangiyer","region_id":8},{"id":202,"name":"Baxt shaxar","region_id":8}]},{"id":9,"name":"Toshkent shahri","districts":[{"id":118,"name":"Uchtepa tumani","region_id":9},{"id":119,"name":"Bektemir tumani","region_id":9},{"id":120,"name":"Yunusobod tumani","region_id":9},{"id":121,"name":"Mirzo Ulug'bek tumani","region_id":9},{"id":122,"name":"Mirobod tumani","region_id":9},{"id":123,"name":"Shayxontohur tumani","region_id":9},{"id":124,"name":"Olmazor tumani","region_id":9},{"id":125,"name":"Sirg'ali tumani","region_id":9},{"id":126,"name":"Yakkasaroy tumani","region_id":9},{"id":127,"name":"Yashnobod tumani","region_id":9},{"id":128,"name":"Chilonzor tumani","region_id":9},{"id":200,"name":"Toshkent shahrining tumanlari","region_id":9},{"id":207,"name":"Yangihayot tumani","region_id":9}]},{"id":10,"name":"Toshkent viloyati","districts":[{"id":129,"name":"Oqqo'rg'on tumani","region_id":10},{"id":130,"name":"Ohangaron tumani","region_id":10},{"id":131,"name":"Bekobod tumani","region_id":10},{"id":132,"name":"Bo'stonliq tumani","region_id":10},{"id":133,"name":"Bo'ka tumani","region_id":10},{"id":134,"name":"Zangiota tumani","region_id":10},{"id":135,"name":"Yuqorichirchiq tumani","region_id":10},{"id":136,"name":"Qibray tumani","region_id":10},{"id":137,"name":"Parkent tumani","region_id":10},{"id":138,"name":"Piskent tumani","region_id":10},{"id":139,"name":"O'rtachirchiq tumani","region_id":10},{"id":140,"name":"Chinoz tumani","region_id":10},{"id":141,"name":"Yangiyo'l tumani","region_id":10},{"id":142,"name":"Toshkent tumani","region_id":10},{"id":143,"name":"Nurafshon","region_id":10},{"id":144,"name":"Olmaliq","region_id":10},{"id":145,"name":"Angren","region_id":10},{"id":146,"name":"Bekobod","region_id":10},{"id":147,"name":"Ohangaron","region_id":10},{"id":148,"name":"Chirchiq","region_id":10},{"id":149,"name":"Yangiyo'l","region_id":10},{"id":201,"name":"Quyichirchiq tumani","region_id":10}]},{"id":11,"name":"Farg'ona viloyati","districts":[{"id":150,"name":"Oltiariq tumani","region_id":11},{"id":151,"name":"Qo'shtepa tumani","region_id":11},{"id":152,"name":"Bog'dod tumani","region_id":11},{"id":153,"name":"Buvayda tumani","region_id":11},{"id":154,"name":"Beshariq tumani","region_id":11},{"id":155,"name":"Quva tumani","region_id":11},{"id":156,"name":"Uchko'prik tumani","region_id":11},{"id":157,"name":"Rishton tumani","region_id":11},{"id":158,"name":"So'x tumani","region_id":11},{"id":159,"name":"Toshloq tumani","region_id":11},{"id":160,"name":"O'zbekiston tumani","region_id":11},{"id":161,"name":"Farg'ona tumani","region_id":11},{"id":162,"name":"Dang'ara tumani","region_id":11},{"id":163,"name":"Furqat tumani","region_id":11},{"id":164,"name":"Yozyovon tumani","region_id":11},{"id":165,"name":"Farg'ona","region_id":11},{"id":166,"name":"Qo'qon","region_id":11},{"id":167,"name":"Quvasoy","region_id":11},{"id":168,"name":"Marg'ilon","region_id":11}]},{"id":12,"name":"Xorazm viloyati","districts":[{"id":169,"name":"Bog'ot tumani","region_id":12},{"id":170,"name":"Gurlan tumani","region_id":12},{"id":171,"name":"Qo'shko'pir tumani","region_id":12},{"id":172,"name":"Urganch tumani","region_id":12},{"id":173,"name":"Xazorasp tumani","region_id":12},{"id":174,"name":"Xonqa tumani","region_id":12},{"id":175,"name":"Xiva tumani","region_id":12},{"id":176,"name":"Shovot tumani","region_id":12},{"id":177,"name":"Yangiariq tumani","region_id":12},{"id":178,"name":"Yangibozor tumani","region_id":12},{"id":179,"name":"Urganch","region_id":12},{"id":180,"name":"Xiva","region_id":12},{"id":205,"name":"Tuproqqal’a tumani","region_id":12}]},{"id":13,"name":"Qoraqalpog'iston Respublikasi","districts":[{"id":181,"name":"Amudaryo tumani","region_id":13},{"id":182,"name":"Beruniy tumani","region_id":13},{"id":183,"name":"Qorao'zak tumani","region_id":13},{"id":184,"name":"Kegeyli tumani","region_id":13},{"id":185,"name":"Qo'ng'irot tumani","region_id":13},{"id":186,"name":"Qanliko'l tumani","region_id":13},{"id":187,"name":"Mo'ynoq tumani","region_id":13},{"id":188,"name":"Nukus tumani","region_id":13},{"id":189,"name":"Taxiatosh tumani","region_id":13},{"id":190,"name":"Taxtako'pir tumani","region_id":13},{"id":191,"name":"To'rtko'l tumani","region_id":13},{"id":192,"name":"Xo'jayli tumani","region_id":13},{"id":193,"name":"Chimboy tumani","region_id":13},{"id":194,"name":"Shumanay tumani","region_id":13},{"id":195,"name":"Ellikqal'a tumani","region_id":13},{"id":196,"name":"Nukus","region_id":13},{"id":203,"name":"Bo‘zatov tumani","region_id":13}]},{"id":14,"name":"Surxondaryo viloyati","districts":[{"id":94,"name":"Oltinsoy tumani","region_id":14},{"id":95,"name":"Angor tumani","region_id":14},{"id":96,"name":"Boysun tumani","region_id":14},{"id":97,"name":"Muzrabot tumani","region_id":14},{"id":98,"name":"Denov tumani","region_id":14},{"id":99,"name":"Jarqo'rg'on tumani","region_id":14},{"id":100,"name":"Qumqo'rg'on tumani","region_id":14},{"id":101,"name":"Qiziriq tumani","region_id":14},{"id":102,"name":"Sariosiyo tumani","region_id":14},{"id":103,"name":"Termiz tumani","region_id":14},{"id":104,"name":"Uzun tumani","region_id":14},{"id":105,"name":"Sherobod tumani","region_id":14},{"id":106,"name":"Sho'rchi tumani","region_id":14},{"id":199,"name":"Termiz","region_id":14},{"id":204,"name":"Bandixon tumani","region_id":14}]}]}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/regions/1/districts
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[{"id":1,"name":"Oltinko'l tumani","region_id":1,"region":{"id":1,"name":"Andijon viloyati"}},{"id":2,"name":"Andijon tumani","region_id":1,"region":{"id":1,"name":"Andijon viloyati"}},{"id":3,"name":"Baliqchi tumani","region_id":1,"region":{"id":1,"name":"Andijon viloyati"}},{"id":4,"name":"Bo'z tumani","region_id":1,"region":{"id":1,"name":"Andijon viloyati"}},{"id":5,"name":"Buloqboshi tumani","region_id":1,"region":{"id":1,"name":"Andijon viloyati"}},{"id":6,"name":"Jalaquduq tumani","region_id":1,"region":{"id":1,"name":"Andijon viloyati"}},{"id":7,"name":"Izboskan tumani","region_id":1,"region":{"id":1,"name":"Andijon viloyati"}},{"id":8,"name":"Ulug'nor tumani","region_id":1,"region":{"id":1,"name":"Andijon viloyati"}},{"id":9,"name":"Qo'rg'ontepa tumani","region_id":1,"region":{"id":1,"name":"Andijon viloyati"}},{"id":10,"name":"Asaka tumani","region_id":1,"region":{"id":1,"name":"Andijon viloyati"}},{"id":11,"name":"Marxamat tumani","region_id":1,"region":{"id":1,"name":"Andijon viloyati"}},{"id":12,"name":"Shahrixon tumani","region_id":1,"region":{"id":1,"name":"Andijon viloyati"}},{"id":13,"name":"Paxtaobod tumani","region_id":1,"region":{"id":1,"name":"Andijon viloyati"}},{"id":14,"name":"Xo'jaobod tumani","region_id":1,"region":{"id":1,"name":"Andijon viloyati"}},{"id":15,"name":"Andijon","region_id":1,"region":{"id":1,"name":"Andijon viloyati"}},{"id":16,"name":"Xonobod","region_id":1,"region":{"id":1,"name":"Andijon viloyati"}}]}
+
+### 2. Candidate Endpoints
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/profile
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","avatar_url":null,"first_name":"Joshqin","last_name":"Alimboyev","email":"docs@example.com","phone_number":"+998942351906","city":"Tashkent","birth_date":"14.11.2004","bio":"API docs generation"}}
+
+========================================
+Type: PUT
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/profile
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: {"email":"docs@example.com","city":"Tashkent","birth_date":"14.11.2004","bio":"API docs generation"}
+Status: ✅ 200
+Response: {"success":true,"data":{"id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","avatar_url":null,"first_name":"Joshqin","last_name":"Alimboyev","email":"docs@example.com","phone_number":"+998942351906","city":"Tashkent","birth_date":"14.11.2004","bio":"API docs generation"}}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/settings
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"id":1,"profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","sessions":[{"id":"51df7fea-4af3-4350-86fc-0445e42012f9","device_id":"device-2","device_name":"iPhone 14","fcm_token":"b6a0e7cd-2460-4e7d-b057-b699a198f8f5","logined_at":"2026-07-18T09:16:54.064Z","is_teminated":false,"profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","settings_id":1}],"notifications":[{"id":"cmrmdaki50000dr6kbbz0z1ge","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","settings_id":1,"email_enabled":true,"push_enabled":true,"sms_enabled":false,"application_updates":true,"messages":true,"interviews":true,"recommendations":true,"created_at":"2026-07-15T17:41:57.198Z","updated_at":"2026-07-15T17:41:57.198Z"}]}}
+
+========================================
+Type: POST
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/resume
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: {"specialization":"Backend Developer","expected_salary":800,"currency":"usd","employment_type":["full_time"],"work_format":["remote"],"skills":["Node.js"],"educations":[],"experiences":[],"status":"active"}
+Status: ✅ 201
+Response: {"success":true,"data":{"id":"30dd0b21-bb75-41a9-815d-83ea0f0518c7","specialization":"Backend Developer","expected_salary":800,"currency":"usd","employment_type":["full_time"],"work_format":["remote"],"skills":["Node.js"],"educations":[],"experiences":[],"visibility":"public","status":"active","is_primary":true,"boost_score":0,"boosted_at":null,"boost_until":null,"next_free_boost_at":null,"created_at":"2026-07-21T19:38:01.098Z","updated_at":"2026-07-21T19:38:01.098Z","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6"}}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/resume/30dd0b21-bb75-41a9-815d-83ea0f0518c7
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"id":"30dd0b21-bb75-41a9-815d-83ea0f0518c7","specialization":"Backend Developer","expected_salary":800,"currency":"usd","employment_type":["full_time"],"work_format":["remote"],"skills":["Node.js"],"educations":[],"experiences":[],"visibility":"public","status":"active","is_primary":true,"boost_score":0,"boosted_at":null,"boost_until":null,"next_free_boost_at":null,"created_at":"2026-07-21T19:38:01.098Z","updated_at":"2026-07-21T19:38:01.098Z","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","available_for_boost":true}}
+
+========================================
+Type: PUT
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/resume/30dd0b21-bb75-41a9-815d-83ea0f0518c7
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: {"specialization":"Senior Backend Developer"}
+Status: ✅ 200
+Response: {"success":true,"data":{"id":"30dd0b21-bb75-41a9-815d-83ea0f0518c7","specialization":"Senior Backend Developer","expected_salary":800,"currency":"usd","employment_type":["full_time"],"work_format":["remote"],"skills":["Node.js"],"educations":[],"experiences":[],"visibility":"public","status":"active","is_primary":true,"boost_score":0,"boosted_at":null,"boost_until":null,"next_free_boost_at":null,"created_at":"2026-07-21T19:38:01.098Z","updated_at":"2026-07-21T19:38:01.137Z","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6"}}
+
+### 3. Employer Endpoints
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/organization
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"id":"e8228f66-9861-4164-b6f0-282b94888de9","logo_url":null,"name":"API Docs Corp","industry":"IT","size":null,"website":"https://meezann.uz","phone_number":"+998942351906","description":"Testing docs","location":"Tashkent","since":null,"on_market":null,"created_at":"2026-07-18T09:16:54.059Z","updated_at":"2026-07-21T19:34:36.200Z","balance":1000000,"client_number":96132094,"is_subscripted":false,"profile_id":"050e2df3-297a-40ba-8013-610ac0b6a17b"}}
+
+========================================
+Type: PUT
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/profile
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: {"company_name":"API Docs Corp","industry":"IT","location":"Tashkent","bio":"Testing docs"}
+Status: ✅ 200
+Response: {"success":true,"data":{"id":"050e2df3-297a-40ba-8013-610ac0b6a17b","avatar_url":null,"company_name":"API Docs Corp","industry":"IT","location":"Tashkent","website":"https://meezann.uz","phone_number":"+998942351906","bio":"Testing docs"}}
+
+========================================
+Type: POST
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/vacancy
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: {"job_title":"API Docs Developer","location":"Tashkent","specialization":"Backend Developer","job_type":"full_time","experience_level":"one_to_three","salary_from":500,"salary_to":1000,"currency":"usd","key_skills":["Node.js"],"description":"API Docs Vacancy","requirements":"None","responsibilities":"None","latitude":41.3,"longitude":69.2,"contact":{"name":"Docs Employer","email":"docs@employer.com","phone_number":"+998 90 123 45 67"},"is_temporary":false}
+Status: ✅ 201
+Response: {"success":true,"data":{"id":"1f86f8dd-873d-49d2-bf01-2ba612626686","job_title":"API Docs Developer","location":"Tashkent","specialization":"Backend Developer","job_type":"full_time","experience_level":"one_to_three","salary_from":500,"salary_to":1000,"currency":"usd","key_skills":["Node.js"],"description":"API Docs Vacancy","requirements":"None","responsibilities":"None","latitude":"41.3","longitude":"69.2","contact":{"name":"Docs Employer","email":"docs@employer.com","phone_number":"+998 90 123 45 67"},"is_temporary":false,"status":"draft","published_at":null,"updated_at":"2026-07-21T19:38:01.212Z","created_at":"2026-07-21T19:38:01.212Z","organization_id":"e8228f66-9861-4164-b6f0-282b94888de9"}}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/vacancy/1f86f8dd-873d-49d2-bf01-2ba612626686
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"id":"1f86f8dd-873d-49d2-bf01-2ba612626686","job_title":"API Docs Developer","location":"Tashkent","specialization":"Backend Developer","job_type":"full_time","experience_level":"one_to_three","salary_from":500,"salary_to":1000,"currency":"usd","key_skills":["Node.js"],"description":"API Docs Vacancy","requirements":"None","responsibilities":"None","latitude":"41.3","longitude":"69.2","contact":{"name":"Docs Employer","email":"docs@employer.com","phone_number":"+998 90 123 45 67"},"is_temporary":false,"status":"draft","published_at":null,"updated_at":"2026-07-21T19:38:01.212Z","created_at":"2026-07-21T19:38:01.212Z","organization_id":"e8228f66-9861-4164-b6f0-282b94888de9"},"metadata":{"total_applications_count":0}}
+
+### 4. Cross-Actor Interactions
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/vacancy/feed/1f86f8dd-873d-49d2-bf01-2ba612626686
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"id":"1f86f8dd-873d-49d2-bf01-2ba612626686","job_title":"API Docs Developer","location":"Tashkent","specialization":"Backend Developer","job_type":"full_time","experience_level":"one_to_three","salary_from":500,"salary_to":1000,"currency":"usd","key_skills":["Node.js"],"description":"API Docs Vacancy","requirements":"None","responsibilities":"None","latitude":"41.3","longitude":"69.2","contact":{"name":"Docs Employer","email":"docs@employer.com","phone_number":"+998 90 123 45 67"},"is_temporary":false,"status":"draft","published_at":null,"updated_at":"2026-07-21T19:38:01.212Z","created_at":"2026-07-21T19:38:01.212Z","organization_id":"e8228f66-9861-4164-b6f0-282b94888de9","organization":{"id":"e8228f66-9861-4164-b6f0-282b94888de9","logo_url":null,"name":"API Docs Corp","industry":"IT","size":null,"website":"https://meezann.uz","phone_number":"+998942351906","description":"Testing docs","location":"Tashkent","since":null,"on_market":null,"created_at":"2026-07-18T09:16:54.059Z","updated_at":"2026-07-21T19:38:01.179Z","is_subscripted":false,"profile_id":"050e2df3-297a-40ba-8013-610ac0b6a17b"},"has_applied":false,"has_saved":false}}
+
+========================================
+Type: POST
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/vacancy/1f86f8dd-873d-49d2-bf01-2ba612626686/apply
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: {"resume_id":"30dd0b21-bb75-41a9-815d-83ea0f0518c7","cover_letter":"I am perfect for this job!"}
+Status: ✅ 201
+Response: {"success":true,"data":{"id":3,"cover_letter":"I am perfect for this job!","status":"pending","created_at":"2026-07-21T19:38:01.276Z","updated_at":"2026-07-21T19:38:01.276Z","vacancy_id":"1f86f8dd-873d-49d2-bf01-2ba612626686","resume_id":"30dd0b21-bb75-41a9-815d-83ea0f0518c7","chat":{"id":"6a0e2b1f-ec99-44fc-9078-5f5b918d3bfd","status":"active","created_at":"2026-07-21T19:38:01.280Z","application_id":3,"message":{"id":"bf74c182-8103-476f-b10c-e0ed06212987","type":"text","content":"I am perfect for this job!","sended_at":"2026-07-21T19:38:01.288Z","meta":null,"read_at":null,"sender_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","chat_id":"6a0e2b1f-ec99-44fc-9078-5f5b918d3bfd"}}}}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/vacancy/1f86f8dd-873d-49d2-bf01-2ba612626686/applicants
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[{"id":"30dd0b21-bb75-41a9-815d-83ea0f0518c7","specialization":"Senior Backend Developer","expected_salary":800,"currency":"usd","employment_type":["full_time"],"work_format":["remote"],"skills":["Node.js"],"educations":[],"experiences":[],"visibility":"public","status":"active","is_primary":true,"boost_score":0,"boosted_at":null,"boost_until":null,"next_free_boost_at":null,"created_at":"2026-07-21T19:38:01.098Z","updated_at":"2026-07-21T19:38:01.137Z","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","profile":{"id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","avatar_url":null,"name":"Joshqin Alimboyev","email":"docs@example.com","is_waitlisted_user":false,"status":null,"role":"candidate","password":"$2b$12$XtGb8RngqAwdIiKg.W.db.wfMh3cLAy1egskR7CBbmLRr6HFr5M3W","city":"Tashkent","bio":"API docs generation","birth_date":"14.11.2004","network_status":"offline","last_seen":null,"created_at":"2026-07-15T17:41:57.160Z","updated_at":"2026-07-21T19:38:01.034Z","user_id":"f005920e-7909-4a67-b2b5-c67c6e6497a8"},"application_status":"pending"}]}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/vacancy/1f86f8dd-873d-49d2-bf01-2ba612626686/applicants/30dd0b21-bb75-41a9-815d-83ea0f0518c7
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"id":3,"status":"pending","resume":{"id":"30dd0b21-bb75-41a9-815d-83ea0f0518c7","specialization":"Senior Backend Developer","expected_salary":800,"currency":"usd","employment_type":["full_time"],"work_format":["remote"],"skills":["Node.js"],"educations":[],"experiences":[],"visibility":"public","status":"active","is_primary":true,"boost_score":0,"boosted_at":null,"boost_until":null,"next_free_boost_at":null,"created_at":"2026-07-21T19:38:01.098Z","updated_at":"2026-07-21T19:38:01.137Z","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","profile":{"id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","avatar_url":null,"name":"Joshqin Alimboyev","email":"docs@example.com","is_waitlisted_user":false,"status":null,"role":"candidate","password":"$2b$12$XtGb8RngqAwdIiKg.W.db.wfMh3cLAy1egskR7CBbmLRr6HFr5M3W","city":"Tashkent","bio":"API docs generation","birth_date":"14.11.2004","network_status":"offline","last_seen":null,"created_at":"2026-07-15T17:41:57.160Z","updated_at":"2026-07-21T19:38:01.034Z","user_id":"f005920e-7909-4a67-b2b5-c67c6e6497a8"}}},"metadata":{"chat":{"id":"6a0e2b1f-ec99-44fc-9078-5f5b918d3bfd","status":"active","created_at":"2026-07-21T19:38:01.280Z","application_id":3}}}
+
+### 5. Cleanup
+========================================
+Type: PUT
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/vacancy/1f86f8dd-873d-49d2-bf01-2ba612626686/archive
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"id":"1f86f8dd-873d-49d2-bf01-2ba612626686","job_title":"API Docs Developer","location":"Tashkent","specialization":"Backend Developer","job_type":"full_time","experience_level":"one_to_three","salary_from":500,"salary_to":1000,"currency":"usd","key_skills":["Node.js"],"description":"API Docs Vacancy","requirements":"None","responsibilities":"None","latitude":"41.3","longitude":"69.2","contact":{"name":"Docs Employer","email":"docs@employer.com","phone_number":"+998 90 123 45 67"},"is_temporary":false,"status":"archived","published_at":null,"updated_at":"2026-07-21T19:38:01.349Z","created_at":"2026-07-21T19:38:01.212Z","organization_id":"e8228f66-9861-4164-b6f0-282b94888de9"}}
+
+========================================
+Type: DELETE
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/resume/30dd0b21-bb75-41a9-815d-83ea0f0518c7
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"id":"30dd0b21-bb75-41a9-815d-83ea0f0518c7","specialization":"Senior Backend Developer","expected_salary":800,"currency":"usd","employment_type":["full_time"],"work_format":["remote"],"skills":["Node.js"],"educations":[],"experiences":[],"visibility":"public","status":"active","is_primary":true,"boost_score":0,"boosted_at":null,"boost_until":null,"next_free_boost_at":null,"created_at":"2026-07-21T19:38:01.098Z","updated_at":"2026-07-21T19:38:01.137Z","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6"}}
+

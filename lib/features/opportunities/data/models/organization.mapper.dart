@@ -22,16 +22,20 @@ class OrganizationMapper extends ClassMapperBase<Organization> {
   @override
   final String id = 'Organization';
 
-  static String _$id(Organization v) => v.id;
-  static const Field<Organization, String> _f$id = Field('id', _$id);
+  static String? _$id(Organization v) => v.id;
+  static const Field<Organization, String> _f$id = Field('id', _$id, opt: true);
   static String? _$logo(Organization v) => v.logo;
   static const Field<Organization, String> _f$logo = Field(
     'logo',
     _$logo,
     opt: true,
   );
-  static String _$name(Organization v) => v.name;
-  static const Field<Organization, String> _f$name = Field('name', _$name);
+  static String? _$name(Organization v) => v.name;
+  static const Field<Organization, String> _f$name = Field(
+    'name',
+    _$name,
+    opt: true,
+  );
   static String? _$industry(Organization v) => v.industry;
   static const Field<Organization, String> _f$industry = Field(
     'industry',
@@ -241,9 +245,9 @@ class _OrganizationCopyWithImpl<$R, $Out>
       : null;
   @override
   $R call({
-    String? id,
+    Object? id = $none,
     Object? logo = $none,
-    String? name,
+    Object? name = $none,
     Object? industry = $none,
     Object? size = $none,
     Object? website = $none,
@@ -257,9 +261,9 @@ class _OrganizationCopyWithImpl<$R, $Out>
     Object? userId = $none,
   }) => $apply(
     FieldCopyWithData({
-      if (id != null) #id: id,
+      if (id != $none) #id: id,
       if (logo != $none) #logo: logo,
-      if (name != null) #name: name,
+      if (name != $none) #name: name,
       if (industry != $none) #industry: industry,
       if (size != $none) #size: size,
       if (website != $none) #website: website,

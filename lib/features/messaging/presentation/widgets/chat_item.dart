@@ -11,8 +11,10 @@ class ChatItem extends StatelessWidget {
   final String time;
   final bool isOnline;
   final int unreadCount;
+  final String chatId;
   const ChatItem({
     super.key,
+    required this.chatId,
     required this.image,
     required this.title,
     required this.lastMessage,
@@ -24,7 +26,7 @@ class ChatItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context.pushRoute(ChatDetailsRoute()),
+      onTap: () => context.pushRoute(ChatDetailsRoute(chatId: chatId)),
       child: Padding(
         padding: .symmetric(vertical: 10),
         child: Row(

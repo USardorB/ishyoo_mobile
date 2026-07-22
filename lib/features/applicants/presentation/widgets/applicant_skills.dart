@@ -2,35 +2,28 @@ import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
 class ApplicantSkills extends StatelessWidget {
-  const ApplicantSkills({super.key});
+  final List<String> skills;
+  const ApplicantSkills({super.key, required this.skills});
 
   @override
   Widget build(BuildContext context) {
+    if (skills.isEmpty) return const SizedBox.shrink();
+
     return Column(
-      crossAxisAlignment: .stretch,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
-          'Ko‘nikmalar',
-          style: context.textThemes.s2,
-        ),
-        SizedBox(height: 16),
+        Text("Ko'nikmalar", style: context.textThemes.s2),
+        const SizedBox(height: 16),
         Container(
           decoration: BoxDecoration(
             color: context.colors.bgPrimary,
             borderRadius: BorderRadius.circular(16),
           ),
-          padding: .all(12),
+          padding: const EdgeInsets.all(12),
           child: Wrap(
             spacing: 12,
             runSpacing: 12,
-            children: [
-              _buildSkill(context, 'Figma'),
-              _buildSkill(context, 'UX UI Design'),
-              _buildSkill(context, 'Design Systen'),
-              _buildSkill(context, 'Adobe Photoshop'),
-              _buildSkill(context, 'Wiframes'),
-              _buildSkill(context, 'Adobe Illustraror'),
-            ],
+            children: skills.map((skill) => _buildSkill(context, skill)).toList(),
           ),
         ),
       ],
@@ -43,7 +36,7 @@ class ApplicantSkills extends StatelessWidget {
         color: context.colors.bgSecondary,
         borderRadius: BorderRadius.circular(8),
       ),
-      padding: .symmetric(horizontal: 12, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       child: Text(
         text,
         style: context.textThemes.b1.copyWith(

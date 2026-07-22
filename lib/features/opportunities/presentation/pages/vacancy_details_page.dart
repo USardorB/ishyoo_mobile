@@ -71,7 +71,11 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
             actions: [
               IconButton(
                 icon: const Icon(Icons.share_outlined),
-                onPressed: () {},
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(content: Text("Ulashish tez orada qo'shiladi")),
+                  );
+                },
               ),
               IconButton(
                 icon: Icon(isSaved ? Icons.favorite : Icons.favorite_border,
@@ -104,7 +108,9 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                       ),
                       child: Center(
                         child: Text(
-                          vacancy.organization?.name.substring(0, 1).toUpperCase() ?? 'O',
+                          (vacancy.organization?.name?.isNotEmpty == true)
+                              ? vacancy.organization!.name!.substring(0, 1).toUpperCase()
+                              : 'O',
                           style: context.textThemes.h3.copyWith(
                             color: context.colors.brandDefault,
                           ),

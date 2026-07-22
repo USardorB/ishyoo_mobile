@@ -1,148 +1,174 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
+import 'package:mobile/features/opportunities/data/models/organization.dart';
+import 'package:mobile/features/profile/presentation/bloc/employer_organization_bloc.dart';
 
 @RoutePage()
-class EditCompanyInfoPage extends StatelessWidget {
+class EditCompanyInfoPage extends StatefulWidget {
   const EditCompanyInfoPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Tahrirlash'),
-        actions: [
-          TextButton(
-            onPressed: context.maybePop,
-            style: TextButton.styleFrom(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              visualDensity: VisualDensity.compact,
-            ),
-            child: Text(
-              'Saqlash',
-              style: context.textThemes.s2.copyWith(
-                color: context.colors.brandProgress,
-              ),
-            ),
-          ),
-        ],
-      ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Align(
-              child: Badge(
-                backgroundColor: context.colors.bgSecondary,
-                alignment: const Alignment(.6, .6),
-                label: Icon(
-                  Icons.edit_outlined,
-                  color: context.colors.textPrimary,
-                ),
-                child: CircleAvatar(
-                  backgroundColor: context.colors.bgSecondary,
-                  radius: 48,
-                  child: Text(
-                    "UB",
-                    style: context.textThemes.h3.copyWith(
-                      color: context.colors.brandDefault,
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 24),
-            AppInputField(
-              label: "KOMPANIYA NOMI",
-              controller: TextEditingController(text: "Uzum Bank"),
-            ),
-            const SizedBox(height: 16),
-            AppInputField(
-              label: "Soha",
-              controller: TextEditingController(text: "Bank · Moliya"),
-              readOnly: true,
-              suffixIcon: Icon(
-                Icons.chevron_right,
-                color: context.colors.textSecondary,
-              ),
-            ),
-            const SizedBox(height: 16),
-            AppInputField(
-              label: "Manzil",
-              controller: TextEditingController(text: "Toshkent, O'zbekiston"),
-            ),
-            const SizedBox(height: 16),
-            AppInputField(
-              label: "Wev Sayt",
-              controller: TextEditingController(text: "uzumbank.uz"),
-            ),
-            const SizedBox(height: 16),
-            AppInputField(
-              label: "Telefon",
-              controller: TextEditingController(text: "+998 90 123 45 67"),
-            ),
-            const SizedBox(height: 16),
-            AppInputField(
-              label: "O'zim haqimda",
-              minLines: 4,
-              maxLines: 6,
-              controller: TextEditingController(
-                text:
-                    "Uzum Bank – O'zbekistondagi yetakchi raqamli bank. Biz innovatsion moliyaviy mahsulotlar yaratamiz.",
-              ),
-            ),
-            const SizedBox(height: 16),
-            AppInputField(
-              label: "XODIMLAR SONI",
-              controller: TextEditingController(text: "2 540 ta"),
-            ),
-            const SizedBox(height: 16),
-            AppInputField(
-              label: "BOZORDA",
-              controller: TextEditingController(text: "8 yil"),
-            ),
-            const SizedBox(height: 16),
-            AppInputField(
-              label: "TASHKIL TOPGAN YILI",
-              controller: TextEditingController(text: "2017"),
-            ),
-            const SizedBox(height: 16),
-            Text(
-              "FAOLIYAT SOHASI",
-              style: context.textThemes.s3.copyWith(
-                color: context.colors.textSecondary,
-              ),
-            ),
-            const SizedBox(height: 8),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                _buildChip(context, "Bank"),
-                _buildChip(context, "Moliya"),
-                _buildChip(context, "Fintech"),
-                _buildChip(context, "Raqamli xizmatlar"),
-              ],
-            ),
-            const SizedBox(height: 32),
-          ],
-        ),
-      ),
+  State<EditCompanyInfoPage> createState() => _EditCompanyInfoPageState();
+}
+
+class _EditCompanyInfoPageState extends State<EditCompanyInfoPage> {
+  final _nameCtrl = TextEditingController();
+  final _industryCtrl = TextEditingController();
+  final _sizeCtrl = TextEditingController();
+  final _websiteCtrl = TextEditingController();
+  final _descriptionCtrl = TextEditingController();
+  final _locationCtrl = TextEditingController();
+
+  bool _initialized = false;
+
+  void _populateFromOrganization(Organization org) {
+    if (_initialized) return;
+    _nameCtrl.text = org.name ?? '';
+    _industryCtrl.text = org.industry ?? '';
+    _sizeCtrl.text = org.size ?? '';
+    _websiteCtrl.text = org.website ?? '';
+    _descriptionCtrl.text = org.description ?? '';
+    _locationCtrl.text = org.location ?? '';
+    _initialized = true;
+  }
+
+  @override
+  void dispose() {
+    _nameCtrl.dispose();
+    _industryCtrl.dispose();
+    _sizeCtrl.dispose();
+    _websiteCtrl.dispose();
+    _descriptionCtrl.dispose();
+    _locationCtrl.dispose();
+    super.dispose();
+  }
+
+  void _save(BuildContext context) {
+    context.read<EmployerOrganizationBloc>().add(
+      UpdateEmployerOrganization({
+        'name': _nameCtrl.text.trim(),
+        'industry': _industryCtrl.text.trim(),
+        'size': _sizeCtrl.text.trim(),
+        'website': _websiteCtrl.text.trim(),
+        'description': _descriptionCtrl.text.trim(),
+        'location': _locationCtrl.text.trim(),
+      }),
     );
   }
 
-  Widget _buildChip(BuildContext context, String label) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: context.colors.bgPrimary,
-        borderRadius: BorderRadius.circular(8),
-      ),
-      child: Text(
-        label,
-        style: context.textThemes.b2,
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) =>
+          sl<EmployerOrganizationBloc>()..add(LoadEmployerOrganization()),
+      child: BlocConsumer<EmployerOrganizationBloc, EmployerOrganizationState>(
+        listener: (context, state) {
+          if (state.organization != null)
+            _populateFromOrganization(state.organization!);
+          if (state.isUpdateSuccess) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Muvaffaqiyatli saqlandi')),
+            );
+            context.maybePop();
+          }
+          if (state.error != null &&
+              state.updateStatus == EmployerOrganizationUpdateStatus.error) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.error!)),
+            );
+          }
+        },
+        builder: (context, state) {
+          if (state.isLoading && state.organization == null) {
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator()),
+            );
+          }
+
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text('Kompaniya tahriri'),
+              actions: [
+                BlocBuilder<
+                  EmployerOrganizationBloc,
+                  EmployerOrganizationState
+                >(
+                  builder: (context, state) => TextButton(
+                    onPressed: state.isUpdating ? null : () => _save(context),
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      visualDensity: VisualDensity.compact,
+                    ),
+                    child: state.isUpdating
+                        ? const SizedBox(
+                            width: 16,
+                            height: 16,
+                            child: CircularProgressIndicator(strokeWidth: 2),
+                          )
+                        : Text(
+                            'Saqlash',
+                            style: context.textThemes.s2.copyWith(
+                              color: context.colors.brandProgress,
+                            ),
+                          ),
+                  ),
+                ),
+              ],
+            ),
+            body: SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  AppInputField(
+                    label: 'KOMPANIYA NOMI',
+                    controller: _nameCtrl,
+                  ),
+                  const SizedBox(height: 16),
+                  AppInputField(
+                    label: 'SOHA (INDUSTRY)',
+                    controller: _industryCtrl,
+                  ),
+                  const SizedBox(height: 16),
+                  AppInputField(
+                    label: 'XODIMLAR SONI',
+                    controller: _sizeCtrl,
+                  ),
+                  const SizedBox(height: 16),
+                  AppInputField(
+                    label: 'VEB-SAYT',
+                    controller: _websiteCtrl,
+                    keyboardType: TextInputType.url,
+                  ),
+                  const SizedBox(height: 16),
+                  AppInputField(
+                    label: 'MANZIL',
+                    controller: _locationCtrl,
+                  ),
+                  const SizedBox(height: 16),
+                  AppInputField(
+                    label: "KOMPANIYA HAQIDA BATAFSIL",
+                    minLines: 4,
+                    maxLines: 6,
+                    controller: _descriptionCtrl,
+                  ),
+                  const SizedBox(height: 24),
+                  AppButton(
+                    onTap: state.isUpdating ? () {} : () => _save(context),
+                    enabled: !state.isUpdating,
+                    label: 'Saqlash',
+                  ),
+                  const SizedBox(height: 32),
+                ],
+              ),
+            ),
+          );
+        },
       ),
     );
   }

@@ -1,0 +1,737 @@
+--- Full API Documentation Flow Test ---
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/profile
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","avatar_url":null,"first_name":"Joshqin","last_name":"Alimboyev","email":"docs@example.com","phone_number":"+998942351906","city":"Tashkent","birth_date":"14.11.2004","bio":"API docs generation"}}
+
+========================================
+Type: PUT
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/profile
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: {
+    "email": "olimboevjoshqin@gmail.com",
+    "city": "Tashkent",
+    "birth_date": "14.11.2004",
+    "bio": "Backend Developer с более чем 2-летним опытом разработки серверных приложений на Node.js и TypeScript. Основной стек — NestJS, PostgreSQL, Redis и Docker. Занимаюсь проектированием и разработкой REST API, реализацией бизнес-логики, интеграцией внешних сервисов и сопровождением production-систем. Имею опыт разработки и поддержки крупных backend-сервисов в команде, настройки аутентификации и авторизации пользователей, работы с базами данных и оптимизации производительности приложений. Использую Redis для хранения временных данных и кодов подтверждения, Docker для контейнеризации сервисов, Firebase Cloud Messaging для отправки push-уведомлений мобильным приложениям. В работе придерживаюсь принципов SOLID, Clean Architecture и пишу поддерживаемый код с акцентом на качество и долгосрочное развитие проекта. Интересуюсь высоконагруженными системами, распределённой архитектурой и современными подходами к построению backend-платформ."
+}
+Status: ✅ 200
+Response: {"success":true,"data":{"id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","avatar_url":null,"first_name":"Joshqin","last_name":"Alimboyev","email":"olimboevjoshqin@gmail.com","phone_number":"+998942351906","city":"Tashkent","birth_date":"14.11.2004","bio":"Backend Developer с более чем 2-летним опытом разработки серверных приложений на Node.js и TypeScript. Основной стек — NestJS, PostgreSQL, Redis и Docker. Занимаюсь проектированием и разработкой REST API, реализацией бизнес-логики, интеграцией внешних сервисов и сопровождением production-систем. Имею опыт разработки и поддержки крупных backend-сервисов в команде, настройки аутентификации и авторизации пользователей, работы с базами данных и оптимизации производительности приложений. Использую Redis для хранения временных данных и кодов подтверждения, Docker для контейнеризации сервисов, Firebase Cloud Messaging для отправки push-уведомлений мобильным приложениям. В работе придерживаюсь принципов SOLID, Clean Architecture и пишу поддерживаемый код с акцентом на качество и долгосрочное развитие проекта. Интересуюсь высоконагруженными системами, распределённой архитектурой и современными подходами к построению backend-платформ."}}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/article
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[{"id":"ee7f5af7-a127-4c25-ba79-731a319544a8","title":"Как успешно пройти собеседование в IT компанию","slug":"kak-uspeshno-proyti-sobesedovanie-v-it-kompaniyu","content":"<p>Собеседование — это всегда стресс, но правильная подготовка поможет вам чувствовать себя увереннее...</p><p>Изучите компанию, подготовьте рассказ о себе и не бойтесь задавать вопросы.</p>","cover_image":"https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop","status":"published","read_time_minutes":5,"views_count":120,"published_at":"2026-07-18T09:12:51.697Z","created_at":"2026-07-18T14:12:52.144Z","updated_at":"2026-07-18T09:23:24.667Z"},{"id":"8e623823-2046-4aca-bd61-9c1b9a2ca4f4","title":"Топ-10 востребованных профессий в 2026 году","slug":"top-10-vostrebovannyh-professiy-v-2026-godu","content":"<p>Рынок труда постоянно меняется. В этой статье мы рассмотрим, какие специалисты будут наиболее востребованы в ближайшие годы.</p><ul><li>AI инженеры</li><li>Специалисты по кибербезопасности</li><li>Разработчики смарт-контрактов</li></ul>","cover_image":"https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop","status":"published","read_time_minutes":7,"views_count":345,"published_at":"2026-07-17T09:12:51.697Z","created_at":"2026-07-18T14:12:52.181Z","updated_at":"2026-07-18T14:12:52.181Z"},{"id":"18a91e01-3ab4-440d-94fb-ab29299fe50b","title":"Резюме без опыта работы: как привлечь внимание HR","slug":"rezyume-bez-opyta-raboty-kak-privlech-vnimanie-hr","content":"<p>Отсутствие коммерческого опыта — не приговор. Узнайте, как правильно описать учебные проекты, стажировки и soft skills, чтобы получить оффер.</p>","cover_image":"https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=2070&auto=format&fit=crop","status":"published","read_time_minutes":4,"views_count":89,"published_at":"2026-07-16T09:12:51.697Z","created_at":"2026-07-18T14:12:52.229Z","updated_at":"2026-07-18T14:12:52.229Z"},{"id":"e9bc56dc-9e48-4aa8-b4a5-fd99ef816cde","title":"Выгорание на работе: симптомы и способы борьбы","slug":"vygoranie-na-rabote-simptomy-i-sposoby-borby","content":"<p>Эмоциональное выгорание стало настоящей эпидемией современного общества. В статье делимся эффективными практиками восстановления ресурса.</p>","cover_image":"https://images.unsplash.com/photo-1494200483035-db7bc6aa5739?q=80&w=2070&auto=format&fit=crop","status":"published","read_time_minutes":6,"views_count":512,"published_at":"2026-07-15T09:12:51.697Z","created_at":"2026-07-18T14:12:52.269Z","updated_at":"2026-07-18T14:12:52.269Z"},{"id":"667b6e62-7783-4810-8a31-ad09e6f90ab4","title":"Переход на удаленку: плюсы, минусы, подводные камни","slug":"perehod-na-udalenku-plyusy-minusy-podvodnye-kamni","content":"<p>Удаленная работа дает свободу, но требует жесткой самодисциплины. Разбираем основные преимущества и недостатки работы из дома.</p>","cover_image":"https://images.unsplash.com/photo-1593642632823-8f785ba67e45?q=80&w=2070&auto=format&fit=crop","status":"published","read_time_minutes":5,"views_count":230,"published_at":"2026-07-13T09:12:51.697Z","created_at":"2026-07-18T14:12:52.305Z","updated_at":"2026-07-18T14:12:52.305Z"},{"id":"23424a62-0eeb-4ccc-b66b-f0d915f055fd","title":"Soft skills vs Hard skills: что важнее для карьерного роста?","slug":"soft-skills-vs-hard-skills-chto-vazhnee-dlya-kariernogo-rosta","content":"<p>Многие технические специалисты недооценивают важность коммуникативных навыков. Разберемся, почему soft skills сегодня ценятся не меньше технических знаний.</p>","cover_image":"https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=2070&auto=format&fit=crop","status":"published","read_time_minutes":8,"views_count":415,"published_at":"2026-07-11T09:12:51.697Z","created_at":"2026-07-18T14:12:52.349Z","updated_at":"2026-07-18T14:12:52.349Z"},{"id":"db3e07e1-a5f5-4884-8b49-a5b1e9a7821f","title":"Как правильно просить повышения зарплаты","slug":"kak-pravilno-prosit-povysheniya-zarplaty","content":"<p>Разговор о повышении зарплаты всегда вызывает волнение. Узнайте 5 проверенных стратегий, как аргументировать свою ценность перед руководством.</p>","cover_image":"https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=2070&auto=format&fit=crop","status":"published","read_time_minutes":4,"views_count":678,"published_at":"2026-07-08T09:12:51.697Z","created_at":"2026-07-18T14:12:52.376Z","updated_at":"2026-07-18T14:12:52.376Z"},{"id":"3b08b17d-dbe0-4ddf-a84b-bfe08b88dadf","title":"Ошибки в резюме, из-за которых вас не пригласят","slug":"oshibki-v-rezyume-iz-za-kotoryh-vas-ne-priglashayut","content":"<p>HR тратит на просмотр одного резюме в среднем 7 секунд. Мы собрали самые частые ошибки, которые отправляют ваше CV прямо в корзину.</p>","cover_image":"https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=2070&auto=format&fit=crop","status":"published","read_time_minutes":3,"views_count":154,"published_at":"2026-07-06T09:12:51.697Z","created_at":"2026-07-18T14:12:52.416Z","updated_at":"2026-07-18T14:12:52.416Z"},{"id":"18575d20-e3af-4bf8-beb8-df616291bae2","title":"Стоит ли менять профессию после 30 лет?","slug":"stoit-li-menyat-professiyu-posle-30-let","content":"<p>Многие боятся начинать с нуля в зрелом возрасте. Истории успеха тех, кто решился на кардинальные перемены и не пожалел.</p>","cover_image":"https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2070&auto=format&fit=crop","status":"published","read_time_minutes":6,"views_count":890,"published_at":"2026-07-03T09:12:51.697Z","created_at":"2026-07-18T14:12:52.442Z","updated_at":"2026-07-18T14:12:52.442Z"},{"id":"9e51718f-dccb-4a7f-8d94-0969255ff6d6","title":"Как составить сопроводительное письмо (Cover Letter)","slug":"kak-sostavit-soprovoditelnoe-pismo-cover-letter","content":"<p>Сопроводительное письмо — это ваш шанс выделиться среди других кандидатов. Практическое руководство по написанию цепляющего cover letter.</p>","cover_image":"https://images.unsplash.com/photo-1455390582262-044cdead27d8?q=80&w=2070&auto=format&fit=crop","status":"published","read_time_minutes":5,"views_count":320,"published_at":"2026-06-28T09:12:51.697Z","created_at":"2026-07-18T14:12:52.488Z","updated_at":"2026-07-18T14:12:52.488Z"}]}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/article/ee7f5af7-a127-4c25-ba79-731a319544a8
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"id":"ee7f5af7-a127-4c25-ba79-731a319544a8","title":"Как успешно пройти собеседование в IT компанию","slug":"kak-uspeshno-proyti-sobesedovanie-v-it-kompaniyu","content":"<p>Собеседование — это всегда стресс, но правильная подготовка поможет вам чувствовать себя увереннее...</p><p>Изучите компанию, подготовьте рассказ о себе и не бойтесь задавать вопросы.</p>","cover_image":"https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop","status":"published","read_time_minutes":5,"views_count":120,"published_at":"2026-07-18T09:12:51.697Z","created_at":"2026-07-18T14:12:52.144Z","updated_at":"2026-07-18T09:23:24.667Z"}}
+
+========================================
+Type: POST
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/article/ee7f5af7-a127-4c25-ba79-731a319544a8/view
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"id":1,"created_at":"2026-07-18T09:23:24.675Z","entity_type":"article","entity_id":"ee7f5af7-a127-4c25-ba79-731a319544a8","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6"}}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/article/saved
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[]}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/article/ee7f5af7-a127-4c25-ba79-731a319544a8/save
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"id":10,"entity_type":"article","entity_id":"ee7f5af7-a127-4c25-ba79-731a319544a8","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6"}}
+
+========================================
+Type: DELETE
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/article/ee7f5af7-a127-4c25-ba79-731a319544a8/save
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/resume
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[{"id":"996df0c1-e67b-4867-9419-9bece50eb0c4","specialization":"Backend Developer","expected_salary":800,"currency":"usd","employment_type":["freelance"],"work_format":["remote"],"skills":["Node.js","Express.js"],"educations":[{"degree":"Frontend development","school":"IT Center in Khorezm region","end_date":"2023-04-01","start_date":"2022-04-01"},{"degree":"Full-stack development","school":"Astrum IT Academy","end_date":"2024-07-01","start_date":"2023-07-01"}],"experiences":[{"end_date":"2022-11-01","position":"Mentor","start_date":"2022-09-01","description":"Learned 400+k students","company_name":"IT Center in Khorezm region"},{"end_date":"2025-12-31","position":"Full-stack developer","start_date":"2024-09-01","description":"Develop many big systems","company_name":"AstraDevs Group"},{"end_date":"2026-06-01","position":"Node.js backend developer","start_date":"2026-03-01","description":"Develop many big systems","company_name":"BBP LTD"}],"visibility":"public","status":"active","is_primary":false,"boost_score":10,"boosted_at":"2026-07-21T18:36:28.917Z","boost_until":"2026-07-22T18:36:28.917Z","next_free_boost_at":"2026-07-22T18:36:28.917Z","created_at":"2026-07-18T09:29:11.250Z","updated_at":"2026-07-21T18:36:28.924Z","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","available_for_boost":false},{"id":"e724e97e-1817-4b7a-80a4-f89833e9716a","specialization":"Backend Developer","expected_salary":800,"currency":"usd","employment_type":["freelance"],"work_format":["remote"],"skills":["Node.js","Express.js"],"educations":[{"degree":"Frontend development","school":"IT Center in Khorezm region","end_date":"2023-04-01","start_date":"2022-04-01"},{"degree":"Full-stack development","school":"Astrum IT Academy","end_date":"2024-07-01","start_date":"2023-07-01"}],"experiences":[{"end_date":"2022-11-01","position":"Mentor","start_date":"2022-09-01","description":"Learned 400+k students","company_name":"IT Center in Khorezm region"},{"end_date":"2025-12-31","position":"Full-stack developer","start_date":"2024-09-01","description":"Develop many big systems","company_name":"AstraDevs Group"},{"end_date":"2026-06-01","position":"Node.js backend developer","start_date":"2026-03-01","description":"Develop many big systems","company_name":"BBP LTD"}],"visibility":"public","status":"active","is_primary":false,"boost_score":0,"boosted_at":null,"boost_until":null,"next_free_boost_at":null,"created_at":"2026-07-21T18:36:27.339Z","updated_at":"2026-07-21T18:53:23.504Z","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","available_for_boost":true},{"id":"d120717b-0f9d-4c8c-88ef-5efc0076dfac","specialization":"Backend Developer","expected_salary":800,"currency":"usd","employment_type":["freelance"],"work_format":["remote"],"skills":["Node.js","Express.js"],"educations":[{"degree":"Frontend development","school":"IT Center in Khorezm region","end_date":"2023-04-01","start_date":"2022-04-01"},{"degree":"Full-stack development","school":"Astrum IT Academy","end_date":"2024-07-01","start_date":"2023-07-01"}],"experiences":[{"end_date":"2022-11-01","position":"Mentor","start_date":"2022-09-01","description":"Learned 400+k students","company_name":"IT Center in Khorezm region"},{"end_date":"2025-12-31","position":"Full-stack developer","start_date":"2024-09-01","description":"Develop many big systems","company_name":"AstraDevs Group"},{"end_date":"2026-06-01","position":"Node.js backend developer","start_date":"2026-03-01","description":"Develop many big systems","company_name":"BBP LTD"}],"visibility":"public","status":"active","is_primary":false,"boost_score":0,"boosted_at":null,"boost_until":null,"next_free_boost_at":null,"created_at":"2026-07-21T18:53:23.505Z","updated_at":"2026-07-21T18:56:16.234Z","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","available_for_boost":true}]}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/resume/996df0c1-e67b-4867-9419-9bece50eb0c4
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"id":"996df0c1-e67b-4867-9419-9bece50eb0c4","specialization":"Backend Developer","expected_salary":800,"currency":"usd","employment_type":["freelance"],"work_format":["remote"],"skills":["Node.js","Express.js"],"educations":[{"degree":"Frontend development","school":"IT Center in Khorezm region","end_date":"2023-04-01","start_date":"2022-04-01"},{"degree":"Full-stack development","school":"Astrum IT Academy","end_date":"2024-07-01","start_date":"2023-07-01"}],"experiences":[{"end_date":"2022-11-01","position":"Mentor","start_date":"2022-09-01","description":"Learned 400+k students","company_name":"IT Center in Khorezm region"},{"end_date":"2025-12-31","position":"Full-stack developer","start_date":"2024-09-01","description":"Develop many big systems","company_name":"AstraDevs Group"},{"end_date":"2026-06-01","position":"Node.js backend developer","start_date":"2026-03-01","description":"Develop many big systems","company_name":"BBP LTD"}],"visibility":"public","status":"active","is_primary":false,"boost_score":10,"boosted_at":"2026-07-21T18:36:28.917Z","boost_until":"2026-07-22T18:36:28.917Z","next_free_boost_at":"2026-07-22T18:36:28.917Z","created_at":"2026-07-18T09:29:11.250Z","updated_at":"2026-07-21T18:36:28.924Z","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","available_for_boost":false}}
+
+========================================
+Type: POST
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/resume
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: {
+    "specialization": "Backend Developer",
+    "expected_salary": 800,
+    "currency": "usd",
+    "employment_type": [
+        "freelance"
+    ],
+    "work_format": [
+        "remote"
+    ],
+    "skills": [
+        "Node.js",
+        "Express.js"
+    ],
+    "educations": [
+        {
+            "school": "IT Center in Khorezm region",
+            "degree": "Frontend development",
+            "start_date": "2022-04-01",
+            "end_date": "2023-04-01"
+        },
+        {
+            "school": "Astrum IT Academy",
+            "degree": "Full-stack development",
+            "start_date": "2023-07-01",
+            "end_date": "2024-07-01"
+        }
+    ],
+    "experiences": [
+        {
+            "company_name": "IT Center in Khorezm region",
+            "position": "Mentor",
+            "description": "Learned 400+k students",
+            "start_date": "2022-09-01",
+            "end_date": "2022-11-01"
+        },
+        {
+            "company_name": "AstraDevs Group",
+            "position": "Full-stack developer",
+            "description": "Develop many big systems",
+            "start_date": "2024-09-01",
+            "end_date": "2025-12-31"
+        },
+        {
+            "company_name": "BBP LTD",
+            "position": "Node.js backend developer",
+            "description": "Develop many big systems",
+            "start_date": "2026-03-01",
+            "end_date": "2026-06-01"
+        }
+    ],
+    "status": "active"
+}
+Status: ✅ 201
+Response: {"success":true,"data":{"id":"67e8092c-34fc-445d-9e7d-e5b0cbefa991","specialization":"Backend Developer","expected_salary":800,"currency":"usd","employment_type":["freelance"],"work_format":["remote"],"skills":["Node.js","Express.js"],"educations":[{"degree":"Frontend development","school":"IT Center in Khorezm region","end_date":"2023-04-01","start_date":"2022-04-01"},{"degree":"Full-stack development","school":"Astrum IT Academy","end_date":"2024-07-01","start_date":"2023-07-01"}],"experiences":[{"end_date":"2022-11-01","position":"Mentor","start_date":"2022-09-01","description":"Learned 400+k students","company_name":"IT Center in Khorezm region"},{"end_date":"2025-12-31","position":"Full-stack developer","start_date":"2024-09-01","description":"Develop many big systems","company_name":"AstraDevs Group"},{"end_date":"2026-06-01","position":"Node.js backend developer","start_date":"2026-03-01","description":"Develop many big systems","company_name":"BBP LTD"}],"visibility":"public","status":"active","is_primary":true,"boost_score":0,"boosted_at":null,"boost_until":null,"next_free_boost_at":null,"created_at":"2026-07-21T19:40:13.172Z","updated_at":"2026-07-21T19:40:13.172Z","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6"}}
+
+========================================
+Type: PUT
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/resume/974827b8-463d-40d3-870f-48ff7798b7f8
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: {
+    "specialization": "Backend Developer"
+}
+Status: ❌ 404
+Response: {"success":false,"message":"Resume not found"}
+
+========================================
+Type: DELETE
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/resume/974827b8-463d-40d3-870f-48ff7798b7f8
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ❌ 404
+Response: {"success":false,"message":"Resume not found"}
+
+========================================
+Type: POST
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/resume/996df0c1-e67b-4867-9419-9bece50eb0c4/boost
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ❌ 400
+Response: {"success":false,"message":"You can boost your resume again after 7/22/2026"}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/resume/specialization
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[{"id":1,"name":"IT, интернет, телеком","parent_id":null,"children":[{"id":2,"name":"Программист, разработчик","parent_id":1},{"id":3,"name":"Системный администратор","parent_id":1},{"id":4,"name":"QA инженер, тестировщик","parent_id":1},{"id":5,"name":"Аналитик","parent_id":1},{"id":6,"name":"Специалист по информационной безопасности","parent_id":1},{"id":7,"name":"Product менеджер","parent_id":1},{"id":8,"name":"Project менеджер","parent_id":1},{"id":9,"name":"Дизайнер (UI/UX)","parent_id":1}]},{"id":10,"name":"Продажи, обслуживание клиентов","parent_id":null,"children":[{"id":11,"name":"Менеджер по продажам","parent_id":10},{"id":12,"name":"Продавец-консультант","parent_id":10},{"id":13,"name":"Торговый представитель","parent_id":10},{"id":14,"name":"Оператор call-центра","parent_id":10},{"id":15,"name":"Специалист технической поддержки","parent_id":10}]},{"id":16,"name":"Маркетинг, реклама, PR","parent_id":null,"children":[{"id":17,"name":"Интернет-маркетолог","parent_id":16},{"id":18,"name":"SMM-менеджер","parent_id":16},{"id":19,"name":"Таргетолог","parent_id":16},{"id":20,"name":"PR-менеджер","parent_id":16},{"id":21,"name":"SEO-специалист","parent_id":16},{"id":22,"name":"Копирайтер","parent_id":16}]},{"id":23,"name":"Бухгалтерия, учет и финансы","parent_id":null,"children":[{"id":24,"name":"Бухгалтер","parent_id":23},{"id":25,"name":"Главный бухгалтер","parent_id":23},{"id":26,"name":"Экономист","parent_id":23},{"id":27,"name":"Финансовый аналитик","parent_id":23},{"id":28,"name":"Аудитор","parent_id":23}]},{"id":29,"name":"Административный персонал","parent_id":null,"children":[{"id":30,"name":"Офис-менеджер","parent_id":29},{"id":31,"name":"Курьер","parent_id":29},{"id":32,"name":"Делопроизводитель","parent_id":29},{"id":33,"name":"Ассистент руководителя","parent_id":29},{"id":34,"name":"Секретарь","parent_id":29}]},{"id":35,"name":"Строительство, недвижимость","parent_id":null,"children":[{"id":36,"name":"Инженер-строитель","parent_id":35},{"id":37,"name":"Архитектор","parent_id":35},{"id":38,"name":"Риелтор","parent_id":35},{"id":39,"name":"Прораб","parent_id":35},{"id":40,"name":"Сметчик","parent_id":35}]},{"id":41,"name":"Транспорт, логистика","parent_id":null,"children":[{"id":42,"name":"Водитель","parent_id":41},{"id":43,"name":"Логист","parent_id":41},{"id":44,"name":"Экспедитор","parent_id":41},{"id":45,"name":"Кладовщик","parent_id":41},{"id":46,"name":"Диспетчер","parent_id":41}]}]}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/application
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[]}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/application/1
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ❌ 404
+Response: {"success":false,"message":"Application not found"}
+
+========================================
+Type: PUT
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/application/1/refuse
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: {
+    "status": "invited"
+}
+
+Status: ❌ 500
+Response: {"success":false,"message":"\nInvalid `this.model.update()` invocation in\n/var/www/dev.api.ishyoo.uz/dist/src/infrastructure/libraries/prisma/base-prisma.repository.js:30:33\n\n  27 }\n  28 async update(params) {\n  29     const { where, data } = params;\n→ 30     return await this.model.update(\nAn operation failed because it depends on one or more records that were required but not found. No record was found for an update."}
+
+========================================
+Type: POST
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/chat/1/message
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: {
+    "files": [
+        {
+            "originalName": "XiaomiRedmiNote11Pro4G.JPG",
+            "filename": "1774292250797-569284666.JPG",
+            "mimeType": "image/jpeg",
+            "size": 53163,
+            "type": "image",
+            "path": "/chat-uploads/1774292250797-569284666.JPG"
+        }
+    ] // not required if user send text message
+}
+Status: ❌ 400
+Response: {"success":false,"message":"Expected ',' or '}' after property value in JSON at position 314 (line 11 column 7)"}
+
+========================================
+Type: PUT
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/chat/1/message/1
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: {
+    "content": "yangilangan"
+}
+Status: ❌ 500
+Response: {"success":false,"message":"\nInvalid `this.model.update()` invocation in\n/var/www/dev.api.ishyoo.uz/dist/src/infrastructure/libraries/prisma/base-prisma.repository.js:30:33\n\n  27 }\n  28 async update(params) {\n  29     const { where, data } = params;\n→ 30     return await this.model.update(\nAn operation failed because it depends on one or more records that were required but not found. No record was found for an update."}
+
+========================================
+Type: DELETE
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/chat/1/message/1
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ❌ 500
+Response: {"success":false,"message":"\nInvalid `this.model.delete()` invocation in\n/var/www/dev.api.ishyoo.uz/dist/src/infrastructure/libraries/prisma/base-prisma.repository.js:33:39\n\n  30     return await this.model.update({ where, data });\n  31 }\n  32 async delete(where) {\n→ 33     return await this.model.delete(\nAn operation failed because it depends on one or more records that were required but not found. No record was found for a delete."}
+
+========================================
+Type: POST
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/chat/1/file
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ❌ 500
+Response: {"success":false,"message":"Cannot read properties of undefined (reading 'mimetype')"}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/chat/1/file/1
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ❌ 404
+Response: {"success":false,"message":"File not found"}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/chat
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[]}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/chat/1
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":null}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/chat/1/read-messages
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/vacancy/feed
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[],"pagination":{"total":0}}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/vacancy/feed/1
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ❌ 404
+Response: {"success":false,"message":"Vacancy not found"}
+
+========================================
+Type: POST
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/vacancy/1/apply
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: {
+    "resume_id": "b9057d1d-72f8-4cf9-b4e6-bb4c165917ad",
+    "cover_letter": "Добрый день! Меня зовут Джушкин Алимбаев, я Fullstack разработчик с 2 летным коммерческим опытом разработки на React.js/Next.js и Node. (NestJS). Мне заинтересовалась ваш вакансия. Буду рад обсудить возможные варианты сотрудничества и рассказать подробнее о своём опыте и выполнить тестовое задание при необходимости."
+}
+Status: ❌ 404
+Response: {"success":false,"message":"Vacancy not found"}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/vacancy/b5054257-d239-4177-bad4-68117949a552/save
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true}
+
+========================================
+Type: DELETE
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/vacancy/b5054257-d239-4177-bad4-68117949a552/save
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/vacancy/saved
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[]}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/notifications
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[]}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/notifications/1
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ❌ 500
+Response: {"success":false,"message":"\nInvalid `this.model.update()` invocation in\n/var/www/dev.api.ishyoo.uz/dist/src/infrastructure/libraries/prisma/base-prisma.repository.js:30:33\n\n  27 }\n  28 async update(params) {\n  29     const { where, data } = params;\n→ 30     return await this.model.update(\nAn operation failed because it depends on one or more records that were required but not found. No record was found for an update."}
+
+========================================
+Type: PUT
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/notifications
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/settings
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"id":1,"profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","sessions":[{"id":"51df7fea-4af3-4350-86fc-0445e42012f9","device_id":"device-2","device_name":"iPhone 14","fcm_token":"b6a0e7cd-2460-4e7d-b057-b699a198f8f5","logined_at":"2026-07-18T09:16:54.064Z","is_teminated":false,"profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","settings_id":1}],"notifications":[{"id":"cmrmdaki50000dr6kbbz0z1ge","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","settings_id":1,"email_enabled":true,"push_enabled":true,"sms_enabled":false,"application_updates":true,"messages":true,"interviews":true,"recommendations":true,"created_at":"2026-07-15T17:41:57.198Z","updated_at":"2026-07-15T17:41:57.198Z"}]}}
+
+========================================
+Type: PUT
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/settings
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: {
+    "emailEnabled": false,
+    "pushEnabled": false,
+    "smsEnabled": false,
+    "applicationUpdates": false,
+    "messages": false,
+    "interviews": false,
+    "recommendations": false
+}
+Status: ❌ 500
+Response: {"success":false,"message":"\nInvalid `this.model.update()` invocation in\n/var/www/dev.api.ishyoo.uz/dist/src/infrastructure/libraries/prisma/base-prisma.repository.js:30:33\n\n  27 }\n  28 async update(params) {\n  29     const { where, data } = params;\n→ 30     return await this.model.update({\n           where: {\n             profile_id: \"4b07a8d7-83c4-446b-8f58-4b57866601c6\"\n           },\n           data: {\n             emailEnabled: false,\n             ~~~~~~~~~~~~\n             pushEnabled: false,\n             smsEnabled: false,\n             applicationUpdates: false,\n             messages: false,\n             interviews: false,\n             recommendations: false,\n         ?   id?: String | StringFieldUpdateOperationsInput,\n         ?   email_enabled?: Boolean | BoolFieldUpdateOperationsInput,\n         ?   push_enabled?: Boolean | BoolFieldUpdateOperationsInput,\n         ?   sms_enabled?: Boolean | BoolFieldUpdateOperationsInput,\n         ?   application_updates?: Boolean | BoolFieldUpdateOperationsInput,\n         ?   created_at?: DateTime | DateTimeFieldUpdateOperationsInput,\n         ?   updated_at?: DateTime | DateTimeFieldUpdateOperationsInput,\n         ?   profile?: ProfileUpdateOneRequiredWithoutNotification_settingsNestedInput,\n         ?   settings?: SettingsUpdateOneRequiredWithoutNotificationsNestedInput\n           }\n         })\n\nUnknown argument `emailEnabled`. Did you mean `email_enabled`? Available options are marked with ?."}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/nearby-jobs
+Header: Authorization: Bearer <CANDIDATE_TOKEN>
+Body: NOBody
+Status: ❌ 400
+Response: {"success":false,"message":["latitude must be a latitude string or number","longitude must be a longitude string or number"]}
+
+========================================
+Type: PUT
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/profile
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: {
+    "company_name": "Meezan",
+    "industry": "IT",
+    "location": "Tashkent city",
+    "website": "https://meezann.uz",
+    "phone_number": "+998942351906",
+    "bio": "Meezan — это AI-powered Islamic lifestyle platform, помогающая современным мусульманам жить в балансе между верой, работой и повседневной жизнью."
+}
+Status: ✅ 200
+Response: {"success":true,"data":{"id":"050e2df3-297a-40ba-8013-610ac0b6a17b","avatar_url":null,"company_name":"Meezan","industry":"IT","location":"Tashkent city","website":"https://meezann.uz","phone_number":"+998942351906","bio":"Meezan — это AI-powered Islamic lifestyle platform, помогающая современным мусульманам жить в балансе между верой, работой и повседневной жизнью."}}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/profile
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"id":"050e2df3-297a-40ba-8013-610ac0b6a17b","avatar_url":null,"company_name":"Meezan","industry":"IT","location":"Tashkent city","website":"https://meezann.uz","phone_number":"+998942351906","bio":"Meezan — это AI-powered Islamic lifestyle platform, помогающая современным мусульманам жить в балансе между верой, работой и повседневной жизнью."}}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/vacancy
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[{"id":"ca52e43d-71e0-4c55-9b03-fd605d2edc77","job_title":"Junior Node.js developer","location":"Tashkent, Yakkasaray district","specialization":"Frontend Developer","job_type":"full_time","experience_level":"one_to_three","salary_from":300,"salary_to":500,"currency":"usd","key_skills":["JavaScript","TypeScript","Node.js","PostgreSQL"],"description":"We're hired Junior Node.js.js backend developer","requirements":"At least 1 years of work experience in Node.js.js","responsibilities":"cozy office","latitude":"41.64","longitude":"69.75","contact":{"name":"Joshqin Alimboyev","email":"olimboevjoshqin@gmail.com","phone_number":"+998 94 235 19 06"},"is_temporary":false,"status":"draft","published_at":null,"updated_at":"2026-07-21T18:50:17.973Z","created_at":"2026-07-21T18:50:17.973Z","organization_id":"e8228f66-9861-4164-b6f0-282b94888de9","organization":{"name":"Meezan"},"additonal":{"applications_count":0}},{"id":"50f77fa1-a387-4e78-a2fd-62291231fb09","job_title":"E2E Test Developer","location":"Tashkent","specialization":"Backend Developer","job_type":"full_time","experience_level":"one_to_three","salary_from":500,"salary_to":1000,"currency":"usd","key_skills":["Node.js","E2E"],"description":"E2E Vacancy","requirements":"None","responsibilities":"None","latitude":"41.3","longitude":"69.2","contact":{"name":"E2E Employer","email":"e2e@employer.com","phone_number":"+998 90 123 45 67"},"is_temporary":false,"status":"archived","published_at":null,"updated_at":"2026-07-21T19:14:51.526Z","created_at":"2026-07-21T19:14:50.125Z","organization_id":"e8228f66-9861-4164-b6f0-282b94888de9","organization":{"name":"Meezan"},"additonal":{"applications_count":0}},{"id":"bc1a2fef-245c-410a-bb71-1bb4a1dc9995","job_title":"Flow Test Senior Node.js Developer","location":"Tashkent","specialization":"Backend Developer","job_type":"full_time","experience_level":"one_to_three","salary_from":300,"salary_to":500,"currency":"usd","key_skills":["Node.js","TypeScript"],"description":"Automated testing vacancy","requirements":"None","responsibilities":"Writing tests","latitude":"41.311","longitude":"69.24","contact":{"name":"Flow Test User","email":"test@ishyoo.uz","phone_number":"+998 90 000 00 00"},"is_temporary":false,"status":"archived","published_at":null,"updated_at":"2026-07-21T18:57:03.713Z","created_at":"2026-07-21T18:57:03.610Z","organization_id":"e8228f66-9861-4164-b6f0-282b94888de9","organization":{"name":"Meezan"},"additonal":{"applications_count":0}},{"id":"258f5872-c7c2-49df-a68e-6b4e82ad06c2","job_title":"E2E Test Developer","location":"Tashkent","specialization":"Backend Developer","job_type":"full_time","experience_level":"one_to_three","salary_from":500,"salary_to":1000,"currency":"usd","key_skills":["Node.js","E2E"],"description":"E2E Vacancy","requirements":"None","responsibilities":"None","latitude":"41.3","longitude":"69.2","contact":{"name":"E2E Employer","email":"e2e@employer.com","phone_number":"+998 90 123 45 67"},"is_temporary":false,"status":"archived","published_at":null,"updated_at":"2026-07-21T19:13:04.032Z","created_at":"2026-07-21T19:13:03.970Z","organization_id":"e8228f66-9861-4164-b6f0-282b94888de9","organization":{"name":"Meezan"},"additonal":{"applications_count":0}},{"id":"1f86f8dd-873d-49d2-bf01-2ba612626686","job_title":"API Docs Developer","location":"Tashkent","specialization":"Backend Developer","job_type":"full_time","experience_level":"one_to_three","salary_from":500,"salary_to":1000,"currency":"usd","key_skills":["Node.js"],"description":"API Docs Vacancy","requirements":"None","responsibilities":"None","latitude":"41.3","longitude":"69.2","contact":{"name":"Docs Employer","email":"docs@employer.com","phone_number":"+998 90 123 45 67"},"is_temporary":false,"status":"archived","published_at":null,"updated_at":"2026-07-21T19:38:01.349Z","created_at":"2026-07-21T19:38:01.212Z","organization_id":"e8228f66-9861-4164-b6f0-282b94888de9","organization":{"name":"Meezan"},"additonal":{"applications_count":0}},{"id":"5bb49cc8-3acc-4da6-8366-0e85970c9007","job_title":"API Docs Developer","location":"Tashkent","specialization":"Backend Developer","job_type":"full_time","experience_level":"one_to_three","salary_from":500,"salary_to":1000,"currency":"usd","key_skills":["Node.js"],"description":"API Docs Vacancy","requirements":"None","responsibilities":"None","latitude":"41.3","longitude":"69.2","contact":{"name":"Docs Employer","email":"docs@employer.com","phone_number":"+998 90 123 45 67"},"is_temporary":false,"status":"archived","published_at":null,"updated_at":"2026-07-21T19:34:36.480Z","created_at":"2026-07-21T19:34:36.238Z","organization_id":"e8228f66-9861-4164-b6f0-282b94888de9","organization":{"name":"Meezan"},"additonal":{"applications_count":0}}]}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/vacancy/1
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ❌ 404
+Response: {"success":false,"message":"Vacancy not found"}
+
+========================================
+Type: POST
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/vacancy
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: {
+    "job_title": "Junior Node.js developer",
+    "location": "Tashkent, Yakkasaray district",
+    "specialization": "Frontend Developer",
+    "job_type": "full_time",
+    "experience_level": "one_to_three",
+    "salary_from": 300,
+    "salary_to": 500,
+    "currency": "usd",
+    "key_skills": [
+        "JavaScript",
+        "TypeScript",
+        "Node.js",
+        "PostgreSQL"
+    ],
+    "description": "We're hired Junior Node.js.js backend developer",
+    "requirements": "At least 1 years of work experience in Node.js.js",
+    "responsibilities": "cozy office",
+    "latitude": 41.64,
+    "longitude": 69.75,
+    "contact": {
+        "name": "Joshqin Alimboyev",
+        "email": "olimboevjoshqin@gmail.com",
+        "phone_number": "+998 94 235 19 06"
+    },
+    "is_temporary": false
+}
+Status: ✅ 201
+Response: {"success":true,"data":{"id":"ae833a29-b950-4014-90b4-ce2d1c332db8","job_title":"Junior Node.js developer","location":"Tashkent, Yakkasaray district","specialization":"Frontend Developer","job_type":"full_time","experience_level":"one_to_three","salary_from":300,"salary_to":500,"currency":"usd","key_skills":["JavaScript","TypeScript","Node.js","PostgreSQL"],"description":"We're hired Junior Node.js.js backend developer","requirements":"At least 1 years of work experience in Node.js.js","responsibilities":"cozy office","latitude":"41.64","longitude":"69.75","contact":{"name":"Joshqin Alimboyev","email":"olimboevjoshqin@gmail.com","phone_number":"+998 94 235 19 06"},"is_temporary":false,"status":"draft","published_at":null,"updated_at":"2026-07-21T19:40:13.863Z","created_at":"2026-07-21T19:40:13.863Z","organization_id":"e8228f66-9861-4164-b6f0-282b94888de9"}}
+
+========================================
+Type: PUT
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/vacancy/b5054257-d239-4177-bad4-68117949a552
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: {
+    "specialization": "Backend Developer",
+    "job_title": "Junior Node.js developer"
+}
+Status: ❌ 404
+Response: {"success":false,"message":"Vacancy not found"}
+
+========================================
+Type: PUT
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/vacancy/1/archive
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ❌ 404
+Response: {"success":false,"message":"Vacancy not found"}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/vacancy/1/applicants
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[]}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/vacancy/1/applicants/1
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ❌ 404
+Response: {"success":false,"message":"Application not found"}
+
+========================================
+Type: POST
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/vacancy/1/applicants/1/interview
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: {
+    "candidate_name": "Jushkin Alimboyev",
+    "position": "Senior Backend developer",
+    "date": "2026-02-01",
+    "time": "12:00",
+    "type": "video_call",
+    "note": "Please, don't late and good luck in interview!"
+}
+Status: ❌ 404
+Response: {"success":false,"message":"Application not found"}
+
+========================================
+Type: PUT
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/vacancy/1/applicants/1/1
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ❌ 500
+Response: {"success":false,"message":"\nInvalid `this.model.update()` invocation in\n/var/www/dev.api.ishyoo.uz/dist/src/infrastructure/libraries/prisma/base-prisma.repository.js:30:33\n\n  27 }\n  28 async update(params) {\n  29     const { where, data } = params;\n→ 30     return await this.model.update({\n           where: {\n             id: 1\n           },\n           data: {\n             status: \"1\"\n                     ~~~\n           }\n         })\n\nInvalid value for argument `status`. Expected Status."}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/vacancy/tariffs
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[]}
+
+========================================
+Type: POST
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/vacancy/b5054257-d239-4177-bad4-68117949a552/publish/1
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ❌ 404
+Response: {"success":false,"message":"Vacancy not found"}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/vacancy/specialization
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[{"id":1,"name":"IT, интернет, телеком","parent_id":null,"children":[{"id":2,"name":"Программист, разработчик","parent_id":1},{"id":3,"name":"Системный администратор","parent_id":1},{"id":4,"name":"QA инженер, тестировщик","parent_id":1},{"id":5,"name":"Аналитик","parent_id":1},{"id":6,"name":"Специалист по информационной безопасности","parent_id":1},{"id":7,"name":"Product менеджер","parent_id":1},{"id":8,"name":"Project менеджер","parent_id":1},{"id":9,"name":"Дизайнер (UI/UX)","parent_id":1}]},{"id":10,"name":"Продажи, обслуживание клиентов","parent_id":null,"children":[{"id":11,"name":"Менеджер по продажам","parent_id":10},{"id":12,"name":"Продавец-консультант","parent_id":10},{"id":13,"name":"Торговый представитель","parent_id":10},{"id":14,"name":"Оператор call-центра","parent_id":10},{"id":15,"name":"Специалист технической поддержки","parent_id":10}]},{"id":16,"name":"Маркетинг, реклама, PR","parent_id":null,"children":[{"id":17,"name":"Интернет-маркетолог","parent_id":16},{"id":18,"name":"SMM-менеджер","parent_id":16},{"id":19,"name":"Таргетолог","parent_id":16},{"id":20,"name":"PR-менеджер","parent_id":16},{"id":21,"name":"SEO-специалист","parent_id":16},{"id":22,"name":"Копирайтер","parent_id":16}]},{"id":23,"name":"Бухгалтерия, учет и финансы","parent_id":null,"children":[{"id":24,"name":"Бухгалтер","parent_id":23},{"id":25,"name":"Главный бухгалтер","parent_id":23},{"id":26,"name":"Экономист","parent_id":23},{"id":27,"name":"Финансовый аналитик","parent_id":23},{"id":28,"name":"Аудитор","parent_id":23}]},{"id":29,"name":"Административный персонал","parent_id":null,"children":[{"id":30,"name":"Офис-менеджер","parent_id":29},{"id":31,"name":"Курьер","parent_id":29},{"id":32,"name":"Делопроизводитель","parent_id":29},{"id":33,"name":"Ассистент руководителя","parent_id":29},{"id":34,"name":"Секретарь","parent_id":29}]},{"id":35,"name":"Строительство, недвижимость","parent_id":null,"children":[{"id":36,"name":"Инженер-строитель","parent_id":35},{"id":37,"name":"Архитектор","parent_id":35},{"id":38,"name":"Риелтор","parent_id":35},{"id":39,"name":"Прораб","parent_id":35},{"id":40,"name":"Сметчик","parent_id":35}]},{"id":41,"name":"Транспорт, логистика","parent_id":null,"children":[{"id":42,"name":"Водитель","parent_id":41},{"id":43,"name":"Логист","parent_id":41},{"id":44,"name":"Экспедитор","parent_id":41},{"id":45,"name":"Кладовщик","parent_id":41},{"id":46,"name":"Диспетчер","parent_id":41}]}]}
+
+========================================
+Type: DELETE
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/candidate/vacancy/b5054257-d239-4177-bad4-68117949a552/save
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ❌ 500
+Response: {"success":false,"message":"\nInvalid `this.model.delete()` invocation in\n/var/www/dev.api.ishyoo.uz/dist/src/infrastructure/libraries/prisma/base-prisma.repository.js:33:39\n\n  30     return await this.model.update({ where, data });\n  31 }\n  32 async delete(where) {\n→ 33     return await this.model.delete(\nAn operation failed because it depends on one or more records that were required but not found. No record was found for a delete."}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/resume/b5054257-d239-4177-bad4-68117949a552/save
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ❌ 404
+Response: {"success":false,"message":"Cannot GET /api/v1/mobile/employer/resume/b5054257-d239-4177-bad4-68117949a552/save"}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/resume/feed/1
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ❌ 500
+Response: {"success":false,"message":"\nInvalid `this.model.findFirst()` invocation in\n/var/www/dev.api.ishyoo.uz/dist/src/infrastructure/libraries/prisma/base-prisma.repository.js:23:33\n\n  20     return await this.model.findUnique({ where, include, select });\n  21 }\n  22 async findOne(where, include, select) {\n→ 23     return await this.model.findFirst({\n           where: {\n             id: \"1\"\n           },\n           include: {\n             profile: {\n               select: {\n                 name: true,\n                 avatar_url: true,\n                 phone_number: true,\n                 ~~~~~~~~~~~~\n         ?       id?: true,\n         ?       email?: true,\n         ?       is_waitlisted_user?: true,\n         ?       status?: true,\n         ?       role?: true,\n         ?       password?: true,\n         ?       city?: true,\n         ?       bio?: true,\n         ?       birth_date?: true,\n         ?       network_status?: true,\n         ?       last_seen?: true,\n         ?       created_at?: true,\n         ?       updated_at?: true,\n         ?       user_id?: true,\n         ?       user?: true,\n         ?       organization?: true,\n         ?       sessions?: true,\n         ?       settings?: true,\n         ?       notification_settings?: true,\n         ?       resume?: true,\n         ?       chat_files?: true,\n         ?       notifications?: true,\n         ?       messages?: true,\n         ?       chat_participant?: true,\n         ?       saved_entities?: true,\n         ?       entity_views?: true,\n         ?       binded_cards?: true,\n         ?       _count?: true\n               }\n             }\n           },\n           select: undefined\n         })\n\nUnknown field `phone_number` for select statement on model `Profile`. Available options are marked with ?."}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/resume/feed
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[{"id":"996df0c1-e67b-4867-9419-9bece50eb0c4","specialization":"Backend Developer","expected_salary":800,"currency":"usd","employment_type":["freelance"],"work_format":["remote"],"skills":["Node.js","Express.js"],"educations":[{"degree":"Frontend development","school":"IT Center in Khorezm region","end_date":"2023-04-01","start_date":"2022-04-01"},{"degree":"Full-stack development","school":"Astrum IT Academy","end_date":"2024-07-01","start_date":"2023-07-01"}],"experiences":[{"end_date":"2022-11-01","position":"Mentor","start_date":"2022-09-01","description":"Learned 400+k students","company_name":"IT Center in Khorezm region"},{"end_date":"2025-12-31","position":"Full-stack developer","start_date":"2024-09-01","description":"Develop many big systems","company_name":"AstraDevs Group"},{"end_date":"2026-06-01","position":"Node.js backend developer","start_date":"2026-03-01","description":"Develop many big systems","company_name":"BBP LTD"}],"visibility":"public","status":"active","is_primary":false,"boost_score":10,"boosted_at":"2026-07-21T18:36:28.917Z","boost_until":"2026-07-22T18:36:28.917Z","next_free_boost_at":"2026-07-22T18:36:28.917Z","created_at":"2026-07-18T09:29:11.250Z","updated_at":"2026-07-21T18:36:28.924Z","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","profile":{"name":"Joshqin Alimboyev","avatar_url":null},"has_saved":false},{"id":"e724e97e-1817-4b7a-80a4-f89833e9716a","specialization":"Backend Developer","expected_salary":800,"currency":"usd","employment_type":["freelance"],"work_format":["remote"],"skills":["Node.js","Express.js"],"educations":[{"degree":"Frontend development","school":"IT Center in Khorezm region","end_date":"2023-04-01","start_date":"2022-04-01"},{"degree":"Full-stack development","school":"Astrum IT Academy","end_date":"2024-07-01","start_date":"2023-07-01"}],"experiences":[{"end_date":"2022-11-01","position":"Mentor","start_date":"2022-09-01","description":"Learned 400+k students","company_name":"IT Center in Khorezm region"},{"end_date":"2025-12-31","position":"Full-stack developer","start_date":"2024-09-01","description":"Develop many big systems","company_name":"AstraDevs Group"},{"end_date":"2026-06-01","position":"Node.js backend developer","start_date":"2026-03-01","description":"Develop many big systems","company_name":"BBP LTD"}],"visibility":"public","status":"active","is_primary":false,"boost_score":0,"boosted_at":null,"boost_until":null,"next_free_boost_at":null,"created_at":"2026-07-21T18:36:27.339Z","updated_at":"2026-07-21T18:53:23.504Z","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","profile":{"name":"Joshqin Alimboyev","avatar_url":null},"has_saved":false},{"id":"d120717b-0f9d-4c8c-88ef-5efc0076dfac","specialization":"Backend Developer","expected_salary":800,"currency":"usd","employment_type":["freelance"],"work_format":["remote"],"skills":["Node.js","Express.js"],"educations":[{"degree":"Frontend development","school":"IT Center in Khorezm region","end_date":"2023-04-01","start_date":"2022-04-01"},{"degree":"Full-stack development","school":"Astrum IT Academy","end_date":"2024-07-01","start_date":"2023-07-01"}],"experiences":[{"end_date":"2022-11-01","position":"Mentor","start_date":"2022-09-01","description":"Learned 400+k students","company_name":"IT Center in Khorezm region"},{"end_date":"2025-12-31","position":"Full-stack developer","start_date":"2024-09-01","description":"Develop many big systems","company_name":"AstraDevs Group"},{"end_date":"2026-06-01","position":"Node.js backend developer","start_date":"2026-03-01","description":"Develop many big systems","company_name":"BBP LTD"}],"visibility":"public","status":"active","is_primary":false,"boost_score":0,"boosted_at":null,"boost_until":null,"next_free_boost_at":null,"created_at":"2026-07-21T18:53:23.505Z","updated_at":"2026-07-21T18:56:16.234Z","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","profile":{"name":"Joshqin Alimboyev","avatar_url":null},"has_saved":false},{"id":"67e8092c-34fc-445d-9e7d-e5b0cbefa991","specialization":"Backend Developer","expected_salary":800,"currency":"usd","employment_type":["freelance"],"work_format":["remote"],"skills":["Node.js","Express.js"],"educations":[{"degree":"Frontend development","school":"IT Center in Khorezm region","end_date":"2023-04-01","start_date":"2022-04-01"},{"degree":"Full-stack development","school":"Astrum IT Academy","end_date":"2024-07-01","start_date":"2023-07-01"}],"experiences":[{"end_date":"2022-11-01","position":"Mentor","start_date":"2022-09-01","description":"Learned 400+k students","company_name":"IT Center in Khorezm region"},{"end_date":"2025-12-31","position":"Full-stack developer","start_date":"2024-09-01","description":"Develop many big systems","company_name":"AstraDevs Group"},{"end_date":"2026-06-01","position":"Node.js backend developer","start_date":"2026-03-01","description":"Develop many big systems","company_name":"BBP LTD"}],"visibility":"public","status":"active","is_primary":true,"boost_score":0,"boosted_at":null,"boost_until":null,"next_free_boost_at":null,"created_at":"2026-07-21T19:40:13.172Z","updated_at":"2026-07-21T19:40:13.172Z","profile_id":"4b07a8d7-83c4-446b-8f58-4b57866601c6","profile":{"name":"Joshqin Alimboyev","avatar_url":null},"has_saved":false}]}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/applicants
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[]}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/applicants/1
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ❌ 404
+Response: {"success":false,"message":"Application not found"}
+
+========================================
+Type: POST
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/applicants/1/interview
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: {
+    "candidate_name": "Jushkin Alimboyev",
+    "position": "Senior Backend developer",
+    "date": "2026-02-01",
+    "time": "12:00",
+    "type": "video_call",
+    "note": "Please, don't late and good luck in interview!"
+}
+Status: ❌ 500
+Response: {"success":false,"message":"\nInvalid `this.model.create()` invocation in\n/var/www/dev.api.ishyoo.uz/dist/src/infrastructure/libraries/prisma/base-prisma.repository.js:26:33\n\n  23     return await this.model.findFirst({ where, include, select });\n  24 }\n  25 async create(data) {\n→ 26     return await this.model.create(\nAn operation failed because it depends on one or more records that were required but not found. No 'Application' record (needed to inline the relation on 'Interview' record(s)) was found for a nested connect on one-to-many relation 'ApplicationToInterview'."}
+
+========================================
+Type: PUT
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/applicants/1/1
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ❌ 500
+Response: {"success":false,"message":"\nInvalid `this.model.update()` invocation in\n/var/www/dev.api.ishyoo.uz/dist/src/infrastructure/libraries/prisma/base-prisma.repository.js:30:33\n\n  27 }\n  28 async update(params) {\n  29     const { where, data } = params;\n→ 30     return await this.model.update({\n           where: {\n             id: 1\n           },\n           data: {\n             status: \"1\"\n                     ~~~\n           }\n         })\n\nInvalid value for argument `status`. Expected Status."}
+
+========================================
+Type: POST
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/chat/1/message
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: {
+    "files": [
+        {
+            "originalName": "Screenshot from 2026-03-18 00-47-19.png",
+            "filename": "1774292441397-976671246.png",
+            "mimeType": "image/png",
+            "size": 31717,
+            "type": "image",
+            "path": "/chat-uploads/1774292441397-976671246.png"
+        }
+    ] // not required if user send text message
+}
+Status: ❌ 400
+Response: {"success":false,"message":"Expected ',' or '}' after property value in JSON at position 326 (line 11 column 7)"}
+
+========================================
+Type: PUT
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/chat/1/message/1
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: {
+    "content": "@@@@@"
+}
+Status: ❌ 500
+Response: {"success":false,"message":"\nInvalid `this.model.update()` invocation in\n/var/www/dev.api.ishyoo.uz/dist/src/infrastructure/libraries/prisma/base-prisma.repository.js:30:33\n\n  27 }\n  28 async update(params) {\n  29     const { where, data } = params;\n→ 30     return await this.model.update(\nAn operation failed because it depends on one or more records that were required but not found. No record was found for an update."}
+
+========================================
+Type: DELETE
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/chat/1/message/1
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ❌ 500
+Response: {"success":false,"message":"\nInvalid `this.model.delete()` invocation in\n/var/www/dev.api.ishyoo.uz/dist/src/infrastructure/libraries/prisma/base-prisma.repository.js:33:39\n\n  30     return await this.model.update({ where, data });\n  31 }\n  32 async delete(where) {\n→ 33     return await this.model.delete(\nAn operation failed because it depends on one or more records that were required but not found. No record was found for a delete."}
+
+========================================
+Type: POST
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/chat/1/file
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ❌ 500
+Response: {"success":false,"message":"Cannot read properties of undefined (reading 'mimetype')"}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/chat/1/file/1
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ❌ 404
+Response: {"success":false,"message":"File not found"}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/chat
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":[]}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/chat/1
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":null}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/chat/1/read-messages
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/organization
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"id":"e8228f66-9861-4164-b6f0-282b94888de9","logo_url":null,"name":"Meezan","industry":"IT","size":null,"website":"https://meezann.uz","phone_number":"+998942351906","description":"Meezan — это AI-powered Islamic lifestyle platform, помогающая современным мусульманам жить в балансе между верой, работой и повседневной жизнью.","location":"Tashkent city","since":null,"on_market":null,"created_at":"2026-07-18T09:16:54.059Z","updated_at":"2026-07-21T19:40:13.756Z","balance":1000000,"client_number":96132094,"is_subscripted":false,"profile_id":"050e2df3-297a-40ba-8013-610ac0b6a17b"}}
+
+========================================
+Type: PUT
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/organization
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: {
+    "balance": 1000000
+}
+Status: ✅ 200
+Response: {"success":true,"data":{"id":"e8228f66-9861-4164-b6f0-282b94888de9","logo_url":null,"name":"Meezan","industry":"IT","size":null,"website":"https://meezann.uz","phone_number":"+998942351906","description":"Meezan — это AI-powered Islamic lifestyle platform, помогающая современным мусульманам жить в балансе между верой, работой и повседневной жизнью.","location":"Tashkent city","since":null,"on_market":null,"created_at":"2026-07-18T09:16:54.059Z","updated_at":"2026-07-21T19:40:14.322Z","balance":1000000,"client_number":96132094,"is_subscripted":false,"profile_id":"050e2df3-297a-40ba-8013-610ac0b6a17b"}}
+
+========================================
+Type: POST
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/organization/logo-upload
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ❌ 500
+Response: {"success":false,"message":"Cannot read properties of undefined (reading 'filename')"}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/stats
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"active_vacancies_count":0,"new_applicants_count":0,"interviews_today_count":0,"today_interviews":[],"weekly_stats":{"total_applications":0,"interviews_scheduled":0}}}
+
+========================================
+Type: GET
+Endpoint: https://dev.api.ishyoo.uz/api/v1/mobile/employer/stats/hiring
+Header: Authorization: Bearer <EMPLOYER_TOKEN>
+Body: NOBody
+Status: ✅ 200
+Response: {"success":true,"data":{"active_vacancies_count":0,"total_applicants_count":0,"hired_this_month_count":0,"interviews_scheduled_count":0}}
+
