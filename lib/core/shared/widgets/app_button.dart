@@ -75,6 +75,8 @@ class AppButton extends StatelessWidget {
                       Flexible(
                         child: Text(
                           label!,
+                          maxLines: 1,
+                          overflow: .ellipsis,
                           style: (labelStyle ?? context.textThemes.buttonLarge)
                               .copyWith(color: foregroundColor ?? textColor),
                         ),

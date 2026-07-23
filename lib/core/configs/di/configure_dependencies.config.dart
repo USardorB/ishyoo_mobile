@@ -466,19 +466,6 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i865.ResumeDetailBloc>(
       () => _i865.ResumeDetailBloc(gh<_i140.GetResumeDetailUseCase>()),
     );
-    gh.factory<_i520.AuthBloc>(
-      () => _i520.AuthBloc(
-        gh<_i316.RequestSmsUseCase>(),
-        gh<_i316.RegisterUseCase>(),
-        gh<_i316.VerifyUseCase>(),
-        gh<_i316.LoginUseCase>(),
-        gh<_i316.GetMeUseCase>(),
-        gh<_i316.LogoutUseCase>(),
-        gh<_i316.ForgotPasswordSmsUseCase>(),
-        gh<_i316.ForgotPasswordVerifyUseCase>(),
-        gh<_i316.ResetPasswordUseCase>(),
-      ),
-    );
     gh.factory<_i1060.ApplicantsBloc>(
       () => _i1060.ApplicantsBloc(gh<_i777.ApplicantsRepository>()),
     );
@@ -492,6 +479,20 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i737.GetRegionsUseCase>(
       () => _i737.GetRegionsUseCase(gh<_i651.LocationRepository>()),
+    );
+    gh.factory<_i520.AuthBloc>(
+      () => _i520.AuthBloc(
+        gh<_i316.RequestSmsUseCase>(),
+        gh<_i316.RegisterUseCase>(),
+        gh<_i316.VerifyUseCase>(),
+        gh<_i316.LoginUseCase>(),
+        gh<_i316.GetMeUseCase>(),
+        gh<_i316.LogoutUseCase>(),
+        gh<_i316.ForgotPasswordSmsUseCase>(),
+        gh<_i316.ForgotPasswordVerifyUseCase>(),
+        gh<_i316.ResetPasswordUseCase>(),
+        gh<_i910.TokenService>(),
+      ),
     );
     gh.factory<_i293.SettingsBloc>(
       () => _i293.SettingsBloc(gh<_i362.SettingsRepository>()),

@@ -55,7 +55,7 @@ class CandidateHomeBanner extends HookWidget {
     return Column(
       children: [
         SizedBox(
-          height: 180,
+          height: 130,
           child: PageView.builder(
             controller: pageController,
             onPageChanged: (index) => currentPage.value = index,
@@ -71,47 +71,51 @@ class CandidateHomeBanner extends HookWidget {
                 child: Row(
                   children: [
                     Expanded(
-                      flex: 3,
+                      flex: 5,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
                             banner.title,
+                            maxLines: 2,
+                            overflow: .ellipsis,
                             style: context.textThemes.s1.copyWith(
                               color: banner.textColor,
                             ),
                           ),
-                          const SizedBox(height: 8),
+                          const SizedBox(height: 4),
                           Text(
                             banner.subtitle,
                             style: context.textThemes.c1.copyWith(
                               color: banner.subtitleColor,
                             ),
                           ),
-                          const SizedBox(height: 16),
+                          const SizedBox(height: 12),
                           FilledButton(
-                            onPressed: () {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(content: Text("Tez orada qo'shiladi")),
-                              );
-                            },
+                            onPressed: () {},
                             style: FilledButton.styleFrom(
-                              backgroundColor: banner.buttonBgColor,
-                              foregroundColor: banner.buttonFgColor,
-                              textStyle: context.textThemes.b3,
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 24,
-                                vertical: 12,
+                              tapTargetSize: .shrinkWrap,
+                              fixedSize: Size(102, 32),
+                              backgroundColor: Colors.white,
+                              visualDensity: .compact,
+                              padding: .zero,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: .circular(12),
                               ),
                             ),
-                            child: Text(banner.buttonText),
+                            child: Text(
+                              banner.buttonText,
+                              style: context.textThemes.c2.copyWith(
+                                color: banner.buttonFgColor,
+                              ),
+                            ),
                           ),
                         ],
                       ),
                     ),
                     Expanded(
-                      flex: 2,
+                      flex: 3,
                       child: Center(
                         child: Container(
                           height: 100,
@@ -136,18 +140,18 @@ class CandidateHomeBanner extends HookWidget {
         ),
         const SizedBox(height: 12),
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(
+          mainAxisAlignment: .center,
+          children: .generate(
             banners.length,
             (index) => Container(
-              margin: const EdgeInsets.symmetric(horizontal: 4),
-              width: currentPage.value == index ? 24 : 8,
-              height: 8,
+              margin: const .symmetric(horizontal: 4),
+              width: currentPage.value == index ? 10 : 6,
+              height: currentPage.value == index ? 10 : 6,
               decoration: BoxDecoration(
                 color: currentPage.value == index
                     ? context.colors.brandDefault
                     : context.colors.bgTertiary,
-                borderRadius: BorderRadius.circular(4),
+                shape: .circle,
               ),
             ),
           ),

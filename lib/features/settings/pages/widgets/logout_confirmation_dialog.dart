@@ -1,8 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/core/enums/user_role.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:mobile/features/auth/presentation/bloc/auth_event.dart';
+import 'package:mobile/features/auth/presentation/bloc/auth_state.dart';
 
 class LogoutConfirmationDialog extends StatelessWidget {
   const LogoutConfirmationDialog({super.key});
@@ -32,26 +37,38 @@ class LogoutConfirmationDialog extends StatelessWidget {
           ),
 
           SizedBox(height: 16),
-          Row(
-            spacing: 12,
-            children: [
-              Flexible(
-                child: AppButton(
-                  onTap: context.pop,
-                  label: "Bekor qilish",
-                  color: context.colors.bgTertiary,
-                ),
-              ),
-              Flexible(
-                child: AppButton(
-                  onTap: () {
-                    context.router.replaceAll([const ChooseLanguageRoute()]);
-                  },
-                  label: "Chiqish",
-                  color: context.colors.danger,
-                ),
-              ),
-            ],
+          BlocConsumer<AuthBloc, AuthState>(
+            listener: (context, state) {
+              if (state.status == AuthStatus.unauthenticated) {
+                context.router.replaceAll([const ChooseLanguageRoute()]);
+              }
+            },
+            builder: (context, state) {
+              return Row(
+                spacing: 12,
+                children: [
+                  Flexible(
+                    child: AppButton(
+                      onTap: context.pop,
+                      label: "Bekor qilish",
+                      color: context.colors.bgTertiary,
+                    ),
+                  ),
+                  Flexible(
+                    child: AppButton(
+                      onTap: () {
+                        final role = state.userRole;
+                        final roleString = role == UserRole.employer ? 'employer' : 'candidate';
+                        context.read<AuthBloc>().add(AuthLogoutRequested(roleString));
+                      },
+                      label: "Chiqish",
+                      color: context.colors.danger,
+                      isLoading: state.status == AuthStatus.loading,
+                    ),
+                  ),
+                ],
+              );
+            },
           ),
         ],
       ),

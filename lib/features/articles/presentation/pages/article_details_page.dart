@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
@@ -148,11 +149,16 @@ class _ArticleDetailsPageView extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   if (article.content != null)
-                    Text(
-                      article.content!,
-                      style: context.textThemes.b1.copyWith(
-                        height: 1.5,
-                      ),
+                    Html(
+                      data: article.content!,
+                      style: {
+                        "body": Style(
+                          margin: Margins.zero,
+                          padding: HtmlPaddings.zero,
+                          lineHeight: const LineHeight(1.5),
+                          color: context.colors.textSecondary,
+                        ),
+                      },
                     ),
                 ],
               ),

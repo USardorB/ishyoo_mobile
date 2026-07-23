@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+import 'package:mobile/core/shared/services/token_service.dart';
 import 'package:mobile/features/auth/domain/usecases/auth_usecases.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_event.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_state.dart';
@@ -15,6 +16,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final ForgotPasswordSmsUseCase _forgotPasswordSmsUseCase;
   final ForgotPasswordVerifyUseCase _forgotPasswordVerifyUseCase;
   final ResetPasswordUseCase _resetPasswordUseCase;
+  final TokenService _tokenService;
 
   AuthBloc(
     this._requestSmsUseCase,
@@ -26,6 +28,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     this._forgotPasswordSmsUseCase,
     this._forgotPasswordVerifyUseCase,
     this._resetPasswordUseCase,
+    this._tokenService,
   ) : super(const AuthState()) {
     on<AuthSmsRequested>(_onSmsRequested);
     on<AuthRegisterRequested>(_onRegisterRequested);
@@ -168,15 +171,19 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     emit(state.copyWith(status: AuthStatus.loading));
+    
     final result = await _logoutUseCase(RoleParam(event.role));
+    
+    // Clear tokens regardless of backend success/failure to ensure local state is cleaned up
+    await _tokenService.clearTokens();
 
     result.fold(
       (failure) => emit(
         state.copyWith(
-          status: AuthStatus.failure,
+          status: AuthStatus.unauthenticated,
           errorMessage: failure.message,
         ),
-      ), // Or still transition to unauthenticated depending on requirements
+      ),
       (_) => emit(state.copyWith(status: AuthStatus.unauthenticated)),
     );
   }

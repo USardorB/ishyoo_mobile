@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
@@ -78,13 +79,17 @@ class ArticleItem extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   if (article.content != null)
-                    Text(
-                      article.content!,
-                      style: context.textThemes.b2.copyWith(
-                        color: context.colors.textSecondary,
-                      ),
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
+                    Html(
+                      data: article.content!,
+                      style: {
+                        "body": Style(
+                          margin: Margins.zero,
+                          padding: HtmlPaddings.zero,
+                          color: context.colors.textSecondary,
+                          maxLines: 2,
+                          textOverflow: TextOverflow.ellipsis,
+                        ),
+                      },
                     ),
                   const SizedBox(height: 16),
                   Row(
