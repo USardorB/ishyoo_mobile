@@ -194,7 +194,9 @@ class ApplicantsRoute extends _i46.PageRouteInfo<ApplicantsRouteArgs> {
         orElse: () =>
             ApplicantsRouteArgs(vacancyId: queryParams.optString('vacancyId')),
       );
-      return _i2.ApplicantsPage(key: args.key, vacancyId: args.vacancyId);
+      return _i46.WrappedRoute(
+        child: _i2.ApplicantsPage(key: args.key, vacancyId: args.vacancyId),
+      );
     },
   );
 }

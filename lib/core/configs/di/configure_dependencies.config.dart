@@ -392,11 +392,6 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i728.ProfileRepository>(),
       ),
     );
-    gh.factory<_i328.VacancyFeedBloc>(
-      () => _i328.VacancyFeedBloc(
-        getVacancyFeedUseCase: gh<_i933.GetVacancyFeedUseCase>(),
-      ),
-    );
     gh.factory<_i763.ApplicantDetailBloc>(
       () => _i763.ApplicantDetailBloc(gh<_i777.ApplicantsRepository>()),
     );
@@ -468,6 +463,13 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.factory<_i1060.ApplicantsBloc>(
       () => _i1060.ApplicantsBloc(gh<_i777.ApplicantsRepository>()),
+    );
+    gh.factory<_i328.VacancyFeedBloc>(
+      () => _i328.VacancyFeedBloc(
+        getVacancyFeedUseCase: gh<_i933.GetVacancyFeedUseCase>(),
+        saveVacancyUseCase: gh<_i301.SaveVacancyUseCase>(),
+        unsaveVacancyUseCase: gh<_i360.UnsaveVacancyUseCase>(),
+      ),
     );
     gh.factory<_i656.NotificationDetailBloc>(
       () => _i656.NotificationDetailBloc(

@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/enums/user_role.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/features/applications/presentation/widgets/no_application_placeholder.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/messaging/presentation/bloc/messaging_bloc.dart';
 import 'package:mobile/features/messaging/presentation/widgets/chat_item.dart';
@@ -42,7 +43,10 @@ class ChatsPage extends StatelessWidget {
               } else if (state.error != null) {
                 return Center(child: Text(state.error!));
               } else if (state.chats == null || state.chats!.isEmpty) {
-                return const Center(child: Text("Suhbatlar mavjud emas"));
+                return const NoApplicationPlaceholder(
+                  message:
+                      "Hozircha suhbatlar yo‘q. Suhbatlar bu yerda paydo bo‘ladi.",
+                );
               }
 
               return TabBarView(

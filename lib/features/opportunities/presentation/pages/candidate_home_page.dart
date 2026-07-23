@@ -76,11 +76,13 @@ class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
                     isScrollControlled: true,
                     builder: (_) => TallentFilterSheet(
                       onApply: (jobType, experienceLevel, specialization) {
-                        context.read<VacancyFeedBloc>().add(LoadVacancyFeed(
-                              jobType: jobType,
-                              experienceLevel: experienceLevel,
-                              specialization: specialization,
-                            ));
+                        context.read<VacancyFeedBloc>().add(
+                          LoadVacancyFeed(
+                            jobType: jobType,
+                            experienceLevel: experienceLevel,
+                            specialization: specialization,
+                          ),
+                        );
                       },
                     ),
                   ),
@@ -124,15 +126,29 @@ class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
                 } else if (state is VacancyFeedLoaded) {
                   if (state.vacancies.isEmpty) {
                     return Center(
-                      child: Text(
-                        "Hozircha e'lonlar yo'q",
-                        style: TextStyle(color: context.colors.textSecondary),
+                      child: Column(
+                        mainAxisSize: .min,
+                        children: [
+                          Image.asset("assets/images/no_results.png"),
+                          Text(
+                            "Hozircha e’lonlar yo‘q. Sizga mos ish e’lonlari tez orada shu yerda paydo bo‘ladi.",
+                            textAlign: .center,
+                            style: context.textThemes.b1.copyWith(
+                              color: context.colors.textSecondary,
+                            ),
+                          ),
+                        ],
                       ),
                     );
                   }
                   return Column(
                     children: state.vacancies
-                        .map((vacancy) => TrendingVacancyCard(vacancy: vacancy))
+                        .map(
+                          (vacancy) => TrendingVacancyCard(
+                            vacancy: vacancy,
+                            isLiked: vacancy.hasSaved ?? false,
+                          ),
+                        )
                         .toList(),
                   );
                 }

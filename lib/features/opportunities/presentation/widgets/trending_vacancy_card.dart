@@ -1,10 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/features/opportunities/presentation/bloc/vacancy_feed_bloc.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/apply_to_vacancy_sheet.dart';
+
 import '../../data/models/vacancy.dart';
 
 class TrendingVacancyCard extends StatelessWidget {
@@ -37,7 +40,7 @@ class TrendingVacancyCard extends StatelessWidget {
     final orgName = v?.organization?.name ?? "Uzum Bank";
     final isHot = v?.isTemporary == true;
     final title = v?.jobTitle ?? "UX/UI Dizayner";
-    
+
     final details = [
       v?.location ?? "Toshkent",
       v?.jobType?.replaceAll('_', ' ') ?? "To'liq stavka",
@@ -45,19 +48,16 @@ class TrendingVacancyCard extends StatelessWidget {
     ].join(" • ");
 
     return InkWell(
-      onTap: () {
-        if (v?.id != null) context.pushRoute(VacancyDetailsRoute(id: v!.id));
-      },
+      onTap: () => context.pushRoute(VacancyDetailsRoute(id: v!.id)),
       borderRadius: BorderRadius.circular(16),
       child: Container(
-        padding: const EdgeInsets.all(16),
-        margin: const EdgeInsets.only(bottom: 12),
+        padding: const .all(12),
         decoration: BoxDecoration(
           color: context.colors.bgPrimary,
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: .circular(16),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: .start,
           children: [
             Row(
               children: [
@@ -70,7 +70,10 @@ class TrendingVacancyCard extends StatelessWidget {
                 const SizedBox(width: 8),
                 if (isHot)
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 6,
+                      vertical: 2,
+                    ),
                     decoration: BoxDecoration(
                       color: context.colors.bgTertiary,
                       borderRadius: BorderRadius.circular(4),
@@ -81,15 +84,35 @@ class TrendingVacancyCard extends StatelessWidget {
                     ),
                   ),
                 const Spacer(),
-                Icon(
-                  isLiked ? Icons.favorite : Icons.favorite_border,
-                  color: isLiked ? Colors.red : context.colors.textSecondary,
+                IconButton(
+                  style: IconButton.styleFrom(
+                    tapTargetSize: .shrinkWrap,
+                    visualDensity: .compact,
+                    padding: .zero,
+                  ),
+                  icon: Icon(
+                    isLiked ? Icons.favorite : Icons.favorite_border,
+                    size: 20,
+                    color: isLiked ? Colors.red : null,
+                  ),
+                  onPressed: () {
+                    if (vacancy?.id != null) {
+                      context.read<VacancyFeedBloc>().add(
+                        ToggleSaveVacancyFeed(
+                          id: vacancy!.id,
+                          currentlySaved: isLiked,
+                        ),
+                      );
+                    }
+                  },
                 ),
               ],
             ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 4),
             Text(
               title,
+              maxLines: 2,
+              overflow: .ellipsis,
               style: context.textThemes.s1,
             ),
             const SizedBox(height: 8),

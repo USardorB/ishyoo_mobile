@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/opportunities/presentation/bloc/nearby_jobs_bloc.dart';
+import 'package:mobile/features/opportunities/presentation/widgets/no_nearby_jobs_placeholder.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/trending_vacancy_card.dart';
 
 @RoutePage()
@@ -63,7 +64,10 @@ class _NearbyJobsPageState extends State<NearbyJobsPage> {
               }
 
               return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -109,21 +113,20 @@ class _NearbyJobsPageState extends State<NearbyJobsPage> {
                   );
                 } else if (state is NearbyJobsLoaded) {
                   if (state.vacancies.isEmpty) {
-                    return Center(
-                      child: Text(
-                        "Hozircha e'lonlar yo'q",
-                        style: TextStyle(color: context.colors.textSecondary),
-                      ),
-                    );
+                    return const NoNearbyJobsPlaceholder();
                   }
                   return ListView.separated(
-                    padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
-                      bottom: MediaQuery.paddingOf(context).bottom + 16,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 16)
+                        .copyWith(
+                          bottom: MediaQuery.paddingOf(context).bottom + 16,
+                        ),
                     itemCount: state.vacancies.length,
-                    separatorBuilder: (context, index) => const SizedBox(height: 12),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 12),
                     itemBuilder: (context, index) {
-                      return TrendingVacancyCard(vacancy: state.vacancies[index]);
+                      return TrendingVacancyCard(
+                        vacancy: state.vacancies[index],
+                      );
                     },
                   );
                 }

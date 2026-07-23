@@ -21,124 +21,217 @@ class SettingsPage extends StatelessWidget {
         child: Column(
           children: [
             Card.filled(
+              clipBehavior: .hardEdge,
               margin: .zero,
               shape: RoundedRectangleBorder(
                 borderRadius: .circular(16),
               ),
               color: context.colors.bgPrimary,
-              child: Padding(
-                padding: .symmetric(horizontal: 12),
-                child: Column(
-                  children: [
-                    ListTile(
-                      onTap: () => context.router.push(EditCompanyInfoRoute()),
-                      contentPadding: .zero,
-                      leading: Container(
-                        padding: .all(4),
-                        decoration: BoxDecoration(
-                          color: context.colors.bgSecondary,
-                          borderRadius: .circular(8),
-                        ),
-                        child: Icon(
-                          Icons.person,
-                          color: context.colors.textSecondary,
-                        ),
+              child: Column(
+                children: [
+                  ListTile(
+                    onTap: () => context.router.push(EditCompanyInfoRoute()),
+                    leading: Container(
+                      padding: .all(4),
+                      decoration: BoxDecoration(
+                        color: context.colors.bgSecondary,
+                        borderRadius: .circular(8),
                       ),
-                      title: Text(
-                        'Kompaniya',
-                        style: context.textThemes.buttonLarge,
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
+                      child: Icon(
+                        Icons.person,
                         color: context.colors.textSecondary,
                       ),
                     ),
-                    ListTile(
-                      onTap: () => showModalBottomSheet(
-                        context: context,
-                        builder: (_) => DividerTheme(
-                          data: DividerThemeData(
-                            thickness: .5,
-                            color: context.colors.bgSecondary,
+                    title: Text(
+                      'Kompaniya',
+                      style: context.textThemes.buttonLarge,
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      color: context.colors.textSecondary,
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () => showModalBottomSheet(
+                      context: context,
+                      builder: (_) => DividerTheme(
+                        data: DividerThemeData(
+                          thickness: .5,
+                          color: context.colors.bgSecondary,
+                        ),
+                        child: ConfigureNotificationPreferencesSheet(),
+                      ),
+                    ),
+                    leading: Container(
+                      padding: .all(4),
+                      decoration: BoxDecoration(
+                        color: context.colors.bgSecondary,
+                        borderRadius: .circular(8),
+                      ),
+                      child: Icon(
+                        Icons.notifications_active_outlined,
+                        color: context.colors.textSecondary,
+                      ),
+                    ),
+                    title: Text(
+                      'Bildirishnomalar',
+                      style: context.textThemes.buttonLarge,
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      color: context.colors.textSecondary,
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () => launchUrl(
+                      Uri.parse("https://www.ishyoo.uz/terms-of-use"),
+                      mode: LaunchMode.inAppBrowserView,
+                    ),
+                    leading: Container(
+                      padding: .all(4),
+                      decoration: BoxDecoration(
+                        color: context.colors.bgSecondary,
+                        borderRadius: .circular(8),
+                      ),
+                      child: Icon(
+                        Icons.description_outlined,
+                        color: context.colors.textSecondary,
+                      ),
+                    ),
+                    title: Text(
+                      'Ishlatish qoidasi',
+                      style: context.textThemes.buttonLarge,
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      color: context.colors.textSecondary,
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () => launchUrl(
+                      Uri.parse("https://www.ishyoo.uz/help"),
+                      mode: LaunchMode.inAppBrowserView,
+                    ),
+                    leading: Container(
+                      padding: .all(4),
+                      decoration: BoxDecoration(
+                        color: context.colors.bgSecondary,
+                        borderRadius: .circular(8),
+                      ),
+                      child: Icon(
+                        Icons.headset_mic_outlined,
+                        color: context.colors.textSecondary,
+                      ),
+                    ),
+                    title: Text(
+                      'Yordam markazi',
+                      style: context.textThemes.buttonLarge,
+                    ),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      color: context.colors.textSecondary,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 12),
+            Card.filled(
+              margin: .zero,
+              clipBehavior: .hardEdge,
+              shape: RoundedRectangleBorder(
+                borderRadius: .circular(16),
+              ),
+              color: context.colors.bgPrimary,
+              child: Column(
+                children: [
+                  ListTile(
+                    leading: Container(
+                      padding: .all(4),
+                      decoration: BoxDecoration(
+                        color: context.colors.bgSecondary,
+                        borderRadius: .circular(8),
+                      ),
+                      child: Icon(
+                        Icons.language,
+                        color: context.colors.textSecondary,
+                      ),
+                    ),
+                    title: Text(
+                      'Ilova tili',
+                      style: context.textThemes.buttonLarge,
+                    ),
+                    trailing: Row(
+                      mainAxisSize: .min,
+                      spacing: 8,
+                      children: [
+                        Text(
+                          'O‘zbek',
+                          style: context.textThemes.buttonMedium.copyWith(
+                            color: context.colors.textSecondary,
                           ),
-                          child: ConfigureNotificationPreferencesSheet(),
                         ),
-                      ),
-                      contentPadding: .zero,
-                      leading: Container(
-                        padding: .all(4),
-                        decoration: BoxDecoration(
-                          color: context.colors.bgSecondary,
-                          borderRadius: .circular(8),
-                        ),
-                        child: Icon(
-                          Icons.notifications_active_outlined,
+                        Icon(
+                          Icons.arrow_forward_ios,
                           color: context.colors.textSecondary,
                         ),
+                      ],
+                    ),
+                    onTap: () => showModalBottomSheet(
+                      context: context,
+                      builder: (_) => DividerTheme(
+                        data: DividerThemeData(
+                          thickness: .5,
+                          color: context.colors.bgSecondary,
+                        ),
+                        child: ChooseLanguageSheet(),
                       ),
-                      title: Text(
-                        'Bildirishnomalar',
-                        style: context.textThemes.buttonLarge,
+                    ),
+                  ),
+                  ListTile(
+                    onTap: () => showModalBottomSheet(
+                      context: context,
+                      builder: (_) => DividerTheme(
+                        data: DividerThemeData(
+                          thickness: .5,
+                          color: context.colors.bgSecondary,
+                        ),
+                        child: ChooseThemeSheet(),
                       ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
+                    ),
+                    leading: Container(
+                      padding: .all(4),
+                      decoration: BoxDecoration(
+                        color: context.colors.bgSecondary,
+                        borderRadius: .circular(8),
+                      ),
+                      child: Icon(
+                        Icons.palette_outlined,
                         color: context.colors.textSecondary,
                       ),
                     ),
-                    ListTile(
-                      contentPadding: .zero,
-                      onTap: () => launchUrl(
-                        Uri.parse("https://www.ishyoo.uz/terms-of-use"),
-                        mode: LaunchMode.inAppBrowserView,
-                      ),
-                      leading: Container(
-                        padding: .all(4),
-                        decoration: BoxDecoration(
-                          color: context.colors.bgSecondary,
-                          borderRadius: .circular(8),
+                    title: Text(
+                      'Dastur mavzusi',
+                      style: context.textThemes.buttonLarge,
+                    ),
+                    trailing: Row(
+                      mainAxisSize: .min,
+                      spacing: 8,
+                      children: [
+                        Text(
+                          'Tizimli',
+                          style: context.textThemes.buttonMedium.copyWith(
+                            color: context.colors.textSecondary,
+                          ),
                         ),
-                        child: Icon(
-                          Icons.description_outlined,
+                        Icon(
+                          Icons.arrow_forward_ios,
                           color: context.colors.textSecondary,
                         ),
-                      ),
-                      title: Text(
-                        'Ishlatish qoidasi',
-                        style: context.textThemes.buttonLarge,
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: context.colors.textSecondary,
-                      ),
+                      ],
                     ),
-                    ListTile(
-                      contentPadding: .zero,
-                      onTap: () => launchUrl(
-                        Uri.parse("https://www.ishyoo.uz/help"),
-                        mode: LaunchMode.inAppBrowserView,
-                      ),
-                      leading: Container(
-                        padding: .all(4),
-                        decoration: BoxDecoration(
-                          color: context.colors.bgSecondary,
-                          borderRadius: .circular(8),
-                        ),
-                        child: Icon(
-                          Icons.headset_mic_outlined,
-                          color: context.colors.textSecondary,
-                        ),
-                      ),
-                      title: Text(
-                        'Yordam markazi',
-                        style: context.textThemes.buttonLarge,
-                      ),
-                      trailing: Icon(
-                        Icons.arrow_forward_ios,
-                        color: context.colors.textSecondary,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             SizedBox(height: 12),
@@ -148,138 +241,31 @@ class SettingsPage extends StatelessWidget {
                 borderRadius: .circular(16),
               ),
               color: context.colors.bgPrimary,
-              child: Padding(
-                padding: .symmetric(horizontal: 12),
-                child: Column(
-                  children: [
-                    ListTile(
-                      contentPadding: .zero,
-                      leading: Container(
-                        padding: .all(4),
-                        decoration: BoxDecoration(
-                          color: context.colors.bgSecondary,
-                          borderRadius: .circular(8),
-                        ),
-                        child: Icon(
-                          Icons.language,
-                          color: context.colors.textSecondary,
-                        ),
-                      ),
-                      title: Text(
-                        'Ilova tili',
-                        style: context.textThemes.buttonLarge,
-                      ),
-                      trailing: Row(
-                        mainAxisSize: .min,
-                        spacing: 8,
-                        children: [
-                          Text(
-                            'O‘zbek',
-                            style: context.textThemes.buttonMedium.copyWith(
-                              color: context.colors.textSecondary,
-                            ),
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            color: context.colors.textSecondary,
-                          ),
-                        ],
-                      ),
-                      onTap: () => showModalBottomSheet(
+              child: Column(
+                children: [
+                  ListTile(
+                    onTap: () {
+                      showDialog(
                         context: context,
-                        builder: (_) => DividerTheme(
-                          data: DividerThemeData(
-                            thickness: .5,
-                            color: context.colors.bgSecondary,
-                          ),
-                          child: ChooseLanguageSheet(),
-                        ),
+                        builder: (_) => LogoutConfirmationDialog(),
+                      );
+                    },
+                    iconColor: context.colors.danger,
+                    textColor: context.colors.danger,
+                    leading: Container(
+                      padding: .all(4),
+                      decoration: BoxDecoration(
+                        color: context.colors.bgSecondary,
+                        borderRadius: .circular(8),
                       ),
+                      child: Icon(Icons.logout),
                     ),
-                    ListTile(
-                      onTap: () => showModalBottomSheet(
-                        context: context,
-                        builder: (_) => DividerTheme(
-                          data: DividerThemeData(
-                            thickness: .5,
-                            color: context.colors.bgSecondary,
-                          ),
-                          child: ChooseThemeSheet(),
-                        ),
-                      ),
-                      contentPadding: .zero,
-                      leading: Container(
-                        padding: .all(4),
-                        decoration: BoxDecoration(
-                          color: context.colors.bgSecondary,
-                          borderRadius: .circular(8),
-                        ),
-                        child: Icon(
-                          Icons.palette_outlined,
-                          color: context.colors.textSecondary,
-                        ),
-                      ),
-                      title: Text(
-                        'Dastur mavzusi',
-                        style: context.textThemes.buttonLarge,
-                      ),
-                      trailing: Row(
-                        mainAxisSize: .min,
-                        spacing: 8,
-                        children: [
-                          Text(
-                            'Tizimli',
-                            style: context.textThemes.buttonMedium.copyWith(
-                              color: context.colors.textSecondary,
-                            ),
-                          ),
-                          Icon(
-                            Icons.arrow_forward_ios,
-                            color: context.colors.textSecondary,
-                          ),
-                        ],
-                      ),
+                    title: Text(
+                      'Akkauntdan chiqish',
+                      style: context.textThemes.buttonLarge,
                     ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: 12),
-            Card.filled(
-              margin: .zero,
-              shape: RoundedRectangleBorder(
-                borderRadius: .circular(16),
-              ),
-              color: context.colors.bgPrimary,
-              child: Padding(
-                padding: .symmetric(horizontal: 12),
-                child: Column(
-                  children: [
-                    ListTile(
-                      onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (_) => LogoutConfirmationDialog(),
-                        );
-                      },
-                      iconColor: context.colors.danger,
-                      textColor: context.colors.danger,
-                      contentPadding: .zero,
-                      leading: Container(
-                        padding: .all(4),
-                        decoration: BoxDecoration(
-                          color: context.colors.bgSecondary,
-                          borderRadius: .circular(8),
-                        ),
-                        child: Icon(Icons.logout),
-                      ),
-                      title: Text(
-                        'Akkauntdan chiqish',
-                        style: context.textThemes.buttonLarge,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
             SizedBox(height: 24),

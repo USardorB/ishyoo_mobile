@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/applications/presentation/widgets/application_card.dart';
+import 'package:mobile/features/applications/presentation/widgets/no_application_placeholder.dart';
 
 import '../bloc/applications_bloc.dart';
 
@@ -104,8 +105,9 @@ class _ApplicationsPageView extends HookWidget {
                     final applications = state.applications ?? [];
 
                     if (applications.isEmpty) {
-                      return const Center(
-                        child: Text("Hozircha ma'lumot yo'q"),
+                      return const NoApplicationPlaceholder(
+                        message:
+                            "Hozircha javoblar yo‘q. Ish beruvchilardan kelgan javoblar shu yerda paydo bo‘ladi.",
                       );
                     }
 

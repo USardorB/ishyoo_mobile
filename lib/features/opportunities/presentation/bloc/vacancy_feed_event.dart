@@ -17,3 +17,13 @@ class LoadVacancyFeed extends VacancyFeedEvent {
     this.specialization,
   });
 }
+
+class ToggleSaveVacancyFeed extends VacancyFeedEvent {
+  final String id;
+  final bool currentlySaved;
+
+  const ToggleSaveVacancyFeed({
+    required this.id,
+    required this.currentlySaved,
+  });
+}
