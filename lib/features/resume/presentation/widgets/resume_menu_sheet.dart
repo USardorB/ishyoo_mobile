@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/features/resume/presentation/bloc/resume_form_bloc.dart';
 import 'package:mobile/features/resume/presentation/widgets/delete_resume_dialog.dart';
 
@@ -58,7 +59,17 @@ class ResumeMenuSheet extends StatelessWidget {
             ),
             Divider(color: context.colors.bgTertiary, height: 1),
             _MenuItem(
+              icon: Icons.picture_as_pdf_outlined,
+              label: "PDF shaklida yuklab olish",
+              onTap: () {
+                context.pop(); // close sheet
+                context.pushRoute(ResumePdfPreviewRoute(resumeId: resumeId));
+              },
+            ),
+            Divider(color: context.colors.bgTertiary, height: 1),
+            _MenuItem(
               icon: Icons.delete_outline,
+
               label: "O'chirish",
               isDestructive: true,
               onTap: () async {

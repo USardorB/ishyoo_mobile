@@ -76,6 +76,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: ArticlesRoute.page),
     AutoRoute(page: ArticleDetailsRoute.page),
     AutoRoute(page: VacancySearchRoute.page),
+    AutoRoute(page: ResumePdfPreviewRoute.page),
 
     AutoRoute(
       initial: !true,
