@@ -38,7 +38,7 @@ class ArticleItem extends StatelessWidget {
                 errorBuilder: (_, __, ___) => const SizedBox.shrink(),
               ),
             Padding(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -70,14 +70,13 @@ class ArticleItem extends StatelessWidget {
                         ),
                     ],
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 4),
                   Text(
                     article.title ?? '',
                     style: context.textThemes.s3,
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                   ),
-                  const SizedBox(height: 8),
                   if (article.content != null)
                     Html(
                       data: article.content!,
@@ -91,7 +90,7 @@ class ArticleItem extends StatelessWidget {
                         ),
                       },
                     ),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 2),
                   Row(
                     children: [
                       Icon(

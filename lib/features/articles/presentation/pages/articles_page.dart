@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
+import 'package:mobile/features/articles/presentation/widgets/no_article_found_placeholder.dart';
 
 import '../bloc/articles_bloc.dart';
 import '../widgets/article_item.dart';
@@ -28,7 +29,7 @@ class _ArticlesPageView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Maqolalar"),
+        title: const Text("Karyera maqolalari"),
       ),
       body: BlocBuilder<ArticlesBloc, ArticlesState>(
         builder: (context, state) {
@@ -43,7 +44,7 @@ class _ArticlesPageView extends StatelessWidget {
           final articles = state.articles ?? [];
 
           if (articles.isEmpty) {
-            return const Center(child: Text("Hozircha maqolalar yo'q"));
+            return const NoArticleFoundPlaceholder();
           }
 
           return ListView.separated(
