@@ -15,7 +15,10 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Sozlamalar')),
+      appBar: AppBar(
+        title: Text('Sozlamalar'),
+        centerTitle: true,
+      ),
       body: Padding(
         padding: .all(16),
         child: Column(
@@ -236,6 +239,7 @@ class SettingsPage extends StatelessWidget {
             ),
             SizedBox(height: 12),
             Card.filled(
+              clipBehavior: .hardEdge,
               margin: .zero,
               shape: RoundedRectangleBorder(
                 borderRadius: .circular(16),
