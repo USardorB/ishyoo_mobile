@@ -50,3 +50,24 @@ class AuthLogoutRequested extends AuthEvent {
 
   AuthLogoutRequested(this.role);
 }
+
+class AuthForgotPasswordSmsRequested extends AuthEvent {
+  final String role;
+  final SmsRequestPayload payload;
+
+  AuthForgotPasswordSmsRequested(this.role, this.payload);
+}
+
+class AuthForgotPasswordVerifyRequested extends AuthEvent {
+  final String role;
+  final VerifyRequest request;
+
+  AuthForgotPasswordVerifyRequested(this.role, this.request);
+}
+
+class AuthForgotPasswordResetRequested extends AuthEvent {
+  final String role;
+  final ResetPasswordRequest request;
+
+  AuthForgotPasswordResetRequested(this.role, this.request);
+}

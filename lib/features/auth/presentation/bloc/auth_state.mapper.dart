@@ -41,6 +41,8 @@ class AuthStatusMapper extends EnumMapper<AuthStatus> {
         return AuthStatus.unauthenticated;
       case r'failure':
         return AuthStatus.failure;
+      case r'passwordResetSuccess':
+        return AuthStatus.passwordResetSuccess;
       default:
         throw MapperException.unknownEnumValue(value);
     }
@@ -63,6 +65,8 @@ class AuthStatusMapper extends EnumMapper<AuthStatus> {
         return r'unauthenticated';
       case AuthStatus.failure:
         return r'failure';
+      case AuthStatus.passwordResetSuccess:
+        return r'passwordResetSuccess';
     }
   }
 }

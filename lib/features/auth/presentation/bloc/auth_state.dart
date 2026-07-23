@@ -13,6 +13,7 @@ enum AuthStatus {
   authenticated,
   unauthenticated,
   failure,
+  passwordResetSuccess,
 }
 
 @MappableClass()

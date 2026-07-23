@@ -130,3 +130,49 @@ class LogoutUseCase implements UseCase<Unit, RoleParam> {
     return _repository.logout(params!.role);
   }
 }
+
+@injectable
+class ForgotPasswordSmsUseCase implements UseCase<SmsRequestResponse, RequestSmsParams> {
+  final AuthRepository _repository;
+
+  ForgotPasswordSmsUseCase(this._repository);
+
+  @override
+  Future<Either<Failure, SmsRequestResponse>> call([RequestSmsParams? params]) {
+    assert(params != null);
+    return _repository.forgotPasswordSmsRequest(params!.role, params.payload);
+  }
+}
+
+@injectable
+class ForgotPasswordVerifyUseCase implements UseCase<VerifyMetadataResponse, VerifyParams> {
+  final AuthRepository _repository;
+
+  ForgotPasswordVerifyUseCase(this._repository);
+
+  @override
+  Future<Either<Failure, VerifyMetadataResponse>> call([VerifyParams? params]) {
+    assert(params != null);
+    return _repository.forgotPasswordVerify(params!.role, params.request);
+  }
+}
+
+class ResetPasswordParams {
+  final String role;
+  final ResetPasswordRequest request;
+
+  const ResetPasswordParams(this.role, this.request);
+}
+
+@injectable
+class ResetPasswordUseCase implements UseCase<Unit, ResetPasswordParams> {
+  final AuthRepository _repository;
+
+  ResetPasswordUseCase(this._repository);
+
+  @override
+  Future<Either<Failure, Unit>> call([ResetPasswordParams? params]) {
+    assert(params != null);
+    return _repository.resetPassword(params!.role, params.request);
+  }
+}

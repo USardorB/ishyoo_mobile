@@ -14,6 +14,8 @@ import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 import 'package:mobile/core/configs/di/app_modules.dart' as _i385;
 import 'package:mobile/core/configs/network/auth_interceptor.dart' as _i726;
+import 'package:mobile/core/shared/services/local_notification_service.dart'
+    as _i129;
 import 'package:mobile/core/shared/services/token_service.dart' as _i910;
 import 'package:mobile/features/applicants/data/datasources/applicants_remote_data_source.dart'
     as _i1044;
@@ -191,6 +193,9 @@ extension GetItInjectableX on _i174.GetIt {
     await gh.factoryAsync<_i460.SharedPreferences>(
       () => networkModule.prefs,
       preResolve: true,
+    );
+    gh.lazySingleton<_i129.LocalNotificationService>(
+      () => _i129.LocalNotificationService(),
     );
     gh.lazySingleton<_i910.TokenService>(
       () => _i910.TokenService(gh<_i460.SharedPreferences>()),
@@ -438,6 +443,15 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i316.LogoutUseCase>(
       () => _i316.LogoutUseCase(gh<_i202.AuthRepository>()),
     );
+    gh.factory<_i316.ForgotPasswordSmsUseCase>(
+      () => _i316.ForgotPasswordSmsUseCase(gh<_i202.AuthRepository>()),
+    );
+    gh.factory<_i316.ForgotPasswordVerifyUseCase>(
+      () => _i316.ForgotPasswordVerifyUseCase(gh<_i202.AuthRepository>()),
+    );
+    gh.factory<_i316.ResetPasswordUseCase>(
+      () => _i316.ResetPasswordUseCase(gh<_i202.AuthRepository>()),
+    );
     gh.factory<_i113.EmployerOrganizationBloc>(
       () => _i113.EmployerOrganizationBloc(gh<_i728.ProfileRepository>()),
     );
@@ -452,6 +466,19 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i865.ResumeDetailBloc>(
       () => _i865.ResumeDetailBloc(gh<_i140.GetResumeDetailUseCase>()),
     );
+    gh.factory<_i520.AuthBloc>(
+      () => _i520.AuthBloc(
+        gh<_i316.RequestSmsUseCase>(),
+        gh<_i316.RegisterUseCase>(),
+        gh<_i316.VerifyUseCase>(),
+        gh<_i316.LoginUseCase>(),
+        gh<_i316.GetMeUseCase>(),
+        gh<_i316.LogoutUseCase>(),
+        gh<_i316.ForgotPasswordSmsUseCase>(),
+        gh<_i316.ForgotPasswordVerifyUseCase>(),
+        gh<_i316.ResetPasswordUseCase>(),
+      ),
+    );
     gh.factory<_i1060.ApplicantsBloc>(
       () => _i1060.ApplicantsBloc(gh<_i777.ApplicantsRepository>()),
     );
@@ -465,16 +492,6 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i737.GetRegionsUseCase>(
       () => _i737.GetRegionsUseCase(gh<_i651.LocationRepository>()),
-    );
-    gh.factory<_i520.AuthBloc>(
-      () => _i520.AuthBloc(
-        gh<_i316.RequestSmsUseCase>(),
-        gh<_i316.RegisterUseCase>(),
-        gh<_i316.VerifyUseCase>(),
-        gh<_i316.LoginUseCase>(),
-        gh<_i316.GetMeUseCase>(),
-        gh<_i316.LogoutUseCase>(),
-      ),
     );
     gh.factory<_i293.SettingsBloc>(
       () => _i293.SettingsBloc(gh<_i362.SettingsRepository>()),

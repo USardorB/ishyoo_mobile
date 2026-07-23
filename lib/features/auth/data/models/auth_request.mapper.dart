@@ -679,3 +679,145 @@ class _LoginRequestCopyWithImpl<$R, $Out>
   ) => _LoginRequestCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
+class ResetPasswordRequestMapper extends ClassMapperBase<ResetPasswordRequest> {
+  ResetPasswordRequestMapper._();
+
+  static ResetPasswordRequestMapper? _instance;
+  static ResetPasswordRequestMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = ResetPasswordRequestMapper._());
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'ResetPasswordRequest';
+
+  static String _$requestId(ResetPasswordRequest v) => v.requestId;
+  static const Field<ResetPasswordRequest, String> _f$requestId = Field(
+    'requestId',
+    _$requestId,
+    key: r'request_id',
+  );
+  static String _$password(ResetPasswordRequest v) => v.password;
+  static const Field<ResetPasswordRequest, String> _f$password = Field(
+    'password',
+    _$password,
+  );
+
+  @override
+  final MappableFields<ResetPasswordRequest> fields = const {
+    #requestId: _f$requestId,
+    #password: _f$password,
+  };
+
+  static ResetPasswordRequest _instantiate(DecodingData data) {
+    return ResetPasswordRequest(
+      requestId: data.dec(_f$requestId),
+      password: data.dec(_f$password),
+    );
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+
+  static ResetPasswordRequest fromMap(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<ResetPasswordRequest>(map);
+  }
+
+  static ResetPasswordRequest fromJson(String json) {
+    return ensureInitialized().decodeJson<ResetPasswordRequest>(json);
+  }
+}
+
+mixin ResetPasswordRequestMappable {
+  String toJson() {
+    return ResetPasswordRequestMapper.ensureInitialized()
+        .encodeJson<ResetPasswordRequest>(this as ResetPasswordRequest);
+  }
+
+  Map<String, dynamic> toMap() {
+    return ResetPasswordRequestMapper.ensureInitialized()
+        .encodeMap<ResetPasswordRequest>(this as ResetPasswordRequest);
+  }
+
+  ResetPasswordRequestCopyWith<
+    ResetPasswordRequest,
+    ResetPasswordRequest,
+    ResetPasswordRequest
+  >
+  get copyWith =>
+      _ResetPasswordRequestCopyWithImpl<
+        ResetPasswordRequest,
+        ResetPasswordRequest
+      >(this as ResetPasswordRequest, $identity, $identity);
+  @override
+  String toString() {
+    return ResetPasswordRequestMapper.ensureInitialized().stringifyValue(
+      this as ResetPasswordRequest,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return ResetPasswordRequestMapper.ensureInitialized().equalsValue(
+      this as ResetPasswordRequest,
+      other,
+    );
+  }
+
+  @override
+  int get hashCode {
+    return ResetPasswordRequestMapper.ensureInitialized().hashValue(
+      this as ResetPasswordRequest,
+    );
+  }
+}
+
+extension ResetPasswordRequestValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, ResetPasswordRequest, $Out> {
+  ResetPasswordRequestCopyWith<$R, ResetPasswordRequest, $Out>
+  get $asResetPasswordRequest => $base.as(
+    (v, t, t2) => _ResetPasswordRequestCopyWithImpl<$R, $Out>(v, t, t2),
+  );
+}
+
+abstract class ResetPasswordRequestCopyWith<
+  $R,
+  $In extends ResetPasswordRequest,
+  $Out
+>
+    implements ClassCopyWith<$R, $In, $Out> {
+  $R call({String? requestId, String? password});
+  ResetPasswordRequestCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+    Then<$Out2, $R2> t,
+  );
+}
+
+class _ResetPasswordRequestCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, ResetPasswordRequest, $Out>
+    implements ResetPasswordRequestCopyWith<$R, ResetPasswordRequest, $Out> {
+  _ResetPasswordRequestCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<ResetPasswordRequest> $mapper =
+      ResetPasswordRequestMapper.ensureInitialized();
+  @override
+  $R call({String? requestId, String? password}) => $apply(
+    FieldCopyWithData({
+      if (requestId != null) #requestId: requestId,
+      if (password != null) #password: password,
+    }),
+  );
+  @override
+  ResetPasswordRequest $make(CopyWithData data) => ResetPasswordRequest(
+    requestId: data.get(#requestId, or: $value.requestId),
+    password: data.get(#password, or: $value.password),
+  );
+
+  @override
+  ResetPasswordRequestCopyWith<$R2, ResetPasswordRequest, $Out2>
+  $chain<$R2, $Out2>(Then<$Out2, $R2> t) =>
+      _ResetPasswordRequestCopyWithImpl<$R2, $Out2>($value, $cast, t);
+}
+

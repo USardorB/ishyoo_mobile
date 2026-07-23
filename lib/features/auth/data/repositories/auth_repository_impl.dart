@@ -48,4 +48,22 @@ class AuthRepositoryImpl implements AuthRepository {
   @override
   Future<Either<Failure, Unit>> logout(String role) =>
       _remoteDataSource.logout(role).asEither();
+
+  @override
+  Future<Either<Failure, SmsRequestResponse>> forgotPasswordSmsRequest(
+    String role,
+    SmsRequestPayload payload,
+  ) => _remoteDataSource.forgotPasswordSmsRequest(role, payload.toMap()).asEither();
+
+  @override
+  Future<Either<Failure, VerifyMetadataResponse>> forgotPasswordVerify(
+    String role,
+    VerifyRequest request,
+  ) => _remoteDataSource.forgotPasswordVerify(role, request.toMap()).asEither();
+
+  @override
+  Future<Either<Failure, Unit>> resetPassword(
+    String role,
+    ResetPasswordRequest request,
+  ) => _remoteDataSource.resetPassword(role, request.toMap()).asEither();
 }

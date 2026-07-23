@@ -85,3 +85,16 @@ class LoginRequest with LoginRequestMappable {
   });
 
 }
+
+@MappableClass()
+class ResetPasswordRequest with ResetPasswordRequestMappable {
+  @MappableField(key: 'request_id')
+  final String requestId;
+  final String password;
+
+  const ResetPasswordRequest({
+    required this.requestId,
+    required this.password,
+  });
+
+}

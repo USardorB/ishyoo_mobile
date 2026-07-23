@@ -47,7 +47,8 @@ class LoginPage extends HookWidget {
         return;
       }
 
-      String deviceName = '${Platform.operatingSystem} ${Platform.operatingSystemVersion}';
+      String deviceName =
+          '${Platform.operatingSystem} ${Platform.operatingSystemVersion}';
 
       final deviceId = const Uuid().v4();
       final roleString = role == UserRole.job_seeker ? 'candidate' : 'employer';
@@ -146,10 +147,9 @@ class LoginPage extends HookWidget {
                 Align(
                   alignment: .centerRight,
                   child: TextButton(
-                    onPressed: () => AppNotificationOverlay.instance.show(
-                      message: 'Will be implemented in the future releases!',
-                      type: .warning,
-                    ),
+                    onPressed: () {
+                      context.router.push(const ForgotPasswordRoute());
+                    },
                     child: Text(
                       'Parolni unutdingizmi?',
                       style: context.textThemes.b1,

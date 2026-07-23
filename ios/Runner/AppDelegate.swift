@@ -13,6 +13,11 @@ import UIKit
             blue: 13/255.0,
             alpha: 1.0
           )
+    
+    if #available(iOS 10.0, *) {
+      UNUserNotificationCenter.current().delegate = self as? UNUserNotificationCenterDelegate
+    }
+    
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 

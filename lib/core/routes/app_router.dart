@@ -77,6 +77,9 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: ArticleDetailsRoute.page),
     AutoRoute(page: VacancySearchRoute.page),
     AutoRoute(page: ResumePdfPreviewRoute.page),
+    AutoRoute(page: ForgotPasswordRoute.page),
+    AutoRoute(page: ForgotPasswordOtpRoute.page),
+    AutoRoute(page: ResetPasswordRoute.page),
 
     AutoRoute(
       initial: !true,

@@ -51,4 +51,22 @@ abstract class AuthRemoteDataSource {
   Future<BaseResult<void>> logout(
     @Path("role") String role,
   );
+
+  @POST(ApiEndpoints.forgotPasswordSmsRequest)
+  Future<BaseResult<SmsRequestResponse>> forgotPasswordSmsRequest(
+    @Path("role") String role,
+    @Body() Map<String, dynamic> payload,
+  );
+
+  @POST(ApiEndpoints.forgotPasswordVerify)
+  Future<BaseResult<VerifyMetadataResponse>> forgotPasswordVerify(
+    @Path("role") String role,
+    @Body() Map<String, dynamic> request,
+  );
+
+  @POST(ApiEndpoints.forgotPasswordReset)
+  Future<BaseResult<void>> resetPassword(
+    @Path("role") String role,
+    @Body() Map<String, dynamic> request,
+  );
 }
