@@ -32,9 +32,7 @@ class FieldOfActivity extends StatelessWidget {
                 Wrap(
                   spacing: 8,
                   runSpacing: 12,
-                  children: [
-                    _buildPill(context, organization!.industry!)
-                  ],
+                  children: [_buildPill(context, organization!.industry!)],
                 )
               else
                 Text("Kiritilmagan", style: context.textThemes.b2),

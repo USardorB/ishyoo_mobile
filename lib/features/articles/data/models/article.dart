@@ -36,7 +36,8 @@ class Article with ArticleMappable {
     this.updatedAt,
   });
 
-  factory Article.fromJson(Map<String, dynamic> json) => ArticleMapper.fromMap(json);
+  factory Article.fromJson(Map<String, dynamic> json) =>
+      ArticleMapper.fromMap(json);
 }
 
 @MappableClass()
@@ -58,5 +59,6 @@ class SavedArticle with SavedArticleMappable {
     this.article,
   });
 
-  factory SavedArticle.fromJson(Map<String, dynamic> json) => SavedArticleMapper.fromMap(json);
+  factory SavedArticle.fromJson(Map<String, dynamic> json) =>
+      SavedArticleMapper.fromMap(json);
 }

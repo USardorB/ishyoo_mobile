@@ -31,10 +31,12 @@ class ApplicantDetailsPage extends StatelessWidget {
 
     return BlocProvider(
       create: (_) => sl<ApplicantDetailBloc>()
-        ..add(LoadApplicantDetail(
-          vacancyId: vacancyId,
-          applicantId: applicantId,
-        )),
+        ..add(
+          LoadApplicantDetail(
+            vacancyId: vacancyId,
+            applicantId: applicantId,
+          ),
+        ),
       child: BlocListener<ApplicantDetailBloc, ApplicantDetailState>(
         listener: (context, state) {
           if (state.error != null) {
@@ -101,9 +103,10 @@ class ApplicantDetailsPage extends StatelessWidget {
             },
           ),
           bottomSheet: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12).copyWith(
-              bottom: 12 + bottom,
-            ),
+            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12)
+                .copyWith(
+                  bottom: 12 + bottom,
+                ),
             child: NewApplicantActionButtons(
               vacancyId: vacancyId,
               applicantId: applicantId,

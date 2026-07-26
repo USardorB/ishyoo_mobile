@@ -13,7 +13,8 @@ class GetVacancyDetailParams {
 }
 
 @lazySingleton
-class GetVacancyDetailUseCase implements UseCase<Vacancy, GetVacancyDetailParams> {
+class GetVacancyDetailUseCase
+    implements UseCase<Vacancy, GetVacancyDetailParams> {
   final VacancyRepository repository;
 
   GetVacancyDetailUseCase(this.repository);

@@ -69,7 +69,8 @@ class ApplicantDetailState {
 
 // --- BLOC ---
 @injectable
-class ApplicantDetailBloc extends Bloc<ApplicantDetailEvent, ApplicantDetailState> {
+class ApplicantDetailBloc
+    extends Bloc<ApplicantDetailEvent, ApplicantDetailState> {
   final ApplicantsRepository _repository;
 
   ApplicantDetailBloc(this._repository) : super(ApplicantDetailState()) {
@@ -78,19 +79,27 @@ class ApplicantDetailBloc extends Bloc<ApplicantDetailEvent, ApplicantDetailStat
     on<ScheduleApplicantInterview>(_onScheduleInterview);
   }
 
-  Future<void> _onLoad(LoadApplicantDetail event, Emitter<ApplicantDetailState> emit) async {
+  Future<void> _onLoad(
+    LoadApplicantDetail event,
+    Emitter<ApplicantDetailState> emit,
+  ) async {
     emit(state.copyWith(isLoading: true, error: null));
     final result = await _repository.getVacancyApplicantDetail(
       event.vacancyId,
       event.applicantId,
     );
     result.fold(
-      (failure) => emit(state.copyWith(isLoading: false, error: failure.message)),
-      (applicant) => emit(state.copyWith(isLoading: false, applicant: applicant)),
+      (failure) =>
+          emit(state.copyWith(isLoading: false, error: failure.message)),
+      (applicant) =>
+          emit(state.copyWith(isLoading: false, applicant: applicant)),
     );
   }
 
-  Future<void> _onUpdateStatus(UpdateApplicantDetailStatus event, Emitter<ApplicantDetailState> emit) async {
+  Future<void> _onUpdateStatus(
+    UpdateApplicantDetailStatus event,
+    Emitter<ApplicantDetailState> emit,
+  ) async {
     emit(state.copyWith(isUpdating: true, error: null));
     final result = await _repository.updateApplicationStatus(
       event.vacancyId,
@@ -98,16 +107,25 @@ class ApplicantDetailBloc extends Bloc<ApplicantDetailEvent, ApplicantDetailStat
       {'status': event.status},
     );
     result.fold(
-      (failure) => emit(state.copyWith(isUpdating: false, error: failure.message)),
+      (failure) =>
+          emit(state.copyWith(isUpdating: false, error: failure.message)),
       (_) {
         emit(state.copyWith(isUpdating: false, isUpdateSuccess: true));
         // Reload to get fresh data
-        add(LoadApplicantDetail(vacancyId: event.vacancyId, applicantId: event.applicantId));
+        add(
+          LoadApplicantDetail(
+            vacancyId: event.vacancyId,
+            applicantId: event.applicantId,
+          ),
+        );
       },
     );
   }
 
-  Future<void> _onScheduleInterview(ScheduleApplicantInterview event, Emitter<ApplicantDetailState> emit) async {
+  Future<void> _onScheduleInterview(
+    ScheduleApplicantInterview event,
+    Emitter<ApplicantDetailState> emit,
+  ) async {
     emit(state.copyWith(isUpdating: true, error: null));
     final result = await _repository.scheduleInterview(
       event.vacancyId,
@@ -115,7 +133,8 @@ class ApplicantDetailBloc extends Bloc<ApplicantDetailEvent, ApplicantDetailStat
       event.body,
     );
     result.fold(
-      (failure) => emit(state.copyWith(isUpdating: false, error: failure.message)),
+      (failure) =>
+          emit(state.copyWith(isUpdating: false, error: failure.message)),
       (_) => emit(state.copyWith(isUpdating: false, isUpdateSuccess: true)),
     );
   }

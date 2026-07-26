@@ -70,8 +70,10 @@ class ApplicationsBloc extends Bloc<ApplicationsEvent, ApplicationsState> {
     );
 
     result.fold(
-      (failure) => emit(state.copyWith(isLoading: false, error: failure.message)),
-      (applications) => emit(state.copyWith(isLoading: false, applications: applications)),
+      (failure) =>
+          emit(state.copyWith(isLoading: false, error: failure.message)),
+      (applications) =>
+          emit(state.copyWith(isLoading: false, applications: applications)),
     );
   }
 

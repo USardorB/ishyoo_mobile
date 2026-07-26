@@ -26,7 +26,9 @@ class NotificationDetailsPage extends StatelessWidget {
     final roleString = role == UserRole.job_seeker ? 'candidate' : 'employer';
 
     return BlocProvider(
-      create: (context) => sl<NotificationDetailBloc>()..add(LoadNotificationDetail(roleString, id)),
+      create: (context) =>
+          sl<NotificationDetailBloc>()
+            ..add(LoadNotificationDetail(roleString, id)),
       child: Scaffold(
         appBar: AppBar(
           title: Text(title),
@@ -57,7 +59,9 @@ class NotificationDetailsPage extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   notification.createdAt != null
-                      ? DateFormat('dd-MMM, HH:mm').format(notification.createdAt!)
+                      ? DateFormat(
+                          'dd-MMM, HH:mm',
+                        ).format(notification.createdAt!)
                       : "",
                   style: context.textThemes.b2.copyWith(
                     color: context.colors.textSecondary,
@@ -72,4 +76,3 @@ class NotificationDetailsPage extends StatelessWidget {
     );
   }
 }
-

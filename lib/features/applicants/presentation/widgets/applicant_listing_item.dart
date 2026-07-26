@@ -19,10 +19,12 @@ class ApplicantListingItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.pushRoute(ApplicantDetailsRoute(
-          vacancyId: vacancyId,
-          applicantId: applicant.id,
-        ));
+        context.pushRoute(
+          ApplicantDetailsRoute(
+            vacancyId: applicant.vacancyId ?? vacancyId,
+            applicantId: applicant.id,
+          ),
+        );
       },
       child: Container(
         padding: .all(18),
@@ -63,7 +65,9 @@ class ApplicantListingItem extends StatelessWidget {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      applicant.expectedSalary != null ? '${applicant.expectedSalary} ${applicant.currency ?? 'UZS'}' : 'Kelishilgan',
+                      applicant.expectedSalary != null
+                          ? '${applicant.expectedSalary} ${applicant.currency ?? 'UZS'}'
+                          : 'Kelishilgan',
                       style: context.textThemes.s3,
                     ),
                     SizedBox(height: 12),
@@ -122,7 +126,7 @@ class ApplicantListingItem extends StatelessWidget {
             SizedBox(height: 16),
             if (applicant.applicationStatus == 'applied')
               NewApplicantActionButtons(
-                vacancyId: vacancyId,
+                vacancyId: applicant.vacancyId ?? vacancyId,
                 applicantId: applicant.id,
               ),
           ],

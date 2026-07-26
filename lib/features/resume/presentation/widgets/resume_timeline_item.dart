@@ -25,7 +25,9 @@ class ResumeTimelineItem extends StatelessWidget {
           width: 10,
           height: 10,
           decoration: BoxDecoration(
-            color: isActive ? context.colors.brandProgress : context.colors.bgTertiary,
+            color: isActive
+                ? context.colors.brandProgress
+                : context.colors.bgTertiary,
             shape: BoxShape.circle,
           ),
         ),
@@ -40,7 +42,9 @@ class ResumeTimelineItem extends StatelessWidget {
               const SizedBox(height: 2),
               Text(
                 date,
-                style: context.textThemes.c2.copyWith(color: context.colors.textSecondary),
+                style: context.textThemes.c2.copyWith(
+                  color: context.colors.textSecondary,
+                ),
               ),
             ],
           ),

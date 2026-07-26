@@ -42,13 +42,19 @@ class ResumeDetailBloc extends Bloc<ResumeDetailEvent, ResumeDetailState> {
     on<LoadResumeDetail>(_onLoad);
   }
 
-  Future<void> _onLoad(LoadResumeDetail event, Emitter<ResumeDetailState> emit) async {
+  Future<void> _onLoad(
+    LoadResumeDetail event,
+    Emitter<ResumeDetailState> emit,
+  ) async {
     emit(state.copyWith(isLoading: true, error: null));
 
-    final result = await _getResumeDetailUseCase(GetResumeDetailParams(event.id));
+    final result = await _getResumeDetailUseCase(
+      GetResumeDetailParams(event.id),
+    );
 
     result.fold(
-      (failure) => emit(state.copyWith(isLoading: false, error: failure.message)),
+      (failure) =>
+          emit(state.copyWith(isLoading: false, error: failure.message)),
       (resume) => emit(state.copyWith(isLoading: false, resume: resume)),
     );
   }

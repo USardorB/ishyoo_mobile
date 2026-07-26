@@ -4,7 +4,7 @@ import 'package:mobile/core/extensions/app_theme_extension.dart';
 class ChatDetailsPageJobCard extends StatelessWidget
     implements PreferredSizeWidget {
   final String title;
-  
+
   const ChatDetailsPageJobCard({super.key, required this.title});
 
   @override

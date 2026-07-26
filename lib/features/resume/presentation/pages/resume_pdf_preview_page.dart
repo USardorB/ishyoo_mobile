@@ -34,22 +34,30 @@ class _ResumePdfPreviewPageState extends State<ResumePdfPreviewPage> {
 
   Future<void> _loadData() async {
     try {
-      final resumeResult = await sl<GetResumeDetailUseCase>()(GetResumeDetailParams(widget.resumeId));
+      final resumeResult = await sl<GetResumeDetailUseCase>()(
+        GetResumeDetailParams(widget.resumeId),
+      );
       final profileResult = await sl<ProfileRepository>().getCandidateProfile();
 
       resumeResult.fold(
-        (l) => setState(() { _error = l.message; _isLoading = false; }),
+        (l) => setState(() {
+          _error = l.message;
+          _isLoading = false;
+        }),
         (resume) {
           profileResult.fold(
-            (l) => setState(() { _error = l.message; _isLoading = false; }),
+            (l) => setState(() {
+              _error = l.message;
+              _isLoading = false;
+            }),
             (profile) {
               setState(() {
                 _pdfModel = _buildModel(resume, profile);
                 _isLoading = false;
               });
-            }
+            },
           );
-        }
+        },
       );
     } catch (e) {
       setState(() {
@@ -62,17 +70,21 @@ class _ResumePdfPreviewPageState extends State<ResumePdfPreviewPage> {
   ResumePdfModel _buildModel(Resume resume, Profile profile) {
     DateTime? birthDate;
     if (profile.birthDate != null) {
-      try { birthDate = DateTime.parse(profile.birthDate!); } catch (_) {}
+      try {
+        birthDate = DateTime.parse(profile.birthDate!);
+      } catch (_) {}
     }
-    
+
     return ResumePdfModel(
       firstName: profile.firstName,
       lastName: profile.lastName,
       avatarUrl: profile.avatarUrl,
       // For now we don't have gender, citizenship, hasWorkPermit in profile.
       // So they will be null and the PDF generator will skip them.
-      gender: null, 
-      age: birthDate != null ? (DateTime.now().difference(birthDate).inDays ~/ 365) : null,
+      gender: null,
+      age: birthDate != null
+          ? (DateTime.now().difference(birthDate).inDays ~/ 365)
+          : null,
       birthDate: birthDate,
       phone: profile.phoneNumber,
       email: profile.email,
@@ -82,19 +94,27 @@ class _ResumePdfPreviewPageState extends State<ResumePdfPreviewPage> {
       specialization: resume.specialization,
       employmentType: resume.employmentType,
       workFormat: resume.workFormat,
-      experiences: resume.experiences?.map((e) => ResumePdfExperience(
-        companyName: e.companyName,
-        position: e.position,
-        description: e.description,
-        startDate: e.startDate,
-        endDate: e.endDate,
-      )).toList(),
-      educations: resume.educations?.map((e) => ResumePdfEducation(
-        degree: e.degree,
-        school: e.school,
-        startDate: e.startDate,
-        endDate: e.endDate,
-      )).toList(),
+      experiences: resume.experiences
+          ?.map(
+            (e) => ResumePdfExperience(
+              companyName: e.companyName,
+              position: e.position,
+              description: e.description,
+              startDate: e.startDate,
+              endDate: e.endDate,
+            ),
+          )
+          .toList(),
+      educations: resume.educations
+          ?.map(
+            (e) => ResumePdfEducation(
+              degree: e.degree,
+              school: e.school,
+              startDate: e.startDate,
+              endDate: e.endDate,
+            ),
+          )
+          .toList(),
       languages: null, // If resume has languages we can map here.
       skills: resume.skills,
       updatedAt: resume.updatedAt ?? DateTime.now(),
@@ -114,14 +134,14 @@ class _ResumePdfPreviewPageState extends State<ResumePdfPreviewPage> {
       body: _isLoading
           ? const Center(child: CircularProgressIndicator())
           : _error != null
-              ? Center(child: Text(_error!))
-              : PdfPreview(
-                  build: (format) => ResumePdfGenerator.generate(_pdfModel!),
-                  canChangeOrientation: false,
-                  canChangePageFormat: false,
-                  canDebug: false,
-                  pdfFileName: "resume_${_pdfModel!.firstName ?? 'ishchi'}.pdf",
-                ),
+          ? Center(child: Text(_error!))
+          : PdfPreview(
+              build: (format) => ResumePdfGenerator.generate(_pdfModel!),
+              canChangeOrientation: false,
+              canChangePageFormat: false,
+              canDebug: false,
+              pdfFileName: "resume_${_pdfModel!.firstName ?? 'ishchi'}.pdf",
+            ),
     );
   }
 }

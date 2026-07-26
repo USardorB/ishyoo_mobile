@@ -14,13 +14,16 @@ class ApplyToVacancyParams {
 }
 
 @lazySingleton
-class ApplyToVacancyUseCase implements UseCase<ApplicationResponse, ApplyToVacancyParams> {
+class ApplyToVacancyUseCase
+    implements UseCase<ApplicationResponse, ApplyToVacancyParams> {
   final VacancyRepository repository;
 
   ApplyToVacancyUseCase(this.repository);
 
   @override
-  Future<Either<Failure, ApplicationResponse>> call([ApplyToVacancyParams? params]) {
+  Future<Either<Failure, ApplicationResponse>> call([
+    ApplyToVacancyParams? params,
+  ]) {
     assert(params != null);
     return repository.applyToVacancy(params!.id, params.request);
   }

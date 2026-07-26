@@ -59,7 +59,12 @@ class CreateVacancySummaryStep extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Center(
-                        child: Text("U", style: context.textThemes.h5.copyWith(color: context.colors.midnightImmutable)),
+                        child: Text(
+                          "U",
+                          style: context.textThemes.h5.copyWith(
+                            color: context.colors.midnightImmutable,
+                          ),
+                        ),
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -67,17 +72,25 @@ class CreateVacancySummaryStep extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: 12),
-                Text(title.isEmpty ? 'Vakansiya nomi' : title, style: context.textThemes.h4),
+                Text(
+                  title.isEmpty ? 'Vakansiya nomi' : title,
+                  style: context.textThemes.h4,
+                ),
                 const SizedBox(height: 4),
                 if (salaryFrom != null || salaryTo != null)
                   Text(
                     "${salaryFrom?.isNotEmpty == true ? salaryFrom : '0'}–${salaryTo?.isNotEmpty == true ? salaryTo : '0'} so'm",
-                    style: context.textThemes.h5.copyWith(color: context.colors.brandDefault),
+                    style: context.textThemes.h5.copyWith(
+                      color: context.colors.brandDefault,
+                    ),
                   ),
                 const SizedBox(height: 12),
                 Row(
                   children: [
-                    _buildSmallTag(context, location.isEmpty ? 'Manzil' : location),
+                    _buildSmallTag(
+                      context,
+                      location.isEmpty ? 'Manzil' : location,
+                    ),
                     const SizedBox(width: 8),
                     _buildSmallTag(context, jobType.title),
                     const SizedBox(width: 8),
@@ -87,7 +100,9 @@ class CreateVacancySummaryStep extends StatelessWidget {
                 const SizedBox(height: 16),
                 Text(
                   description.replaceAll('\n', ' '),
-                  style: context.textThemes.b3.copyWith(color: context.colors.textSecondary),
+                  style: context.textThemes.b3.copyWith(
+                    color: context.colors.textSecondary,
+                  ),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -96,14 +111,30 @@ class CreateVacancySummaryStep extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           ListTile(
-            leading: Icon(Icons.edit_outlined, color: context.colors.brandDefault),
-            title: Text("Asosiy ma'lumotlarni tahrirlash", style: context.textThemes.s2.copyWith(color: context.colors.brandDefault)),
+            leading: Icon(
+              Icons.edit_outlined,
+              color: context.colors.brandDefault,
+            ),
+            title: Text(
+              "Asosiy ma'lumotlarni tahrirlash",
+              style: context.textThemes.s2.copyWith(
+                color: context.colors.brandDefault,
+              ),
+            ),
             onTap: onEditBasicInfo,
             contentPadding: EdgeInsets.zero,
           ),
           ListTile(
-            leading: Icon(Icons.edit_outlined, color: context.colors.brandDefault),
-            title: Text("Tavsif va talablarni tahrirlash", style: context.textThemes.s2.copyWith(color: context.colors.brandDefault)),
+            leading: Icon(
+              Icons.edit_outlined,
+              color: context.colors.brandDefault,
+            ),
+            title: Text(
+              "Tavsif va talablarni tahrirlash",
+              style: context.textThemes.s2.copyWith(
+                color: context.colors.brandDefault,
+              ),
+            ),
             onTap: onEditRequirements,
             contentPadding: EdgeInsets.zero,
           ),

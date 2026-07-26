@@ -12,7 +12,8 @@ import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/auth/data/models/auth_request.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_event.dart';
-import 'package:mobile/features/auth/presentation/bloc/auth_state.dart' as bloc_state;
+import 'package:mobile/features/auth/presentation/bloc/auth_state.dart'
+    as bloc_state;
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/features/auth/presentation/widgets/password_requirements.dart';
 
@@ -34,7 +35,7 @@ class ResetPasswordPage extends HookWidget {
         );
         return;
       }
-      
+
       final authState = context.read<AuthBloc>().state;
       final requestId = authState.requestId;
 
@@ -107,7 +108,11 @@ class ResetPasswordPage extends HookWidget {
                     onTap: () {
                       Navigator.of(context).pop();
                       context.router.replaceAll([
-                        LoginRoute(role: context.read<AuthBloc>().state.userRole ?? UserRole.job_seeker),
+                        LoginRoute(
+                          role:
+                              context.read<AuthBloc>().state.userRole ??
+                              UserRole.job_seeker,
+                        ),
                       ]);
                     },
                     label: 'Kirish',

@@ -91,7 +91,9 @@ class ApplicantStatusHeader extends StatelessWidget {
                 enabled: !state.isUpdating,
                 color: context.colors.brandProgress,
                 foregroundColor: context.colors.brandDefault,
-                label: state.isUpdating ? "Yuklanmoqda..." : "Statusni o'zgartirish",
+                label: state.isUpdating
+                    ? "Yuklanmoqda..."
+                    : "Statusni o'zgartirish",
               );
             },
           ),
@@ -106,19 +108,23 @@ class ApplicantStatusHeader extends StatelessWidget {
       context: context,
       builder: (ctx) => ListView(
         shrinkWrap: true,
-        children: statuses.map((s) => ListTile(
-          title: Text(_statusLabel(s)),
-          onTap: () {
-            Navigator.pop(ctx);
-            context.read<ApplicantDetailBloc>().add(
-                  UpdateApplicantDetailStatus(
-                    vacancyId: vacancyId,
-                    applicantId: applicantId,
-                    status: s,
-                  ),
-                );
-          },
-        )).toList(),
+        children: statuses
+            .map(
+              (s) => ListTile(
+                title: Text(_statusLabel(s)),
+                onTap: () {
+                  Navigator.pop(ctx);
+                  context.read<ApplicantDetailBloc>().add(
+                    UpdateApplicantDetailStatus(
+                      vacancyId: vacancyId,
+                      applicantId: applicantId,
+                      status: s,
+                    ),
+                  );
+                },
+              ),
+            )
+            .toList(),
       ),
     );
   }

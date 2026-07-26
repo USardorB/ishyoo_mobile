@@ -14,7 +14,8 @@ import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/auth/data/models/auth_request.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_event.dart';
-import 'package:mobile/features/auth/presentation/bloc/auth_state.dart' as bloc_state;
+import 'package:mobile/features/auth/presentation/bloc/auth_state.dart'
+    as bloc_state;
 import 'package:pinput/pinput.dart';
 
 @RoutePage()
@@ -28,7 +29,7 @@ class ForgotPasswordOtpPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final otpController = useTextEditingController();
-    
+
     final authState = context.read<AuthBloc>().state;
     final initialTtl = authState.ttl ?? 60;
     final remainingSeconds = useState<int>(initialTtl);
@@ -73,14 +74,14 @@ class ForgotPasswordOtpPage extends HookWidget {
       }
 
       context.read<AuthBloc>().add(
-            AuthForgotPasswordVerifyRequested(
-              roleString,
-              VerifyRequest(
-                requestId: requestId,
-                code: int.parse(otpController.text),
-              ),
-            ),
-          );
+        AuthForgotPasswordVerifyRequested(
+          roleString,
+          VerifyRequest(
+            requestId: requestId,
+            code: int.parse(otpController.text),
+          ),
+        ),
+      );
     }
 
     return Scaffold(
@@ -148,8 +149,13 @@ class ForgotPasswordOtpPage extends HookWidget {
                     onPressed: remainingSeconds.value == 0
                         ? () {
                             remainingSeconds.value = 60;
-                            final role = context.read<AuthBloc>().state.userRole;
-                            final roleString = role == UserRole.job_seeker ? 'candidate' : 'employer';
+                            final role = context
+                                .read<AuthBloc>()
+                                .state
+                                .userRole;
+                            final roleString = role == UserRole.job_seeker
+                                ? 'candidate'
+                                : 'employer';
                             if (phoneNumber != null) {
                               context.read<AuthBloc>().add(
                                 AuthForgotPasswordSmsRequested(

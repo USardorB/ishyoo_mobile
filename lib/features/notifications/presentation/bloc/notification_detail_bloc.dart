@@ -37,10 +37,12 @@ class NotificationDetailState {
 }
 
 @injectable
-class NotificationDetailBloc extends Bloc<NotificationDetailEvent, NotificationDetailState> {
+class NotificationDetailBloc
+    extends Bloc<NotificationDetailEvent, NotificationDetailState> {
   final GetNotificationDetailUseCase _getNotificationDetailUseCase;
 
-  NotificationDetailBloc(this._getNotificationDetailUseCase) : super(NotificationDetailState()) {
+  NotificationDetailBloc(this._getNotificationDetailUseCase)
+    : super(NotificationDetailState()) {
     on<LoadNotificationDetail>(_onLoadNotificationDetail);
   }
 
@@ -50,11 +52,15 @@ class NotificationDetailBloc extends Bloc<NotificationDetailEvent, NotificationD
   ) async {
     emit(state.copyWith(isLoading: true, error: null));
 
-    final result = await _getNotificationDetailUseCase(GetNotificationDetailParams(event.role, event.id));
+    final result = await _getNotificationDetailUseCase(
+      GetNotificationDetailParams(event.role, event.id),
+    );
 
     result.fold(
-      (failure) => emit(state.copyWith(isLoading: false, error: failure.message)),
-      (notification) => emit(state.copyWith(isLoading: false, notification: notification)),
+      (failure) =>
+          emit(state.copyWith(isLoading: false, error: failure.message)),
+      (notification) =>
+          emit(state.copyWith(isLoading: false, notification: notification)),
     );
   }
 }

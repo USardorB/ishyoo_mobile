@@ -28,5 +28,6 @@ class Notification with NotificationMappable {
     this.userId,
   });
 
-  factory Notification.fromJson(Map<String, dynamic> json) => NotificationMapper.fromMap(json);
+  factory Notification.fromJson(Map<String, dynamic> json) =>
+      NotificationMapper.fromMap(json);
 }

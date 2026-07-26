@@ -13,13 +13,16 @@ class UpdateApplicationStatusParams {
 }
 
 @lazySingleton
-class UpdateApplicationStatusUseCase implements UseCase<Application, UpdateApplicationStatusParams> {
+class UpdateApplicationStatusUseCase
+    implements UseCase<Application, UpdateApplicationStatusParams> {
   final ApplicationRepository repository;
 
   UpdateApplicationStatusUseCase(this.repository);
 
   @override
-  Future<Either<Failure, Application>> call([UpdateApplicationStatusParams? params]) {
+  Future<Either<Failure, Application>> call([
+    UpdateApplicationStatusParams? params,
+  ]) {
     return repository.updateApplicationStatus(params!.id, params.status);
   }
 }

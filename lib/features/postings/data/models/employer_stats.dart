@@ -20,7 +20,8 @@ class EmployerStats with EmployerStatsMappable {
     this.weeklyStats,
   });
 
-  factory EmployerStats.fromJson(Map<String, dynamic> json) => EmployerStatsMapper.fromMap(json);
+  factory EmployerStats.fromJson(Map<String, dynamic> json) =>
+      EmployerStatsMapper.fromMap(json);
 }
 
 @MappableClass()
@@ -35,5 +36,6 @@ class WeeklyStats with WeeklyStatsMappable {
     this.interviewsScheduled = 0,
   });
 
-  factory WeeklyStats.fromJson(Map<String, dynamic> json) => WeeklyStatsMapper.fromMap(json);
+  factory WeeklyStats.fromJson(Map<String, dynamic> json) =>
+      WeeklyStatsMapper.fromMap(json);
 }

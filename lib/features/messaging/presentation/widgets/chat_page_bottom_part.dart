@@ -29,8 +29,9 @@ class _ChatPageBottomPartState extends State<ChatPageBottomPart> {
     final text = _controller.text.trim();
     if (text.isEmpty) return;
 
-    final isEmployer = context.read<AuthBloc>().state.userRole == UserRole.employer;
-    
+    final isEmployer =
+        context.read<AuthBloc>().state.userRole == UserRole.employer;
+
     context.read<MessagingBloc>().add(
       SendMessage(
         id: widget.chatId,

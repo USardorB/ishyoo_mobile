@@ -16,7 +16,10 @@ class PostingsRepositoryImpl implements PostingsRepository {
   PostingsRepositoryImpl(this.remoteDataSource);
 
   @override
-  Future<Either<Failure, List<Vacancy>>> getVacancies({int page = 1, int limit = 10}) {
+  Future<Either<Failure, List<Vacancy>>> getVacancies({
+    int page = 1,
+    int limit = 10,
+  }) {
     return remoteDataSource.getVacancies(page: page, limit: limit).asEither();
   }
 
@@ -31,7 +34,10 @@ class PostingsRepositoryImpl implements PostingsRepository {
   }
 
   @override
-  Future<Either<Failure, Vacancy>> updateVacancy(String id, Map<String, dynamic> body) {
+  Future<Either<Failure, Vacancy>> updateVacancy(
+    String id,
+    Map<String, dynamic> body,
+  ) {
     return remoteDataSource.updateVacancy(id, body).asEither();
   }
 

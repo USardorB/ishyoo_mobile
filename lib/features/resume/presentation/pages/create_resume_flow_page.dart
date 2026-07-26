@@ -23,20 +23,22 @@ class CreateResumeFlowPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final user = context.read<AuthBloc>().state.user;
-    
+
     return BlocProvider(
       create: (context) {
         final data = <String, dynamic>{
           'email': user?.email ?? '',
           'phone': user?.phoneNumber ?? '',
         };
-        
+
         if (resume != null) {
           data.addAll({
             'specialization': resume!.specialization,
             'expected_salary': resume!.expectedSalary?.toString(),
-            'experiences': resume!.experiences?.map((e) => e.toMap()).toList() ?? [],
-            'educations': resume!.educations?.map((e) => e.toMap()).toList() ?? [],
+            'experiences':
+                resume!.experiences?.map((e) => e.toMap()).toList() ?? [],
+            'educations':
+                resume!.educations?.map((e) => e.toMap()).toList() ?? [],
             'skills': resume!.skills ?? [],
           });
         }
@@ -57,7 +59,12 @@ class _CreateResumeFlowContent extends HookWidget {
     final pageController = usePageController();
     final currentPage = useState(0);
 
-    final titles = ["Kontaktlar", "Ish joyi", "O'quv muassasasi", "Ko'nikmalar"];
+    final titles = [
+      "Kontaktlar",
+      "Ish joyi",
+      "O'quv muassasasi",
+      "Ko'nikmalar",
+    ];
 
     void nextStep() {
       if (currentPage.value < 3) {
@@ -67,7 +74,9 @@ class _CreateResumeFlowContent extends HookWidget {
         );
       } else {
         // Submit form at last step
-        context.read<ResumeFormBloc>().add(SubmitResumeForm(resumeId: resumeId));
+        context.read<ResumeFormBloc>().add(
+          SubmitResumeForm(resumeId: resumeId),
+        );
       }
     }
 
@@ -142,8 +151,18 @@ class _CreateResumeFlowContent extends HookWidget {
           },
           children: [
             _buildPage(context, const ResumeContactsForm()),
-            _buildPage(context, const ResumeExperienceListStep(), showSaveButton: true, onSave: nextStep),
-            _buildPage(context, const ResumeEducationListStep(), showSaveButton: true, onSave: nextStep),
+            _buildPage(
+              context,
+              const ResumeExperienceListStep(),
+              showSaveButton: true,
+              onSave: nextStep,
+            ),
+            _buildPage(
+              context,
+              const ResumeEducationListStep(),
+              showSaveButton: true,
+              onSave: nextStep,
+            ),
             _buildPage(context, const ResumeSkillsForm()),
           ],
         ),
@@ -151,7 +170,12 @@ class _CreateResumeFlowContent extends HookWidget {
     );
   }
 
-  Widget _buildPage(BuildContext context, Widget form, {bool showSaveButton = false, VoidCallback? onSave}) {
+  Widget _buildPage(
+    BuildContext context,
+    Widget form, {
+    bool showSaveButton = false,
+    VoidCallback? onSave,
+  }) {
     return Column(
       children: [
         Expanded(
@@ -195,7 +219,9 @@ class _ProgressBar extends StatelessWidget {
             child: Container(
               height: 2,
               decoration: BoxDecoration(
-                color: isActive ? context.colors.brandProgress : context.colors.bgTertiary,
+                color: isActive
+                    ? context.colors.brandProgress
+                    : context.colors.bgTertiary,
                 borderRadius: BorderRadius.circular(1),
               ),
             ),

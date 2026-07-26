@@ -33,6 +33,7 @@ class VacancyRepositoryImpl implements VacancyRepository {
         )
         .asEither();
   }
+
   @override
   Future<Either<Failure, List<Vacancy>>> getNearbyJobs(
     double lat,
@@ -52,9 +53,15 @@ class VacancyRepositoryImpl implements VacancyRepository {
 
   @override
   Future<Either<Failure, ApplicationResponse>> applyToVacancy(
-      String id, Map<String, dynamic> request) async {
+    String id,
+    Map<String, dynamic> request,
+  ) async {
     try {
-      final response = await remoteDataSource.applyToVacancy('candidate', id, request);
+      final response = await remoteDataSource.applyToVacancy(
+        'candidate',
+        id,
+        request,
+      );
       if (response.success && response.data != null) {
         return right(response.data!);
       }
@@ -79,4 +86,3 @@ class VacancyRepositoryImpl implements VacancyRepository {
     return remoteDataSource.getSavedVacancies('candidate').asEither();
   }
 }
-

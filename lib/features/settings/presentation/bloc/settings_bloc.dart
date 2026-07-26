@@ -6,6 +6,7 @@ import '../../data/models/user_settings.dart';
 abstract class SettingsEvent {}
 
 class LoadSettings extends SettingsEvent {}
+
 class UpdateNotificationSettings extends SettingsEvent {
   final Map<String, dynamic> body;
   UpdateNotificationSettings(this.body);
@@ -48,16 +49,23 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     emit(state.copyWith(isLoading: true, error: null));
     final result = await _settingsRepository.getCandidateSettings();
     result.fold(
-      (failure) => emit(state.copyWith(isLoading: false, error: failure.message)),
+      (failure) =>
+          emit(state.copyWith(isLoading: false, error: failure.message)),
       (settings) => emit(state.copyWith(isLoading: false, settings: settings)),
     );
   }
 
-  Future<void> _onUpdateSettings(UpdateNotificationSettings event, Emitter<SettingsState> emit) async {
+  Future<void> _onUpdateSettings(
+    UpdateNotificationSettings event,
+    Emitter<SettingsState> emit,
+  ) async {
     emit(state.copyWith(isLoading: true, error: null));
-    final result = await _settingsRepository.updateCandidateSettings(event.body);
+    final result = await _settingsRepository.updateCandidateSettings(
+      event.body,
+    );
     result.fold(
-      (failure) => emit(state.copyWith(isLoading: false, error: failure.message)),
+      (failure) =>
+          emit(state.copyWith(isLoading: false, error: failure.message)),
       (updatedSettings) {
         // Optimistically update the settings if needed, or simply reload.
         // For simplicity, we just reload the settings.

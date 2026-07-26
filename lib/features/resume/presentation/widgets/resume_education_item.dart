@@ -20,11 +20,18 @@ class ResumeEducationItem extends StatelessWidget {
       children: [
         Text(title, style: context.textThemes.s1),
         const SizedBox(height: 4),
-        Text(subtitle, style: context.textThemes.b2.copyWith(color: context.colors.textSecondary)),
+        Text(
+          subtitle,
+          style: context.textThemes.b2.copyWith(
+            color: context.colors.textSecondary,
+          ),
+        ),
         const SizedBox(height: 2),
         Text(
           date,
-          style: context.textThemes.c2.copyWith(color: context.colors.textSecondary),
+          style: context.textThemes.c2.copyWith(
+            color: context.colors.textSecondary,
+          ),
         ),
       ],
     );

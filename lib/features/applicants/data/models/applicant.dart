@@ -20,7 +20,8 @@ class ApplicantUser with ApplicantUserMappable {
     this.role,
   });
 
-  factory ApplicantUser.fromJson(Map<String, dynamic> json) => ApplicantUserMapper.fromMap(json);
+  factory ApplicantUser.fromJson(Map<String, dynamic> json) =>
+      ApplicantUserMapper.fromMap(json);
 }
 
 @MappableClass()
@@ -51,6 +52,9 @@ class Applicant with ApplicantMappable {
   @MappableField(key: 'application_status')
   final String? applicationStatus;
 
+  @MappableField(key: 'vacancy_id')
+  final String? vacancyId;
+
   Applicant({
     required this.id,
     this.specialization,
@@ -69,7 +73,9 @@ class Applicant with ApplicantMappable {
     this.userId,
     this.user,
     this.applicationStatus,
+    this.vacancyId,
   });
 
-  factory Applicant.fromJson(Map<String, dynamic> json) => ApplicantMapper.fromMap(json);
+  factory Applicant.fromJson(Map<String, dynamic> json) =>
+      ApplicantMapper.fromMap(json);
 }

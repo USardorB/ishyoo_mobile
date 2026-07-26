@@ -13,8 +13,13 @@ abstract class ApplicantsRemoteDataSource {
   @factoryMethod
   factory ApplicantsRemoteDataSource(Dio dio) = _ApplicantsRemoteDataSource;
 
+  @GET('/mobile/employer/applicants')
+  Future<BaseResult<List<Applicant>>> getApplicants();
+
   @GET('/mobile/employer/vacancy/{vacancyId}/applicants')
-  Future<BaseResult<List<Applicant>>> getVacancyApplicants(@Path('vacancyId') String vacancyId);
+  Future<BaseResult<List<Applicant>>> getVacancyApplicants(
+    @Path('vacancyId') String vacancyId,
+  );
 
   @GET('/mobile/employer/vacancy/{vacancyId}/applicants/{applicantId}')
   Future<BaseResult<Applicant>> getVacancyApplicantDetail(
@@ -22,7 +27,9 @@ abstract class ApplicantsRemoteDataSource {
     @Path('applicantId') String applicantId,
   );
 
-  @POST('/mobile/employer/vacancy/{vacancyId}/applicants/{applicantId}/interview')
+  @POST(
+    '/mobile/employer/vacancy/{vacancyId}/applicants/{applicantId}/interview',
+  )
   Future<BaseResult<dynamic>> scheduleInterview(
     @Path('vacancyId') String vacancyId,
     @Path('applicantId') String applicantId,

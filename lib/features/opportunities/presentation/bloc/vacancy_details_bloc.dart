@@ -12,7 +12,8 @@ part 'vacancy_details_event.dart';
 part 'vacancy_details_state.dart';
 
 @injectable
-class VacancyDetailsBloc extends Bloc<VacancyDetailsEvent, VacancyDetailsState> {
+class VacancyDetailsBloc
+    extends Bloc<VacancyDetailsEvent, VacancyDetailsState> {
   final GetVacancyDetailUseCase _getVacancyDetailUseCase;
   final ApplyToVacancyUseCase _applyToVacancyUseCase;
   final SaveVacancyUseCase _saveVacancyUseCase;
@@ -35,7 +36,9 @@ class VacancyDetailsBloc extends Bloc<VacancyDetailsEvent, VacancyDetailsState> 
   ) async {
     emit(const VacancyDetailsLoading());
 
-    final result = await _getVacancyDetailUseCase(GetVacancyDetailParams(event.id));
+    final result = await _getVacancyDetailUseCase(
+      GetVacancyDetailParams(event.id),
+    );
 
     result.fold(
       (failure) => emit(VacancyDetailsError(failure.message)),
@@ -64,10 +67,12 @@ class VacancyDetailsBloc extends Bloc<VacancyDetailsEvent, VacancyDetailsState> 
     );
 
     result.fold(
-      (failure) => emit(currentState.copyWith(
-        isApplying: false,
-        applyError: failure.message,
-      )),
+      (failure) => emit(
+        currentState.copyWith(
+          isApplying: false,
+          applyError: failure.message,
+        ),
+      ),
       (_) {
         // Assume apply success changes the vacancy model's hasApplied state
         // or we just mark success flag
@@ -99,11 +104,13 @@ class VacancyDetailsBloc extends Bloc<VacancyDetailsEvent, VacancyDetailsState> 
           hasSaved: currentState.vacancy.hasSaved,
           distance: currentState.vacancy.distance,
         );
-        emit(currentState.copyWith(
-          isApplying: false,
-          applySuccess: true,
-          vacancy: updatedVacancy,
-        ));
+        emit(
+          currentState.copyWith(
+            isApplying: false,
+            applySuccess: true,
+            vacancy: updatedVacancy,
+          ),
+        );
       },
     );
   }
@@ -120,37 +127,37 @@ class VacancyDetailsBloc extends Bloc<VacancyDetailsEvent, VacancyDetailsState> 
 
     // Optimistic UI update
     final updatedVacancy = Vacancy(
-          id: currentState.vacancy.id,
-          jobTitle: currentState.vacancy.jobTitle,
-          location: currentState.vacancy.location,
-          specialization: currentState.vacancy.specialization,
-          jobType: currentState.vacancy.jobType,
-          experienceLevel: currentState.vacancy.experienceLevel,
-          salaryFrom: currentState.vacancy.salaryFrom,
-          salaryTo: currentState.vacancy.salaryTo,
-          currency: currentState.vacancy.currency,
-          keySkills: currentState.vacancy.keySkills,
-          description: currentState.vacancy.description,
-          requirements: currentState.vacancy.requirements,
-          responsibilities: currentState.vacancy.responsibilities,
-          contact: currentState.vacancy.contact,
-          isTemporary: currentState.vacancy.isTemporary,
-          status: currentState.vacancy.status,
-          publishedAt: currentState.vacancy.publishedAt,
-          updatedAt: currentState.vacancy.updatedAt,
-          createdAt: currentState.vacancy.createdAt,
-          organizationId: currentState.vacancy.organizationId,
-          organization: currentState.vacancy.organization,
-          latitude: currentState.vacancy.latitude,
-          longitude: currentState.vacancy.longitude,
-          hasApplied: currentState.vacancy.hasApplied,
-          hasSaved: newHasSaved,
-          distance: currentState.vacancy.distance,
+      id: currentState.vacancy.id,
+      jobTitle: currentState.vacancy.jobTitle,
+      location: currentState.vacancy.location,
+      specialization: currentState.vacancy.specialization,
+      jobType: currentState.vacancy.jobType,
+      experienceLevel: currentState.vacancy.experienceLevel,
+      salaryFrom: currentState.vacancy.salaryFrom,
+      salaryTo: currentState.vacancy.salaryTo,
+      currency: currentState.vacancy.currency,
+      keySkills: currentState.vacancy.keySkills,
+      description: currentState.vacancy.description,
+      requirements: currentState.vacancy.requirements,
+      responsibilities: currentState.vacancy.responsibilities,
+      contact: currentState.vacancy.contact,
+      isTemporary: currentState.vacancy.isTemporary,
+      status: currentState.vacancy.status,
+      publishedAt: currentState.vacancy.publishedAt,
+      updatedAt: currentState.vacancy.updatedAt,
+      createdAt: currentState.vacancy.createdAt,
+      organizationId: currentState.vacancy.organizationId,
+      organization: currentState.vacancy.organization,
+      latitude: currentState.vacancy.latitude,
+      longitude: currentState.vacancy.longitude,
+      hasApplied: currentState.vacancy.hasApplied,
+      hasSaved: newHasSaved,
+      distance: currentState.vacancy.distance,
     );
     emit(currentState.copyWith(vacancy: updatedVacancy));
 
     // Perform API call
-    final result = newHasSaved 
+    final result = newHasSaved
         ? await _saveVacancyUseCase(VacancyActionParams(event.id))
         : await _unsaveVacancyUseCase(VacancyActionParams(event.id));
 

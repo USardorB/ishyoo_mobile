@@ -30,7 +30,10 @@ class ResumeRepositoryImpl implements ResumeRepository {
   }
 
   @override
-  Future<Either<Failure, Resume>> updateResume(String id, Map<String, dynamic> body) {
+  Future<Either<Failure, Resume>> updateResume(
+    String id,
+    Map<String, dynamic> body,
+  ) {
     return remoteDataSource.updateResume(id, body).asEither();
   }
 

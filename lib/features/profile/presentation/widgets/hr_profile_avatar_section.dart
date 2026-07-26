@@ -18,18 +18,24 @@ class HrProfileAvatarSection extends StatelessWidget {
     final pickedFile = await picker.pickImage(source: ImageSource.gallery);
     if (pickedFile != null) {
       context.read<EmployerOrganizationBloc>().add(
-            UploadOrganizationLogo(File(pickedFile.path)),
-          );
+        UploadOrganizationLogo(File(pickedFile.path)),
+      );
     }
   }
 
   @override
   Widget build(BuildContext context) {
     final name = profile != null
-        ? (profile!.name ?? '${profile!.firstName ?? ''} ${profile!.lastName ?? ''}').trim()
+        ? (profile!.name ??
+                  '${profile!.firstName ?? ''} ${profile!.lastName ?? ''}')
+              .trim()
         : 'HR Manager';
     final initials = name.isNotEmpty
-        ? name.split(' ').take(2).map((e) => e.isNotEmpty ? e[0].toUpperCase() : '').join()
+        ? name
+              .split(' ')
+              .take(2)
+              .map((e) => e.isNotEmpty ? e[0].toUpperCase() : '')
+              .join()
         : 'HR';
 
     return Container(

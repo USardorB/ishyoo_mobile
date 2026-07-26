@@ -303,6 +303,13 @@ class ApplicantMapper extends ClassMapperBase<Applicant> {
     key: r'application_status',
     opt: true,
   );
+  static String? _$vacancyId(Applicant v) => v.vacancyId;
+  static const Field<Applicant, String> _f$vacancyId = Field(
+    'vacancyId',
+    _$vacancyId,
+    key: r'vacancy_id',
+    opt: true,
+  );
 
   @override
   final MappableFields<Applicant> fields = const {
@@ -323,6 +330,7 @@ class ApplicantMapper extends ClassMapperBase<Applicant> {
     #userId: _f$userId,
     #user: _f$user,
     #applicationStatus: _f$applicationStatus,
+    #vacancyId: _f$vacancyId,
   };
 
   static Applicant _instantiate(DecodingData data) {
@@ -344,6 +352,7 @@ class ApplicantMapper extends ClassMapperBase<Applicant> {
       userId: data.dec(_f$userId),
       user: data.dec(_f$user),
       applicationStatus: data.dec(_f$applicationStatus),
+      vacancyId: data.dec(_f$vacancyId),
     );
   }
 
@@ -441,6 +450,7 @@ abstract class ApplicantCopyWith<$R, $In extends Applicant, $Out>
     String? userId,
     ApplicantUser? user,
     String? applicationStatus,
+    String? vacancyId,
   });
   ApplicantCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -528,6 +538,7 @@ class _ApplicantCopyWithImpl<$R, $Out>
     Object? userId = $none,
     Object? user = $none,
     Object? applicationStatus = $none,
+    Object? vacancyId = $none,
   }) => $apply(
     FieldCopyWithData({
       if (id != null) #id: id,
@@ -547,6 +558,7 @@ class _ApplicantCopyWithImpl<$R, $Out>
       if (userId != $none) #userId: userId,
       if (user != $none) #user: user,
       if (applicationStatus != $none) #applicationStatus: applicationStatus,
+      if (vacancyId != $none) #vacancyId: vacancyId,
     }),
   );
   @override
@@ -571,6 +583,7 @@ class _ApplicantCopyWithImpl<$R, $Out>
       #applicationStatus,
       or: $value.applicationStatus,
     ),
+    vacancyId: data.get(#vacancyId, or: $value.vacancyId),
   );
 
   @override

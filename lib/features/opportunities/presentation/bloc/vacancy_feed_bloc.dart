@@ -54,7 +54,7 @@ class VacancyFeedBloc extends Bloc<VacancyFeedEvent, VacancyFeedState> {
   ) async {
     if (state is VacancyFeedLoaded) {
       final currentState = state as VacancyFeedLoaded;
-      
+
       final updatedVacancies = currentState.vacancies.map((v) {
         if (v.id == event.id) {
           return v.copyWith(hasSaved: !event.currentlySaved);
@@ -70,7 +70,7 @@ class VacancyFeedBloc extends Bloc<VacancyFeedEvent, VacancyFeedState> {
 
       result.fold(
         (failure) {
-          // In case of failure, we might want to revert the state, 
+          // In case of failure, we might want to revert the state,
           // but for now we just leave it or could re-fetch/revert.
           final revertedVacancies = currentState.vacancies.map((v) {
             if (v.id == event.id) {

@@ -61,4 +61,3 @@ abstract class VacancyRemoteDataSource {
     @Path('role') String role,
   );
 }
-

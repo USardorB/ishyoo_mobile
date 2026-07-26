@@ -28,7 +28,10 @@ abstract class PostingsRemoteDataSource {
   Future<BaseResult<Vacancy>> createVacancy(@Body() Map<String, dynamic> body);
 
   @PUT('/mobile/employer/vacancy/{id}')
-  Future<BaseResult<Vacancy>> updateVacancy(@Path('id') String id, @Body() Map<String, dynamic> body);
+  Future<BaseResult<Vacancy>> updateVacancy(
+    @Path('id') String id,
+    @Body() Map<String, dynamic> body,
+  );
 
   @PUT('/mobile/employer/vacancy/{id}/archive')
   Future<BaseResult<Vacancy>> archiveVacancy(@Path('id') String id);

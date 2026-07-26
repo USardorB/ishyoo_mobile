@@ -14,7 +14,8 @@ class RequestSmsParams {
 }
 
 @injectable
-class RequestSmsUseCase implements UseCase<SmsRequestResponse, RequestSmsParams> {
+class RequestSmsUseCase
+    implements UseCase<SmsRequestResponse, RequestSmsParams> {
   final AuthRepository _repository;
 
   RequestSmsUseCase(this._repository);
@@ -132,7 +133,8 @@ class LogoutUseCase implements UseCase<Unit, RoleParam> {
 }
 
 @injectable
-class ForgotPasswordSmsUseCase implements UseCase<SmsRequestResponse, RequestSmsParams> {
+class ForgotPasswordSmsUseCase
+    implements UseCase<SmsRequestResponse, RequestSmsParams> {
   final AuthRepository _repository;
 
   ForgotPasswordSmsUseCase(this._repository);
@@ -145,7 +147,8 @@ class ForgotPasswordSmsUseCase implements UseCase<SmsRequestResponse, RequestSms
 }
 
 @injectable
-class ForgotPasswordVerifyUseCase implements UseCase<VerifyMetadataResponse, VerifyParams> {
+class ForgotPasswordVerifyUseCase
+    implements UseCase<VerifyMetadataResponse, VerifyParams> {
   final AuthRepository _repository;
 
   ForgotPasswordVerifyUseCase(this._repository);

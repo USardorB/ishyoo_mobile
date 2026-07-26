@@ -60,11 +60,15 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
   ) async {
     emit(state.copyWith(isLoading: true, error: null));
 
-    final result = await _getNotificationsUseCase(GetNotificationsParams(event.role));
+    final result = await _getNotificationsUseCase(
+      GetNotificationsParams(event.role),
+    );
 
     result.fold(
-      (failure) => emit(state.copyWith(isLoading: false, error: failure.message)),
-      (notifications) => emit(state.copyWith(isLoading: false, notifications: notifications)),
+      (failure) =>
+          emit(state.copyWith(isLoading: false, error: failure.message)),
+      (notifications) =>
+          emit(state.copyWith(isLoading: false, notifications: notifications)),
     );
   }
 
@@ -72,7 +76,9 @@ class NotificationsBloc extends Bloc<NotificationsEvent, NotificationsState> {
     MarkAllAsRead event,
     Emitter<NotificationsState> emit,
   ) async {
-    final result = await _markAllNotificationsAsReadUseCase(MarkAllNotificationsAsReadParams(event.role));
+    final result = await _markAllNotificationsAsReadUseCase(
+      MarkAllNotificationsAsReadParams(event.role),
+    );
 
     result.fold(
       (failure) => emit(state.copyWith(error: failure.message)),

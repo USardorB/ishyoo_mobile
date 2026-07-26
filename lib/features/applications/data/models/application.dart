@@ -31,5 +31,6 @@ class Application with ApplicationMappable {
     this.vacancy,
   });
 
-  factory Application.fromJson(Map<String, dynamic> json) => ApplicationMapper.fromMap(json);
+  factory Application.fromJson(Map<String, dynamic> json) =>
+      ApplicationMapper.fromMap(json);
 }

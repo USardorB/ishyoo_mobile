@@ -171,9 +171,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter<AuthState> emit,
   ) async {
     emit(state.copyWith(status: AuthStatus.loading));
-    
+
     final result = await _logoutUseCase(RoleParam(event.role));
-    
+
     // Clear tokens regardless of backend success/failure to ensure local state is cleaned up
     await _tokenService.clearTokens();
 

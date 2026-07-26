@@ -21,7 +21,8 @@ class GetNearbyJobsParams {
 }
 
 @lazySingleton
-class GetNearbyJobsUseCase implements UseCase<List<Vacancy>, GetNearbyJobsParams> {
+class GetNearbyJobsUseCase
+    implements UseCase<List<Vacancy>, GetNearbyJobsParams> {
   final VacancyRepository repository;
 
   GetNearbyJobsUseCase(this.repository);

@@ -54,16 +54,16 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
 
   void _save(BuildContext context) {
     context.read<CandidateProfileBloc>().add(
-          UpdateCandidateProfile({
-            'first_name': _firstNameCtrl.text.trim(),
-            'last_name': _lastNameCtrl.text.trim(),
-            'email': _emailCtrl.text.trim(),
-            'phone_number': _phoneCtrl.text.trim(),
-            'city': _cityCtrl.text.trim(),
-            'birth_date': _birthDateCtrl.text.trim(),
-            'bio': _bioCtrl.text.trim(),
-          }),
-        );
+      UpdateCandidateProfile({
+        'first_name': _firstNameCtrl.text.trim(),
+        'last_name': _lastNameCtrl.text.trim(),
+        'email': _emailCtrl.text.trim(),
+        'phone_number': _phoneCtrl.text.trim(),
+        'city': _cityCtrl.text.trim(),
+        'birth_date': _birthDateCtrl.text.trim(),
+        'bio': _bioCtrl.text.trim(),
+      }),
+    );
   }
 
   @override
@@ -71,175 +71,175 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
     return BlocProvider(
       create: (_) => sl<CandidateProfileBloc>()..add(LoadCandidateProfile()),
       child: BlocConsumer<CandidateProfileBloc, CandidateProfileState>(
-      listener: (context, state) {
-        if (state.profile != null) _populateFromProfile(state.profile!);
-        if (state.isUpdateSuccess) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Muvaffaqiyatli saqlandi')),
-          );
-          context.maybePop();
-        }
-        if (state.error != null) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.error!)),
-          );
-        }
-      },
-      builder: (context, state) {
-        final initials = [
-          (_firstNameCtrl.text.isNotEmpty ? _firstNameCtrl.text[0] : ''),
-          (_lastNameCtrl.text.isNotEmpty ? _lastNameCtrl.text[0] : ''),
-        ].join().toUpperCase();
+        listener: (context, state) {
+          if (state.profile != null) _populateFromProfile(state.profile!);
+          if (state.isUpdateSuccess) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              const SnackBar(content: Text('Muvaffaqiyatli saqlandi')),
+            );
+            context.maybePop();
+          }
+          if (state.error != null) {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(state.error!)),
+            );
+          }
+        },
+        builder: (context, state) {
+          final initials = [
+            (_firstNameCtrl.text.isNotEmpty ? _firstNameCtrl.text[0] : ''),
+            (_lastNameCtrl.text.isNotEmpty ? _lastNameCtrl.text[0] : ''),
+          ].join().toUpperCase();
 
-        return Scaffold(
-          appBar: AppBar(
-            leading: IconButton(
-              icon: const Icon(Icons.arrow_back),
-              onPressed: () => context.maybePop(),
-            ),
-            title: const Text("Tahrirlash"),
-            centerTitle: true,
-            actions: [
-              TextButton(
-                onPressed: state.isUpdating ? null : () => _save(context),
-                child: state.isUpdating
-                    ? const SizedBox(
-                        width: 16,
-                        height: 16,
-                        child: CircularProgressIndicator(strokeWidth: 2),
-                      )
-                    : Text(
-                        "Saqlash",
-                        style: context.textThemes.b2.copyWith(
-                          color: context.colors.brandProgress,
-                        ),
-                      ),
+          return Scaffold(
+            appBar: AppBar(
+              leading: IconButton(
+                icon: const Icon(Icons.arrow_back),
+                onPressed: () => context.maybePop(),
               ),
-              const SizedBox(width: 8),
-            ],
-          ),
-          body: SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
-              bottom: MediaQuery.paddingOf(context).bottom + 24,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 24),
-                Center(
-                  child: Stack(
-                    children: [
-                      Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          color: context.colors.bgSecondary,
-                          shape: BoxShape.circle,
-                        ),
-                        alignment: Alignment.center,
-                        child: Text(
-                          initials.isEmpty ? 'U' : initials,
-                          style: context.textThemes.h4.copyWith(
+              title: const Text("Tahrirlash"),
+              centerTitle: true,
+              actions: [
+                TextButton(
+                  onPressed: state.isUpdating ? null : () => _save(context),
+                  child: state.isUpdating
+                      ? const SizedBox(
+                          width: 16,
+                          height: 16,
+                          child: CircularProgressIndicator(strokeWidth: 2),
+                        )
+                      : Text(
+                          "Saqlash",
+                          style: context.textThemes.b2.copyWith(
                             color: context.colors.brandProgress,
                           ),
                         ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        child: Container(
-                          padding: const EdgeInsets.all(6),
+                ),
+                const SizedBox(width: 8),
+              ],
+            ),
+            body: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
+                bottom: MediaQuery.paddingOf(context).bottom + 24,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 24),
+                  Center(
+                    child: Stack(
+                      children: [
+                        Container(
+                          width: 100,
+                          height: 100,
                           decoration: BoxDecoration(
-                            color: context.colors.bgTertiary,
+                            color: context.colors.bgSecondary,
                             shape: BoxShape.circle,
                           ),
-                          child: const Icon(
-                            Icons.edit,
-                            size: 16,
-                            color: Colors.white,
+                          alignment: Alignment.center,
+                          child: Text(
+                            initials.isEmpty ? 'U' : initials,
+                            style: context.textThemes.h4.copyWith(
+                              color: context.colors.brandProgress,
+                            ),
                           ),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          right: 0,
+                          child: Container(
+                            padding: const EdgeInsets.all(6),
+                            decoration: BoxDecoration(
+                              color: context.colors.bgTertiary,
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Icon(
+                              Icons.edit,
+                              size: 16,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 32),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: AppInputField(
+                          label: "Ism",
+                          controller: _firstNameCtrl,
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: AppInputField(
+                          label: "Familiya",
+                          controller: _lastNameCtrl,
                         ),
                       ),
                     ],
                   ),
-                ),
-                const SizedBox(height: 32),
-                Row(
-                  children: [
-                    Expanded(
-                      child: AppInputField(
-                        label: "Ism",
-                        controller: _firstNameCtrl,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: AppInputField(
-                        label: "Familiya",
-                        controller: _lastNameCtrl,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 24),
-                AppInputField(
-                  label: "Email",
-                  controller: _emailCtrl,
-                  keyboardType: TextInputType.emailAddress,
-                ),
-                const SizedBox(height: 24),
-                AppInputField(
-                  label: "Telefon",
-                  controller: _phoneCtrl,
-                  keyboardType: TextInputType.phone,
-                ),
-                const SizedBox(height: 24),
-                AppInputField(
-                  label: "Shahar",
-                  controller: _cityCtrl,
-                ),
-                const SizedBox(height: 24),
-                AppInputField(
-                  label: "Tug'ilgan sana",
-                  controller: _birthDateCtrl,
-                  readOnly: true,
-                  onTap: () async {
-                    final date = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime(2000),
-                      firstDate: DateTime(1950),
-                      lastDate: DateTime.now(),
-                    );
-                    if (date != null) {
-                      _birthDateCtrl.text =
-                          '${date.day.toString().padLeft(2, '0')}.${date.month.toString().padLeft(2, '0')}.${date.year}';
-                    }
-                  },
-                  suffixIcon: Icon(
-                    Icons.chevron_right,
-                    color: context.colors.textSecondary,
-                    size: 20,
+                  const SizedBox(height: 24),
+                  AppInputField(
+                    label: "Email",
+                    controller: _emailCtrl,
+                    keyboardType: TextInputType.emailAddress,
                   ),
-                ),
-                const SizedBox(height: 24),
-                AppInputField(
-                  label: "O'zim haqimda",
-                  controller: _bioCtrl,
-                  maxLines: 4,
-                  minLines: 4,
-                ),
-                const SizedBox(height: 24),
-                AppButton(
-                  onTap: () => _save(context),
-                  enabled: !state.isUpdating,
-                  label: 'Saqlash',
-                ),
-              ],
+                  const SizedBox(height: 24),
+                  AppInputField(
+                    label: "Telefon",
+                    controller: _phoneCtrl,
+                    keyboardType: TextInputType.phone,
+                  ),
+                  const SizedBox(height: 24),
+                  AppInputField(
+                    label: "Shahar",
+                    controller: _cityCtrl,
+                  ),
+                  const SizedBox(height: 24),
+                  AppInputField(
+                    label: "Tug'ilgan sana",
+                    controller: _birthDateCtrl,
+                    readOnly: true,
+                    onTap: () async {
+                      final date = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime(2000),
+                        firstDate: DateTime(1950),
+                        lastDate: DateTime.now(),
+                      );
+                      if (date != null) {
+                        _birthDateCtrl.text =
+                            '${date.day.toString().padLeft(2, '0')}.${date.month.toString().padLeft(2, '0')}.${date.year}';
+                      }
+                    },
+                    suffixIcon: Icon(
+                      Icons.chevron_right,
+                      color: context.colors.textSecondary,
+                      size: 20,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  AppInputField(
+                    label: "O'zim haqimda",
+                    controller: _bioCtrl,
+                    maxLines: 4,
+                    minLines: 4,
+                  ),
+                  const SizedBox(height: 24),
+                  AppButton(
+                    onTap: () => _save(context),
+                    enabled: !state.isUpdating,
+                    label: 'Saqlash',
+                  ),
+                ],
+              ),
             ),
-          ),
-        );
-      },
-    ),
+          );
+        },
+      ),
     );
   }
 }

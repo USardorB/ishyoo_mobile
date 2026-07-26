@@ -14,10 +14,22 @@ class EditResumeEducationPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final schoolController = useTextEditingController(text: education?.school ?? "");
-    final degreeController = useTextEditingController(text: education?.degree ?? "");
-    final startYearController = useTextEditingController(text: education?.startDate != null ? education!.startDate!.year.toString() : "");
-    final endYearController = useTextEditingController(text: education?.endDate != null ? education!.endDate!.year.toString() : "");
+    final schoolController = useTextEditingController(
+      text: education?.school ?? "",
+    );
+    final degreeController = useTextEditingController(
+      text: education?.degree ?? "",
+    );
+    final startYearController = useTextEditingController(
+      text: education?.startDate != null
+          ? education!.startDate!.year.toString()
+          : "",
+    );
+    final endYearController = useTextEditingController(
+      text: education?.endDate != null
+          ? education!.endDate!.year.toString()
+          : "",
+    );
 
     return Scaffold(
       appBar: AppBar(
@@ -58,13 +70,17 @@ class EditResumeEducationPage extends HookWidget {
                 onSave: () {
                   final startYear = int.tryParse(startYearController.text);
                   final endYear = int.tryParse(endYearController.text);
-                  
+
                   final result = {
                     'action': 'save',
                     'school': schoolController.text,
                     'degree': degreeController.text,
-                    'start_date': startYear != null ? DateTime(startYear).toIso8601String() : null,
-                    'end_date': endYear != null ? DateTime(endYear).toIso8601String() : null,
+                    'start_date': startYear != null
+                        ? DateTime(startYear).toIso8601String()
+                        : null,
+                    'end_date': endYear != null
+                        ? DateTime(endYear).toIso8601String()
+                        : null,
                   };
                   context.maybePop(result);
                 },

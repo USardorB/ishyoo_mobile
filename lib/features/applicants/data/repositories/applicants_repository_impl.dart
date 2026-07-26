@@ -14,22 +14,46 @@ class ApplicantsRepositoryImpl implements ApplicantsRepository {
   ApplicantsRepositoryImpl(this.remoteDataSource);
 
   @override
-  Future<Either<Failure, List<Applicant>>> getVacancyApplicants(String vacancyId) {
+  Future<Either<Failure, List<Applicant>>> getApplicants() {
+    return remoteDataSource.getApplicants().asEither();
+  }
+
+  @override
+  Future<Either<Failure, List<Applicant>>> getVacancyApplicants(
+    String vacancyId,
+  ) {
     return remoteDataSource.getVacancyApplicants(vacancyId).asEither();
   }
 
   @override
-  Future<Either<Failure, Applicant>> getVacancyApplicantDetail(String vacancyId, String applicantId) {
-    return remoteDataSource.getVacancyApplicantDetail(vacancyId, applicantId).asEither();
+  Future<Either<Failure, Applicant>> getVacancyApplicantDetail(
+    String vacancyId,
+    String applicantId,
+  ) {
+    return remoteDataSource
+        .getVacancyApplicantDetail(vacancyId, applicantId)
+        .asEither();
   }
 
   @override
-  Future<Either<Failure, void>> scheduleInterview(String vacancyId, String applicantId, Map<String, dynamic> body) {
-    return remoteDataSource.scheduleInterview(vacancyId, applicantId, body).asEither();
+  Future<Either<Failure, void>> scheduleInterview(
+    String vacancyId,
+    String applicantId,
+    Map<String, dynamic> body,
+  ) {
+    return remoteDataSource
+        .scheduleInterview(vacancyId, applicantId, body)
+        .asEither();
   }
 
   @override
-  Future<Either<Failure, void>> updateApplicationStatus(String vacancyId, String applicantId, Map<String, dynamic> body) {
-    return remoteDataSource.updateApplicationStatus(vacancyId, applicantId, body).asEither();
+  Future<Either<Failure, void>> updateApplicationStatus(
+    String vacancyId,
+    String applicantId,
+    Map<String, dynamic> body,
+  ) {
+    return remoteDataSource
+        .updateApplicationStatus(vacancyId, applicantId, body)
+        .asEither();
   }
 }

@@ -24,5 +24,6 @@ class District with DistrictMappable {
     this.nameEn,
   });
 
-  factory District.fromJson(Map<String, dynamic> json) => DistrictMapper.fromMap(json);
+  factory District.fromJson(Map<String, dynamic> json) =>
+      DistrictMapper.fromMap(json);
 }

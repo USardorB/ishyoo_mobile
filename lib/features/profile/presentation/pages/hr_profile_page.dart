@@ -24,7 +24,8 @@ class HRProfilePage extends StatelessWidget {
           create: (_) => sl<EmployerProfileBloc>()..add(LoadEmployerProfile()),
         ),
         BlocProvider(
-          create: (_) => sl<EmployerOrganizationBloc>()..add(LoadEmployerOrganization()),
+          create: (_) =>
+              sl<EmployerOrganizationBloc>()..add(LoadEmployerOrganization()),
         ),
       ],
       child: Scaffold(
@@ -40,7 +41,10 @@ class HRProfilePage extends StatelessWidget {
         ),
         body: BlocBuilder<EmployerProfileBloc, EmployerProfileState>(
           builder: (context, profileState) {
-            return BlocBuilder<EmployerOrganizationBloc, EmployerOrganizationState>(
+            return BlocBuilder<
+              EmployerOrganizationBloc,
+              EmployerOrganizationState
+            >(
               builder: (context, orgState) {
                 if (profileState.isLoading || orgState.isLoading) {
                   return const Center(child: CircularProgressIndicator());

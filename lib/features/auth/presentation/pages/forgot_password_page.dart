@@ -58,7 +58,11 @@ class ForgotPasswordPage extends HookWidget {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state.status == AuthStatus.otpSent) {
-            context.router.push(ForgotPasswordOtpRoute(phoneNumber: '+998${phoneController.text.replaceAll(' ', '')}'));
+            context.router.push(
+              ForgotPasswordOtpRoute(
+                phoneNumber: '+998${phoneController.text.replaceAll(' ', '')}',
+              ),
+            );
           } else if (state.status == AuthStatus.failure) {
             AppNotificationOverlay.instance.show(
               message: state.errorMessage ?? 'Xatolik yuz berdi',

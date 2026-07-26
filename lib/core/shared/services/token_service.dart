@@ -9,7 +9,7 @@ class TokenService {
 
   static const String _didKey = 'device_id';
   static const String _roleKey = 'user_role';
-  
+
   String? _accessToken;
 
   Future<void> saveDid(String did, {String? role}) async {

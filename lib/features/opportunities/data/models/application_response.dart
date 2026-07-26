@@ -27,5 +27,6 @@ class ApplicationResponse with ApplicationResponseMappable {
     this.resumeId,
   });
 
-  factory ApplicationResponse.fromJson(Map<String, dynamic> json) => ApplicationResponseMapper.fromMap(json);
+  factory ApplicationResponse.fromJson(Map<String, dynamic> json) =>
+      ApplicationResponseMapper.fromMap(json);
 }

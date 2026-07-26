@@ -25,12 +25,12 @@ class NewApplicantActionButtons extends StatelessWidget {
               child: AppButton(
                 onTap: () {
                   context.read<ApplicantDetailBloc>().add(
-                        UpdateApplicantDetailStatus(
-                          vacancyId: vacancyId,
-                          applicantId: applicantId,
-                          status: 'interview',
-                        ),
-                      );
+                    UpdateApplicantDetailStatus(
+                      vacancyId: vacancyId,
+                      applicantId: applicantId,
+                      status: 'interview',
+                    ),
+                  );
                 },
                 enabled: !isUpdating,
                 label: "Taklif qilish",
@@ -45,12 +45,12 @@ class NewApplicantActionButtons extends StatelessWidget {
                 color: context.colors.bgSecondary,
                 onTap: () {
                   context.read<ApplicantDetailBloc>().add(
-                        UpdateApplicantDetailStatus(
-                          vacancyId: vacancyId,
-                          applicantId: applicantId,
-                          status: 'rejected',
-                        ),
-                      );
+                    UpdateApplicantDetailStatus(
+                      vacancyId: vacancyId,
+                      applicantId: applicantId,
+                      status: 'rejected',
+                    ),
+                  );
                 },
                 enabled: !isUpdating,
                 label: "Rad qilish",

@@ -15,7 +15,9 @@ class ResumeEducationListStep extends StatelessWidget {
     return BlocBuilder<ResumeFormBloc, ResumeFormState>(
       builder: (context, state) {
         final List<dynamic> rawEducations = state.formData['educations'] ?? [];
-        final educations = rawEducations.map((e) => ResumeEducation.fromJson(Map<String, dynamic>.from(e))).toList();
+        final educations = rawEducations
+            .map((e) => ResumeEducation.fromJson(Map<String, dynamic>.from(e)))
+            .toList();
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -32,11 +34,19 @@ class ResumeEducationListStep extends StatelessWidget {
             const SizedBox(height: 24),
             AppButton(
               onTap: () async {
-                final result = await context.pushRoute(EditResumeEducationRoute());
-                if (result != null && result is Map<String, dynamic> && result['action'] == 'save') {
-                  final newEducations = List<Map<String, dynamic>>.from(state.formData['educations'] ?? []);
+                final result = await context.pushRoute(
+                  EditResumeEducationRoute(),
+                );
+                if (result != null &&
+                    result is Map<String, dynamic> &&
+                    result['action'] == 'save') {
+                  final newEducations = List<Map<String, dynamic>>.from(
+                    state.formData['educations'] ?? [],
+                  );
                   newEducations.add(result);
-                  context.read<ResumeFormBloc>().add(UpdateFormData({'educations': newEducations}));
+                  context.read<ResumeFormBloc>().add(
+                    UpdateFormData({'educations': newEducations}),
+                  );
                 }
               },
               icon: Icons.add,
@@ -52,21 +62,29 @@ class ResumeEducationListStep extends StatelessWidget {
     );
   }
 
-  Widget _buildEducationCard(BuildContext context, ResumeEducation edu, int index) {
+  Widget _buildEducationCard(
+    BuildContext context,
+    ResumeEducation edu,
+    int index,
+  ) {
     return InkWell(
       onTap: () async {
-        final result = await context.pushRoute(EditResumeEducationRoute(education: edu));
+        final result = await context.pushRoute(
+          EditResumeEducationRoute(education: edu),
+        );
         if (result != null && result is Map<String, dynamic>) {
           final bloc = context.read<ResumeFormBloc>();
           final currentData = bloc.state.formData;
-          final newEducations = List<Map<String, dynamic>>.from(currentData['educations'] ?? []);
-          
+          final newEducations = List<Map<String, dynamic>>.from(
+            currentData['educations'] ?? [],
+          );
+
           if (result['action'] == 'delete') {
             newEducations.removeAt(index);
           } else if (result['action'] == 'save') {
             newEducations[index] = result;
           }
-          
+
           bloc.add(UpdateFormData({'educations': newEducations}));
         }
       },

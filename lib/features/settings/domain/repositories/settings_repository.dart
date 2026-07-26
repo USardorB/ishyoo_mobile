@@ -4,5 +4,7 @@ import '../../data/models/user_settings.dart';
 
 abstract class SettingsRepository {
   Future<Either<Failure, UserSettings>> getCandidateSettings();
-  Future<Either<Failure, NotificationSettings>> updateCandidateSettings(Map<String, dynamic> body);
+  Future<Either<Failure, NotificationSettings>> updateCandidateSettings(
+    Map<String, dynamic> body,
+  );
 }

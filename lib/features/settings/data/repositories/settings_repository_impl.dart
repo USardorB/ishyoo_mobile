@@ -19,7 +19,9 @@ class SettingsRepositoryImpl implements SettingsRepository {
   }
 
   @override
-  Future<Either<Failure, NotificationSettings>> updateCandidateSettings(Map<String, dynamic> body) {
+  Future<Either<Failure, NotificationSettings>> updateCandidateSettings(
+    Map<String, dynamic> body,
+  ) {
     return remoteDataSource.updateCandidateSettings(body).asEither();
   }
 }

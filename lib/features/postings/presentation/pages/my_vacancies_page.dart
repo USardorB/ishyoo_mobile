@@ -34,7 +34,8 @@ class _MyVacanciesPageState extends State<MyVacanciesPage> {
   }
 
   void _onScroll() {
-    if (_scrollController.position.pixels >= _scrollController.position.maxScrollExtent * 0.9) {
+    if (_scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent * 0.9) {
       _postingsBloc.add(LoadMorePostings());
     }
   }
@@ -54,11 +55,13 @@ class _MyVacanciesPageState extends State<MyVacanciesPage> {
         ),
         body: BlocBuilder<PostingsBloc, PostingsState>(
           builder: (context, state) {
-            if (state.isLoading && (state.vacancies == null || state.vacancies!.isEmpty)) {
+            if (state.isLoading &&
+                (state.vacancies == null || state.vacancies!.isEmpty)) {
               return const Center(child: CircularProgressIndicator());
             }
 
-            if (state.error != null && (state.vacancies == null || state.vacancies!.isEmpty)) {
+            if (state.error != null &&
+                (state.vacancies == null || state.vacancies!.isEmpty)) {
               return Center(
                 child: Text(
                   state.error!,
@@ -73,7 +76,9 @@ class _MyVacanciesPageState extends State<MyVacanciesPage> {
               return Center(
                 child: Text(
                   "Vakansiyalar topilmadi",
-                  style: context.textThemes.b2.copyWith(color: context.colors.textSecondary),
+                  style: context.textThemes.b2.copyWith(
+                    color: context.colors.textSecondary,
+                  ),
                 ),
               );
             }
@@ -89,7 +94,8 @@ class _MyVacanciesPageState extends State<MyVacanciesPage> {
                   vertical: 16,
                 ).copyWith(bottom: MediaQuery.paddingOf(context).bottom + 16),
                 itemCount: vacancies.length + (state.isLoadingMore ? 1 : 0),
-                separatorBuilder: (context, index) => const SizedBox(height: 12),
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: 12),
                 itemBuilder: (context, index) {
                   if (index == vacancies.length) {
                     return const Padding(

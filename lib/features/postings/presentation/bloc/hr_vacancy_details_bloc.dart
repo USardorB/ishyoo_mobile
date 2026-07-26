@@ -30,14 +30,18 @@ class HrVacancyDetailsError extends HrVacancyDetailsState {
 
 // Bloc
 @injectable
-class HrVacancyDetailsBloc extends Bloc<HrVacancyDetailsEvent, HrVacancyDetailsState> {
+class HrVacancyDetailsBloc
+    extends Bloc<HrVacancyDetailsEvent, HrVacancyDetailsState> {
   final PostingsRepository _repository;
 
   HrVacancyDetailsBloc(this._repository) : super(HrVacancyDetailsInitial()) {
     on<LoadHrVacancyDetail>(_onLoad);
   }
 
-  Future<void> _onLoad(LoadHrVacancyDetail event, Emitter<HrVacancyDetailsState> emit) async {
+  Future<void> _onLoad(
+    LoadHrVacancyDetail event,
+    Emitter<HrVacancyDetailsState> emit,
+  ) async {
     emit(HrVacancyDetailsLoading());
     final result = await _repository.getVacancyDetail(event.id);
     result.fold(

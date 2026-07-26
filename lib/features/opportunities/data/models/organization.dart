@@ -52,5 +52,6 @@ class Organization with OrganizationMappable {
     this.userId,
   });
 
-  factory Organization.fromJson(Map<String, dynamic> json) => OrganizationMapper.fromMap(json);
+  factory Organization.fromJson(Map<String, dynamic> json) =>
+      OrganizationMapper.fromMap(json);
 }

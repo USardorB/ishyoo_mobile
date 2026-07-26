@@ -50,7 +50,8 @@ class CompleteProfilePage extends HookWidget {
         return;
       }
 
-      String deviceName = '${Platform.operatingSystem} ${Platform.operatingSystemVersion}';
+      String deviceName =
+          '${Platform.operatingSystem} ${Platform.operatingSystemVersion}';
 
       final deviceId = const Uuid().v4();
       final role = context.read<AuthBloc>().state.userRole;

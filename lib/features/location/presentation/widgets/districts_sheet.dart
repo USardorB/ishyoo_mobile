@@ -33,6 +33,7 @@ class DistrictsSheet extends HookWidget {
           );
         }
       }
+
       loadDistricts();
       return null;
     }, [regionId]);
@@ -76,7 +77,9 @@ class DistrictsSheet extends HookWidget {
                 child: Center(
                   child: Text(
                     error.value!,
-                    style: context.textThemes.b2.copyWith(color: context.colors.danger),
+                    style: context.textThemes.b2.copyWith(
+                      color: context.colors.danger,
+                    ),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -85,9 +88,13 @@ class DistrictsSheet extends HookWidget {
               Flexible(
                 child: ListView.separated(
                   shrinkWrap: true,
-                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 8,
+                  ),
                   itemCount: districts.value.length,
-                  separatorBuilder: (context, index) => const Divider(height: 1),
+                  separatorBuilder: (context, index) =>
+                      const Divider(height: 1),
                   itemBuilder: (context, index) {
                     final district = districts.value[index];
                     return InkWell(

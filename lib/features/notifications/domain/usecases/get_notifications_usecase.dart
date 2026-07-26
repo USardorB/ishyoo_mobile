@@ -12,13 +12,16 @@ class GetNotificationsParams {
 }
 
 @lazySingleton
-class GetNotificationsUseCase implements UseCase<List<Notification>, GetNotificationsParams> {
+class GetNotificationsUseCase
+    implements UseCase<List<Notification>, GetNotificationsParams> {
   final NotificationRepository repository;
 
   GetNotificationsUseCase(this.repository);
 
   @override
-  Future<Either<Failure, List<Notification>>> call([GetNotificationsParams? params]) {
+  Future<Either<Failure, List<Notification>>> call([
+    GetNotificationsParams? params,
+  ]) {
     return repository.getNotifications(params!.role);
   }
 }

@@ -19,7 +19,10 @@ class NotificationRepositoryImpl implements NotificationRepository {
   }
 
   @override
-  Future<Either<Failure, Notification>> getNotificationDetail(String role, String id) {
+  Future<Either<Failure, Notification>> getNotificationDetail(
+    String role,
+    String id,
+  ) {
     return remoteDataSource.getNotificationDetail(role, id).asEither();
   }
 
@@ -28,4 +31,3 @@ class NotificationRepositoryImpl implements NotificationRepository {
     return remoteDataSource.markAllAsRead(role).asEither();
   }
 }
-

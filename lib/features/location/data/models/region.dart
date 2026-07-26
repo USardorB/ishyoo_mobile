@@ -21,5 +21,6 @@ class Region with RegionMappable {
     this.nameEn,
   });
 
-  factory Region.fromJson(Map<String, dynamic> json) => RegionMapper.fromMap(json);
+  factory Region.fromJson(Map<String, dynamic> json) =>
+      RegionMapper.fromMap(json);
 }

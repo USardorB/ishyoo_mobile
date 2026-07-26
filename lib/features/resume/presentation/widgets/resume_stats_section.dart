@@ -30,11 +30,15 @@ class ResumeStatsSection extends StatelessWidget {
       builder: (context, state) {
         final canBoost = resume.availableForBoost == true;
         final isSubmitting = state.isSubmitting;
-        
-        String infoText = "Rezyume kamdan-kam hollarda qidiruv natijalariga kiritiladi. Ko'proq ko'rishlar va taklifnomalar olish uchun uni ko'taring.";
+
+        String infoText =
+            "Rezyume kamdan-kam hollarda qidiruv natijalariga kiritiladi. Ko'proq ko'rishlar va taklifnomalar olish uchun uni ko'taring.";
         if (!canBoost && resume.nextFreeBoostAt != null) {
-          final formattedDate = DateFormat('dd.MM.yyyy HH:mm').format(resume.nextFreeBoostAt!.toLocal());
-          infoText = "Sizning rezyumeingiz yaqinda ko'tarilgan. Keyingi bepul ko'tarish: $formattedDate";
+          final formattedDate = DateFormat(
+            'dd.MM.yyyy HH:mm',
+          ).format(resume.nextFreeBoostAt!.toLocal());
+          infoText =
+              "Sizning rezyumeingiz yaqinda ko'tarilgan. Keyingi bepul ko'tarish: $formattedDate";
         }
 
         return Container(
@@ -49,11 +53,34 @@ class ResumeStatsSection extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  _buildStat(context, "Reyting", "${resume.boostScore ?? 0}", true),
-                  Container(width: 1, height: 32, color: context.colors.bgTertiary),
-                  _buildStat(context, "Status", resume.status == 'active' ? 'Faol' : 'Nofaol', false),
-                  Container(width: 1, height: 32, color: context.colors.bgTertiary),
-                  _buildStat(context, "Ko'rinish", resume.visibility == 'public' ? 'Ommaviy' : 'Yopiq', false),
+                  _buildStat(
+                    context,
+                    "Reyting",
+                    "${resume.boostScore ?? 0}",
+                    true,
+                  ),
+                  Container(
+                    width: 1,
+                    height: 32,
+                    color: context.colors.bgTertiary,
+                  ),
+                  _buildStat(
+                    context,
+                    "Status",
+                    resume.status == 'active' ? 'Faol' : 'Nofaol',
+                    false,
+                  ),
+                  Container(
+                    width: 1,
+                    height: 32,
+                    color: context.colors.bgTertiary,
+                  ),
+                  _buildStat(
+                    context,
+                    "Ko'rinish",
+                    resume.visibility == 'public' ? 'Ommaviy' : 'Yopiq',
+                    false,
+                  ),
                 ],
               ),
               const SizedBox(height: 16),
@@ -67,10 +94,14 @@ class ResumeStatsSection extends StatelessWidget {
               AppButton(
                 onTap: (canBoost && !isSubmitting)
                     ? () {
-                        context.read<ResumeFormBloc>().add(BoostResume(resume.id));
+                        context.read<ResumeFormBloc>().add(
+                          BoostResume(resume.id),
+                        );
                       }
                     : () {},
-                label: isSubmitting ? "Kuting..." : "Qidiruv natijalariga ko'tarish",
+                label: isSubmitting
+                    ? "Kuting..."
+                    : "Qidiruv natijalariga ko'tarish",
                 color: canBoost
                     ? context.colors.brandProgress.withValues(alpha: 0.15)
                     : context.colors.bgTertiary,
@@ -85,20 +116,29 @@ class ResumeStatsSection extends StatelessWidget {
     );
   }
 
-  Widget _buildStat(BuildContext context, String label, String value, bool isHighlighted) {
+  Widget _buildStat(
+    BuildContext context,
+    String label,
+    String value,
+    bool isHighlighted,
+  ) {
     return Column(
       children: [
         Text(
           label,
           style: context.textThemes.c2.copyWith(
-            color: isHighlighted ? context.colors.info : context.colors.textSecondary,
+            color: isHighlighted
+                ? context.colors.info
+                : context.colors.textSecondary,
           ),
         ),
         const SizedBox(height: 4),
         Text(
           value,
           style: context.textThemes.s1.copyWith(
-            color: isHighlighted ? context.colors.info : context.colors.textPrimary,
+            color: isHighlighted
+                ? context.colors.info
+                : context.colors.textPrimary,
           ),
         ),
       ],

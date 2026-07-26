@@ -7,7 +7,8 @@ import '../repositories/resume_repository.dart';
 import '../../data/models/specialization.dart';
 
 @lazySingleton
-class GetSpecializationsUseCase implements UseCase<List<Specialization>, NoParam> {
+class GetSpecializationsUseCase
+    implements UseCase<List<Specialization>, NoParam> {
   final ResumeRepository repository;
 
   GetSpecializationsUseCase(this.repository);

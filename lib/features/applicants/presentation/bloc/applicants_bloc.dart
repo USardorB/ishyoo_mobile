@@ -6,8 +6,8 @@ import '../../domain/repositories/applicants_repository.dart';
 abstract class ApplicantsEvent {}
 
 class LoadApplicants extends ApplicantsEvent {
-  final String vacancyId;
-  LoadApplicants(this.vacancyId);
+  final String? vacancyId;
+  LoadApplicants([this.vacancyId]);
 }
 
 class UpdateApplicantStatus extends ApplicantsEvent {
@@ -54,24 +54,34 @@ class ApplicantsBloc extends Bloc<ApplicantsEvent, ApplicantsState> {
     on<UpdateApplicantStatus>(_onUpdateStatus);
   }
 
-  Future<void> _onLoad(LoadApplicants event, Emitter<ApplicantsState> emit) async {
+  Future<void> _onLoad(
+    LoadApplicants event,
+    Emitter<ApplicantsState> emit,
+  ) async {
     emit(state.copyWith(isLoading: true, error: null));
-    final result = await _applicantsRepository.getVacancyApplicants(event.vacancyId);
-    
+    final result = event.vacancyId != null && event.vacancyId!.isNotEmpty
+        ? await _applicantsRepository.getVacancyApplicants(event.vacancyId!)
+        : await _applicantsRepository.getApplicants();
+
     result.fold(
-      (failure) => emit(state.copyWith(isLoading: false, error: failure.message)),
-      (applicants) => emit(state.copyWith(isLoading: false, applicants: applicants)),
+      (failure) =>
+          emit(state.copyWith(isLoading: false, error: failure.message)),
+      (applicants) =>
+          emit(state.copyWith(isLoading: false, applicants: applicants)),
     );
   }
 
-  Future<void> _onUpdateStatus(UpdateApplicantStatus event, Emitter<ApplicantsState> emit) async {
+  Future<void> _onUpdateStatus(
+    UpdateApplicantStatus event,
+    Emitter<ApplicantsState> emit,
+  ) async {
     // Optionally show a loading indicator or optimistically update the list here
     final result = await _applicantsRepository.updateApplicationStatus(
       event.vacancyId,
       event.applicantId,
       {'status': event.status},
     );
-    
+
     result.fold(
       (failure) => emit(state.copyWith(error: failure.message)),
       (_) {

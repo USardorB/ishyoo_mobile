@@ -22,7 +22,8 @@ class ArticlesBloc extends Bloc<ArticlesEvent, ArticlesState> {
     emit(state.copyWith(isLoading: true, error: null));
     final result = await _repository.getArticles();
     result.fold(
-      (failure) => emit(state.copyWith(isLoading: false, error: failure.message)),
+      (failure) =>
+          emit(state.copyWith(isLoading: false, error: failure.message)),
       (articles) => emit(state.copyWith(isLoading: false, articles: articles)),
     );
   }

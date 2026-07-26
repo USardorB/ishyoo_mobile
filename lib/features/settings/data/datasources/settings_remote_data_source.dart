@@ -17,5 +17,7 @@ abstract class SettingsRemoteDataSource {
   Future<BaseResult<UserSettings>> getCandidateSettings();
 
   @PUT('/mobile/candidate/settings')
-  Future<BaseResult<NotificationSettings>> updateCandidateSettings(@Body() Map<String, dynamic> body);
+  Future<BaseResult<NotificationSettings>> updateCandidateSettings(
+    @Body() Map<String, dynamic> body,
+  );
 }

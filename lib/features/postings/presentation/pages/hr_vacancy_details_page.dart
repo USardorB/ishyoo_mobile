@@ -192,11 +192,15 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
               const SizedBox(width: 8),
               Text(
                 _getStatusText(vacancy.status),
-                style: context.textThemes.b3.copyWith(color: context.colors.textSecondary),
+                style: context.textThemes.b3.copyWith(
+                  color: context.colors.textSecondary,
+                ),
               ),
               Text(
                 " • ${vacancy.totalApplicationsCount} javob",
-                style: context.textThemes.b3.copyWith(color: context.colors.textSecondary),
+                style: context.textThemes.b3.copyWith(
+                  color: context.colors.textSecondary,
+                ),
               ),
             ],
           ),

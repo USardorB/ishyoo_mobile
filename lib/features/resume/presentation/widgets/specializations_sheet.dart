@@ -14,7 +14,7 @@ class SpecializationsSheet extends StatefulWidget {
 
 class _SpecializationsSheetState extends State<SpecializationsSheet> {
   final _getSpecializationsUseCase = sl<GetSpecializationsUseCase>();
-  
+
   List<Specialization>? _specializations;
   String? _error;
 
@@ -26,7 +26,7 @@ class _SpecializationsSheetState extends State<SpecializationsSheet> {
 
   Future<void> _loadSpecializations() async {
     final result = await _getSpecializationsUseCase.call(NoParam());
-    
+
     if (mounted) {
       result.fold(
         (l) {
@@ -77,7 +77,9 @@ class _SpecializationsSheetState extends State<SpecializationsSheet> {
               padding: const EdgeInsets.all(16.0),
               child: Text(
                 _error!,
-                style: context.textThemes.b2.copyWith(color: context.colors.danger),
+                style: context.textThemes.b2.copyWith(
+                  color: context.colors.danger,
+                ),
               ),
             )
           else if (_specializations == null)
@@ -102,10 +104,18 @@ class _SpecializationsSheetState extends State<SpecializationsSheet> {
                   if (spec.children != null && spec.children!.isNotEmpty) {
                     return ExpansionTile(
                       title: Text(spec.name, style: context.textThemes.b2),
-                      children: spec.children!.map((child) => ListTile(
-                        title: Text(child.name, style: context.textThemes.b2),
-                        onTap: () => Navigator.of(context).pop(child.name),
-                      )).toList(),
+                      children: spec.children!
+                          .map(
+                            (child) => ListTile(
+                              title: Text(
+                                child.name,
+                                style: context.textThemes.b2,
+                              ),
+                              onTap: () =>
+                                  Navigator.of(context).pop(child.name),
+                            ),
+                          )
+                          .toList(),
                     );
                   }
                   return ListTile(

@@ -20,9 +20,15 @@ class LocationRepositoryImpl implements LocationRepository {
       if (result.success && result.data != null) {
         return Right(result.data!);
       }
-      return Left(ServerFailure(message: "Hududlarni yuklashda xatolik yuz berdi"));
+      return Left(
+        ServerFailure(message: "Hududlarni yuklashda xatolik yuz berdi"),
+      );
     } on DioException catch (e) {
-      return Left(ServerFailure(message: e.response?.data['message'] ?? e.message ?? "Server xatosi"));
+      return Left(
+        ServerFailure(
+          message: e.response?.data['message'] ?? e.message ?? "Server xatosi",
+        ),
+      );
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }
@@ -35,9 +41,15 @@ class LocationRepositoryImpl implements LocationRepository {
       if (result.success && result.data != null) {
         return Right(result.data!);
       }
-      return Left(ServerFailure(message: "Tumanlarni yuklashda xatolik yuz berdi"));
+      return Left(
+        ServerFailure(message: "Tumanlarni yuklashda xatolik yuz berdi"),
+      );
     } on DioException catch (e) {
-      return Left(ServerFailure(message: e.response?.data['message'] ?? e.message ?? "Server xatosi"));
+      return Left(
+        ServerFailure(
+          message: e.response?.data['message'] ?? e.message ?? "Server xatosi",
+        ),
+      );
     } catch (e) {
       return Left(ServerFailure(message: e.toString()));
     }

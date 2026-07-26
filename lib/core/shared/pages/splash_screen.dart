@@ -26,11 +26,13 @@ class SplashScreen extends HookWidget {
           final did = tokenService.getDid();
           if (did != null && did.isNotEmpty) {
             final roleStr = tokenService.getRole() ?? 'candidate';
-            final role = roleStr == 'employer' ? UserRole.employer : UserRole.job_seeker;
-            
+            final role = roleStr == 'employer'
+                ? UserRole.employer
+                : UserRole.job_seeker;
+
             context.read<AuthBloc>().add(AuthRoleChanged(role));
             context.read<AuthBloc>().add(AuthGetMeRequested(roleStr));
-            
+
             context.router.replace(const MainLayoutRoute());
           } else {
             context.router.replace(const ChooseLanguageRoute());

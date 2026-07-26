@@ -14,8 +14,11 @@ class ResumeExperienceListStep extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<ResumeFormBloc, ResumeFormState>(
       builder: (context, state) {
-        final List<dynamic> rawExperiences = state.formData['experiences'] ?? [];
-        final experiences = rawExperiences.map((e) => ResumeExperience.fromJson(Map<String, dynamic>.from(e))).toList();
+        final List<dynamic> rawExperiences =
+            state.formData['experiences'] ?? [];
+        final experiences = rawExperiences
+            .map((e) => ResumeExperience.fromJson(Map<String, dynamic>.from(e)))
+            .toList();
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,11 +41,19 @@ class ResumeExperienceListStep extends StatelessWidget {
             const SizedBox(height: 24),
             AppButton(
               onTap: () async {
-                final result = await context.pushRoute(EditResumeExperienceRoute());
-                if (result != null && result is Map<String, dynamic> && result['action'] == 'save') {
-                  final newExperiences = List<Map<String, dynamic>>.from(state.formData['experiences'] ?? []);
+                final result = await context.pushRoute(
+                  EditResumeExperienceRoute(),
+                );
+                if (result != null &&
+                    result is Map<String, dynamic> &&
+                    result['action'] == 'save') {
+                  final newExperiences = List<Map<String, dynamic>>.from(
+                    state.formData['experiences'] ?? [],
+                  );
                   newExperiences.add(result);
-                  context.read<ResumeFormBloc>().add(UpdateFormData({'experiences': newExperiences}));
+                  context.read<ResumeFormBloc>().add(
+                    UpdateFormData({'experiences': newExperiences}),
+                  );
                 }
               },
               icon: Icons.add,
@@ -58,21 +69,29 @@ class ResumeExperienceListStep extends StatelessWidget {
     );
   }
 
-  Widget _buildExperienceCard(BuildContext context, ResumeExperience exp, int index) {
+  Widget _buildExperienceCard(
+    BuildContext context,
+    ResumeExperience exp,
+    int index,
+  ) {
     return InkWell(
       onTap: () async {
-        final result = await context.pushRoute(EditResumeExperienceRoute(experience: exp));
+        final result = await context.pushRoute(
+          EditResumeExperienceRoute(experience: exp),
+        );
         if (result != null && result is Map<String, dynamic>) {
           final bloc = context.read<ResumeFormBloc>();
           final currentData = bloc.state.formData;
-          final newExperiences = List<Map<String, dynamic>>.from(currentData['experiences'] ?? []);
-          
+          final newExperiences = List<Map<String, dynamic>>.from(
+            currentData['experiences'] ?? [],
+          );
+
           if (result['action'] == 'delete') {
             newExperiences.removeAt(index);
           } else if (result['action'] == 'save') {
             newExperiences[index] = result;
           }
-          
+
           bloc.add(UpdateFormData({'experiences': newExperiences}));
         }
       },

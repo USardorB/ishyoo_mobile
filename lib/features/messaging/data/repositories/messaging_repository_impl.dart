@@ -25,7 +25,10 @@ class MessagingRepositoryImpl implements MessagingRepository {
   }
 
   @override
-  Future<Either<Failure, Chat>> getChatDetail(String id, {required bool isEmployer}) {
+  Future<Either<Failure, Chat>> getChatDetail(
+    String id, {
+    required bool isEmployer,
+  }) {
     if (isEmployer) {
       return remoteDataSource.getEmployerChatDetail(id).asEither();
     } else {
@@ -56,7 +59,9 @@ class MessagingRepositoryImpl implements MessagingRepository {
     if (isEmployer) {
       return remoteDataSource.updateEmployerMessage(id, msgId, body).asEither();
     } else {
-      return remoteDataSource.updateCandidateMessage(id, msgId, body).asEither();
+      return remoteDataSource
+          .updateCandidateMessage(id, msgId, body)
+          .asEither();
     }
   }
 
@@ -87,7 +92,10 @@ class MessagingRepositoryImpl implements MessagingRepository {
   }
 
   @override
-  Future<Either<Failure, void>> readChat(String id, {required bool isEmployer}) {
+  Future<Either<Failure, void>> readChat(
+    String id, {
+    required bool isEmployer,
+  }) {
     if (isEmployer) {
       return remoteDataSource.readEmployerChat(id).asEither();
     } else {

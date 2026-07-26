@@ -8,7 +8,8 @@ part 'article_details_event.dart';
 part 'article_details_state.dart';
 
 @injectable
-class ArticleDetailsBloc extends Bloc<ArticleDetailsEvent, ArticleDetailsState> {
+class ArticleDetailsBloc
+    extends Bloc<ArticleDetailsEvent, ArticleDetailsState> {
   final ArticlesRepository _repository;
 
   ArticleDetailsBloc(this._repository) : super(const ArticleDetailsState()) {
@@ -33,11 +34,14 @@ class ArticleDetailsBloc extends Bloc<ArticleDetailsEvent, ArticleDetailsState> 
 
     final result = await _repository.getArticleDetail(event.id);
     result.fold(
-      (failure) => emit(state.copyWith(isLoading: false, error: failure.message)),
+      (failure) =>
+          emit(state.copyWith(isLoading: false, error: failure.message)),
       (article) {
         // Also view the article
         _repository.viewArticle(event.id);
-        emit(state.copyWith(isLoading: false, article: article, isSaved: isSaved));
+        emit(
+          state.copyWith(isLoading: false, article: article, isSaved: isSaved),
+        );
       },
     );
   }
@@ -47,14 +51,14 @@ class ArticleDetailsBloc extends Bloc<ArticleDetailsEvent, ArticleDetailsState> 
     Emitter<ArticleDetailsState> emit,
   ) async {
     if (state.article == null) return;
-    
+
     final newSaveState = !state.isSaved;
     emit(state.copyWith(isSaved: newSaveState));
-    
-    final result = newSaveState 
-      ? await _repository.saveArticle(state.article!.id.toString())
-      : await _repository.unsaveArticle(state.article!.id.toString());
-      
+
+    final result = newSaveState
+        ? await _repository.saveArticle(state.article!.id.toString())
+        : await _repository.unsaveArticle(state.article!.id.toString());
+
     result.fold(
       (failure) {
         // Revert on failure

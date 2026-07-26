@@ -24,7 +24,12 @@ class ApplicationRepositoryImpl implements ApplicationRepository {
   }
 
   @override
-  Future<Either<Failure, Application>> updateApplicationStatus(String id, String status) {
-    return remoteDataSource.updateApplicationStatus(id, {'status': status}).asEither();
+  Future<Either<Failure, Application>> updateApplicationStatus(
+    String id,
+    String status,
+  ) {
+    return remoteDataSource.updateApplicationStatus(id, {
+      'status': status,
+    }).asEither();
   }
 }

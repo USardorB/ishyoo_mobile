@@ -11,13 +11,16 @@ class MarkAllNotificationsAsReadParams {
 }
 
 @lazySingleton
-class MarkAllNotificationsAsReadUseCase implements UseCase<Unit, MarkAllNotificationsAsReadParams> {
+class MarkAllNotificationsAsReadUseCase
+    implements UseCase<Unit, MarkAllNotificationsAsReadParams> {
   final NotificationRepository repository;
 
   MarkAllNotificationsAsReadUseCase(this.repository);
 
   @override
-  Future<Either<Failure, Unit>> call([MarkAllNotificationsAsReadParams? params]) {
+  Future<Either<Failure, Unit>> call([
+    MarkAllNotificationsAsReadParams? params,
+  ]) {
     return repository.markAllAsRead(params!.role);
   }
 }

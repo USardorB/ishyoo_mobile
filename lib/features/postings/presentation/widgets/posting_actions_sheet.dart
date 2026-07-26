@@ -14,12 +14,13 @@ enum PostingAction {
   share,
   archive,
   delete,
-  ;
+  applicants;
 
   String get title => switch (this) {
     PostingAction.view => 'Ko‘rish',
     PostingAction.edit => 'Tahrirlash',
     PostingAction.pause => 'To‘xtatish',
+    PostingAction.applicants => 'Javoblar',
     PostingAction.copy => 'Nusxa olish',
     PostingAction.share => 'Ulashish',
     PostingAction.archive => 'Arxivlash',
@@ -34,6 +35,7 @@ enum PostingAction {
     PostingAction.share => Icons.share,
     PostingAction.archive => Icons.archive,
     PostingAction.delete => Icons.delete,
+    PostingAction.applicants => Icons.people,
   };
 }
 
@@ -98,6 +100,9 @@ class PostingActionsSheet extends StatelessWidget {
         switch (action) {
           case PostingAction.view:
             context.pushRoute(HrVacancyDetailsRoute(id: vacancy.id));
+            break;
+          case PostingAction.applicants:
+            context.pushRoute(VacancyApplicantsRoute(vacancyId: vacancy.id));
             break;
           case PostingAction.edit:
             context.pushRoute(CreateVacancyRoute(vacancyToEdit: vacancy));

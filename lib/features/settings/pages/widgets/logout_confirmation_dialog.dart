@@ -58,8 +58,12 @@ class LogoutConfirmationDialog extends StatelessWidget {
                     child: AppButton(
                       onTap: () {
                         final role = state.userRole;
-                        final roleString = role == UserRole.employer ? 'employer' : 'candidate';
-                        context.read<AuthBloc>().add(AuthLogoutRequested(roleString));
+                        final roleString = role == UserRole.employer
+                            ? 'employer'
+                            : 'candidate';
+                        context.read<AuthBloc>().add(
+                          AuthLogoutRequested(roleString),
+                        );
                       },
                       label: "Chiqish",
                       color: context.colors.danger,

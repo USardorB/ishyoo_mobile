@@ -19,31 +19,33 @@ class HrDashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
       leading: BlocBuilder<EmployerOrganizationBloc, EmployerOrganizationState>(
         builder: (context, state) {
           final org = state.organization;
-          final initial = org?.name?.isNotEmpty == true ? org!.name![0].toUpperCase() : 'T';
-          
+          final initial = org?.name?.isNotEmpty == true
+              ? org!.name![0].toUpperCase()
+              : 'T';
+
           return Container(
             margin: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              image: org?.logo != null 
-                ? DecorationImage(
-                    image: CachedNetworkImageProvider(org!.logo!),
-                    fit: BoxFit.cover,
+              image: org?.logo != null
+                  ? DecorationImage(
+                      image: CachedNetworkImageProvider(org!.logo!),
+                      fit: BoxFit.cover,
+                    )
+                  : null,
+            ),
+            child: org?.logo == null
+                ? Center(
+                    child: Text(
+                      initial,
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w700,
+                        color: context.colors.brandDefault,
+                      ),
+                    ),
                   )
                 : null,
-            ),
-            child: org?.logo == null 
-              ? Center(
-                  child: Text(
-                    initial,
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.w700,
-                      color: context.colors.brandDefault,
-                    ),
-                  ),
-                )
-              : null,
           );
         },
       ),

@@ -46,7 +46,11 @@ class NearbyJobsBloc extends Bloc<NearbyJobsEvent, NearbyJobsState> {
       }
 
       if (permission == LocationPermission.deniedForever) {
-        emit(const NearbyJobsLocationError('Joylashuvga ruxsat butunlay cheklangan.'));
+        emit(
+          const NearbyJobsLocationError(
+            'Joylashuvga ruxsat butunlay cheklangan.',
+          ),
+        );
         return;
       }
 

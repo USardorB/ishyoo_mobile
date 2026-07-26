@@ -12,13 +12,16 @@ class GetApplicationsParams {
 }
 
 @lazySingleton
-class GetApplicationsUseCase implements UseCase<List<Application>, GetApplicationsParams> {
+class GetApplicationsUseCase
+    implements UseCase<List<Application>, GetApplicationsParams> {
   final ApplicationRepository repository;
 
   GetApplicationsUseCase(this.repository);
 
   @override
-  Future<Either<Failure, List<Application>>> call([GetApplicationsParams? params]) {
+  Future<Either<Failure, List<Application>>> call([
+    GetApplicationsParams? params,
+  ]) {
     return repository.getApplications(status: params?.status);
   }
 }

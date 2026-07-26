@@ -39,11 +39,14 @@ class CompanyDetailsPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(24),
                       ),
                       clipBehavior: Clip.hardEdge,
-                      child: organization.logo != null && organization.logo!.isNotEmpty
+                      child:
+                          organization.logo != null &&
+                              organization.logo!.isNotEmpty
                           ? CachedNetworkImage(
                               imageUrl: organization.logo!,
                               fit: BoxFit.cover,
-                              errorWidget: (context, url, error) => _buildFallbackLogo(context),
+                              errorWidget: (context, url, error) =>
+                                  _buildFallbackLogo(context),
                             )
                           : _buildFallbackLogo(context),
                     ),
@@ -65,9 +68,10 @@ class CompanyDetailsPage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 32),
-              
+
               // Description
-              if (organization.description != null && organization.description!.isNotEmpty) ...[
+              if (organization.description != null &&
+                  organization.description!.isNotEmpty) ...[
                 Text(
                   "Kompaniya haqida",
                   style: context.textThemes.s1,

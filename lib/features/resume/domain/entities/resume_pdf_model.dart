@@ -45,7 +45,7 @@ class ResumePdfModel {
 class ResumePdfExperience {
   final String? companyName;
   final String? position;
-  final String? location; 
+  final String? location;
   final String? description;
   final DateTime? startDate;
   final DateTime? endDate;

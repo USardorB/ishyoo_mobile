@@ -42,9 +42,10 @@ class TalentsBloc extends Bloc<TalentsEvent, TalentsState> {
   Future<void> _onLoad(LoadTalents event, Emitter<TalentsState> emit) async {
     emit(state.copyWith(isLoading: true, error: null));
     final result = await _talentsRepository.getTalentFeed();
-    
+
     result.fold(
-      (failure) => emit(state.copyWith(isLoading: false, error: failure.message)),
+      (failure) =>
+          emit(state.copyWith(isLoading: false, error: failure.message)),
       (talents) => emit(state.copyWith(isLoading: false, talents: talents)),
     );
   }

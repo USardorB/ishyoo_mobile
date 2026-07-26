@@ -18,7 +18,8 @@ class ResumeEducation with ResumeEducationMappable {
     this.endDate,
   });
 
-  factory ResumeEducation.fromJson(Map<String, dynamic> json) => ResumeEducationMapper.fromMap(json);
+  factory ResumeEducation.fromJson(Map<String, dynamic> json) =>
+      ResumeEducationMapper.fromMap(json);
 }
 
 @MappableClass()
@@ -40,7 +41,8 @@ class ResumeExperience with ResumeExperienceMappable {
     this.endDate,
   });
 
-  factory ResumeExperience.fromJson(Map<String, dynamic> json) => ResumeExperienceMapper.fromMap(json);
+  factory ResumeExperience.fromJson(Map<String, dynamic> json) =>
+      ResumeExperienceMapper.fromMap(json);
 }
 
 @MappableClass()
@@ -101,5 +103,6 @@ class Resume with ResumeMappable {
     this.availableForBoost,
   });
 
-  factory Resume.fromJson(Map<String, dynamic> json) => ResumeMapper.fromMap(json);
+  factory Resume.fromJson(Map<String, dynamic> json) =>
+      ResumeMapper.fromMap(json);
 }

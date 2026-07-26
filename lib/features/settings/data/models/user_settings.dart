@@ -25,7 +25,8 @@ class UserSession with UserSessionMappable {
     this.isTerminated,
   });
 
-  factory UserSession.fromJson(Map<String, dynamic> json) => UserSessionMapper.fromMap(json);
+  factory UserSession.fromJson(Map<String, dynamic> json) =>
+      UserSessionMapper.fromMap(json);
 }
 
 @MappableClass()
@@ -54,7 +55,8 @@ class NotificationSettings with NotificationSettingsMappable {
     this.updatedAt,
   });
 
-  factory NotificationSettings.fromJson(Map<String, dynamic> json) => NotificationSettingsMapper.fromMap(json);
+  factory NotificationSettings.fromJson(Map<String, dynamic> json) =>
+      NotificationSettingsMapper.fromMap(json);
 }
 
 @MappableClass()
@@ -72,5 +74,6 @@ class UserSettings with UserSettingsMappable {
     this.notifications,
   });
 
-  factory UserSettings.fromJson(Map<String, dynamic> json) => UserSettingsMapper.fromMap(json);
+  factory UserSettings.fromJson(Map<String, dynamic> json) =>
+      UserSettingsMapper.fromMap(json);
 }

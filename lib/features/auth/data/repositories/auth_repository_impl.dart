@@ -53,7 +53,9 @@ class AuthRepositoryImpl implements AuthRepository {
   Future<Either<Failure, SmsRequestResponse>> forgotPasswordSmsRequest(
     String role,
     SmsRequestPayload payload,
-  ) => _remoteDataSource.forgotPasswordSmsRequest(role, payload.toMap()).asEither();
+  ) => _remoteDataSource
+      .forgotPasswordSmsRequest(role, payload.toMap())
+      .asEither();
 
   @override
   Future<Either<Failure, VerifyMetadataResponse>> forgotPasswordVerify(

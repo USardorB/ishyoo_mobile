@@ -51,7 +51,8 @@ class CandidateProfileState {
 }
 
 @injectable
-class CandidateProfileBloc extends Bloc<CandidateProfileEvent, CandidateProfileState> {
+class CandidateProfileBloc
+    extends Bloc<CandidateProfileEvent, CandidateProfileState> {
   final GetCandidateResumesUseCase _getResumesUseCase;
   final ProfileRepository _profileRepository;
 
@@ -63,29 +64,50 @@ class CandidateProfileBloc extends Bloc<CandidateProfileEvent, CandidateProfileS
     on<UpdateCandidateProfile>(_onUpdate);
   }
 
-  Future<void> _onLoad(LoadCandidateProfile event, Emitter<CandidateProfileState> emit) async {
+  Future<void> _onLoad(
+    LoadCandidateProfile event,
+    Emitter<CandidateProfileState> emit,
+  ) async {
     emit(state.copyWith(isLoading: true, error: null));
 
     final resumesResult = await _getResumesUseCase();
     final profileResult = await _profileRepository.getCandidateProfile();
 
     resumesResult.fold(
-      (failure) => emit(state.copyWith(isLoading: false, error: failure.message)),
+      (failure) =>
+          emit(state.copyWith(isLoading: false, error: failure.message)),
       (resumes) {
         profileResult.fold(
-          (failure) => emit(state.copyWith(isLoading: false, error: failure.message)),
-          (profile) => emit(state.copyWith(isLoading: false, resumes: resumes, profile: profile)),
+          (failure) =>
+              emit(state.copyWith(isLoading: false, error: failure.message)),
+          (profile) => emit(
+            state.copyWith(
+              isLoading: false,
+              resumes: resumes,
+              profile: profile,
+            ),
+          ),
         );
       },
     );
   }
 
-  Future<void> _onUpdate(UpdateCandidateProfile event, Emitter<CandidateProfileState> emit) async {
+  Future<void> _onUpdate(
+    UpdateCandidateProfile event,
+    Emitter<CandidateProfileState> emit,
+  ) async {
     emit(state.copyWith(isUpdating: true, error: null));
     final result = await _profileRepository.updateCandidateProfile(event.body);
     result.fold(
-      (failure) => emit(state.copyWith(isUpdating: false, error: failure.message)),
-      (profile) => emit(state.copyWith(isUpdating: false, isUpdateSuccess: true, profile: profile)),
+      (failure) =>
+          emit(state.copyWith(isUpdating: false, error: failure.message)),
+      (profile) => emit(
+        state.copyWith(
+          isUpdating: false,
+          isUpdateSuccess: true,
+          profile: profile,
+        ),
+      ),
     );
   }
 }

@@ -7,7 +7,8 @@ part 'saved_vacancies_event.dart';
 part 'saved_vacancies_state.dart';
 
 @injectable
-class SavedVacanciesBloc extends Bloc<SavedVacanciesEvent, SavedVacanciesState> {
+class SavedVacanciesBloc
+    extends Bloc<SavedVacanciesEvent, SavedVacanciesState> {
   final VacancyRepository _vacancyRepository;
 
   SavedVacanciesBloc(this._vacancyRepository) : super(SavedVacanciesInitial()) {

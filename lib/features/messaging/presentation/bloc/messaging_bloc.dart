@@ -24,7 +24,11 @@ class SendMessage extends MessagingEvent {
   final String id;
   final String content;
   final bool isEmployer;
-  SendMessage({required this.id, required this.content, required this.isEmployer});
+  SendMessage({
+    required this.id,
+    required this.content,
+    required this.isEmployer,
+  });
 }
 
 class EditMessage extends MessagingEvent {
@@ -118,24 +122,36 @@ class MessagingBloc extends Bloc<MessagingEvent, MessagingState> {
     on<UploadChatFile>(_onUploadChatFile);
   }
 
-  Future<void> _onLoadChats(LoadChats event, Emitter<MessagingState> emit) async {
+  Future<void> _onLoadChats(
+    LoadChats event,
+    Emitter<MessagingState> emit,
+  ) async {
     emit(state.copyWith(isLoadingChats: true, clearError: true));
-    
+
     final result = await _repository.getChats(isEmployer: event.isEmployer);
-    
+
     result.fold(
-      (failure) => emit(state.copyWith(isLoadingChats: false, error: failure.message)),
+      (failure) =>
+          emit(state.copyWith(isLoadingChats: false, error: failure.message)),
       (chats) => emit(state.copyWith(isLoadingChats: false, chats: chats)),
     );
   }
 
-  Future<void> _onLoadChatDetail(LoadChatDetail event, Emitter<MessagingState> emit) async {
+  Future<void> _onLoadChatDetail(
+    LoadChatDetail event,
+    Emitter<MessagingState> emit,
+  ) async {
     emit(state.copyWith(isLoadingChatDetail: true, clearError: true));
-    
-    final result = await _repository.getChatDetail(event.id, isEmployer: event.isEmployer);
-    
+
+    final result = await _repository.getChatDetail(
+      event.id,
+      isEmployer: event.isEmployer,
+    );
+
     result.fold(
-      (failure) => emit(state.copyWith(isLoadingChatDetail: false, error: failure.message)),
+      (failure) => emit(
+        state.copyWith(isLoadingChatDetail: false, error: failure.message),
+      ),
       (chat) {
         emit(state.copyWith(isLoadingChatDetail: false, currentChat: chat));
         // Optionally mark chat as read immediately
@@ -144,17 +160,21 @@ class MessagingBloc extends Bloc<MessagingEvent, MessagingState> {
     );
   }
 
-  Future<void> _onSendMessage(SendMessage event, Emitter<MessagingState> emit) async {
+  Future<void> _onSendMessage(
+    SendMessage event,
+    Emitter<MessagingState> emit,
+  ) async {
     emit(state.copyWith(isSending: true, clearError: true));
-    
+
     final result = await _repository.sendMessage(
       event.id,
       {"content": event.content, "type": "text"},
       isEmployer: event.isEmployer,
     );
-    
+
     result.fold(
-      (failure) => emit(state.copyWith(isSending: false, error: failure.message)),
+      (failure) =>
+          emit(state.copyWith(isSending: false, error: failure.message)),
       (_) {
         emit(state.copyWith(isSending: false));
         // Refresh the chat detail to show the new message
@@ -163,7 +183,10 @@ class MessagingBloc extends Bloc<MessagingEvent, MessagingState> {
     );
   }
 
-  Future<void> _onEditMessage(EditMessage event, Emitter<MessagingState> emit) async {
+  Future<void> _onEditMessage(
+    EditMessage event,
+    Emitter<MessagingState> emit,
+  ) async {
     final result = await _repository.updateMessage(
       event.chatId,
       event.messageId,
@@ -172,11 +195,15 @@ class MessagingBloc extends Bloc<MessagingEvent, MessagingState> {
     );
     result.fold(
       (failure) => emit(state.copyWith(error: failure.message)),
-      (_) => add(LoadChatDetail(id: event.chatId, isEmployer: event.isEmployer)),
+      (_) =>
+          add(LoadChatDetail(id: event.chatId, isEmployer: event.isEmployer)),
     );
   }
 
-  Future<void> _onDeleteMessage(DeleteMessage event, Emitter<MessagingState> emit) async {
+  Future<void> _onDeleteMessage(
+    DeleteMessage event,
+    Emitter<MessagingState> emit,
+  ) async {
     final result = await _repository.deleteMessage(
       event.chatId,
       event.messageId,
@@ -184,11 +211,15 @@ class MessagingBloc extends Bloc<MessagingEvent, MessagingState> {
     );
     result.fold(
       (failure) => emit(state.copyWith(error: failure.message)),
-      (_) => add(LoadChatDetail(id: event.chatId, isEmployer: event.isEmployer)),
+      (_) =>
+          add(LoadChatDetail(id: event.chatId, isEmployer: event.isEmployer)),
     );
   }
 
-  Future<void> _onUploadChatFile(UploadChatFile event, Emitter<MessagingState> emit) async {
+  Future<void> _onUploadChatFile(
+    UploadChatFile event,
+    Emitter<MessagingState> emit,
+  ) async {
     emit(state.copyWith(isUploading: true, clearError: true));
     final result = await _repository.uploadChatFile(
       event.chatId,
@@ -196,7 +227,8 @@ class MessagingBloc extends Bloc<MessagingEvent, MessagingState> {
       isEmployer: event.isEmployer,
     );
     result.fold(
-      (failure) => emit(state.copyWith(isUploading: false, error: failure.message)),
+      (failure) =>
+          emit(state.copyWith(isUploading: false, error: failure.message)),
       (_) {
         emit(state.copyWith(isUploading: false));
         add(LoadChatDetail(id: event.chatId, isEmployer: event.isEmployer));

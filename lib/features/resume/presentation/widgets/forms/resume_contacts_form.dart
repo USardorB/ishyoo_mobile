@@ -13,19 +13,29 @@ class ResumeContactsForm extends HookWidget {
     final bloc = context.read<ResumeFormBloc>();
     final formData = bloc.state.formData;
 
-    final emailController = useTextEditingController(text: formData['email']?.toString() ?? '');
-    final phoneController = useTextEditingController(text: formData['phone']?.toString() ?? '');
-    final specializationController = useTextEditingController(text: formData['specialization']?.toString() ?? '');
-    final salaryController = useTextEditingController(text: formData['expected_salary']?.toString() ?? '');
+    final emailController = useTextEditingController(
+      text: formData['email']?.toString() ?? '',
+    );
+    final phoneController = useTextEditingController(
+      text: formData['phone']?.toString() ?? '',
+    );
+    final specializationController = useTextEditingController(
+      text: formData['specialization']?.toString() ?? '',
+    );
+    final salaryController = useTextEditingController(
+      text: formData['expected_salary']?.toString() ?? '',
+    );
 
     void updateData() {
       final salary = int.tryParse(salaryController.text);
-      bloc.add(UpdateFormData({
-        'email': emailController.text,
-        'phone': phoneController.text,
-        'specialization': specializationController.text,
-        if (salary != null) 'expected_salary': salary,
-      }));
+      bloc.add(
+        UpdateFormData({
+          'email': emailController.text,
+          'phone': phoneController.text,
+          'specialization': specializationController.text,
+          if (salary != null) 'expected_salary': salary,
+        }),
+      );
     }
 
     return Column(

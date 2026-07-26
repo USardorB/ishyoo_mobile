@@ -9,13 +9,12 @@ import 'package:mobile/features/applications/presentation/widgets/no_application
 
 @RoutePage()
 class ApplicantsPage extends StatelessWidget implements AutoRouteWrapper {
-  final String? vacancyId;
-  const ApplicantsPage({super.key, @QueryParam('vacancyId') this.vacancyId});
+  const ApplicantsPage({super.key});
 
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
-      create: (_) => sl<ApplicantsBloc>()..add(LoadApplicants(vacancyId ?? '')),
+      create: (_) => sl<ApplicantsBloc>()..add(LoadApplicants()),
       child: this,
     );
   }
@@ -42,9 +41,9 @@ class ApplicantsPage extends StatelessWidget implements AutoRouteWrapper {
             labelPadding: .symmetric(horizontal: 12, vertical: 8),
             tabAlignment: TabAlignment.start,
             tabs: [
-              Text('Ko‘rilmaganlar (89)'),
-              Text('Taklif etilganlar (5)'),
-              Text('To‘g‘ri kelmaydi (8)'),
+              Text('Ko‘rilmaganlar'),
+              Text('Taklif etilganlar'),
+              Text('To‘g‘ri kelmaydi'),
             ],
           ),
         ),
@@ -69,7 +68,7 @@ class ApplicantsPage extends StatelessWidget implements AutoRouteWrapper {
                     children: state.applicants!.map((applicant) {
                       return ApplicantListingItem(
                         applicant: applicant,
-                        vacancyId: vacancyId ?? '',
+                        vacancyId: applicant.vacancyId ?? '',
                       );
                     }).toList(),
                   ),

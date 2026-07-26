@@ -8,7 +8,6 @@ import 'package:mobile/features/applications/presentation/widgets/no_application
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/messaging/presentation/bloc/messaging_bloc.dart';
 import 'package:mobile/features/messaging/presentation/widgets/chat_item.dart';
-import 'package:mobile/features/messaging/presentation/widgets/chat_type_filter_tab.dart';
 import 'package:mobile/features/postings/presentation/widgets/dark_glass_search_field.dart';
 
 @RoutePage()
@@ -34,7 +33,7 @@ class ChatsPage extends StatelessWidget {
                 icon: const Icon(Icons.search),
               ),
             ),
-            bottom: ChatTypeFilterTab(),
+            // bottom: ChatTypeFilterTab(),
           ),
           body: BlocBuilder<MessagingBloc, MessagingState>(
             builder: (context, state) {

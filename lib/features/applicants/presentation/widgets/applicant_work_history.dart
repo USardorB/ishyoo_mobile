@@ -49,7 +49,8 @@ class ApplicantWorkHistory extends StatelessWidget {
 
   Widget _buildEntry(BuildContext context, ResumeExperience exp) {
     final isCurrent = exp.endDate == null;
-    final duration = '${_formatDate(exp.startDate)} — ${_formatDate(exp.endDate)}';
+    final duration =
+        '${_formatDate(exp.startDate)} — ${_formatDate(exp.endDate)}';
 
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,

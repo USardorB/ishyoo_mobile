@@ -14,8 +14,14 @@ class SkillsSelectionSheet extends StatefulWidget {
 
 class _SkillsSelectionSheetState extends State<SkillsSelectionSheet> {
   final List<String> _availableSkills = [
-    'Figma', 'Prototyping', 'Wireframing', 'UI Design', 'UX Research',
-    'Adobe XD', 'Sketch', 'InVision'
+    'Figma',
+    'Prototyping',
+    'Wireframing',
+    'UI Design',
+    'UX Research',
+    'Adobe XD',
+    'Sketch',
+    'InVision',
   ];
   late List<String> _selectedSkills;
 
@@ -74,13 +80,17 @@ class _SkillsSelectionSheetState extends State<SkillsSelectionSheet> {
                 backgroundColor: context.colors.bgSecondary,
                 selectedColor: context.colors.brandDefault,
                 side: BorderSide(
-                  color: isSelected ? context.colors.brandDefault : context.colors.bgSecondary,
+                  color: isSelected
+                      ? context.colors.brandDefault
+                      : context.colors.bgSecondary,
                 ),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
                 labelStyle: context.textThemes.b3.copyWith(
-                  color: isSelected ? context.colors.midnightImmutable : context.colors.textSecondary,
+                  color: isSelected
+                      ? context.colors.midnightImmutable
+                      : context.colors.textSecondary,
                 ),
               );
             }).toList(),
@@ -91,29 +101,29 @@ class _SkillsSelectionSheetState extends State<SkillsSelectionSheet> {
   }
 
   Row _buildHeader(BuildContext context) => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          SizedBox(width: 48), // Balance for centering
-          Expanded(
-            child: Text(
-              'KO\'NIKMALAR',
-              style: context.textThemes.h5,
-              textAlign: TextAlign.center,
-              maxLines: 1,
-            ),
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      SizedBox(width: 48), // Balance for centering
+      Expanded(
+        child: Text(
+          'KO\'NIKMALAR',
+          style: context.textThemes.h5,
+          textAlign: TextAlign.center,
+          maxLines: 1,
+        ),
+      ),
+      SizedBox(
+        width: 48,
+        child: Align(
+          alignment: Alignment.centerRight,
+          child: IconButton(
+            visualDensity: VisualDensity.compact,
+            padding: EdgeInsets.zero,
+            onPressed: () => context.pop(_selectedSkills),
+            icon: Icon(Icons.close),
           ),
-          SizedBox(
-            width: 48,
-            child: Align(
-              alignment: Alignment.centerRight,
-              child: IconButton(
-                visualDensity: VisualDensity.compact,
-                padding: EdgeInsets.zero,
-                onPressed: () => context.pop(_selectedSkills),
-                icon: Icon(Icons.close),
-              ),
-            ),
-          ),
-        ],
-      );
+        ),
+      ),
+    ],
+  );
 }

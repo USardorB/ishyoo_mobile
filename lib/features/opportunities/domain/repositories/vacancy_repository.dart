@@ -18,7 +18,10 @@ abstract class VacancyRepository {
     int limit,
   );
   Future<Either<Failure, Vacancy>> getVacancyDetail(String id);
-  Future<Either<Failure, ApplicationResponse>> applyToVacancy(String id, Map<String, dynamic> request);
+  Future<Either<Failure, ApplicationResponse>> applyToVacancy(
+    String id,
+    Map<String, dynamic> request,
+  );
   Future<Either<Failure, Unit>> saveVacancy(String id);
   Future<Either<Failure, Unit>> unsaveVacancy(String id);
   Future<Either<Failure, List<Vacancy>>> getSavedVacancies();

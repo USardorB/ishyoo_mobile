@@ -94,14 +94,16 @@ class PostingsBloc extends Bloc<PostingsEvent, PostingsState> {
   }
 
   Future<void> _onLoad(LoadPostings event, Emitter<PostingsState> emit) async {
-    emit(state.copyWith(
-      isLoading: true,
-      error: null,
-      currentPage: 1,
-      hasReachedMax: false,
-      isCreateSuccess: false,
-    ));
-    
+    emit(
+      state.copyWith(
+        isLoading: true,
+        error: null,
+        currentPage: 1,
+        hasReachedMax: false,
+        isCreateSuccess: false,
+      ),
+    );
+
     final result = await Future.wait([
       _postingsRepository.getVacancies(page: 1, limit: 10),
       _postingsRepository.getEmployerStats(),
@@ -110,48 +112,81 @@ class PostingsBloc extends Bloc<PostingsEvent, PostingsState> {
 
     final vacanciesResult = result[0] as Either<Failure, List<Vacancy>>;
     final statsResult = result[1] as Either<Failure, EmployerStats>;
-    final specializationsResult = result[2] as Either<Failure, List<Specialization>>;
+    final specializationsResult =
+        result[2] as Either<Failure, List<Specialization>>;
 
-    final specializations = specializationsResult.fold((_) => <Specialization>[], (r) => r);
+    final specializations = specializationsResult.fold(
+      (_) => <Specialization>[],
+      (r) => r,
+    );
 
     vacanciesResult.fold(
-      (failure) => emit(state.copyWith(isLoading: false, error: failure.message)),
+      (failure) =>
+          emit(state.copyWith(isLoading: false, error: failure.message)),
       (vacancies) {
         final hasReachedMax = vacancies.length < 10;
         statsResult.fold(
-          (failure) => emit(state.copyWith(isLoading: false, vacancies: vacancies, specializations: specializations, hasReachedMax: hasReachedMax)),
-          (stats) => emit(state.copyWith(isLoading: false, vacancies: vacancies, stats: stats, specializations: specializations, hasReachedMax: hasReachedMax)),
+          (failure) => emit(
+            state.copyWith(
+              isLoading: false,
+              vacancies: vacancies,
+              specializations: specializations,
+              hasReachedMax: hasReachedMax,
+            ),
+          ),
+          (stats) => emit(
+            state.copyWith(
+              isLoading: false,
+              vacancies: vacancies,
+              stats: stats,
+              specializations: specializations,
+              hasReachedMax: hasReachedMax,
+            ),
+          ),
         );
       },
     );
   }
 
-  Future<void> _onLoadMore(LoadMorePostings event, Emitter<PostingsState> emit) async {
+  Future<void> _onLoadMore(
+    LoadMorePostings event,
+    Emitter<PostingsState> emit,
+  ) async {
     if (state.hasReachedMax || state.isLoadingMore || state.isLoading) return;
 
     emit(state.copyWith(isLoadingMore: true));
     final nextPage = state.currentPage + 1;
 
-    final result = await _postingsRepository.getVacancies(page: nextPage, limit: 10);
+    final result = await _postingsRepository.getVacancies(
+      page: nextPage,
+      limit: 10,
+    );
 
     result.fold(
-      (failure) => emit(state.copyWith(isLoadingMore: false, error: failure.message)),
+      (failure) =>
+          emit(state.copyWith(isLoadingMore: false, error: failure.message)),
       (newVacancies) {
-        emit(state.copyWith(
-          isLoadingMore: false,
-          currentPage: nextPage,
-          hasReachedMax: newVacancies.length < 10,
-          vacancies: List.of(state.vacancies ?? [])..addAll(newVacancies),
-        ));
+        emit(
+          state.copyWith(
+            isLoadingMore: false,
+            currentPage: nextPage,
+            hasReachedMax: newVacancies.length < 10,
+            vacancies: List.of(state.vacancies ?? [])..addAll(newVacancies),
+          ),
+        );
       },
     );
   }
 
-  Future<void> _onCreate(CreatePosting event, Emitter<PostingsState> emit) async {
+  Future<void> _onCreate(
+    CreatePosting event,
+    Emitter<PostingsState> emit,
+  ) async {
     emit(state.copyWith(isSubmitting: true, error: null));
     final result = await _postingsRepository.createVacancy(event.body);
     await result.fold(
-      (failure) async => emit(state.copyWith(isSubmitting: false, error: failure.message)),
+      (failure) async =>
+          emit(state.copyWith(isSubmitting: false, error: failure.message)),
       (vacancy) async {
         await _postingsRepository.publishVacancy(vacancy.id);
         emit(state.copyWith(isSubmitting: false, isCreateSuccess: true));
@@ -159,11 +194,18 @@ class PostingsBloc extends Bloc<PostingsEvent, PostingsState> {
     );
   }
 
-  Future<void> _onUpdate(UpdatePosting event, Emitter<PostingsState> emit) async {
+  Future<void> _onUpdate(
+    UpdatePosting event,
+    Emitter<PostingsState> emit,
+  ) async {
     emit(state.copyWith(isSubmitting: true, error: null));
-    final result = await _postingsRepository.updateVacancy(event.id, event.body);
+    final result = await _postingsRepository.updateVacancy(
+      event.id,
+      event.body,
+    );
     await result.fold(
-      (failure) async => emit(state.copyWith(isSubmitting: false, error: failure.message)),
+      (failure) async =>
+          emit(state.copyWith(isSubmitting: false, error: failure.message)),
       (vacancy) async {
         await _postingsRepository.publishVacancy(vacancy.id);
         emit(state.copyWith(isSubmitting: false, isCreateSuccess: true));
@@ -171,7 +213,10 @@ class PostingsBloc extends Bloc<PostingsEvent, PostingsState> {
     );
   }
 
-  Future<void> _onArchive(ArchivePosting event, Emitter<PostingsState> emit) async {
+  Future<void> _onArchive(
+    ArchivePosting event,
+    Emitter<PostingsState> emit,
+  ) async {
     final result = await _postingsRepository.archiveVacancy(event.id);
     result.fold(
       (failure) => emit(state.copyWith(error: failure.message)),

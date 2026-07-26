@@ -14,7 +14,8 @@ import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/auth/data/models/auth_request.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_event.dart';
-import 'package:mobile/features/auth/presentation/bloc/auth_state.dart' as bloc_state;
+import 'package:mobile/features/auth/presentation/bloc/auth_state.dart'
+    as bloc_state;
 import 'package:pinput/pinput.dart';
 
 @RoutePage()
@@ -28,7 +29,7 @@ class OtpConfirmationPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final otpController = useTextEditingController();
-    
+
     final authState = context.read<AuthBloc>().state;
     final initialTtl = authState.ttl ?? 60;
     final remainingSeconds = useState<int>(initialTtl);
@@ -73,14 +74,14 @@ class OtpConfirmationPage extends HookWidget {
       }
 
       context.read<AuthBloc>().add(
-            AuthVerifyRequested(
-              roleString,
-              VerifyRequest(
-                requestId: requestId,
-                code: int.parse(otpController.text),
-              ),
-            ),
-          );
+        AuthVerifyRequested(
+          roleString,
+          VerifyRequest(
+            requestId: requestId,
+            code: int.parse(otpController.text),
+          ),
+        ),
+      );
     }
 
     return Scaffold(

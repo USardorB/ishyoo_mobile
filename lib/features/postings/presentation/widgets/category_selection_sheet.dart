@@ -57,10 +57,18 @@ class CategorySelectionSheet extends StatelessWidget {
                   if (spec.children != null && spec.children!.isNotEmpty) {
                     return ExpansionTile(
                       title: Text(spec.name, style: context.textThemes.b2),
-                      children: spec.children!.map((child) => ListTile(
-                        title: Text(child.name, style: context.textThemes.b2),
-                        onTap: () => Navigator.of(context).pop(child.name),
-                      )).toList(),
+                      children: spec.children!
+                          .map(
+                            (child) => ListTile(
+                              title: Text(
+                                child.name,
+                                style: context.textThemes.b2,
+                              ),
+                              onTap: () =>
+                                  Navigator.of(context).pop(child.name),
+                            ),
+                          )
+                          .toList(),
                     );
                   }
                   return ListTile(
@@ -76,4 +84,3 @@ class CategorySelectionSheet extends StatelessWidget {
     );
   }
 }
-

@@ -23,7 +23,9 @@ class ApplicantSkills extends StatelessWidget {
           child: Wrap(
             spacing: 12,
             runSpacing: 12,
-            children: skills.map((skill) => _buildSkill(context, skill)).toList(),
+            children: skills
+                .map((skill) => _buildSkill(context, skill))
+                .toList(),
           ),
         ),
       ],

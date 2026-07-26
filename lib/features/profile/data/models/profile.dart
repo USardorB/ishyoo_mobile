@@ -41,5 +41,6 @@ class Profile with ProfileMappable {
     this.bio,
   });
 
-  factory Profile.fromJson(Map<String, dynamic> json) => ProfileMapper.fromMap(json);
+  factory Profile.fromJson(Map<String, dynamic> json) =>
+      ProfileMapper.fromMap(json);
 }

@@ -12,7 +12,8 @@ import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/auth/data/models/auth_request.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_event.dart';
-import 'package:mobile/features/auth/presentation/bloc/auth_state.dart' as bloc_state;
+import 'package:mobile/features/auth/presentation/bloc/auth_state.dart'
+    as bloc_state;
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/features/auth/presentation/widgets/phone_number_field_prefix.dart';
 import 'package:mobile/features/auth/presentation/widgets/privacy_policy_notice.dart';
@@ -43,14 +44,14 @@ class RegisterPage extends HookWidget {
       final number = '+998${phoneController.text.replaceAll(' ', '')}';
 
       context.read<AuthBloc>().add(
-            AuthSmsRequested(
-              roleString,
-              SmsRequestPayload(
-                phoneNumber: number,
-                method: 'register',
-              ),
-            ),
-          );
+        AuthSmsRequested(
+          roleString,
+          SmsRequestPayload(
+            phoneNumber: number,
+            method: 'register',
+          ),
+        ),
+      );
     }
 
     return Scaffold(

@@ -23,7 +23,8 @@ class HrDashboardPage extends StatelessWidget {
           create: (context) => sl<PostingsBloc>()..add(LoadPostings()),
         ),
         BlocProvider(
-          create: (context) => sl<EmployerOrganizationBloc>()..add(LoadEmployerOrganization()),
+          create: (context) =>
+              sl<EmployerOrganizationBloc>()..add(LoadEmployerOrganization()),
         ),
       ],
       child: BlocBuilder<PostingsBloc, PostingsState>(
@@ -82,75 +83,79 @@ class HrDashboardPage extends StatelessWidget {
                     ],
                   ),
 
+                  SizedBox(height: 16),
 
-            SizedBox(height: 16),
-
-            Row(
-              children: [
-                Text(
-                  'Mening vakansiyalarim',
-                  style: context.textThemes.s2,
-                ),
-                Spacer(),
-                TextButton.icon(
-                  onPressed: () => context.pushRoute(MyVacanciesRoute()),
-                  icon: Icon(Icons.arrow_forward_ios_rounded),
-                  label: Text("Barchasi"),
-                  style: TextButton.styleFrom(
-                    textStyle: context.textThemes.buttonSmall,
-                    iconAlignment: .end,
-                    visualDensity: .compact,
+                  Row(
+                    children: [
+                      Text(
+                        'Mening vakansiyalarim',
+                        style: context.textThemes.s2,
+                      ),
+                      Spacer(),
+                      TextButton.icon(
+                        onPressed: () => context.pushRoute(MyVacanciesRoute()),
+                        icon: Icon(Icons.arrow_forward_ios_rounded),
+                        label: Text("Barchasi"),
+                        style: TextButton.styleFrom(
+                          textStyle: context.textThemes.buttonSmall,
+                          iconAlignment: .end,
+                          visualDensity: .compact,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-            SizedBox(height: 12),
-            if (state.isLoading)
-              const Padding(
-                padding: EdgeInsets.all(24.0),
-                child: Center(child: CircularProgressIndicator()),
-              )
-            else if (state.vacancies?.isEmpty ?? true)
-              Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Center(
-                  child: Text(
-                    "Vakansiyalar topilmadi",
-                    style: context.textThemes.b2.copyWith(color: context.colors.textSecondary),
-                  ),
-                ),
-              )
-            else
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  for (final vacancy in state.vacancies?.take(5) ?? <Vacancy>[]) ...[
-                    HrVacancyCard(vacancy: vacancy),
-                    const SizedBox(height: 12),
-                  ],
-                ],
-              ),
+                  SizedBox(height: 12),
+                  if (state.isLoading)
+                    const Padding(
+                      padding: EdgeInsets.all(24.0),
+                      child: Center(child: CircularProgressIndicator()),
+                    )
+                  else if (state.vacancies?.isEmpty ?? true)
+                    Padding(
+                      padding: const EdgeInsets.all(24.0),
+                      child: Center(
+                        child: Text(
+                          "Vakansiyalar topilmadi",
+                          style: context.textThemes.b2.copyWith(
+                            color: context.colors.textSecondary,
+                          ),
+                        ),
+                      ),
+                    )
+                  else
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        for (final vacancy
+                            in state.vacancies?.take(5) ?? <Vacancy>[]) ...[
+                          HrVacancyCard(vacancy: vacancy),
+                          const SizedBox(height: 12),
+                        ],
+                      ],
+                    ),
 
-            FilledButton.icon(
-              onPressed: () async {
-                final result = await context.pushRoute(CreateVacancyRoute());
-                if (result == true && context.mounted) {
-                  context.read<PostingsBloc>().add(LoadPostings());
-                }
-              },
-              icon: Icon(Icons.add),
-              label: Text("Vakansiya yaratish"),
-              style: FilledButton.styleFrom(
-                padding: .all(14),
-                shape: DashedOutlineBorder(
-                  borderRadius: BorderRadius.circular(12),
-                  side: BorderSide(color: context.colors.bgTertiary),
-                ),
-                textStyle: context.textThemes.buttonLarge,
-                foregroundColor: context.colors.brandDefault,
-                backgroundColor: context.colors.bgPrimary,
-              ),
-            ),
+                  FilledButton.icon(
+                    onPressed: () async {
+                      final result = await context.pushRoute(
+                        CreateVacancyRoute(),
+                      );
+                      if (result == true && context.mounted) {
+                        context.read<PostingsBloc>().add(LoadPostings());
+                      }
+                    },
+                    icon: Icon(Icons.add),
+                    label: Text("Vakansiya yaratish"),
+                    style: FilledButton.styleFrom(
+                      padding: .all(14),
+                      shape: DashedOutlineBorder(
+                        borderRadius: BorderRadius.circular(12),
+                        side: BorderSide(color: context.colors.bgTertiary),
+                      ),
+                      textStyle: context.textThemes.buttonLarge,
+                      foregroundColor: context.colors.brandDefault,
+                      backgroundColor: context.colors.bgPrimary,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -168,11 +173,23 @@ class HrDashboardPage extends StatelessWidget {
     bool isPrimary = false,
     bool showTrendingIcon = true,
   }) {
-    final bgColor = isPrimary ? context.colors.brandDefault : context.colors.bgSecondary;
-    final titleColor = isPrimary ? context.colors.bgPrimary : context.colors.textSecondary;
-    final valueColor = isPrimary ? context.colors.bgPrimary : context.colors.textPrimary;
-    final bottomColor = isPrimary ? context.colors.bgPrimary : (showTrendingIcon ? context.colors.success : context.colors.textSecondary);
-    final iconColor = isPrimary ? context.colors.bgPrimary : context.colors.success;
+    final bgColor = isPrimary
+        ? context.colors.brandDefault
+        : context.colors.bgSecondary;
+    final titleColor = isPrimary
+        ? context.colors.bgPrimary
+        : context.colors.textSecondary;
+    final valueColor = isPrimary
+        ? context.colors.bgPrimary
+        : context.colors.textPrimary;
+    final bottomColor = isPrimary
+        ? context.colors.bgPrimary
+        : (showTrendingIcon
+              ? context.colors.success
+              : context.colors.textSecondary);
+    final iconColor = isPrimary
+        ? context.colors.bgPrimary
+        : context.colors.success;
 
     return Material(
       color: bgColor,
@@ -191,7 +208,10 @@ class HrDashboardPage extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 6),
-            Text(value, style: context.textThemes.h3.copyWith(color: valueColor)),
+            Text(
+              value,
+              style: context.textThemes.h3.copyWith(color: valueColor),
+            ),
             const SizedBox(height: 8),
             Row(
               children: [

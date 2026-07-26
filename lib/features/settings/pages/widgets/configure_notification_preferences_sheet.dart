@@ -38,7 +38,9 @@ class _SheetContentState extends State<_SheetContent> {
     return BlocConsumer<SettingsBloc, SettingsState>(
       listener: (context, state) {
         // Initialize toggles once settings load
-        if (!_initialized && state.settings?.notifications != null && state.settings!.notifications!.isNotEmpty) {
+        if (!_initialized &&
+            state.settings?.notifications != null &&
+            state.settings!.notifications!.isNotEmpty) {
           final notif = state.settings!.notifications!.first;
           setState(() {
             _smsEnabled = notif.smsEnabled ?? false;
@@ -113,7 +115,8 @@ class _SheetContentState extends State<_SheetContent> {
                     trailing: Switch.adaptive(
                       applyCupertinoTheme: true,
                       value: _applicationUpdates,
-                      onChanged: (value) => setState(() => _applicationUpdates = value),
+                      onChanged: (value) =>
+                          setState(() => _applicationUpdates = value),
                     ),
                   ),
                   ListTile(
@@ -146,7 +149,8 @@ class _SheetContentState extends State<_SheetContent> {
                     trailing: Switch.adaptive(
                       applyCupertinoTheme: true,
                       value: _recommendations,
-                      onChanged: (value) => setState(() => _recommendations = value),
+                      onChanged: (value) =>
+                          setState(() => _recommendations = value),
                     ),
                   ),
                 ],

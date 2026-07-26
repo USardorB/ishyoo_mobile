@@ -28,5 +28,6 @@ class ChatFile with ChatFileMappable {
     this.uploadedBy,
   });
 
-  factory ChatFile.fromJson(Map<String, dynamic> json) => ChatFileMapper.fromMap(json);
+  factory ChatFile.fromJson(Map<String, dynamic> json) =>
+      ChatFileMapper.fromMap(json);
 }

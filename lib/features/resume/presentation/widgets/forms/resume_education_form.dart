@@ -26,18 +26,41 @@ class ResumeEducationForm extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 16),
-        _buildTextField(context, "Ta'lim muassasasi nomi", "Masalan: TATU", controller: schoolController, maxLines: 2),
+        _buildTextField(
+          context,
+          "Ta'lim muassasasi nomi",
+          "Masalan: TATU",
+          controller: schoolController,
+          maxLines: 2,
+        ),
         const SizedBox(height: 24),
-        _buildTextField(context, "Yo'nalish / Mutaxassislik", "Masalan: Dasturiy injiniring", controller: degreeController),
+        _buildTextField(
+          context,
+          "Yo'nalish / Mutaxassislik",
+          "Masalan: Dasturiy injiniring",
+          controller: degreeController,
+        ),
         const SizedBox(height: 24),
         Row(
           spacing: 12,
           children: [
             Expanded(
-              child: _buildTextField(context, "Boshlangan yili", "2019", controller: startYearController, keyboardType: TextInputType.number),
+              child: _buildTextField(
+                context,
+                "Boshlangan yili",
+                "2019",
+                controller: startYearController,
+                keyboardType: TextInputType.number,
+              ),
             ),
             Expanded(
-              child: _buildTextField(context, "Bitirgan yili", "2023", controller: endYearController, keyboardType: TextInputType.number),
+              child: _buildTextField(
+                context,
+                "Bitirgan yili",
+                "2023",
+                controller: endYearController,
+                keyboardType: TextInputType.number,
+              ),
             ),
           ],
         ),
@@ -57,12 +80,19 @@ class ResumeEducationForm extends StatelessWidget {
             foregroundColor: Colors.black,
           ),
           const SizedBox(height: 32), // Bottom padding
-        ]
+        ],
       ],
     );
   }
 
-  Widget _buildTextField(BuildContext context, String label, String hint, {required TextEditingController controller, int maxLines = 1, TextInputType? keyboardType}) {
+  Widget _buildTextField(
+    BuildContext context,
+    String label,
+    String hint, {
+    required TextEditingController controller,
+    int maxLines = 1,
+    TextInputType? keyboardType,
+  }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -86,7 +116,9 @@ class ResumeEducationForm extends StatelessWidget {
             keyboardType: keyboardType,
             decoration: InputDecoration(
               hintText: hint,
-              hintStyle: context.textThemes.b2.copyWith(color: context.colors.textSecondary),
+              hintStyle: context.textThemes.b2.copyWith(
+                color: context.colors.textSecondary,
+              ),
               border: InputBorder.none,
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,

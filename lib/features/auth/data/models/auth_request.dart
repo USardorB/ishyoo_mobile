@@ -12,7 +12,6 @@ class SmsRequestPayload with SmsRequestPayloadMappable {
     required this.phoneNumber,
     required this.method,
   });
-
 }
 
 @MappableClass()
@@ -25,7 +24,6 @@ class VerifyRequest with VerifyRequestMappable {
     required this.requestId,
     required this.code,
   });
-
 }
 
 @MappableClass()
@@ -40,13 +38,13 @@ class RegisterRequest with RegisterRequestMappable {
   final String deviceName;
   @MappableField(key: 'fcm_token')
   final String? fcmToken;
-  
+
   // Optional employer fields
   @MappableField(key: 'company_name')
   final String? companyName;
   @MappableField(key: 'phone_number')
   final String? phoneNumber;
-  
+
   @MappableField(key: 'is_waitlisted_user')
   final bool? isWaitlistedUser;
 
@@ -61,7 +59,6 @@ class RegisterRequest with RegisterRequestMappable {
     this.phoneNumber,
     this.isWaitlistedUser,
   });
-
 }
 
 @MappableClass()
@@ -83,7 +80,6 @@ class LoginRequest with LoginRequestMappable {
     required this.deviceName,
     this.fcmToken,
   });
-
 }
 
 @MappableClass()
@@ -96,5 +92,4 @@ class ResetPasswordRequest with ResetPasswordRequestMappable {
     required this.requestId,
     required this.password,
   });
-
 }

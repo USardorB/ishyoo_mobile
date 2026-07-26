@@ -49,7 +49,9 @@ class HrProfileCompanyInfo extends StatelessWidget {
                     ),
                   ],
                   if (organization?.phoneNumber != null) ...[
-                    if (organization?.website != null || organization?.location != null) const Divider(),
+                    if (organization?.website != null ||
+                        organization?.location != null)
+                      const Divider(),
                     _buildContactTile(
                       context,
                       icon: Icons.phone_outlined,
@@ -58,7 +60,10 @@ class HrProfileCompanyInfo extends StatelessWidget {
                     ),
                   ],
                   if (organization?.since != null) ...[
-                    if (organization?.website != null || organization?.location != null || organization?.phoneNumber != null) const Divider(),
+                    if (organization?.website != null ||
+                        organization?.location != null ||
+                        organization?.phoneNumber != null)
+                      const Divider(),
                     _buildContactTile(
                       context,
                       icon: Icons.calendar_today_outlined,
@@ -67,7 +72,11 @@ class HrProfileCompanyInfo extends StatelessWidget {
                     ),
                   ],
                   if (organization?.onMarket != null) ...[
-                    if (organization?.website != null || organization?.location != null || organization?.phoneNumber != null || organization?.since != null) const Divider(),
+                    if (organization?.website != null ||
+                        organization?.location != null ||
+                        organization?.phoneNumber != null ||
+                        organization?.since != null)
+                      const Divider(),
                     _buildContactTile(
                       context,
                       icon: Icons.storefront_outlined,
@@ -75,14 +84,16 @@ class HrProfileCompanyInfo extends StatelessWidget {
                       value: organization!.onMarket.toString(),
                     ),
                   ],
-                  if (organization?.website == null && 
-                      organization?.location == null && 
+                  if (organization?.website == null &&
+                      organization?.location == null &&
                       organization?.phoneNumber == null &&
                       organization?.since == null &&
                       organization?.onMarket == null)
                     Text(
                       "Aloqa ma'lumotlari kiritilmagan",
-                      style: context.textThemes.b2.copyWith(color: context.colors.textSecondary),
+                      style: context.textThemes.b2.copyWith(
+                        color: context.colors.textSecondary,
+                      ),
                     ),
                   const SizedBox(height: 12),
                   AppButton(
@@ -101,7 +112,12 @@ class HrProfileCompanyInfo extends StatelessWidget {
     );
   }
 
-  Widget _buildContactTile(BuildContext context, {required IconData icon, required String label, required String value}) {
+  Widget _buildContactTile(
+    BuildContext context, {
+    required IconData icon,
+    required String label,
+    required String value,
+  }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Row(

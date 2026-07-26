@@ -31,7 +31,20 @@ class ResumeExperienceForm extends StatelessWidget {
 
   String _formatDate(DateTime? date) {
     if (date == null) return "Tanlang";
-    final months = ["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avgust", "Sentyabr", "Oktyabr", "Noyabr", "Dekabr"];
+    final months = [
+      "Yanvar",
+      "Fevral",
+      "Mart",
+      "Aprel",
+      "May",
+      "Iyun",
+      "Iyul",
+      "Avgust",
+      "Sentyabr",
+      "Oktyabr",
+      "Noyabr",
+      "Dekabr",
+    ];
     return "${months[date.month - 1]} ${date.year}";
   }
 
@@ -44,9 +57,19 @@ class ResumeExperienceForm extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 16),
-        _buildTextField(context, "Kompaniya nomi", "Masalan: Uzum bank", controller: companyController),
+        _buildTextField(
+          context,
+          "Kompaniya nomi",
+          "Masalan: Uzum bank",
+          controller: companyController,
+        ),
         const SizedBox(height: 24),
-        _buildTextField(context, "Lavozim yoki kasb", "Masalan: UX/UI Dizayner", controller: positionController),
+        _buildTextField(
+          context,
+          "Lavozim yoki kasb",
+          "Masalan: UX/UI Dizayner",
+          controller: positionController,
+        ),
         const SizedBox(height: 24),
         _buildActionField(context, "Hudud", location, onTap: onLocationTapped),
         const SizedBox(height: 24),
@@ -60,14 +83,24 @@ class ResumeExperienceForm extends StatelessWidget {
         const SizedBox(height: 24),
         Text(
           "Ish boshlangan sana",
-          style: context.textThemes.c2.copyWith(color: context.colors.textSecondary),
+          style: context.textThemes.c2.copyWith(
+            color: context.colors.textSecondary,
+          ),
         ),
         const SizedBox(height: 8),
-        _buildActionField(context, "", startStr, hasLabel: false, onTap: onStartMonthTapped),
+        _buildActionField(
+          context,
+          "",
+          startStr,
+          hasLabel: false,
+          onTap: onStartMonthTapped,
+        ),
         const SizedBox(height: 24),
         Text(
           "Ishning tugash sanasi",
-          style: context.textThemes.c2.copyWith(color: context.colors.textSecondary),
+          style: context.textThemes.c2.copyWith(
+            color: context.colors.textSecondary,
+          ),
         ),
         const SizedBox(height: 8),
         _buildActionField(
@@ -92,9 +125,13 @@ class ResumeExperienceForm extends StatelessWidget {
                 width: 24,
                 height: 24,
                 decoration: BoxDecoration(
-                  color: isWorking ? context.colors.brandProgress : Colors.transparent,
+                  color: isWorking
+                      ? context.colors.brandProgress
+                      : Colors.transparent,
                   border: Border.all(
-                    color: isWorking ? context.colors.brandProgress : context.colors.textSecondary,
+                    color: isWorking
+                        ? context.colors.brandProgress
+                        : context.colors.textSecondary,
                   ),
                   borderRadius: BorderRadius.circular(4),
                 ),
@@ -109,7 +146,15 @@ class ResumeExperienceForm extends StatelessWidget {
     );
   }
 
-  Widget _buildTextField(BuildContext context, String label, String hint, {required TextEditingController controller, int maxLines = 1, bool hasLabel = true, bool isPlaceholder = false}) {
+  Widget _buildTextField(
+    BuildContext context,
+    String label,
+    String hint, {
+    required TextEditingController controller,
+    int maxLines = 1,
+    bool hasLabel = true,
+    bool isPlaceholder = false,
+  }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -135,7 +180,9 @@ class ResumeExperienceForm extends StatelessWidget {
             enabled: !isPlaceholder,
             decoration: InputDecoration(
               hintText: hint,
-              hintStyle: context.textThemes.b2.copyWith(color: context.colors.textSecondary),
+              hintStyle: context.textThemes.b2.copyWith(
+                color: context.colors.textSecondary,
+              ),
               border: InputBorder.none,
               enabledBorder: InputBorder.none,
               focusedBorder: InputBorder.none,
@@ -146,7 +193,14 @@ class ResumeExperienceForm extends StatelessWidget {
     );
   }
 
-  Widget _buildActionField(BuildContext context, String label, String value, {bool hasLabel = true, bool isPlaceholder = false, VoidCallback? onTap}) {
+  Widget _buildActionField(
+    BuildContext context,
+    String label,
+    String value, {
+    bool hasLabel = true,
+    bool isPlaceholder = false,
+    VoidCallback? onTap,
+  }) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -174,7 +228,9 @@ class ResumeExperienceForm extends StatelessWidget {
                   child: Text(
                     value,
                     style: context.textThemes.b2.copyWith(
-                      color: isPlaceholder ? context.colors.textSecondary : context.colors.textPrimary,
+                      color: isPlaceholder
+                          ? context.colors.textSecondary
+                          : context.colors.textPrimary,
                     ),
                   ),
                 ),

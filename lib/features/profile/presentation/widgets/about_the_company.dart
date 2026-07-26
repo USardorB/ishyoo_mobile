@@ -32,7 +32,11 @@ class AboutTheCompany extends StatelessWidget {
                 children: [
                   _buildStats(context, "Xodimlar", organization?.size ?? "-"),
                   _buildStats(context, "Bozorda", "8 yil"),
-                  _buildStats(context, "Yaratilgan", organization?.createdAt?.year.toString() ?? "-"),
+                  _buildStats(
+                    context,
+                    "Yaratilgan",
+                    organization?.createdAt?.year.toString() ?? "-",
+                  ),
                 ],
               ),
               Divider(
@@ -41,7 +45,8 @@ class AboutTheCompany extends StatelessWidget {
                 height: 25,
               ),
               Text(
-                organization?.description ?? "Kompaniya haqida ma'lumot kiritilmagan.",
+                organization?.description ??
+                    "Kompaniya haqida ma'lumot kiritilmagan.",
                 style: context.textThemes.b2,
               ),
               SizedBox(height: 12),

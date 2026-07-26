@@ -9,7 +9,12 @@ class DarkGlassSearchField extends StatelessWidget {
   final Widget? prefixIcon;
   final String? hintText;
   final VoidCallback? onTap;
-  const DarkGlassSearchField({super.key, this.prefixIcon, this.hintText, this.onTap});
+  const DarkGlassSearchField({
+    super.key,
+    this.prefixIcon,
+    this.hintText,
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +63,8 @@ class DarkGlassSearchField extends StatelessWidget {
                 onTap: () {
                   if (onTap != null) {
                     onTap!();
-                  } else if (context.routeData.name != TalentsSearchResultRoute.name) {
+                  } else if (context.routeData.name !=
+                      TalentsSearchResultRoute.name) {
                     context.pushRoute(TalentsSearchResultRoute());
                   }
                 },

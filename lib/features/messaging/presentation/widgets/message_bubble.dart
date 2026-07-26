@@ -110,12 +110,12 @@ class MessageBubble extends StatelessWidget {
               onTap: () {
                 Navigator.pop(ctx);
                 context.read<MessagingBloc>().add(
-                      DeleteMessage(
-                        chatId: chatId,
-                        messageId: message.id,
-                        isEmployer: isEmployer,
-                      ),
-                    );
+                  DeleteMessage(
+                    chatId: chatId,
+                    messageId: message.id,
+                    isEmployer: isEmployer,
+                  ),
+                );
               },
             ),
           ],
@@ -146,13 +146,13 @@ class MessageBubble extends StatelessWidget {
               final newText = ctrl.text.trim();
               if (newText.isNotEmpty) {
                 context.read<MessagingBloc>().add(
-                      EditMessage(
-                        chatId: chatId,
-                        messageId: message.id,
-                        newContent: newText,
-                        isEmployer: isEmployer,
-                      ),
-                    );
+                  EditMessage(
+                    chatId: chatId,
+                    messageId: message.id,
+                    newContent: newText,
+                    isEmployer: isEmployer,
+                  ),
+                );
               }
               Navigator.pop(ctx);
             },

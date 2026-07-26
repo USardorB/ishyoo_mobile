@@ -48,7 +48,8 @@ class EmployerProfileState {
 
 // --- BLOC ---
 @injectable
-class EmployerProfileBloc extends Bloc<EmployerProfileEvent, EmployerProfileState> {
+class EmployerProfileBloc
+    extends Bloc<EmployerProfileEvent, EmployerProfileState> {
   final ProfileRepository _profileRepository;
 
   EmployerProfileBloc(this._profileRepository) : super(EmployerProfileState()) {
@@ -56,21 +57,35 @@ class EmployerProfileBloc extends Bloc<EmployerProfileEvent, EmployerProfileStat
     on<UpdateEmployerProfileData>(_onUpdate);
   }
 
-  Future<void> _onLoad(LoadEmployerProfile event, Emitter<EmployerProfileState> emit) async {
+  Future<void> _onLoad(
+    LoadEmployerProfile event,
+    Emitter<EmployerProfileState> emit,
+  ) async {
     emit(state.copyWith(isLoading: true, error: null));
     final result = await _profileRepository.getEmployerProfile();
     result.fold(
-      (failure) => emit(state.copyWith(isLoading: false, error: failure.message)),
+      (failure) =>
+          emit(state.copyWith(isLoading: false, error: failure.message)),
       (profile) => emit(state.copyWith(isLoading: false, profile: profile)),
     );
   }
 
-  Future<void> _onUpdate(UpdateEmployerProfileData event, Emitter<EmployerProfileState> emit) async {
+  Future<void> _onUpdate(
+    UpdateEmployerProfileData event,
+    Emitter<EmployerProfileState> emit,
+  ) async {
     emit(state.copyWith(isUpdating: true, error: null));
     final result = await _profileRepository.updateEmployerProfile(event.body);
     result.fold(
-      (failure) => emit(state.copyWith(isUpdating: false, error: failure.message)),
-      (profile) => emit(state.copyWith(isUpdating: false, isUpdateSuccess: true, profile: profile)),
+      (failure) =>
+          emit(state.copyWith(isUpdating: false, error: failure.message)),
+      (profile) => emit(
+        state.copyWith(
+          isUpdating: false,
+          isUpdateSuccess: true,
+          profile: profile,
+        ),
+      ),
     );
   }
 }

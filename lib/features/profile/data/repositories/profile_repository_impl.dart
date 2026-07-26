@@ -22,7 +22,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, Profile>> updateCandidateProfile(Map<String, dynamic> body) {
+  Future<Either<Failure, Profile>> updateCandidateProfile(
+    Map<String, dynamic> body,
+  ) {
     return remoteDataSource.updateCandidateProfile(body).asEither();
   }
 
@@ -32,7 +34,9 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, Profile>> updateEmployerProfile(Map<String, dynamic> body) {
+  Future<Either<Failure, Profile>> updateEmployerProfile(
+    Map<String, dynamic> body,
+  ) {
     return remoteDataSource.updateEmployerProfile(body).asEither();
   }
 
@@ -42,12 +46,16 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, Organization>> updateEmployerOrganization(Map<String, dynamic> body) {
+  Future<Either<Failure, Organization>> updateEmployerOrganization(
+    Map<String, dynamic> body,
+  ) {
     return remoteDataSource.updateEmployerOrganization(body).asEither();
   }
 
   @override
-  Future<Either<Failure, Organization>> updateEmployerOrganizationLogo(dart_io.File logo) {
+  Future<Either<Failure, Organization>> updateEmployerOrganizationLogo(
+    dart_io.File logo,
+  ) {
     return remoteDataSource.updateEmployerOrganizationLogo(logo).asEither();
   }
 }

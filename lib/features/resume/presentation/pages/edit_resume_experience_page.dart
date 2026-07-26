@@ -21,12 +21,20 @@ class EditResumeExperiencePage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final companyController = useTextEditingController(text: experience?.companyName ?? "");
-    final positionController = useTextEditingController(text: experience?.position ?? "");
-    final descriptionController = useTextEditingController(text: experience?.description ?? "");
+    final companyController = useTextEditingController(
+      text: experience?.companyName ?? "",
+    );
+    final positionController = useTextEditingController(
+      text: experience?.position ?? "",
+    );
+    final descriptionController = useTextEditingController(
+      text: experience?.description ?? "",
+    );
     final startDate = useState<DateTime?>(experience?.startDate);
     final endDate = useState<DateTime?>(experience?.endDate);
-    final isWorking = useState<bool>(experience != null && experience!.endDate == null);
+    final isWorking = useState<bool>(
+      experience != null && experience!.endDate == null,
+    );
     final locationStr = useState<String>("Tanlang");
 
     return Scaffold(
@@ -86,7 +94,8 @@ class EditResumeExperiencePage extends HookWidget {
                       builder: (context) => DistrictsSheet(regionId: region.id),
                     );
                     if (district != null) {
-                      locationStr.value = "${region.nameUz ?? region.name ?? ''}, ${district.nameUz ?? district.name ?? ''}";
+                      locationStr.value =
+                          "${region.nameUz ?? region.name ?? ''}, ${district.nameUz ?? district.name ?? ''}";
                     } else {
                       locationStr.value = region.nameUz ?? region.name ?? '';
                     }
@@ -97,7 +106,8 @@ class EditResumeExperiencePage extends HookWidget {
                     context: context,
                     isScrollControlled: true,
                     backgroundColor: Colors.transparent,
-                    builder: (context) => MonthPickerSheet(initialDate: startDate.value),
+                    builder: (context) =>
+                        MonthPickerSheet(initialDate: startDate.value),
                   );
                   if (picked != null) {
                     startDate.value = DateTime(picked.year, picked.month, 1);
@@ -108,7 +118,8 @@ class EditResumeExperiencePage extends HookWidget {
                     context: context,
                     isScrollControlled: true,
                     backgroundColor: Colors.transparent,
-                    builder: (context) => MonthPickerSheet(initialDate: endDate.value),
+                    builder: (context) =>
+                        MonthPickerSheet(initialDate: endDate.value),
                   );
                   if (picked != null) {
                     endDate.value = DateTime(picked.year, picked.month, 1);
@@ -130,7 +141,9 @@ class EditResumeExperiencePage extends HookWidget {
                   'location': locationStr.value,
                   'description': descriptionController.text,
                   'start_date': startDate.value?.toIso8601String(),
-                  'end_date': isWorking.value ? null : endDate.value?.toIso8601String(),
+                  'end_date': isWorking.value
+                      ? null
+                      : endDate.value?.toIso8601String(),
                 };
                 context.maybePop(result);
               },

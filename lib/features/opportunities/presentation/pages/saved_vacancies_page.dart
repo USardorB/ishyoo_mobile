@@ -39,7 +39,10 @@ class _SavedVacanciesPageState extends State<SavedVacanciesPage> {
               }
 
               return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 8,
+                ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -82,13 +85,17 @@ class _SavedVacanciesPageState extends State<SavedVacanciesPage> {
                     );
                   }
                   return ListView.separated(
-                    padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
-                      bottom: MediaQuery.paddingOf(context).bottom + 16,
-                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 16)
+                        .copyWith(
+                          bottom: MediaQuery.paddingOf(context).bottom + 16,
+                        ),
                     itemCount: state.vacancies.length,
-                    separatorBuilder: (context, index) => const SizedBox(height: 12),
+                    separatorBuilder: (context, index) =>
+                        const SizedBox(height: 12),
                     itemBuilder: (context, index) {
-                      return TrendingVacancyCard(vacancy: state.vacancies[index]);
+                      return TrendingVacancyCard(
+                        vacancy: state.vacancies[index],
+                      );
                     },
                   );
                 }

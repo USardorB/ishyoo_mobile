@@ -15,7 +15,8 @@ class ChatPartner with ChatPartnerMappable {
     this.avatar,
   });
 
-  factory ChatPartner.fromJson(Map<String, dynamic> json) => ChatPartnerMapper.fromMap(json);
+  factory ChatPartner.fromJson(Map<String, dynamic> json) =>
+      ChatPartnerMapper.fromMap(json);
 }
 
 @MappableClass(caseStyle: CaseStyle.snakeCase)
@@ -26,7 +27,8 @@ class ChatCount with ChatCountMappable {
     this.messages,
   });
 
-  factory ChatCount.fromJson(Map<String, dynamic> json) => ChatCountMapper.fromMap(json);
+  factory ChatCount.fromJson(Map<String, dynamic> json) =>
+      ChatCountMapper.fromMap(json);
 }
 
 @MappableClass(caseStyle: CaseStyle.snakeCase)
