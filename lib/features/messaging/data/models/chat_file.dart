@@ -4,7 +4,7 @@ part 'chat_file.mapper.dart';
 
 @MappableClass(caseStyle: CaseStyle.snakeCase)
 class ChatFile with ChatFileMappable {
-  final String id;
+  final String? id;
   final String? originalName;
   final String? filename;
   final String? mimeType;
@@ -16,7 +16,7 @@ class ChatFile with ChatFileMappable {
   final String? uploadedBy;
 
   const ChatFile({
-    required this.id,
+    this.id,
     this.originalName,
     this.filename,
     this.mimeType,

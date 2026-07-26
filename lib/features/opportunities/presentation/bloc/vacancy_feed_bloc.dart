@@ -16,13 +16,10 @@ class VacancyFeedBloc extends Bloc<VacancyFeedEvent, VacancyFeedState> {
   final UnsaveVacancyUseCase _unsaveVacancyUseCase;
 
   VacancyFeedBloc({
-    required GetVacancyFeedUseCase getVacancyFeedUseCase,
-    required SaveVacancyUseCase saveVacancyUseCase,
-    required UnsaveVacancyUseCase unsaveVacancyUseCase,
-  }) : _getVacancyFeedUseCase = getVacancyFeedUseCase,
-       _saveVacancyUseCase = saveVacancyUseCase,
-       _unsaveVacancyUseCase = unsaveVacancyUseCase,
-       super(const VacancyFeedInitial()) {
+    required this._getVacancyFeedUseCase,
+    required this._saveVacancyUseCase,
+    required this._unsaveVacancyUseCase,
+  }) : super(const VacancyFeedInitial()) {
     on<LoadVacancyFeed>(_onLoadVacancyFeed);
     on<ToggleSaveVacancyFeed>(_onToggleSaveVacancyFeed);
   }

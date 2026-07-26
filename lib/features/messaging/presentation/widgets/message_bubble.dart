@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/enums/user_role.dart';
@@ -39,15 +40,67 @@ class MessageBubble extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Text(
-                message.content ??
-                    (message.files?.isNotEmpty == true ? 'Fayl yuborildi' : ''),
-                style: context.textThemes.b2.copyWith(
-                  color: isMine
-                      ? context.colors.midnightImmutable
-                      : context.colors.textPrimary,
+              if (message.files != null && message.files!.isNotEmpty) ...[
+                for (final file in message.files!)
+                  if (file.mimeType?.startsWith('image/') == true)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 4),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(maxHeight: 300),
+                        child: CachedNetworkImage(
+                          imageUrl: file.path ?? '',
+                          placeholder: (context, url) => Container(
+                            height: 150,
+                            width: 150,
+                            color: context.colors.bgSecondary,
+                            child: const Center(child: CircularProgressIndicator()),
+                          ),
+                          errorWidget: (context, url, error) => Container(
+                            height: 150,
+                            width: 150,
+                            color: context.colors.bgSecondary,
+                            child: const Icon(Icons.broken_image),
+                          ),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      ),
+                    )
+                  else
+                    Container(
+                      padding: const EdgeInsets.all(8),
+                      margin: const EdgeInsets.only(bottom: 4),
+                      decoration: BoxDecoration(
+                        color: context.colors.bgSecondary,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(Icons.insert_drive_file, color: context.colors.textPrimary),
+                          const SizedBox(width: 8),
+                          Flexible(
+                            child: Text(
+                              file.originalName ?? 'Fayl',
+                              style: context.textThemes.b3.copyWith(color: context.colors.textPrimary),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+              ],
+              if (message.content != null && message.content!.isNotEmpty)
+                Text(
+                  message.content!,
+                  style: context.textThemes.b2.copyWith(
+                    color: isMine
+                        ? context.colors.midnightImmutable
+                        : context.colors.textPrimary,
+                  ),
                 ),
-              ),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [

@@ -1,11 +1,14 @@
-import 'package:flutter/material.dart';
-import 'package:mobile/core/extensions/app_theme_extension.dart';
-import 'package:mobile/features/messaging/presentation/widgets/attatchment_options_sheet.dart';
+import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mobile/core/enums/user_role.dart';
+import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/messaging/presentation/bloc/messaging_bloc.dart';
+import 'package:mobile/features/messaging/presentation/widgets/attatchment_options_sheet.dart';
 
 // TODO(Sardor) Rename for better readability
 class ChatPageBottomPart extends StatefulWidget {
@@ -42,6 +45,62 @@ class _ChatPageBottomPartState extends State<ChatPageBottomPart> {
     _controller.clear();
   }
 
+  Future<void> _pickAndUpload(AttatchmentOptionsSheetType type) async {
+    final isEmployer =
+        context.read<AuthBloc>().state.userRole == UserRole.employer;
+    final messagingBloc = context.read<MessagingBloc>();
+    File? selectedFile;
+
+    try {
+      switch (type) {
+        case AttatchmentOptionsSheetType.file:
+          final result = await FilePicker.pickFiles();
+          if (result != null && result.files.single.path != null) {
+            selectedFile = File(result.files.single.path!);
+          }
+          break;
+        case AttatchmentOptionsSheetType.gallery:
+          final result = await ImagePicker().pickImage(
+            source: ImageSource.gallery,
+            maxHeight: 1080,
+            maxWidth: 1080,
+            imageQuality: 80,
+          );
+          if (result != null) {
+            selectedFile = File(result.path);
+          }
+          break;
+        case AttatchmentOptionsSheetType.camera:
+          final result = await ImagePicker().pickImage(
+            source: ImageSource.camera,
+            maxHeight: 1080,
+            maxWidth: 1080,
+            imageQuality: 80,
+          );
+          if (result != null) {
+            selectedFile = File(result.path);
+          }
+          break;
+      }
+
+      if (selectedFile != null && mounted) {
+        messagingBloc.add(
+          UploadChatFile(
+            chatId: widget.chatId,
+            file: selectedFile,
+            isEmployer: isEmployer,
+          ),
+        );
+      }
+    } catch (e) {
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Xatolik yuz berdi: $e')),
+        );
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -50,11 +109,17 @@ class _ChatPageBottomPartState extends State<ChatPageBottomPart> {
         spacing: 8,
         children: [
           IconButton.filled(
-            onPressed: () => showModalBottomSheet(
-              context: context,
-              isScrollControlled: true,
-              builder: (_) => AttatchmentOptionsSheet(chatId: widget.chatId),
-            ),
+            onPressed: () async {
+              final type =
+                  await showModalBottomSheet<AttatchmentOptionsSheetType>(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (_) => const AttatchmentOptionsSheet(),
+                  );
+              if (type != null && mounted) {
+                await _pickAndUpload(type);
+              }
+            },
             style: IconButton.styleFrom(
               backgroundColor: context.colors.bgPrimary,
               foregroundColor: context.colors.brightImmutable,

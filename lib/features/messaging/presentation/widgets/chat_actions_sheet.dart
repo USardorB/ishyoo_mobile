@@ -2,13 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
 enum ChatActions {
-  profile(icon: Icons.person_outline),
-  mute(icon: Icons.block),
-  logout(icon: Icons.logout);
+  profile(icon: Icons.person_outline, label: 'Profil'),
+  // mute(icon: Icons.block, label: 'Ovozini o\'chirish'),
+  logout(icon: Icons.logout, label: 'Chatdan chiqish');
 
   final IconData icon;
+  final String label;
 
-  const ChatActions({required this.icon});
+  const ChatActions({required this.icon, required this.label});
 }
 
 class ChatActionsSheet extends StatelessWidget {
@@ -25,8 +26,8 @@ class ChatActionsSheet extends StatelessWidget {
             horizontal: 16,
           ),
           child: Column(
-            mainAxisSize: .min,
-            crossAxisAlignment: .stretch,
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Align(
                 child: Container(
@@ -38,18 +39,18 @@ class ChatActionsSheet extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               ...ListTile.divideTiles(
                 context: context,
                 tiles: ChatActions.values.map(
                   (e) => ListTile(
-                    contentPadding: .zero,
+                    contentPadding: EdgeInsets.zero,
                     leading: Container(
-                      padding: .all(4),
+                      padding: const EdgeInsets.all(4),
                       width: 32,
                       height: 32,
                       decoration: BoxDecoration(
-                        borderRadius: .circular(8),
+                        borderRadius: BorderRadius.circular(8),
                         color: context.colors.bgSecondary,
                       ),
                       child: Icon(
@@ -57,10 +58,11 @@ class ChatActionsSheet extends StatelessWidget {
                         color: context.colors.textSecondary,
                       ),
                     ),
-                    title: Text(e.name),
+                    title: Text(e.label),
                     titleTextStyle: context.textThemes.buttonLarge,
-
-                    onTap: () {},
+                    onTap: () {
+                      Navigator.pop(context, e);
+                    },
                   ),
                 ),
               ),

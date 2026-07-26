@@ -7,7 +7,6 @@ import '../../../../core/extensions/repository_extension.dart';
 import '../../domain/repositories/messaging_repository.dart';
 import '../datasources/messaging_remote_data_source.dart';
 import '../models/chat.dart';
-import '../models/chat_file.dart';
 
 @LazySingleton(as: MessagingRepository)
 class MessagingRepositoryImpl implements MessagingRepository {
@@ -79,15 +78,21 @@ class MessagingRepositoryImpl implements MessagingRepository {
   }
 
   @override
-  Future<Either<Failure, List<ChatFile>>> uploadChatFile(
+  Future<Either<Failure, Map<String, dynamic>>> uploadChatFile(
     String id,
     File file, {
     required bool isEmployer,
-  }) {
-    if (isEmployer) {
-      return remoteDataSource.uploadEmployerChatFile(id, file).asEither();
-    } else {
-      return remoteDataSource.uploadCandidateChatFile(id, file).asEither();
+  }) async {
+    try {
+      final dynamic response;
+      if (isEmployer) {
+        response = await remoteDataSource.uploadEmployerChatFile(id, file);
+      } else {
+        response = await remoteDataSource.uploadCandidateChatFile(id, file);
+      }
+      return right(response as Map<String, dynamic>);
+    } catch (e) {
+      return left(ServerFailure(message: e.toString()));
     }
   }
 

@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:fpdart/fpdart.dart';
 import '../../../../core/shared/failures.dart';
 import '../../data/models/chat.dart';
-import '../../data/models/chat_file.dart';
 
 abstract class MessagingRepository {
   Future<Either<Failure, List<Chat>>> getChats({required bool isEmployer});
@@ -31,7 +30,7 @@ abstract class MessagingRepository {
     required bool isEmployer,
   });
 
-  Future<Either<Failure, List<ChatFile>>> uploadChatFile(
+  Future<Either<Failure, Map<String, dynamic>>> uploadChatFile(
     String id,
     File file, {
     required bool isEmployer,

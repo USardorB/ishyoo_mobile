@@ -186,10 +186,7 @@ class _MessagingRemoteDataSource implements MessagingRemoteDataSource {
   }
 
   @override
-  Future<BaseResult<List<ChatFile>>> uploadCandidateChatFile(
-    String id,
-    File file,
-  ) async {
+  Future<dynamic> uploadCandidateChatFile(String id, File file) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -203,7 +200,7 @@ class _MessagingRemoteDataSource implements MessagingRemoteDataSource {
         ),
       ),
     );
-    final _options = _setStreamType<BaseResult<List<ChatFile>>>(
+    final _options = _setStreamType<dynamic>(
       Options(
             method: 'POST',
             headers: _headers,
@@ -212,29 +209,14 @@ class _MessagingRemoteDataSource implements MessagingRemoteDataSource {
           )
           .compose(
             _dio.options,
-            '/mobile/candidate/chat/${id}/message/file',
+            '/mobile/candidate/chat/${id}/file',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late BaseResult<List<ChatFile>> _value;
-    try {
-      _value = BaseResult<List<ChatFile>>.fromJson(
-        _result.data!,
-        (json) => json is List<dynamic>
-            ? json
-                  .map<ChatFile>(
-                    (i) => ChatFile.fromJson(i as Map<String, dynamic>),
-                  )
-                  .toList()
-            : List.empty(),
-      );
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, response: _result);
-      rethrow;
-    }
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
     return _value;
   }
 
@@ -435,10 +417,7 @@ class _MessagingRemoteDataSource implements MessagingRemoteDataSource {
   }
 
   @override
-  Future<BaseResult<List<ChatFile>>> uploadEmployerChatFile(
-    String id,
-    File file,
-  ) async {
+  Future<dynamic> uploadEmployerChatFile(String id, File file) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -452,7 +431,7 @@ class _MessagingRemoteDataSource implements MessagingRemoteDataSource {
         ),
       ),
     );
-    final _options = _setStreamType<BaseResult<List<ChatFile>>>(
+    final _options = _setStreamType<dynamic>(
       Options(
             method: 'POST',
             headers: _headers,
@@ -461,29 +440,14 @@ class _MessagingRemoteDataSource implements MessagingRemoteDataSource {
           )
           .compose(
             _dio.options,
-            '/mobile/employer/chat/${id}/message/file',
+            '/mobile/employer/chat/${id}/file',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late BaseResult<List<ChatFile>> _value;
-    try {
-      _value = BaseResult<List<ChatFile>>.fromJson(
-        _result.data!,
-        (json) => json is List<dynamic>
-            ? json
-                  .map<ChatFile>(
-                    (i) => ChatFile.fromJson(i as Map<String, dynamic>),
-                  )
-                  .toList()
-            : List.empty(),
-      );
-    } on Object catch (e, s) {
-      errorLogger?.logError(e, s, _options, response: _result);
-      rethrow;
-    }
+    final _result = await _dio.fetch(_options);
+    final _value = _result.data;
     return _value;
   }
 

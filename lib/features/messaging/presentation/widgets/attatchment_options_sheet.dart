@@ -1,13 +1,5 @@
-import 'dart:io';
-
-import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:mobile/core/enums/user_role.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
-import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:mobile/features/messaging/presentation/bloc/messaging_bloc.dart';
 
 enum AttatchmentOptionsSheetType {
   file(icon: Icons.file_present_outlined, label: 'Fayl'),
@@ -21,69 +13,10 @@ enum AttatchmentOptionsSheetType {
 }
 
 class AttatchmentOptionsSheet extends StatelessWidget {
-  final String chatId;
-
-  const AttatchmentOptionsSheet({
-    super.key,
-    required this.chatId,
-  });
-
-  Future<void> _pickAndUpload(
-    BuildContext context,
-    AttatchmentOptionsSheetType type,
-    bool isEmployer,
-  ) async {
-    File? selectedFile;
-
-    try {
-      switch (type) {
-        case AttatchmentOptionsSheetType.file:
-          final result = await FilePicker.pickFiles();
-          if (result != null && result.files.single.path != null) {
-            selectedFile = File(result.files.single.path!);
-          }
-          break;
-        case AttatchmentOptionsSheetType.gallery:
-          final result = await ImagePicker().pickImage(
-            source: ImageSource.gallery,
-          );
-          if (result != null) {
-            selectedFile = File(result.path);
-          }
-          break;
-        case AttatchmentOptionsSheetType.camera:
-          final result = await ImagePicker().pickImage(
-            source: ImageSource.camera,
-          );
-          if (result != null) {
-            selectedFile = File(result.path);
-          }
-          break;
-      }
-
-      if (selectedFile != null && context.mounted) {
-        context.read<MessagingBloc>().add(
-          UploadChatFile(
-            chatId: chatId,
-            file: selectedFile,
-            isEmployer: isEmployer,
-          ),
-        );
-      }
-    } catch (e) {
-      if (context.mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Xatolik yuz berdi: $e')),
-        );
-      }
-    }
-  }
+  const AttatchmentOptionsSheet({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final isEmployer =
-        context.read<AuthBloc>().state.userRole == UserRole.employer;
-
     return DividerTheme(
       data: _buildDividerThemeData(context),
       child: Padding(
@@ -121,8 +54,7 @@ class AttatchmentOptionsSheet extends StatelessWidget {
                   title: Text(e.label),
                   titleTextStyle: context.textThemes.buttonLarge,
                   onTap: () {
-                    Navigator.pop(context);
-                    _pickAndUpload(context, e, isEmployer);
+                    Navigator.pop(context, e);
                   },
                 ),
               ),

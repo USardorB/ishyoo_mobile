@@ -22,8 +22,8 @@ class ChatFileMapper extends ClassMapperBase<ChatFile> {
   @override
   final String id = 'ChatFile';
 
-  static String _$id(ChatFile v) => v.id;
-  static const Field<ChatFile, String> _f$id = Field('id', _$id);
+  static String? _$id(ChatFile v) => v.id;
+  static const Field<ChatFile, String> _f$id = Field('id', _$id, opt: true);
   static String? _$originalName(ChatFile v) => v.originalName;
   static const Field<ChatFile, String> _f$originalName = Field(
     'originalName',
@@ -191,7 +191,7 @@ class _ChatFileCopyWithImpl<$R, $Out>
       ChatFileMapper.ensureInitialized();
   @override
   $R call({
-    String? id,
+    Object? id = $none,
     Object? originalName = $none,
     Object? filename = $none,
     Object? mimeType = $none,
@@ -203,7 +203,7 @@ class _ChatFileCopyWithImpl<$R, $Out>
     Object? uploadedBy = $none,
   }) => $apply(
     FieldCopyWithData({
-      if (id != null) #id: id,
+      if (id != $none) #id: id,
       if (originalName != $none) #originalName: originalName,
       if (filename != $none) #filename: filename,
       if (mimeType != $none) #mimeType: mimeType,

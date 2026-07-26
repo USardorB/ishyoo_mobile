@@ -24,9 +24,9 @@ class ChatDetailsPage extends StatelessWidget {
     final userId = context.read<AuthBloc>().state.user?.id;
 
     return BlocProvider(
-      create: (_) =>
-          sl<MessagingBloc>()
-            ..add(LoadChatDetail(id: chatId, isEmployer: isEmployer)),
+      create: (_) => sl<MessagingBloc>()
+        ..add(LoadChatDetail(id: chatId, isEmployer: isEmployer))
+        ..add(StartChatPolling(id: chatId, isEmployer: isEmployer)),
       child: Scaffold(
         extendBodyBehindAppBar: true,
         appBar: AppBar(
@@ -34,12 +34,16 @@ class ChatDetailsPage extends StatelessWidget {
             builder: (context, state) {
               final partner = state.currentChat?.partner;
               final name = partner?.name ?? 'Yuklanmoqda...';
-              final avatarUrl =
-                  partner?.avatar ??
-                  'https://ui-avatars.com/api/?name=${Uri.encodeComponent(name)}';
+              final avatarUrl = partner?.avatar;
               return ListTile(
                 leading: CircleAvatar(
-                  backgroundImage: CachedNetworkImageProvider(avatarUrl),
+                  backgroundImage: avatarUrl != null
+                      ? CachedNetworkImageProvider(avatarUrl)
+                      : null,
+                  backgroundColor: context.colors.bgSecondary,
+                  child: avatarUrl == null
+                      ? Icon(Icons.person, color: context.colors.textSecondary)
+                      : null,
                 ),
                 horizontalTitleGap: 12,
                 subtitleTextStyle: context.textThemes.c1.copyWith(
@@ -54,13 +58,21 @@ class ChatDetailsPage extends StatelessWidget {
             },
           ),
           actions: [
-            IconButton(
-              onPressed: () => showModalBottomSheet(
-                context: context,
-                builder: (_) => ChatActionsSheet(),
+            if (false)
+              IconButton(
+                onPressed: () async {
+                  final action = await showModalBottomSheet<ChatActions>(
+                    context: context,
+                    builder: (_) => const ChatActionsSheet(),
+                  );
+                  if (action != null && context.mounted) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(content: Text('${action.label} - Tez orada!')),
+                    );
+                  }
+                },
+                icon: const Icon(Icons.more_vert),
               ),
-              icon: Icon(Icons.more_vert),
-            ),
           ],
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(kToolbarHeight + 10),

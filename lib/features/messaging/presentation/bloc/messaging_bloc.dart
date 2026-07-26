@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,8 +18,21 @@ class LoadChats extends MessagingEvent {
 class LoadChatDetail extends MessagingEvent {
   final String id;
   final bool isEmployer;
-  LoadChatDetail({required this.id, required this.isEmployer});
+  final bool isSilent;
+  LoadChatDetail({
+    required this.id,
+    required this.isEmployer,
+    this.isSilent = false,
+  });
 }
+
+class StartChatPolling extends MessagingEvent {
+  final String id;
+  final bool isEmployer;
+  StartChatPolling({required this.id, required this.isEmployer});
+}
+
+class StopChatPolling extends MessagingEvent {}
 
 class SendMessage extends MessagingEvent {
   final String id;
@@ -112,14 +126,47 @@ class MessagingState {
 @injectable
 class MessagingBloc extends Bloc<MessagingEvent, MessagingState> {
   final MessagingRepository _repository;
+  Timer? _pollingTimer;
 
   MessagingBloc(this._repository) : super(MessagingState()) {
     on<LoadChats>(_onLoadChats);
     on<LoadChatDetail>(_onLoadChatDetail);
+    on<StartChatPolling>(_onStartPolling);
+    on<StopChatPolling>(_onStopPolling);
     on<SendMessage>(_onSendMessage);
     on<EditMessage>(_onEditMessage);
     on<DeleteMessage>(_onDeleteMessage);
     on<UploadChatFile>(_onUploadChatFile);
+  }
+
+  @override
+  Future<void> close() {
+    _pollingTimer?.cancel();
+    return super.close();
+  }
+
+  Future<void> _onStartPolling(
+    StartChatPolling event,
+    Emitter<MessagingState> emit,
+  ) async {
+    _pollingTimer?.cancel();
+    _pollingTimer = Timer.periodic(const Duration(seconds: 100000), (_) {
+      add(
+        LoadChatDetail(
+          id: event.id,
+          isEmployer: event.isEmployer,
+          isSilent: true,
+        ),
+      );
+    });
+  }
+
+  Future<void> _onStopPolling(
+    StopChatPolling event,
+    Emitter<MessagingState> emit,
+  ) async {
+    _pollingTimer?.cancel();
+    _pollingTimer = null;
   }
 
   Future<void> _onLoadChats(
@@ -141,7 +188,9 @@ class MessagingBloc extends Bloc<MessagingEvent, MessagingState> {
     LoadChatDetail event,
     Emitter<MessagingState> emit,
   ) async {
-    emit(state.copyWith(isLoadingChatDetail: true, clearError: true));
+    if (!event.isSilent) {
+      emit(state.copyWith(isLoadingChatDetail: true, clearError: true));
+    }
 
     final result = await _repository.getChatDetail(
       event.id,
@@ -149,13 +198,19 @@ class MessagingBloc extends Bloc<MessagingEvent, MessagingState> {
     );
 
     result.fold(
-      (failure) => emit(
-        state.copyWith(isLoadingChatDetail: false, error: failure.message),
-      ),
+      (failure) {
+        if (!event.isSilent) {
+          emit(
+            state.copyWith(isLoadingChatDetail: false, error: failure.message),
+          );
+        }
+      },
       (chat) {
         emit(state.copyWith(isLoadingChatDetail: false, currentChat: chat));
         // Optionally mark chat as read immediately
-        _repository.readChat(event.id, isEmployer: event.isEmployer);
+        if (!event.isSilent || (chat.count?.messages ?? 0) > 0) {
+          _repository.readChat(event.id, isEmployer: event.isEmployer);
+        }
       },
     );
   }
@@ -178,7 +233,13 @@ class MessagingBloc extends Bloc<MessagingEvent, MessagingState> {
       (_) {
         emit(state.copyWith(isSending: false));
         // Refresh the chat detail to show the new message
-        add(LoadChatDetail(id: event.id, isEmployer: event.isEmployer));
+        add(
+          LoadChatDetail(
+            id: event.id,
+            isEmployer: event.isEmployer,
+            isSilent: true,
+          ),
+        );
       },
     );
   }
@@ -195,8 +256,13 @@ class MessagingBloc extends Bloc<MessagingEvent, MessagingState> {
     );
     result.fold(
       (failure) => emit(state.copyWith(error: failure.message)),
-      (_) =>
-          add(LoadChatDetail(id: event.chatId, isEmployer: event.isEmployer)),
+      (_) => add(
+        LoadChatDetail(
+          id: event.chatId,
+          isEmployer: event.isEmployer,
+          isSilent: true,
+        ),
+      ),
     );
   }
 
@@ -211,8 +277,13 @@ class MessagingBloc extends Bloc<MessagingEvent, MessagingState> {
     );
     result.fold(
       (failure) => emit(state.copyWith(error: failure.message)),
-      (_) =>
-          add(LoadChatDetail(id: event.chatId, isEmployer: event.isEmployer)),
+      (_) => add(
+        LoadChatDetail(
+          id: event.chatId,
+          isEmployer: event.isEmployer,
+          isSilent: true,
+        ),
+      ),
     );
   }
 
@@ -226,12 +297,33 @@ class MessagingBloc extends Bloc<MessagingEvent, MessagingState> {
       event.file,
       isEmployer: event.isEmployer,
     );
-    result.fold(
-      (failure) =>
+    await result.fold(
+      (failure) async =>
           emit(state.copyWith(isUploading: false, error: failure.message)),
-      (_) {
-        emit(state.copyWith(isUploading: false));
-        add(LoadChatDetail(id: event.chatId, isEmployer: event.isEmployer));
+      (fileResult) async {
+        await Future.delayed(Duration(seconds: 2));
+        final body = {
+          "files": [fileResult],
+        };
+        final sendMessageResult = await _repository.sendMessage(
+          event.chatId,
+          body,
+          isEmployer: event.isEmployer,
+        );
+        sendMessageResult.fold(
+          (failure) =>
+              emit(state.copyWith(isUploading: false, error: failure.message)),
+          (_) {
+            emit(state.copyWith(isUploading: false));
+            add(
+              LoadChatDetail(
+                id: event.chatId,
+                isEmployer: event.isEmployer,
+                isSilent: true,
+              ),
+            );
+          },
+        );
       },
     );
   }

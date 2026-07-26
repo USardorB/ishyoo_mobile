@@ -6,7 +6,6 @@ import 'package:retrofit/retrofit.dart';
 
 import '../../../../core/shared/models/base_result.dart';
 import '../models/chat.dart';
-import '../models/chat_file.dart';
 
 part 'messaging_remote_data_source.g.dart';
 
@@ -44,9 +43,9 @@ abstract class MessagingRemoteDataSource {
     @Path('msg_id') String msgId,
   );
 
-  @POST('/mobile/candidate/chat/{id}/message/file')
+  @POST('/mobile/candidate/chat/{id}/file')
   @MultiPart()
-  Future<BaseResult<List<ChatFile>>> uploadCandidateChatFile(
+  Future<dynamic> uploadCandidateChatFile(
     @Path('id') String id,
     @Part(name: 'file') File file,
   );
@@ -81,9 +80,9 @@ abstract class MessagingRemoteDataSource {
     @Path('msg_id') String msgId,
   );
 
-  @POST('/mobile/employer/chat/{id}/message/file')
+  @POST('/mobile/employer/chat/{id}/file')
   @MultiPart()
-  Future<BaseResult<List<ChatFile>>> uploadEmployerChatFile(
+  Future<dynamic> uploadEmployerChatFile(
     @Path('id') String id,
     @Part(name: 'file') File file,
   );

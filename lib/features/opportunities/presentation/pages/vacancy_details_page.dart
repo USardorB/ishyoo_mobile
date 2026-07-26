@@ -306,32 +306,6 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                 ),
                 const SizedBox(height: 12),
                 const VacancyMapPlaceholder(),
-                const SizedBox(height: 24),
-                if (vacancy.contact != null &&
-                    vacancy.contact!.phoneNumber?.isNotEmpty == true) ...[
-                  Text(
-                    "Aloqa uchun",
-                    style: context.textThemes.s2,
-                  ),
-                  const SizedBox(height: 12),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.phone,
-                        color: context.colors.textSecondary,
-                        size: 20,
-                      ),
-                      const SizedBox(width: 8),
-                      Text(
-                        vacancy.contact!.phoneNumber!,
-                        style: context.textThemes.b2.copyWith(
-                          color: context.colors.textPrimary,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 24),
-                ],
               ],
             ),
           ),
