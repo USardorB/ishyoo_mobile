@@ -43,8 +43,8 @@ class OrganizationMapper extends ClassMapperBase<Organization> {
     _$industry,
     opt: true,
   );
-  static String? _$size(Organization v) => v.size;
-  static const Field<Organization, String> _f$size = Field(
+  static int? _$size(Organization v) => v.size;
+  static const Field<Organization, int> _f$size = Field(
     'size',
     _$size,
     opt: true,
@@ -134,6 +134,13 @@ class OrganizationMapper extends ClassMapperBase<Organization> {
     key: r'user_id',
     opt: true,
   );
+  static Map<String, int>? _$count(Organization v) => v.count;
+  static const Field<Organization, Map<String, int>> _f$count = Field(
+    'count',
+    _$count,
+    key: r'_count',
+    opt: true,
+  );
 
   @override
   final MappableFields<Organization> fields = const {
@@ -155,6 +162,7 @@ class OrganizationMapper extends ClassMapperBase<Organization> {
     #perks: _f$perks,
     #isSubscripted: _f$isSubscripted,
     #userId: _f$userId,
+    #count: _f$count,
   };
 
   static Organization _instantiate(DecodingData data) {
@@ -177,6 +185,7 @@ class OrganizationMapper extends ClassMapperBase<Organization> {
       perks: data.dec(_f$perks),
       isSubscripted: data.dec(_f$isSubscripted),
       userId: data.dec(_f$userId),
+      count: data.dec(_f$count),
     );
   }
 
@@ -243,12 +252,13 @@ extension OrganizationValueCopy<$R, $Out>
 abstract class OrganizationCopyWith<$R, $In extends Organization, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>? get perks;
+  MapCopyWith<$R, String, int, ObjectCopyWith<$R, int, int>>? get count;
   $R call({
     String? id,
     String? logo,
     String? name,
     String? industry,
-    String? size,
+    int? size,
     String? website,
     String? description,
     String? location,
@@ -262,6 +272,7 @@ abstract class OrganizationCopyWith<$R, $In extends Organization, $Out>
     List<String>? perks,
     bool? isSubscripted,
     String? userId,
+    Map<String, int>? count,
   });
   OrganizationCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -284,6 +295,15 @@ class _OrganizationCopyWithImpl<$R, $Out>
         )
       : null;
   @override
+  MapCopyWith<$R, String, int, ObjectCopyWith<$R, int, int>>? get count =>
+      $value.count != null
+      ? MapCopyWith(
+          $value.count!,
+          (v, t) => ObjectCopyWith(v, $identity, t),
+          (v) => call(count: v),
+        )
+      : null;
+  @override
   $R call({
     Object? id = $none,
     Object? logo = $none,
@@ -303,6 +323,7 @@ class _OrganizationCopyWithImpl<$R, $Out>
     Object? perks = $none,
     Object? isSubscripted = $none,
     Object? userId = $none,
+    Object? count = $none,
   }) => $apply(
     FieldCopyWithData({
       if (id != $none) #id: id,
@@ -323,6 +344,7 @@ class _OrganizationCopyWithImpl<$R, $Out>
       if (perks != $none) #perks: perks,
       if (isSubscripted != $none) #isSubscripted: isSubscripted,
       if (userId != $none) #userId: userId,
+      if (count != $none) #count: count,
     }),
   );
   @override
@@ -345,6 +367,7 @@ class _OrganizationCopyWithImpl<$R, $Out>
     perks: data.get(#perks, or: $value.perks),
     isSubscripted: data.get(#isSubscripted, or: $value.isSubscripted),
     userId: data.get(#userId, or: $value.userId),
+    count: data.get(#count, or: $value.count),
   );
 
   @override

@@ -9,7 +9,7 @@ class Organization with OrganizationMappable {
   final String? logo;
   final String? name;
   final String? industry;
-  final String? size;
+  final int? size;
   final String? website;
   final String? description;
   final String? location;
@@ -30,6 +30,8 @@ class Organization with OrganizationMappable {
   final bool? isSubscripted;
   @MappableField(key: 'user_id')
   final String? userId;
+  @MappableField(key: '_count')
+  final Map<String, int>? count;
 
   const Organization({
     this.id,
@@ -50,6 +52,7 @@ class Organization with OrganizationMappable {
     this.perks,
     this.isSubscripted,
     this.userId,
+    this.count,
   });
 
   factory Organization.fromJson(Map<String, dynamic> json) =>

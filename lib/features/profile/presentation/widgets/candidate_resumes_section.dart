@@ -16,33 +16,34 @@ class CandidateResumesSection extends StatelessWidget {
       children: [
         if (resumes.isEmpty)
           const Padding(
-            padding: EdgeInsets.symmetric(vertical: 16),
+            padding: .symmetric(vertical: 16),
             child: Text("Sizda hozircha rezyumelar yo'q"),
           )
         else
           ...resumes.map(
             (resume) => Padding(
-              padding: const EdgeInsets.only(bottom: 12),
+              padding: const .only(bottom: 12),
               child: InkWell(
-                onTap: () {
-                  context.pushRoute(ResumeDetailsRoute(id: resume.id));
-                },
-                borderRadius: BorderRadius.circular(16),
+                onTap: () => context.pushRoute(
+                  ResumeDetailsRoute(id: resume.id),
+                ),
+                borderRadius: .circular(16),
                 child: Container(
-                  padding: const EdgeInsets.all(16),
+                  padding: const .all(16),
                   decoration: BoxDecoration(
-                    color: context.colors.bgSecondary,
-                    borderRadius: BorderRadius.circular(16),
+                    border: .all(color: context.colors.bgTertiary),
+                    color: context.colors.bgPrimary,
+                    borderRadius: .circular(16),
                   ),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: .start,
                     children: [
                       Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: .start,
                         children: [
                           Expanded(
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: .start,
                               children: [
                                 Text(
                                   resume.specialization ?? "Kiritilmagan",
@@ -53,7 +54,7 @@ class CandidateResumesSection extends StatelessWidget {
                                   resume.updatedAt != null
                                       ? "Yangilangan: ${resume.updatedAt!.toString().substring(0, 10)}"
                                       : "Yangi",
-                                  style: context.textThemes.c1.copyWith(
+                                  style: context.textThemes.b1.copyWith(
                                     color: context.colors.textSecondary,
                                   ),
                                 ),

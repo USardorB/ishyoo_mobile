@@ -3,6 +3,7 @@ import 'package:injectable/injectable.dart';
 import 'package:retrofit/retrofit.dart';
 import '../../../../core/shared/models/base_result.dart';
 import '../models/application_response.dart';
+import '../models/organization.dart';
 import '../models/vacancy.dart';
 
 part 'vacancy_remote_data_source.g.dart';
@@ -59,5 +60,11 @@ abstract class VacancyRemoteDataSource {
   @GET('/mobile/{role}/vacancy/saved')
   Future<BaseResult<List<Vacancy>>> getSavedVacancies(
     @Path('role') String role,
+  );
+
+  @GET('/mobile/{role}/organization/{id}')
+  Future<BaseResult<Organization>> getOrganizationDetail(
+    @Path('role') String role,
+    @Path('id') String id,
   );
 }

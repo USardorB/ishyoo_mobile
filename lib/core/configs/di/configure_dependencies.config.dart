@@ -110,6 +110,8 @@ import 'package:mobile/features/opportunities/domain/usecases/save_vacancy_useca
     as _i301;
 import 'package:mobile/features/opportunities/domain/usecases/unsave_vacancy_usecase.dart'
     as _i360;
+import 'package:mobile/features/opportunities/presentation/bloc/company_details/company_details_bloc.dart'
+    as _i3;
 import 'package:mobile/features/opportunities/presentation/bloc/nearby_jobs_bloc.dart'
     as _i557;
 import 'package:mobile/features/opportunities/presentation/bloc/saved_vacancies_bloc.dart'
@@ -359,6 +361,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.lazySingleton<_i205.MessagingRepository>(
       () =>
           _i717.MessagingRepositoryImpl(gh<_i645.MessagingRemoteDataSource>()),
+    );
+    gh.factory<_i3.CompanyDetailsBloc>(
+      () => _i3.CompanyDetailsBloc(gh<_i111.VacancyRepository>()),
     );
     gh.lazySingleton<_i1031.PostingsRepository>(
       () => _i1002.PostingsRepositoryImpl(gh<_i252.PostingsRemoteDataSource>()),

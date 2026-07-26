@@ -30,7 +30,7 @@ class _EditCompanyInfoPageState extends State<EditCompanyInfoPage> {
     if (_initialized) return;
     _nameCtrl.text = org.name ?? '';
     _industryCtrl.text = org.industry ?? '';
-    _sizeCtrl.text = org.size ?? '';
+    _sizeCtrl.text = org.size?.toString() ?? '';
     _websiteCtrl.text = org.website ?? '';
     _descriptionCtrl.text = org.description ?? '';
     _locationCtrl.text = org.location ?? '';

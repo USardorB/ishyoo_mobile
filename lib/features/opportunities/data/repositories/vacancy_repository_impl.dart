@@ -6,6 +6,7 @@ import '../../../../core/extensions/repository_extension.dart';
 import '../../domain/repositories/vacancy_repository.dart';
 import '../datasources/vacancy_remote_data_source.dart';
 import '../models/application_response.dart';
+import '../models/organization.dart';
 import '../models/vacancy.dart';
 
 @LazySingleton(as: VacancyRepository)
@@ -84,5 +85,10 @@ class VacancyRepositoryImpl implements VacancyRepository {
   @override
   Future<Either<Failure, List<Vacancy>>> getSavedVacancies() {
     return remoteDataSource.getSavedVacancies('candidate').asEither();
+  }
+
+  @override
+  Future<Either<Failure, Organization>> getOrganizationDetail(String id) {
+    return remoteDataSource.getOrganizationDetail('candidate', id).asEither();
   }
 }

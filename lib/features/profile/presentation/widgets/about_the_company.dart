@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
-
 import 'package:mobile/features/opportunities/data/models/organization.dart';
 
 class AboutTheCompany extends StatelessWidget {
@@ -30,7 +29,11 @@ class AboutTheCompany extends StatelessWidget {
               Row(
                 mainAxisAlignment: .spaceAround,
                 children: [
-                  _buildStats(context, "Xodimlar", organization?.size ?? "-"),
+                  _buildStats(
+                    context,
+                    "Xodimlar",
+                    organization?.size?.toString() ?? "-",
+                  ),
                   _buildStats(context, "Bozorda", "8 yil"),
                   _buildStats(
                     context,

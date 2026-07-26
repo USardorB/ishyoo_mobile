@@ -2,8 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
-import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
-import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/features/applicants/data/models/applicant.dart';
 import 'package:mobile/features/applicants/presentation/widgets/new_applicant_action_buttons.dart';
 
@@ -21,17 +19,17 @@ class ApplicantListingItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        if (applicant.resumeId == null) {
-          AppNotificationOverlay.instance.show(
-            message: 'Nomzodning rezyumesini olishda xatolik yuz berdi',
-            type: AppNotificationType.error,
-          );
-          return;
-        }
+        // if (applicant.resumeId == null) {
+        //   AppNotificationOverlay.instance.show(
+        //     message: 'Nomzodning rezyumesini olishda xatolik yuz berdi',
+        //     type: AppNotificationType.error,
+        //   );
+        //   return;
+        // }
         context.pushRoute(
           ApplicantDetailsRoute(
             vacancyId: applicant.vacancyId ?? vacancyId,
-            applicantResumeId: applicant.resumeId!,
+            applicantResumeId: applicant.id,
           ),
         );
       },

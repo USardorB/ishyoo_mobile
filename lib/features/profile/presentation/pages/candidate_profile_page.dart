@@ -114,7 +114,7 @@ class CandidateProfilePage extends StatelessWidget {
   Widget _buildSectionTitle(BuildContext context, String title) {
     return Text(
       title,
-      style: context.textThemes.s1,
+      style: context.textThemes.s2,
     );
   }
 }

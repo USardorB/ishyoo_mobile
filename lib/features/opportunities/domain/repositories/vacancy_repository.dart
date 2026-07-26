@@ -3,6 +3,8 @@ import '../../../../core/shared/failures.dart';
 import '../../data/models/application_response.dart';
 import '../../data/models/vacancy.dart';
 
+import '../../data/models/organization.dart';
+
 abstract class VacancyRepository {
   Future<Either<Failure, List<Vacancy>>> getVacancyFeed({
     int? limit,
@@ -24,5 +26,8 @@ abstract class VacancyRepository {
   );
   Future<Either<Failure, Unit>> saveVacancy(String id);
   Future<Either<Failure, Unit>> unsaveVacancy(String id);
+
   Future<Either<Failure, List<Vacancy>>> getSavedVacancies();
+
+  Future<Either<Failure, Organization>> getOrganizationDetail(String id);
 }

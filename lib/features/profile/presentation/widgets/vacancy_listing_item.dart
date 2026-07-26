@@ -97,6 +97,7 @@ class VacancyListingItem extends StatelessWidget {
               ),
             ],
           ),
+          SizedBox(height: 16),
           Container(
             padding: .symmetric(vertical: 12),
             decoration: BoxDecoration(

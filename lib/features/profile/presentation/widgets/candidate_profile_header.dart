@@ -33,14 +33,15 @@ class CandidateProfileHeader extends StatelessWidget {
             alignment: Alignment.center,
             child: Text(
               initials,
-              style: context.textThemes.s1.copyWith(
-                color: context.colors.brandProgress,
+              style: context.textThemes.h5.copyWith(
+                color: context.colors.brandDefault,
               ),
             ),
           ),
           const SizedBox(width: 16),
           Expanded(
             child: Column(
+              spacing: 4,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
