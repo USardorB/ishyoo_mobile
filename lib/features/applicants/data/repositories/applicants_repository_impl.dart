@@ -26,34 +26,34 @@ class ApplicantsRepositoryImpl implements ApplicantsRepository {
   }
 
   @override
-  Future<Either<Failure, Applicant>> getVacancyApplicantDetail(
-    String vacancyId,
-    String applicantId,
-  ) {
+  Future<Either<Failure, Applicant>> getVacancyApplicantDetail({
+    required String vacancyId,
+    required String vacancyApplicantResumeId,
+  }) {
     return remoteDataSource
-        .getVacancyApplicantDetail(vacancyId, applicantId)
+        .getVacancyApplicantDetail(vacancyId, vacancyApplicantResumeId)
         .asEither();
   }
 
   @override
-  Future<Either<Failure, void>> scheduleInterview(
-    String vacancyId,
-    String applicantId,
-    Map<String, dynamic> body,
-  ) {
+  Future<Either<Failure, void>> scheduleInterview({
+    required String vacancyId,
+    required String vacancyApplicantResumeId,
+    required Map<String, dynamic> data,
+  }) {
     return remoteDataSource
-        .scheduleInterview(vacancyId, applicantId, body)
+        .scheduleInterview(vacancyId, vacancyApplicantResumeId, data)
         .asEither();
   }
 
   @override
-  Future<Either<Failure, void>> updateApplicationStatus(
-    String vacancyId,
-    String applicantId,
-    Map<String, dynamic> body,
-  ) {
+  Future<Either<Failure, void>> updateApplicationStatus({
+    required String vacancyId,
+    required String vacancyApplicantResumeId,
+    required Map<String, dynamic> data,
+  }) {
     return remoteDataSource
-        .updateApplicationStatus(vacancyId, applicantId, body)
+        .updateApplicationStatus(vacancyId, vacancyApplicantResumeId, data)
         .asEither();
   }
 }

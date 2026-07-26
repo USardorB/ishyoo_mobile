@@ -96,7 +96,7 @@ class _ApplicantsRemoteDataSource implements ApplicantsRemoteDataSource {
   @override
   Future<BaseResult<Applicant>> getVacancyApplicantDetail(
     String vacancyId,
-    String applicantId,
+    String vacancyApplicantResumeId,
   ) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
@@ -106,7 +106,7 @@ class _ApplicantsRemoteDataSource implements ApplicantsRemoteDataSource {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/mobile/employer/vacancy/${vacancyId}/applicants/${applicantId}',
+            '/mobile/employer/vacancy/${vacancyId}/applicants/${vacancyApplicantResumeId}',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -129,7 +129,7 @@ class _ApplicantsRemoteDataSource implements ApplicantsRemoteDataSource {
   @override
   Future<BaseResult<dynamic>> scheduleInterview(
     String vacancyId,
-    String applicantId,
+    String vacancyApplicantResumeId,
     Map<String, dynamic> body,
   ) async {
     final _extra = <String, dynamic>{};
@@ -141,7 +141,7 @@ class _ApplicantsRemoteDataSource implements ApplicantsRemoteDataSource {
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/mobile/employer/vacancy/${vacancyId}/applicants/${applicantId}/interview',
+            '/mobile/employer/vacancy/${vacancyId}/applicants/${vacancyApplicantResumeId}/interview',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -164,7 +164,7 @@ class _ApplicantsRemoteDataSource implements ApplicantsRemoteDataSource {
   @override
   Future<BaseResult<dynamic>> updateApplicationStatus(
     String vacancyId,
-    String applicantId,
+    String vacancyApplicantResumeId,
     Map<String, dynamic> body,
   ) async {
     final _extra = <String, dynamic>{};
@@ -176,7 +176,7 @@ class _ApplicantsRemoteDataSource implements ApplicantsRemoteDataSource {
       Options(method: 'PUT', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/mobile/employer/vacancy/${vacancyId}/applicants/${applicantId}/status',
+            '/mobile/employer/vacancy/${vacancyId}/applicants/${vacancyApplicantResumeId}/status',
             queryParameters: queryParameters,
             data: _data,
           )

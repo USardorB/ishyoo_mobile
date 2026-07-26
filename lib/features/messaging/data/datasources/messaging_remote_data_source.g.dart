@@ -245,10 +245,10 @@ class _MessagingRemoteDataSource implements MessagingRemoteDataSource {
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<BaseResult<dynamic>>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
+      Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/mobile/candidate/chat/${id}/read',
+            '/mobile/candidate/chat/${id}/read-messages',
             queryParameters: queryParameters,
             data: _data,
           )
@@ -494,10 +494,10 @@ class _MessagingRemoteDataSource implements MessagingRemoteDataSource {
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<BaseResult<dynamic>>(
-      Options(method: 'POST', headers: _headers, extra: _extra)
+      Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/mobile/employer/chat/${id}/read',
+            '/mobile/employer/chat/${id}/read-messages',
             queryParameters: queryParameters,
             data: _data,
           )

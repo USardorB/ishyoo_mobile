@@ -180,6 +180,298 @@ class _ApplicantUserCopyWithImpl<$R, $Out>
   ) => _ApplicantUserCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
+class ApplicantChatMapper extends ClassMapperBase<ApplicantChat> {
+  ApplicantChatMapper._();
+
+  static ApplicantChatMapper? _instance;
+  static ApplicantChatMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = ApplicantChatMapper._());
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'ApplicantChat';
+
+  static String _$id(ApplicantChat v) => v.id;
+  static const Field<ApplicantChat, String> _f$id = Field('id', _$id);
+  static String? _$status(ApplicantChat v) => v.status;
+  static const Field<ApplicantChat, String> _f$status = Field(
+    'status',
+    _$status,
+    opt: true,
+  );
+  static DateTime? _$createdAt(ApplicantChat v) => v.createdAt;
+  static const Field<ApplicantChat, DateTime> _f$createdAt = Field(
+    'createdAt',
+    _$createdAt,
+    key: r'created_at',
+    opt: true,
+  );
+  static int? _$applicationId(ApplicantChat v) => v.applicationId;
+  static const Field<ApplicantChat, int> _f$applicationId = Field(
+    'applicationId',
+    _$applicationId,
+    key: r'application_id',
+    opt: true,
+  );
+
+  @override
+  final MappableFields<ApplicantChat> fields = const {
+    #id: _f$id,
+    #status: _f$status,
+    #createdAt: _f$createdAt,
+    #applicationId: _f$applicationId,
+  };
+
+  static ApplicantChat _instantiate(DecodingData data) {
+    return ApplicantChat(
+      id: data.dec(_f$id),
+      status: data.dec(_f$status),
+      createdAt: data.dec(_f$createdAt),
+      applicationId: data.dec(_f$applicationId),
+    );
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+
+  static ApplicantChat fromMap(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<ApplicantChat>(map);
+  }
+
+  static ApplicantChat fromJson(String json) {
+    return ensureInitialized().decodeJson<ApplicantChat>(json);
+  }
+}
+
+mixin ApplicantChatMappable {
+  String toJson() {
+    return ApplicantChatMapper.ensureInitialized().encodeJson<ApplicantChat>(
+      this as ApplicantChat,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return ApplicantChatMapper.ensureInitialized().encodeMap<ApplicantChat>(
+      this as ApplicantChat,
+    );
+  }
+
+  ApplicantChatCopyWith<ApplicantChat, ApplicantChat, ApplicantChat>
+  get copyWith => _ApplicantChatCopyWithImpl<ApplicantChat, ApplicantChat>(
+    this as ApplicantChat,
+    $identity,
+    $identity,
+  );
+  @override
+  String toString() {
+    return ApplicantChatMapper.ensureInitialized().stringifyValue(
+      this as ApplicantChat,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return ApplicantChatMapper.ensureInitialized().equalsValue(
+      this as ApplicantChat,
+      other,
+    );
+  }
+
+  @override
+  int get hashCode {
+    return ApplicantChatMapper.ensureInitialized().hashValue(
+      this as ApplicantChat,
+    );
+  }
+}
+
+extension ApplicantChatValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, ApplicantChat, $Out> {
+  ApplicantChatCopyWith<$R, ApplicantChat, $Out> get $asApplicantChat =>
+      $base.as((v, t, t2) => _ApplicantChatCopyWithImpl<$R, $Out>(v, t, t2));
+}
+
+abstract class ApplicantChatCopyWith<$R, $In extends ApplicantChat, $Out>
+    implements ClassCopyWith<$R, $In, $Out> {
+  $R call({
+    String? id,
+    String? status,
+    DateTime? createdAt,
+    int? applicationId,
+  });
+  ApplicantChatCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
+}
+
+class _ApplicantChatCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, ApplicantChat, $Out>
+    implements ApplicantChatCopyWith<$R, ApplicantChat, $Out> {
+  _ApplicantChatCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<ApplicantChat> $mapper =
+      ApplicantChatMapper.ensureInitialized();
+  @override
+  $R call({
+    String? id,
+    Object? status = $none,
+    Object? createdAt = $none,
+    Object? applicationId = $none,
+  }) => $apply(
+    FieldCopyWithData({
+      if (id != null) #id: id,
+      if (status != $none) #status: status,
+      if (createdAt != $none) #createdAt: createdAt,
+      if (applicationId != $none) #applicationId: applicationId,
+    }),
+  );
+  @override
+  ApplicantChat $make(CopyWithData data) => ApplicantChat(
+    id: data.get(#id, or: $value.id),
+    status: data.get(#status, or: $value.status),
+    createdAt: data.get(#createdAt, or: $value.createdAt),
+    applicationId: data.get(#applicationId, or: $value.applicationId),
+  );
+
+  @override
+  ApplicantChatCopyWith<$R2, ApplicantChat, $Out2> $chain<$R2, $Out2>(
+    Then<$Out2, $R2> t,
+  ) => _ApplicantChatCopyWithImpl<$R2, $Out2>($value, $cast, t);
+}
+
+class ApplicantMetadataMapper extends ClassMapperBase<ApplicantMetadata> {
+  ApplicantMetadataMapper._();
+
+  static ApplicantMetadataMapper? _instance;
+  static ApplicantMetadataMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = ApplicantMetadataMapper._());
+      ApplicantChatMapper.ensureInitialized();
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'ApplicantMetadata';
+
+  static ApplicantChat? _$chat(ApplicantMetadata v) => v.chat;
+  static const Field<ApplicantMetadata, ApplicantChat> _f$chat = Field(
+    'chat',
+    _$chat,
+    opt: true,
+  );
+
+  @override
+  final MappableFields<ApplicantMetadata> fields = const {#chat: _f$chat};
+
+  static ApplicantMetadata _instantiate(DecodingData data) {
+    return ApplicantMetadata(chat: data.dec(_f$chat));
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+
+  static ApplicantMetadata fromMap(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<ApplicantMetadata>(map);
+  }
+
+  static ApplicantMetadata fromJson(String json) {
+    return ensureInitialized().decodeJson<ApplicantMetadata>(json);
+  }
+}
+
+mixin ApplicantMetadataMappable {
+  String toJson() {
+    return ApplicantMetadataMapper.ensureInitialized()
+        .encodeJson<ApplicantMetadata>(this as ApplicantMetadata);
+  }
+
+  Map<String, dynamic> toMap() {
+    return ApplicantMetadataMapper.ensureInitialized()
+        .encodeMap<ApplicantMetadata>(this as ApplicantMetadata);
+  }
+
+  ApplicantMetadataCopyWith<
+    ApplicantMetadata,
+    ApplicantMetadata,
+    ApplicantMetadata
+  >
+  get copyWith =>
+      _ApplicantMetadataCopyWithImpl<ApplicantMetadata, ApplicantMetadata>(
+        this as ApplicantMetadata,
+        $identity,
+        $identity,
+      );
+  @override
+  String toString() {
+    return ApplicantMetadataMapper.ensureInitialized().stringifyValue(
+      this as ApplicantMetadata,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return ApplicantMetadataMapper.ensureInitialized().equalsValue(
+      this as ApplicantMetadata,
+      other,
+    );
+  }
+
+  @override
+  int get hashCode {
+    return ApplicantMetadataMapper.ensureInitialized().hashValue(
+      this as ApplicantMetadata,
+    );
+  }
+}
+
+extension ApplicantMetadataValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, ApplicantMetadata, $Out> {
+  ApplicantMetadataCopyWith<$R, ApplicantMetadata, $Out>
+  get $asApplicantMetadata => $base.as(
+    (v, t, t2) => _ApplicantMetadataCopyWithImpl<$R, $Out>(v, t, t2),
+  );
+}
+
+abstract class ApplicantMetadataCopyWith<
+  $R,
+  $In extends ApplicantMetadata,
+  $Out
+>
+    implements ClassCopyWith<$R, $In, $Out> {
+  ApplicantChatCopyWith<$R, ApplicantChat, ApplicantChat>? get chat;
+  $R call({ApplicantChat? chat});
+  ApplicantMetadataCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
+    Then<$Out2, $R2> t,
+  );
+}
+
+class _ApplicantMetadataCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, ApplicantMetadata, $Out>
+    implements ApplicantMetadataCopyWith<$R, ApplicantMetadata, $Out> {
+  _ApplicantMetadataCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<ApplicantMetadata> $mapper =
+      ApplicantMetadataMapper.ensureInitialized();
+  @override
+  ApplicantChatCopyWith<$R, ApplicantChat, ApplicantChat>? get chat =>
+      $value.chat?.copyWith.$chain((v) => call(chat: v));
+  @override
+  $R call({Object? chat = $none}) =>
+      $apply(FieldCopyWithData({if (chat != $none) #chat: chat}));
+  @override
+  ApplicantMetadata $make(CopyWithData data) =>
+      ApplicantMetadata(chat: data.get(#chat, or: $value.chat));
+
+  @override
+  ApplicantMetadataCopyWith<$R2, ApplicantMetadata, $Out2> $chain<$R2, $Out2>(
+    Then<$Out2, $R2> t,
+  ) => _ApplicantMetadataCopyWithImpl<$R2, $Out2>($value, $cast, t);
+}
+
 class ApplicantMapper extends ClassMapperBase<Applicant> {
   ApplicantMapper._();
 
@@ -187,6 +479,7 @@ class ApplicantMapper extends ClassMapperBase<Applicant> {
   static ApplicantMapper ensureInitialized() {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = ApplicantMapper._());
+      ApplicantMetadataMapper.ensureInitialized();
       ResumeEducationMapper.ensureInitialized();
       ResumeExperienceMapper.ensureInitialized();
       ApplicantUserMapper.ensureInitialized();
@@ -199,6 +492,19 @@ class ApplicantMapper extends ClassMapperBase<Applicant> {
 
   static String _$id(Applicant v) => v.id;
   static const Field<Applicant, String> _f$id = Field('id', _$id);
+  static String? _$resumeId(Applicant v) => v.resumeId;
+  static const Field<Applicant, String> _f$resumeId = Field(
+    'resumeId',
+    _$resumeId,
+    key: r'resume_id',
+    opt: true,
+  );
+  static ApplicantMetadata? _$metadata(Applicant v) => v.metadata;
+  static const Field<Applicant, ApplicantMetadata> _f$metadata = Field(
+    'metadata',
+    _$metadata,
+    opt: true,
+  );
   static String? _$specialization(Applicant v) => v.specialization;
   static const Field<Applicant, String> _f$specialization = Field(
     'specialization',
@@ -314,6 +620,8 @@ class ApplicantMapper extends ClassMapperBase<Applicant> {
   @override
   final MappableFields<Applicant> fields = const {
     #id: _f$id,
+    #resumeId: _f$resumeId,
+    #metadata: _f$metadata,
     #specialization: _f$specialization,
     #expectedSalary: _f$expectedSalary,
     #currency: _f$currency,
@@ -336,6 +644,8 @@ class ApplicantMapper extends ClassMapperBase<Applicant> {
   static Applicant _instantiate(DecodingData data) {
     return Applicant(
       id: data.dec(_f$id),
+      resumeId: data.dec(_f$resumeId),
+      metadata: data.dec(_f$metadata),
       specialization: data.dec(_f$specialization),
       expectedSalary: data.dec(_f$expectedSalary),
       currency: data.dec(_f$currency),
@@ -415,6 +725,8 @@ extension ApplicantValueCopy<$R, $Out> on ObjectCopyWith<$R, Applicant, $Out> {
 
 abstract class ApplicantCopyWith<$R, $In extends Applicant, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
+  ApplicantMetadataCopyWith<$R, ApplicantMetadata, ApplicantMetadata>?
+  get metadata;
   ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
   get employmentType;
   ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>? get workFormat;
@@ -434,6 +746,8 @@ abstract class ApplicantCopyWith<$R, $In extends Applicant, $Out>
   ApplicantUserCopyWith<$R, ApplicantUser, ApplicantUser>? get user;
   $R call({
     String? id,
+    String? resumeId,
+    ApplicantMetadata? metadata,
     String? specialization,
     int? expectedSalary,
     String? currency,
@@ -463,6 +777,9 @@ class _ApplicantCopyWithImpl<$R, $Out>
   @override
   late final ClassMapperBase<Applicant> $mapper =
       ApplicantMapper.ensureInitialized();
+  @override
+  ApplicantMetadataCopyWith<$R, ApplicantMetadata, ApplicantMetadata>?
+  get metadata => $value.metadata?.copyWith.$chain((v) => call(metadata: v));
   @override
   ListCopyWith<$R, String, ObjectCopyWith<$R, String, String>>?
   get employmentType => $value.employmentType != null
@@ -522,6 +839,8 @@ class _ApplicantCopyWithImpl<$R, $Out>
   @override
   $R call({
     String? id,
+    Object? resumeId = $none,
+    Object? metadata = $none,
     Object? specialization = $none,
     Object? expectedSalary = $none,
     Object? currency = $none,
@@ -542,6 +861,8 @@ class _ApplicantCopyWithImpl<$R, $Out>
   }) => $apply(
     FieldCopyWithData({
       if (id != null) #id: id,
+      if (resumeId != $none) #resumeId: resumeId,
+      if (metadata != $none) #metadata: metadata,
       if (specialization != $none) #specialization: specialization,
       if (expectedSalary != $none) #expectedSalary: expectedSalary,
       if (currency != $none) #currency: currency,
@@ -564,6 +885,8 @@ class _ApplicantCopyWithImpl<$R, $Out>
   @override
   Applicant $make(CopyWithData data) => Applicant(
     id: data.get(#id, or: $value.id),
+    resumeId: data.get(#resumeId, or: $value.resumeId),
+    metadata: data.get(#metadata, or: $value.metadata),
     specialization: data.get(#specialization, or: $value.specialization),
     expectedSalary: data.get(#expectedSalary, or: $value.expectedSalary),
     currency: data.get(#currency, or: $value.currency),

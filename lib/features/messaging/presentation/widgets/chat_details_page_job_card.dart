@@ -4,8 +4,13 @@ import 'package:mobile/core/extensions/app_theme_extension.dart';
 class ChatDetailsPageJobCard extends StatelessWidget
     implements PreferredSizeWidget {
   final String title;
+  final bool isEmployer;
 
-  const ChatDetailsPageJobCard({super.key, required this.title});
+  const ChatDetailsPageJobCard({
+    super.key,
+    required this.title,
+    required this.isEmployer,
+  });
 
   @override
   Size get preferredSize => Size.fromHeight(kToolbarHeight + 10);
@@ -44,7 +49,7 @@ class ChatDetailsPageJobCard extends StatelessWidget
                 spacing: 4,
                 children: [
                   Text(
-                    "Vakansiya",
+                    isEmployer ? "Rezyume" : "Vakansiya",
                     style: context.textThemes.c1.copyWith(
                       color: context.colors.textSecondary,
                     ),

@@ -51,7 +51,7 @@ abstract class MessagingRemoteDataSource {
     @Part(name: 'file') File file,
   );
 
-  @POST('/mobile/candidate/chat/{id}/read')
+  @GET('/mobile/candidate/chat/{id}/read-messages')
   Future<BaseResult<dynamic>> readCandidateChat(@Path('id') String id);
 
   // --- EMPLOYER ENDPOINTS ---
@@ -88,6 +88,6 @@ abstract class MessagingRemoteDataSource {
     @Part(name: 'file') File file,
   );
 
-  @POST('/mobile/employer/chat/{id}/read')
+  @GET('/mobile/employer/chat/{id}/read-messages')
   Future<BaseResult<dynamic>> readEmployerChat(@Path('id') String id);
 }

@@ -1,6 +1,8 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/applicants/presentation/bloc/applicant_detail_bloc.dart';
 
@@ -19,6 +21,8 @@ class NewApplicantActionButtons extends StatelessWidget {
     return BlocBuilder<ApplicantDetailBloc, ApplicantDetailState>(
       builder: (context, state) {
         final isUpdating = state.isUpdating;
+        final chatId = state.applicant?.metadata?.chat?.id;
+
         return Row(
           children: [
             Flexible(
@@ -57,19 +61,19 @@ class NewApplicantActionButtons extends StatelessWidget {
                 labelStyle: context.textThemes.b3,
               ),
             ),
-            const SizedBox(width: 8),
-            SizedBox(
-              width: 48,
-              child: AppButton(
-                color: context.colors.bgSecondary,
-                onTap: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text("Chat tez orada qo'shiladi")),
-                  );
-                },
-                icon: Icons.chat,
+            if (chatId != null) ...[
+              const SizedBox(width: 8),
+              SizedBox(
+                width: 48,
+                child: AppButton(
+                  color: context.colors.bgSecondary,
+                  onTap: () {
+                    context.pushRoute(ChatDetailsRoute(chatId: chatId));
+                  },
+                  icon: Icons.chat,
+                ),
               ),
-            ),
+            ],
           ],
         );
       },

@@ -21,25 +21,25 @@ abstract class ApplicantsRemoteDataSource {
     @Path('vacancyId') String vacancyId,
   );
 
-  @GET('/mobile/employer/vacancy/{vacancyId}/applicants/{applicantId}')
+  @GET('/mobile/employer/vacancy/{vacancyId}/applicants/{vacancy_applicant_resume_id}')
   Future<BaseResult<Applicant>> getVacancyApplicantDetail(
     @Path('vacancyId') String vacancyId,
-    @Path('applicantId') String applicantId,
+    @Path('vacancy_applicant_resume_id') String vacancyApplicantResumeId,
   );
 
   @POST(
-    '/mobile/employer/vacancy/{vacancyId}/applicants/{applicantId}/interview',
+    '/mobile/employer/vacancy/{vacancyId}/applicants/{vacancy_applicant_resume_id}/interview',
   )
   Future<BaseResult<dynamic>> scheduleInterview(
     @Path('vacancyId') String vacancyId,
-    @Path('applicantId') String applicantId,
+    @Path('vacancy_applicant_resume_id') String vacancyApplicantResumeId,
     @Body() Map<String, dynamic> body,
   );
 
-  @PUT('/mobile/employer/vacancy/{vacancyId}/applicants/{applicantId}/status')
+  @PUT('/mobile/employer/vacancy/{vacancyId}/applicants/{vacancy_applicant_resume_id}/status')
   Future<BaseResult<dynamic>> updateApplicationStatus(
     @Path('vacancyId') String vacancyId,
-    @Path('applicantId') String applicantId,
+    @Path('vacancy_applicant_resume_id') String vacancyApplicantResumeId,
     @Body() Map<String, dynamic> body,
   );
 }

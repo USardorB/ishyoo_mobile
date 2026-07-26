@@ -114,14 +114,14 @@ class ApplicantDetailsRoute
   ApplicantDetailsRoute({
     _i48.Key? key,
     required String vacancyId,
-    required String applicantId,
+    required String applicantResumeId,
     List<_i47.PageRouteInfo>? children,
   }) : super(
          ApplicantDetailsRoute.name,
          args: ApplicantDetailsRouteArgs(
            key: key,
            vacancyId: vacancyId,
-           applicantId: applicantId,
+           applicantResumeId: applicantResumeId,
          ),
          initialChildren: children,
        );
@@ -135,7 +135,7 @@ class ApplicantDetailsRoute
       return _i1.ApplicantDetailsPage(
         key: args.key,
         vacancyId: args.vacancyId,
-        applicantId: args.applicantId,
+        applicantResumeId: args.applicantResumeId,
       );
     },
   );
@@ -145,18 +145,18 @@ class ApplicantDetailsRouteArgs {
   const ApplicantDetailsRouteArgs({
     this.key,
     required this.vacancyId,
-    required this.applicantId,
+    required this.applicantResumeId,
   });
 
   final _i48.Key? key;
 
   final String vacancyId;
 
-  final String applicantId;
+  final String applicantResumeId;
 
   @override
   String toString() {
-    return 'ApplicantDetailsRouteArgs{key: $key, vacancyId: $vacancyId, applicantId: $applicantId}';
+    return 'ApplicantDetailsRouteArgs{key: $key, vacancyId: $vacancyId, applicantResumeId: $applicantResumeId}';
   }
 
   @override
@@ -165,11 +165,12 @@ class ApplicantDetailsRouteArgs {
     if (other is! ApplicantDetailsRouteArgs) return false;
     return key == other.key &&
         vacancyId == other.vacancyId &&
-        applicantId == other.applicantId;
+        applicantResumeId == other.applicantResumeId;
   }
 
   @override
-  int get hashCode => key.hashCode ^ vacancyId.hashCode ^ applicantId.hashCode;
+  int get hashCode =>
+      key.hashCode ^ vacancyId.hashCode ^ applicantResumeId.hashCode;
 }
 
 /// generated route for

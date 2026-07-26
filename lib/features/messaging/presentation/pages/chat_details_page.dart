@@ -1,16 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/core/configs/di/configure_dependencies.dart';
+import 'package:mobile/core/enums/user_role.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:mobile/features/messaging/presentation/bloc/messaging_bloc.dart';
 import 'package:mobile/features/messaging/presentation/widgets/chat_actions_sheet.dart';
 import 'package:mobile/features/messaging/presentation/widgets/chat_details_page_job_card.dart';
 import 'package:mobile/features/messaging/presentation/widgets/chat_page_bottom_part.dart';
 import 'package:mobile/features/messaging/presentation/widgets/message_bubble.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile/core/configs/di/configure_dependencies.dart';
-import 'package:mobile/core/enums/user_role.dart';
-import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
-import 'package:mobile/features/messaging/presentation/bloc/messaging_bloc.dart';
 
 @RoutePage()
 class ChatDetailsPage extends StatelessWidget {
@@ -21,14 +21,10 @@ class ChatDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final isEmployer =
         context.read<AuthBloc>().state.userRole == UserRole.employer;
-    final userId = context
-        .read<AuthBloc>()
-        .state
-        .user
-        ?.id; // Assuming user.id exists, otherwise we'll gracefully fallback
+    final userId = context.read<AuthBloc>().state.user?.id;
 
     return BlocProvider(
-      create: (context) =>
+      create: (_) =>
           sl<MessagingBloc>()
             ..add(LoadChatDetail(id: chatId, isEmployer: isEmployer)),
       child: Scaffold(
@@ -84,7 +80,11 @@ class ChatDetailsPage extends StatelessWidget {
                         title;
                   }
                 }
-                return ChatDetailsPageJobCard(title: title);
+                return ChatDetailsPageJobCard(
+                  title: title,
+                  // meta: isEmployer? state.currentChat.partner.,
+                  isEmployer: isEmployer,
+                );
               },
             ),
           ),

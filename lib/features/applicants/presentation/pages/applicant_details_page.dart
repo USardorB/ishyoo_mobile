@@ -17,12 +17,12 @@ import 'package:mobile/features/applicants/presentation/widgets/respond_applicat
 @RoutePage()
 class ApplicantDetailsPage extends StatelessWidget {
   final String vacancyId;
-  final String applicantId;
+  final String applicantResumeId;
 
   const ApplicantDetailsPage({
     super.key,
     required this.vacancyId,
-    required this.applicantId,
+    required this.applicantResumeId,
   });
 
   @override
@@ -34,7 +34,7 @@ class ApplicantDetailsPage extends StatelessWidget {
         ..add(
           LoadApplicantDetail(
             vacancyId: vacancyId,
-            applicantId: applicantId,
+            applicantId: applicantResumeId,
           ),
         ),
       child: BlocListener<ApplicantDetailBloc, ApplicantDetailState>(
@@ -87,7 +87,7 @@ class ApplicantDetailsPage extends StatelessWidget {
                   ApplicantStatusHeader(
                     applicant: applicant,
                     vacancyId: vacancyId,
-                    applicantId: applicantId,
+                    applicantId: applicantResumeId,
                   ),
                   const SizedBox(height: 24),
                   ApplicantContacts(applicant: applicant),
@@ -109,7 +109,7 @@ class ApplicantDetailsPage extends StatelessWidget {
                 ),
             child: NewApplicantActionButtons(
               vacancyId: vacancyId,
-              applicantId: applicantId,
+              applicantId: applicantResumeId,
             ),
           ),
         ),

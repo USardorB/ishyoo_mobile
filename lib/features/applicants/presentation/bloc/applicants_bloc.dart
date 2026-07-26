@@ -77,9 +77,9 @@ class ApplicantsBloc extends Bloc<ApplicantsEvent, ApplicantsState> {
   ) async {
     // Optionally show a loading indicator or optimistically update the list here
     final result = await _applicantsRepository.updateApplicationStatus(
-      event.vacancyId,
-      event.applicantId,
-      {'status': event.status},
+      vacancyId: event.vacancyId,
+      vacancyApplicantResumeId: event.applicantId,
+      data: {'status': event.status},
     );
 
     result.fold(

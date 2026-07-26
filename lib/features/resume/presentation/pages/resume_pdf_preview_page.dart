@@ -1,15 +1,13 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:printing/printing.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
-import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/features/profile/data/models/profile.dart';
 import 'package:mobile/features/profile/domain/repositories/profile_repository.dart';
+import 'package:mobile/features/resume/data/models/resume.dart';
+import 'package:mobile/features/resume/domain/entities/resume_pdf_model.dart';
 import 'package:mobile/features/resume/domain/usecases/get_resume_detail_usecase.dart';
 import 'package:mobile/features/resume/utils/resume_pdf_generator.dart';
-import 'package:mobile/features/resume/domain/entities/resume_pdf_model.dart';
-import 'package:mobile/features/resume/data/models/resume.dart';
-import 'package:mobile/features/profile/data/models/profile.dart';
-import 'package:intl/intl.dart';
+import 'package:printing/printing.dart';
 
 @RoutePage()
 class ResumePdfPreviewPage extends StatefulWidget {

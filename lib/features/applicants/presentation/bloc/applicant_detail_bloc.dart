@@ -85,8 +85,8 @@ class ApplicantDetailBloc
   ) async {
     emit(state.copyWith(isLoading: true, error: null));
     final result = await _repository.getVacancyApplicantDetail(
-      event.vacancyId,
-      event.applicantId,
+      vacancyId: event.vacancyId,
+      vacancyApplicantResumeId: event.applicantId,
     );
     result.fold(
       (failure) =>
@@ -102,9 +102,9 @@ class ApplicantDetailBloc
   ) async {
     emit(state.copyWith(isUpdating: true, error: null));
     final result = await _repository.updateApplicationStatus(
-      event.vacancyId,
-      event.applicantId,
-      {'status': event.status},
+      vacancyId: event.vacancyId,
+      vacancyApplicantResumeId: event.applicantId,
+      data: {'status': event.status},
     );
     result.fold(
       (failure) =>
@@ -128,9 +128,9 @@ class ApplicantDetailBloc
   ) async {
     emit(state.copyWith(isUpdating: true, error: null));
     final result = await _repository.scheduleInterview(
-      event.vacancyId,
-      event.applicantId,
-      event.body,
+      vacancyId: event.vacancyId,
+      vacancyApplicantResumeId: event.applicantId,
+      data: event.body,
     );
     result.fold(
       (failure) =>

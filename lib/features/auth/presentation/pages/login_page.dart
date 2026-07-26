@@ -34,8 +34,8 @@ class LoginPage extends HookWidget {
       return;
     }, [role]);
 
-    final phoneController = useTextEditingController(text: '');
-    final passwordController = useTextEditingController();
+    final phoneController = useTextEditingController(text: '942351906');
+    final passwordController = useTextEditingController(text: 'password');
     final isObscured = useState(true);
 
     Future<void> onLogin() async {
