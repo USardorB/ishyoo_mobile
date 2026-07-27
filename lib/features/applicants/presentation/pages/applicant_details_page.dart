@@ -12,7 +12,6 @@ import 'package:mobile/features/applicants/presentation/widgets/applicant_skills
 import 'package:mobile/features/applicants/presentation/widgets/applicant_status_header.dart';
 import 'package:mobile/features/applicants/presentation/widgets/applicant_work_history.dart';
 import 'package:mobile/features/applicants/presentation/widgets/new_applicant_action_buttons.dart';
-import 'package:mobile/features/applicants/presentation/widgets/respond_application_sheet.dart';
 
 @RoutePage()
 class ApplicantDetailsPage extends StatelessWidget {
@@ -48,15 +47,11 @@ class ApplicantDetailsPage extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             actions: [
-              BlocBuilder<ApplicantDetailBloc, ApplicantDetailState>(
-                builder: (context, state) => IconButton(
-                  onPressed: () => showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (_) => const RespondApplicationSheet(),
-                  ),
-                  icon: const Icon(Icons.share),
-                ),
+              IconButton(
+                onPressed: () {
+                  // TODO: Implement share
+                },
+                icon: const Icon(Icons.share),
               ),
               IconButton(
                 onPressed: () => showModalBottomSheet(
@@ -103,10 +98,10 @@ class ApplicantDetailsPage extends StatelessWidget {
             },
           ),
           bottomSheet: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12)
-                .copyWith(
-                  bottom: 12 + bottom,
-                ),
+            padding: EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 12,
+            ).copyWith(bottom: 12 + bottom),
             child: NewApplicantActionButtons(
               vacancyId: vacancyId,
               applicantId: applicantResumeId,

@@ -5,6 +5,7 @@ import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/applicants/presentation/bloc/applicant_detail_bloc.dart';
+import 'package:mobile/features/applicants/presentation/widgets/respond_application_sheet.dart';
 
 class NewApplicantActionButtons extends StatelessWidget {
   final String vacancyId;
@@ -21,20 +22,38 @@ class NewApplicantActionButtons extends StatelessWidget {
     return BlocBuilder<ApplicantDetailBloc, ApplicantDetailState>(
       builder: (context, state) {
         final isUpdating = state.isUpdating;
-        final chatId = state.applicant?.metadata?.chat?.id;
+        final chatId = state.applicant?.chatId;
 
         return Row(
           children: [
             Flexible(
               child: AppButton(
                 onTap: () {
-                  context.read<ApplicantDetailBloc>().add(
-                    UpdateApplicantDetailStatus(
-                      vacancyId: vacancyId,
-                      applicantId: applicantId,
-                      status: 'interview',
+                  final applicantName =
+                      state.applicant?.user?.name ??
+                      state.applicant?.profile?.name ??
+                      'Noma\'lum';
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: context.colors.bgPrimary,
+                    builder: (context) => RespondApplicationSheet(
+                      type: ApplicationResponseType.invite,
+                      applicantName: applicantName,
                     ),
-                  );
+                  ).then((result) {
+                    if (result != null && result is String) {
+                      if (!context.mounted) return;
+                      context.read<ApplicantDetailBloc>().add(
+                        UpdateApplicantDetailStatus(
+                          vacancyId: vacancyId,
+                          applicantId: applicantId,
+                          status: 'interview',
+                          message: result,
+                        ),
+                      );
+                    }
+                  });
                 },
                 enabled: !isUpdating,
                 label: "Taklif qilish",
@@ -48,13 +67,31 @@ class NewApplicantActionButtons extends StatelessWidget {
               child: AppButton(
                 color: context.colors.bgSecondary,
                 onTap: () {
-                  context.read<ApplicantDetailBloc>().add(
-                    UpdateApplicantDetailStatus(
-                      vacancyId: vacancyId,
-                      applicantId: applicantId,
-                      status: 'rejected',
+                  final applicantName =
+                      state.applicant?.user?.name ??
+                      state.applicant?.profile?.name ??
+                      'Noma\'lum';
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    backgroundColor: context.colors.bgPrimary,
+                    builder: (context) => RespondApplicationSheet(
+                      type: ApplicationResponseType.reject,
+                      applicantName: applicantName,
                     ),
-                  );
+                  ).then((result) {
+                    if (result != null && result is String) {
+                      if (!context.mounted) return;
+                      context.read<ApplicantDetailBloc>().add(
+                        UpdateApplicantDetailStatus(
+                          vacancyId: vacancyId,
+                          applicantId: applicantId,
+                          status: 'rejected',
+                          message: result,
+                        ),
+                      );
+                    }
+                  });
                 },
                 enabled: !isUpdating,
                 label: "Rad qilish",

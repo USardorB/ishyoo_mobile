@@ -29,15 +29,19 @@ class ApplicantWorkHistory extends StatelessWidget {
         Container(
           decoration: BoxDecoration(
             color: context.colors.bgPrimary,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: .circular(16),
           ),
-          padding: const EdgeInsets.all(12),
+          padding: const .all(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               for (int i = 0; i < experiences.length; i++) ...[
                 if (i > 0)
-                  Divider(height: 24, color: context.colors.lineSecondary),
+                  Divider(
+                    height: 25,
+                    color: context.colors.lineSecondary,
+                    thickness: .5,
+                  ),
                 _buildEntry(context, experiences[i]),
               ],
             ],
@@ -53,22 +57,21 @@ class ApplicantWorkHistory extends StatelessWidget {
         '${_formatDate(exp.startDate)} — ${_formatDate(exp.endDate)}';
 
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(top: 4),
+          padding: const .only(top: 4),
           child: CircleAvatar(
             radius: 8.5,
             backgroundColor: isCurrent
                 ? context.colors.brandProgress
                 : context.colors.bgSecondary,
-            child: Icon(
-              Icons.circle,
-              size: 10,
-              color: isCurrent
-                  ? context.colors.brandDefault
-                  : context.colors.textSecondary,
-            ),
+            child: !isCurrent
+                ? const SizedBox.shrink()
+                : Icon(
+                    Icons.circle,
+                    size: 10,
+                    color: context.colors.brandDefault,
+                  ),
           ),
         ),
         const SizedBox(width: 12),

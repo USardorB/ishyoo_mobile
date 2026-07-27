@@ -49,6 +49,86 @@ class ApplicantUserMapper extends ClassMapperBase<ApplicantUser> {
     _$role,
     opt: true,
   );
+  static String? _$avatarUrl(ApplicantUser v) => v.avatarUrl;
+  static const Field<ApplicantUser, String> _f$avatarUrl = Field(
+    'avatarUrl',
+    _$avatarUrl,
+    key: r'avatar_url',
+    opt: true,
+  );
+  static bool? _$isWaitlistedUser(ApplicantUser v) => v.isWaitlistedUser;
+  static const Field<ApplicantUser, bool> _f$isWaitlistedUser = Field(
+    'isWaitlistedUser',
+    _$isWaitlistedUser,
+    key: r'is_waitlisted_user',
+    opt: true,
+  );
+  static String? _$status(ApplicantUser v) => v.status;
+  static const Field<ApplicantUser, String> _f$status = Field(
+    'status',
+    _$status,
+    opt: true,
+  );
+  static String? _$password(ApplicantUser v) => v.password;
+  static const Field<ApplicantUser, String> _f$password = Field(
+    'password',
+    _$password,
+    opt: true,
+  );
+  static String? _$city(ApplicantUser v) => v.city;
+  static const Field<ApplicantUser, String> _f$city = Field(
+    'city',
+    _$city,
+    opt: true,
+  );
+  static String? _$bio(ApplicantUser v) => v.bio;
+  static const Field<ApplicantUser, String> _f$bio = Field(
+    'bio',
+    _$bio,
+    opt: true,
+  );
+  static String? _$birthDate(ApplicantUser v) => v.birthDate;
+  static const Field<ApplicantUser, String> _f$birthDate = Field(
+    'birthDate',
+    _$birthDate,
+    key: r'birth_date',
+    opt: true,
+  );
+  static String? _$networkStatus(ApplicantUser v) => v.networkStatus;
+  static const Field<ApplicantUser, String> _f$networkStatus = Field(
+    'networkStatus',
+    _$networkStatus,
+    key: r'network_status',
+    opt: true,
+  );
+  static DateTime? _$lastSeen(ApplicantUser v) => v.lastSeen;
+  static const Field<ApplicantUser, DateTime> _f$lastSeen = Field(
+    'lastSeen',
+    _$lastSeen,
+    key: r'last_seen',
+    opt: true,
+  );
+  static DateTime? _$createdAt(ApplicantUser v) => v.createdAt;
+  static const Field<ApplicantUser, DateTime> _f$createdAt = Field(
+    'createdAt',
+    _$createdAt,
+    key: r'created_at',
+    opt: true,
+  );
+  static DateTime? _$updatedAt(ApplicantUser v) => v.updatedAt;
+  static const Field<ApplicantUser, DateTime> _f$updatedAt = Field(
+    'updatedAt',
+    _$updatedAt,
+    key: r'updated_at',
+    opt: true,
+  );
+  static String? _$userId(ApplicantUser v) => v.userId;
+  static const Field<ApplicantUser, String> _f$userId = Field(
+    'userId',
+    _$userId,
+    key: r'user_id',
+    opt: true,
+  );
 
   @override
   final MappableFields<ApplicantUser> fields = const {
@@ -57,6 +137,18 @@ class ApplicantUserMapper extends ClassMapperBase<ApplicantUser> {
     #phoneNumber: _f$phoneNumber,
     #email: _f$email,
     #role: _f$role,
+    #avatarUrl: _f$avatarUrl,
+    #isWaitlistedUser: _f$isWaitlistedUser,
+    #status: _f$status,
+    #password: _f$password,
+    #city: _f$city,
+    #bio: _f$bio,
+    #birthDate: _f$birthDate,
+    #networkStatus: _f$networkStatus,
+    #lastSeen: _f$lastSeen,
+    #createdAt: _f$createdAt,
+    #updatedAt: _f$updatedAt,
+    #userId: _f$userId,
   };
 
   static ApplicantUser _instantiate(DecodingData data) {
@@ -66,6 +158,18 @@ class ApplicantUserMapper extends ClassMapperBase<ApplicantUser> {
       phoneNumber: data.dec(_f$phoneNumber),
       email: data.dec(_f$email),
       role: data.dec(_f$role),
+      avatarUrl: data.dec(_f$avatarUrl),
+      isWaitlistedUser: data.dec(_f$isWaitlistedUser),
+      status: data.dec(_f$status),
+      password: data.dec(_f$password),
+      city: data.dec(_f$city),
+      bio: data.dec(_f$bio),
+      birthDate: data.dec(_f$birthDate),
+      networkStatus: data.dec(_f$networkStatus),
+      lastSeen: data.dec(_f$lastSeen),
+      createdAt: data.dec(_f$createdAt),
+      updatedAt: data.dec(_f$updatedAt),
+      userId: data.dec(_f$userId),
     );
   }
 
@@ -137,6 +241,18 @@ abstract class ApplicantUserCopyWith<$R, $In extends ApplicantUser, $Out>
     String? phoneNumber,
     String? email,
     String? role,
+    String? avatarUrl,
+    bool? isWaitlistedUser,
+    String? status,
+    String? password,
+    String? city,
+    String? bio,
+    String? birthDate,
+    String? networkStatus,
+    DateTime? lastSeen,
+    DateTime? createdAt,
+    DateTime? updatedAt,
+    String? userId,
   });
   ApplicantUserCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -156,6 +272,18 @@ class _ApplicantUserCopyWithImpl<$R, $Out>
     Object? phoneNumber = $none,
     Object? email = $none,
     Object? role = $none,
+    Object? avatarUrl = $none,
+    Object? isWaitlistedUser = $none,
+    Object? status = $none,
+    Object? password = $none,
+    Object? city = $none,
+    Object? bio = $none,
+    Object? birthDate = $none,
+    Object? networkStatus = $none,
+    Object? lastSeen = $none,
+    Object? createdAt = $none,
+    Object? updatedAt = $none,
+    Object? userId = $none,
   }) => $apply(
     FieldCopyWithData({
       if (id != null) #id: id,
@@ -163,6 +291,18 @@ class _ApplicantUserCopyWithImpl<$R, $Out>
       if (phoneNumber != $none) #phoneNumber: phoneNumber,
       if (email != $none) #email: email,
       if (role != $none) #role: role,
+      if (avatarUrl != $none) #avatarUrl: avatarUrl,
+      if (isWaitlistedUser != $none) #isWaitlistedUser: isWaitlistedUser,
+      if (status != $none) #status: status,
+      if (password != $none) #password: password,
+      if (city != $none) #city: city,
+      if (bio != $none) #bio: bio,
+      if (birthDate != $none) #birthDate: birthDate,
+      if (networkStatus != $none) #networkStatus: networkStatus,
+      if (lastSeen != $none) #lastSeen: lastSeen,
+      if (createdAt != $none) #createdAt: createdAt,
+      if (updatedAt != $none) #updatedAt: updatedAt,
+      if (userId != $none) #userId: userId,
     }),
   );
   @override
@@ -172,6 +312,18 @@ class _ApplicantUserCopyWithImpl<$R, $Out>
     phoneNumber: data.get(#phoneNumber, or: $value.phoneNumber),
     email: data.get(#email, or: $value.email),
     role: data.get(#role, or: $value.role),
+    avatarUrl: data.get(#avatarUrl, or: $value.avatarUrl),
+    isWaitlistedUser: data.get(#isWaitlistedUser, or: $value.isWaitlistedUser),
+    status: data.get(#status, or: $value.status),
+    password: data.get(#password, or: $value.password),
+    city: data.get(#city, or: $value.city),
+    bio: data.get(#bio, or: $value.bio),
+    birthDate: data.get(#birthDate, or: $value.birthDate),
+    networkStatus: data.get(#networkStatus, or: $value.networkStatus),
+    lastSeen: data.get(#lastSeen, or: $value.lastSeen),
+    createdAt: data.get(#createdAt, or: $value.createdAt),
+    updatedAt: data.get(#updatedAt, or: $value.updatedAt),
+    userId: data.get(#userId, or: $value.userId),
   );
 
   @override
@@ -575,6 +727,41 @@ class ApplicantMapper extends ClassMapperBase<Applicant> {
     key: r'is_special',
     opt: true,
   );
+  static bool? _$isPrimary(Applicant v) => v.isPrimary;
+  static const Field<Applicant, bool> _f$isPrimary = Field(
+    'isPrimary',
+    _$isPrimary,
+    key: r'is_primary',
+    opt: true,
+  );
+  static int? _$boostScore(Applicant v) => v.boostScore;
+  static const Field<Applicant, int> _f$boostScore = Field(
+    'boostScore',
+    _$boostScore,
+    key: r'boost_score',
+    opt: true,
+  );
+  static DateTime? _$boostedAt(Applicant v) => v.boostedAt;
+  static const Field<Applicant, DateTime> _f$boostedAt = Field(
+    'boostedAt',
+    _$boostedAt,
+    key: r'boosted_at',
+    opt: true,
+  );
+  static DateTime? _$boostUntil(Applicant v) => v.boostUntil;
+  static const Field<Applicant, DateTime> _f$boostUntil = Field(
+    'boostUntil',
+    _$boostUntil,
+    key: r'boost_until',
+    opt: true,
+  );
+  static DateTime? _$nextFreeBoostAt(Applicant v) => v.nextFreeBoostAt;
+  static const Field<Applicant, DateTime> _f$nextFreeBoostAt = Field(
+    'nextFreeBoostAt',
+    _$nextFreeBoostAt,
+    key: r'next_free_boost_at',
+    opt: true,
+  );
   static DateTime? _$createdAt(Applicant v) => v.createdAt;
   static const Field<Applicant, DateTime> _f$createdAt = Field(
     'createdAt',
@@ -602,6 +789,19 @@ class ApplicantMapper extends ClassMapperBase<Applicant> {
     _$user,
     opt: true,
   );
+  static String? _$profileId(Applicant v) => v.profileId;
+  static const Field<Applicant, String> _f$profileId = Field(
+    'profileId',
+    _$profileId,
+    key: r'profile_id',
+    opt: true,
+  );
+  static ApplicantUser? _$profile(Applicant v) => v.profile;
+  static const Field<Applicant, ApplicantUser> _f$profile = Field(
+    'profile',
+    _$profile,
+    opt: true,
+  );
   static String? _$applicationStatus(Applicant v) => v.applicationStatus;
   static const Field<Applicant, String> _f$applicationStatus = Field(
     'applicationStatus',
@@ -614,6 +814,13 @@ class ApplicantMapper extends ClassMapperBase<Applicant> {
     'vacancyId',
     _$vacancyId,
     key: r'vacancy_id',
+    opt: true,
+  );
+  static String? _$chatId(Applicant v) => v.chatId;
+  static const Field<Applicant, String> _f$chatId = Field(
+    'chatId',
+    _$chatId,
+    key: r'chat_id',
     opt: true,
   );
 
@@ -633,12 +840,20 @@ class ApplicantMapper extends ClassMapperBase<Applicant> {
     #visibility: _f$visibility,
     #status: _f$status,
     #isSpecial: _f$isSpecial,
+    #isPrimary: _f$isPrimary,
+    #boostScore: _f$boostScore,
+    #boostedAt: _f$boostedAt,
+    #boostUntil: _f$boostUntil,
+    #nextFreeBoostAt: _f$nextFreeBoostAt,
     #createdAt: _f$createdAt,
     #updatedAt: _f$updatedAt,
     #userId: _f$userId,
     #user: _f$user,
+    #profileId: _f$profileId,
+    #profile: _f$profile,
     #applicationStatus: _f$applicationStatus,
     #vacancyId: _f$vacancyId,
+    #chatId: _f$chatId,
   };
 
   static Applicant _instantiate(DecodingData data) {
@@ -657,12 +872,20 @@ class ApplicantMapper extends ClassMapperBase<Applicant> {
       visibility: data.dec(_f$visibility),
       status: data.dec(_f$status),
       isSpecial: data.dec(_f$isSpecial),
+      isPrimary: data.dec(_f$isPrimary),
+      boostScore: data.dec(_f$boostScore),
+      boostedAt: data.dec(_f$boostedAt),
+      boostUntil: data.dec(_f$boostUntil),
+      nextFreeBoostAt: data.dec(_f$nextFreeBoostAt),
       createdAt: data.dec(_f$createdAt),
       updatedAt: data.dec(_f$updatedAt),
       userId: data.dec(_f$userId),
       user: data.dec(_f$user),
+      profileId: data.dec(_f$profileId),
+      profile: data.dec(_f$profile),
       applicationStatus: data.dec(_f$applicationStatus),
       vacancyId: data.dec(_f$vacancyId),
+      chatId: data.dec(_f$chatId),
     );
   }
 
@@ -744,6 +967,7 @@ abstract class ApplicantCopyWith<$R, $In extends Applicant, $Out>
   >?
   get experiences;
   ApplicantUserCopyWith<$R, ApplicantUser, ApplicantUser>? get user;
+  ApplicantUserCopyWith<$R, ApplicantUser, ApplicantUser>? get profile;
   $R call({
     String? id,
     String? resumeId,
@@ -759,12 +983,20 @@ abstract class ApplicantCopyWith<$R, $In extends Applicant, $Out>
     String? visibility,
     String? status,
     bool? isSpecial,
+    bool? isPrimary,
+    int? boostScore,
+    DateTime? boostedAt,
+    DateTime? boostUntil,
+    DateTime? nextFreeBoostAt,
     DateTime? createdAt,
     DateTime? updatedAt,
     String? userId,
     ApplicantUser? user,
+    String? profileId,
+    ApplicantUser? profile,
     String? applicationStatus,
     String? vacancyId,
+    String? chatId,
   });
   ApplicantCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -837,6 +1069,9 @@ class _ApplicantCopyWithImpl<$R, $Out>
   ApplicantUserCopyWith<$R, ApplicantUser, ApplicantUser>? get user =>
       $value.user?.copyWith.$chain((v) => call(user: v));
   @override
+  ApplicantUserCopyWith<$R, ApplicantUser, ApplicantUser>? get profile =>
+      $value.profile?.copyWith.$chain((v) => call(profile: v));
+  @override
   $R call({
     String? id,
     Object? resumeId = $none,
@@ -852,12 +1087,20 @@ class _ApplicantCopyWithImpl<$R, $Out>
     Object? visibility = $none,
     Object? status = $none,
     Object? isSpecial = $none,
+    Object? isPrimary = $none,
+    Object? boostScore = $none,
+    Object? boostedAt = $none,
+    Object? boostUntil = $none,
+    Object? nextFreeBoostAt = $none,
     Object? createdAt = $none,
     Object? updatedAt = $none,
     Object? userId = $none,
     Object? user = $none,
+    Object? profileId = $none,
+    Object? profile = $none,
     Object? applicationStatus = $none,
     Object? vacancyId = $none,
+    Object? chatId = $none,
   }) => $apply(
     FieldCopyWithData({
       if (id != null) #id: id,
@@ -874,12 +1117,20 @@ class _ApplicantCopyWithImpl<$R, $Out>
       if (visibility != $none) #visibility: visibility,
       if (status != $none) #status: status,
       if (isSpecial != $none) #isSpecial: isSpecial,
+      if (isPrimary != $none) #isPrimary: isPrimary,
+      if (boostScore != $none) #boostScore: boostScore,
+      if (boostedAt != $none) #boostedAt: boostedAt,
+      if (boostUntil != $none) #boostUntil: boostUntil,
+      if (nextFreeBoostAt != $none) #nextFreeBoostAt: nextFreeBoostAt,
       if (createdAt != $none) #createdAt: createdAt,
       if (updatedAt != $none) #updatedAt: updatedAt,
       if (userId != $none) #userId: userId,
       if (user != $none) #user: user,
+      if (profileId != $none) #profileId: profileId,
+      if (profile != $none) #profile: profile,
       if (applicationStatus != $none) #applicationStatus: applicationStatus,
       if (vacancyId != $none) #vacancyId: vacancyId,
+      if (chatId != $none) #chatId: chatId,
     }),
   );
   @override
@@ -898,15 +1149,23 @@ class _ApplicantCopyWithImpl<$R, $Out>
     visibility: data.get(#visibility, or: $value.visibility),
     status: data.get(#status, or: $value.status),
     isSpecial: data.get(#isSpecial, or: $value.isSpecial),
+    isPrimary: data.get(#isPrimary, or: $value.isPrimary),
+    boostScore: data.get(#boostScore, or: $value.boostScore),
+    boostedAt: data.get(#boostedAt, or: $value.boostedAt),
+    boostUntil: data.get(#boostUntil, or: $value.boostUntil),
+    nextFreeBoostAt: data.get(#nextFreeBoostAt, or: $value.nextFreeBoostAt),
     createdAt: data.get(#createdAt, or: $value.createdAt),
     updatedAt: data.get(#updatedAt, or: $value.updatedAt),
     userId: data.get(#userId, or: $value.userId),
     user: data.get(#user, or: $value.user),
+    profileId: data.get(#profileId, or: $value.profileId),
+    profile: data.get(#profile, or: $value.profile),
     applicationStatus: data.get(
       #applicationStatus,
       or: $value.applicationStatus,
     ),
     vacancyId: data.get(#vacancyId, or: $value.vacancyId),
+    chatId: data.get(#chatId, or: $value.chatId),
   );
 
   @override

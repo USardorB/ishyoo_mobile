@@ -8,22 +8,22 @@ class ApplicantContacts extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final phone = applicant?.user?.phoneNumber;
-    final email = applicant?.user?.email;
+    final phone = applicant?.profile?.phoneNumber;
+    final email = applicant?.profile?.email;
 
     if (phone == null && email == null) return const SizedBox.shrink();
 
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
+      crossAxisAlignment: .stretch,
       children: [
         Text('Kontaktlar', style: context.textThemes.s2),
         const SizedBox(height: 16),
         Container(
           decoration: BoxDecoration(
             color: context.colors.bgPrimary,
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: .circular(16),
           ),
-          padding: const EdgeInsets.all(12),
+          padding: const .all(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -38,7 +38,11 @@ class ApplicantContacts extends StatelessWidget {
                 Text(phone, style: context.textThemes.s2),
               ],
               if (phone != null && email != null)
-                Divider(height: 24, color: context.colors.lineSecondary),
+                Divider(
+                  height: 25,
+                  color: context.colors.lineSecondary,
+                  thickness: .5,
+                ),
               if (email != null) ...[
                 Text(
                   'Elektron pochta',

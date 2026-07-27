@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
@@ -67,7 +68,7 @@ class ApplicantListingItem extends StatelessWidget {
                     ),
                     SizedBox(height: 8),
                     Text(
-                      '${applicant.user?.name ?? ''} • ${applicant.user?.email ?? 'Noma\'lum'}',
+                      applicant.user?.name ?? applicant.profile?.name ?? '',
                       style: context.textThemes.b2,
                     ),
                     SizedBox(height: 8),
@@ -115,7 +116,28 @@ class ApplicantListingItem extends StatelessWidget {
                     ),
                   ],
                 ),
-                Icon(Icons.person),
+                Container(
+                  width: 56,
+                  height: 56,
+                  padding: .all(8),
+                  decoration: BoxDecoration(
+                    color: context.colors.bgSecondary,
+                    borderRadius: BorderRadius.circular(8),
+                    image: DecorationImage(
+                      image: CachedNetworkImageProvider(
+                        applicant.profile?.avatarUrl ?? '',
+                      ),
+                      onError: (_, _) {
+                        return;
+                      },
+                    ),
+                  ),
+                  child: Icon(
+                    Icons.person,
+                    color: context.colors.textPrimary,
+                    size: 32,
+                  ),
+                ),
               ],
             ),
             SizedBox(height: 12),

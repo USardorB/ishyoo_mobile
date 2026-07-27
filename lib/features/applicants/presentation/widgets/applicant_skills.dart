@@ -36,9 +36,9 @@ class ApplicantSkills extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: context.colors.bgSecondary,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: .circular(8),
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: const .symmetric(horizontal: 12, vertical: 6),
       child: Text(
         text,
         style: context.textThemes.b1.copyWith(

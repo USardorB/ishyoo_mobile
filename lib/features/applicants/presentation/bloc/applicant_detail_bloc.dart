@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
+
 import '../../data/models/applicant.dart';
 import '../../domain/repositories/applicants_repository.dart';
 
@@ -16,10 +17,12 @@ class UpdateApplicantDetailStatus extends ApplicantDetailEvent {
   final String vacancyId;
   final String applicantId;
   final String status;
+  final String? message;
   UpdateApplicantDetailStatus({
     required this.vacancyId,
     required this.applicantId,
     required this.status,
+    this.message,
   });
 }
 
@@ -104,7 +107,10 @@ class ApplicantDetailBloc
     final result = await _repository.updateApplicationStatus(
       vacancyId: event.vacancyId,
       vacancyApplicantResumeId: event.applicantId,
-      data: {'status': event.status},
+      data: {
+        'status': event.status,
+        if (event.message != null) 'message': event.message,
+      },
     );
     result.fold(
       (failure) =>

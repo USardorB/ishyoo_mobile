@@ -13,12 +13,45 @@ class ApplicantUser with ApplicantUserMappable {
   final String? email;
   final String? role;
 
+  @MappableField(key: 'avatar_url')
+  final String? avatarUrl;
+  @MappableField(key: 'is_waitlisted_user')
+  final bool? isWaitlistedUser;
+  final String? status;
+  final String? password;
+  final String? city;
+  final String? bio;
+  @MappableField(key: 'birth_date')
+  final String? birthDate;
+  @MappableField(key: 'network_status')
+  final String? networkStatus;
+  @MappableField(key: 'last_seen')
+  final DateTime? lastSeen;
+  @MappableField(key: 'created_at')
+  final DateTime? createdAt;
+  @MappableField(key: 'updated_at')
+  final DateTime? updatedAt;
+  @MappableField(key: 'user_id')
+  final String? userId;
+
   ApplicantUser({
     required this.id,
     this.name,
     this.phoneNumber,
     this.email,
     this.role,
+    this.avatarUrl,
+    this.isWaitlistedUser,
+    this.status,
+    this.password,
+    this.city,
+    this.bio,
+    this.birthDate,
+    this.networkStatus,
+    this.lastSeen,
+    this.createdAt,
+    this.updatedAt,
+    this.userId,
   });
 
   factory ApplicantUser.fromJson(Map<String, dynamic> json) =>
@@ -77,6 +110,16 @@ class Applicant with ApplicantMappable {
   final String? status;
   @MappableField(key: 'is_special')
   final bool? isSpecial;
+  @MappableField(key: 'is_primary')
+  final bool? isPrimary;
+  @MappableField(key: 'boost_score')
+  final int? boostScore;
+  @MappableField(key: 'boosted_at')
+  final DateTime? boostedAt;
+  @MappableField(key: 'boost_until')
+  final DateTime? boostUntil;
+  @MappableField(key: 'next_free_boost_at')
+  final DateTime? nextFreeBoostAt;
   @MappableField(key: 'created_at')
   final DateTime? createdAt;
   @MappableField(key: 'updated_at')
@@ -84,11 +127,16 @@ class Applicant with ApplicantMappable {
   @MappableField(key: 'user_id')
   final String? userId;
   final ApplicantUser? user;
+  @MappableField(key: 'profile_id')
+  final String? profileId;
+  final ApplicantUser? profile;
   @MappableField(key: 'application_status')
   final String? applicationStatus;
 
   @MappableField(key: 'vacancy_id')
   final String? vacancyId;
+  @MappableField(key: 'chat_id')
+  final String? chatId;
 
   Applicant({
     required this.id,
@@ -105,12 +153,20 @@ class Applicant with ApplicantMappable {
     this.visibility,
     this.status,
     this.isSpecial,
+    this.isPrimary,
+    this.boostScore,
+    this.boostedAt,
+    this.boostUntil,
+    this.nextFreeBoostAt,
     this.createdAt,
     this.updatedAt,
     this.userId,
     this.user,
+    this.profileId,
+    this.profile,
     this.applicationStatus,
     this.vacancyId,
+    this.chatId,
   });
 
   factory Applicant.fromJson(Map<String, dynamic> json) =>

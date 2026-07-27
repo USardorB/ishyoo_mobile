@@ -8,7 +8,8 @@ class ApplicantAvatarInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final name = applicant?.user?.name ?? 'Noma\'lum';
+    final name =
+        applicant?.user?.name ?? applicant?.profile?.name ?? 'Noma\'lum';
     final workFormats = [
       ...(applicant?.employmentType ?? []),
       ...(applicant?.workFormat ?? []),
@@ -34,7 +35,7 @@ class ApplicantAvatarInfo extends StatelessWidget {
         if (workFormats.isNotEmpty)
           Text(
             workFormats,
-            style: context.textThemes.b3.copyWith(
+            style: context.textThemes.b2.copyWith(
               color: context.colors.textSecondary,
             ),
             textAlign: TextAlign.center,
@@ -43,7 +44,7 @@ class ApplicantAvatarInfo extends StatelessWidget {
           const SizedBox(height: 4),
           Text(
             applicant!.specialization!,
-            style: context.textThemes.b3.copyWith(
+            style: context.textThemes.b2.copyWith(
               color: context.colors.textSecondary,
             ),
             textAlign: TextAlign.center,
