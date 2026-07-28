@@ -147,7 +147,7 @@ class VacancyApplicantsPage extends StatelessWidget
                           children: state.applicants!.map((applicant) {
                             return ApplicantListingItem(
                               applicant: applicant,
-                              vacancyId: applicant.vacancyId ?? vacancyId,
+                              // vacancyId: applicant.vacancyId ?? vacancyId,
                             );
                           }).toList(),
                         ),

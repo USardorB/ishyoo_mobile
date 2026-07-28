@@ -68,14 +68,15 @@ class ChatsPage extends StatelessWidget {
                       if (isEmployer) {
                         title =
                             chat.partner?.name ??
-                            chat.application?['resume']?['user']?['name'] ??
+                            chat.application?.resume?.profile?.name ??
+                            chat.application?.resume?.user?.name ??
                             title;
                       } else {
                         title =
-                            chat.application?['vacancy']?['organization']?['name'] ??
+                            chat.application?.vacancy?.organization?.name ??
                             title;
                         image =
-                            chat.application?['vacancy']?['organization']?['logo'] ??
+                            chat.application?.vacancy?.organization?.logoUrl ??
                             image;
                       }
 

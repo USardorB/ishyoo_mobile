@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/features/applicants/presentation/bloc/applicant_detail_bloc.dart';
 import 'package:mobile/features/applicants/presentation/bloc/applicants_bloc.dart';
 import 'package:mobile/features/applicants/presentation/widgets/applicant_listing_item.dart';
 import 'package:mobile/features/applications/presentation/widgets/no_application_placeholder.dart';
@@ -13,8 +14,13 @@ class ApplicantsPage extends StatelessWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (_) => sl<ApplicantsBloc>()..add(LoadApplicants()),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => sl<ApplicantsBloc>()..add(LoadApplicants()),
+        ),
+        BlocProvider(create: (_) => sl<ApplicantDetailBloc>()),
+      ],
       child: this,
     );
   }
@@ -68,7 +74,6 @@ class ApplicantsPage extends StatelessWidget implements AutoRouteWrapper {
                     children: state.applicants!.map((applicant) {
                       return ApplicantListingItem(
                         applicant: applicant,
-                        vacancyId: applicant.vacancyId ?? '',
                       );
                     }).toList(),
                   ),

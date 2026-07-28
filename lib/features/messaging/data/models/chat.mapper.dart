@@ -273,6 +273,7 @@ class ChatMapper extends ClassMapperBase<Chat> {
     if (_instance == null) {
       MapperContainer.globals.use(_instance = ChatMapper._());
       ChatCountMapper.ensureInitialized();
+      ChatApplicationMapper.ensureInitialized();
       MessageMapper.ensureInitialized();
       ChatPartnerMapper.ensureInitialized();
     }
@@ -311,8 +312,8 @@ class ChatMapper extends ClassMapperBase<Chat> {
     key: r'_count',
     opt: true,
   );
-  static Map<String, dynamic>? _$application(Chat v) => v.application;
-  static const Field<Chat, Map<String, dynamic>> _f$application = Field(
+  static ChatApplication? _$application(Chat v) => v.application;
+  static const Field<Chat, ChatApplication> _f$application = Field(
     'application',
     _$application,
     opt: true,
@@ -402,7 +403,7 @@ extension ChatValueCopy<$R, $Out> on ObjectCopyWith<$R, Chat, $Out> {
 abstract class ChatCopyWith<$R, $In extends Chat, $Out>
     implements ClassCopyWith<$R, $In, $Out> {
   ChatCountCopyWith<$R, ChatCount, ChatCount>? get count;
-  MapCopyWith<$R, String, dynamic, ObjectCopyWith<$R, dynamic, dynamic>?>?
+  ChatApplicationCopyWith<$R, ChatApplication, ChatApplication>?
   get application;
   ListCopyWith<$R, Message, MessageCopyWith<$R, Message, Message>>?
   get messages;
@@ -413,7 +414,7 @@ abstract class ChatCopyWith<$R, $In extends Chat, $Out>
     DateTime? createdAt,
     int? applicationId,
     ChatCount? count,
-    Map<String, dynamic>? application,
+    ChatApplication? application,
     List<Message>? messages,
     ChatPartner? partner,
   });
@@ -430,14 +431,9 @@ class _ChatCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Chat, $Out>
   ChatCountCopyWith<$R, ChatCount, ChatCount>? get count =>
       $value.count?.copyWith.$chain((v) => call(count: v));
   @override
-  MapCopyWith<$R, String, dynamic, ObjectCopyWith<$R, dynamic, dynamic>?>?
-  get application => $value.application != null
-      ? MapCopyWith(
-          $value.application!,
-          (v, t) => ObjectCopyWith(v, $identity, t),
-          (v) => call(application: v),
-        )
-      : null;
+  ChatApplicationCopyWith<$R, ChatApplication, ChatApplication>?
+  get application =>
+      $value.application?.copyWith.$chain((v) => call(application: v));
   @override
   ListCopyWith<$R, Message, MessageCopyWith<$R, Message, Message>>?
   get messages => $value.messages != null

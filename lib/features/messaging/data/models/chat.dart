@@ -1,4 +1,5 @@
 import 'package:dart_mappable/dart_mappable.dart';
+import 'chat_application.dart';
 import 'message.dart';
 
 part 'chat.mapper.dart';
@@ -39,7 +40,7 @@ class Chat with ChatMappable {
   final int? applicationId;
   @MappableField(key: '_count')
   final ChatCount? count;
-  final Map<String, dynamic>? application;
+  final ChatApplication? application;
   final List<Message>? messages;
   final ChatPartner? partner;
 

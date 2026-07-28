@@ -7,6 +7,9 @@ import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/messaging/data/models/message.dart';
 import 'package:mobile/features/messaging/presentation/bloc/messaging_bloc.dart';
 
+import 'package:mobile/core/consts/api_endpoints.dart';
+import 'package:url_launcher/url_launcher.dart';
+
 class MessageBubble extends StatelessWidget {
   const MessageBubble({
     super.key,
@@ -18,6 +21,57 @@ class MessageBubble extends StatelessWidget {
   final bool isMine;
   final Message message;
   final String chatId;
+
+  String _getFileUrl(String? path) {
+    if (path == null) return '';
+    if (path.startsWith('http')) return path;
+    
+    // Extract base host from ApiEndpoints.baseUrl or default to dev.api.ishyoo.uz
+    final uri = Uri.parse(ApiEndpoints.baseUrl);
+    final host = '${uri.scheme}://${uri.host}';
+    return '$host$path';
+  }
+
+  void _openUrl(String? path) async {
+    final url = _getFileUrl(path);
+    if (url.isEmpty) return;
+    final uri = Uri.parse(url);
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    }
+  }
+
+  void _showImageFullScreen(BuildContext context, String imageUrl) {
+    showDialog(
+      context: context,
+      builder: (ctx) => Scaffold(
+        backgroundColor: Colors.black,
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          iconTheme: const IconThemeData(color: Colors.white),
+        ),
+        body: Center(
+          child: InteractiveViewer(
+            panEnabled: true,
+            minScale: 1.0,
+            maxScale: 4.0,
+            child: CachedNetworkImage(
+              imageUrl: imageUrl,
+              fit: BoxFit.contain,
+              placeholder: (context, url) => const Center(
+                child: CircularProgressIndicator(color: Colors.white),
+              ),
+              errorWidget: (context, url, error) => const Icon(
+                Icons.broken_image,
+                color: Colors.white,
+                size: 50,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,50 +99,60 @@ class MessageBubble extends StatelessWidget {
                   if (file.mimeType?.startsWith('image/') == true)
                     Padding(
                       padding: const EdgeInsets.only(bottom: 4),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8),
-                      child: ConstrainedBox(
-                        constraints: const BoxConstraints(maxHeight: 300),
-                        child: CachedNetworkImage(
-                          imageUrl: file.path ?? '',
-                          placeholder: (context, url) => Container(
-                            height: 150,
-                            width: 150,
-                            color: context.colors.bgSecondary,
-                            child: const Center(child: CircularProgressIndicator()),
+                      child: GestureDetector(
+                        onTap: () => _showImageFullScreen(
+                            context, _getFileUrl(file.path)),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8),
+                          child: ConstrainedBox(
+                            constraints: const BoxConstraints(maxHeight: 300),
+                            child: CachedNetworkImage(
+                              imageUrl: _getFileUrl(file.path),
+                              placeholder: (context, url) => Container(
+                                height: 150,
+                                width: 150,
+                                color: context.colors.bgSecondary,
+                                child: const Center(
+                                    child: CircularProgressIndicator()),
+                              ),
+                              errorWidget: (context, url, error) => Container(
+                                height: 150,
+                                width: 150,
+                                color: context.colors.bgSecondary,
+                                child: const Icon(Icons.broken_image),
+                              ),
+                              fit: BoxFit.cover,
+                            ),
                           ),
-                          errorWidget: (context, url, error) => Container(
-                            height: 150,
-                            width: 150,
-                            color: context.colors.bgSecondary,
-                            child: const Icon(Icons.broken_image),
-                          ),
-                          fit: BoxFit.cover,
                         ),
-                      ),
                       ),
                     )
                   else
-                    Container(
-                      padding: const EdgeInsets.all(8),
-                      margin: const EdgeInsets.only(bottom: 4),
-                      decoration: BoxDecoration(
-                        color: context.colors.bgSecondary,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Icon(Icons.insert_drive_file, color: context.colors.textPrimary),
-                          const SizedBox(width: 8),
-                          Flexible(
-                            child: Text(
-                              file.originalName ?? 'Fayl',
-                              style: context.textThemes.b3.copyWith(color: context.colors.textPrimary),
-                              overflow: TextOverflow.ellipsis,
+                    GestureDetector(
+                      onTap: () => _openUrl(file.path),
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        margin: const EdgeInsets.only(bottom: 4),
+                        decoration: BoxDecoration(
+                          color: context.colors.bgSecondary,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.insert_drive_file,
+                                color: context.colors.textPrimary),
+                            const SizedBox(width: 8),
+                            Flexible(
+                              child: Text(
+                                file.originalName ?? 'Fayl',
+                                style: context.textThemes.b3.copyWith(
+                                    color: context.colors.textPrimary),
+                                overflow: TextOverflow.ellipsis,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
               ],

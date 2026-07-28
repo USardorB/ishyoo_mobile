@@ -5,6 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/enums/user_role.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/routes/app_router.gr.dart';
+import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/messaging/presentation/bloc/messaging_bloc.dart';
 import 'package:mobile/features/messaging/presentation/widgets/chat_actions_sheet.dart';
@@ -84,17 +87,51 @@ class ChatDetailsPage extends StatelessWidget {
                   if (isEmployer) {
                     title =
                         chat.partner?.name ??
-                        chat.application?['resume']?['specialization'] ??
+                        chat.application?.resume?.specialization ??
                         title;
                   } else {
                     title =
-                        chat.application?['vacancy']?['organization']?['name'] ??
-                        title;
+                        chat.application?.vacancy?.organization?.name ?? title;
                   }
                 }
                 return ChatDetailsPageJobCard(
-                  title: title,
-                  // meta: isEmployer? state.currentChat.partner.,
+                  onTap: () {
+                    final resumeId = state.currentChat?.application?.resume?.id;
+                    final vacancyId =
+                        state.currentChat?.application?.vacancy?.id;
+
+                    if ((resumeId ?? vacancyId) == null) {
+                      AppNotificationOverlay.instance.show(
+                        message: "Ushbu suhbat bo'yicha ma'lumot topilmadi",
+                        type: AppNotificationType.warning,
+                      );
+                      return;
+                    }
+                    if (isEmployer) {
+                      context.pushRoute(
+                        ApplicantDetailsRoute(
+                          vacancyId: vacancyId!,
+                          applicantResumeId: resumeId!,
+                        ),
+                      );
+                    } else {
+                      context.router.push(VacancyDetailsRoute(id: vacancyId!));
+                    }
+                  },
+                  title: isEmployer
+                      ? state
+                                .currentChat
+                                ?.application
+                                ?.resume
+                                ?.specialization ??
+                            ""
+                      : state
+                                .currentChat
+                                ?.application
+                                ?.vacancy
+                                ?.organization
+                                ?.name ??
+                            "",
                   isEmployer: isEmployer,
                 );
               },

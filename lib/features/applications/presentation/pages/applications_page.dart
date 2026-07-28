@@ -15,8 +15,10 @@ class ApplicationsPage extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => sl<ApplicationsBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => sl<ApplicationsBloc>()),
+      ],
       child: const _ApplicationsPageView(),
     );
   }
