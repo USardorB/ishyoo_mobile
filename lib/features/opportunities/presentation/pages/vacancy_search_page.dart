@@ -49,10 +49,23 @@ class VacancySearchPage extends StatelessWidget implements AutoRouteWrapper {
           if (state is VacancyFeedLoaded) {
             if (state.vacancies.isEmpty) {
               return Center(
-                child: Text(
-                  "Hech narsa topilmadi",
-                  style: context.textThemes.b1.copyWith(
-                    color: context.colors.textSecondary,
+                child: Padding(
+                  padding: .all(16),
+                  child: Column(
+                    mainAxisSize: .min,
+                    children: [
+                      Image.asset(
+                        "assets/images/no_results.png",
+                        width: 280,
+                      ),
+                      Text(
+                        "Kiritilgan parametrlar bo'yicha bo'sh ish o'rni topilmadi",
+                        textAlign: TextAlign.center,
+                        style: context.textThemes.b1.copyWith(
+                          color: context.colors.textSecondary,
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               );

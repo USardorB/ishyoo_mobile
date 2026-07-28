@@ -48,63 +48,56 @@ class ChatsPage extends StatelessWidget {
                 );
               }
 
-              return TabBarView(
-                children: [
-                  ListView.separated(
-                    padding:
-                        const EdgeInsets.symmetric(
-                          horizontal: 20,
-                        ).copyWith(
-                          bottom: MediaQuery.paddingOf(context).bottom + 16,
-                        ),
-                    itemCount: state.chats!.length,
-                    itemBuilder: (context, index) {
-                      final chat = state.chats![index];
-
-                      // Logic to extract partner details
-                      String title = "Noma'lum";
-                      String image = "https://i.pravatar.cc/100?u=${chat.id}";
-
-                      if (isEmployer) {
-                        title =
-                            chat.partner?.name ??
-                            chat.application?.resume?.profile?.name ??
-                            chat.application?.resume?.user?.name ??
-                            title;
-                      } else {
-                        title =
-                            chat.application?.vacancy?.organization?.name ??
-                            title;
-                        image =
-                            chat.application?.vacancy?.organization?.logoUrl ??
-                            image;
-                      }
-
-                      final lastMessage =
-                          chat.messages != null && chat.messages!.isNotEmpty
-                          ? (chat.messages!.first.content ?? 'Fayl yuborildi')
-                          : "Suhbat boshlandi";
-
-                      return ChatItem(
-                        chatId: chat.id,
-                        image: image,
-                        lastMessage: lastMessage,
-                        title: title,
-                        time: chat.createdAt != null
-                            ? '${chat.createdAt!.hour}:${chat.createdAt!.minute.toString().padLeft(2, '0')}'
-                            : '',
-                        unreadCount: chat.count?.messages ?? 0,
-                        isOnline: false,
-                      );
-                    },
-                    separatorBuilder: (_, _) => Divider(
-                      indent: 64,
-                      color: context.colors.lineSecondary,
+              return ListView.separated(
+                padding:
+                    const EdgeInsets.symmetric(
+                      horizontal: 20,
+                    ).copyWith(
+                      bottom: MediaQuery.paddingOf(context).bottom + 16,
                     ),
-                  ),
-                  const Placeholder(),
-                  const Placeholder(),
-                ],
+                itemCount: state.chats!.length,
+                itemBuilder: (context, index) {
+                  final chat = state.chats![index];
+
+                  // Logic to extract partner details
+                  String title = "Noma'lum";
+                  String image = "https://i.pravatar.cc/100?u=${chat.id}";
+
+                  if (isEmployer) {
+                    title =
+                        chat.partner?.name ??
+                        chat.application?.resume?.profile?.name ??
+                        chat.application?.resume?.user?.name ??
+                        title;
+                  } else {
+                    title =
+                        chat.application?.vacancy?.organization?.name ?? title;
+                    image =
+                        chat.application?.vacancy?.organization?.logoUrl ??
+                        image;
+                  }
+
+                  final lastMessage =
+                      chat.messages != null && chat.messages!.isNotEmpty
+                      ? (chat.messages!.first.content ?? 'Fayl yuborildi')
+                      : "Suhbat boshlandi";
+
+                  return ChatItem(
+                    chatId: chat.id,
+                    image: image,
+                    lastMessage: lastMessage,
+                    title: title,
+                    time: chat.createdAt != null
+                        ? '${chat.createdAt!.hour}:${chat.createdAt!.minute.toString().padLeft(2, '0')}'
+                        : '',
+                    unreadCount: chat.count?.messages ?? 0,
+                    isOnline: false,
+                  );
+                },
+                separatorBuilder: (_, _) => Divider(
+                  indent: 64,
+                  color: context.colors.lineSecondary,
+                ),
               );
             },
           ),

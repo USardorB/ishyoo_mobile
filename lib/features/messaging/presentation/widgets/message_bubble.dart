@@ -1,13 +1,15 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/core/configs/di/configure_dependencies.dart';
+import 'package:mobile/core/consts/api_endpoints.dart';
 import 'package:mobile/core/enums/user_role.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/shared/services/token_service.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:mobile/features/messaging/data/models/chat_file.dart';
 import 'package:mobile/features/messaging/data/models/message.dart';
 import 'package:mobile/features/messaging/presentation/bloc/messaging_bloc.dart';
-
-import 'package:mobile/core/consts/api_endpoints.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class MessageBubble extends StatelessWidget {
@@ -22,26 +24,37 @@ class MessageBubble extends StatelessWidget {
   final Message message;
   final String chatId;
 
-  String _getFileUrl(String? path) {
-    if (path == null) return '';
-    if (path.startsWith('http')) return path;
-    
-    // Extract base host from ApiEndpoints.baseUrl or default to dev.api.ishyoo.uz
-    final uri = Uri.parse(ApiEndpoints.baseUrl);
-    final host = '${uri.scheme}://${uri.host}';
-    return '$host$path';
+  String _getFileUrl(BuildContext context, ChatFile file) {
+    if (file.id == null) return '';
+    final isEmployer =
+        context.read<AuthBloc>().state.userRole == UserRole.employer;
+    final rolePath = isEmployer ? 'employer' : 'candidate';
+    return '${ApiEndpoints.baseUrl}/mobile/$rolePath/chat/$chatId/file/${file.id}';
   }
 
-  void _openUrl(String? path) async {
-    final url = _getFileUrl(path);
+  void _openUrl(BuildContext context, ChatFile file) async {
+    final url = _getFileUrl(context, file);
     if (url.isEmpty) return;
     final uri = Uri.parse(url);
+    final token = sl<TokenService>().getAccessToken();
+    final headers = token != null
+        ? {'Authorization': 'Bearer $token'}
+        : const <String, String>{};
+
     if (await canLaunchUrl(uri)) {
-      await launchUrl(uri, mode: LaunchMode.externalApplication);
+      await launchUrl(
+        uri,
+        mode: LaunchMode.inAppWebView,
+        webViewConfiguration: WebViewConfiguration(headers: headers),
+      );
     }
   }
 
-  void _showImageFullScreen(BuildContext context, String imageUrl) {
+  void _showImageFullScreen(
+    BuildContext context,
+    String imageUrl,
+    Map<String, String>? headers,
+  ) {
     showDialog(
       context: context,
       builder: (ctx) => Scaffold(
@@ -57,6 +70,7 @@ class MessageBubble extends StatelessWidget {
             maxScale: 4.0,
             child: CachedNetworkImage(
               imageUrl: imageUrl,
+              httpHeaders: headers,
               fit: BoxFit.contain,
               placeholder: (context, url) => const Center(
                 child: CircularProgressIndicator(color: Colors.white),
@@ -75,6 +89,11 @@ class MessageBubble extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final token = sl<TokenService>().getAccessToken();
+    final headers = token != null
+        ? {'Authorization': 'Bearer $token'}
+        : const <String, String>{};
+
     return GestureDetector(
       onLongPress: isMine ? () => _showActions(context) : null,
       child: Align(
@@ -101,19 +120,24 @@ class MessageBubble extends StatelessWidget {
                       padding: const EdgeInsets.only(bottom: 4),
                       child: GestureDetector(
                         onTap: () => _showImageFullScreen(
-                            context, _getFileUrl(file.path)),
+                          context,
+                          _getFileUrl(context, file),
+                          headers,
+                        ),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8),
                           child: ConstrainedBox(
                             constraints: const BoxConstraints(maxHeight: 300),
                             child: CachedNetworkImage(
-                              imageUrl: _getFileUrl(file.path),
+                              imageUrl: _getFileUrl(context, file),
+                              httpHeaders: headers,
                               placeholder: (context, url) => Container(
                                 height: 150,
                                 width: 150,
                                 color: context.colors.bgSecondary,
                                 child: const Center(
-                                    child: CircularProgressIndicator()),
+                                  child: CircularProgressIndicator(),
+                                ),
                               ),
                               errorWidget: (context, url, error) => Container(
                                 height: 150,
@@ -129,7 +153,7 @@ class MessageBubble extends StatelessWidget {
                     )
                   else
                     GestureDetector(
-                      onTap: () => _openUrl(file.path),
+                      onTap: () => _openUrl(context, file),
                       child: Container(
                         padding: const EdgeInsets.all(8),
                         margin: const EdgeInsets.only(bottom: 4),
@@ -140,14 +164,17 @@ class MessageBubble extends StatelessWidget {
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
-                            Icon(Icons.insert_drive_file,
-                                color: context.colors.textPrimary),
+                            Icon(
+                              Icons.insert_drive_file,
+                              color: context.colors.textPrimary,
+                            ),
                             const SizedBox(width: 8),
                             Flexible(
                               child: Text(
                                 file.originalName ?? 'Fayl',
                                 style: context.textThemes.b3.copyWith(
-                                    color: context.colors.textPrimary),
+                                  color: context.colors.textPrimary,
+                                ),
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
