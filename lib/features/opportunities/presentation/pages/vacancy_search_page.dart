@@ -5,6 +5,7 @@ import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/opportunities/presentation/bloc/vacancy_feed_bloc.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/trending_vacancy_card.dart';
+import 'package:mobile/features/opportunities/presentation/widgets/vacancy_filter_sheet.dart';
 
 @RoutePage()
 class VacancySearchPage extends StatelessWidget implements AutoRouteWrapper {
@@ -23,20 +24,56 @@ class VacancySearchPage extends StatelessWidget implements AutoRouteWrapper {
     return Scaffold(
       appBar: AppBar(
         titleSpacing: 0,
-        title: TextField(
-          autofocus: true,
-          decoration: InputDecoration(
-            hintText: "Mutaxassislik yoki kompaniya nomini kiriting",
-            border: InputBorder.none,
-            hintStyle: context.textThemes.b2.copyWith(
-              color: context.colors.textSecondary,
-            ),
-          ),
-          style: context.textThemes.b1,
-          onSubmitted: (value) {
-            context.read<VacancyFeedBloc>().add(LoadVacancyFeed(title: value));
-          },
+        title: Builder(
+          builder: (context) {
+            final bloc = context.read<VacancyFeedBloc>();
+            return TextField(
+              autofocus: true,
+              controller: TextEditingController(text: bloc.currentTitle),
+              decoration: InputDecoration(
+                hintText: "Mutaxassislik yoki kompaniya nomini kiriting",
+                border: InputBorder.none,
+                hintStyle: context.textThemes.b2.copyWith(
+                  color: context.colors.textSecondary,
+                ),
+              ),
+              style: context.textThemes.b1,
+              onSubmitted: (value) {
+                bloc.add(UpdateVacancyFeedSearch(title: value.isEmpty ? null : value));
+              },
+            );
+          }
         ),
+        actions: [
+          Builder(
+            builder: (context) {
+              return IconButton(
+                icon: const Icon(Icons.tune),
+                onPressed: () {
+                  final bloc = context.read<VacancyFeedBloc>();
+                  showModalBottomSheet(
+                    context: context,
+                    isScrollControlled: true,
+                    builder: (_) => VacancyFilterSheet(
+                      initialJobType: bloc.currentJobType,
+                      initialExperienceLevel: bloc.currentExperienceLevel,
+                      initialSpecialization: bloc.currentSpecialization,
+                      onApply: (jobType, experienceLevel, specialization) {
+                        bloc.add(
+                          UpdateVacancyFeedFilters(
+                            jobType: jobType,
+                            experienceLevel: experienceLevel,
+                            specialization: specialization,
+                          ),
+                        );
+                      },
+                    ),
+                  );
+                },
+              );
+            }
+          ),
+        ],
       ),
       body: BlocBuilder<VacancyFeedBloc, VacancyFeedState>(
         builder: (context, state) {
@@ -73,7 +110,7 @@ class VacancySearchPage extends StatelessWidget implements AutoRouteWrapper {
             return ListView.separated(
               padding: const EdgeInsets.all(16),
               itemCount: state.vacancies.length,
-              separatorBuilder: (_, __) => const SizedBox(height: 12),
+              separatorBuilder: (_, _) => const SizedBox(height: 12),
               itemBuilder: (context, index) {
                 return TrendingVacancyCard(vacancy: state.vacancies[index]);
               },

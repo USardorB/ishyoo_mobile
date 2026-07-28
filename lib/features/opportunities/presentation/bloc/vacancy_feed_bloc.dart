@@ -15,27 +15,36 @@ class VacancyFeedBloc extends Bloc<VacancyFeedEvent, VacancyFeedState> {
   final SaveVacancyUseCase _saveVacancyUseCase;
   final UnsaveVacancyUseCase _unsaveVacancyUseCase;
 
+  String? _currentTitle;
+  String? _currentJobType;
+  String? _currentExperienceLevel;
+  String? _currentSpecialization;
+
+  String? get currentTitle => _currentTitle;
+  String? get currentJobType => _currentJobType;
+  String? get currentExperienceLevel => _currentExperienceLevel;
+  String? get currentSpecialization => _currentSpecialization;
+
   VacancyFeedBloc({
     required this._getVacancyFeedUseCase,
     required this._saveVacancyUseCase,
     required this._unsaveVacancyUseCase,
   }) : super(const VacancyFeedInitial()) {
     on<LoadVacancyFeed>(_onLoadVacancyFeed);
+    on<UpdateVacancyFeedFilters>(_onUpdateFilters);
+    on<UpdateVacancyFeedSearch>(_onUpdateSearch);
     on<ToggleSaveVacancyFeed>(_onToggleSaveVacancyFeed);
   }
 
-  Future<void> _onLoadVacancyFeed(
-    LoadVacancyFeed event,
-    Emitter<VacancyFeedState> emit,
-  ) async {
+  Future<void> _fetchData(Emitter<VacancyFeedState> emit) async {
     emit(const VacancyFeedLoading());
 
     final result = await _getVacancyFeedUseCase(
       GetVacancyFeedParams(
-        title: event.title,
-        jobType: event.jobType,
-        experienceLevel: event.experienceLevel,
-        specialization: event.specialization,
+        title: _currentTitle,
+        jobType: _currentJobType,
+        experienceLevel: _currentExperienceLevel,
+        specialization: _currentSpecialization,
       ),
     );
 
@@ -43,6 +52,37 @@ class VacancyFeedBloc extends Bloc<VacancyFeedEvent, VacancyFeedState> {
       (failure) => emit(VacancyFeedError(failure.message)),
       (vacancies) => emit(VacancyFeedLoaded(vacancies)),
     );
+  }
+
+  Future<void> _onLoadVacancyFeed(
+    LoadVacancyFeed event,
+    Emitter<VacancyFeedState> emit,
+  ) async {
+    if (!event.isRefresh) {
+      _currentTitle = event.title;
+      _currentJobType = event.jobType;
+      _currentExperienceLevel = event.experienceLevel;
+      _currentSpecialization = event.specialization;
+    }
+    await _fetchData(emit);
+  }
+
+  Future<void> _onUpdateFilters(
+    UpdateVacancyFeedFilters event,
+    Emitter<VacancyFeedState> emit,
+  ) async {
+    _currentJobType = event.jobType;
+    _currentExperienceLevel = event.experienceLevel;
+    _currentSpecialization = event.specialization;
+    await _fetchData(emit);
+  }
+
+  Future<void> _onUpdateSearch(
+    UpdateVacancyFeedSearch event,
+    Emitter<VacancyFeedState> emit,
+  ) async {
+    _currentTitle = event.title;
+    await _fetchData(emit);
   }
 
   Future<void> _onToggleSaveVacancyFeed(

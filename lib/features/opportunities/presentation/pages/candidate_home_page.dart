@@ -11,7 +11,7 @@ import 'package:mobile/features/opportunities/presentation/widgets/candidate_hom
 import 'package:mobile/features/opportunities/presentation/widgets/candidate_quick_access_cards.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/trending_vacancy_card.dart';
 import 'package:mobile/features/postings/presentation/widgets/dark_glass_search_field.dart';
-import 'package:mobile/features/postings/presentation/widgets/tallent_filter_sheet.dart';
+import 'package:mobile/features/opportunities/presentation/widgets/vacancy_filter_sheet.dart';
 
 @RoutePage()
 class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
@@ -65,28 +65,42 @@ class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
                 Flexible(
                   child: DarkGlassSearchField(
                     onTap: () {
+                      // Pass the bloc down to the search page if needed, or if it has its own, that's fine.
+                      // Currently VacancySearchPage has its own AutoRouteWrapper creating a new Bloc. 
+                      // So state might not carry over unless we pass it. 
+                      // But that's a separate issue. I'll just keep the navigation as is.
                       context.pushRoute(const VacancySearchRoute());
                     },
                   ),
                 ),
                 const SizedBox(width: 12),
-                IconButton(
-                  onPressed: () => showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    builder: (_) => TallentFilterSheet(
-                      onApply: (jobType, experienceLevel, specialization) {
-                        context.read<VacancyFeedBloc>().add(
-                          LoadVacancyFeed(
-                            jobType: jobType,
-                            experienceLevel: experienceLevel,
-                            specialization: specialization,
+                Builder(
+                  builder: (context) {
+                    return IconButton(
+                      onPressed: () {
+                        final bloc = context.read<VacancyFeedBloc>();
+                        showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          builder: (_) => VacancyFilterSheet(
+                            initialJobType: bloc.currentJobType,
+                            initialExperienceLevel: bloc.currentExperienceLevel,
+                            initialSpecialization: bloc.currentSpecialization,
+                            onApply: (jobType, experienceLevel, specialization) {
+                              bloc.add(
+                                UpdateVacancyFeedFilters(
+                                  jobType: jobType,
+                                  experienceLevel: experienceLevel,
+                                  specialization: specialization,
+                                ),
+                              );
+                            },
                           ),
                         );
                       },
-                    ),
-                  ),
-                  icon: const Icon(Icons.tune),
+                      icon: const Icon(Icons.tune),
+                    );
+                  }
                 ),
               ],
             ),

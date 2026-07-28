@@ -9,13 +9,33 @@ class LoadVacancyFeed extends VacancyFeedEvent {
   final String? jobType;
   final String? experienceLevel;
   final String? specialization;
+  final bool isRefresh;
 
   const LoadVacancyFeed({
     this.title,
     this.jobType,
     this.experienceLevel,
     this.specialization,
+    this.isRefresh = false,
   });
+}
+
+class UpdateVacancyFeedFilters extends VacancyFeedEvent {
+  final String? jobType;
+  final String? experienceLevel;
+  final String? specialization;
+
+  const UpdateVacancyFeedFilters({
+    this.jobType,
+    this.experienceLevel,
+    this.specialization,
+  });
+}
+
+class UpdateVacancyFeedSearch extends VacancyFeedEvent {
+  final String? title;
+
+  const UpdateVacancyFeedSearch({this.title});
 }
 
 class ToggleSaveVacancyFeed extends VacancyFeedEvent {
