@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
-import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/features/opportunities/data/models/organization.dart';
@@ -53,7 +52,7 @@ class _EditCompanyInfoPageState extends State<EditCompanyInfoPage> {
       UpdateEmployerOrganization({
         'name': _nameCtrl.text.trim(),
         'industry': _industryCtrl.text.trim(),
-        'size': _sizeCtrl.text.trim(),
+        'size': num.parse(_sizeCtrl.text.trim()).toInt(),
         'website': _websiteCtrl.text.trim(),
         'description': _descriptionCtrl.text.trim(),
         'location': _locationCtrl.text.trim(),
@@ -93,32 +92,6 @@ class _EditCompanyInfoPageState extends State<EditCompanyInfoPage> {
           return Scaffold(
             appBar: AppBar(
               title: const Text('Kompaniya tahriri'),
-              actions: [
-                BlocBuilder<
-                  EmployerOrganizationBloc,
-                  EmployerOrganizationState
-                >(
-                  builder: (context, state) => TextButton(
-                    onPressed: state.isUpdating ? null : () => _save(context),
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      visualDensity: VisualDensity.compact,
-                    ),
-                    child: state.isUpdating
-                        ? const SizedBox(
-                            width: 16,
-                            height: 16,
-                            child: CircularProgressIndicator(strokeWidth: 2),
-                          )
-                        : Text(
-                            'Saqlash',
-                            style: context.textThemes.s2.copyWith(
-                              color: context.colors.brandProgress,
-                            ),
-                          ),
-                  ),
-                ),
-              ],
             ),
             body: SingleChildScrollView(
               padding: const EdgeInsets.all(16),
@@ -137,6 +110,7 @@ class _EditCompanyInfoPageState extends State<EditCompanyInfoPage> {
                   const SizedBox(height: 16),
                   AppInputField(
                     label: 'XODIMLAR SONI',
+                    keyboardType: TextInputType.number,
                     controller: _sizeCtrl,
                   ),
                   const SizedBox(height: 16),

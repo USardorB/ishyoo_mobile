@@ -14,12 +14,15 @@ abstract class ApplicantsRemoteDataSource {
   factory ApplicantsRemoteDataSource(Dio dio) = _ApplicantsRemoteDataSource;
 
   @GET('/mobile/employer/applicants')
-  Future<BaseResult<List<Applicant>>> getApplicants();
+  Future<BaseResult<List<Applicant>>> getApplicants({
+    @Query('status') String? status,
+  });
 
   @GET('/mobile/employer/vacancy/{vacancyId}/applicants')
   Future<BaseResult<List<Applicant>>> getVacancyApplicants(
-    @Path('vacancyId') String vacancyId,
-  );
+    @Path('vacancyId') String vacancyId, {
+    @Query('status') String? status,
+  });
 
   @GET('/mobile/employer/vacancy/{vacancyId}/applicants/{vacancy_applicant_resume_id}')
   Future<BaseResult<Applicant>> getVacancyApplicantDetail(

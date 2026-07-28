@@ -7,7 +7,8 @@ abstract class ApplicantsEvent {}
 
 class LoadApplicants extends ApplicantsEvent {
   final String? vacancyId;
-  LoadApplicants([this.vacancyId]);
+  final String? status;
+  LoadApplicants([this.vacancyId, this.status]);
 }
 
 class UpdateApplicantStatus extends ApplicantsEvent {
@@ -60,8 +61,8 @@ class ApplicantsBloc extends Bloc<ApplicantsEvent, ApplicantsState> {
   ) async {
     emit(state.copyWith(isLoading: true, error: null));
     final result = event.vacancyId != null && event.vacancyId!.isNotEmpty
-        ? await _applicantsRepository.getVacancyApplicants(event.vacancyId!)
-        : await _applicantsRepository.getApplicants();
+        ? await _applicantsRepository.getVacancyApplicants(event.vacancyId!, status: event.status)
+        : await _applicantsRepository.getApplicants(status: event.status);
 
     result.fold(
       (failure) =>

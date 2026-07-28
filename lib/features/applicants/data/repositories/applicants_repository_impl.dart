@@ -14,15 +14,16 @@ class ApplicantsRepositoryImpl implements ApplicantsRepository {
   ApplicantsRepositoryImpl(this.remoteDataSource);
 
   @override
-  Future<Either<Failure, List<Applicant>>> getApplicants() {
-    return remoteDataSource.getApplicants().asEither();
+  Future<Either<Failure, List<Applicant>>> getApplicants({String? status}) {
+    return remoteDataSource.getApplicants(status: status).asEither();
   }
 
   @override
   Future<Either<Failure, List<Applicant>>> getVacancyApplicants(
-    String vacancyId,
-  ) {
-    return remoteDataSource.getVacancyApplicants(vacancyId).asEither();
+    String vacancyId, {
+    String? status,
+  }) {
+    return remoteDataSource.getVacancyApplicants(vacancyId, status: status).asEither();
   }
 
   @override

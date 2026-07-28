@@ -3,10 +3,11 @@ import '../../../../core/shared/failures.dart';
 import '../../data/models/applicant.dart';
 
 abstract class ApplicantsRepository {
-  Future<Either<Failure, List<Applicant>>> getApplicants();
+  Future<Either<Failure, List<Applicant>>> getApplicants({String? status});
   Future<Either<Failure, List<Applicant>>> getVacancyApplicants(
-    String vacancyId,
-  );
+    String vacancyId, {
+    String? status,
+  });
   Future<Either<Failure, Applicant>> getVacancyApplicantDetail({
     required String vacancyId,
     required String vacancyApplicantResumeId,

@@ -20,9 +20,10 @@ class _ApplicantsRemoteDataSource implements ApplicantsRemoteDataSource {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<BaseResult<List<Applicant>>> getApplicants() async {
+  Future<BaseResult<List<Applicant>>> getApplicants({String? status}) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'status': status};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<BaseResult<List<Applicant>>>(
@@ -57,10 +58,12 @@ class _ApplicantsRemoteDataSource implements ApplicantsRemoteDataSource {
 
   @override
   Future<BaseResult<List<Applicant>>> getVacancyApplicants(
-    String vacancyId,
-  ) async {
+    String vacancyId, {
+    String? status,
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'status': status};
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<BaseResult<List<Applicant>>>(
