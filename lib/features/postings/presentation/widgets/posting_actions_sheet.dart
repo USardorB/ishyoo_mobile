@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
+import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/features/opportunities/data/models/vacancy.dart';
 import 'package:mobile/features/postings/presentation/bloc/postings_bloc.dart';
 
@@ -14,8 +16,8 @@ enum PostingAction {
   copy,
   share,
   archive,
-  delete,
-  applicants;
+  applicants,
+  delete;
 
   String get title => switch (this) {
     PostingAction.view => 'shared.show_all'.tr(),
@@ -79,11 +81,11 @@ class PostingActionsSheet extends StatelessWidget {
 
   ListTile listTile(BuildContext context, PostingAction action) {
     return ListTile(
-      visualDensity: .comfortable,
-      contentPadding: .zero,
+      visualDensity: VisualDensity.comfortable,
+      contentPadding: EdgeInsets.zero,
       leading: Material(
         color: context.colors.bgSecondary,
-        shape: RoundedRectangleBorder(borderRadius: .circular(8)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         child: Padding(
           padding: const EdgeInsets.all(4),
           child: Icon(action.icon),
@@ -112,13 +114,15 @@ class PostingActionsSheet extends StatelessWidget {
             context.read<PostingsBloc>().add(ArchivePosting(vacancy.id));
             break;
           case PostingAction.delete:
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text("shared.coming_soon".tr())),
+            AppNotificationOverlay.instance.show(
+              message: "shared.coming_soon".tr(),
+              type: AppNotificationType.warning,
             );
             break;
           case PostingAction.share:
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text("shared.coming_soon".tr())),
+            AppNotificationOverlay.instance.show(
+              message: "shared.coming_soon".tr(),
+              type: AppNotificationType.warning,
             );
             break;
           case PostingAction.pause:

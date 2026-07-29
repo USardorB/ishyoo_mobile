@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/features/opportunities/presentation/bloc/vacancy_details_bloc.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/apply_vacancy_sheet.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/vacancy_map_placeholder.dart';
@@ -29,18 +31,21 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
       listener: (context, state) {
         if (state is VacancyDetailsLoaded) {
           if (state.applyError != null) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.applyError!)),
+            AppNotificationOverlay.instance.show(
+              message: state.applyError!,
+              type: AppNotificationType.error,
             );
           } else if (state.applySuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('opportunities.applied_success'.tr())),
+            AppNotificationOverlay.instance.show(
+              message: 'opportunities.applied_success'.tr(),
+              type: AppNotificationType.success,
             );
             context.router.pop();
           }
         } else if (state is VacancyDetailsError) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.message)),
+          AppNotificationOverlay.instance.show(
+            message: state.message,
+            type: AppNotificationType.error,
           );
         }
       },
@@ -66,16 +71,15 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
           appBar: AppBar(
             leading: IconButton(
               icon: const Icon(Icons.arrow_back),
-              onPressed: () => context.router.pop(),
+              onPressed: context.pop,
             ),
             actions: [
               IconButton(
                 icon: const Icon(Icons.share_outlined),
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(
-                      content: Text("shared.coming_soon".tr()),
-                    ),
+                  AppNotificationOverlay.instance.show(
+                    message: "shared.coming_soon".tr(),
+                    type: AppNotificationType.warning,
                   );
                 },
               ),

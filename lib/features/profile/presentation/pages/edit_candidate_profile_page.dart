@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/features/profile/data/models/profile.dart';
@@ -75,14 +77,16 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
         listener: (context, state) {
           if (state.profile != null) _populateFromProfile(state.profile!);
           if (state.isUpdateSuccess) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('shared.saved_success'.tr())),
+            AppNotificationOverlay.instance.show(
+              message: 'shared.saved_success'.tr(),
+              type: AppNotificationType.success,
             );
             context.maybePop();
           }
           if (state.error != null) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.error!)),
+            AppNotificationOverlay.instance.show(
+              message: state.error!,
+              type: AppNotificationType.error,
             );
           }
         },

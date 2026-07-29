@@ -3,6 +3,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
+import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
 
 class CandidateQuickAccessCards extends StatelessWidget {
   const CandidateQuickAccessCards({super.key});
@@ -26,8 +28,9 @@ class CandidateQuickAccessCards extends StatelessWidget {
             icon: Icons.insights_outlined,
             iconColor: context.colors.success,
             onTap: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text("shared.coming_soon".tr())),
+              AppNotificationOverlay.instance.show(
+                message: "shared.coming_soon".tr(),
+                type: AppNotificationType.warning,
               );
             },
           ),

@@ -32,7 +32,8 @@
     "no_data": "Ma'lumot topilmadi",
     "add": "Qo'shish",
     "saved_success": "Muvaffaqiyatli saqlandi",
-    "coming_soon": "Tez orada!"
+    "coming_soon": "Tez orada!",
+    "negotiable": "Kelishilgan"
   },
   "onboarding": {
     "choose_language": {
@@ -72,7 +73,8 @@
       "forgot_password": "Parolni unutdingizmi?",
       "cta_button": "Kirish",
       "no_account": "Yangimisiz?",
-      "register_link": "Ro'yxatdan o'ting"
+      "register_link": "Ro'yxatdan o'ting",
+      "hr_account": "HR hisob"
     },
     "register": {
       "title": "Yangi hisob yaratish",
@@ -98,45 +100,36 @@
     },
     "privacy_notice": {
       "text1": "Davom etish tugmasini bosish bilan siz ",
-      "privacy_policy": "Maxfiylik siyosatiga",
-      "and": " va ",
-      "terms": "Foydalanish shartlariga",
-      "text2": " rozilik berasiz."
+      "link_terms": "Foydalanish shartlari",
+      "text2": " hamda ",
+      "link_privacy": "Maxfiylik siyosatiga",
+      "text3": " rozilik bildirasiz"
     },
     "otp": {
-      "title": "SMS kodni kiriting",
-      "subtitle": "Tasdiqlash kodi {} telefon raqamiga yuborildi",
-      "enter_full": "Kodni to'liq kiriting",
-      "invalid_code": "Kod noto'g'ri",
-      "resend_code": "Qayta yuborish",
-      "resend_in": "{} vaqt qoldi",
-      "new_code": "Yangi kodni olish",
-      "verify_button": "Tasdiqlash"
+      "title": "Tasdiqlash kodi",
+      "subtitle": "{} raqamiga yuborilgan 4 xonali SMS-kodni kiriting",
+      "resend_text": "Qayta yuborish: {}",
+      "resend_button": "Kodni qayta yuborish"
     },
     "forgot_password": {
       "title": "Parolni tiklash",
-      "subtitle": "Hisob kirish uchun telefon raqamini kiriting",
-      "cta_button": "Davom etish"
+      "subtitle": "Hisobingizga bog‘langan telefon raqamingizni kiriting",
+      "cta_button": "Kodni olish"
     },
     "reset_password": {
-      "title": "Parolni tiklash",
-      "subtitle": "Hisobingiz uchun yangi parolni kiriting",
-      "changed_title": "Parol o'zgartirildi",
-      "changed_sub": "Kirish uchun \"Kirish\" tugmasini bosing",
-      "mismatch": "Parollar mos kelmadi",
-      "new_password": "Yangi parol",
-      "confirm_new_password": "Yangi parolni tasdiqlang",
-      "cta_button": "Davom etish"
+      "title": "Yangi parol yaratish",
+      "subtitle": "Hisobingiz uchun yangi xavfsiz parol kiriting",
+      "new_password_label": "Yangi parol",
+      "confirm_password_label": "Yangi parolni tasdiqlang",
+      "cta_button": "Saqlash va kirish"
     },
     "complete_profile": {
-      "title": "Shaxsiy ma’lumotlar",
-      "subtitle": "Shaxsiy ma’lumotlarni kiriting: Foydalanuvchining ismi, familiyasi va kompaniya nomi",
-      "first_name_hint": "Ismingizni kiriting",
-      "last_name_hint": "Familiyangizni kiriting",
+      "title": "Profilni to'ldirish",
+      "subtitle": "Shaxsiy ma'lumotlaringizni kiriting",
+      "first_name_hint": "Ism",
+      "last_name_hint": "Familiya",
       "company_name_hint": "Kompaniya nomi",
-      "birth_date_hint": "Tug’ilgan sana (YYYY.OO.KK)",
-      "new_password_hint": "Yangi parol o'rnating",
-      "fill_all": "Iltimos barcha majburiy maydonlarni to'ldiring",
+      "birth_date_hint": "Tug'ilgan sana",
       "cta_button": "Davom etish"
     }
   },
@@ -243,7 +236,17 @@
     "dashboard_title": "Boshqaruv paneli",
     "active_vacancies": "Faol vakansiyalar",
     "all": "Barchasi",
-    "create_vacancy": "Vakansiya yaratish"
+    "create_vacancy": "Vakansiya yaratish",
+    "greeting": "Salom, {}!",
+    "today_summary": "Bugun {} ta yangi javob va {} ta aktiv vakansiya",
+    "interviews": "INTERVYULAR",
+    "interviews_sub": "bugun",
+    "responses": "JAVOBLAR",
+    "responses_sub": "yangi",
+    "active": "AKTIV",
+    "active_sub": "vakansiya",
+    "responses_count": "{} ta javob",
+    "key_skills": "Ko'nikmalar"
   },
   "resume": {
     "title": "Rezume",

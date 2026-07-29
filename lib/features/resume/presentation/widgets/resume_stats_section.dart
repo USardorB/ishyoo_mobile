@@ -2,6 +2,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/resume/data/models/resume.dart';
 import 'package:mobile/features/resume/presentation/bloc/resume_detail_bloc.dart';
@@ -17,13 +19,15 @@ class ResumeStatsSection extends StatelessWidget {
     return BlocConsumer<ResumeFormBloc, ResumeFormState>(
       listener: (context, state) {
         if (state.isBoosted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text("shared.saved_success".tr())),
+          AppNotificationOverlay.instance.show(
+            message: "shared.saved_success".tr(),
+            type: AppNotificationType.success,
           );
           context.read<ResumeDetailBloc>().add(LoadResumeDetail(resume.id));
         } else if (state.error != null) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.error!)),
+          AppNotificationOverlay.instance.show(
+            message: state.error!,
+            type: AppNotificationType.error,
           );
         }
       },

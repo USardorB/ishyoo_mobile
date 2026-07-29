@@ -31,6 +31,7 @@ class VacancyApplicantsPage extends StatelessWidget
           create: (_) =>
               sl<HrVacancyDetailsBloc>()..add(LoadHrVacancyDetail(vacancyId)),
         ),
+        BlocProvider(create: (_) => sl<ApplicantsBloc>()),
       ],
       child: this,
     );
@@ -55,17 +56,17 @@ class VacancyApplicantsPage extends StatelessWidget
               borderRadius: BorderRadius.circular(20),
               color: context.colors.brandProgress,
             ),
-            labelPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            labelPadding: const .symmetric(horizontal: 12, vertical: 8),
             tabAlignment: TabAlignment.start,
             tabs: [
-              Tab(text: 'applicants.unseen'.tr()),
-              Tab(text: 'applicants.invited'.tr()),
-              Tab(text: 'applicants.unsuitable'.tr()),
+              Text('applicants.unseen').tr(),
+              Text('applicants.invited').tr(),
+              Text('applicants.unsuitable').tr(),
             ],
           ),
         ),
         body: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          crossAxisAlignment: .stretch,
           children: [
             BlocBuilder<HrVacancyDetailsBloc, HrVacancyDetailsState>(
               builder: (context, state) {

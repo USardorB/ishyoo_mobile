@@ -9,6 +9,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/features/profile/presentation/bloc/employer_organization_bloc.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
+import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
+
 class HrDashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HrDashboardAppBar({
     super.key,
@@ -76,8 +79,9 @@ class HrDashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(
           onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text("shared.coming_soon".tr())),
+            AppNotificationOverlay.instance.show(
+              message: "shared.coming_soon".tr(),
+              type: AppNotificationType.warning,
             );
           },
           icon: const Icon(Icons.support_agent),

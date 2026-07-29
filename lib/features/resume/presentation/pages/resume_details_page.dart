@@ -5,6 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
+import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/resume/presentation/bloc/resume_detail_bloc.dart';
 import 'package:mobile/features/resume/presentation/bloc/resume_form_bloc.dart';
@@ -31,8 +33,9 @@ class ResumeDetailsPage extends StatelessWidget implements AutoRouteWrapper {
         actions: [
           IconButton(
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text("shared.coming_soon".tr())),
+              AppNotificationOverlay.instance.show(
+                message: "shared.coming_soon".tr(),
+                type: AppNotificationType.warning,
               );
             },
             icon: const Icon(Icons.share_outlined),

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobile/core/consts/app_assets.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
 
 class VacancyMapPlaceholder extends StatelessWidget {
   const VacancyMapPlaceholder({super.key});
@@ -63,8 +65,9 @@ class VacancyMapPlaceholder extends StatelessWidget {
                 children: [
                   InkWell(
                     onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text("shared.coming_soon".tr())),
+                      AppNotificationOverlay.instance.show(
+                        message: "shared.coming_soon".tr(),
+                        type: AppNotificationType.warning,
                       );
                     },
                     child: const Padding(
@@ -79,8 +82,9 @@ class VacancyMapPlaceholder extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        SnackBar(content: Text("shared.coming_soon".tr())),
+                      AppNotificationOverlay.instance.show(
+                        message: "shared.coming_soon".tr(),
+                        type: AppNotificationType.warning,
                       );
                     },
                     child: const Padding(

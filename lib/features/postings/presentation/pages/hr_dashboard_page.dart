@@ -1,16 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/painters/dashed_outline_border.dart';
-import 'package:mobile/features/postings/presentation/widgets/hr_dashboard_app_bar.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile/core/configs/di/configure_dependencies.dart';
-import 'package:mobile/features/postings/presentation/bloc/postings_bloc.dart';
-import 'package:mobile/features/profile/presentation/bloc/employer_organization_bloc.dart';
-import 'package:mobile/features/postings/presentation/widgets/hr_vacancy_card.dart';
 import 'package:mobile/features/opportunities/data/models/vacancy.dart';
+import 'package:mobile/features/postings/presentation/bloc/postings_bloc.dart';
+import 'package:mobile/features/postings/presentation/widgets/hr_dashboard_app_bar.dart';
+import 'package:mobile/features/postings/presentation/widgets/hr_vacancy_card.dart';
+import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:mobile/features/profile/presentation/bloc/employer_organization_bloc.dart';
 
 @RoutePage()
 class HrDashboardPage extends StatelessWidget {
@@ -18,6 +19,9 @@ class HrDashboardPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final user = context.watch<AuthBloc>().state.user;
+    final userName = user?.name ?? '';
+
     return MultiBlocProvider(
       providers: [
         BlocProvider(
@@ -33,51 +37,54 @@ class HrDashboardPage extends StatelessWidget {
           final stats = state.stats;
 
           return Scaffold(
-            appBar: HrDashboardAppBar(),
+            appBar: const HrDashboardAppBar(),
             body: SingleChildScrollView(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                 horizontal: 16,
               ).copyWith(bottom: MediaQuery.paddingOf(context).bottom),
               child: Column(
-                crossAxisAlignment: .stretch,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'Salom, Aziza!',
+                    'postings.greeting'.tr(args: [userName.isEmpty ? 'HR' : userName]),
                     style: context.textThemes.h5,
                   ),
                   Text(
-                    "Bugun ${stats?.newApplicantsCount ?? 0} ta yangi javob va ${stats?.activeVacanciesCount ?? 0} ta aktiv vakansiya",
+                    'postings.today_summary'.tr(args: [
+                      (stats?.newApplicantsCount ?? 0).toString(),
+                      (stats?.activeVacanciesCount ?? 0).toString(),
+                    ]),
                     style: context.textThemes.b2.copyWith(
                       color: context.colors.textSecondary,
                     ),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Row(
                     spacing: 8,
                     children: [
                       Expanded(
                         child: _buildStatCard(
                           context,
-                          title: "INTERVYULAR",
+                          title: "postings.interviews".tr(),
                           value: "${stats?.interviewsTodayCount ?? 0}",
-                          bottomText: "bugun",
+                          bottomText: "postings.interviews_sub".tr(),
                           isPrimary: true,
                         ),
                       ),
                       Expanded(
                         child: _buildStatCard(
                           context,
-                          title: "JAVOBLAR",
+                          title: "postings.responses".tr(),
                           value: "${stats?.newApplicantsCount ?? 0}",
-                          bottomText: "yangi",
+                          bottomText: "postings.responses_sub".tr(),
                         ),
                       ),
                       Expanded(
                         child: _buildStatCard(
                           context,
-                          title: "AKTIV",
+                          title: "postings.active".tr(),
                           value: "${stats?.activeVacanciesCount ?? 0}",
-                          bottomText: "vakansiya",
+                          bottomText: "postings.active_sub".tr(),
                           showTrendingIcon: false,
                         ),
                       ),
@@ -88,19 +95,25 @@ class HrDashboardPage extends StatelessWidget {
 
                   Row(
                     children: [
-                      Text(
-                        'profile.my_vacancies',
-                        style: context.textThemes.s2,
-                      ).tr(),
-                      const Spacer(),
+                      Expanded(
+                        child: Text(
+                          'profile.my_vacancies',
+                          style: context.textThemes.s2,
+                          maxLines: 2,
+                          overflow: .ellipsis,
+                        ).tr(),
+                      ),
                       TextButton.icon(
-                        onPressed: () => context.pushRoute(const MyVacanciesRoute()),
+                        onPressed: () => context.pushRoute(
+                          const MyVacanciesRoute(),
+                        ),
                         icon: const Icon(Icons.arrow_forward_ios_rounded),
                         label: Text("shared.show_all").tr(),
                         style: TextButton.styleFrom(
                           textStyle: context.textThemes.buttonSmall,
                           iconAlignment: .end,
                           visualDensity: .compact,
+                          tapTargetSize: .shrinkWrap,
                         ),
                       ),
                     ],

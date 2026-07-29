@@ -19,14 +19,7 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
   Widget build(BuildContext context) {
     final state = context.watch<HrVacancyDetailsBloc>().state;
     return Scaffold(
-      backgroundColor: context.colors.bgPrimary,
       appBar: AppBar(
-        backgroundColor: context.colors.bgPrimary,
-        elevation: 0,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: context.colors.textPrimary),
-          onPressed: () => context.pop(),
-        ),
         title: Text(
           "nav.vacancies",
           style: context.textThemes.h4.copyWith(
@@ -94,7 +87,7 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
               vacancy.description!,
               style: context.textThemes.b2.copyWith(
                 color: context.colors.textSecondary,
-                height: 1.5,
+                height: 1.45,
               ),
             ),
             const SizedBox(height: 32),
@@ -112,7 +105,7 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
             const SizedBox(height: 32),
           ],
           if (vacancy.keySkills != null && vacancy.keySkills!.isNotEmpty) ...[
-            _buildSectionTitle(context, "profile.languages".tr()),
+            _buildSectionTitle(context, "postings.key_skills".tr()),
             const SizedBox(height: 16),
             Wrap(
               spacing: 8,
@@ -139,8 +132,8 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            vacancy.jobTitle,
-            style: context.textThemes.h3,
+            vacancy.specialization!,
+            style: context.textThemes.h5,
           ),
           const SizedBox(height: 12),
           if (vacancy.salaryFrom != null || vacancy.salaryTo != null)
@@ -151,15 +144,15 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
               ),
             ),
           const SizedBox(height: 16),
-          Row(
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
             children: [
               if (vacancy.location != null && vacancy.location!.isNotEmpty) ...[
                 _buildSmallTag(context, vacancy.location!),
-                const SizedBox(width: 8),
               ],
               if (vacancy.jobType != null && vacancy.jobType!.isNotEmpty) ...[
                 _buildSmallTag(context, vacancy.jobType!),
-                const SizedBox(width: 8),
               ],
               if (vacancy.experienceLevel != null &&
                   vacancy.experienceLevel!.isNotEmpty) ...[
@@ -186,7 +179,7 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                 ),
               ),
               Text(
-                " • ${vacancy.totalApplicationsCount} responses",
+                " • ${'postings.responses_count'.tr(args: [vacancy.totalApplicationsCount.toString()])}",
                 style: context.textThemes.b3.copyWith(
                   color: context.colors.textSecondary,
                 ),
@@ -205,7 +198,12 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
         color: context.colors.bgTertiary,
         borderRadius: BorderRadius.circular(6),
       ),
-      child: Text(text, style: context.textThemes.b3),
+      child: Text(
+        text,
+        style: context.textThemes.buttonMedium.copyWith(
+          color: context.colors.textSecondary,
+        ),
+      ),
     );
   }
 
@@ -221,7 +219,7 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
         const SizedBox(width: 8),
         Text(
           title,
-          style: context.textThemes.h4,
+          style: context.textThemes.s2,
         ),
       ],
     );
@@ -246,10 +244,7 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
           Expanded(
             child: Text(
               text.trim(),
-              style: context.textThemes.b2.copyWith(
-                color: context.colors.textSecondary,
-                height: 1.4,
-              ),
+              style: context.textThemes.b2.copyWith(height: 1.45),
             ),
           ),
         ],
@@ -259,10 +254,10 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
 
   Widget _buildSkillChip(BuildContext context, String skill) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: BoxDecoration(
         color: context.colors.bgSecondary,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: .circular(8),
       ),
       child: Text(
         skill,

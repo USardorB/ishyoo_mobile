@@ -7,6 +7,8 @@ import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/consts/app_assets.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
+import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/features/opportunities/presentation/bloc/vacancy_feed_bloc.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/candidate_home_banner.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/candidate_quick_access_cards.dart';
@@ -39,8 +41,9 @@ class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
         actions: [
           IconButton.filled(
             onPressed: () {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(content: Text("shared.coming_soon".tr())),
+              AppNotificationOverlay.instance.show(
+                message: "shared.coming_soon".tr(),
+                type: AppNotificationType.warning,
               );
             },
             icon: const Icon(Icons.headset_mic_outlined),

@@ -1,10 +1,10 @@
 {
   "nav": {
     "home": "Home",
-    "vacancies": "Vacancies",
+    "vacancies": "Jobs",
     "candidates": "Candidates",
     "applications": "Applications",
-    "chats": "Messages",
+    "chats": "Chats",
     "profile": "Profile"
   },
   "shared": {
@@ -14,7 +14,7 @@
     "edit": "Edit",
     "search": "Search",
     "close": "Close",
-    "show_all": "Show All",
+    "show_all": "Show all",
     "apply": "Apply",
     "retry": "Retry",
     "back": "Back",
@@ -32,63 +32,65 @@
     "no_data": "No data found",
     "add": "Add",
     "saved_success": "Saved successfully",
-    "coming_soon": "Coming soon!"
+    "coming_soon": "Coming soon!",
+    "negotiable": "Negotiable"
   },
   "onboarding": {
     "choose_language": {
       "title": "Select Language",
-      "subtitle": "You can change the language anytime in application settings",
+      "subtitle": "You can change the language later in app settings",
       "cta_button": "Continue"
     },
     "slide1": {
-      "title": "Job Search & Hiring Platform",
-      "subtitle": "Easily find suitable job vacancies and talented professionals"
+      "title": "Job search and talent hiring platform",
+      "subtitle": "Easily find suitable vacancies and talented professionals"
     },
     "slide2": {
-      "title": "Convenient Real-time Chat",
+      "title": "Real-time messaging & convenient chat",
       "subtitle": "Connect directly with employers and candidates"
     },
     "slide3": {
-      "title": "Build & Upload Your Resume",
-      "subtitle": "Highlight your experience and apply to opportunities"
+      "title": "Create and upload your resume",
+      "subtitle": "Showcase your career experience and submit applications"
     }
   },
   "auth": {
     "select_role": {
       "title": "Who are you?",
-      "subtitle": "Choose your primary goal on the platform",
-      "candidate": "Candidate",
-      "candidate_sub": "I am looking for jobs and vacancies",
-      "employer": "Employer",
-      "employer_sub": "I am looking for employees and specialists"
+      "subtitle": "Choose your goal on the platform",
+      "candidate": "I am a candidate",
+      "candidate_sub": "Looking for jobs and vacancies",
+      "employer": "I am an employer",
+      "employer_sub": "Looking for employees and talents"
     },
     "login": {
-      "title": "Sign In",
-      "subtitle": "Enter your phone number and password to sign in",
-      "phone_label": "Phone Number",
+      "title": "Account Login",
+      "subtitle": "Enter your phone number and password to log in",
+      "phone_label": "Phone number",
       "phone_hint": "99 888 99 88",
       "password_label": "Password",
       "password_hint": "********",
-      "forgot_password": "Forgot Password?",
-      "cta_button": "Sign In",
+      "forgot_password": "Forgot password?",
+      "cta_button": "Log in",
       "no_account": "New here?",
-      "register_link": "Register"
+      "register_link": "Sign up",
+      "hr_account": "HR Account"
     },
     "register": {
-      "title": "Create New Account",
-      "subtitle": "Enter your phone number to create an account",
+      "title": "Create an account",
+      "subtitle": "Enter your phone number to sign up",
       "full_name_label": "Full Name",
       "full_name_hint": "Your first and last name",
-      "phone_label": "Phone Number",
+      "phone_label": "Phone number",
       "password_label": "Password",
-      "confirm_password_label": "Confirm Password",
+      "confirm_password_label": "Confirm password",
       "cta_button": "Continue",
       "has_account": "Already have an account?",
-      "login_link": "Sign in here"
+      "login_link": "Log in here"
     },
     "confirm_password": {
-      "title": "Register",
-      "subtitle": "Create a strong and unique password for your account",
+      "title": "Registration",
+      "subtitle": "Create a secure, unique password for your account",
       "password_hint": "Create a password",
       "confirm_hint": "Confirm password",
       "requirements_title": "Password requirements:",
@@ -97,46 +99,37 @@
       "req_number": "At least 1 number"
     },
     "privacy_notice": {
-      "text1": "By clicking Continue, you agree to our ",
-      "privacy_policy": "Privacy Policy",
-      "and": " and ",
-      "terms": "Terms of Use",
-      "text2": "."
+      "text1": "By tapping Continue, you agree to our ",
+      "link_terms": "Terms of Use",
+      "text2": " and ",
+      "link_privacy": "Privacy Policy",
+      "text3": ""
     },
     "otp": {
-      "title": "Enter SMS Code",
-      "subtitle": "Verification code was sent to {}",
-      "enter_full": "Please enter the full code",
-      "invalid_code": "Invalid code",
-      "resend_code": "Resend code",
-      "resend_in": "{} remaining",
-      "new_code": "Get new code",
-      "verify_button": "Verify"
+      "title": "Verification Code",
+      "subtitle": "Enter the 4-digit code sent to {}",
+      "resend_text": "Resend code in: {}",
+      "resend_button": "Resend Code"
     },
     "forgot_password": {
       "title": "Reset Password",
-      "subtitle": "Enter your phone number to sign in",
-      "cta_button": "Continue"
+      "subtitle": "Enter the phone number associated with your account",
+      "cta_button": "Get Code"
     },
     "reset_password": {
-      "title": "Reset Password",
+      "title": "Create New Password",
       "subtitle": "Enter a new secure password for your account",
-      "changed_title": "Password Changed",
-      "changed_sub": "Click \"Sign In\" to log into your account",
-      "mismatch": "Passwords do not match",
-      "new_password": "New Password",
-      "confirm_new_password": "Confirm New Password",
-      "cta_button": "Continue"
+      "new_password_label": "New password",
+      "confirm_password_label": "Confirm new password",
+      "cta_button": "Save & Log in"
     },
     "complete_profile": {
-      "title": "Personal Details",
-      "subtitle": "Enter your personal details: Name, Surname, and Company Name",
-      "first_name_hint": "Enter your first name",
-      "last_name_hint": "Enter your last name",
-      "company_name_hint": "Company name",
-      "birth_date_hint": "Birth date (YYYY.MM.DD)",
-      "new_password_hint": "Set new password",
-      "fill_all": "Please fill in all required fields",
+      "title": "Complete Profile",
+      "subtitle": "Enter your personal information",
+      "first_name_hint": "First Name",
+      "last_name_hint": "Last Name",
+      "company_name_hint": "Company Name",
+      "birth_date_hint": "Date of Birth",
       "cta_button": "Continue"
     }
   },
@@ -150,14 +143,14 @@
     "terms_of_use": "Terms of Use",
     "help_center": "Help Center",
     "about_app": "About App",
-    "logout": "Log Out",
+    "logout": "Log out",
     "delete_account": "Delete Account",
     "logout_confirm_title": "Are you sure you want to log out?",
-    "logout_confirm_desc": "Attention! You will need your password to log in again."
+    "logout_confirm_desc": "Attention! You will need your password to log back in."
   },
   "profile": {
     "title": "Profile",
-    "edit_profile": "Edit",
+    "edit_profile": "Edit Profile",
     "company_edit": "Edit Company",
     "personal_info": "Personal Info",
     "company_info": "Company Info",
@@ -170,20 +163,20 @@
     "no_resumes": "No resumes available",
     "my_vacancies": "My Vacancies",
     "field_of_activity": "Field of Activity",
-    "add_experience": "Add Work Experience",
+    "add_experience": "Add Experience",
     "add_education": "Add Education",
     "add_language": "Add Language",
     "delete_exp_title": "Delete work experience?",
     "delete_exp_desc": "Once deleted, this work experience cannot be recovered.",
-    "delete_edu_title": "Delete education record?",
+    "delete_edu_title": "Delete education details?",
     "delete_edu_desc": "Once deleted, this education record cannot be recovered."
   },
   "applicants": {
-    "title": "Candidates",
-    "search_placeholder": "Search candidates...",
-    "filter_title": "Filter Candidates",
-    "experience_years": "{} years experience",
-    "no_applicants": "No candidates found",
+    "title": "Applicants",
+    "search_placeholder": "Search applicants...",
+    "filter_title": "Filter Applicants",
+    "experience_years": "{} years of experience",
+    "no_applicants": "No applicants found",
     "invite_button": "Invite to Interview",
     "contact_button": "Contact",
     "unseen": "Unseen",
@@ -192,13 +185,13 @@
     "archived": "Archived",
     "hired": "Hired",
     "shortlisted": "Shortlisted",
-    "no_responses": "No responses yet. No candidate has applied to your posting."
+    "no_responses": "No responses yet. No one has applied to your posting yet."
   },
   "talents": {
-    "title": "Candidates",
+    "title": "Talents",
     "search_results": "Search Results",
-    "search_placeholder": "Specialty or skill...",
-    "results_count": "Found {} candidates",
+    "search_placeholder": "Specialization or skill...",
+    "results_count": "{} candidates found",
     "no_resumes_found": "No resumes found yet."
   },
   "applications": {
@@ -210,9 +203,9 @@
       "accepted": "Accepted",
       "rejected": "Rejected"
     },
-    "no_applications": "No responses yet. Responses from employers will appear here.",
-    "reject_title": "Send rejection to employer?",
-    "reject_desc": "Please provide a reason for rejecting this application",
+    "no_applications": "No applications yet. Responses from employers will appear here.",
+    "reject_title": "Reject application?",
+    "reject_desc": "Please select a reason for rejection",
     "delete_title": "Delete application?",
     "delete_desc": "Are you sure you want to delete this application?",
     "status": {
@@ -223,13 +216,13 @@
     }
   },
   "opportunities": {
-    "title": "Vacancies",
-    "saved_vacancies": "Saved Vacancies",
-    "nearby_jobs": "Nearby Jobs",
-    "matches_filter": "Best Match",
+    "title": "Jobs",
+    "saved_vacancies": "Saved Jobs",
+    "nearby_jobs": "Jobs Nearby",
+    "matches_filter": "Match",
     "applied_success": "Successfully applied!",
-    "search_placeholder": "Search vacancies and positions...",
-    "create_vacancy": "Create Vacancy",
+    "search_placeholder": "Search jobs and positions...",
+    "create_vacancy": "Post a Job",
     "edit_vacancy": "Edit Vacancy",
     "apply_button": "Apply Now",
     "already_applied": "Already Applied",
@@ -243,7 +236,17 @@
     "dashboard_title": "Dashboard",
     "active_vacancies": "Active Vacancies",
     "all": "All",
-    "create_vacancy": "Create Vacancy"
+    "create_vacancy": "Post a Job",
+    "greeting": "Hello, {}!",
+    "today_summary": "Today {} new responses and {} active vacancies",
+    "interviews": "INTERVIEWS",
+    "interviews_sub": "today",
+    "responses": "RESPONSES",
+    "responses_sub": "new",
+    "active": "ACTIVE",
+    "active_sub": "vacancies",
+    "responses_count": "{} responses",
+    "key_skills": "Key Skills"
   },
   "resume": {
     "title": "Resume",
@@ -267,12 +270,12 @@
   "notifications": {
     "title": "Notifications",
     "mark_all_read": "Mark all as read",
-    "no_notifications": "No notifications yet. New notifications will appear here."
+    "no_notifications": "No notifications yet. New alerts will appear here."
   },
   "articles": {
     "title": "Career Articles",
     "search_placeholder": "Search articles...",
-    "no_articles": "No articles yet. New and useful articles will appear here soon.",
+    "no_articles": "No articles yet. Useful articles will appear here soon.",
     "not_found": "Article not found"
   }
 }

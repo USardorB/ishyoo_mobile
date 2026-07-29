@@ -5,6 +5,8 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
+import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/features/applicants/presentation/bloc/applicant_detail_bloc.dart';
 import 'package:mobile/features/applicants/presentation/widgets/applicant_avatar_info.dart';
 import 'package:mobile/features/applicants/presentation/widgets/applicant_contacts.dart';
@@ -40,8 +42,9 @@ class ApplicantDetailsPage extends StatelessWidget {
       child: BlocListener<ApplicantDetailBloc, ApplicantDetailState>(
         listener: (context, state) {
           if (state.error != null) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.error!)),
+            AppNotificationOverlay.instance.show(
+              message: state.error!,
+              type: AppNotificationType.error,
             );
           }
         },
@@ -50,20 +53,14 @@ class ApplicantDetailsPage extends StatelessWidget {
             actions: [
               IconButton(
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("shared.coming_soon".tr())),
+                  AppNotificationOverlay.instance.show(
+                    message: "shared.coming_soon".tr(),
+                    type: AppNotificationType.warning,
                   );
                 },
-                icon: const Icon(Icons.share),
+                icon: const Icon(Icons.share_outlined),
               ),
-              IconButton(
-                onPressed: () => showModalBottomSheet(
-                  context: context,
-                  isScrollControlled: true,
-                  builder: (_) => const ApplicantPageMoreActions(),
-                ),
-                icon: const Icon(Icons.more_vert),
-              ),
+              const ApplicantPageMoreActions(),
             ],
           ),
           body: BlocBuilder<ApplicantDetailBloc, ApplicantDetailState>(
@@ -71,40 +68,42 @@ class ApplicantDetailsPage extends StatelessWidget {
               if (state.isLoading) {
                 return const Center(child: CircularProgressIndicator());
               }
-              if (state.error != null && state.applicant == null) {
-                return Center(child: Text(state.error!));
-              }
+
               final applicant = state.applicant;
-              return ListView(
+
+              return SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
-                  bottom: 80 + bottom,
+                  bottom: bottom + 90,
                 ),
-                children: [
-                  ApplicantAvatarInfo(applicant: applicant),
-                  const SizedBox(height: 16),
-                  ApplicantStatusHeader(
-                    applicant: applicant,
-                    vacancyId: vacancyId,
-                    applicantId: applicantResumeId,
-                  ),
-                  const SizedBox(height: 24),
-                  ApplicantContacts(applicant: applicant),
-                  const SizedBox(height: 24),
-                  ApplicantWorkHistory(
-                    experiences: applicant?.experiences ?? [],
-                    label: 'profile.experience'.tr(),
-                  ),
-                  const SizedBox(height: 24),
-                  ApplicantSkills(skills: applicant?.skills ?? []),
-                ],
+                child: Column(
+                  children: [
+                    ApplicantAvatarInfo(applicant: applicant),
+                    const SizedBox(height: 24),
+                    ApplicantStatusHeader(
+                      applicant: applicant,
+                      vacancyId: vacancyId,
+                      applicantId: applicantResumeId,
+                    ),
+                    const SizedBox(height: 24),
+                    ApplicantSkills(skills: applicant?.skills ?? []),
+                    const SizedBox(height: 24),
+                    ApplicantWorkHistory(
+                      experiences: applicant?.experiences ?? [],
+                    ),
+                    const SizedBox(height: 24),
+                    ApplicantContacts(applicant: applicant),
+                  ],
+                ),
               );
             },
           ),
-          bottomSheet: Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 12,
-            ).copyWith(bottom: 12 + bottom),
+          bottomSheet: Container(
+            padding: EdgeInsets.only(
+              left: 16,
+              right: 16,
+              top: 12,
+              bottom: bottom + 12,
+            ),
             child: NewApplicantActionButtons(
               vacancyId: vacancyId,
               applicantId: applicantResumeId,

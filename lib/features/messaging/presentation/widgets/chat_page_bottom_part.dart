@@ -7,6 +7,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobile/core/enums/user_role.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/messaging/presentation/bloc/messaging_bloc.dart';
 import 'package:mobile/features/messaging/presentation/widgets/attatchment_options_sheet.dart';
@@ -94,8 +96,9 @@ class _ChatPageBottomPartState extends State<ChatPageBottomPart> {
       }
     } catch (e) {
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('shared.error_occurred'.tr())),
+        AppNotificationOverlay.instance.show(
+          message: 'shared.error_occurred'.tr(),
+          type: AppNotificationType.error,
         );
       }
     }

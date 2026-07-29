@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
 
 @Deprecated(
   'This is dublicated, will be removed, the dublicate is at the hr_home_page',
@@ -41,8 +43,9 @@ class VacancyListingItem extends StatelessWidget {
                   visualDensity: VisualDensity.compact,
                 ),
                 onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    SnackBar(content: Text("shared.coming_soon".tr())),
+                  AppNotificationOverlay.instance.show(
+                    message: "shared.coming_soon".tr(),
+                    type: AppNotificationType.warning,
                   );
                 },
                 icon: const Icon(Icons.more_vert),

@@ -6,6 +6,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
+import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/resume/data/models/resume.dart';
@@ -85,8 +87,9 @@ class _CreateResumeFlowContent extends HookWidget {
         if (state.isSuccess) {
           context.pushRoute(const ResumeSuccessRoute());
         } else if (state.error != null) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.error!)),
+          AppNotificationOverlay.instance.show(
+            message: state.error!,
+            type: AppNotificationType.error,
           );
         }
       },
