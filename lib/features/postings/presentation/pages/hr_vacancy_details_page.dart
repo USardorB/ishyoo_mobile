@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -27,11 +28,11 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
           onPressed: () => context.pop(),
         ),
         title: Text(
-          "Vakansiya",
+          "nav.vacancies",
           style: context.textThemes.h4.copyWith(
             color: context.colors.textPrimary,
           ),
-        ),
+        ).tr(),
         actions: [
           IconButton(
             onPressed: () {
@@ -76,7 +77,7 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
 
   Widget _buildContent(BuildContext context, Vacancy vacancy) {
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 16).copyWith(
+      padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
         bottom: MediaQuery.paddingOf(context).bottom + 24,
       ),
       child: Column(
@@ -87,7 +88,7 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
           const SizedBox(height: 32),
           if (vacancy.description != null &&
               vacancy.description!.isNotEmpty) ...[
-            _buildSectionTitle(context, "Vakansiya haqida"),
+            _buildSectionTitle(context, "opportunities.description".tr()),
             const SizedBox(height: 16),
             Text(
               vacancy.description!,
@@ -98,21 +99,9 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
             ),
             const SizedBox(height: 32),
           ],
-          if (vacancy.responsibilities != null &&
-              vacancy.responsibilities!.isNotEmpty) ...[
-            _buildSectionTitle(context, "Vazifalar"),
-            const SizedBox(height: 16),
-            ...vacancy.responsibilities!
-                .split(RegExp(r'\n|\r\n'))
-                .where((s) => s.trim().isNotEmpty)
-                .map(
-                  (res) => _buildBulletPoint(context, res),
-                ),
-            const SizedBox(height: 32),
-          ],
           if (vacancy.requirements != null &&
               vacancy.requirements!.isNotEmpty) ...[
-            _buildSectionTitle(context, "Talablar"),
+            _buildSectionTitle(context, "opportunities.requirements".tr()),
             const SizedBox(height: 16),
             ...vacancy.requirements!
                 .split(RegExp(r'\n|\r\n'))
@@ -123,7 +112,7 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
             const SizedBox(height: 32),
           ],
           if (vacancy.keySkills != null && vacancy.keySkills!.isNotEmpty) ...[
-            _buildSectionTitle(context, "Ko'nikmalar"),
+            _buildSectionTitle(context, "profile.languages".tr()),
             const SizedBox(height: 16),
             Wrap(
               spacing: 8,
@@ -197,7 +186,7 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                 ),
               ),
               Text(
-                " • ${vacancy.totalApplicationsCount} javob",
+                " • ${vacancy.totalApplicationsCount} responses",
                 style: context.textThemes.b3.copyWith(
                   color: context.colors.textSecondary,
                 ),
@@ -312,15 +301,15 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
   String _getStatusText(String? status) {
     switch (status) {
       case 'published':
-        return "E'lon faol";
+        return "applications.status.accepted".tr();
       case 'draft':
-        return "Qoralama";
+        return "applications.status.pending".tr();
       case 'archived':
-        return "Arxivlangan";
+        return "applicants.archived".tr();
       case 'rejected':
-        return "Rad etilgan";
+        return "applications.status.rejected".tr();
       default:
-        return "Noma'lum";
+        return "";
     }
   }
 }

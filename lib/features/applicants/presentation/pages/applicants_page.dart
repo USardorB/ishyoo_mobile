@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -66,7 +67,7 @@ class _ApplicantsPageState extends State<ApplicantsPage>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Applicants'),
+        title: const Text('applicants.title').tr(),
         bottom: TabBar(
           controller: _tabController,
           dividerColor: Colors.transparent,
@@ -82,13 +83,13 @@ class _ApplicantsPageState extends State<ApplicantsPage>
           ),
           labelPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           tabAlignment: TabAlignment.start,
-          tabs: const [
-            Text('Ko‘rilmaganlar'),
-            Text('Taklif etilganlar'),
-            Text('To‘g‘ri kelmaydi'),
-            Text('Arxivlanganlar'),
-            Text('Ishga qabul qilinganlar'),
-            Text('Saralanganlar'),
+          tabs: [
+            Text('applications.status.pending'.tr()),
+            Text('applications.status.interview'.tr()),
+            Text('applications.status.rejected'.tr()),
+            Text('shared.all'.tr()),
+            Text('applications.status.accepted'.tr()),
+            Text('shared.filter'.tr()),
           ],
         ),
       ),
@@ -99,9 +100,8 @@ class _ApplicantsPageState extends State<ApplicantsPage>
           } else if (state.error != null) {
             return Center(child: Text(state.error!));
           } else if (state.applicants == null || state.applicants!.isEmpty) {
-            return const NoApplicationPlaceholder(
-              message:
-                  "Hozircha javoblar yo‘q. Sizning e'loningizga hali hech kim ariza topshmagan.",
+            return NoApplicationPlaceholder(
+              message: "applications.no_applications".tr(),
             );
           }
 
@@ -111,10 +111,12 @@ class _ApplicantsPageState extends State<ApplicantsPage>
               return SingleChildScrollView(
                 padding: const EdgeInsets.all(16),
                 child: Column(
-                  spacing: 12,
                   children: state.applicants!.map((applicant) {
-                    return ApplicantListingItem(
-                      applicant: applicant,
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 12.0),
+                      child: ApplicantListingItem(
+                        applicant: applicant,
+                      ),
                     );
                   }).toList(),
                 ),

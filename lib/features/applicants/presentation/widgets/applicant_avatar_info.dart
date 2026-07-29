@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/applicants/data/models/applicant.dart';
@@ -9,7 +10,7 @@ class ApplicantAvatarInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final name =
-        applicant?.user?.name ?? applicant?.profile?.name ?? 'Noma\'lum';
+        applicant?.user?.name ?? applicant?.profile?.name ?? '';
     final workFormats = [
       ...(applicant?.employmentType ?? []),
       ...(applicant?.workFormat ?? []),
@@ -28,7 +29,7 @@ class ApplicantAvatarInfo extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Text(
-          name,
+          name.isEmpty ? "shared.no_data".tr() : name,
           style: context.textThemes.s1,
         ),
         const SizedBox(height: 6),

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
@@ -9,31 +10,32 @@ class CandidateQuickAccessCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      spacing: 8,
       children: [
         Expanded(
           child: _QuickAccessCard(
-            title: "Yaqinlikdagi ish",
+            title: "opportunities.nearby_jobs".tr(),
             icon: Icons.location_on_outlined,
             iconColor: context.colors.info,
             onTap: () => context.pushRoute(const NearbyJobsRoute()),
           ),
         ),
+        const SizedBox(width: 8),
         Expanded(
           child: _QuickAccessCard(
-            title: "Rezyumeni yaxshilash",
+            title: "resume.create_resume".tr(),
             icon: Icons.insights_outlined,
             iconColor: context.colors.success,
             onTap: () {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Tez orada qo'shiladi")),
+                SnackBar(content: Text("shared.coming_soon".tr())),
               );
             },
           ),
         ),
+        const SizedBox(width: 8),
         Expanded(
           child: _QuickAccessCard(
-            title: "Karyera maqolalari",
+            title: "articles.title".tr(),
             icon: Icons.assignment_outlined,
             iconColor: context.colors.warning,
             onTap: () => context.pushRoute(const ArticlesRoute()),
@@ -63,30 +65,30 @@ class _QuickAccessCard extends StatelessWidget {
 
     return InkWell(
       onTap: onTap,
-      borderRadius: .circular(16),
+      borderRadius: BorderRadius.circular(16),
       child: Container(
-        padding: const .all(12),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: context.colors.bgPrimary,
-          borderRadius: .circular(16),
+          borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
-          crossAxisAlignment: .start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               title,
               style: context.textThemes.buttonMedium,
               maxLines: 2,
-              overflow: .ellipsis,
+              overflow: TextOverflow.ellipsis,
             ),
             const SizedBox(height: 6),
             Align(
-              alignment: .bottomRight,
+              alignment: Alignment.bottomRight,
               child: Container(
-                padding: const .all(13),
+                padding: const EdgeInsets.all(13),
                 decoration: BoxDecoration(
                   color: iconBgColor,
-                  shape: .circle,
+                  shape: BoxShape.circle,
                 ),
                 child: Icon(icon, color: iconColor, size: 26),
               ),

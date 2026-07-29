@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/applicants/data/models/applicant.dart';
@@ -14,26 +15,26 @@ class ApplicantContacts extends StatelessWidget {
     if (phone == null && email == null) return const SizedBox.shrink();
 
     return Column(
-      crossAxisAlignment: .stretch,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text('Kontaktlar', style: context.textThemes.s2),
+        Text('profile.contact_information', style: context.textThemes.s2).tr(),
         const SizedBox(height: 16),
         Container(
           decoration: BoxDecoration(
             color: context.colors.bgPrimary,
-            borderRadius: .circular(16),
+            borderRadius: BorderRadius.circular(16),
           ),
-          padding: const .all(12),
+          padding: const EdgeInsets.all(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               if (phone != null) ...[
                 Text(
-                  'Telefon raqami',
+                  'auth.login.phone_label',
                   style: context.textThemes.b1.copyWith(
                     color: context.colors.textSecondary,
                   ),
-                ),
+                ).tr(),
                 const SizedBox(height: 4),
                 Text(phone, style: context.textThemes.s2),
               ],
@@ -45,7 +46,7 @@ class ApplicantContacts extends StatelessWidget {
                 ),
               if (email != null) ...[
                 Text(
-                  'Elektron pochta',
+                  'Email',
                   style: context.textThemes.b1.copyWith(
                     color: context.colors.textSecondary,
                   ),

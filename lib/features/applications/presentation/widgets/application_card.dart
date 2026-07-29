@@ -1,6 +1,6 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
@@ -27,52 +27,52 @@ class ApplicationCard extends StatelessWidget {
     String displayStatus;
     switch (application.status) {
       case 'rejected':
-        displayStatus = "Rad etildi";
+        displayStatus = "applications.status.rejected".tr();
         statusBgColor = context.colors.danger;
         break;
       case 'invited':
-        displayStatus = "Suhbatga chaqirildi";
+        displayStatus = "applications.status.interview".tr();
         statusBgColor = context.colors.success;
         break;
       case 'archived':
-        displayStatus = "Arxivlandi";
+        displayStatus = "applications.status.archived".tr();
         statusBgColor = context.colors.textSecondary;
         break;
       case 'pending':
       default:
-        displayStatus = "Kutilmoqda";
+        displayStatus = "applications.status.pending".tr();
         statusBgColor = context.colors.bgTertiary;
         statusTextColor = context.colors.textPrimary;
         break;
     }
 
     return InkWell(
-      borderRadius: .circular(16),
+      borderRadius: BorderRadius.circular(16),
       onTap: () =>
           context.pushRoute(VacancyDetailsRoute(id: application.vacancyId!)),
       child: Container(
-        padding: const .all(12),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: context.colors.bgSecondary,
-          borderRadius: .circular(16),
+          borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
-          crossAxisAlignment: .start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
                 Text(
-                  application.vacancy?.organization?.name ?? "Kompaniya",
+                  application.vacancy?.organization?.name ?? "",
                   style: context.textThemes.c2.copyWith(
                     color: context.colors.textSecondary,
                   ),
                 ),
                 const SizedBox(width: 8),
                 Container(
-                  padding: const .symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   decoration: BoxDecoration(
                     color: statusBgColor,
-                    borderRadius: .circular(8),
+                    borderRadius: BorderRadius.circular(8),
                   ),
                   child: Text(
                     displayStatus,
@@ -84,9 +84,9 @@ class ApplicationCard extends StatelessWidget {
                 const Spacer(),
                 IconButton(
                   style: IconButton.styleFrom(
-                    padding: .zero,
-                    visualDensity: .compact,
-                    tapTargetSize: .shrinkWrap,
+                    padding: EdgeInsets.zero,
+                    visualDensity: VisualDensity.compact,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
                   onPressed: () => showModalBottomSheet(
                     context: context,
@@ -97,18 +97,18 @@ class ApplicationCard extends StatelessWidget {
                       application: application,
                     ),
                   ),
-                  icon: Icon(Icons.more_vert, size: 24),
+                  icon: const Icon(Icons.more_vert, size: 24),
                 ),
               ],
             ),
             const SizedBox(height: 12),
             Text(
-              application.vacancy?.jobTitle ?? "Vakansiya",
+              application.vacancy?.jobTitle ?? "",
               style: context.textThemes.s1,
             ),
             const SizedBox(height: 12),
             Text(
-              "${application.vacancy?.location?.split(',').first ?? 'Manzil'} • ${application.vacancy?.jobType?.replaceAll('_', ' ') ?? ''}",
+              "${application.vacancy?.location?.split(',').first ?? ''} • ${application.vacancy?.jobType?.replaceAll('_', ' ') ?? ''}",
               style: context.textThemes.b1.copyWith(
                 color: context.colors.textSecondary,
               ),
@@ -124,9 +124,7 @@ class ApplicationCard extends StatelessWidget {
                 const SizedBox(width: 6),
                 Text(
                   application.createdAt != null
-                      ? DateFormat(
-                          'MMM dd, yyyy',
-                        ).format(application.createdAt!)
+                      ? "${application.createdAt!.day}.${application.createdAt!.month}.${application.createdAt!.year}"
                       : "",
                   style: context.textThemes.b2.copyWith(
                     color: context.colors.textSecondary,
@@ -140,40 +138,25 @@ class ApplicationCard extends StatelessWidget {
               thickness: .5,
             ),
             Row(
-              crossAxisAlignment: .end,
+              crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Expanded(
                   child: Column(
-                    crossAxisAlignment: .start,
-                    spacing: 2,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         application.vacancy?.salaryFrom != null
-                            ? "${application.vacancy!.salaryFrom} ${application.vacancy!.currency ?? 'so\'m'}"
-                            : "Kelishilgan",
+                            ? "${application.vacancy!.salaryFrom} ${application.vacancy!.currency ?? 'UZS'}"
+                            : "shared.negotiable".tr(),
                         style: context.textThemes.s2,
                       ),
-                      if (application.vacancy?.salaryFrom != null)
-                        Text(
-                          "oyiga",
-                          style: context.textThemes.c2.copyWith(
-                            color: context.colors.textSecondary,
-                          ),
-                        ),
                     ],
-                  ),
-                ),
-                Text(
-                  "",
-                  style: context.textThemes.b1.copyWith(
-                    color: context.colors.textSecondary,
                   ),
                 ),
               ],
             ),
             const SizedBox(height: 12),
             Row(
-              spacing: 8,
               children: [
                 Expanded(
                   child: SizedBox(
@@ -182,12 +165,13 @@ class ApplicationCard extends StatelessWidget {
                       onTap: () => context.pushRoute(
                         ChatDetailsRoute(chatId: "application.chatId"),
                       ),
-                      label: "Chatga yozish",
+                      label: "nav.chats".tr(),
                       color: context.colors.brandProgress,
                       foregroundColor: context.colors.brandDefault,
                     ),
                   ),
                 ),
+                const SizedBox(width: 8),
                 Expanded(
                   child: SizedBox(
                     height: 48,
@@ -198,7 +182,7 @@ class ApplicationCard extends StatelessWidget {
                           onConfirm: onRefuse,
                         ),
                       ),
-                      label: "Rad qilish",
+                      label: "applications.tabs.rejected".tr(),
                       color: context.colors.bgTertiary,
                       foregroundColor: context.colors.textPrimary,
                     ),

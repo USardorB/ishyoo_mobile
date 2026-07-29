@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/resume/data/models/resume.dart';
@@ -9,12 +10,12 @@ class ApplicantWorkHistory extends StatelessWidget {
   const ApplicantWorkHistory({
     super.key,
     required this.experiences,
-    this.label = 'Ish tajribasi',
+    this.label = 'profile.experience',
   });
 
   String _formatDate(DateTime? date) {
-    if (date == null) return 'hozir';
-    return '${date.year} yil';
+    if (date == null) return 'shared.present'.tr();
+    return '${date.year}';
   }
 
   @override
@@ -24,14 +25,14 @@ class ApplicantWorkHistory extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(label, style: context.textThemes.s2),
+        Text(label, style: context.textThemes.s2).tr(),
         const SizedBox(height: 16),
         Container(
           decoration: BoxDecoration(
             color: context.colors.bgPrimary,
-            borderRadius: .circular(16),
+            borderRadius: BorderRadius.circular(16),
           ),
-          padding: const .all(12),
+          padding: const EdgeInsets.all(12),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
@@ -59,7 +60,7 @@ class ApplicantWorkHistory extends StatelessWidget {
     return Row(
       children: [
         Padding(
-          padding: const .only(top: 4),
+          padding: const EdgeInsets.only(top: 4),
           child: CircleAvatar(
             radius: 8.5,
             backgroundColor: isCurrent

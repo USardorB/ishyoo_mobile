@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
@@ -68,9 +69,9 @@ class _SpecializationsSheetState extends State<SpecializationsSheet> {
           ),
           const SizedBox(height: 24),
           Text(
-            "Mutaxassisliklar",
+            "talents.search_placeholder",
             style: context.textThemes.h3,
-          ),
+          ).tr(),
           const SizedBox(height: 24),
           if (_error != null)
             Padding(

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
@@ -15,8 +16,8 @@ class ResumeMenuSheet extends StatelessWidget {
     return BlocListener<ResumeFormBloc, ResumeFormState>(
       listener: (context, state) {
         if (state.isDeleted) {
-          context.pop(); // close sheet
-          context.maybePop(); // go back from details page
+          context.pop();
+          context.maybePop();
         } else if (state.error != null) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(content: Text(state.error!)),
@@ -24,7 +25,7 @@ class ResumeMenuSheet extends StatelessWidget {
         }
       },
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12).copyWith(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12).copyWith(
           bottom: MediaQuery.paddingOf(context).bottom + 16,
         ),
         decoration: BoxDecoration(
@@ -48,29 +49,28 @@ class ResumeMenuSheet extends StatelessWidget {
             const SizedBox(height: 24),
             _MenuItem(
               icon: Icons.rocket_launch_outlined,
-              label: "Rezyumeni yuqoriga ko'tarish",
+              label: "shared.saved_success".tr(),
               onTap: () {
                 context.read<ResumeFormBloc>().add(BoostResume(resumeId));
                 context.pop();
                 ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Rezyume yuqoriga ko'tarildi!")),
+                  SnackBar(content: Text("shared.saved_success".tr())),
                 );
               },
             ),
             Divider(color: context.colors.bgTertiary, height: 1),
             _MenuItem(
               icon: Icons.picture_as_pdf_outlined,
-              label: "PDF shaklida yuklab olish",
+              label: "resume.download_pdf".tr(),
               onTap: () {
-                context.pop(); // close sheet
+                context.pop();
                 context.pushRoute(ResumePdfPreviewRoute(resumeId: resumeId));
               },
             ),
             Divider(color: context.colors.bgTertiary, height: 1),
             _MenuItem(
               icon: Icons.delete_outline,
-
-              label: "O'chirish",
+              label: "shared.delete".tr(),
               isDestructive: true,
               onTap: () async {
                 final confirmed = await showDialog<bool>(

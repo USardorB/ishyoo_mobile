@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:auto_route/auto_route.dart';
@@ -51,13 +52,13 @@ class DistrictsSheet extends HookWidget {
               padding: const EdgeInsets.all(16),
               child: Row(
                 children: [
-                  const SizedBox(width: 48), // Balance close button
+                  const SizedBox(width: 48),
                   Expanded(
                     child: Text(
-                      "Tumanni tanlang",
+                      "opportunities.location",
                       textAlign: TextAlign.center,
                       style: context.textThemes.s1,
-                    ),
+                    ).tr(),
                   ),
                   IconButton(
                     onPressed: () => context.maybePop(),
@@ -104,7 +105,7 @@ class DistrictsSheet extends HookWidget {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(vertical: 16),
                         child: Text(
-                          district.nameUz ?? district.name ?? "Noma'lum tuman",
+                          district.nameUz ?? district.name ?? "",
                           style: context.textThemes.b1,
                         ),
                       ),

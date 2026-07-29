@@ -1,0 +1,278 @@
+{
+  "nav": {
+    "home": "Bosh sahifa",
+    "vacancies": "Vakansiyalar",
+    "candidates": "Nomzodlar",
+    "applications": "Arizalar",
+    "chats": "Xabarlar",
+    "profile": "Profil"
+  },
+  "shared": {
+    "save": "Saqlash",
+    "cancel": "Bekor qilish",
+    "delete": "O'chirish",
+    "edit": "Tahrirlash",
+    "search": "Qidirish",
+    "close": "Yopish",
+    "show_all": "Barchasini ko'rsatish",
+    "apply": "Qo'llash",
+    "retry": "Qayta urinish",
+    "back": "Orqaga",
+    "next": "Keyingisi",
+    "confirm": "Tasdiqlash",
+    "skip": "O'tkazib yuborish",
+    "continue": "Davom etish",
+    "yes": "Ha",
+    "no": "Yo'q",
+    "all": "Barchasi",
+    "filter": "Filtr",
+    "clear": "Tozalash",
+    "loading": "Yuklanmoqda...",
+    "error_occurred": "Xatolik yuz berdi",
+    "no_data": "Ma'lumot topilmadi",
+    "add": "Qo'shish",
+    "saved_success": "Muvaffaqiyatli saqlandi",
+    "coming_soon": "Tez orada!"
+  },
+  "onboarding": {
+    "choose_language": {
+      "title": "Tilni tanlang",
+      "subtitle": "Ro'yxatdan o'tgandan so'ng dastur sozlamalarida tilni o'zgartirishingiz mumkin",
+      "cta_button": "Davom etish"
+    },
+    "slide1": {
+      "title": "Ish qidirish va taklif qilish platformasi",
+      "subtitle": "O'ziningizga mos vakansiya va iqtidorli mutaxassislarni osongina toping"
+    },
+    "slide2": {
+      "title": "Qulay muloqot va real vaqt chatlari",
+      "subtitle": "Ish beruvchilar va nomzodlar bilan to'g'ridan-to'g'ri bog'laning"
+    },
+    "slide3": {
+      "title": "Rezume yarating va rezumeingizni yuklang",
+      "subtitle": "Kasbiy faoliyatingizni va tajribangizni ko'rsatib arizalar yuboring"
+    }
+  },
+  "auth": {
+    "select_role": {
+      "title": "Kim sifatida kirasiz?",
+      "subtitle": "Platformadan foydalanish maqsadingizni tanlang",
+      "candidate": "Nomzodman",
+      "candidate_sub": "Ish va vakansiyalar qidiryapman",
+      "employer": "Ish beruvchiman",
+      "employer_sub": "Xodimlarni va mutaxassislarni izlayapman"
+    },
+    "login": {
+      "title": "Hisobga kirish",
+      "subtitle": "Hisob kirish uchun telefon raqam va parolni kiriting",
+      "phone_label": "Telefon raqami",
+      "phone_hint": "99 888 99 88",
+      "password_label": "Parol",
+      "password_hint": "********",
+      "forgot_password": "Parolni unutdingizmi?",
+      "cta_button": "Kirish",
+      "no_account": "Yangimisiz?",
+      "register_link": "Ro'yxatdan o'ting"
+    },
+    "register": {
+      "title": "Yangi hisob yaratish",
+      "subtitle": "Hisob yaratish uchun telefon raqamingizni kiriting",
+      "full_name_label": "F.I.SH",
+      "full_name_hint": "Ismingiz va familiyangiz",
+      "phone_label": "Telefon raqami",
+      "password_label": "Parol",
+      "confirm_password_label": "Parolni tasdiqlang",
+      "cta_button": "Davom etish",
+      "has_account": "Accountingiz mavjudmi?",
+      "login_link": "Bu yerda kiring"
+    },
+    "confirm_password": {
+      "title": "Ro'yxatdan o'tish",
+      "subtitle": "Accountingiz uchun xavfsiz bo'lgan, hech qayerda takrorlanmagan parol o'ylab toping",
+      "password_hint": "Parol o‘ylab toping",
+      "confirm_hint": "Parolni tasdiqlang",
+      "requirements_title": "Parolga qo‘yiladigan talablar:",
+      "req_min_length": "Kamida 8 ta belgi",
+      "req_capital_letter": "Kamida 1 ta katta harf",
+      "req_number": "Kamida 1 ta son"
+    },
+    "privacy_notice": {
+      "text1": "Davom etish tugmasini bosish bilan siz ",
+      "privacy_policy": "Maxfiylik siyosatiga",
+      "and": " va ",
+      "terms": "Foydalanish shartlariga",
+      "text2": " rozilik berasiz."
+    },
+    "otp": {
+      "title": "SMS kodni kiriting",
+      "subtitle": "Tasdiqlash kodi {} telefon raqamiga yuborildi",
+      "enter_full": "Kodni to'liq kiriting",
+      "invalid_code": "Kod noto'g'ri",
+      "resend_code": "Qayta yuborish",
+      "resend_in": "{} vaqt qoldi",
+      "new_code": "Yangi kodni olish",
+      "verify_button": "Tasdiqlash"
+    },
+    "forgot_password": {
+      "title": "Parolni tiklash",
+      "subtitle": "Hisob kirish uchun telefon raqamini kiriting",
+      "cta_button": "Davom etish"
+    },
+    "reset_password": {
+      "title": "Parolni tiklash",
+      "subtitle": "Hisobingiz uchun yangi parolni kiriting",
+      "changed_title": "Parol o'zgartirildi",
+      "changed_sub": "Kirish uchun \"Kirish\" tugmasini bosing",
+      "mismatch": "Parollar mos kelmadi",
+      "new_password": "Yangi parol",
+      "confirm_new_password": "Yangi parolni tasdiqlang",
+      "cta_button": "Davom etish"
+    },
+    "complete_profile": {
+      "title": "Shaxsiy ma’lumotlar",
+      "subtitle": "Shaxsiy ma’lumotlarni kiriting: Foydalanuvchining ismi, familiyasi va kompaniya nomi",
+      "first_name_hint": "Ismingizni kiriting",
+      "last_name_hint": "Familiyangizni kiriting",
+      "company_name_hint": "Kompaniya nomi",
+      "birth_date_hint": "Tug’ilgan sana (YYYY.OO.KK)",
+      "new_password_hint": "Yangi parol o'rnating",
+      "fill_all": "Iltimos barcha majburiy maydonlarni to'ldiring",
+      "cta_button": "Davom etish"
+    }
+  },
+  "settings": {
+    "title": "Sozlamalar",
+    "language": "Ilova tili",
+    "theme": "Dastur mavzusi",
+    "dark_mode": "Tungi rejim",
+    "notifications": "Bildirishnomalar",
+    "privacy_policy": "Maxfiylik siyosati",
+    "terms_of_use": "Ishlatish qoidasi",
+    "help_center": "Yordam markazi",
+    "about_app": "Ilova haqida",
+    "logout": "Akkauntdan chiqish",
+    "delete_account": "Hisobni o'chirish",
+    "logout_confirm_title": "Akkauntdan chiqmoqchimisiz?",
+    "logout_confirm_desc": "Diqqat! akkauntga qayta kirish uchun parol kerak bo‘ladi."
+  },
+  "profile": {
+    "title": "Profil",
+    "edit_profile": "Tahrirlash",
+    "company_edit": "Kompaniya tahriri",
+    "personal_info": "Shaxsiy ma'lumotlar",
+    "company_info": "Kompaniya ma'lumotlari",
+    "about_me": "Men haqimda",
+    "about_company": "Kompaniya haqida",
+    "experience": "Ish tajribasi",
+    "education": "Ma'lumoti",
+    "languages": "Tillar",
+    "resumes": "Rezumelar",
+    "no_resumes": "Rezumelar mavjud emas",
+    "my_vacancies": "Mening vakansiyalarim",
+    "field_of_activity": "Faoliyat sohasi",
+    "add_experience": "Ish tajribasi qo'shish",
+    "add_education": "Ta'lim qo'shish",
+    "add_language": "Til qo'shish",
+    "delete_exp_title": "Ish tajribasini o'chirishni tasdiqlaysizmi?",
+    "delete_exp_desc": "O'chirilgandan so'ng ushbu ish tajribasini qayta tiklab bo'lmaydi.",
+    "delete_edu_title": "Ta'lim ma'lumotini o'chirishni tasdiqlaysizmi?",
+    "delete_edu_desc": "O'chirilgandan so'ng ushbu ta'lim ma'lumotini qayta tiklab bo'lmaydi."
+  },
+  "applicants": {
+    "title": "Nomzodlar",
+    "search_placeholder": "Nomzodlarni qidirish...",
+    "filter_title": "Nomzodlar filtri",
+    "experience_years": "{} yillik tajriba",
+    "no_applicants": "Nomzodlar topilmadi",
+    "invite_button": "Suhbatga taklif qilish",
+    "contact_button": "Bog'lanish",
+    "unseen": "Ko‘rilmaganlar",
+    "invited": "Taklif etilganlar",
+    "unsuitable": "To‘g‘ri kelmaydi",
+    "archived": "Arxivlanganlar",
+    "hired": "Ishga qabul qilinganlar",
+    "shortlisted": "Saralanganlar",
+    "no_responses": "Hozircha javoblar yo‘q. Sizning e'loningizga hali hech kim ariza topshirmagan."
+  },
+  "talents": {
+    "title": "Nomzodlar",
+    "search_results": "Qidiruv natijalari",
+    "search_placeholder": "Mutaxassislik yoki ko'nikma...",
+    "results_count": "{} ta nomzod topildi",
+    "no_resumes_found": "Hozircha rezyumelar topilmadi."
+  },
+  "applications": {
+    "title": "Javoblar",
+    "tabs": {
+      "all": "Barchasi",
+      "received": "Kelib tushgan",
+      "sent": "Yuborilgan",
+      "accepted": "Qabul qilingan",
+      "rejected": "Rad etilgan"
+    },
+    "no_applications": "Hozircha javoblar yo‘q. Ish beruvchilardan kelgan javoblar shu yerda paydo bo‘ladi.",
+    "reject_title": "Ish beruvchiga rad javobini yuborasizmi?",
+    "reject_desc": "Arizani rad etish sababini ko'rsating",
+    "delete_title": "Javobni o'chirish?",
+    "delete_desc": "Ushbu arizani o'chirishga ishonchingiz komilmi?",
+    "status": {
+      "pending": "Kutilmoqda",
+      "accepted": "Qabul qilindi",
+      "rejected": "Rad etildi",
+      "interview": "Suhbat"
+    }
+  },
+  "opportunities": {
+    "title": "Vakansiyalar",
+    "saved_vacancies": "Saqlangan vakansiyalar",
+    "nearby_jobs": "Yaqinlikdagi ish",
+    "matches_filter": "Mos ravishda",
+    "applied_success": "Muvaffaqiyatli topshirildi!",
+    "search_placeholder": "Vakansiya va lavozimlarni qidirish...",
+    "create_vacancy": "Vakansiya yaratish",
+    "edit_vacancy": "Vakansiyani tahrirlash",
+    "apply_button": "Ariza topshirish",
+    "already_applied": "Ariza topshirilgan",
+    "salary": "Maosh: {}",
+    "location": "Joylashuv",
+    "employment_type": "Bandlik turi",
+    "requirements": "Talablar",
+    "description": "Tavsif"
+  },
+  "postings": {
+    "dashboard_title": "Boshqaruv paneli",
+    "active_vacancies": "Faol vakansiyalar",
+    "all": "Barchasi",
+    "create_vacancy": "Vakansiya yaratish"
+  },
+  "resume": {
+    "title": "Rezume",
+    "create_resume": "Rezume yaratish",
+    "contacts": "Kontaktlar",
+    "workplace": "Ish joyi",
+    "education": "Ta'lim",
+    "preview": "Ko'rib chiqish",
+    "download_pdf": "PDF yuklab olish"
+  },
+  "messaging": {
+    "title": "Xabarlar",
+    "search_placeholder": "Search chats...",
+    "type_message": "Xabar yozing...",
+    "attachment": "Fayl biriktirish",
+    "delete_chat": "Chatdan chiqish",
+    "block_user": "Foydalanuvchini bloklash",
+    "no_chats": "Hozircha suhbatlar yo‘q. Suhbatlar bu yerda paydo bo‘ladi.",
+    "edit_message": "Xabarni tahrirlash"
+  },
+  "notifications": {
+    "title": "Bildirishnomalar",
+    "mark_all_read": "Barchasini o'qilgan deb belgilash",
+    "no_notifications": "Hozircha bildirishnomalar yo‘q. Yangi bildirishnomalar paydo bo‘lganda, ular shu yerda ko‘rinadi."
+  },
+  "articles": {
+    "title": "Karyera maqolalari",
+    "search_placeholder": "Maqolalarni qidirish...",
+    "no_articles": "Hozircha maqolalar yo‘q. Yangi va foydali maqolalar tez orada shu yerda paydo bo‘ladi.",
+    "not_found": "Maqola topilmadi"
+  }
+}

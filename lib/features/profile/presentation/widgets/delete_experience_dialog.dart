@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
@@ -16,21 +17,20 @@ class DeleteExperienceDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Ish tajribasini o'chirishni\ntasdiqlaysizmi?",
+              "profile.delete_exp_title",
               textAlign: TextAlign.center,
               style: context.textThemes.s1,
-            ),
+            ).tr(),
             const SizedBox(height: 12),
             Text(
-              "O'chirilgandan so'ng ushbu ish\ntajribasini qayta tiklab bo'lmaydi.",
+              "profile.delete_exp_desc",
               textAlign: TextAlign.center,
               style: context.textThemes.b2.copyWith(
                 color: context.colors.textSecondary,
               ),
-            ),
+            ).tr(),
             const SizedBox(height: 24),
             Row(
-              spacing: 12,
               children: [
                 Expanded(
                   child: InkWell(
@@ -44,12 +44,13 @@ class DeleteExperienceDialog extends StatelessWidget {
                       ),
                       alignment: Alignment.center,
                       child: Text(
-                        "Bekor qilish",
+                        "shared.cancel",
                         style: context.textThemes.b2,
-                      ),
+                      ).tr(),
                     ),
                   ),
                 ),
+                const SizedBox(width: 12),
                 Expanded(
                   child: InkWell(
                     onTap: () => context.maybePop(true),
@@ -62,11 +63,11 @@ class DeleteExperienceDialog extends StatelessWidget {
                       ),
                       alignment: Alignment.center,
                       child: Text(
-                        "O'chirish",
+                        "shared.delete",
                         style: context.textThemes.b2.copyWith(
                           color: Colors.white,
                         ),
-                      ),
+                      ).tr(),
                     ),
                   ),
                 ),

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
@@ -27,77 +28,77 @@ class ConfirmPasswordPage extends HookWidget {
         ),
       ),
       body: SafeArea(
-        minimum: .all(16),
+        minimum: const EdgeInsets.all(16),
         child: Column(
-          crossAxisAlignment: .stretch,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Column(
-              crossAxisAlignment: .stretch,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  "Ro'yxatdan o'tish",
-                  textAlign: .center,
+                  "auth.confirm_password.title",
+                  textAlign: TextAlign.center,
                   maxLines: 1,
-                  overflow: .ellipsis,
+                  overflow: TextOverflow.ellipsis,
                   style: context.textThemes.h5,
-                ),
-                SizedBox(height: 12),
+                ).tr(),
+                const SizedBox(height: 12),
                 Text(
-                  "Accountingiz uchun xafsiz bo'lgan, xech qayerda takrorlanmagan, parol o'ylab toping",
-                  textAlign: .center,
+                  "auth.confirm_password.subtitle",
+                  textAlign: TextAlign.center,
                   maxLines: 3,
-                  overflow: .ellipsis,
+                  overflow: TextOverflow.ellipsis,
                   style: context.textThemes.b1.copyWith(
                     color: context.colors.textSecondary,
                   ),
-                ),
+                ).tr(),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             AppInputField(
-              hintText: "Parol o‘ylab toping",
-              autofillHints: [AutofillHints.newPassword],
+              hintText: "auth.confirm_password.password_hint".tr(),
+              autofillHints: const [AutofillHints.newPassword],
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.visiblePassword,
               controller: passwordController,
               suffixIcon: IconButton(
                 onPressed: () => isObscured.value = !isObscured.value,
                 isSelected: isObscured.value,
-                selectedIcon: Icon(Icons.visibility_off),
-                icon: Icon(Icons.visibility),
+                selectedIcon: const Icon(Icons.visibility_off),
+                icon: const Icon(Icons.visibility),
               ),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             AppInputField(
               obscureText: isObscured.value,
-              hintText: "Parolni tasdiqlang",
-              autofillHints: [AutofillHints.newPassword],
+              hintText: "auth.confirm_password.confirm_hint".tr(),
+              autofillHints: const [AutofillHints.newPassword],
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.visiblePassword,
               controller: passwordConfirmController,
               suffixIcon: IconButton(
                 onPressed: () => isObscured.value = !isObscured.value,
                 isSelected: isObscured.value,
-                selectedIcon: Icon(Icons.visibility_off),
-                icon: Icon(Icons.visibility),
+                selectedIcon: const Icon(Icons.visibility_off),
+                icon: const Icon(Icons.visibility),
               ),
             ),
-            SizedBox(height: 16),
-            Text("Parolga qo‘yiladigan talablar:"),
-            SizedBox(height: 8),
+            const SizedBox(height: 16),
+            Text("auth.confirm_password.requirements_title").tr(),
+            const SizedBox(height: 8),
             ValueListenableBuilder(
               valueListenable: passwordController,
               builder: (_, value, _) => PasswordRequirements(
                 password: value.text,
               ),
             ),
-            Spacer(),
+            const Spacer(),
             AppButton(
               onTap: () {},
-              label: 'Davom etish',
+              label: 'shared.continue'.tr(),
             ),
-            Flexible(flex: 0, child: SizedBox(height: 12)),
+            const Flexible(flex: 0, child: SizedBox(height: 12)),
           ],
         ),
       ),

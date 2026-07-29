@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -49,7 +50,9 @@ class ApplicantDetailsPage extends StatelessWidget {
             actions: [
               IconButton(
                 onPressed: () {
-                  // TODO: Implement share
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("shared.coming_soon".tr())),
+                  );
                 },
                 icon: const Icon(Icons.share),
               ),
@@ -73,7 +76,7 @@ class ApplicantDetailsPage extends StatelessWidget {
               }
               final applicant = state.applicant;
               return ListView(
-                padding: EdgeInsets.symmetric(horizontal: 16).copyWith(
+                padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
                   bottom: 80 + bottom,
                 ),
                 children: [
@@ -89,7 +92,7 @@ class ApplicantDetailsPage extends StatelessWidget {
                   const SizedBox(height: 24),
                   ApplicantWorkHistory(
                     experiences: applicant?.experiences ?? [],
-                    label: 'Ish tajribasi',
+                    label: 'profile.experience'.tr(),
                   ),
                   const SizedBox(height: 24),
                   ApplicantSkills(skills: applicant?.skills ?? []),
@@ -98,7 +101,7 @@ class ApplicantDetailsPage extends StatelessWidget {
             },
           ),
           bottomSheet: Padding(
-            padding: EdgeInsets.symmetric(
+            padding: const EdgeInsets.symmetric(
               horizontal: 16,
               vertical: 12,
             ).copyWith(bottom: 12 + bottom),

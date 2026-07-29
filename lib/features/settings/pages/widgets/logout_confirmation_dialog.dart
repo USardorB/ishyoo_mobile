@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/enums/user_role.dart';
@@ -16,27 +17,26 @@ class LogoutConfirmationDialog extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       backgroundColor: context.colors.bgPrimary,
-      insetPadding: .all(16),
+      insetPadding: const EdgeInsets.all(16),
       shape: RoundedRectangleBorder(
-        borderRadius: .circular(20),
+        borderRadius: BorderRadius.circular(20),
       ),
       title: Text(
-        "Akkauntdan chiqmoqchimisiz?",
-        textAlign: .center,
-      ),
+        "settings.logout_confirm_title",
+        textAlign: TextAlign.center,
+      ).tr(),
       titleTextStyle: context.textThemes.h5,
       contentTextStyle: context.textThemes.s2.copyWith(
         color: context.colors.textSecondary,
       ),
       content: Column(
-        mainAxisSize: .min,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            "Diqqat! akkauntga qayta kirish uchun parol kerak bo‘ladi.",
-            textAlign: .center,
-          ),
-
-          SizedBox(height: 16),
+            "settings.logout_confirm_desc",
+            textAlign: TextAlign.center,
+          ).tr(),
+          const SizedBox(height: 16),
           BlocConsumer<AuthBloc, AuthState>(
             listener: (context, state) {
               if (state.status == AuthStatus.unauthenticated) {
@@ -45,16 +45,16 @@ class LogoutConfirmationDialog extends StatelessWidget {
             },
             builder: (context, state) {
               return Row(
-                spacing: 12,
                 children: [
-                  Flexible(
+                  Expanded(
                     child: AppButton(
                       onTap: context.pop,
-                      label: "Bekor qilish",
+                      label: "shared.cancel".tr(),
                       color: context.colors.bgTertiary,
                     ),
                   ),
-                  Flexible(
+                  const SizedBox(width: 12),
+                  Expanded(
                     child: AppButton(
                       onTap: () {
                         final role = state.userRole;
@@ -65,7 +65,7 @@ class LogoutConfirmationDialog extends StatelessWidget {
                           AuthLogoutRequested(roleString),
                         );
                       },
-                      label: "Chiqish",
+                      label: "settings.logout".tr(),
                       color: context.colors.danger,
                       isLoading: state.status == AuthStatus.loading,
                     ),

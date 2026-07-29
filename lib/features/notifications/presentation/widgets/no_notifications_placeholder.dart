@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
@@ -10,19 +11,20 @@ class NoNotificationsPlaceholder extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Column(
-        mainAxisSize: .min,
+        mainAxisSize: MainAxisSize.min,
         children: [
           Image.asset(
             "assets/images/no_notifications.png",
             width: 260,
           ),
+          const SizedBox(height: 16),
           Text(
-            "Hozircha bildirishnomalar yo‘q. Yangi bildirishnomalar paydo bo‘lganda, ular shu yerda ko‘rinadi.",
-            textAlign: .center,
+            "notifications.no_notifications",
+            textAlign: TextAlign.center,
             style: context.textThemes.b1.copyWith(
               color: context.colors.textSecondary,
             ),
-          ),
+          ).tr(),
         ],
       ),
     );

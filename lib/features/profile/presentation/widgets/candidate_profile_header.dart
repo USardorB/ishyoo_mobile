@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
@@ -11,7 +12,7 @@ class CandidateProfileHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = context.read<AuthBloc>().state.user;
-    final name = user?.name ?? 'Kiritilmagan';
+    final name = user?.name ?? '';
     final phone = user?.phoneNumber ?? '';
     final initials = name.isNotEmpty ? name.substring(0, 1).toUpperCase() : '?';
 
@@ -41,13 +42,13 @@ class CandidateProfileHeader extends StatelessWidget {
           const SizedBox(width: 16),
           Expanded(
             child: Column(
-              spacing: 4,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  name,
+                  name.isEmpty ? "shared.no_data".tr() : name,
                   style: context.textThemes.s1,
                 ),
+                const SizedBox(height: 4),
                 Text(
                   phone,
                   style: context.textThemes.c1.copyWith(
@@ -59,10 +60,10 @@ class CandidateProfileHeader extends StatelessWidget {
           ),
           IconButton(
             style: IconButton.styleFrom(
-              visualDensity: .compact,
-              padding: .zero,
+              visualDensity: VisualDensity.compact,
+              padding: EdgeInsets.zero,
             ),
-            onPressed: () => context.pushRoute(EditCandidateProfileRoute()),
+            onPressed: () => context.pushRoute(const EditCandidateProfileRoute()),
             icon: Icon(
               Icons.edit,
               color: context.colors.textPrimary,

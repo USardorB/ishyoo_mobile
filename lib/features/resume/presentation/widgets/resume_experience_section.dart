@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/resume/data/models/resume.dart';
@@ -17,7 +18,7 @@ class ResumeExperienceSection extends StatelessWidget {
           color: context.colors.bgSecondary,
           borderRadius: BorderRadius.circular(16),
         ),
-        child: const Text("Ish tajribasi yo'q"),
+        child: const Text("shared.no_data").tr(),
       );
     }
 
@@ -32,11 +33,11 @@ class ResumeExperienceSection extends StatelessWidget {
         children: [
           ...experiences.map((exp) {
             final startStr = exp.startDate != null
-                ? "${exp.startDate!.year} yil"
+                ? "${exp.startDate!.year}"
                 : "";
             final endStr = exp.endDate != null
-                ? "${exp.endDate!.year} yil"
-                : "hozir";
+                ? "${exp.endDate!.year}"
+                : "shared.present".tr();
             return Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: ResumeTimelineItem(

@@ -1,7 +1,7 @@
 import 'package:auto_route/annotations.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/enums/user_role.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
@@ -44,7 +44,7 @@ class NotificationDetailsPage extends StatelessWidget {
             }
 
             if (state.notification == null) {
-              return const Center(child: Text("Ma'lumot topilmadi"));
+              return Center(child: const Text("shared.no_data").tr());
             }
 
             final notification = state.notification!;
@@ -59,9 +59,7 @@ class NotificationDetailsPage extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   notification.createdAt != null
-                      ? DateFormat(
-                          'dd-MMM, HH:mm',
-                        ).format(notification.createdAt!)
+                      ? "${notification.createdAt!.day}.${notification.createdAt!.month}.${notification.createdAt!.year}"
                       : "",
                   style: context.textThemes.b2.copyWith(
                     color: context.colors.textSecondary,

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
@@ -44,13 +45,15 @@ class ResumeEducationListStep extends StatelessWidget {
                     state.formData['educations'] ?? [],
                   );
                   newEducations.add(result);
-                  context.read<ResumeFormBloc>().add(
-                    UpdateFormData({'educations': newEducations}),
-                  );
+                  if (context.mounted) {
+                    context.read<ResumeFormBloc>().add(
+                      UpdateFormData({'educations': newEducations}),
+                    );
+                  }
                 }
               },
               icon: Icons.add,
-              label: "Ta'lim ma'lumotini qo'shish",
+              label: "shared.add".tr(),
               color: context.colors.brandProgress.withValues(alpha: 0.15),
               foregroundColor: context.colors.brandProgress,
               labelStyle: context.textThemes.b2,
@@ -72,7 +75,7 @@ class ResumeEducationListStep extends StatelessWidget {
         final result = await context.pushRoute(
           EditResumeEducationRoute(education: edu),
         );
-        if (result != null && result is Map<String, dynamic>) {
+        if (result != null && result is Map<String, dynamic> && context.mounted) {
           final bloc = context.read<ResumeFormBloc>();
           final currentData = bloc.state.formData;
           final newEducations = List<Map<String, dynamic>>.from(
@@ -125,7 +128,7 @@ class ResumeEducationListStep extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              "${edu.startDate?.year ?? ''} - ${edu.endDate?.year ?? 'hozir'}",
+              "${edu.startDate?.year ?? ''} - ${edu.endDate?.year ?? 'shared.present'.tr()}",
               style: context.textThemes.c1.copyWith(
                 color: context.colors.textSecondary,
               ),

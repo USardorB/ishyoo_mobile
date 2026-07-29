@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
@@ -100,9 +101,9 @@ class _ApplyVacancySheetState extends State<ApplyVacancySheet> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'Vakansiyaga javob berish',
+                'opportunities.apply_button',
                 style: context.textThemes.h5,
-              ),
+              ).tr(),
               IconButton(
                 visualDensity: VisualDensity.compact,
                 padding: EdgeInsets.zero,
@@ -115,11 +116,11 @@ class _ApplyVacancySheetState extends State<ApplyVacancySheet> {
           if (_isLoading)
             const Center(child: CircularProgressIndicator())
           else if (_error != null)
-            Text('Xatolik: $_error', style: TextStyle(color: Colors.red))
+            Text('Xatolik: $_error', style: const TextStyle(color: Colors.red))
           else if (_resumes == null || _resumes!.isEmpty)
-            const Text("Sizda hali rezyume yo'q.")
+            const Text("profile.no_resumes").tr()
           else ...[
-            Text('Rezyumeni tanlang', style: context.textThemes.s2),
+            Text('resume.create_resume', style: context.textThemes.s2).tr(),
             const SizedBox(height: 8),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -139,7 +140,7 @@ class _ApplyVacancySheetState extends State<ApplyVacancySheet> {
                     return DropdownMenuItem<Resume>(
                       value: resume,
                       child: Text(
-                        resume.specialization ?? 'Rezyume',
+                        resume.specialization ?? '',
                         style: context.textThemes.b2,
                       ),
                     );
@@ -153,18 +154,18 @@ class _ApplyVacancySheetState extends State<ApplyVacancySheet> {
               ),
             ),
             const SizedBox(height: 16),
-            Text('Kuzatuv xati (ixtiyoriy)', style: context.textThemes.s2),
+            Text('messaging.type_message', style: context.textThemes.s2).tr(),
             const SizedBox(height: 8),
             AppInputField(
               controller: _coverLetterController,
-              hintText: "O'zingiz haqingizda qisqacha...",
+              hintText: "...",
               maxLines: 4,
             ),
             const SizedBox(height: 24),
             AppButton(
               onTap: _onApply,
               isLoading: _selectedResume == null,
-              label: "Yuborish",
+              label: "opportunities.apply_button".tr(),
             ),
           ],
         ],

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
@@ -13,22 +14,20 @@ class ApplyToVacancySheet extends HookWidget {
     final showCoverLetter = useState<bool>(false);
     final coverLetterController = useTextEditingController();
 
-    // We listen to text changes to update the character count
     useListenable(coverLetterController);
 
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12).copyWith(
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12).copyWith(
         bottom: MediaQuery.paddingOf(context).bottom + 16,
       ),
       decoration: BoxDecoration(
         color: context.colors.bgPrimary,
-        borderRadius: const .vertical(top: .circular(24)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
       ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Drag handle
           Center(
             child: Container(
               width: 60,
@@ -41,12 +40,12 @@ class ApplyToVacancySheet extends HookWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            "Vakansiyaga javob",
+            "opportunities.apply_button",
             style: context.textThemes.h5,
-          ),
+          ).tr(),
           const SizedBox(height: 4),
           Text(
-            "UX/UI Dizayner",
+            "",
             style: context.textThemes.b1.copyWith(
               color: context.colors.textSecondary,
             ),
@@ -63,28 +62,12 @@ class ApplyToVacancySheet extends HookWidget {
               child: Column(
                 children: [
                   _ResumeTile(
-                    fileName: "Karimov_Aziz_UX_CV.pdf",
-                    fileDetails: "UX/UI Dizayner • Bugun • 2.4 MB",
+                    fileName: "CV.pdf",
+                    fileDetails: "2.4 MB",
                     isSelected: selectedResumeIndex.value == 0,
                     onTap: () => selectedResumeIndex.value = 0,
                   ),
-                  const SizedBox(height: 12),
-                  _ResumeTile(
-                    fileName: "Karimov_Aziz_FE_CV.pdf",
-                    fileDetails: "Frontend Developer • 1 hafta • 1.8 MB",
-                    isSelected: selectedResumeIndex.value == 1,
-                    onTap: () => selectedResumeIndex.value = 1,
-                  ),
-                  const SizedBox(height: 12),
-                  _ResumeTile(
-                    fileName: "Karimov_Aziz_PM_CV.pdf",
-                    fileDetails: "Product Manager • 1 oy • 2.1 MB",
-                    isSelected: selectedResumeIndex.value == 2,
-                    onTap: () => selectedResumeIndex.value = 2,
-                  ),
                   const SizedBox(height: 16),
-
-                  // Upload new resume button
                   InkWell(
                     onTap: () {},
                     borderRadius: BorderRadius.circular(16),
@@ -94,7 +77,6 @@ class ApplyToVacancySheet extends HookWidget {
                       decoration: BoxDecoration(
                         color: context.colors.bgSecondary,
                         borderRadius: BorderRadius.circular(16),
-                        // Fallback to solid border if dotted is missing
                         border: Border.all(
                           color: context.colors.bgTertiary,
                           width: 1,
@@ -110,22 +92,20 @@ class ApplyToVacancySheet extends HookWidget {
                           ),
                           const SizedBox(width: 8),
                           Text(
-                            "Yangi rezyume yuklash",
+                            "resume.create_resume",
                             style: context.textThemes.b2.copyWith(
                               color: context.colors.brandDefault,
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ),
                   ),
                   const SizedBox(height: 24),
-
-                  // Cover letter section
                   if (!showCoverLetter.value)
                     AppButton(
                       onTap: () => showCoverLetter.value = true,
-                      label: "Kuzatuv xatini qo'shish",
+                      label: "shared.add".tr(),
                       color: context.colors.bgTertiary,
                       foregroundColor: context.colors.textPrimary,
                     )
@@ -145,14 +125,14 @@ class ApplyToVacancySheet extends HookWidget {
                             maxLength: 500,
                             style: context.textThemes.b2,
                             decoration: InputDecoration(
-                              hintText: "Salom! Men...",
+                              hintText: "...",
                               hintStyle: context.textThemes.b2.copyWith(
                                 color: context.colors.textSecondary,
                               ),
                               border: InputBorder.none,
                               enabledBorder: InputBorder.none,
                               focusedBorder: InputBorder.none,
-                              counterText: "", // Hide default counter
+                              counterText: "",
                             ),
                           ),
                           Text(
@@ -171,7 +151,7 @@ class ApplyToVacancySheet extends HookWidget {
           const SizedBox(height: 12),
           AppButton(
             onTap: context.pop,
-            label: "Javob qaytarish",
+            label: "opportunities.apply_button".tr(),
           ),
         ],
       ),

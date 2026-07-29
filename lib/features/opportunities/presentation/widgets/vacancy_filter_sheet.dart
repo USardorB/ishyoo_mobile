@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
@@ -12,8 +13,8 @@ enum JobType {
   internship;
 
   String get title => switch (this) {
-    JobType.fullTime => 'To‘liq ish kuni',
-    JobType.partTime => 'To‘liqsiz ish kuni',
+    JobType.fullTime => 'opportunities.employment_type'.tr(),
+    JobType.partTime => 'opportunities.employment_type'.tr(),
     JobType.freelance => 'Frilans',
     JobType.contract => 'Shartnoma',
     JobType.internship => 'Stajirovka',
@@ -35,7 +36,7 @@ enum ExperienceLevel {
   moreThanSix;
 
   String get title => switch (this) {
-    ExperienceLevel.inexperienced => 'Tajribasiz',
+    ExperienceLevel.inexperienced => 'applicants.unsuitable'.tr(),
     ExperienceLevel.oneToThree => '1-3 yil',
     ExperienceLevel.threeToSix => '3-6 yil',
     ExperienceLevel.moreThanSix => '6 yildan ortiq',
@@ -136,9 +137,9 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
           ),
         ),
         child: Column(
-          crossAxisAlignment: .stretch,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             Center(
               child: Container(
                 height: 6,
@@ -149,35 +150,35 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
                 ),
               ),
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             _buildHeader(context),
-            SizedBox(height: 18),
-            _sectionTitle(context, 'Ish turi'),
-            SizedBox(height: 16),
+            const SizedBox(height: 18),
+            _sectionTitle(context, 'opportunities.employment_type'.tr()),
+            const SizedBox(height: 16),
             Wrap(
               spacing: 8,
               children: JobType.values.map(_wrapJobChoiceChip).toList(),
             ),
-            SizedBox(height: 18),
-            _sectionTitle(context, 'Ixtisoslashtirish'),
-            SizedBox(height: 16),
+            const SizedBox(height: 18),
+            _sectionTitle(context, 'talents.search_placeholder'.tr()),
+            const SizedBox(height: 16),
             AppInputField(
               controller: _specializationController,
-              hintText: "Mutaxassislikni kiriting",
+              hintText: "shared.search".tr(),
             ),
-            SizedBox(height: 20),
-            _sectionTitle(context, 'Tajriba darajasi'),
-            SizedBox(height: 16),
+            const SizedBox(height: 20),
+            _sectionTitle(context, 'profile.experience'.tr()),
+            const SizedBox(height: 16),
             Wrap(
               spacing: 8,
               children: ExperienceLevel.values
                   .map(_wrapExperienceChoiceChip)
                   .toList(),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             AppButton(
               onTap: _applyFilters,
-              label: "Filtrni qo‘llash",
+              label: "shared.apply".tr(),
             ),
           ],
         ),
@@ -186,25 +187,25 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
   }
 
   Row _buildHeader(BuildContext context) => Row(
-    mainAxisAlignment: .spaceBetween,
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
       SizedBox(
         width: 100,
         child: Align(
           alignment: Alignment.centerLeft,
           child: IconButton(
-            visualDensity: .compact,
+            visualDensity: VisualDensity.compact,
             padding: EdgeInsets.zero,
             onPressed: context.pop,
-            icon: Icon(Icons.close),
+            icon: const Icon(Icons.close),
           ),
         ),
       ),
       Text(
-        'Filtrlar',
+        'shared.filter',
         style: context.textThemes.h5,
         maxLines: 1,
-      ),
+      ).tr(),
       SizedBox(
         width: 100,
         child: Align(
@@ -213,9 +214,9 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
             onPressed: _clearFilters,
             style: TextButton.styleFrom(
               textStyle: context.textThemes.buttonLarge,
-              visualDensity: .compact,
+              visualDensity: VisualDensity.compact,
             ),
-            child: Text('Tozalash'),
+            child: Text('shared.clear').tr(),
           ),
         ),
       ),

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
@@ -19,34 +20,34 @@ class DeleteResumeDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "Rezyumeni o'chirishni tasdiqlaysizmi?",
+              "applications.delete_title",
               textAlign: TextAlign.center,
               style: context.textThemes.s1,
-            ),
+            ).tr(),
             const SizedBox(height: 12),
             Text(
-              "Rezyume o'chirilgandan so'ng uni qayta tiklab bo'lmaydi.",
+              "applications.delete_subtitle",
               textAlign: TextAlign.center,
               style: context.textThemes.b2.copyWith(
                 color: context.colors.textSecondary,
               ),
-            ),
+            ).tr(),
             const SizedBox(height: 24),
             Row(
-              spacing: 8,
               children: [
                 Expanded(
                   child: AppButton(
                     onTap: context.pop,
-                    label: "Bekor qilish",
+                    label: "shared.cancel".tr(),
                     color: context.colors.bgTertiary,
                     foregroundColor: context.colors.textPrimary,
                   ),
                 ),
+                const SizedBox(width: 8),
                 Expanded(
                   child: AppButton(
                     onTap: () => context.pop(true),
-                    label: "O'chirish",
+                    label: "shared.delete".tr(),
                     color: context.colors.danger,
                     foregroundColor: Colors.white,
                   ),

@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
@@ -10,9 +11,9 @@ import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/resume/data/models/resume.dart';
 import 'package:mobile/features/resume/presentation/bloc/resume_form_bloc.dart';
 import 'package:mobile/features/resume/presentation/widgets/forms/resume_contacts_form.dart';
+import 'package:mobile/features/resume/presentation/widgets/forms/resume_skills_form.dart';
 import 'package:mobile/features/resume/presentation/widgets/resume_education_list_step.dart';
 import 'package:mobile/features/resume/presentation/widgets/resume_experience_list_step.dart';
-import 'package:mobile/features/resume/presentation/widgets/forms/resume_skills_form.dart';
 
 @RoutePage()
 class CreateResumeFlowPage extends HookWidget {
@@ -60,10 +61,10 @@ class _CreateResumeFlowContent extends HookWidget {
     final currentPage = useState(0);
 
     final titles = [
-      "Kontaktlar",
-      "Ish joyi",
-      "O'quv muassasasi",
-      "Ko'nikmalar",
+      "resume.contacts".tr(),
+      "resume.workplace".tr(),
+      "resume.education".tr(),
+      "profile.languages".tr(),
     ];
 
     void nextStep() {
@@ -73,7 +74,6 @@ class _CreateResumeFlowContent extends HookWidget {
           curve: Curves.easeInOut,
         );
       } else {
-        // Submit form at last step
         context.read<ResumeFormBloc>().add(
           SubmitResumeForm(resumeId: resumeId),
         );
@@ -126,11 +126,11 @@ class _CreateResumeFlowContent extends HookWidget {
                   return TextButton(
                     onPressed: nextStep,
                     child: Text(
-                      "Saqlash",
+                      "shared.save",
                       style: context.textThemes.b2.copyWith(
                         color: context.colors.brandProgress,
                       ),
-                    ),
+                    ).tr(),
                   );
                 },
               )
@@ -186,12 +186,12 @@ class _CreateResumeFlowContent extends HookWidget {
         ),
         if (showSaveButton)
           Padding(
-            padding: EdgeInsets.all(16).copyWith(
+            padding: const EdgeInsets.all(16).copyWith(
               bottom: MediaQuery.paddingOf(context).bottom + 16,
             ),
             child: AppButton(
               onTap: onSave!,
-              label: "Saqlash",
+              label: "shared.save".tr(),
               color: context.colors.brandProgress,
               foregroundColor: Colors.black,
             ),

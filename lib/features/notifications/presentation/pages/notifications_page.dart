@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart' hide Notification;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/enums/user_role.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
@@ -38,7 +38,7 @@ class _NotificationsPageView extends StatelessWidget {
     final state = context.read<NotificationsBloc>().state;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Bildirishnomalar"),
+        title: const Text("notifications.title").tr(),
         actions: [
           if (state.notifications?.any((e) => !e.isRead) ?? false)
             IconButton(
@@ -48,7 +48,7 @@ class _NotificationsPageView extends StatelessWidget {
                 );
               },
               icon: const Icon(Icons.checklist),
-              tooltip: "Barchasini o'qilgan deb belgilash",
+              tooltip: "notifications.mark_all_read".tr(),
             ),
         ],
       ),

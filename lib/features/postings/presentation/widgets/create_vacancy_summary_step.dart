@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
@@ -38,7 +39,7 @@ class CreateVacancySummaryStep extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text("Tayyor!", style: context.textThemes.h5),
+          Text("shared.saved_success", style: context.textThemes.h5).tr(),
           const SizedBox(height: 20),
           Container(
             padding: const EdgeInsets.all(16),
@@ -73,7 +74,7 @@ class CreateVacancySummaryStep extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  title.isEmpty ? 'Vakansiya nomi' : title,
+                  title.isEmpty ? 'opportunities.title'.tr() : title,
                   style: context.textThemes.h4,
                 ),
                 const SizedBox(height: 4),
@@ -89,7 +90,7 @@ class CreateVacancySummaryStep extends StatelessWidget {
                   children: [
                     _buildSmallTag(
                       context,
-                      location.isEmpty ? 'Manzil' : location,
+                      location.isEmpty ? 'opportunities.location'.tr() : location,
                     ),
                     const SizedBox(width: 8),
                     _buildSmallTag(context, jobType.title),
@@ -116,11 +117,11 @@ class CreateVacancySummaryStep extends StatelessWidget {
               color: context.colors.brandDefault,
             ),
             title: Text(
-              "Asosiy ma'lumotlarni tahrirlash",
+              "profile.edit_profile",
               style: context.textThemes.s2.copyWith(
                 color: context.colors.brandDefault,
               ),
-            ),
+            ).tr(),
             onTap: onEditBasicInfo,
             contentPadding: EdgeInsets.zero,
           ),
@@ -130,22 +131,22 @@ class CreateVacancySummaryStep extends StatelessWidget {
               color: context.colors.brandDefault,
             ),
             title: Text(
-              "Tavsif va talablarni tahrirlash",
+              "opportunities.edit_vacancy",
               style: context.textThemes.s2.copyWith(
                 color: context.colors.brandDefault,
               ),
-            ),
+            ).tr(),
             onTap: onEditRequirements,
             contentPadding: EdgeInsets.zero,
           ),
           const SizedBox(height: 40),
           AppButton(
-            label: "Vakansiyani joylashtirish",
+            label: "opportunities.create_vacancy".tr(),
             onTap: onPost,
           ),
           const SizedBox(height: 12),
           AppButton(
-            label: "Qoralama sifatida saqlash",
+            label: "shared.save".tr(),
             color: context.colors.bgSecondary,
             foregroundColor: context.colors.textPrimary,
             onTap: onSaveDraft,

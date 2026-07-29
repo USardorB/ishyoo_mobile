@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mobile/core/shared/failures.dart';
@@ -21,12 +22,12 @@ class LocationRepositoryImpl implements LocationRepository {
         return Right(result.data!);
       }
       return Left(
-        ServerFailure(message: "Hududlarni yuklashda xatolik yuz berdi"),
+        ServerFailure(message: "shared.error_occurred".tr()),
       );
     } on DioException catch (e) {
       return Left(
         ServerFailure(
-          message: e.response?.data['message'] ?? e.message ?? "Server xatosi",
+          message: e.response?.data['message'] ?? e.message ?? "shared.error_occurred".tr(),
         ),
       );
     } catch (e) {
@@ -42,12 +43,12 @@ class LocationRepositoryImpl implements LocationRepository {
         return Right(result.data!);
       }
       return Left(
-        ServerFailure(message: "Tumanlarni yuklashda xatolik yuz berdi"),
+        ServerFailure(message: "shared.error_occurred".tr()),
       );
     } on DioException catch (e) {
       return Left(
         ServerFailure(
-          message: e.response?.data['message'] ?? e.message ?? "Server xatosi",
+          message: e.response?.data['message'] ?? e.message ?? "shared.error_occurred".tr(),
         ),
       );
     } catch (e) {

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/consts/app_assets.dart';
@@ -13,25 +14,25 @@ class NoVacanciesPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: .stretch,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Align(child: Image.asset(AppAssets.onboardingDark, width: 250)),
         Text(
-          "Birinchi vakansiyangizni yarating",
+          "opportunities.create_vacancy",
           style: context.textThemes.h4,
-          textAlign: .center,
-        ),
-        SizedBox(height: 12),
+          textAlign: TextAlign.center,
+        ).tr(),
+        const SizedBox(height: 12),
         Text(
-          "Vakansiya joylashtirishni boshlash uchun \"Vakansiya yaratish\" tugmasini bosing",
+          "shared.no_data",
           textAlign: TextAlign.center,
           style: context.textThemes.b2.copyWith(
             color: context.colors.textSecondary,
           ),
-        ),
-        SizedBox(height: 24),
+        ).tr(),
+        const SizedBox(height: 24),
         AppButton(
-          label: "Yangi qo'shish",
+          label: "opportunities.create_vacancy".tr(),
           onTap: () async {
             final result = await context.pushRoute(CreateVacancyRoute());
             if (result == true && context.mounted) {
@@ -39,7 +40,7 @@ class NoVacanciesPlaceholder extends StatelessWidget {
             }
           },
         ),
-        SizedBox(height: 48),
+        const SizedBox(height: 48),
       ],
     );
   }

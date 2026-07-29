@@ -1,6 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
-import 'package:intl/intl.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
 import '../../data/models/article.dart';
@@ -54,16 +54,16 @@ class ArticleItem extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8),
                         ),
                         child: Text(
-                          "Maqola",
+                          "articles.title",
                           style: context.textThemes.buttonTiny.copyWith(
                             color: context.colors.brandDefault,
                           ),
-                        ),
+                        ).tr(),
                       ),
                       const Spacer(),
                       if (article.createdAt != null)
                         Text(
-                          DateFormat('dd MMM, yyyy').format(article.createdAt!),
+                          "${article.createdAt!.day}.${article.createdAt!.month}.${article.createdAt!.year}",
                           style: context.textThemes.c1.copyWith(
                             color: context.colors.textSecondary,
                           ),
@@ -113,7 +113,7 @@ class ArticleItem extends StatelessWidget {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        "${article.readTimeMinutes ?? 1} daqiqa",
+                        "${article.readTimeMinutes ?? 1} m",
                         style: context.textThemes.c1.copyWith(
                           color: context.colors.textSecondary,
                         ),

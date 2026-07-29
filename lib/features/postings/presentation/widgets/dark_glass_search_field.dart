@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
@@ -44,7 +45,7 @@ class DarkGlassSearchField extends StatelessWidget {
               ),
             ),
             child: SearchBarTheme(
-              data: SearchBarThemeData(
+              data: const SearchBarThemeData(
                 backgroundColor: WidgetStatePropertyAll(
                   Colors.transparent,
                 ),
@@ -53,7 +54,7 @@ class DarkGlassSearchField extends StatelessWidget {
                 ),
               ),
               child: SearchBar(
-                hintText: hintText ?? "Search",
+                hintText: hintText ?? "shared.search".tr(),
                 hintStyle: WidgetStatePropertyAll(
                   context.textThemes.buttonLarge.copyWith(
                     color: context.colors.textSecondary,
@@ -65,7 +66,7 @@ class DarkGlassSearchField extends StatelessWidget {
                     onTap!();
                   } else if (context.routeData.name !=
                       TalentsSearchResultRoute.name) {
-                    context.pushRoute(TalentsSearchResultRoute());
+                    context.pushRoute(const TalentsSearchResultRoute());
                   }
                 },
               ),

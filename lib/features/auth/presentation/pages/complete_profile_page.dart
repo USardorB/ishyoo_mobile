@@ -1,11 +1,11 @@
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:intl/intl.dart';
 import 'package:mobile/core/consts/app_assets.dart';
 import 'package:mobile/core/enums/user_role.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
@@ -44,7 +44,7 @@ class CompleteProfilePage extends HookWidget {
     Future<void> onRegister() async {
       if (firstNameController.text.isEmpty || passwordController.text.isEmpty) {
         AppNotificationOverlay.instance.show(
-          message: 'Iltimos barcha majburiy maydonlarni to\'ldiring',
+          message: 'auth.complete_profile.fill_all'.tr(),
           type: .warning,
         );
         return;
@@ -62,7 +62,7 @@ class CompleteProfilePage extends HookWidget {
 
       if (requestId == null) {
         AppNotificationOverlay.instance.show(
-          message: 'Xatolik yuz berdi. Iltimos qaytadan urinib ko\'ring.',
+          message: 'shared.error_occurred'.tr(),
           type: .error,
         );
         return;
@@ -103,70 +103,70 @@ class CompleteProfilePage extends HookWidget {
             context.router.replaceAll([const MainLayoutRoute()]);
           } else if (state.status == bloc_state.AuthStatus.failure) {
             AppNotificationOverlay.instance.show(
-              message: state.errorMessage ?? 'Xatolik yuz berdi',
+              message: state.errorMessage ?? 'shared.error_occurred'.tr(),
               type: .error,
             );
           }
         },
         builder: (context, state) {
           return SafeArea(
-            minimum: .all(16),
+            minimum: const EdgeInsets.all(16),
             child: SingleChildScrollView(
               child: Column(
-                crossAxisAlignment: .stretch,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Column(
-                    crossAxisAlignment: .stretch,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        "Shaxsiy ma’lumotlar",
-                        textAlign: .center,
+                        "auth.complete_profile.title",
+                        textAlign: TextAlign.center,
                         maxLines: 1,
-                        overflow: .ellipsis,
+                        overflow: TextOverflow.ellipsis,
                         style: context.textThemes.h5,
-                      ),
-                      SizedBox(height: 12),
+                      ).tr(),
+                      const SizedBox(height: 12),
                       Text(
-                        "Shaxsiy ma’lumotlarni kiriting Foydalanuvchining ismi, familiyasi va tkompaniya nomi",
-                        textAlign: .center,
+                        "auth.complete_profile.subtitle",
+                        textAlign: TextAlign.center,
                         maxLines: 3,
-                        overflow: .ellipsis,
+                        overflow: TextOverflow.ellipsis,
                         style: context.textThemes.b1.copyWith(
                           color: context.colors.textSecondary,
                         ),
-                      ),
+                      ).tr(),
                     ],
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   AppInputField(
-                    hintText: "Ismingizni kiriting",
-                    autofillHints: [AutofillHints.name],
+                    hintText: "auth.complete_profile.first_name_hint".tr(),
+                    autofillHints: const [AutofillHints.name],
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.name,
                     controller: firstNameController,
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   AppInputField(
-                    hintText: "Familiyangizni kiriting",
-                    autofillHints: [AutofillHints.familyName],
+                    hintText: "auth.complete_profile.last_name_hint".tr(),
+                    autofillHints: const [AutofillHints.familyName],
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.name,
                     controller: lastNameController,
                   ),
                   if (isCompany) ...[
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     AppInputField(
-                      hintText: "Kompaniya nomi",
-                      autofillHints: [AutofillHints.organizationName],
+                      hintText: "auth.complete_profile.company_name_hint".tr(),
+                      autofillHints: const [AutofillHints.organizationName],
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.name,
                       controller: companyNameController,
                     ),
                   ] else ...[
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     AppInputField(
-                      hintText: "Tug’ilgan sana (YYYY.OO.KK)",
+                      hintText: "auth.complete_profile.birth_date_hint".tr(),
                       textInputAction: TextInputAction.next,
                       readOnly: true,
                       onTap: () async {
@@ -187,11 +187,11 @@ class CompleteProfilePage extends HookWidget {
                       controller: birthDateController,
                     ),
                   ],
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   AppInputField(
                     obscureText: isObscured.value,
-                    hintText: "Yangi parol o'rnating",
-                    autofillHints: [AutofillHints.newPassword],
+                    hintText: "auth.complete_profile.new_password_hint".tr(),
+                    autofillHints: const [AutofillHints.newPassword],
                     textInputAction: TextInputAction.done,
                     keyboardType: TextInputType.visiblePassword,
                     controller: passwordController,
@@ -200,17 +200,17 @@ class CompleteProfilePage extends HookWidget {
                         isObscured.value = !isObscured.value;
                       },
                       isSelected: isObscured.value,
-                      selectedIcon: Icon(Icons.visibility_off),
-                      icon: Icon(Icons.visibility),
+                      selectedIcon: const Icon(Icons.visibility_off),
+                      icon: const Icon(Icons.visibility),
                     ),
                   ),
-                  SizedBox(height: 32),
+                  const SizedBox(height: 32),
                   AppButton(
                     onTap: onRegister,
                     isLoading: state.status == bloc_state.AuthStatus.loading,
-                    label: 'Davom etish',
+                    label: 'shared.continue'.tr(),
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                 ],
               ),
             ),

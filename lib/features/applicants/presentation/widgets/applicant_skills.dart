@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
@@ -12,7 +13,7 @@ class ApplicantSkills extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text("Ko'nikmalar", style: context.textThemes.s2),
+        Text("profile.languages", style: context.textThemes.s2).tr(),
         const SizedBox(height: 16),
         Container(
           decoration: BoxDecoration(
@@ -36,9 +37,9 @@ class ApplicantSkills extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         color: context.colors.bgSecondary,
-        borderRadius: .circular(8),
+        borderRadius: BorderRadius.circular(8),
       ),
-      padding: const .symmetric(horizontal: 12, vertical: 6),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       child: Text(
         text,
         style: context.textThemes.b1.copyWith(

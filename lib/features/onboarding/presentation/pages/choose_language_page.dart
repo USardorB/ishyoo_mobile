@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/enums/app_languages.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
@@ -15,46 +16,61 @@ class ChooseLanguagePage extends StatefulWidget {
 }
 
 class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
-  AppLanguages _language = .en;
+  late AppLanguages _language;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _language = AppLanguages.fromLocale(context.locale);
+  }
+
+  void _onSelectLanguage(AppLanguages lang) {
+    setState(() => _language = lang);
+    context.setLocale(lang.locale);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        minimum: .all(16),
+        minimum: const EdgeInsets.all(16),
         child: Column(
           children: [
             Expanded(
               child: Column(
-                spacing: 12,
                 children: [
                   Text(
-                    "Tilni tanlang",
+                    "onboarding.choose_language.title",
                     style: context.textThemes.h4,
-                  ),
+                  ).tr(),
+                  const SizedBox(height: 8),
                   Text(
-                    "Ro'yxatdan o'tgandan so'ng dastur sozlamalarida tilni o'zgartirishingiz mumkin",
+                    "onboarding.choose_language.subtitle",
                     style: context.textThemes.b1.copyWith(
                       color: context.colors.textSecondary,
                     ),
-                  ),
-                  SizedBox(height: 8),
+                  ).tr(),
+                  const SizedBox(height: 16),
                   ...AppLanguages.values.map(
-                    (e) => LanguageTile(
-                      value: e,
-                      isSelected: _language == e,
-                      onSelect: (e) => setState(() => _language = e),
+                    (e) => Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: LanguageTile(
+                        value: e,
+                        isSelected: _language == e,
+                        onSelect: _onSelectLanguage,
+                      ),
                     ),
                   ),
-                  Spacer(),
+                  const Spacer(),
                   AppButton(
-                    onTap: () => context.pushRoute(OnboardingRoute()),
-                    enabled: !false,
-                    label: 'Davom etish',
+                    onTap: () => context.pushRoute(const OnboardingRoute()),
+                    enabled: true,
+                    label: "onboarding.choose_language.cta_button".tr(),
                   ),
                 ],
               ),
             ),
-            Flexible(flex: 0, child: SizedBox(height: 12)),
+            const Flexible(flex: 0, child: SizedBox(height: 12)),
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
@@ -10,25 +11,25 @@ class PrivacyPolicyNotice extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RichText(
-      textAlign: .center,
+      textAlign: TextAlign.center,
       text: TextSpan(
         style: context.textThemes.b2.copyWith(
           color: context.colors.textSecondary,
         ),
         children: [
-          TextSpan(text: 'Davom etish tugmasini bosish bilan siz '),
+          TextSpan(text: 'auth.privacy_notice.text1'.tr()),
           TextSpan(
-            text: 'Maxfiylik siyosatiga',
-            style: TextStyle().copyWith(decoration: .underline),
+            text: 'auth.privacy_notice.privacy_policy'.tr(),
+            style: const TextStyle().copyWith(decoration: TextDecoration.underline),
             recognizer: TapGestureRecognizer()..onTap = () {},
           ),
-          TextSpan(text: ' va '),
+          TextSpan(text: 'auth.privacy_notice.and'.tr()),
           TextSpan(
-            text: 'Foydalanish shartlariga',
-            style: TextStyle().copyWith(decoration: .underline),
+            text: 'auth.privacy_notice.terms'.tr(),
+            style: const TextStyle().copyWith(decoration: TextDecoration.underline),
             recognizer: TapGestureRecognizer()..onTap = () {},
           ),
-          TextSpan(text: ' rozilik berasiz.'),
+          TextSpan(text: 'auth.privacy_notice.text2'.tr()),
         ],
       ),
     );

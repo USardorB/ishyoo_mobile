@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -52,7 +53,7 @@ class _EditCompanyInfoPageState extends State<EditCompanyInfoPage> {
       UpdateEmployerOrganization({
         'name': _nameCtrl.text.trim(),
         'industry': _industryCtrl.text.trim(),
-        'size': num.parse(_sizeCtrl.text.trim()).toInt(),
+        'size': num.tryParse(_sizeCtrl.text.trim())?.toInt() ?? 0,
         'website': _websiteCtrl.text.trim(),
         'description': _descriptionCtrl.text.trim(),
         'location': _locationCtrl.text.trim(),
@@ -67,11 +68,12 @@ class _EditCompanyInfoPageState extends State<EditCompanyInfoPage> {
           sl<EmployerOrganizationBloc>()..add(LoadEmployerOrganization()),
       child: BlocConsumer<EmployerOrganizationBloc, EmployerOrganizationState>(
         listener: (context, state) {
-          if (state.organization != null)
+          if (state.organization != null) {
             _populateFromOrganization(state.organization!);
+          }
           if (state.isUpdateSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Muvaffaqiyatli saqlandi')),
+              SnackBar(content: Text('shared.saved_success'.tr())),
             );
             context.maybePop();
           }
@@ -91,7 +93,7 @@ class _EditCompanyInfoPageState extends State<EditCompanyInfoPage> {
 
           return Scaffold(
             appBar: AppBar(
-              title: const Text('Kompaniya tahriri'),
+              title: const Text('profile.company_edit').tr(),
             ),
             body: SingleChildScrollView(
               padding: const EdgeInsets.all(16),
@@ -99,34 +101,34 @@ class _EditCompanyInfoPageState extends State<EditCompanyInfoPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   AppInputField(
-                    label: 'KOMPANIYA NOMI',
+                    label: 'auth.complete_profile.company_name_hint'.tr(),
                     controller: _nameCtrl,
                   ),
                   const SizedBox(height: 16),
                   AppInputField(
-                    label: 'SOHA (INDUSTRY)',
+                    label: 'profile.field_of_activity'.tr(),
                     controller: _industryCtrl,
                   ),
                   const SizedBox(height: 16),
                   AppInputField(
-                    label: 'XODIMLAR SONI',
+                    label: 'applicants.filter_title'.tr(),
                     keyboardType: TextInputType.number,
                     controller: _sizeCtrl,
                   ),
                   const SizedBox(height: 16),
                   AppInputField(
-                    label: 'VEB-SAYT',
+                    label: 'WEBSITE',
                     controller: _websiteCtrl,
                     keyboardType: TextInputType.url,
                   ),
                   const SizedBox(height: 16),
                   AppInputField(
-                    label: 'MANZIL',
+                    label: 'opportunities.location'.tr(),
                     controller: _locationCtrl,
                   ),
                   const SizedBox(height: 16),
                   AppInputField(
-                    label: "KOMPANIYA HAQIDA BATAFSIL",
+                    label: 'profile.about_company'.tr(),
                     minLines: 4,
                     maxLines: 6,
                     controller: _descriptionCtrl,
@@ -135,7 +137,7 @@ class _EditCompanyInfoPageState extends State<EditCompanyInfoPage> {
                   AppButton(
                     onTap: state.isUpdating ? () {} : () => _save(context),
                     enabled: !state.isUpdating,
-                    label: 'Saqlash',
+                    label: 'shared.save'.tr(),
                   ),
                   const SizedBox(height: 32),
                 ],

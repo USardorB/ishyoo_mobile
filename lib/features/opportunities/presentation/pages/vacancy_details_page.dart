@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -33,9 +34,9 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
             );
           } else if (state.applySuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Muvaffaqiyatli topshirildi!')),
+              SnackBar(content: Text('opportunities.applied_success'.tr())),
             );
-            context.router.pop(); // Optionally pop back
+            context.router.pop();
           }
         } else if (state is VacancyDetailsError) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -53,7 +54,7 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
         if (state is! VacancyDetailsLoaded) {
           return Scaffold(
             appBar: AppBar(),
-            body: const Center(child: Text("Xatolik yuz berdi")),
+            body: Center(child: const Text("shared.error_occurred").tr()),
           );
         }
 
@@ -72,8 +73,8 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                 icon: const Icon(Icons.share_outlined),
                 onPressed: () {
                   ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(
-                      content: Text("Ulashish tez orada qo'shiladi"),
+                    SnackBar(
+                      content: Text("shared.coming_soon".tr()),
                     ),
                   );
                 },
@@ -127,11 +128,11 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            vacancy.organization?.name ?? "Tashkilot",
+                            vacancy.organization?.name ?? "",
                             style: context.textThemes.s1,
                           ),
                           Text(
-                            vacancy.organization?.industry ?? "Tashkilot",
+                            vacancy.organization?.industry ?? "",
                             style: context.textThemes.b1.copyWith(
                               color: context.colors.textSecondary,
                             ),
@@ -190,7 +191,7 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                               const SizedBox(width: 8),
                               Expanded(
                                 child: Text(
-                                  "${vacancy.totalApplicationsCount} kishi allaqachon javob berdi",
+                                  "${vacancy.totalApplicationsCount}",
                                   style: context.textThemes.b2.copyWith(
                                     color: context.colors.brandDefault,
                                   ),
@@ -203,47 +204,15 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                         ),
                       ),
                       const SizedBox(width: 8),
-                      Expanded(
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 12,
-                          ),
-                          decoration: BoxDecoration(
-                            color: context.colors.brandProgress,
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Row(
-                            children: [
-                              Icon(
-                                Icons.visibility_outlined,
-                                size: 20,
-                                color: context.colors.brandDefault,
-                              ),
-                              const SizedBox(width: 8),
-                              Expanded(
-                                child: Text(
-                                  "2 kishi tomosha qilmoqda", // Hardcoded per design
-                                  style: context.textThemes.b2.copyWith(
-                                    color: context.colors.brandDefault,
-                                  ),
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 ),
                 const SizedBox(height: 32),
                 if (vacancy.description != null) ...[
                   Text(
-                    "Vakansiya haqida",
+                    "opportunities.description",
                     style: context.textThemes.s2,
-                  ),
+                  ).tr(),
                   const SizedBox(height: 12),
                   Text(
                     vacancy.description!,
@@ -254,27 +223,12 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                   ),
                   const SizedBox(height: 24),
                 ],
-                if (vacancy.responsibilities != null &&
-                    vacancy.responsibilities!.isNotEmpty) ...[
-                  Text(
-                    "Vazifalar",
-                    style: context.textThemes.s2,
-                  ),
-                  const SizedBox(height: 12),
-                  ...vacancy.responsibilities!
-                      .split('\n')
-                      .where((s) => s.trim().isNotEmpty)
-                      .map(
-                        (res) => _buildBulletPoint(context, res),
-                      ),
-                  const SizedBox(height: 24),
-                ],
                 if (vacancy.requirements != null &&
                     vacancy.requirements!.isNotEmpty) ...[
                   Text(
-                    "Talablar",
+                    "opportunities.requirements",
                     style: context.textThemes.s2,
-                  ),
+                  ).tr(),
                   const SizedBox(height: 12),
                   ...vacancy.requirements!
                       .split('\n')
@@ -284,26 +238,10 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                       ),
                   const SizedBox(height: 24),
                 ],
-                if (vacancy.keySkills != null &&
-                    vacancy.keySkills!.isNotEmpty) ...[
-                  Text(
-                    "Asosiy ko'nikmalar",
-                    style: context.textThemes.s2,
-                  ),
-                  const SizedBox(height: 12),
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: vacancy.keySkills!
-                        .map((skill) => _buildSkillChip(context, skill))
-                        .toList(),
-                  ),
-                  const SizedBox(height: 24),
-                ],
                 Text(
-                  "Xaritada",
+                  "opportunities.location",
                   style: context.textThemes.s2,
-                ),
+                ).tr(),
                 const SizedBox(height: 12),
                 const VacancyMapPlaceholder(),
               ],
@@ -332,8 +270,8 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
               },
               isLoading: isApplying,
               label: vacancy.hasApplied == true
-                  ? "Javob berilgan"
-                  : "Javob qaytarish",
+                  ? "opportunities.already_applied".tr()
+                  : "opportunities.apply_button".tr(),
             ),
           ),
         );
@@ -343,10 +281,10 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
 
   Widget _buildBadge(BuildContext context, String text) {
     return Container(
-      padding: const .symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         color: context.colors.bgSecondary,
-        borderRadius: .circular(6),
+        borderRadius: BorderRadius.circular(6),
       ),
       child: Text(
         text,
@@ -381,22 +319,6 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _buildSkillChip(BuildContext context, String text) {
-    return Container(
-      padding: const .symmetric(horizontal: 8, vertical: 4),
-      decoration: BoxDecoration(
-        color: context.colors.bgSecondary,
-        borderRadius: .circular(6),
-      ),
-      child: Text(
-        text,
-        style: context.textThemes.b2.copyWith(
-          color: context.colors.textSecondary,
-        ),
       ),
     );
   }

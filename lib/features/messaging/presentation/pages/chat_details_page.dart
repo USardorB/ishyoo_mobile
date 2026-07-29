@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -10,7 +11,6 @@ import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
 import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/messaging/presentation/bloc/messaging_bloc.dart';
-import 'package:mobile/features/messaging/presentation/widgets/chat_actions_sheet.dart';
 import 'package:mobile/features/messaging/presentation/widgets/chat_details_page_job_card.dart';
 import 'package:mobile/features/messaging/presentation/widgets/chat_page_bottom_part.dart';
 import 'package:mobile/features/messaging/presentation/widgets/message_bubble.dart';
@@ -36,7 +36,7 @@ class ChatDetailsPage extends StatelessWidget {
           title: BlocBuilder<MessagingBloc, MessagingState>(
             builder: (context, state) {
               final partner = state.currentChat?.partner;
-              final name = partner?.name ?? 'Yuklanmoqda...';
+              final name = partner?.name ?? 'shared.loading'.tr();
               final avatarUrl = partner?.avatar;
               return ListTile(
                 leading: CircleAvatar(
@@ -60,28 +60,11 @@ class ChatDetailsPage extends StatelessWidget {
               );
             },
           ),
-          actions: [
-            if (false)
-              IconButton(
-                onPressed: () async {
-                  final action = await showModalBottomSheet<ChatActions>(
-                    context: context,
-                    builder: (_) => const ChatActionsSheet(),
-                  );
-                  if (action != null && context.mounted) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text('${action.label} - Tez orada!')),
-                    );
-                  }
-                },
-                icon: const Icon(Icons.more_vert),
-              ),
-          ],
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(kToolbarHeight + 10),
             child: BlocBuilder<MessagingBloc, MessagingState>(
               builder: (context, state) {
-                String title = "Vakansiya / Rezyume";
+                String title = "nav.vacancies".tr();
                 if (state.currentChat != null) {
                   final chat = state.currentChat!;
                   if (isEmployer) {
@@ -102,7 +85,7 @@ class ChatDetailsPage extends StatelessWidget {
 
                     if ((resumeId ?? vacancyId) == null) {
                       AppNotificationOverlay.instance.show(
-                        message: "Ushbu suhbat bo'yicha ma'lumot topilmadi",
+                        message: "shared.no_data".tr(),
                         type: AppNotificationType.warning,
                       );
                       return;
@@ -120,18 +103,18 @@ class ChatDetailsPage extends StatelessWidget {
                   },
                   title: isEmployer
                       ? state
-                                .currentChat
-                                ?.application
-                                ?.resume
-                                ?.specialization ??
-                            ""
+                                 .currentChat
+                                 ?.application
+                                 ?.resume
+                                 ?.specialization ??
+                             ""
                       : state
-                                .currentChat
-                                ?.application
-                                ?.vacancy
-                                ?.organization
-                                ?.name ??
-                            "",
+                                 .currentChat
+                                 ?.application
+                                 ?.vacancy
+                                 ?.organization
+                                 ?.name ??
+                             "",
                   isEmployer: isEmployer,
                 );
               },
@@ -147,7 +130,7 @@ class ChatDetailsPage extends StatelessWidget {
             } else if (state.currentChat == null ||
                 state.currentChat!.messages == null ||
                 state.currentChat!.messages!.isEmpty) {
-              return const Center(child: Text("Xabarlar yo'q"));
+              return Center(child: const Text("messaging.no_chats").tr());
             }
 
             final messages = state.currentChat!.messages!;
@@ -161,7 +144,6 @@ class ChatDetailsPage extends StatelessWidget {
               itemCount: messages.length,
               itemBuilder: (_, index) {
                 final message = messages[index];
-                // Use senderId to check if message is mine
                 final isMine = message.senderId == userId;
 
                 return MessageBubble(

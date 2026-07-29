@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/enums/user_role.dart';
@@ -19,30 +20,44 @@ class MainLayoutPage extends StatelessWidget {
     return AutoTabsScaffold(
       routes: [
         if (isCandidate) ...[
-          CandidateHomeRoute(),
-          ApplicationsRoute(),
-          ChatsRoute(),
-          CandidateProfileRoute(),
+          const CandidateHomeRoute(),
+          const ApplicationsRoute(),
+          const ChatsRoute(),
+          const CandidateProfileRoute(),
         ] else ...[
-          HrDashboardRoute(),
-          ApplicantsRoute(),
-          ChatsRoute(),
-          HRProfileRoute(),
+          const HrDashboardRoute(),
+          const ApplicantsRoute(),
+          const ChatsRoute(),
+          const HRProfileRoute(),
         ],
       ],
       extendBody: true,
       bottomNavigationBuilder: (context, tabsRouter) {
+        final navItems = isCandidate
+            ? [
+                ('nav.home', Icons.home_outlined),
+                ('nav.applications', Icons.assignment_outlined),
+                ('nav.chats', Icons.chat),
+                ('nav.profile', Icons.person),
+              ]
+            : [
+                ('nav.home', Icons.home_outlined),
+                ('nav.candidates', Icons.people_outline),
+                ('nav.chats', Icons.chat),
+                ('nav.profile', Icons.person),
+              ];
+
         return SafeArea(
-          minimum: EdgeInsets.all(16),
+          minimum: const EdgeInsets.all(16),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(40),
             child: BackdropFilter(
               filter: ImageFilter.blur(
                 sigmaX: 12,
                 sigmaY: 12,
-              ), // Strength of the blur
+              ),
               child: Container(
-                padding: EdgeInsets.all(6),
+                padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
                   color: Colors.black.withValues(alpha: 0.05),
                   borderRadius: BorderRadius.circular(40),
@@ -54,61 +69,55 @@ class MainLayoutPage extends StatelessWidget {
                 child: IntrinsicHeight(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children:
-                        [
-                          ('Bosh sahifa', Icons.home_outlined),
-                          ('Javoblar', Icons.assignment_outlined),
-                          ('Chat', Icons.chat),
-                          ('Profile', Icons.person),
-                        ].asMap().entries.map((entry) {
-                          final index = entry.key;
-                          final label = entry.value.$1;
-                          final icon = entry.value.$2;
-                          final isActive = tabsRouter.activeIndex == index;
+                    children: navItems.asMap().entries.map((entry) {
+                      final index = entry.key;
+                      final labelKey = entry.value.$1;
+                      final icon = entry.value.$2;
+                      final isActive = tabsRouter.activeIndex == index;
 
-                          return Expanded(
-                            child: Container(
-                              decoration: isActive
-                                  ? BoxDecoration(
-                                      color: context.colors.brandDefault
-                                          .withValues(alpha: 0.25),
-                                      borderRadius: BorderRadius.circular(40),
-                                    )
-                                  : null,
-                              child: TextButton(
-                                style: TextButton.styleFrom(
-                                  visualDensity: VisualDensity.comfortable,
-                                  textStyle: context.textThemes.buttonSmall,
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(
-                                      icon,
-                                      size: 24,
-                                      color: isActive
-                                          ? context.colors.brandDefault
-                                          : context.colors.textSecondary,
-                                    ),
-                                    Text(
-                                      label,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: TextStyle(
-                                        color: isActive
-                                            ? context.colors.brandDefault
-                                            : context.colors.textSecondary,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                onPressed: () {
-                                  tabsRouter.setActiveIndex(index);
-                                },
-                              ),
+                      return Expanded(
+                        child: Container(
+                          decoration: isActive
+                              ? BoxDecoration(
+                                  color: context.colors.brandDefault
+                                      .withValues(alpha: 0.25),
+                                  borderRadius: BorderRadius.circular(40),
+                                )
+                              : null,
+                          child: TextButton(
+                            style: TextButton.styleFrom(
+                              visualDensity: VisualDensity.comfortable,
+                              textStyle: context.textThemes.buttonSmall,
                             ),
-                          );
-                        }).toList(),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  icon,
+                                  size: 24,
+                                  color: isActive
+                                      ? context.colors.brandDefault
+                                      : context.colors.textSecondary,
+                                ),
+                                Text(
+                                  labelKey,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    color: isActive
+                                        ? context.colors.brandDefault
+                                        : context.colors.textSecondary,
+                                  ),
+                                ).tr(),
+                              ],
+                            ),
+                            onPressed: () {
+                              tabsRouter.setActiveIndex(index);
+                            },
+                          ),
+                        ),
+                      );
+                    }).toList(),
                   ),
                 ),
               ),

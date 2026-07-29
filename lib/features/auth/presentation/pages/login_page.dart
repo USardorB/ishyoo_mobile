@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -41,7 +42,7 @@ class LoginPage extends HookWidget {
     Future<void> onLogin() async {
       if (phoneController.text.isEmpty || passwordController.text.isEmpty) {
         AppNotificationOverlay.instance.show(
-          message: 'Iltimos telefon raqam va parolni kiriting',
+          message: 'shared.error_occurred'.tr(),
           type: .warning,
         );
         return;
@@ -81,97 +82,97 @@ class LoginPage extends HookWidget {
             context.router.replaceAll([const MainLayoutRoute()]);
           } else if (state.status == AuthStatus.failure) {
             AppNotificationOverlay.instance.show(
-              message: state.errorMessage ?? 'Xatolik yuz berdi',
+              message: state.errorMessage ?? 'shared.error_occurred'.tr(),
               type: .error,
             );
           }
         },
         builder: (context, state) {
           return SafeArea(
-            minimum: .all(16),
+            minimum: const EdgeInsets.all(16),
             child: Column(
-              crossAxisAlignment: .stretch,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Column(
-                  crossAxisAlignment: .stretch,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      "Hisobga kirish",
-                      textAlign: .center,
+                      "auth.login.title",
+                      textAlign: TextAlign.center,
                       maxLines: 1,
-                      overflow: .ellipsis,
+                      overflow: TextOverflow.ellipsis,
                       style: context.textThemes.h5,
-                    ),
-                    SizedBox(height: 12),
+                    ).tr(),
+                    const SizedBox(height: 12),
                     Text(
-                      'Hisob kirish uchun telefon raqam va parolni kiriting',
-                      textAlign: .center,
+                      'auth.login.subtitle',
+                      textAlign: TextAlign.center,
                       maxLines: 3,
-                      overflow: .ellipsis,
+                      overflow: TextOverflow.ellipsis,
                       style: context.textThemes.b1.copyWith(
                         color: context.colors.textSecondary,
                       ),
-                    ),
+                    ).tr(),
                   ],
                 ),
-                SizedBox(height: 32),
+                const SizedBox(height: 32),
                 AppInputField(
                   hintText: '99 888 99 88',
-                  autofillHints: [AutofillHints.telephoneNumberNational],
+                  autofillHints: const [AutofillHints.telephoneNumberNational],
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.phone,
                   controller: phoneController,
-                  prefixIcon: PhoneNumberFieldPrefix(),
-                  label: 'Telefon raqami',
+                  prefixIcon: const PhoneNumberFieldPrefix(),
+                  label: 'auth.login.phone_label'.tr(),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 AppInputField(
                   obscureText: isObscured.value,
                   hintText: '********',
-                  autofillHints: [AutofillHints.password],
+                  autofillHints: const [AutofillHints.password],
                   textInputAction: TextInputAction.done,
                   keyboardType: TextInputType.visiblePassword,
                   controller: passwordController,
-                  label: 'Parol',
+                  label: 'auth.login.password_label'.tr(),
                   suffixIcon: IconButton(
                     onPressed: () {
                       isObscured.value = !isObscured.value;
                     },
                     isSelected: isObscured.value,
-                    selectedIcon: Icon(Icons.visibility_off),
-                    icon: Icon(Icons.visibility),
+                    selectedIcon: const Icon(Icons.visibility_off),
+                    icon: const Icon(Icons.visibility),
                   ),
                 ),
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Align(
-                  alignment: .centerRight,
+                  alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {
                       context.router.push(const ForgotPasswordRoute());
                     },
                     child: Text(
-                      'Parolni unutdingizmi?',
+                      'auth.login.forgot_password',
                       style: context.textThemes.b1,
-                    ),
+                    ).tr(),
                   ),
                 ),
-                Spacer(),
-                SizedBox(height: 16),
+                const Spacer(),
+                const SizedBox(height: 16),
                 AppButton(
                   onTap: onLogin,
                   isLoading: state.status == AuthStatus.loading,
-                  label: 'Kirish',
+                  label: 'auth.login.cta_button'.tr(),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 Row(
-                  mainAxisAlignment: .center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Yangimisiz?',
-                      textAlign: .center,
+                      'auth.login.no_account',
+                      textAlign: TextAlign.center,
                       style: context.textThemes.b1,
-                    ),
+                    ).tr(),
                     TextButton(
                       onPressed: () {
                         context.router.push(
@@ -179,9 +180,9 @@ class LoginPage extends HookWidget {
                         );
                       },
                       child: Text(
-                        'Ro\'yxatdan o\'ting',
+                        'auth.login.register_link',
                         style: context.textThemes.b1,
-                      ),
+                      ).tr(),
                     ),
                   ],
                 ),
@@ -190,17 +191,17 @@ class LoginPage extends HookWidget {
                     onPressed: () =>
                         context.router.replaceAll([const MainLayoutRoute()]),
                     style: TextButton.styleFrom(
-                      tapTargetSize: .shrinkWrap,
-                      visualDensity: .compact,
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      visualDensity: VisualDensity.compact,
                       foregroundColor: context.colors.textSecondary,
                     ),
                     child: Text(
-                      "O'tkazib yuborish",
+                      "shared.skip",
                       style: context.textThemes.buttonMedium,
-                    ),
+                    ).tr(),
                   ),
                 ),
-                Flexible(flex: 0, child: SizedBox(height: 12)),
+                const Flexible(flex: 0, child: SizedBox(height: 12)),
               ],
             ),
           );

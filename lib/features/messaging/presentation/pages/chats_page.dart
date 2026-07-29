@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -27,13 +28,12 @@ class ChatsPage extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             title: DarkGlassSearchField(
-              hintText: "Search chats...",
-              prefixIcon: IconButton(
+              hintText: "messaging.search_placeholder".tr(),
+              prefixIcon: const IconButton(
                 onPressed: null,
-                icon: const Icon(Icons.search),
+                icon: Icon(Icons.search),
               ),
             ),
-            // bottom: ChatTypeFilterTab(),
           ),
           body: BlocBuilder<MessagingBloc, MessagingState>(
             builder: (context, state) {
@@ -42,9 +42,8 @@ class ChatsPage extends StatelessWidget {
               } else if (state.error != null) {
                 return Center(child: Text(state.error!));
               } else if (state.chats == null || state.chats!.isEmpty) {
-                return const NoApplicationPlaceholder(
-                  message:
-                      "Hozircha suhbatlar yo‘q. Suhbatlar bu yerda paydo bo‘ladi.",
+                return NoApplicationPlaceholder(
+                  message: "messaging.no_chats".tr(),
                 );
               }
 
@@ -59,7 +58,6 @@ class ChatsPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   final chat = state.chats![index];
 
-                  // Logic to extract partner details
                   String title = "Noma'lum";
                   String image = "https://i.pravatar.cc/100?u=${chat.id}";
 
@@ -79,8 +77,8 @@ class ChatsPage extends StatelessWidget {
 
                   final lastMessage =
                       chat.messages != null && chat.messages!.isNotEmpty
-                      ? (chat.messages!.first.content ?? 'Fayl yuborildi')
-                      : "Suhbat boshlandi";
+                      ? (chat.messages!.first.content ?? 'messaging.attachment'.tr())
+                      : "messaging.title".tr();
 
                   return ChatItem(
                     chatId: chat.id,

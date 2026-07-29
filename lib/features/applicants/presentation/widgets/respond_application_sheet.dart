@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
@@ -47,43 +48,19 @@ class _RespondApplicationSheetState extends State<RespondApplicationSheet> {
     if (widget.type == ApplicationResponseType.invite) {
       _options = [
         ApplicationResponseOption(
-          title: "Birlamchi aloqa",
-          subtitle: "Bu tugma rezyume ma'qul kelganda",
+          title: "applicants.invite_button".tr(),
+          subtitle: "applicants.invited".tr(),
           messageTemplate:
               "Hurmatli {Name},\n\nVakansiyamizga yuborgan rezyumengizni ko'rib chiqdik. Sizning profilingiz bizda qiziqish uyg'otdi.\n\nKo'nikmalaringizni batafsilroq muhokama qilish uchun siz bilan 10-15 daqiqalik qisqa telefon suhbati tashkil qilmoqchimiz. Yaqin kunlar ichida sizga aloqaga chiqamiz.\n\nHurmat bilan,\nKompaniya jamoasi",
-        ),
-        ApplicationResponseOption(
-          title: "Texnik suhbat",
-          subtitle: "Team Lead yoki ekspertlar bilan chuqurroq suhbatga",
-          messageTemplate:
-              "Hurmatli {Name},\n\nRezyumengiz bizda qiziqish uyg'otdi. Sizni Team Lead va texnik ekspertlarimiz bilan suhbatga taklif qilamiz. Biz bilan qachon bog'lana olishingizni ma'lum qiling.\n\nHurmat bilan,\nKompaniya jamoasi",
-        ),
-        ApplicationResponseOption(
-          title: "Rahbariyat bilan suhbat",
-          subtitle: "Rahbari yoki direktor bilan uchrashuvga chaqirish",
-          messageTemplate:
-              "Hurmatli {Name},\n\nNomzodingiz ma'qul keldi. Sizni rahbariyat bilan bo'ladigan suhbatga taklif qilamiz. Uchrashuv vaqtini kelishib olish uchun aloqaga chiqamiz.\n\nHurmat bilan,\nKompaniya jamoasi",
         ),
       ];
     } else {
       _options = [
         ApplicationResponseOption(
-          title: "Yumshoq rad",
-          subtitle: "Afsuski, sizning rezyumengiz mos kelmadi...",
+          title: "applications.tabs.rejected".tr(),
+          subtitle: "applicants.unsuitable".tr(),
           messageTemplate:
               "Hurmatli {Name},\n\nVakansiyaga qiziqqaningiz uchun rahmat. Afsuski, bu safar boshqa nomzod tanlandi.\n\nKelajakda yangi imkoniyatlar uchun yana murojaat qiling.\n\nHurmat bilan,\nKompaniya jamoasi",
-        ),
-        ApplicationResponseOption(
-          title: "Tajriba yetishmaydi",
-          subtitle: "Sizning tajribangiz pozitsiya uchun yetarli emas...",
-          messageTemplate:
-              "Hurmatli {Name},\n\nVakansiyaga qiziqqaningiz uchun rahmat. Afsuski, tajribangiz ushbu pozitsiya uchun yetarli emas deb topildi.\n\nKelajakda yangi imkoniyatlar uchun yana murojaat qiling.\n\nHurmat bilan,\nKompaniya jamoasi",
-        ),
-        ApplicationResponseOption(
-          title: "Boshqa nomzod tanlandi",
-          subtitle: "Biz boshqa nomzodni tanladik...",
-          messageTemplate:
-              "Hurmatli {Name},\n\nVakansiyaga qiziqqaningiz uchun rahmat. Afsuski, biz boshqa nomzodni tanladik.\n\nKelajakda yangi imkoniyatlar uchun yana murojaat qiling.\n\nHurmat bilan,\nKompaniya jamoasi",
         ),
       ];
     }
@@ -109,7 +86,7 @@ class _RespondApplicationSheetState extends State<RespondApplicationSheet> {
 
     return Padding(
       padding:
-          EdgeInsets.symmetric(
+          const EdgeInsets.symmetric(
             vertical: 12,
             horizontal: 16,
           ).copyWith(
@@ -120,19 +97,19 @@ class _RespondApplicationSheetState extends State<RespondApplicationSheet> {
         mainAxisSize: MainAxisSize.min,
         children: [
           _buildHandler(context),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Text(
-            isInvite ? "Taklif qilish xati" : "Rad etish xati",
+            isInvite ? "applicants.invite_button" : "applications.reject_title",
             style: context.textThemes.h5,
-          ),
-          SizedBox(height: 4),
+          ).tr(),
+          const SizedBox(height: 4),
           Text(
             widget.applicantName,
             style: context.textThemes.b1.copyWith(
               color: context.colors.textSecondary,
             ),
           ),
-          SizedBox(height: 18),
+          const SizedBox(height: 18),
           ...List.generate(_options.length, (index) {
             return Padding(
               padding: const EdgeInsets.only(bottom: 12),
@@ -143,14 +120,14 @@ class _RespondApplicationSheetState extends State<RespondApplicationSheet> {
               ),
             );
           }),
-          SizedBox(height: 4),
+          const SizedBox(height: 4),
           Text(
-            "XAT MATNI",
+            "messaging.type_message".tr(),
             style: context.textThemes.b2.copyWith(
               color: context.colors.textSecondary,
             ),
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           TextField(
             controller: _textController,
             decoration: InputDecoration(
@@ -164,18 +141,17 @@ class _RespondApplicationSheetState extends State<RespondApplicationSheet> {
             minLines: 4,
             maxLines: 6,
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           AppButton(
             onTap: () {
               Navigator.pop(context, _textController.text);
             },
             label: isInvite
-                ? "Taklif qilish xatini yuborish"
-                : "Rad etish xatini yuborish",
+                ? "applicants.invite_button".tr()
+                : "shared.cancel".tr(),
             color: isInvite
                 ? context.colors.brandDefault
                 : context.colors.danger,
-            // foregroundColor: isInvite ? context.colors.midnightImmutable : null,
           ),
         ],
       ),
@@ -197,7 +173,7 @@ class _RespondApplicationSheetState extends State<RespondApplicationSheet> {
         });
       },
       child: Container(
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: context.colors.bgCard,
           borderRadius: BorderRadius.circular(14),
@@ -214,7 +190,7 @@ class _RespondApplicationSheetState extends State<RespondApplicationSheet> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(option.title, style: context.textThemes.s3),
-                  SizedBox(height: 6),
+                  const SizedBox(height: 6),
                   Text(
                     option.subtitle,
                     maxLines: 1,

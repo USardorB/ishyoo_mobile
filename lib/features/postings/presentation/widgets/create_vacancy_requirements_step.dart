@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
@@ -34,12 +35,12 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text("Tavsif va talablar", style: context.textThemes.h5),
+          Text("opportunities.description", style: context.textThemes.h5).tr(),
           const SizedBox(height: 20),
 
           // About Vacancy
           Text(
-            "VAKANSIYA HAQIDA",
+            "opportunities.description".tr(),
             style: context.textThemes.c1.copyWith(
               color: context.colors.textSecondary,
             ),
@@ -50,48 +51,11 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
             minLines: 4,
             maxLines: 6,
           ),
-          const Align(
-            alignment: Alignment.centerRight,
-            child: Padding(
-              padding: EdgeInsets.only(top: 8.0),
-              child: Text(
-                "187 / 500",
-                style: TextStyle(color: Color(0xFFC0CA33), fontSize: 12),
-              ),
-            ),
-          ),
-          const SizedBox(height: 16),
-
-          // Tasks
-          Text(
-            "VAZIFALAR",
-            style: context.textThemes.c1.copyWith(
-              color: context.colors.textSecondary,
-            ),
-          ),
-          const SizedBox(height: 8),
-          AppInputField(
-            controller: tasksController,
-            minLines: 5,
-            maxLines: 8,
-          ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Text(
-                "198 / 1000",
-                style: context.textThemes.c2.copyWith(
-                  color: context.colors.textSecondary,
-                ),
-              ),
-            ),
-          ),
           const SizedBox(height: 16),
 
           // Requirements
           Text(
-            "TALABLAR",
+            "opportunities.requirements".tr(),
             style: context.textThemes.c1.copyWith(
               color: context.colors.textSecondary,
             ),
@@ -102,23 +66,11 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
             minLines: 4,
             maxLines: 6,
           ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 8.0),
-              child: Text(
-                "156 / 1000",
-                style: context.textThemes.c2.copyWith(
-                  color: context.colors.textSecondary,
-                ),
-              ),
-            ),
-          ),
           const SizedBox(height: 16),
 
           // Skills
           Text(
-            "KO'NIKMALAR",
+            "profile.languages".tr(),
             style: context.textThemes.c1.copyWith(
               color: context.colors.textSecondary,
             ),
@@ -187,11 +139,11 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    "Ko'nikma qo'shish",
+                    "shared.add",
                     style: context.textThemes.b2.copyWith(
                       color: context.colors.brandProgress,
                     ),
-                  ),
+                  ).tr(),
                 ],
               ),
             ),
@@ -200,7 +152,7 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
 
           // Experience
           Text(
-            "TAJRIBA",
+            "profile.experience".tr(),
             style: context.textThemes.c1.copyWith(
               color: context.colors.textSecondary,
             ),
@@ -232,7 +184,7 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           AppButton(
-            label: "Davom etish",
+            label: "shared.continue".tr(),
             onTap: onNext,
           ),
           const SizedBox(height: 16),

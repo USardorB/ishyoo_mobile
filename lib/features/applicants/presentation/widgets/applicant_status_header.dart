@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
@@ -20,15 +21,15 @@ class ApplicantStatusHeader extends StatelessWidget {
   String _statusLabel(String? status) {
     switch (status) {
       case 'applied':
-        return 'Ariza topshirildi';
+        return 'applications.status.pending'.tr();
       case 'interview':
-        return 'Intervyu';
+        return 'applications.status.interview'.tr();
       case 'offered':
-        return 'Taklif yuborildi';
+        return 'applicants.invited'.tr();
       case 'rejected':
-        return 'Rad etildi';
+        return 'applications.status.rejected'.tr();
       case 'hired':
-        return 'Qabul qilindi';
+        return 'applications.status.interview'.tr();
       default:
         return status ?? 'Noma\'lum';
     }
@@ -51,11 +52,11 @@ class ApplicantStatusHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Status",
+            "applicants.unseen",
             style: context.textThemes.b1.copyWith(
               color: context.colors.textSecondary,
             ),
-          ),
+          ).tr(),
           const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -92,8 +93,8 @@ class ApplicantStatusHeader extends StatelessWidget {
                 color: context.colors.brandProgress,
                 foregroundColor: context.colors.brandDefault,
                 label: state.isUpdating
-                    ? "Yuklanmoqda..."
-                    : "Statusni o'zgartirish",
+                    ? "shared.continue".tr()
+                    : "shared.edit".tr(),
               );
             },
           ),

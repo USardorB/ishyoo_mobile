@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
@@ -33,23 +34,23 @@ class ResumeSuccessPage extends StatelessWidget {
               ),
               const SizedBox(height: 32),
               Text(
-                "Rezyume tayyor!",
+                "shared.saved_success",
                 style: context.textThemes.h4,
-              ),
+              ).tr(),
               const SizedBox(height: 16),
               Text(
-                "Rezyumengiz e'lon qilindi. Endi ish beruvchilar\nsizni ko'radi va takliflar yuboradi.",
+                "shared.saved_success",
                 textAlign: TextAlign.center,
                 style: context.textThemes.b2.copyWith(
                   color: context.colors.textSecondary,
                 ),
-              ),
+              ).tr(),
               const Spacer(),
               AppButton(
                 onTap: () {
                   context.router.popUntilRoot();
                 },
-                label: "Rezyumeni ko'rish",
+                label: "resume.create_resume".tr(),
                 color: context.colors.brandProgress,
                 foregroundColor: Colors.black,
               ),

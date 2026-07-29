@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -25,39 +26,39 @@ class TrendingVacancyCard extends StatelessWidget {
   }
 
   String _formatSalary(double? from, double? to, String? currency) {
-    if (from == null && to == null) return "Kelishuv asosida";
+    if (from == null && to == null) return "shared.negotiable".tr();
     final c = currency?.toUpperCase() ?? "UZS";
     if (from != null && to != null) {
       return "$from - $to $c";
     }
-    if (from != null) return "dan $from $c";
-    return "gacha $to $c";
+    if (from != null) return "$from $c";
+    return "$to $c";
   }
 
   @override
   Widget build(BuildContext context) {
     final v = vacancy;
-    final orgName = v?.organization?.name ?? "Uzum Bank";
+    final orgName = v?.organization?.name ?? "";
     final isHot = v?.isTemporary == true;
-    final title = v?.jobTitle ?? "UX/UI Dizayner";
+    final title = v?.jobTitle ?? "";
 
     final details = [
-      v?.location ?? "Toshkent",
-      v?.jobType?.replaceAll('_', ' ') ?? "To'liq stavka",
-      v?.experienceLevel?.replaceAll('_', ' ') ?? "Tajriba 1-3 yil",
-    ].join(" • ");
+      v?.location ?? "",
+      v?.jobType?.replaceAll('_', ' ') ?? "",
+      v?.experienceLevel?.replaceAll('_', ' ') ?? "",
+    ].where((s) => s.isNotEmpty).join(" • ");
 
     return InkWell(
       onTap: () => context.pushRoute(VacancyDetailsRoute(id: v!.id)),
       borderRadius: BorderRadius.circular(16),
       child: Container(
-        padding: const .all(12),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: context.colors.bgPrimary,
-          borderRadius: .circular(16),
+          borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
-          crossAxisAlignment: .start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
@@ -86,9 +87,9 @@ class TrendingVacancyCard extends StatelessWidget {
                 const Spacer(),
                 IconButton(
                   style: IconButton.styleFrom(
-                    tapTargetSize: .shrinkWrap,
-                    visualDensity: .compact,
-                    padding: .zero,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    visualDensity: VisualDensity.compact,
+                    padding: EdgeInsets.zero,
                   ),
                   icon: Icon(
                     isLiked ? Icons.favorite : Icons.favorite_border,
@@ -112,7 +113,7 @@ class TrendingVacancyCard extends StatelessWidget {
             Text(
               title,
               maxLines: 2,
-              overflow: .ellipsis,
+              overflow: TextOverflow.ellipsis,
               style: context.textThemes.s1,
             ),
             const SizedBox(height: 8),
@@ -155,13 +156,6 @@ class TrendingVacancyCard extends StatelessWidget {
                       _formatSalary(v?.salaryFrom, v?.salaryTo, v?.currency),
                       style: context.textThemes.s2,
                     ),
-                    if (v?.salaryFrom != null || v?.salaryTo != null)
-                      Text(
-                        "oyiga",
-                        style: context.textThemes.c2.copyWith(
-                          color: context.colors.textSecondary,
-                        ),
-                      ),
                   ],
                 ),
                 const Spacer(),
@@ -173,7 +167,7 @@ class TrendingVacancyCard extends StatelessWidget {
                     backgroundColor: Colors.transparent,
                     builder: (_) => const ApplyToVacancySheet(),
                   ),
-                  label: "Javob qaytarish",
+                  label: "opportunities.apply".tr(),
                   foregroundColor: context.colors.brandDefault,
                   color: context.colors.brandProgress,
                   labelStyle: context.textThemes.b3,

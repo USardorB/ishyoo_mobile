@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -8,7 +9,7 @@ import 'package:mobile/features/postings/presentation/bloc/postings_bloc.dart';
 import 'package:mobile/features/postings/presentation/widgets/create_vacancy_basic_info_step.dart';
 import 'package:mobile/features/postings/presentation/widgets/create_vacancy_requirements_step.dart';
 import 'package:mobile/features/postings/presentation/widgets/create_vacancy_summary_step.dart';
-import 'package:mobile/features/postings/presentation/widgets/tallent_filter_sheet.dart'; // for JobType and ExperienceLevel
+import 'package:mobile/features/postings/presentation/widgets/tallent_filter_sheet.dart';
 
 @RoutePage()
 class CreateVacancyPage extends StatefulWidget {
@@ -26,7 +27,6 @@ class _CreateVacancyPageState extends State<CreateVacancyPage> {
 
   bool get _isEditMode => widget.vacancyToEdit != null;
 
-  // Step 1 Controllers & State
   final _titleController = TextEditingController();
   String? _selectedSpecialization;
   final _addressController = TextEditingController();
@@ -35,7 +35,6 @@ class _CreateVacancyPageState extends State<CreateVacancyPage> {
   final _phoneController = TextEditingController();
   JobType _selectedJobType = JobType.fullTime;
 
-  // Step 2 Controllers & State
   final _descriptionController = TextEditingController();
   final _tasksController = TextEditingController();
   final _requirementsController = TextEditingController();
@@ -97,7 +96,7 @@ class _CreateVacancyPageState extends State<CreateVacancyPage> {
         },
         child: Scaffold(
           appBar: AppBar(
-            title: Text(_isEditMode ? 'Tahrirlash' : 'Yangi vakansiya'),
+            title: Text(_isEditMode ? 'opportunities.edit_vacancy' : 'opportunities.create_vacancy').tr(),
             leading: IconButton(
               icon: const Icon(Icons.arrow_back),
               onPressed: () {

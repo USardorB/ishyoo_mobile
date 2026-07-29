@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
@@ -26,7 +27,7 @@ class ResumeExperienceListStep extends StatelessWidget {
             const SizedBox(height: 16),
             if (experiences.isNotEmpty)
               Text(
-                "${experiences.length} ta ish joyi",
+                "profile.experience".tr(),
                 style: context.textThemes.s1,
               ),
             const SizedBox(height: 16),
@@ -51,13 +52,15 @@ class ResumeExperienceListStep extends StatelessWidget {
                     state.formData['experiences'] ?? [],
                   );
                   newExperiences.add(result);
-                  context.read<ResumeFormBloc>().add(
-                    UpdateFormData({'experiences': newExperiences}),
-                  );
+                  if (context.mounted) {
+                    context.read<ResumeFormBloc>().add(
+                      UpdateFormData({'experiences': newExperiences}),
+                    );
+                  }
                 }
               },
               icon: Icons.add,
-              label: "Ish tajribasini qo'shish",
+              label: "shared.add".tr(),
               color: context.colors.brandProgress.withValues(alpha: 0.15),
               foregroundColor: context.colors.brandProgress,
               labelStyle: context.textThemes.b2,
@@ -79,7 +82,7 @@ class ResumeExperienceListStep extends StatelessWidget {
         final result = await context.pushRoute(
           EditResumeExperienceRoute(experience: exp),
         );
-        if (result != null && result is Map<String, dynamic>) {
+        if (result != null && result is Map<String, dynamic> && context.mounted) {
           final bloc = context.read<ResumeFormBloc>();
           final currentData = bloc.state.formData;
           final newExperiences = List<Map<String, dynamic>>.from(
@@ -128,7 +131,7 @@ class ResumeExperienceListStep extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              "${exp.startDate?.year ?? ''} - ${exp.endDate?.year ?? 'hozir'}",
+              "${exp.startDate?.year ?? ''} - ${exp.endDate?.year ?? 'shared.present'.tr()}",
               style: context.textThemes.c1.copyWith(
                 color: context.colors.textSecondary,
               ),

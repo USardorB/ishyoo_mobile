@@ -19,9 +19,9 @@ class CandidateLanguagesSection extends StatelessWidget {
             spacing: 8,
             runSpacing: 8,
             children: [
-              _buildLanguageChip(context, "O'zbek, ona tili"),
-              _buildLanguageChip(context, "Ingliz tili, A1 - Boshlang'ich"),
-              _buildLanguageChip(context, "Rus tili, S2 - Mukammal"),
+              _buildLanguageChip(context, "O'zbek"),
+              _buildLanguageChip(context, "English"),
+              _buildLanguageChip(context, "Русский"),
             ],
           ),
         ],

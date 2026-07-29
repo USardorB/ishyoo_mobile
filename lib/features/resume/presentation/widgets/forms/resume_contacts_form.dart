@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,7 +44,7 @@ class ResumeContactsForm extends HookWidget {
       children: [
         const SizedBox(height: 16),
         AppInputField(
-          label: "Mutaxassislik",
+          label: "talents.search_placeholder".tr(),
           controller: specializationController,
           readOnly: true,
           onTap: () async {
@@ -61,21 +62,21 @@ class ResumeContactsForm extends HookWidget {
         ),
         const SizedBox(height: 24),
         AppInputField(
-          label: "Kutilayotgan maosh (so'm)",
+          label: "opportunities.salary".tr(args: ['']),
           controller: salaryController,
           keyboardType: TextInputType.number,
           onChanged: (_) => updateData(),
         ),
         const SizedBox(height: 24),
         AppInputField(
-          label: "Email",
+          label: "EMAIL",
           controller: emailController,
           keyboardType: TextInputType.emailAddress,
           readOnly: true,
         ),
         const SizedBox(height: 24),
         AppInputField(
-          label: "Telefon",
+          label: "auth.login.phone_label".tr(),
           controller: phoneController,
           keyboardType: TextInputType.phone,
           readOnly: true,

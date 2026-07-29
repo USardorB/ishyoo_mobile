@@ -1,5 +1,7 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/core/enums/app_languages.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/features/settings/pages/widgets/choose_language_sheet.dart';
@@ -14,31 +16,33 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final currentLang = AppLanguages.fromLocale(context.locale);
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Sozlamalar'),
+        title: Text('settings.title', style: context.textThemes.h5).tr(),
         centerTitle: true,
       ),
       body: Padding(
-        padding: .all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           children: [
             Card.filled(
-              clipBehavior: .hardEdge,
-              margin: .zero,
+              clipBehavior: Clip.hardEdge,
+              margin: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
-                borderRadius: .circular(16),
+                borderRadius: BorderRadius.circular(16),
               ),
               color: context.colors.bgPrimary,
               child: Column(
                 children: [
                   ListTile(
-                    onTap: () => context.router.push(EditCompanyInfoRoute()),
+                    onTap: () => context.router.push(const EditCompanyInfoRoute()),
                     leading: Container(
-                      padding: .all(4),
+                      padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         color: context.colors.bgSecondary,
-                        borderRadius: .circular(8),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       child: Icon(
                         Icons.person,
@@ -46,9 +50,9 @@ class SettingsPage extends StatelessWidget {
                       ),
                     ),
                     title: Text(
-                      'Kompaniya',
+                      'profile.company_info',
                       style: context.textThemes.buttonLarge,
-                    ),
+                    ).tr(),
                     trailing: Icon(
                       Icons.arrow_forward_ios,
                       color: context.colors.textSecondary,
@@ -62,14 +66,14 @@ class SettingsPage extends StatelessWidget {
                           thickness: .5,
                           color: context.colors.bgSecondary,
                         ),
-                        child: ConfigureNotificationPreferencesSheet(),
+                        child: const ConfigureNotificationPreferencesSheet(),
                       ),
                     ),
                     leading: Container(
-                      padding: .all(4),
+                      padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         color: context.colors.bgSecondary,
-                        borderRadius: .circular(8),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       child: Icon(
                         Icons.notifications_active_outlined,
@@ -77,9 +81,9 @@ class SettingsPage extends StatelessWidget {
                       ),
                     ),
                     title: Text(
-                      'Bildirishnomalar',
+                      'settings.notifications',
                       style: context.textThemes.buttonLarge,
-                    ),
+                    ).tr(),
                     trailing: Icon(
                       Icons.arrow_forward_ios,
                       color: context.colors.textSecondary,
@@ -91,10 +95,10 @@ class SettingsPage extends StatelessWidget {
                       mode: LaunchMode.inAppBrowserView,
                     ),
                     leading: Container(
-                      padding: .all(4),
+                      padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         color: context.colors.bgSecondary,
-                        borderRadius: .circular(8),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       child: Icon(
                         Icons.description_outlined,
@@ -102,34 +106,9 @@ class SettingsPage extends StatelessWidget {
                       ),
                     ),
                     title: Text(
-                      'Ishlatish qoidasi',
+                      'settings.terms_of_use',
                       style: context.textThemes.buttonLarge,
-                    ),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios,
-                      color: context.colors.textSecondary,
-                    ),
-                  ),
-                  ListTile(
-                    onTap: () => launchUrl(
-                      Uri.parse("https://www.ishyoo.uz/help"),
-                      mode: LaunchMode.inAppBrowserView,
-                    ),
-                    leading: Container(
-                      padding: .all(4),
-                      decoration: BoxDecoration(
-                        color: context.colors.bgSecondary,
-                        borderRadius: .circular(8),
-                      ),
-                      child: Icon(
-                        Icons.headset_mic_outlined,
-                        color: context.colors.textSecondary,
-                      ),
-                    ),
-                    title: Text(
-                      'Yordam markazi',
-                      style: context.textThemes.buttonLarge,
-                    ),
+                    ).tr(),
                     trailing: Icon(
                       Icons.arrow_forward_ios,
                       color: context.colors.textSecondary,
@@ -138,22 +117,22 @@ class SettingsPage extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             Card.filled(
-              margin: .zero,
-              clipBehavior: .hardEdge,
+              margin: EdgeInsets.zero,
+              clipBehavior: Clip.hardEdge,
               shape: RoundedRectangleBorder(
-                borderRadius: .circular(16),
+                borderRadius: BorderRadius.circular(16),
               ),
               color: context.colors.bgPrimary,
               child: Column(
                 children: [
                   ListTile(
                     leading: Container(
-                      padding: .all(4),
+                      padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         color: context.colors.bgSecondary,
-                        borderRadius: .circular(8),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       child: Icon(
                         Icons.language,
@@ -161,19 +140,19 @@ class SettingsPage extends StatelessWidget {
                       ),
                     ),
                     title: Text(
-                      'Ilova tili',
+                      'settings.language',
                       style: context.textThemes.buttonLarge,
-                    ),
+                    ).tr(),
                     trailing: Row(
-                      mainAxisSize: .min,
-                      spacing: 8,
+                      mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          'O‘zbek',
+                          currentLang.title,
                           style: context.textThemes.buttonMedium.copyWith(
                             color: context.colors.textSecondary,
                           ),
                         ),
+                        const SizedBox(width: 8),
                         Icon(
                           Icons.arrow_forward_ios,
                           color: context.colors.textSecondary,
@@ -187,7 +166,7 @@ class SettingsPage extends StatelessWidget {
                           thickness: .5,
                           color: context.colors.bgSecondary,
                         ),
-                        child: ChooseLanguageSheet(),
+                        child: const ChooseLanguageSheet(),
                       ),
                     ),
                   ),
@@ -199,14 +178,14 @@ class SettingsPage extends StatelessWidget {
                           thickness: .5,
                           color: context.colors.bgSecondary,
                         ),
-                        child: ChooseThemeSheet(),
+                        child: const ChooseThemeSheet(),
                       ),
                     ),
                     leading: Container(
-                      padding: .all(4),
+                      padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         color: context.colors.bgSecondary,
-                        borderRadius: .circular(8),
+                        borderRadius: BorderRadius.circular(8),
                       ),
                       child: Icon(
                         Icons.palette_outlined,
@@ -214,35 +193,23 @@ class SettingsPage extends StatelessWidget {
                       ),
                     ),
                     title: Text(
-                      'Dastur mavzusi',
+                      'settings.theme',
                       style: context.textThemes.buttonLarge,
-                    ),
-                    trailing: Row(
-                      mainAxisSize: .min,
-                      spacing: 8,
-                      children: [
-                        Text(
-                          'Tizimli',
-                          style: context.textThemes.buttonMedium.copyWith(
-                            color: context.colors.textSecondary,
-                          ),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          color: context.colors.textSecondary,
-                        ),
-                      ],
+                    ).tr(),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios,
+                      color: context.colors.textSecondary,
                     ),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 12),
+            const SizedBox(height: 12),
             Card.filled(
-              clipBehavior: .hardEdge,
-              margin: .zero,
+              clipBehavior: Clip.hardEdge,
+              margin: EdgeInsets.zero,
               shape: RoundedRectangleBorder(
-                borderRadius: .circular(16),
+                borderRadius: BorderRadius.circular(16),
               ),
               color: context.colors.bgPrimary,
               child: Column(
@@ -251,36 +218,36 @@ class SettingsPage extends StatelessWidget {
                     onTap: () {
                       showDialog(
                         context: context,
-                        builder: (_) => LogoutConfirmationDialog(),
+                        builder: (_) => const LogoutConfirmationDialog(),
                       );
                     },
                     iconColor: context.colors.danger,
                     textColor: context.colors.danger,
                     leading: Container(
-                      padding: .all(4),
+                      padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         color: context.colors.bgSecondary,
-                        borderRadius: .circular(8),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      child: Icon(Icons.logout),
+                      child: const Icon(Icons.logout),
                     ),
                     title: Text(
-                      'Akkauntdan chiqish',
+                      'settings.logout',
                       style: context.textThemes.buttonLarge,
-                    ),
+                    ).tr(),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Column(
-              crossAxisAlignment: .start,
-              spacing: 8,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Ilova haqida",
+                  "settings.about_app",
                   style: context.textThemes.s2,
-                ),
+                ).tr(),
+                const SizedBox(height: 8),
                 Text(
                   "Versiya 1.2.14",
                   style: context.textThemes.b2.copyWith(

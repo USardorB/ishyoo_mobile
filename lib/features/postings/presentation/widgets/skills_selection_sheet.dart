@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
@@ -34,13 +35,13 @@ class _SkillsSelectionSheetState extends State<SkillsSelectionSheet> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 16).copyWith(
+      padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
         bottom: MediaQuery.paddingOf(context).bottom + 12,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Center(
             child: Container(
               height: 6,
@@ -51,14 +52,14 @@ class _SkillsSelectionSheetState extends State<SkillsSelectionSheet> {
               ),
             ),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           _buildHeader(context),
-          SizedBox(height: 18),
+          const SizedBox(height: 18),
           AppInputField(
-            hintText: "Qidirish",
+            hintText: "shared.search".tr(),
             prefixIcon: Icon(Icons.search, color: context.colors.textSecondary),
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Wrap(
             spacing: 8,
             runSpacing: 8,
@@ -103,14 +104,14 @@ class _SkillsSelectionSheetState extends State<SkillsSelectionSheet> {
   Row _buildHeader(BuildContext context) => Row(
     mainAxisAlignment: MainAxisAlignment.spaceBetween,
     children: [
-      SizedBox(width: 48), // Balance for centering
+      const SizedBox(width: 48),
       Expanded(
         child: Text(
-          'KO\'NIKMALAR',
+          'profile.languages',
           style: context.textThemes.h5,
           textAlign: TextAlign.center,
           maxLines: 1,
-        ),
+        ).tr(),
       ),
       SizedBox(
         width: 48,
@@ -120,7 +121,7 @@ class _SkillsSelectionSheetState extends State<SkillsSelectionSheet> {
             visualDensity: VisualDensity.compact,
             padding: EdgeInsets.zero,
             onPressed: () => context.pop(_selectedSkills),
-            icon: Icon(Icons.close),
+            icon: const Icon(Icons.close),
           ),
         ),
       ),

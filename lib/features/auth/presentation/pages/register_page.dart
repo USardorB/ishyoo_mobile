@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -33,7 +34,7 @@ class RegisterPage extends HookWidget {
     void onRequestSms() {
       if (phoneController.text.isEmpty) {
         AppNotificationOverlay.instance.show(
-          message: 'Iltimos telefon raqamini kiriting',
+          message: 'shared.error_occurred'.tr(),
           type: .warning,
         );
         return;
@@ -69,81 +70,81 @@ class RegisterPage extends HookWidget {
             );
           } else if (state.status == bloc_state.AuthStatus.failure) {
             AppNotificationOverlay.instance.show(
-              message: state.errorMessage ?? 'Xatolik yuz berdi',
+              message: state.errorMessage ?? 'shared.error_occurred'.tr(),
               type: .error,
             );
           }
         },
         builder: (context, state) {
           return SafeArea(
-            minimum: .all(16),
+            minimum: const EdgeInsets.all(16),
             child: Column(
-              crossAxisAlignment: .stretch,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Column(
-                  crossAxisAlignment: .stretch,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      "Yangi hisob yaratish",
-                      textAlign: .center,
+                      "auth.register.title",
+                      textAlign: TextAlign.center,
                       maxLines: 1,
-                      overflow: .ellipsis,
+                      overflow: TextOverflow.ellipsis,
                       style: context.textThemes.h5,
-                    ),
-                    SizedBox(height: 12),
+                    ).tr(),
+                    const SizedBox(height: 12),
                     Text(
-                      'Hisob yaratish uchun telefon raqamingizni kiriting',
-                      textAlign: .center,
+                      'auth.register.subtitle',
+                      textAlign: TextAlign.center,
                       maxLines: 3,
-                      overflow: .ellipsis,
+                      overflow: TextOverflow.ellipsis,
                       style: context.textThemes.b1.copyWith(
                         color: context.colors.textSecondary,
                       ),
-                    ),
+                    ).tr(),
                   ],
                 ),
-                SizedBox(height: 32),
+                const SizedBox(height: 32),
                 AppInputField(
                   hintText: '99 888 99 88',
-                  autofillHints: [AutofillHints.telephoneNumberNational],
+                  autofillHints: const [AutofillHints.telephoneNumberNational],
                   textInputAction: TextInputAction.done,
                   keyboardType: TextInputType.phone,
                   controller: phoneController,
-                  prefixIcon: PhoneNumberFieldPrefix(),
-                  label: 'Telefon raqami',
+                  prefixIcon: const PhoneNumberFieldPrefix(),
+                  label: 'auth.register.phone_label'.tr(),
                 ),
-                Spacer(),
+                const Spacer(),
                 AppButton(
                   onTap: onRequestSms,
                   isLoading: state.status == bloc_state.AuthStatus.loading,
-                  label: 'Davom etish',
+                  label: 'shared.continue'.tr(),
                 ),
-                SizedBox(height: 12),
-                PrivacyPolicyNotice(),
-                SizedBox(height: 32),
+                const SizedBox(height: 12),
+                const PrivacyPolicyNotice(),
+                const SizedBox(height: 32),
                 Column(
-                  mainAxisAlignment: .center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Accountingiz mavjudmi?',
-                      textAlign: .center,
+                      'auth.register.has_account',
+                      textAlign: TextAlign.center,
                       style: context.textThemes.b1,
-                    ),
+                    ).tr(),
                     TextButton(
                       onPressed: context.pop,
                       style: TextButton.styleFrom(
-                        tapTargetSize: .shrinkWrap,
-                        visualDensity: .compact,
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        visualDensity: VisualDensity.compact,
                       ),
                       child: Text(
-                        'Bu yerda kiring',
+                        'auth.register.login_link',
                         style: context.textThemes.b1,
-                      ),
+                      ).tr(),
                     ),
                   ],
                 ),
-                Flexible(flex: 0, child: SizedBox(height: 12)),
+                const Flexible(flex: 0, child: SizedBox(height: 12)),
               ],
             ),
           );

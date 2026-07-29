@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
@@ -15,45 +16,45 @@ class CandidateResumesSection extends StatelessWidget {
     return Column(
       children: [
         if (resumes.isEmpty)
-          const Padding(
-            padding: .symmetric(vertical: 16),
-            child: Text("Sizda hozircha rezyumelar yo'q"),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16),
+            child: const Text("profile.no_resumes").tr(),
           )
         else
           ...resumes.map(
             (resume) => Padding(
-              padding: const .only(bottom: 12),
+              padding: const EdgeInsets.only(bottom: 12),
               child: InkWell(
                 onTap: () => context.pushRoute(
                   ResumeDetailsRoute(id: resume.id),
                 ),
-                borderRadius: .circular(16),
+                borderRadius: BorderRadius.circular(16),
                 child: Container(
-                  padding: const .all(16),
+                  padding: const EdgeInsets.all(16),
                   decoration: BoxDecoration(
-                    border: .all(color: context.colors.bgTertiary),
+                    border: Border.all(color: context.colors.bgTertiary),
                     color: context.colors.bgPrimary,
-                    borderRadius: .circular(16),
+                    borderRadius: BorderRadius.circular(16),
                   ),
                   child: Column(
-                    crossAxisAlignment: .start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
-                        crossAxisAlignment: .start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
                             child: Column(
-                              crossAxisAlignment: .start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  resume.specialization ?? "Kiritilmagan",
+                                  resume.specialization ?? "",
                                   style: context.textThemes.s1,
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
                                   resume.updatedAt != null
-                                      ? "Yangilangan: ${resume.updatedAt!.toString().substring(0, 10)}"
-                                      : "Yangi",
+                                      ? "${resume.updatedAt!.toString().substring(0, 10)}"
+                                      : "",
                                   style: context.textThemes.b1.copyWith(
                                     color: context.colors.textSecondary,
                                   ),
@@ -69,17 +70,17 @@ class CandidateResumesSection extends StatelessWidget {
                                 vertical: 4,
                               ),
                               decoration: BoxDecoration(
-                                color: context.colors.brandProgress.withOpacity(
-                                  0.2,
+                                color: context.colors.brandProgress.withValues(
+                                  alpha: 0.2,
                                 ),
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: Text(
-                                "Asosiy",
+                                "shared.all",
                                 style: context.textThemes.c2.copyWith(
                                   color: context.colors.brandProgress,
                                 ),
-                              ),
+                              ).tr(),
                             ),
                         ],
                       ),
@@ -93,19 +94,19 @@ class CandidateResumesSection extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            _buildStat(context, "Namoyishlar", "0", false),
+                            _buildStat(context, "applicants.unseen".tr(), "0", false),
                             Container(
                               width: 1,
                               height: 32,
                               color: context.colors.bgTertiary,
                             ),
-                            _buildStat(context, "Tomoshalar", "0", true),
+                            _buildStat(context, "applicants.shortlisted".tr(), "0", true),
                             Container(
                               width: 1,
                               height: 32,
                               color: context.colors.bgTertiary,
                             ),
-                            _buildStat(context, "Takliflar", "0", true),
+                            _buildStat(context, "applicants.invited".tr(), "0", true),
                           ],
                         ),
                       ),
@@ -121,7 +122,7 @@ class CandidateResumesSection extends StatelessWidget {
             context.pushRoute(CreateResumeFlowRoute());
           },
           icon: Icons.add,
-          label: "Yangi rezyume yuklash",
+          label: "resume.create_resume".tr(),
           color: context.colors.bgSecondary,
           foregroundColor: context.colors.brandProgress,
           labelStyle: context.textThemes.b2.copyWith(

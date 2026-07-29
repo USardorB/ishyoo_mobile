@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -37,7 +38,7 @@ class _NearbyJobsPageState extends State<NearbyJobsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Yaqinlikdagi ish"),
+        title: const Text("opportunities.nearby_jobs").tr(),
       ),
       body: Column(
         children: [
@@ -46,13 +47,13 @@ class _NearbyJobsPageState extends State<NearbyJobsPage> {
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Row(
               children: [
-                _buildChip(context, "Yaqin (3 km)", 3),
+                _buildChip(context, "3 km", 3),
                 const SizedBox(width: 8),
-                _buildChip(context, "Yaqin (5 km)", 5),
+                _buildChip(context, "5 km", 5),
                 const SizedBox(width: 8),
-                _buildChip(context, "Yaqin (8 km)", 8),
+                _buildChip(context, "8 km", 8),
                 const SizedBox(width: 8),
-                _buildChip(context, "Yaqin (10 km)", 10),
+                _buildChip(context, "10 km", 10),
               ],
             ),
           ),
@@ -72,13 +73,13 @@ class _NearbyJobsPageState extends State<NearbyJobsPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "$count ta ish topildi",
+                      'talents.results_count'.tr(args: [count.toString()]),
                       style: context.textThemes.s2,
                     ),
                     const Spacer(),
                     TextButton.icon(
                       onPressed: () {},
-                      label: const Text("Mos ravishda"),
+                      label: const Text("opportunities.matches_filter").tr(),
                       style: TextButton.styleFrom(
                         textStyle: context.textThemes.buttonLarge,
                         visualDensity: VisualDensity.compact,
@@ -105,7 +106,7 @@ class _NearbyJobsPageState extends State<NearbyJobsPage> {
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: Text(
-                        "Joylashuvni aniqlab bo'lmadi.\n${state.message}",
+                        "shared.error_occurred".tr(),
                         textAlign: TextAlign.center,
                         style: TextStyle(color: context.colors.textSecondary),
                       ),

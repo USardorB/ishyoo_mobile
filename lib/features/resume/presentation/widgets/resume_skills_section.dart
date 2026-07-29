@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/resume/presentation/widgets/resume_skill_chip.dart';
@@ -16,7 +17,7 @@ class ResumeSkillsSection extends StatelessWidget {
           color: context.colors.bgSecondary,
           borderRadius: BorderRadius.circular(16),
         ),
-        child: const Text("Ko'nikmalar kiritilmagan"),
+        child: const Text("shared.no_data").tr(),
       );
     }
 

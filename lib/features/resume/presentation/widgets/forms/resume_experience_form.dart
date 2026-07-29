@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
@@ -30,22 +31,8 @@ class ResumeExperienceForm extends StatelessWidget {
   });
 
   String _formatDate(DateTime? date) {
-    if (date == null) return "Tanlang";
-    final months = [
-      "Yanvar",
-      "Fevral",
-      "Mart",
-      "Aprel",
-      "May",
-      "Iyun",
-      "Iyul",
-      "Avgust",
-      "Sentyabr",
-      "Oktyabr",
-      "Noyabr",
-      "Dekabr",
-    ];
-    return "${months[date.month - 1]} ${date.year}";
+    if (date == null) return "shared.search".tr();
+    return "${date.month}/${date.year}";
   }
 
   @override
@@ -59,30 +46,30 @@ class ResumeExperienceForm extends StatelessWidget {
         const SizedBox(height: 16),
         _buildTextField(
           context,
-          "Kompaniya nomi",
+          "profile.about_company".tr(),
           "Masalan: Uzum bank",
           controller: companyController,
         ),
         const SizedBox(height: 24),
         _buildTextField(
           context,
-          "Lavozim yoki kasb",
+          "talents.search_placeholder".tr(),
           "Masalan: UX/UI Dizayner",
           controller: positionController,
         ),
         const SizedBox(height: 24),
-        _buildActionField(context, "Hudud", location, onTap: onLocationTapped),
+        _buildActionField(context, "opportunities.location".tr(), location, onTap: onLocationTapped),
         const SizedBox(height: 24),
         _buildTextField(
           context,
-          "Vazifalar va yutuqlar",
+          "opportunities.description".tr(),
           "Vazifalaringizni kiriting",
           controller: descriptionController,
           maxLines: 4,
         ),
         const SizedBox(height: 24),
         Text(
-          "Ish boshlangan sana",
+          "shared.all".tr(),
           style: context.textThemes.c2.copyWith(
             color: context.colors.textSecondary,
           ),
@@ -97,7 +84,7 @@ class ResumeExperienceForm extends StatelessWidget {
         ),
         const SizedBox(height: 24),
         Text(
-          "Ishning tugash sanasi",
+          "shared.present".tr(),
           style: context.textThemes.c2.copyWith(
             color: context.colors.textSecondary,
           ),
@@ -106,7 +93,7 @@ class ResumeExperienceForm extends StatelessWidget {
         _buildActionField(
           context,
           "",
-          isWorking ? "Hozir ishlayapman" : endStr,
+          isWorking ? "shared.present".tr() : endStr,
           hasLabel: false,
           isPlaceholder: isWorking,
           onTap: isWorking ? null : onEndMonthTapped,
@@ -117,9 +104,9 @@ class ResumeExperienceForm extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                "Hozir ishlayapman",
+                "shared.present",
                 style: context.textThemes.b2,
-              ),
+              ).tr(),
               const Spacer(),
               Container(
                 width: 24,

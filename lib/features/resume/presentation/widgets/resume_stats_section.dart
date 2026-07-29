@@ -1,6 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/resume/data/models/resume.dart';
@@ -18,7 +18,7 @@ class ResumeStatsSection extends StatelessWidget {
       listener: (context, state) {
         if (state.isBoosted) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("Rezyume muvaffaqiyatli ko'tarildi!")),
+            SnackBar(content: Text("shared.saved_success".tr())),
           );
           context.read<ResumeDetailBloc>().add(LoadResumeDetail(resume.id));
         } else if (state.error != null) {
@@ -30,16 +30,6 @@ class ResumeStatsSection extends StatelessWidget {
       builder: (context, state) {
         final canBoost = resume.availableForBoost == true;
         final isSubmitting = state.isSubmitting;
-
-        String infoText =
-            "Rezyume kamdan-kam hollarda qidiruv natijalariga kiritiladi. Ko'proq ko'rishlar va taklifnomalar olish uchun uni ko'taring.";
-        if (!canBoost && resume.nextFreeBoostAt != null) {
-          final formattedDate = DateFormat(
-            'dd.MM.yyyy HH:mm',
-          ).format(resume.nextFreeBoostAt!.toLocal());
-          infoText =
-              "Sizning rezyumeingiz yaqinda ko'tarilgan. Keyingi bepul ko'tarish: $formattedDate";
-        }
 
         return Container(
           padding: const EdgeInsets.all(16),
@@ -55,7 +45,7 @@ class ResumeStatsSection extends StatelessWidget {
                 children: [
                   _buildStat(
                     context,
-                    "Reyting",
+                    "applicants.unseen".tr(),
                     "${resume.boostScore ?? 0}",
                     true,
                   ),
@@ -66,8 +56,8 @@ class ResumeStatsSection extends StatelessWidget {
                   ),
                   _buildStat(
                     context,
-                    "Status",
-                    resume.status == 'active' ? 'Faol' : 'Nofaol',
+                    "applicants.invited".tr(),
+                    resume.status == 'active' ? 'shared.all'.tr() : 'shared.cancel'.tr(),
                     false,
                   ),
                   Container(
@@ -77,18 +67,11 @@ class ResumeStatsSection extends StatelessWidget {
                   ),
                   _buildStat(
                     context,
-                    "Ko'rinish",
-                    resume.visibility == 'public' ? 'Ommaviy' : 'Yopiq',
+                    "applicants.shortlisted".tr(),
+                    resume.visibility == 'public' ? 'shared.all'.tr() : 'shared.cancel'.tr(),
                     false,
                   ),
                 ],
-              ),
-              const SizedBox(height: 16),
-              Text(
-                infoText,
-                style: context.textThemes.b2.copyWith(
-                  color: context.colors.textSecondary,
-                ),
               ),
               const SizedBox(height: 16),
               AppButton(
@@ -100,8 +83,8 @@ class ResumeStatsSection extends StatelessWidget {
                       }
                     : () {},
                 label: isSubmitting
-                    ? "Kuting..."
-                    : "Qidiruv natijalariga ko'tarish",
+                    ? "shared.continue".tr()
+                    : "shared.save".tr(),
                 color: canBoost
                     ? context.colors.brandProgress.withValues(alpha: 0.15)
                     : context.colors.bgTertiary,

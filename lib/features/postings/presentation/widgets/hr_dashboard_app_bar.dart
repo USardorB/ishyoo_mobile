@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
@@ -53,7 +54,7 @@ class HrDashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
       title: BlocBuilder<EmployerOrganizationBloc, EmployerOrganizationState>(
         builder: (context, state) {
           final org = state.organization;
-          final name = org?.name ?? "Tashkilot";
+          final name = org?.name ?? "";
 
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,11 +64,11 @@ class HrDashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
                 style: context.textThemes.s2,
               ),
               Text(
-                "Ish beruvchi",
+                "auth.login.hr_account",
                 style: context.textThemes.c1.copyWith(
                   color: context.colors.textSecondary,
                 ),
-              ),
+              ).tr(),
             ],
           );
         },
@@ -76,31 +77,31 @@ class HrDashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
         IconButton(
           onPressed: () {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Xizmat tez orada qo'shiladi")),
+              SnackBar(content: Text("shared.coming_soon".tr())),
             );
           },
           icon: const Icon(Icons.support_agent),
         ),
         IconButton(
-          onPressed: () => context.pushRoute(NotificationsRoute()),
+          onPressed: () => context.pushRoute(const NotificationsRoute()),
           icon: const Icon(Icons.notifications_outlined),
         ),
       ],
       bottom: PreferredSize(
-        preferredSize: Size.fromHeight(48),
+        preferredSize: const Size.fromHeight(48),
         child: Padding(
-          padding: .all(16),
+          padding: const EdgeInsets.all(16),
           child: Row(
             children: [
-              Flexible(child: DarkGlassSearchField()),
-              SizedBox(width: 12),
+              const Flexible(child: DarkGlassSearchField()),
+              const SizedBox(width: 12),
               IconButton(
                 onPressed: () => showModalBottomSheet(
                   context: context,
                   isScrollControlled: true,
-                  builder: (_) => TallentFilterSheet(),
+                  builder: (_) => const TallentFilterSheet(),
                 ),
-                icon: Icon(Icons.tune),
+                icon: const Icon(Icons.tune),
               ),
             ],
           ),

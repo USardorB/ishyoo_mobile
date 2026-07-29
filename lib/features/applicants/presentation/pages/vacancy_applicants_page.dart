@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -41,25 +42,25 @@ class VacancyApplicantsPage extends StatelessWidget
       length: 3,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Vakansiya bo\'yicha javoblar'),
+          title: const Text('applications.title').tr(),
           bottom: TabBar(
             dividerColor: Colors.transparent,
             dividerHeight: 0,
             automaticIndicatorColorAdjustment: true,
-            splashBorderRadius: .circular(20),
+            splashBorderRadius: BorderRadius.circular(20),
             indicatorSize: TabBarIndicatorSize.tab,
             isScrollable: true,
-            padding: EdgeInsets.symmetric(horizontal: 16),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             indicator: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               color: context.colors.brandProgress,
             ),
-            labelPadding: .symmetric(horizontal: 12, vertical: 8),
+            labelPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
             tabAlignment: TabAlignment.start,
             tabs: [
-              Text('Ko‘rilmaganlar'),
-              Text('Taklif etilganlar'),
-              Text('To‘g‘ri kelmaydi'),
+              Tab(text: 'applicants.unseen'.tr()),
+              Tab(text: 'applicants.invited'.tr()),
+              Tab(text: 'applicants.unsuitable'.tr()),
             ],
           ),
         ),
@@ -88,11 +89,11 @@ class VacancyApplicantsPage extends StatelessWidget
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Vakansiya",
+                                "nav.vacancies",
                                 style: context.textThemes.c1.copyWith(
                                   color: context.colors.textSecondary,
                                 ),
-                              ),
+                              ).tr(),
                               const SizedBox(height: 4),
                               Text(
                                 state.vacancy.jobTitle,
@@ -115,7 +116,7 @@ class VacancyApplicantsPage extends StatelessWidget
                             visualDensity: VisualDensity.compact,
                             foregroundColor: context.colors.brandDefault,
                           ),
-                          child: const Text("Ko'rish"),
+                          child: const Text("shared.show_all").tr(),
                         ),
                       ],
                     ),
@@ -133,9 +134,8 @@ class VacancyApplicantsPage extends StatelessWidget
                     return Center(child: Text(state.error!));
                   } else if (state.applicants == null ||
                       state.applicants!.isEmpty) {
-                    return const NoApplicationPlaceholder(
-                      message:
-                          "Hozircha javoblar yo‘q. Sizning e'loningizga hali hech kim ariza topshmagan.",
+                    return NoApplicationPlaceholder(
+                      message: "applicants.no_responses".tr(),
                     );
                   }
                   return TabBarView(
@@ -147,7 +147,6 @@ class VacancyApplicantsPage extends StatelessWidget
                           children: state.applicants!.map((applicant) {
                             return ApplicantListingItem(
                               applicant: applicant,
-                              // vacancyId: applicant.vacancyId ?? vacancyId,
                             );
                           }).toList(),
                         ),

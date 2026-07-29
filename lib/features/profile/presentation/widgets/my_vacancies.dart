@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
@@ -15,27 +16,27 @@ class MyVacancies extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text('Mening vakansiyalarim', style: context.textThemes.s2),
+            Text('profile.my_vacancies', style: context.textThemes.s2).tr(),
             GestureDetector(
               onTap: () => context.pushRoute(const MyVacanciesRoute()),
               child: Text(
-                'Barchasi',
+                'shared.show_all',
                 style: context.textThemes.b2.copyWith(
                   color: context.colors.brandDefault,
                 ),
-              ),
+              ).tr(),
             ),
           ],
         ),
-        SizedBox(height: 16),
-        VacancyListingItem(),
-        SizedBox(height: 16),
+        const SizedBox(height: 16),
+        const VacancyListingItem(),
+        const SizedBox(height: 16),
         AppButton(
-          label: "Yangi yaratish",
+          label: "opportunities.create_vacancy".tr(),
           onTap: () async {
             final result = await context.pushRoute(CreateVacancyRoute());
             if (result == true && context.mounted) {

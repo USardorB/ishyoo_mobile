@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
@@ -88,14 +89,14 @@ class HrDashboardPage extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        'Mening vakansiyalarim',
+                        'profile.my_vacancies',
                         style: context.textThemes.s2,
-                      ),
-                      Spacer(),
+                      ).tr(),
+                      const Spacer(),
                       TextButton.icon(
-                        onPressed: () => context.pushRoute(MyVacanciesRoute()),
-                        icon: Icon(Icons.arrow_forward_ios_rounded),
-                        label: Text("Barchasi"),
+                        onPressed: () => context.pushRoute(const MyVacanciesRoute()),
+                        icon: const Icon(Icons.arrow_forward_ios_rounded),
+                        label: Text("shared.show_all").tr(),
                         style: TextButton.styleFrom(
                           textStyle: context.textThemes.buttonSmall,
                           iconAlignment: .end,
@@ -104,7 +105,7 @@ class HrDashboardPage extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(height: 12),
+                  const SizedBox(height: 12),
                   if (state.isLoading)
                     const Padding(
                       padding: EdgeInsets.all(24.0),
@@ -115,11 +116,11 @@ class HrDashboardPage extends StatelessWidget {
                       padding: const EdgeInsets.all(24.0),
                       child: Center(
                         child: Text(
-                          "Vakansiyalar topilmadi",
+                          "shared.no_data",
                           style: context.textThemes.b2.copyWith(
                             color: context.colors.textSecondary,
                           ),
-                        ),
+                        ).tr(),
                       ),
                     )
                   else
@@ -143,8 +144,8 @@ class HrDashboardPage extends StatelessWidget {
                         context.read<PostingsBloc>().add(LoadPostings());
                       }
                     },
-                    icon: Icon(Icons.add),
-                    label: Text("Vakansiya yaratish"),
+                    icon: const Icon(Icons.add),
+                    label: Text("opportunities.create_vacancy").tr(),
                     style: FilledButton.styleFrom(
                       padding: .all(14),
                       shape: DashedOutlineBorder(

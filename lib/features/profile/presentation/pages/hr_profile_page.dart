@@ -1,16 +1,16 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
+import 'package:mobile/features/profile/presentation/bloc/employer_organization_bloc.dart';
 import 'package:mobile/features/profile/presentation/bloc/employer_profile_bloc.dart';
 import 'package:mobile/features/profile/presentation/widgets/about_the_company.dart';
 import 'package:mobile/features/profile/presentation/widgets/field_of_activity.dart';
 import 'package:mobile/features/profile/presentation/widgets/hr_profile_avatar_section.dart';
 import 'package:mobile/features/profile/presentation/widgets/hr_profile_company_info.dart';
 import 'package:mobile/features/profile/presentation/widgets/my_vacancies.dart';
-
-import 'package:mobile/features/profile/presentation/bloc/employer_organization_bloc.dart';
 
 @RoutePage()
 class HRProfilePage extends StatelessWidget {
@@ -31,10 +31,10 @@ class HRProfilePage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: false,
-          title: const Text('Profile'),
+          title: const Text('profile.title').tr(),
           actions: [
             IconButton(
-              onPressed: () => context.pushRoute(SettingsRoute()),
+              onPressed: () => context.pushRoute(const SettingsRoute()),
               icon: const Icon(Icons.settings),
             ),
           ],
@@ -56,7 +56,7 @@ class HRProfilePage extends StatelessWidget {
                       profile: profileState.profile,
                       organization: orgState.organization,
                     ),
-                    MyVacancies(),
+                    const MyVacancies(),
                     AboutTheCompany(organization: orgState.organization),
                     HrProfileCompanyInfo(organization: orgState.organization),
                     FieldOfActivity(organization: orgState.organization),

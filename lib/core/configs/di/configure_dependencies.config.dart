@@ -17,6 +17,7 @@ import 'package:mobile/core/configs/network/auth_interceptor.dart' as _i726;
 import 'package:mobile/core/shared/services/local_notification_service.dart'
     as _i129;
 import 'package:mobile/core/shared/services/token_service.dart' as _i910;
+import 'package:mobile/core/themes/theme_cubit.dart' as _i33;
 import 'package:mobile/features/applicants/data/datasources/applicants_remote_data_source.dart'
     as _i1044;
 import 'package:mobile/features/applicants/data/repositories/applicants_repository_impl.dart'
@@ -201,6 +202,9 @@ extension GetItInjectableX on _i174.GetIt {
     );
     gh.lazySingleton<_i910.TokenService>(
       () => _i910.TokenService(gh<_i460.SharedPreferences>()),
+    );
+    gh.lazySingleton<_i33.ThemeCubit>(
+      () => _i33.ThemeCubit(gh<_i460.SharedPreferences>()),
     );
     gh.lazySingleton<_i933.GetVacancyFeedParams>(
       () => _i933.GetVacancyFeedParams(

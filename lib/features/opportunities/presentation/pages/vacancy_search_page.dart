@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -31,7 +32,7 @@ class VacancySearchPage extends StatelessWidget implements AutoRouteWrapper {
               autofocus: true,
               controller: TextEditingController(text: bloc.currentTitle),
               decoration: InputDecoration(
-                hintText: "Mutaxassislik yoki kompaniya nomini kiriting",
+                hintText: "talents.search_placeholder".tr(),
                 border: InputBorder.none,
                 hintStyle: context.textThemes.b2.copyWith(
                   color: context.colors.textSecondary,
@@ -87,21 +88,21 @@ class VacancySearchPage extends StatelessWidget implements AutoRouteWrapper {
             if (state.vacancies.isEmpty) {
               return Center(
                 child: Padding(
-                  padding: .all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Column(
-                    mainAxisSize: .min,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Image.asset(
                         "assets/images/no_results.png",
                         width: 280,
                       ),
                       Text(
-                        "Kiritilgan parametrlar bo'yicha bo'sh ish o'rni topilmadi",
+                        "shared.no_data",
                         textAlign: TextAlign.center,
                         style: context.textThemes.b1.copyWith(
                           color: context.colors.textSecondary,
                         ),
-                      ),
+                      ).tr(),
                     ],
                   ),
                 ),

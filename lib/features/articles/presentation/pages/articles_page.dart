@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -29,7 +30,7 @@ class _ArticlesPageView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text("Karyera maqolalari"),
+        title: const Text("articles.title").tr(),
       ),
       body: BlocBuilder<ArticlesBloc, ArticlesState>(
         builder: (context, state) {

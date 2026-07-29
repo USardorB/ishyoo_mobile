@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -30,11 +31,11 @@ class _ApplicationsPageView extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final tabs = [
-      {"name": "Barchasi", "status": null},
-      {"name": "Suhbat", "status": "invited"},
-      {"name": "Kutilmoqda", "status": "pending"},
-      {"name": "Rad etildi", "status": "rejected"},
-      {"name": "Arxivlangan", "status": "archived"},
+      {"nameKey": "applications.tabs.all", "status": null},
+      {"nameKey": "applications.status.interview", "status": "invited"},
+      {"nameKey": "applications.status.pending", "status": "pending"},
+      {"nameKey": "applications.status.rejected", "status": "rejected"},
+      {"nameKey": "shared.all", "status": "archived"},
     ];
     final tabController = useTabController(initialLength: tabs.length);
 
@@ -54,37 +55,39 @@ class _ApplicationsPageView extends HookWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Javoblar"),
+        title: const Text("applications.title").tr(),
       ),
       body: Column(
         children: [
           Padding(
-            padding: const .symmetric(horizontal: 16, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
             child: Container(
               height: 44,
               decoration: BoxDecoration(
-                borderRadius: .circular(32),
-                border: BoxBorder.all(color: context.colors.linePrimary),
+                borderRadius: BorderRadius.circular(32),
+                border: Border.all(color: context.colors.linePrimary),
               ),
               child: ClipRRect(
-                borderRadius: .circular(32),
+                borderRadius: BorderRadius.circular(32),
                 child: TabBar(
-                  splashBorderRadius: .circular(32),
+                  splashBorderRadius: BorderRadius.circular(32),
                   controller: tabController,
                   isScrollable: true,
-                  tabAlignment: .start,
+                  tabAlignment: TabAlignment.start,
                   dividerColor: Colors.transparent,
-                  padding: .symmetric(horizontal: 6, vertical: 4),
-                  indicatorSize: .tab,
+                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                  indicatorSize: TabBarIndicatorSize.tab,
                   indicator: BoxDecoration(
                     color: context.colors.brandProgress,
-                    borderRadius: .circular(32),
+                    borderRadius: BorderRadius.circular(32),
                   ),
                   labelColor: context.colors.brandDefault,
                   unselectedLabelColor: context.colors.textSecondary,
                   labelStyle: context.textThemes.buttonMedium,
                   unselectedLabelStyle: context.textThemes.buttonMedium,
-                  tabs: tabs.map((tab) => Tab(text: tab["name"]!)).toList(),
+                  tabs: tabs
+                      .map((tab) => Tab(text: (tab["nameKey"] as String).tr()))
+                      .toList(),
                 ),
               ),
             ),
@@ -107,9 +110,8 @@ class _ApplicationsPageView extends HookWidget {
                     final applications = state.applications ?? [];
 
                     if (applications.isEmpty) {
-                      return const NoApplicationPlaceholder(
-                        message:
-                            "Hozircha javoblar yo‘q. Ish beruvchilardan kelgan javoblar shu yerda paydo bo‘ladi.",
+                      return NoApplicationPlaceholder(
+                        message: "applications.no_applications".tr(),
                       );
                     }
 

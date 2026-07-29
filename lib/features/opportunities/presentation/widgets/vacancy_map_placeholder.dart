@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:mobile/core/consts/app_assets.dart';
@@ -12,13 +13,12 @@ class VacancyMapPlaceholder extends StatelessWidget {
       height: 200,
       width: double.infinity,
       decoration: BoxDecoration(
-        color: const Color(0xFF2B2E3D), // Dark map background color
+        color: const Color(0xFF2B2E3D),
         borderRadius: BorderRadius.circular(16),
       ),
       clipBehavior: Clip.hardEdge,
       child: Stack(
         children: [
-          // Custom Marker in the center
           Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -46,13 +46,10 @@ class VacancyMapPlaceholder extends StatelessWidget {
                   height: 24,
                   color: Colors.white,
                 ),
-                // Offset slightly to center the bottom of the line on the "target"
                 const SizedBox(height: 48),
               ],
             ),
           ),
-
-          // Zoom Controls (Right)
           Positioned(
             right: 12,
             bottom: 12,
@@ -67,7 +64,7 @@ class VacancyMapPlaceholder extends StatelessWidget {
                   InkWell(
                     onTap: () {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("Tez orada qo'shiladi")),
+                        SnackBar(content: Text("shared.coming_soon".tr())),
                       );
                     },
                     child: const Padding(
@@ -83,7 +80,7 @@ class VacancyMapPlaceholder extends StatelessWidget {
                   InkWell(
                     onTap: () {
                       ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("Tez orada qo'shiladi")),
+                        SnackBar(content: Text("shared.coming_soon".tr())),
                       );
                     },
                     child: const Padding(
@@ -95,8 +92,6 @@ class VacancyMapPlaceholder extends StatelessWidget {
               ),
             ),
           ),
-
-          // Location Button (Bottom Left)
           Positioned(
             left: 12,
             bottom: 12,
@@ -115,9 +110,9 @@ class VacancyMapPlaceholder extends StatelessWidget {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    "Локация",
+                    "opportunities.location",
                     style: context.textThemes.b2.copyWith(color: Colors.white),
-                  ),
+                  ).tr(),
                 ],
               ),
             ),

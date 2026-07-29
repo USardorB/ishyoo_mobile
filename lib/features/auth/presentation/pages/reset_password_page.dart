@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -30,7 +31,7 @@ class ResetPasswordPage extends HookWidget {
     void onResetPassword() {
       if (passwordController.text != passwordConfirmController.text) {
         AppNotificationOverlay.instance.show(
-          message: 'Parollar mos kelmadi',
+          message: 'auth.reset_password.mismatch'.tr(),
           type: .warning,
         );
         return;
@@ -41,7 +42,7 @@ class ResetPasswordPage extends HookWidget {
 
       if (requestId == null) {
         AppNotificationOverlay.instance.show(
-          message: 'Request ID topilmadi. Qaytadan urinib ko\'ring.',
+          message: 'shared.error_occurred'.tr(),
           type: .error,
         );
         return;
@@ -91,18 +92,18 @@ class ResetPasswordPage extends HookWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'Parol o\'zgartirildi',
+                    'auth.reset_password.changed_title',
                     style: context.textThemes.h5,
                     textAlign: TextAlign.center,
-                  ),
+                  ).tr(),
                   const SizedBox(height: 8),
                   Text(
-                    'Kirish uchun "Kirish" tugmasini bosing ish boshlamoq',
+                    'auth.reset_password.changed_sub',
                     style: context.textThemes.b1.copyWith(
                       color: context.colors.textSecondary,
                     ),
                     textAlign: TextAlign.center,
-                  ),
+                  ).tr(),
                   const SizedBox(height: 24),
                   AppButton(
                     onTap: () {
@@ -115,7 +116,7 @@ class ResetPasswordPage extends HookWidget {
                         ),
                       ]);
                     },
-                    label: 'Kirish',
+                    label: 'auth.login.cta_button'.tr(),
                   ),
                 ],
               ),
@@ -138,43 +139,43 @@ class ResetPasswordPage extends HookWidget {
             showSuccessDialog();
           } else if (state.status == bloc_state.AuthStatus.failure) {
             AppNotificationOverlay.instance.show(
-              message: state.errorMessage ?? 'Xatolik yuz berdi',
+              message: state.errorMessage ?? 'shared.error_occurred'.tr(),
               type: .error,
             );
           }
         },
         builder: (context, state) {
           return SafeArea(
-            minimum: .all(16),
+            minimum: const EdgeInsets.all(16),
             child: Column(
-              crossAxisAlignment: .stretch,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Column(
-                  crossAxisAlignment: .stretch,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      "Parolni tiklash",
-                      textAlign: .center,
+                      "auth.reset_password.title",
+                      textAlign: TextAlign.center,
                       maxLines: 1,
-                      overflow: .ellipsis,
+                      overflow: TextOverflow.ellipsis,
                       style: context.textThemes.h5,
-                    ),
-                    SizedBox(height: 12),
+                    ).tr(),
+                    const SizedBox(height: 12),
                     Text(
-                      "Hisobingiz uchun yangi parolni kiriting",
-                      textAlign: .center,
+                      "auth.reset_password.subtitle",
+                      textAlign: TextAlign.center,
                       maxLines: 3,
-                      overflow: .ellipsis,
+                      overflow: TextOverflow.ellipsis,
                       style: context.textThemes.b1.copyWith(
                         color: context.colors.textSecondary,
                       ),
-                    ),
+                    ).tr(),
                   ],
                 ),
-                SizedBox(height: 32),
+                const SizedBox(height: 32),
                 AppInputField(
-                  hintText: "Parol o‘ylab toping",
+                  hintText: "auth.confirm_password.password_hint".tr(),
                   autofillHints: const [AutofillHints.newPassword],
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.visiblePassword,
@@ -182,14 +183,14 @@ class ResetPasswordPage extends HookWidget {
                   suffixIcon: IconButton(
                     onPressed: () => isObscured.value = !isObscured.value,
                     isSelected: isObscured.value,
-                    selectedIcon: Icon(Icons.visibility_off),
-                    icon: Icon(Icons.visibility),
+                    selectedIcon: const Icon(Icons.visibility_off),
+                    icon: const Icon(Icons.visibility),
                   ),
                 ),
-                SizedBox(height: 12),
+                const SizedBox(height: 12),
                 AppInputField(
                   obscureText: isObscured.value,
-                  hintText: "Parolni tasdiqlang",
+                  hintText: "auth.confirm_password.confirm_hint".tr(),
                   autofillHints: const [AutofillHints.newPassword],
                   textInputAction: TextInputAction.done,
                   keyboardType: TextInputType.visiblePassword,
@@ -197,26 +198,26 @@ class ResetPasswordPage extends HookWidget {
                   suffixIcon: IconButton(
                     onPressed: () => isObscured.value = !isObscured.value,
                     isSelected: isObscured.value,
-                    selectedIcon: Icon(Icons.visibility_off),
-                    icon: Icon(Icons.visibility),
+                    selectedIcon: const Icon(Icons.visibility_off),
+                    icon: const Icon(Icons.visibility),
                   ),
                 ),
-                SizedBox(height: 16),
-                Text("Parolga qo‘yiladigan talablar:"),
-                SizedBox(height: 8),
+                const SizedBox(height: 16),
+                Text("auth.confirm_password.requirements_title").tr(),
+                const SizedBox(height: 8),
                 ValueListenableBuilder(
                   valueListenable: passwordController,
                   builder: (_, value, _) => PasswordRequirements(
                     password: value.text,
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 AppButton(
                   onTap: onResetPassword,
                   isLoading: state.status == bloc_state.AuthStatus.loading,
-                  label: 'Davom etish',
+                  label: 'shared.continue'.tr(),
                 ),
-                Flexible(flex: 0, child: SizedBox(height: 12)),
+                const Flexible(flex: 0, child: SizedBox(height: 12)),
               ],
             ),
           );

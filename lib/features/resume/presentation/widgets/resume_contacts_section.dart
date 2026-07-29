@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
@@ -10,7 +11,7 @@ class ResumeContactsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = context.read<AuthBloc>().state.user;
     final phone = user?.phoneNumber ?? '';
-    final email = user?.email ?? "Kiritilmagan";
+    final email = user?.email ?? "shared.no_data".tr();
 
     return Container(
       padding: const EdgeInsets.all(16),
@@ -22,16 +23,16 @@ class ResumeContactsSection extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Telefon raqami",
+            "auth.login.phone_label",
             style: context.textThemes.c2.copyWith(
               color: context.colors.textSecondary,
             ),
-          ),
+          ).tr(),
           const SizedBox(height: 4),
           Text(phone, style: context.textThemes.b1),
           const SizedBox(height: 16),
           Text(
-            "Elektron pochta",
+            "EMAIL",
             style: context.textThemes.c2.copyWith(
               color: context.colors.textSecondary,
             ),

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -75,7 +76,7 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
           if (state.profile != null) _populateFromProfile(state.profile!);
           if (state.isUpdateSuccess) {
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text('Muvaffaqiyatli saqlandi')),
+              SnackBar(content: Text('shared.saved_success'.tr())),
             );
             context.maybePop();
           }
@@ -97,7 +98,7 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                 icon: const Icon(Icons.arrow_back),
                 onPressed: () => context.maybePop(),
               ),
-              title: const Text("Tahrirlash"),
+              title: const Text("profile.edit_profile").tr(),
               centerTitle: true,
               actions: [
                 TextButton(
@@ -109,11 +110,11 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                           child: CircularProgressIndicator(strokeWidth: 2),
                         )
                       : Text(
-                          "Saqlash",
+                          "shared.save",
                           style: context.textThemes.b2.copyWith(
                             color: context.colors.brandProgress,
                           ),
-                        ),
+                        ).tr(),
                 ),
                 const SizedBox(width: 8),
               ],
@@ -168,14 +169,14 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                     children: [
                       Expanded(
                         child: AppInputField(
-                          label: "Ism",
+                          label: "auth.register.full_name_hint".tr(),
                           controller: _firstNameCtrl,
                         ),
                       ),
                       const SizedBox(width: 12),
                       Expanded(
                         child: AppInputField(
-                          label: "Familiya",
+                          label: "auth.complete_profile.last_name_hint".tr(),
                           controller: _lastNameCtrl,
                         ),
                       ),
@@ -189,18 +190,18 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                   ),
                   const SizedBox(height: 24),
                   AppInputField(
-                    label: "Telefon",
+                    label: "auth.login.phone_label".tr(),
                     controller: _phoneCtrl,
                     keyboardType: TextInputType.phone,
                   ),
                   const SizedBox(height: 24),
                   AppInputField(
-                    label: "Shahar",
+                    label: "opportunities.location".tr(),
                     controller: _cityCtrl,
                   ),
                   const SizedBox(height: 24),
                   AppInputField(
-                    label: "Tug'ilgan sana",
+                    label: "auth.complete_profile.birth_date_hint".tr(),
                     controller: _birthDateCtrl,
                     readOnly: true,
                     onTap: () async {
@@ -223,7 +224,7 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                   ),
                   const SizedBox(height: 24),
                   AppInputField(
-                    label: "O'zim haqimda",
+                    label: "profile.about_me".tr(),
                     controller: _bioCtrl,
                     maxLines: 4,
                     minLines: 4,
@@ -232,7 +233,7 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                   AppButton(
                     onTap: () => _save(context),
                     enabled: !state.isUpdating,
-                    label: 'Saqlash',
+                    label: 'shared.save'.tr(),
                   ),
                 ],
               ),

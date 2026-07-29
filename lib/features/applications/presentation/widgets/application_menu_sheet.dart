@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
@@ -24,11 +25,11 @@ class ApplicationMenuSheet extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: context.colors.bgPrimary,
-        borderRadius: const .vertical(top: .circular(20)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(20)),
       ),
       child: Column(
-        mainAxisSize: .min,
-        crossAxisAlignment: .start,
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Center(
             child: Container(
@@ -36,14 +37,14 @@ class ApplicationMenuSheet extends StatelessWidget {
               height: 6,
               decoration: BoxDecoration(
                 color: context.colors.bgTertiary,
-                borderRadius: .circular(2),
+                borderRadius: BorderRadius.circular(2),
               ),
             ),
           ),
           const SizedBox(height: 16),
           _MenuItem(
             icon: Icons.chat_bubble_outline,
-            label: "Chatga yozish",
+            label: "nav.chats".tr(),
             onTap: () {
               context.pop();
               context.pushRoute(
@@ -54,7 +55,7 @@ class ApplicationMenuSheet extends StatelessWidget {
           _buildDivider(context),
           _MenuItem(
             icon: Icons.description_outlined,
-            label: "Vakansiyani ko'rish",
+            label: "opportunities.description".tr(),
             onTap: () {
               context.pop();
               context.pushRoute(
@@ -65,7 +66,7 @@ class ApplicationMenuSheet extends StatelessWidget {
           _buildDivider(context),
           _MenuItem(
             icon: Icons.business_center_outlined,
-            label: "Kompaniyani ko'rish",
+            label: "profile.about_company".tr(),
             onTap: () {
               context.pop();
               if (application.vacancy?.organization != null) {
@@ -80,7 +81,7 @@ class ApplicationMenuSheet extends StatelessWidget {
           _buildDivider(context),
           _MenuItem(
             icon: Icons.cancel_outlined,
-            label: "Rad etish",
+            label: "applications.tabs.rejected".tr(),
             onTap: () {
               context.pop();
               showDialog(
@@ -94,17 +95,14 @@ class ApplicationMenuSheet extends StatelessWidget {
           _buildDivider(context),
           _MenuItem(
             icon: Icons.delete_outline,
-            label: "Javobni o'chirish",
+            label: "shared.delete".tr(),
             isDestructive: true,
             onTap: () {
               context.pop();
               showDialog(
                 context: context,
                 builder: (_) => DeleteApplicationDialog(
-                  onDeleteTap: () {
-                    throw UnimplementedError();
-                    // context.read<>()
-                  },
+                  onDeleteTap: () {},
                 ),
               );
             },
@@ -144,18 +142,18 @@ class _MenuItem extends StatelessWidget {
         ? context.colors.danger
         : context.colors.textPrimary;
     return Material(
-      type: .transparency,
+      type: MaterialType.transparency,
       child: InkWell(
         onTap: onTap,
         child: Padding(
-          padding: const .symmetric(horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Row(
             children: [
               Container(
-                padding: const .all(6),
+                padding: const EdgeInsets.all(6),
                 decoration: BoxDecoration(
                   color: context.colors.bgSecondary,
-                  borderRadius: .circular(8),
+                  borderRadius: BorderRadius.circular(8),
                 ),
                 child: Icon(
                   icon,

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:mobile/core/enums/app_languages.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
-import 'package:mobile/core/themes/app_colors.dart';
 
-class LanguageTile<T extends AppLanguages> extends StatelessWidget {
-  final T value;
+class LanguageTile extends StatelessWidget {
+  final AppLanguages value;
   final bool isSelected;
-  final void Function(T value) onSelect;
+  final void Function(AppLanguages value) onSelect;
+
   const LanguageTile({
     super.key,
     required this.value,
@@ -17,36 +17,47 @@ class LanguageTile<T extends AppLanguages> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      borderRadius: .circular(12),
+      borderRadius: BorderRadius.circular(12),
       onTap: () => onSelect(value),
       child: Ink(
         decoration: ShapeDecoration(
           color: context.colors.bgPrimary,
           shape: RoundedRectangleBorder(
-            borderRadius: .circular(12),
+            borderRadius: BorderRadius.circular(12),
             side: isSelected
-                ? BorderSide(color: appLightColors.brandDefault)
-                : .none,
+                ? BorderSide(color: context.colors.brandDefault)
+                : BorderSide.none,
           ),
         ),
         child: Padding(
-          padding: .all(12),
+          padding: const EdgeInsets.all(12),
           child: Row(
             children: [
-              Icon(Icons.flag),
-              SizedBox(width: 8),
-              Text(
-                value.name,
-                style: context.textThemes.buttonLarge,
+              const Icon(Icons.language),
+              const SizedBox(width: 12),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    value.title,
+                    style: context.textThemes.buttonLarge,
+                  ),
+                  Text(
+                    value.subtitle,
+                    style: context.textThemes.c1.copyWith(
+                      color: context.colors.textSecondary,
+                    ),
+                  ),
+                ],
               ),
-              Spacer(),
-              switch (isSelected) {
-                false => Icon(Icons.radio_button_off),
-                true => Icon(
-                  Icons.radio_button_checked,
-                  color: appLightColors.brandDefault,
-                ),
-              },
+              const Spacer(),
+              Icon(
+                isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
+                color: isSelected
+                    ? context.colors.brandDefault
+                    : context.colors.textSecondary,
+              ),
             ],
           ),
         ),

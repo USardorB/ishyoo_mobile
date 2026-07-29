@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -23,7 +24,7 @@ class CandidateProfilePage extends StatelessWidget {
           sl<CandidateProfileBloc>()..add(LoadCandidateProfile()),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("Profile"),
+          title: const Text("profile.title").tr(),
           automaticallyImplyLeading: false,
           actions: [
             IconButton(
@@ -68,38 +69,29 @@ class CandidateProfilePage extends StatelessWidget {
                       color: context.colors.brandDefault,
                     ),
                     title: Text(
-                      "Saqlangan vakansiyalar",
+                      "opportunities.saved_vacancies",
                       style: context.textThemes.buttonLarge,
-                    ),
+                    ).tr(),
                     trailing: const Icon(Icons.chevron_right),
                     tileColor: context.colors.bgSecondary,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  // ListTile(
-                  //   onTap: () => context.pushRoute(const ArticlesRoute()),
-                  //   leading: Icon(Icons.article_outlined, color: context.colors.brandDefault),
-                  //   title: Text("Maqolalar", style: context.textThemes.buttonLarge),
-                  //   trailing: const Icon(Icons.chevron_right),
-                  //   tileColor: context.colors.bgSecondary,
-                  //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                  // ),
                   const SizedBox(height: 24),
-                  _buildSectionTitle(context, "Mening rezyumelarim"),
+                  _buildSectionTitle(context, "profile.resumes"),
                   const SizedBox(height: 12),
                   CandidateResumesSection(resumes: resumes),
                   const SizedBox(height: 24),
-                  _buildSectionTitle(context, "Ish tajribasi"),
+                  _buildSectionTitle(context, "profile.experience"),
                   const SizedBox(height: 12),
                   CandidateExperienceSection(experiences: experiences),
                   const SizedBox(height: 24),
-                  _buildSectionTitle(context, "Ta'lim"),
+                  _buildSectionTitle(context, "profile.education"),
                   const SizedBox(height: 12),
                   CandidateEducationSection(educations: educations),
                   const SizedBox(height: 24),
-                  _buildSectionTitle(context, "Tillar"),
+                  _buildSectionTitle(context, "profile.languages"),
                   const SizedBox(height: 12),
                   const CandidateLanguagesSection(),
                 ],
@@ -111,10 +103,10 @@ class CandidateProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildSectionTitle(BuildContext context, String title) {
+  Widget _buildSectionTitle(BuildContext context, String key) {
     return Text(
-      title,
+      key,
       style: context.textThemes.s2,
-    );
+    ).tr();
   }
 }

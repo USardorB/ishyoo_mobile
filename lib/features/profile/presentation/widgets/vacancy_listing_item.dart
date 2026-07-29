@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
@@ -10,85 +11,73 @@ class VacancyListingItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: .all(12),
+      padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: context.colors.bgPrimary,
-        borderRadius: .circular(16),
+        borderRadius: BorderRadius.circular(16),
       ),
       child: Column(
-        crossAxisAlignment: .start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            spacing: 12,
             children: [
               SingleChildScrollView(
-                scrollDirection: .horizontal,
+                scrollDirection: Axis.horizontal,
                 child: Row(
-                  spacing: 6,
                   children: [
                     _buildPill(context.colors.bgSecondary, 'Toshkent'),
+                    const SizedBox(width: 6),
                     _buildPill(
                       context.colors.bgSecondary,
-                      'To\'liq stavka',
-                    ),
-                    _buildPill(
-                      context.colors.bgSecondary,
-                      'Tajriba 1-3 yil',
+                      'shared.all'.tr(),
                     ),
                   ],
                 ),
               ),
-              Flexible(
-                child: IconButton(
-                  style: IconButton.styleFrom(
-                    padding: .zero,
-                    visualDensity: .compact,
-                  ),
-                  onPressed: () {
-                    // TODO: Replace with actual vacancy data when available.
-                    // showModalBottomSheet(
-                    //   context: context,
-                    //   builder: (_) => PostingActionsSheet(vacancy: vacancy),
-                    // );
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(content: Text("Tez orada qo'shiladi")),
-                    );
-                  },
-                  icon: Icon(Icons.more_vert),
+              const Spacer(),
+              IconButton(
+                style: IconButton.styleFrom(
+                  padding: EdgeInsets.zero,
+                  visualDensity: VisualDensity.compact,
                 ),
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(content: Text("shared.coming_soon".tr())),
+                  );
+                },
+                icon: const Icon(Icons.more_vert),
               ),
             ],
           ),
-          SizedBox(height: 12),
+          const SizedBox(height: 12),
           Text(
-            "Senior UX/UI Dizayner",
+            "opportunities.title",
             style: context.textThemes.s1,
-          ),
+          ).tr(),
           Divider(
             height: 25,
             thickness: .5,
             color: context.colors.lineSecondary,
           ),
-
           Row(
-            mainAxisAlignment: .spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "10–15 mln so'm",
+                "shared.negotiable",
                 style: context.textThemes.s2.copyWith(
                   color: context.colors.brandDefault,
                 ),
-              ),
+              ).tr(),
               Row(
-                spacing: 6,
                 children: [
                   Icon(
                     Icons.calendar_month,
                     size: 20,
                     color: context.colors.textSecondary,
                   ),
+                  const SizedBox(width: 6),
                   Text(
-                    "Mar 31,2024",
+                    "2024",
                     style: context.textThemes.b2.copyWith(
                       color: context.colors.textSecondary,
                     ),
@@ -97,37 +86,37 @@ class VacancyListingItem extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 16),
+          const SizedBox(height: 16),
           Container(
-            padding: .symmetric(vertical: 12),
+            padding: const EdgeInsets.symmetric(vertical: 12),
             decoration: BoxDecoration(
               color: context.colors.bgSecondary,
-              borderRadius: .circular(16),
+              borderRadius: BorderRadius.circular(16),
             ),
             child: IntrinsicHeight(
               child: Row(
-                mainAxisAlignment: .spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Row(
-                    spacing: 12,
                     children: [
                       Icon(
                         Icons.remove_red_eye_outlined,
                         color: context.colors.textSecondary,
                       ),
+                      const SizedBox(width: 12),
                       Column(
-                        crossAxisAlignment: .start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '247',
+                            '0',
                             style: context.textThemes.buttonGiant,
                           ),
                           Text(
-                            "Ko'rishlar",
+                            "applicants.unseen",
                             style: context.textThemes.buttonMedium.copyWith(
                               color: context.colors.textSecondary,
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ],
@@ -137,28 +126,27 @@ class VacancyListingItem extends StatelessWidget {
                     color: context.colors.lineSecondary,
                   ),
                   Row(
-                    spacing: 12,
                     children: [
                       Icon(
                         Icons.people_outlined,
                         color: context.colors.brandDefault,
                       ),
+                      const SizedBox(width: 12),
                       Column(
-                        crossAxisAlignment: .start,
-                        spacing: 4,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            '12 yangi',
+                            '0',
                             style: context.textThemes.buttonGiant.copyWith(
                               color: context.colors.brandDefault,
                             ),
                           ),
                           Text(
-                            "Ko'rishlar",
+                            "applicants.invited",
                             style: context.textThemes.buttonMedium.copyWith(
                               color: context.colors.textSecondary,
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     ],
@@ -174,10 +162,10 @@ class VacancyListingItem extends StatelessWidget {
 
   Container _buildPill(Color color, String text) {
     return Container(
-      padding: .symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
       decoration: BoxDecoration(
         color: color,
-        borderRadius: .circular(6),
+        borderRadius: BorderRadius.circular(6),
       ),
       child: Text(text),
     );

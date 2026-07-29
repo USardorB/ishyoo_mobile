@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -55,7 +56,7 @@ class ForgotPasswordOtpPage extends HookWidget {
     void onVerify() {
       if (otpController.text.length < 5) {
         AppNotificationOverlay.instance.show(
-          message: 'Kodni to\'liq kiriting',
+          message: 'auth.otp.enter_full'.tr(),
           type: .warning,
         );
         return;
@@ -67,7 +68,7 @@ class ForgotPasswordOtpPage extends HookWidget {
 
       if (requestId == null) {
         AppNotificationOverlay.instance.show(
-          message: 'Request ID topilmadi. Qaytadan urinib ko\'ring.',
+          message: 'shared.error_occurred'.tr(),
           type: .error,
         );
         return;
@@ -94,33 +95,33 @@ class ForgotPasswordOtpPage extends HookWidget {
             context.pushRoute(const ResetPasswordRoute());
           } else if (state.status == bloc_state.AuthStatus.failure) {
             AppNotificationOverlay.instance.show(
-              message: state.errorMessage ?? 'Kod noto\'g\'ri',
+              message: state.errorMessage ?? 'auth.otp.invalid_code'.tr(),
               type: .error,
             );
           }
         },
         builder: (context, state) {
           return SafeArea(
-            minimum: .all(16),
+            minimum: const EdgeInsets.all(16),
             child: Column(
-              crossAxisAlignment: .stretch,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(height: 8),
+                const SizedBox(height: 8),
                 Column(
-                  crossAxisAlignment: .stretch,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      "Tasdiqlash kodi $phoneNumber telefon raqamiga yuborildi",
-                      textAlign: .center,
+                      'auth.otp.subtitle',
+                      textAlign: TextAlign.center,
                       maxLines: 3,
-                      overflow: .ellipsis,
+                      overflow: TextOverflow.ellipsis,
                       style: context.textThemes.b1.copyWith(
                         color: context.colors.textSecondary,
                       ),
-                    ),
+                    ).tr(args: [phoneNumber ?? '']),
                   ],
                 ),
-                SizedBox(height: 32),
+                const SizedBox(height: 32),
                 Pinput(
                   controller: otpController,
                   length: 5,
@@ -129,7 +130,7 @@ class ForgotPasswordOtpPage extends HookWidget {
                     height: 68,
                     decoration: BoxDecoration(
                       color: context.colors.bgPrimary,
-                      borderRadius: .circular(16),
+                      borderRadius: BorderRadius.circular(16),
                       border: Border.all(
                         color: context.colors.brandDefault,
                       ),
@@ -140,7 +141,7 @@ class ForgotPasswordOtpPage extends HookWidget {
                     height: 68,
                     decoration: BoxDecoration(
                       color: context.colors.bgPrimary,
-                      borderRadius: .circular(16),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                   ),
                 ),
@@ -174,19 +175,19 @@ class ForgotPasswordOtpPage extends HookWidget {
                     ),
                     child: Text(
                       remainingSeconds.value == 0
-                          ? 'Yangi kodni olish'
-                          : '00:${remainingSeconds.value.toString().padLeft(2, '0')} vaqt qoldi',
+                          ? 'auth.otp.new_code'.tr()
+                          : 'auth.otp.resend_in'.tr(args: ['00:${remainingSeconds.value.toString().padLeft(2, '0')}']),
                     ),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 AppButton(
                   onTap: onVerify,
                   isLoading: state.status == bloc_state.AuthStatus.loading,
-                  label: 'Davom etish',
+                  label: 'auth.otp.verify_button'.tr(),
                 ),
-                SizedBox(height: 12),
-                Flexible(flex: 0, child: SizedBox(height: 12)),
+                const SizedBox(height: 12),
+                const Flexible(flex: 0, child: SizedBox(height: 12)),
               ],
             ),
           );

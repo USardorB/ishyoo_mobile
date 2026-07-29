@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -27,7 +28,7 @@ class _SavedVacanciesPageState extends State<SavedVacanciesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Saqlangan vakansiyalar"),
+        title: const Text("opportunities.saved_vacancies").tr(),
       ),
       body: Column(
         children: [
@@ -47,13 +48,13 @@ class _SavedVacanciesPageState extends State<SavedVacanciesPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "$count ta ish saqlangan",
+                      'talents.results_count'.tr(args: [count.toString()]),
                       style: context.textThemes.s2,
                     ),
                     const Spacer(),
                     TextButton.icon(
                       onPressed: () {},
-                      label: const Text("Mos ravishda"),
+                      label: const Text("opportunities.matches_filter").tr(),
                       style: TextButton.styleFrom(
                         textStyle: context.textThemes.buttonLarge,
                         visualDensity: VisualDensity.compact,
@@ -79,9 +80,9 @@ class _SavedVacanciesPageState extends State<SavedVacanciesPage> {
                   if (state.vacancies.isEmpty) {
                     return Center(
                       child: Text(
-                        "Hozircha saqlangan vakansiyalar yo'q",
+                        "shared.no_data",
                         style: TextStyle(color: context.colors.textSecondary),
-                      ),
+                      ).tr(),
                     );
                   }
                   return ListView.separated(

@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart';
+
 enum PasswordRequirementType {
   minLength,
   hasCapitalLetter,
@@ -7,11 +9,11 @@ enum PasswordRequirementType {
   String get text {
     switch (this) {
       case PasswordRequirementType.minLength:
-        return 'Kamida 8 ta belgi';
+        return 'auth.confirm_password.req_min_length'.tr();
       case PasswordRequirementType.hasCapitalLetter:
-        return 'Kamida 1 ta katta harf';
+        return 'auth.confirm_password.req_capital_letter'.tr();
       case PasswordRequirementType.hasNumber:
-        return 'Kamida 1 ta son';
+        return 'auth.confirm_password.req_number'.tr();
     }
   }
 }

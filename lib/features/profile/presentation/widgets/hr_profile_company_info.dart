@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
@@ -21,7 +22,7 @@ class HrProfileCompanyInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 20),
-            Text('Aloqa va manzil', style: context.textThemes.s2),
+            Text('profile.company_info', style: context.textThemes.s2).tr(),
             const SizedBox(height: 16),
             Container(
               padding: const EdgeInsets.all(12),
@@ -36,7 +37,7 @@ class HrProfileCompanyInfo extends StatelessWidget {
                     _buildContactTile(
                       context,
                       icon: Icons.language_outlined,
-                      label: 'Veb-sayt',
+                      label: 'WEBSITE',
                       value: organization!.website!,
                     ),
                   if (organization?.location != null) ...[
@@ -44,7 +45,7 @@ class HrProfileCompanyInfo extends StatelessWidget {
                     _buildContactTile(
                       context,
                       icon: Icons.location_on_outlined,
-                      label: 'Manzil',
+                      label: 'opportunities.location'.tr(),
                       value: organization!.location!,
                     ),
                   ],
@@ -55,33 +56,8 @@ class HrProfileCompanyInfo extends StatelessWidget {
                     _buildContactTile(
                       context,
                       icon: Icons.phone_outlined,
-                      label: 'Telefon',
+                      label: 'auth.login.phone_label'.tr(),
                       value: organization!.phoneNumber!,
-                    ),
-                  ],
-                  if (organization?.since != null) ...[
-                    if (organization?.website != null ||
-                        organization?.location != null ||
-                        organization?.phoneNumber != null)
-                      const Divider(),
-                    _buildContactTile(
-                      context,
-                      icon: Icons.calendar_today_outlined,
-                      label: 'Tashkil topgan yili',
-                      value: organization!.since.toString(),
-                    ),
-                  ],
-                  if (organization?.onMarket != null) ...[
-                    if (organization?.website != null ||
-                        organization?.location != null ||
-                        organization?.phoneNumber != null ||
-                        organization?.since != null)
-                      const Divider(),
-                    _buildContactTile(
-                      context,
-                      icon: Icons.storefront_outlined,
-                      label: 'Bozordagi yillari',
-                      value: organization!.onMarket.toString(),
                     ),
                   ],
                   if (organization?.website == null &&
@@ -90,18 +66,18 @@ class HrProfileCompanyInfo extends StatelessWidget {
                       organization?.since == null &&
                       organization?.onMarket == null)
                     Text(
-                      "Aloqa ma'lumotlari kiritilmagan",
+                      "shared.no_data",
                       style: context.textThemes.b2.copyWith(
                         color: context.colors.textSecondary,
                       ),
-                    ),
+                    ).tr(),
                   const SizedBox(height: 12),
                   AppButton(
                     color: context.colors.bgSecondary,
                     onTap: () {
                       context.pushRoute(const EditCompanyInfoRoute());
                     },
-                    label: "Tahrirlash",
+                    label: "profile.edit_profile".tr(),
                   ),
                 ],
               ),

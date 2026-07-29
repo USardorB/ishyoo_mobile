@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -236,7 +237,7 @@ class MessageBubble extends StatelessWidget {
           children: [
             ListTile(
               leading: const Icon(Icons.edit_outlined),
-              title: const Text("Tahrirlash"),
+              title: const Text("shared.edit").tr(),
               onTap: () {
                 Navigator.pop(ctx);
                 _showEditDialog(context, isEmployer);
@@ -248,7 +249,7 @@ class MessageBubble extends StatelessWidget {
                 color: context.colors.danger,
               ),
               title: Text(
-                "O'chirish",
+                "shared.delete".tr(),
                 style: TextStyle(color: context.colors.danger),
               ),
               onTap: () {
@@ -273,17 +274,17 @@ class MessageBubble extends StatelessWidget {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text("Xabarni tahrirlash"),
+        title: const Text("messaging.edit_message").tr(),
         content: TextField(
           controller: ctrl,
           autofocus: true,
           maxLines: null,
-          decoration: const InputDecoration(hintText: "Yangi matn..."),
+          decoration: InputDecoration(hintText: "messaging.type_message".tr()),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text("Bekor"),
+            child: const Text("shared.cancel").tr(),
           ),
           TextButton(
             onPressed: () {
@@ -300,7 +301,7 @@ class MessageBubble extends StatelessWidget {
               }
               Navigator.pop(ctx);
             },
-            child: const Text("Saqlash"),
+            child: const Text("shared.save").tr(),
           ),
         ],
       ),

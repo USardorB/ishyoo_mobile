@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,7 +11,6 @@ import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/messaging/presentation/bloc/messaging_bloc.dart';
 import 'package:mobile/features/messaging/presentation/widgets/attatchment_options_sheet.dart';
 
-// TODO(Sardor) Rename for better readability
 class ChatPageBottomPart extends StatefulWidget {
   final String chatId;
   const ChatPageBottomPart({super.key, required this.chatId});
@@ -95,7 +95,7 @@ class _ChatPageBottomPartState extends State<ChatPageBottomPart> {
     } catch (e) {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Xatolik yuz berdi: $e')),
+          SnackBar(content: Text('shared.error_occurred'.tr())),
         );
       }
     }
@@ -104,9 +104,8 @@ class _ChatPageBottomPartState extends State<ChatPageBottomPart> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: .symmetric(horizontal: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Row(
-        spacing: 8,
         children: [
           IconButton.filled(
             onPressed: () async {
@@ -124,18 +123,19 @@ class _ChatPageBottomPartState extends State<ChatPageBottomPart> {
               backgroundColor: context.colors.bgPrimary,
               foregroundColor: context.colors.brightImmutable,
             ),
-            icon: Icon(Icons.add),
+            icon: const Icon(Icons.add),
             color: context.colors.brandDefault,
           ),
-          Flexible(
+          const SizedBox(width: 8),
+          Expanded(
             child: TextField(
               controller: _controller,
               onSubmitted: (_) => _sendMessage(),
               decoration: InputDecoration(
-                hintText: "Xabar yozing...",
+                hintText: "messaging.type_message".tr(),
                 fillColor: context.colors.bgPrimary,
                 filled: true,
-                contentPadding: .symmetric(horizontal: 16, vertical: 13),
+                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(100),
                   borderSide: BorderSide.none,
@@ -143,13 +143,14 @@ class _ChatPageBottomPartState extends State<ChatPageBottomPart> {
               ),
             ),
           ),
+          const SizedBox(width: 8),
           IconButton.filled(
             style: IconButton.styleFrom(
               backgroundColor: context.colors.bgPrimary,
               foregroundColor: context.colors.textSecondary,
             ),
             onPressed: _sendMessage,
-            icon: Icon(Icons.send),
+            icon: const Icon(Icons.send),
           ),
         ],
       ),

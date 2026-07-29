@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -12,7 +13,6 @@ import 'package:mobile/features/resume/presentation/widgets/resume_education_sec
 import 'package:mobile/features/resume/presentation/widgets/resume_experience_section.dart';
 import 'package:mobile/features/resume/presentation/widgets/resume_menu_sheet.dart';
 import 'package:mobile/features/resume/presentation/widgets/resume_skills_section.dart';
-import 'package:mobile/features/resume/presentation/widgets/resume_stats_section.dart';
 
 @RoutePage()
 class ResumeDetailsPage extends StatelessWidget implements AutoRouteWrapper {
@@ -32,7 +32,7 @@ class ResumeDetailsPage extends StatelessWidget implements AutoRouteWrapper {
           IconButton(
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Ulashish tez orada qo'shiladi")),
+                SnackBar(content: Text("shared.coming_soon".tr())),
               );
             },
             icon: const Icon(Icons.share_outlined),
@@ -65,7 +65,7 @@ class ResumeDetailsPage extends StatelessWidget implements AutoRouteWrapper {
 
           final resume = state.resume;
           if (resume == null) {
-            return const Center(child: Text("Ma'lumot topilmadi"));
+            return Center(child: const Text("shared.no_data").tr());
           }
 
           final employmentTypeStr = (resume.employmentType ?? []).join(', ');
@@ -99,7 +99,7 @@ class ResumeDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                 const SizedBox(height: 16),
                 Align(
                   child: Text(
-                    resume.specialization ?? "Kiritilmagan",
+                    resume.specialization ?? "",
                     style: context.textThemes.s1,
                   ),
                 ),
@@ -119,28 +119,24 @@ class ResumeDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                       CreateResumeFlowRoute(resume: resume),
                     );
                   },
-                  label: "Tahrirlash",
+                  label: "shared.edit".tr(),
                   color: context.colors.bgSecondary,
                   foregroundColor: context.colors.textPrimary,
                 ),
                 const SizedBox(height: 32),
-                _buildSectionTitle(context, "Haftalik statistika"),
-                const SizedBox(height: 16),
-                ResumeStatsSection(resume: resume),
-                const SizedBox(height: 32),
-                _buildSectionTitle(context, "Kontaktlar"),
+                _buildSectionTitle(context, "resume.contacts"),
                 const SizedBox(height: 16),
                 const ResumeContactsSection(),
                 const SizedBox(height: 32),
-                _buildSectionTitle(context, "Ish tajribasi"),
+                _buildSectionTitle(context, "profile.experience"),
                 const SizedBox(height: 16),
                 ResumeExperienceSection(experiences: resume.experiences ?? []),
                 const SizedBox(height: 32),
-                _buildSectionTitle(context, "Ta'lim"),
+                _buildSectionTitle(context, "profile.education"),
                 const SizedBox(height: 16),
                 ResumeEducationSection(educations: resume.educations ?? []),
                 const SizedBox(height: 32),
-                _buildSectionTitle(context, "Ko'nikmalar"),
+                _buildSectionTitle(context, "profile.languages"),
                 const SizedBox(height: 16),
                 ResumeSkillsSection(skills: resume.skills ?? []),
               ],
@@ -151,13 +147,13 @@ class ResumeDetailsPage extends StatelessWidget implements AutoRouteWrapper {
     );
   }
 
-  Widget _buildSectionTitle(BuildContext context, String title) {
+  Widget _buildSectionTitle(BuildContext context, String key) {
     return Align(
       alignment: Alignment.centerLeft,
       child: Text(
-        title,
+        key,
         style: context.textThemes.s1,
-      ),
+      ).tr(),
     );
   }
 

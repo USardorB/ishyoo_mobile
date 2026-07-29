@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -37,7 +38,6 @@ class _SheetContentState extends State<_SheetContent> {
   Widget build(BuildContext context) {
     return BlocConsumer<SettingsBloc, SettingsState>(
       listener: (context, state) {
-        // Initialize toggles once settings load
         if (!_initialized &&
             state.settings?.notifications != null &&
             state.settings!.notifications!.isNotEmpty) {
@@ -75,9 +75,9 @@ class _SheetContentState extends State<_SheetContent> {
                 children: [
                   const SizedBox(width: 40),
                   Text(
-                    "Bildirishnomalar",
+                    "settings.notifications",
                     style: context.textThemes.h5,
-                  ),
+                  ).tr(),
                   IconButton(
                     onPressed: context.pop,
                     icon: const Icon(Icons.close),
@@ -98,9 +98,9 @@ class _SheetContentState extends State<_SheetContent> {
                 tiles: [
                   ListTile(
                     title: Text(
-                      "SMS bildirishnomalar",
+                      "settings.notifications",
                       style: context.textThemes.buttonLarge,
-                    ),
+                    ).tr(),
                     trailing: Switch.adaptive(
                       applyCupertinoTheme: true,
                       value: _smsEnabled,
@@ -109,9 +109,9 @@ class _SheetContentState extends State<_SheetContent> {
                   ),
                   ListTile(
                     title: Text(
-                      "Ariza yangilanishlari",
+                      "applications.title",
                       style: context.textThemes.buttonLarge,
-                    ),
+                    ).tr(),
                     trailing: Switch.adaptive(
                       applyCupertinoTheme: true,
                       value: _applicationUpdates,
@@ -121,9 +121,9 @@ class _SheetContentState extends State<_SheetContent> {
                   ),
                   ListTile(
                     title: Text(
-                      "Xabarlar",
+                      "nav.chats",
                       style: context.textThemes.buttonLarge,
-                    ),
+                    ).tr(),
                     trailing: Switch.adaptive(
                       applyCupertinoTheme: true,
                       value: _messages,
@@ -132,25 +132,13 @@ class _SheetContentState extends State<_SheetContent> {
                   ),
                   ListTile(
                     title: Text(
-                      "Suhbatlar",
+                      "applications.status.interview",
                       style: context.textThemes.buttonLarge,
-                    ),
+                    ).tr(),
                     trailing: Switch.adaptive(
                       applyCupertinoTheme: true,
                       value: _interviews,
                       onChanged: (value) => setState(() => _interviews = value),
-                    ),
-                  ),
-                  ListTile(
-                    title: Text(
-                      "Tavsiyalar",
-                      style: context.textThemes.buttonLarge,
-                    ),
-                    trailing: Switch.adaptive(
-                      applyCupertinoTheme: true,
-                      value: _recommendations,
-                      onChanged: (value) =>
-                          setState(() => _recommendations = value),
                     ),
                   ),
                 ],
@@ -170,7 +158,7 @@ class _SheetContentState extends State<_SheetContent> {
                   );
                   context.pop();
                 },
-                label: "Qo'llash",
+                label: "shared.apply".tr(),
               ),
             ),
           ],

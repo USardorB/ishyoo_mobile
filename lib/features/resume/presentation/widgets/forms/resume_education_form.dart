@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
@@ -28,7 +29,7 @@ class ResumeEducationForm extends StatelessWidget {
         const SizedBox(height: 16),
         _buildTextField(
           context,
-          "Ta'lim muassasasi nomi",
+          "resume.sections.education".tr(),
           "Masalan: TATU",
           controller: schoolController,
           maxLines: 2,
@@ -36,7 +37,7 @@ class ResumeEducationForm extends StatelessWidget {
         const SizedBox(height: 24),
         _buildTextField(
           context,
-          "Yo'nalish / Mutaxassislik",
+          "talents.search_placeholder".tr(),
           "Masalan: Dasturiy injiniring",
           controller: degreeController,
         ),
@@ -47,7 +48,7 @@ class ResumeEducationForm extends StatelessWidget {
             Expanded(
               child: _buildTextField(
                 context,
-                "Boshlangan yili",
+                "shared.all".tr(),
                 "2019",
                 controller: startYearController,
                 keyboardType: TextInputType.number,
@@ -56,7 +57,7 @@ class ResumeEducationForm extends StatelessWidget {
             Expanded(
               child: _buildTextField(
                 context,
-                "Bitirgan yili",
+                "shared.all".tr(),
                 "2023",
                 controller: endYearController,
                 keyboardType: TextInputType.number,
@@ -64,22 +65,15 @@ class ResumeEducationForm extends StatelessWidget {
             ),
           ],
         ),
-        const SizedBox(height: 8),
-        Text(
-          "Agar hali ham o'qiyotgan bo'lsangiz, kutilayotgan bitiruv yilini ko'rsating",
-          style: context.textThemes.c2.copyWith(
-            color: context.colors.textSecondary,
-          ),
-        ),
         if (showSaveButton) ...[
           const SizedBox(height: 32),
           AppButton(
             onTap: onSave ?? () {},
-            label: "Saqlash",
+            label: "shared.save".tr(),
             color: context.colors.brandProgress,
             foregroundColor: Colors.black,
           ),
-          const SizedBox(height: 32), // Bottom padding
+          const SizedBox(height: 32),
         ],
       ],
     );

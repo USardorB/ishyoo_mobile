@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mobile/core/enums/user_role.dart';
@@ -29,33 +30,30 @@ class OnboardingPage extends HookWidget {
               controller: pageController,
               children: [
                 OnboardingPageViewItem(
-                  title: 'Biz bilan ishingizni toping',
-                  subTitle:
-                      'IT, dizayn, marketing, savdo, xizmat ko‘rsatish va boshqa ko‘plab kasblar uchun imkoniyatlar mavjud',
+                  title: 'onboarding.slide1.title'.tr(),
+                  subTitle: 'onboarding.slide1.subtitle'.tr(),
                 ),
                 OnboardingPageViewItem(
-                  title: 'O‘zingizga mos ishni tanlang',
-                  subTitle:
-                      'Minglab vakansiyalar orasidan qiziqishingiz va tajribangizga mos ishni toping. Karyerangizni yangi bosqichga olib chiqing.',
+                  title: 'onboarding.slide2.title'.tr(),
+                  subTitle: 'onboarding.slide2.subtitle'.tr(),
                 ),
                 OnboardingPageViewItem(
-                  title: 'Qulay va tezkor jarayon',
-                  subTitle:
-                      'Kerakli vakansiyalarni filtrlar orqali oson toping, kompaniyalarni solishtiring va bir necha daqiqada ariza yuboring.',
+                  title: 'onboarding.slide3.title'.tr(),
+                  subTitle: 'onboarding.slide3.subtitle'.tr(),
                 ),
               ],
             ),
           ),
-          Flexible(
+          const Flexible(
             flex: 0,
             child: SizedBox(height: 18),
           ),
           PageViewIndicator(
             pageController: pageController,
           ),
-          Spacer(),
+          const Spacer(),
           SafeArea(
-            minimum: .all(16),
+            minimum: const EdgeInsets.all(16),
             child: ListenableBuilder(
               listenable: pageController,
               builder: (context, child) {
@@ -73,9 +71,11 @@ class OnboardingPage extends HookWidget {
                           curve: Curves.ease,
                         );
                       },
-                      label: isLastPage ? "Xodimlarni topish" : "Davom etish",
+                      label: isLastPage
+                          ? "auth.select_role.employer_sub".tr()
+                          : "shared.continue".tr(),
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     AppButton(
                       onTap: () {
                         if (isLastPage) {
@@ -88,11 +88,11 @@ class OnboardingPage extends HookWidget {
                         );
                       },
                       label: isLastPage
-                          ? "Bo‘sh ish o‘rinlarini topish"
-                          : "O‘tkazish",
+                          ? "auth.select_role.candidate_sub".tr()
+                          : "shared.skip".tr(),
                       color: context.colors.bgPrimary,
                     ),
-                    Flexible(flex: 0, child: SizedBox(height: 12)),
+                    const Flexible(flex: 0, child: SizedBox(height: 12)),
                   ],
                 );
               },
@@ -104,7 +104,6 @@ class OnboardingPage extends HookWidget {
   }
 
   void navigateToAuth(BuildContext context, UserRole role) async {
-    // Gracefully ask for location and notification permissions before onboarding finishes
     await [
       Permission.notification,
       Permission.locationWhenInUse,
@@ -112,42 +111,5 @@ class OnboardingPage extends HookWidget {
 
     if (!context.mounted) return;
     context.pushRoute(LoginRoute(role: role));
-  }
-}
-
-class ConfirmationDialog extends StatelessWidget {
-  const ConfirmationDialog({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AlertDialog(
-      backgroundColor: context.colors.bgPrimary,
-      insetPadding: .all(16),
-      icon: Icon(
-        Icons.location_on,
-        size: 80,
-        color: context.colors.brandDefault,
-      ),
-      title: Text(
-        "Siz Namangandanmisiz?",
-        textAlign: .center,
-      ),
-      content: Text(
-        "Agarda siz Namangandan bo'lsangiz, iltimos Namangandanman tugmasini bosing. Aks holda, Yo'q Namangandan emasman tugmasini bosing.",
-        textAlign: .center,
-      ),
-      actions: [
-        AppButton(
-          onTap: () => context.pop(true),
-          label: "Namangandanman",
-        ),
-        SizedBox(height: 12),
-        AppButton(
-          label: "Yo'q Namangandan emasman",
-          onTap: () => context.pop(false),
-          color: context.colors.bgTertiary,
-        ),
-      ],
-    );
   }
 }

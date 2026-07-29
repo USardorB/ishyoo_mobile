@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
@@ -53,7 +54,6 @@ class _CompanyDetailsView extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Logo and Name
                       Center(
                         child: Column(
                           children: [
@@ -78,13 +78,13 @@ class _CompanyDetailsView extends StatelessWidget {
                             ),
                             const SizedBox(height: 16),
                             Text(
-                              organization.name ?? 'Noma\'lum tashkilot',
+                              organization.name ?? '',
                               style: context.textThemes.h2,
                               textAlign: TextAlign.center,
                             ),
                             const SizedBox(height: 4),
                             Text(
-                              organization.industry ?? 'Tashkilot',
+                              organization.industry ?? '',
                               style: context.textThemes.b2.copyWith(
                                 color: context.colors.textSecondary,
                               ),
@@ -94,8 +94,6 @@ class _CompanyDetailsView extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 24),
-
-                      // Active Vacancies Banner
                       if (organization.count != null &&
                           organization.count!['vacancy'] != null)
                         Container(
@@ -112,11 +110,11 @@ class _CompanyDetailsView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Faol vakansiyalar",
+                                "profile.my_vacancies",
                                 style: context.textThemes.s2.copyWith(
                                   color: Colors.black,
                                 ),
-                              ),
+                              ).tr(),
                               Text(
                                 organization.count!['vacancy'].toString(),
                                 style: context.textThemes.s2.copyWith(
@@ -126,14 +124,12 @@ class _CompanyDetailsView extends StatelessWidget {
                             ],
                           ),
                         ),
-
-                      // Description
                       if (organization.description != null &&
                           organization.description!.isNotEmpty) ...[
                         Text(
-                          "Kompaniya haqida",
+                          "profile.about_company",
                           style: context.textThemes.h3,
-                        ),
+                        ).tr(),
                         const SizedBox(height: 12),
                         Text(
                           organization.description!,

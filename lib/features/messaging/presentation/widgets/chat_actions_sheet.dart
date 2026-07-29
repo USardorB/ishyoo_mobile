@@ -1,15 +1,17 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
 enum ChatActions {
-  profile(icon: Icons.person_outline, label: 'Profil'),
-  // mute(icon: Icons.block, label: 'Ovozini o\'chirish'),
-  logout(icon: Icons.logout, label: 'Chatdan chiqish');
+  profile(icon: Icons.person_outline, labelKey: 'nav.profile'),
+  logout(icon: Icons.logout, labelKey: 'messaging.delete_chat');
 
   final IconData icon;
-  final String label;
+  final String labelKey;
 
-  const ChatActions({required this.icon, required this.label});
+  const ChatActions({required this.icon, required this.labelKey});
+
+  String get label => labelKey.tr();
 }
 
 class ChatActionsSheet extends StatelessWidget {

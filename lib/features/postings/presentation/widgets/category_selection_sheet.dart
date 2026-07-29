@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/resume/data/models/specialization.dart';
@@ -31,9 +32,9 @@ class CategorySelectionSheet extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           Text(
-            "Mutaxassisliklar",
+            "talents.search_placeholder",
             style: context.textThemes.h3,
-          ),
+          ).tr(),
           const SizedBox(height: 24),
           if (specializations.isEmpty)
             const Padding(

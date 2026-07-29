@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -39,7 +40,7 @@ class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
           IconButton.filled(
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("Xizmat tez orada qo'shiladi")),
+                SnackBar(content: Text("shared.coming_soon".tr())),
               );
             },
             icon: const Icon(Icons.headset_mic_outlined),
@@ -65,10 +66,6 @@ class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
                 Flexible(
                   child: DarkGlassSearchField(
                     onTap: () {
-                      // Pass the bloc down to the search page if needed, or if it has its own, that's fine.
-                      // Currently VacancySearchPage has its own AutoRouteWrapper creating a new Bloc. 
-                      // So state might not carry over unless we pass it. 
-                      // But that's a separate issue. I'll just keep the navigation as is.
                       context.pushRoute(const VacancySearchRoute());
                     },
                   ),
@@ -122,9 +119,9 @@ class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
             const CandidateQuickAccessCards(),
             const SizedBox(height: 32),
             Text(
-              "Trenddagi e'lonlar",
+              "opportunities.title",
               style: context.textThemes.s2,
-            ),
+            ).tr(),
             const SizedBox(height: 16),
             BlocBuilder<VacancyFeedBloc, VacancyFeedState>(
               builder: (context, state) {
@@ -141,16 +138,16 @@ class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
                   if (state.vacancies.isEmpty) {
                     return Center(
                       child: Column(
-                        mainAxisSize: .min,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
                           Image.asset("assets/images/no_results.png"),
                           Text(
-                            "Hozircha e’lonlar yo‘q. Sizga mos ish e’lonlari tez orada shu yerda paydo bo‘ladi.",
-                            textAlign: .center,
+                            "shared.no_data",
+                            textAlign: TextAlign.center,
                             style: context.textThemes.b1.copyWith(
                               color: context.colors.textSecondary,
                             ),
-                          ),
+                          ).tr(),
                         ],
                       ),
                     );

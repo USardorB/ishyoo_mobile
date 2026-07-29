@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
@@ -17,14 +18,14 @@ enum PostingAction {
   applicants;
 
   String get title => switch (this) {
-    PostingAction.view => 'Ko‘rish',
-    PostingAction.edit => 'Tahrirlash',
-    PostingAction.pause => 'To‘xtatish',
-    PostingAction.applicants => 'Javoblar',
-    PostingAction.copy => 'Nusxa olish',
-    PostingAction.share => 'Ulashish',
-    PostingAction.archive => 'Arxivlash',
-    PostingAction.delete => 'O‘chirish',
+    PostingAction.view => 'shared.show_all'.tr(),
+    PostingAction.edit => 'shared.edit'.tr(),
+    PostingAction.pause => 'shared.cancel'.tr(),
+    PostingAction.applicants => 'applications.title'.tr(),
+    PostingAction.copy => 'shared.copy'.tr(),
+    PostingAction.share => 'shared.coming_soon'.tr(),
+    PostingAction.archive => 'applicants.archived'.tr(),
+    PostingAction.delete => 'shared.delete'.tr(),
   };
 
   IconData get icon => switch (this) {
@@ -47,11 +48,11 @@ class PostingActionsSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       shrinkWrap: true,
-      padding: EdgeInsets.symmetric(horizontal: 16).copyWith(
+      padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
         bottom: MediaQuery.paddingOf(context).bottom + 12,
       ),
       children: [
-        SizedBox(height: 12),
+        const SizedBox(height: 12),
         Center(
           child: Container(
             height: 6,
@@ -84,7 +85,7 @@ class PostingActionsSheet extends StatelessWidget {
         color: context.colors.bgSecondary,
         shape: RoundedRectangleBorder(borderRadius: .circular(8)),
         child: Padding(
-          padding: .all(4),
+          padding: const EdgeInsets.all(4),
           child: Icon(action.icon),
         ),
       ),
@@ -112,12 +113,12 @@ class PostingActionsSheet extends StatelessWidget {
             break;
           case PostingAction.delete:
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("O'chirish tez orada qo'shiladi")),
+              SnackBar(content: Text("shared.coming_soon".tr())),
             );
             break;
           case PostingAction.share:
             ScaffoldMessenger.of(context).showSnackBar(
-              const SnackBar(content: Text("Ulashish tez orada qo'shiladi")),
+              SnackBar(content: Text("shared.coming_soon".tr())),
             );
             break;
           case PostingAction.pause:

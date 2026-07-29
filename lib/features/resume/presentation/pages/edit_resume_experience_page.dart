@@ -1,17 +1,17 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
-import 'package:mobile/features/resume/data/models/resume.dart';
-import 'package:mobile/features/resume/presentation/widgets/forms/resume_experience_form.dart';
+import 'package:mobile/features/location/data/models/district.dart';
+import 'package:mobile/features/location/data/models/region.dart';
+import 'package:mobile/features/location/presentation/widgets/districts_sheet.dart';
+import 'package:mobile/features/location/presentation/widgets/regions_sheet.dart';
 import 'package:mobile/features/profile/presentation/widgets/delete_experience_dialog.dart';
 import 'package:mobile/features/profile/presentation/widgets/month_picker_sheet.dart';
-
-import 'package:mobile/features/location/data/models/region.dart';
-import 'package:mobile/features/location/data/models/district.dart';
-import 'package:mobile/features/location/presentation/widgets/regions_sheet.dart';
-import 'package:mobile/features/location/presentation/widgets/districts_sheet.dart';
+import 'package:mobile/features/resume/data/models/resume.dart';
+import 'package:mobile/features/resume/presentation/widgets/forms/resume_experience_form.dart';
 
 @RoutePage()
 class EditResumeExperiencePage extends HookWidget {
@@ -35,7 +35,7 @@ class EditResumeExperiencePage extends HookWidget {
     final isWorking = useState<bool>(
       experience != null && experience!.endDate == null,
     );
-    final locationStr = useState<String>("Tanlang");
+    final locationStr = useState<String>("shared.select".tr());
 
     return Scaffold(
       appBar: AppBar(
@@ -43,7 +43,7 @@ class EditResumeExperiencePage extends HookWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => context.maybePop(),
         ),
-        title: const Text("Ish joyi"),
+        title: const Text("resume.workplace").tr(),
         centerTitle: true,
         actions: [
           if (experience != null)
@@ -129,7 +129,7 @@ class EditResumeExperiencePage extends HookWidget {
             ),
           ),
           Padding(
-            padding: EdgeInsets.all(16).copyWith(
+            padding: const EdgeInsets.all(16).copyWith(
               bottom: MediaQuery.paddingOf(context).bottom + 16,
             ),
             child: AppButton(
@@ -147,7 +147,7 @@ class EditResumeExperiencePage extends HookWidget {
                 };
                 context.maybePop(result);
               },
-              label: "Saqlash",
+              label: "shared.save".tr(),
               color: context.colors.brandProgress,
               foregroundColor: Colors.black,
             ),

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
@@ -41,16 +42,16 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text("Asosiy ma'lumotlar", style: context.textThemes.h5),
+          Text("auth.complete_profile.title", style: context.textThemes.h5).tr(),
           const SizedBox(height: 20),
           AppInputField(
-            label: "VAKANSIYA NOMI",
+            label: "opportunities.title".tr(),
             controller: titleController,
           ),
           const SizedBox(height: 16),
           AppInputField(
-            label: "MUTAXASSISLIK",
-            hintText: selectedSpecialization ?? "Mutaxassislik tanlang",
+            label: "talents.search_placeholder".tr(),
+            hintText: selectedSpecialization ?? "shared.search".tr(),
             readOnly: true,
             suffixIcon: Icon(
               Icons.chevron_right,
@@ -74,17 +75,17 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           AppInputField(
-            label: "Manzil",
+            label: "opportunities.location".tr(),
             controller: addressController,
           ),
           const SizedBox(height: 16),
-          Text("MAOSH (SO'M)", style: context.textThemes.s3),
+          Text("opportunities.salary".tr(args: ['']), style: context.textThemes.s3),
           const SizedBox(height: 8),
           Row(
             children: [
               Expanded(
                 child: AppInputField(
-                  hintText: "Dan",
+                  hintText: "shared.all".tr(),
                   controller: salaryFromController,
                   keyboardType: TextInputType.number,
                 ),
@@ -92,7 +93,7 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
               const SizedBox(width: 16),
               Expanded(
                 child: AppInputField(
-                  hintText: "Gacha",
+                  hintText: "shared.all".tr(),
                   controller: salaryToController,
                   keyboardType: TextInputType.number,
                 ),
@@ -101,11 +102,11 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           AppInputField(
-            label: "Telefon",
+            label: "auth.login.phone_label".tr(),
             controller: phoneController,
           ),
           const SizedBox(height: 16),
-          Text("BANDLIK TURI", style: context.textThemes.s3),
+          Text("opportunities.employment_type".tr(), style: context.textThemes.s3),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8,
@@ -143,7 +144,7 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
           ),
           const SizedBox(height: 32),
           AppButton(
-            label: "Davom etish",
+            label: "shared.continue".tr(),
             onTap: onNext,
           ),
           const SizedBox(height: 16),

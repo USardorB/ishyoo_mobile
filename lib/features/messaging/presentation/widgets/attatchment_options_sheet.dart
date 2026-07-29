@@ -1,15 +1,18 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
 enum AttatchmentOptionsSheetType {
-  file(icon: Icons.file_present_outlined, label: 'Fayl'),
-  gallery(icon: Icons.photo_outlined, label: 'Galereya'),
-  camera(icon: Icons.camera_alt_outlined, label: 'Kamera');
+  file(icon: Icons.file_present_outlined, key: 'messaging.file'),
+  gallery(icon: Icons.photo_outlined, key: 'messaging.gallery'),
+  camera(icon: Icons.camera_alt_outlined, key: 'messaging.camera');
 
   final IconData icon;
-  final String label;
+  final String key;
 
-  const AttatchmentOptionsSheetType({required this.icon, required this.label});
+  const AttatchmentOptionsSheetType({required this.icon, required this.key});
+
+  String get label => key.tr();
 }
 
 class AttatchmentOptionsSheet extends StatelessWidget {

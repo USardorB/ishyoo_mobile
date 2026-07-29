@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
@@ -12,32 +13,31 @@ class AboutTheCompany extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: .stretch,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SizedBox(height: 20),
-        Text('Kompaniya haqida', style: context.textThemes.s2),
-        SizedBox(height: 16),
+        const SizedBox(height: 20),
+        Text('profile.about_company', style: context.textThemes.s2).tr(),
+        const SizedBox(height: 16),
         Container(
-          padding: .all(12),
+          padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
             color: context.colors.bgPrimary,
-            borderRadius: .circular(16),
+            borderRadius: BorderRadius.circular(16),
           ),
           child: Column(
-            crossAxisAlignment: .stretch,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Row(
-                mainAxisAlignment: .spaceAround,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   _buildStats(
                     context,
-                    "Xodimlar",
+                    "nav.candidates".tr(),
                     organization?.size?.toString() ?? "-",
                   ),
-                  _buildStats(context, "Bozorda", "8 yil"),
                   _buildStats(
                     context,
-                    "Yaratilgan",
+                    "profile.experience".tr(),
                     organization?.createdAt?.year.toString() ?? "-",
                   ),
                 ],
@@ -49,15 +49,15 @@ class AboutTheCompany extends StatelessWidget {
               ),
               Text(
                 organization?.description ??
-                    "Kompaniya haqida ma'lumot kiritilmagan.",
+                    "shared.no_data".tr(),
                 style: context.textThemes.b2,
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               AppButton(
                 onTap: () {
                   context.pushRoute(const EditCompanyInfoRoute());
                 },
-                label: "Tahrirlash",
+                label: "profile.edit_profile".tr(),
                 color: context.colors.bgSecondary,
               ),
             ],
@@ -69,8 +69,7 @@ class AboutTheCompany extends StatelessWidget {
 
   Column _buildStats(BuildContext context, String label, String value) {
     return Column(
-      spacing: 8,
-      crossAxisAlignment: .start,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           label,
@@ -78,6 +77,7 @@ class AboutTheCompany extends StatelessWidget {
             color: context.colors.textSecondary,
           ),
         ),
+        const SizedBox(height: 8),
         Text(
           value,
           style: context.textThemes.s3,

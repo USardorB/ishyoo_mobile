@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/resume/data/models/resume.dart';
@@ -16,7 +17,7 @@ class CandidateEducationSection extends StatelessWidget {
           color: context.colors.bgSecondary,
           borderRadius: BorderRadius.circular(16),
         ),
-        child: const Text("Ta'lim ma'lumotlari yo'q"),
+        child: const Text("shared.no_data").tr(),
       );
     }
 
@@ -31,11 +32,11 @@ class CandidateEducationSection extends StatelessWidget {
         children: [
           ...educations.map((edu) {
             final startStr = edu.startDate != null
-                ? "${edu.startDate!.year} yil"
+                ? "${edu.startDate!.year}"
                 : "";
             final endStr = edu.endDate != null
-                ? "${edu.endDate!.year} yil"
-                : "hozir";
+                ? "${edu.endDate!.year}"
+                : "shared.present".tr();
             return Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: _buildEducationItem(

@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
@@ -19,22 +20,22 @@ class TalentsSearchResultPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           toolbarHeight: 64,
-          title: Text('Qidiruv natijalari'),
+          title: const Text('talents.search_results').tr(),
           bottom: PreferredSize(
-            preferredSize: Size.fromHeight(48),
+            preferredSize: const Size.fromHeight(48),
             child: Padding(
-              padding: .all(16),
+              padding: const EdgeInsets.all(16),
               child: Row(
                 children: [
-                  Flexible(child: DarkGlassSearchField()),
-                  SizedBox(width: 12),
+                  const Flexible(child: DarkGlassSearchField()),
+                  const SizedBox(width: 12),
                   IconButton(
                     onPressed: () => showModalBottomSheet(
                       context: context,
                       isScrollControlled: true,
-                      builder: (_) => TallentFilterSheet(),
+                      builder: (_) => const TallentFilterSheet(),
                     ),
-                    icon: Icon(Icons.tune),
+                    icon: const Icon(Icons.tune),
                   ),
                 ],
               ),
@@ -48,19 +49,19 @@ class TalentsSearchResultPage extends StatelessWidget {
             } else if (state.error != null) {
               return Center(child: Text(state.error!));
             } else if (state.talents == null || state.talents!.isEmpty) {
-              return const Center(
-                child: Text("Hozircha rezyumelar topilmadi."),
+              return Center(
+                child: const Text("talents.no_resumes_found").tr(),
               );
             }
 
             return ListView.separated(
               padding: const EdgeInsets.all(16),
-              itemCount: state.talents!.length + 1, // +1 for the header text
+              itemCount: state.talents!.length + 1,
               separatorBuilder: (context, index) => const SizedBox(height: 12),
               itemBuilder: (context, index) {
                 if (index == 0) {
                   return Text(
-                    'Topilgan rezyumelar: ${state.talents!.length}',
+                    'talents.results_count'.tr(args: [state.talents!.length.toString()]),
                     style: context.textThemes.s2,
                   );
                 }
@@ -72,17 +73,17 @@ class TalentsSearchResultPage extends StatelessWidget {
                   ),
                   tileColor: context.colors.bgPrimary,
                   minTileHeight: 64,
-                  leading: CircleAvatar(
+                  leading: const CircleAvatar(
                     foregroundImage: CachedNetworkImageProvider(
                       "https://ui-avatars.com/api/?name=Kandidat",
                     ),
                   ),
                   title: Text(
-                    'Kandidat',
+                    'nav.candidates'.tr(),
                     style: context.textThemes.b2,
                   ),
                   subtitle: Text(
-                    resume.specialization ?? 'Mutaxassis',
+                    resume.specialization ?? 'nav.candidates'.tr(),
                     style: context.textThemes.b3.copyWith(
                       color: context.colors.textSecondary,
                     ),
@@ -106,7 +107,7 @@ class TalentsSearchResultPage extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          "mos",
+                          "opportunities.matches_filter".tr(),
                           style: context.textThemes.c1.copyWith(
                             color: context.colors.brandDefault,
                           ),
