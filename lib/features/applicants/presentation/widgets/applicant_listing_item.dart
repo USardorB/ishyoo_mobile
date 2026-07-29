@@ -65,7 +65,9 @@ class ApplicantListingItem extends StatelessWidget {
       experienceText = "shared.no_data".tr();
     } else {
       final years = totalExperienceDays ~/ 365;
-      experienceText = "applicants.experience_years".tr(args: [years.toString()]);
+      experienceText = "applicants.experience_years".tr(
+        args: [years.toString()],
+      );
     }
 
     ResumeExperience? latestExp;

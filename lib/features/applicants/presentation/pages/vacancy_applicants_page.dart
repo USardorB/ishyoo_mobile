@@ -6,6 +6,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
+import 'package:mobile/features/applicants/presentation/bloc/applicant_detail_bloc.dart';
 import 'package:mobile/features/applicants/presentation/bloc/applicants_bloc.dart';
 import 'package:mobile/features/applicants/presentation/widgets/applicant_listing_item.dart';
 import 'package:mobile/features/applications/presentation/widgets/no_application_placeholder.dart';
@@ -31,6 +32,7 @@ class VacancyApplicantsPage extends HookWidget implements AutoRouteWrapper {
           create: (_) =>
               sl<HrVacancyDetailsBloc>()..add(LoadHrVacancyDetail(vacancyId)),
         ),
+        BlocProvider(create: (_) => sl<ApplicantDetailBloc>()),
       ],
       child: this,
     );
@@ -38,11 +40,11 @@ class VacancyApplicantsPage extends HookWidget implements AutoRouteWrapper {
 
   final tabs = const [
     {"nameKey": "applications.status.pending", "status": "pending"},
-    {"nameKey": "applications.status.invited", "status": "invited"},
+    {"nameKey": "applicants.invited", "status": "invited"},
     {"nameKey": "applications.status.rejected", "status": "rejected"},
-    {"nameKey": "applications.status.archived", "status": "archived"},
-    {"nameKey": "applications.status.hired", "status": "hired"},
-    {"nameKey": "applications.status.shortlisted", "status": "shortlisted"},
+    {"nameKey": "applicants.archived", "status": "archived"},
+    {"nameKey": "applicants.hired", "status": "hired"},
+    {"nameKey": "applicants.shortlisted", "status": "shortlisted"},
   ];
 
   @override

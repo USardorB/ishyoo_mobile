@@ -60,7 +60,15 @@ class ApplicantDetailsPage extends StatelessWidget {
                 },
                 icon: const Icon(Icons.share_outlined),
               ),
-              const ApplicantPageMoreActions(),
+              IconButton(
+                onPressed: () {
+                  showModalBottomSheet(
+                    context: context,
+                    builder: (context) => const ApplicantPageMoreActions(),
+                  );
+                },
+                icon: const Icon(Icons.more_vert_rounded),
+              ),
             ],
           ),
           body: BlocBuilder<ApplicantDetailBloc, ApplicantDetailState>(
