@@ -20,26 +20,26 @@ class UpdateApplicationStatus extends ApplicationsEvent {
 
 class ApplicationsState {
   final bool isLoading;
-  final List<Application>? applications;
+  final Map<String?, List<Application>> applicationsByStatus;
   final String? error;
   final String? activeStatus;
 
   ApplicationsState({
     this.isLoading = false,
-    this.applications,
+    this.applicationsByStatus = const {},
     this.error,
     this.activeStatus,
   });
 
   ApplicationsState copyWith({
     bool? isLoading,
-    List<Application>? applications,
+    Map<String?, List<Application>>? applicationsByStatus,
     String? error,
     String? activeStatus,
   }) {
     return ApplicationsState(
       isLoading: isLoading ?? this.isLoading,
-      applications: applications ?? this.applications,
+      applicationsByStatus: applicationsByStatus ?? this.applicationsByStatus,
       error: error,
       activeStatus: activeStatus ?? this.activeStatus,
     );
@@ -72,8 +72,11 @@ class ApplicationsBloc extends Bloc<ApplicationsEvent, ApplicationsState> {
     result.fold(
       (failure) =>
           emit(state.copyWith(isLoading: false, error: failure.message)),
-      (applications) =>
-          emit(state.copyWith(isLoading: false, applications: applications)),
+      (applications) {
+        final newMap = Map<String?, List<Application>>.from(state.applicationsByStatus);
+        newMap[event.status] = applications;
+        emit(state.copyWith(isLoading: false, applicationsByStatus: newMap));
+      },
     );
   }
 

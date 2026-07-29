@@ -24,24 +24,28 @@ class UpdateApplicantStatus extends ApplicantsEvent {
 
 class ApplicantsState {
   final bool isLoading;
-  final List<Applicant>? applicants;
+  final Map<String?, List<Applicant>> applicantsByStatus;
   final String? error;
+  final String? activeStatus;
 
   ApplicantsState({
     this.isLoading = false,
-    this.applicants,
+    this.applicantsByStatus = const {},
     this.error,
+    this.activeStatus,
   });
 
   ApplicantsState copyWith({
     bool? isLoading,
-    List<Applicant>? applicants,
+    Map<String?, List<Applicant>>? applicantsByStatus,
     String? error,
+    String? activeStatus,
   }) {
     return ApplicantsState(
       isLoading: isLoading ?? this.isLoading,
-      applicants: applicants ?? this.applicants,
+      applicantsByStatus: applicantsByStatus ?? this.applicantsByStatus,
       error: error,
+      activeStatus: activeStatus ?? this.activeStatus,
     );
   }
 }
@@ -59,7 +63,7 @@ class ApplicantsBloc extends Bloc<ApplicantsEvent, ApplicantsState> {
     LoadApplicants event,
     Emitter<ApplicantsState> emit,
   ) async {
-    emit(state.copyWith(isLoading: true, error: null));
+    emit(state.copyWith(isLoading: true, error: null, activeStatus: event.status));
     final result = event.vacancyId != null && event.vacancyId!.isNotEmpty
         ? await _applicantsRepository.getVacancyApplicants(event.vacancyId!, status: event.status)
         : await _applicantsRepository.getApplicants(status: event.status);
@@ -67,8 +71,11 @@ class ApplicantsBloc extends Bloc<ApplicantsEvent, ApplicantsState> {
     result.fold(
       (failure) =>
           emit(state.copyWith(isLoading: false, error: failure.message)),
-      (applicants) =>
-          emit(state.copyWith(isLoading: false, applicants: applicants)),
+      (applicants) {
+        final newMap = Map<String?, List<Applicant>>.from(state.applicantsByStatus);
+        newMap[event.status] = applicants;
+        emit(state.copyWith(isLoading: false, applicantsByStatus: newMap));
+      },
     );
   }
 
@@ -87,7 +94,7 @@ class ApplicantsBloc extends Bloc<ApplicantsEvent, ApplicantsState> {
       (failure) => emit(state.copyWith(error: failure.message)),
       (_) {
         // Trigger a reload of the applicants list
-        add(LoadApplicants(event.vacancyId));
+        add(LoadApplicants(event.vacancyId, state.activeStatus));
       },
     );
   }

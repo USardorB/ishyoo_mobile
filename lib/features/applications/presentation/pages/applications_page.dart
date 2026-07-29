@@ -99,15 +99,20 @@ class _ApplicationsPageView extends HookWidget {
               children: List.generate(tabs.length, (tabIndex) {
                 return BlocBuilder<ApplicationsBloc, ApplicationsState>(
                   builder: (context, state) {
-                    if (state.isLoading && state.applications == null) {
+                    final tabStatus = tabs[tabIndex]["status"] as String?;
+                    final applications = state.applicationsByStatus[tabStatus];
+
+                    if (state.isLoading && applications == null) {
                       return const Center(child: CircularProgressIndicator());
                     }
 
-                    if (state.error != null && state.applications == null) {
+                    if (state.error != null && applications == null) {
                       return Center(child: Text(state.error!));
                     }
 
-                    final applications = state.applications ?? [];
+                    if (applications == null) {
+                      return const SizedBox.shrink();
+                    }
 
                     if (applications.isEmpty) {
                       return NoApplicationPlaceholder(

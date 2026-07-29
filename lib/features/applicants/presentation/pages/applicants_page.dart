@@ -84,46 +84,51 @@ class _ApplicantsPageState extends State<ApplicantsPage>
           labelPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           tabAlignment: TabAlignment.start,
           tabs: [
-            Text('applications.status.pending'.tr()),
-            Text('applications.status.interview'.tr()),
-            Text('applications.status.rejected'.tr()),
-            Text('shared.all'.tr()),
-            Text('applications.status.accepted'.tr()),
-            Text('shared.filter'.tr()),
+            Text('applications.status.pending').tr(),
+            Text('applications.status.interview').tr(),
+            Text('applications.status.rejected').tr(),
+            Text('shared.all').tr(),
+            Text('applications.status.accepted').tr(),
+            Text('shared.filter').tr(),
           ],
         ),
       ),
-      body: BlocBuilder<ApplicantsBloc, ApplicantsState>(
-        builder: (context, state) {
-          if (state.isLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (state.error != null) {
-            return Center(child: Text(state.error!));
-          } else if (state.applicants == null || state.applicants!.isEmpty) {
-            return NoApplicationPlaceholder(
-              message: "applications.no_applications".tr(),
-            );
-          }
+      body: TabBarView(
+        controller: _tabController,
+        children: _statuses.map((status) {
+          return BlocBuilder<ApplicantsBloc, ApplicantsState>(
+            builder: (context, state) {
+              final applicants = state.applicantsByStatus[status];
 
-          return TabBarView(
-            controller: _tabController,
-            children: _statuses.map((status) {
-              return SingleChildScrollView(
+              if (state.isLoading && applicants == null) {
+                return const Center(child: CircularProgressIndicator());
+              } else if (state.error != null && applicants == null) {
+                return Center(child: Text(state.error!));
+              }
+
+              if (applicants == null) {
+                return const SizedBox.shrink();
+              }
+
+              if (applicants.isEmpty) {
+                return NoApplicationPlaceholder(
+                  message: "applications.no_applications".tr(),
+                );
+              }
+
+              return ListView.separated(
                 padding: const EdgeInsets.all(16),
-                child: Column(
-                  children: state.applicants!.map((applicant) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 12.0),
-                      child: ApplicantListingItem(
-                        applicant: applicant,
-                      ),
-                    );
-                  }).toList(),
-                ),
+                itemCount: applicants.length,
+                separatorBuilder: (_, _) => const SizedBox(height: 12),
+                itemBuilder: (context, index) {
+                  return ApplicantListingItem(
+                    applicant: applicants[index],
+                  );
+                },
               );
-            }).toList(),
+            },
           );
-        },
+        }).toList(),
       ),
     );
   }
