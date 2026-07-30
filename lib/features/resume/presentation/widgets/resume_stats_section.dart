@@ -1,10 +1,11 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/core/enums/app_enums.dart' hide AppNotificationType;
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
-import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/features/resume/data/models/resume.dart';
 import 'package:mobile/features/resume/presentation/bloc/resume_detail_bloc.dart';
 import 'package:mobile/features/resume/presentation/bloc/resume_form_bloc.dart';
@@ -49,7 +50,7 @@ class ResumeStatsSection extends StatelessWidget {
                 children: [
                   _buildStat(
                     context,
-                    "applicants.unseen".tr(),
+                    "resume.boost_score".tr(),
                     "${resume.boostScore ?? 0}",
                     true,
                   ),
@@ -61,7 +62,9 @@ class ResumeStatsSection extends StatelessWidget {
                   _buildStat(
                     context,
                     "applicants.invited".tr(),
-                    resume.status == 'active' ? 'shared.all'.tr() : 'shared.cancel'.tr(),
+                    AppStatus.fromServer(resume.status) == AppStatus.active
+                        ? 'shared.all'.tr()
+                        : 'shared.cancel'.tr(),
                     false,
                   ),
                   Container(
@@ -72,7 +75,10 @@ class ResumeStatsSection extends StatelessWidget {
                   _buildStat(
                     context,
                     "applicants.shortlisted".tr(),
-                    resume.visibility == 'public' ? 'shared.all'.tr() : 'shared.cancel'.tr(),
+                    ResumeVisibility.fromServer(resume.visibility) ==
+                            ResumeVisibility.public
+                        ? 'shared.all'.tr()
+                        : 'shared.cancel'.tr(),
                     false,
                   ),
                 ],

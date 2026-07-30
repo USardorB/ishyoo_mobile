@@ -1,13 +1,13 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/core/enums/app_enums.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
-import 'package:mobile/features/postings/presentation/widgets/tallent_filter_sheet.dart';
 
 class CreateVacancySummaryStep extends StatelessWidget {
   final String title;
-  final JobType jobType;
-  final ExperienceLevel experience;
+  final EmploymentType jobType;
+  final AppExperienceLevel experience;
   final String description;
   final String? salaryFrom;
   final String? salaryTo;
@@ -90,12 +90,14 @@ class CreateVacancySummaryStep extends StatelessWidget {
                   children: [
                     _buildSmallTag(
                       context,
-                      location.isEmpty ? 'opportunities.location'.tr() : location,
+                      location.isEmpty
+                          ? 'opportunities.location'.tr()
+                          : location,
                     ),
                     const SizedBox(width: 8),
-                    _buildSmallTag(context, jobType.title),
+                    _buildSmallTag(context, jobType.label),
                     const SizedBox(width: 8),
-                    _buildSmallTag(context, experience.title),
+                    _buildSmallTag(context, experience.label),
                   ],
                 ),
                 const SizedBox(height: 16),

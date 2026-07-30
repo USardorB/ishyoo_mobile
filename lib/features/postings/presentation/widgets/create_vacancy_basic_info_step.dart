@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/core/enums/app_enums.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/features/postings/presentation/widgets/category_selection_sheet.dart';
-import 'package:mobile/features/postings/presentation/widgets/tallent_filter_sheet.dart';
 import 'package:mobile/features/resume/data/models/specialization.dart';
 
 class CreateVacancyBasicInfoStep extends StatelessWidget {
@@ -16,8 +16,8 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
   final TextEditingController salaryFromController;
   final TextEditingController salaryToController;
   final TextEditingController phoneController;
-  final JobType selectedJobType;
-  final ValueChanged<JobType> onJobTypeSelected;
+  final EmploymentType selectedJobType;
+  final ValueChanged<EmploymentType> onJobTypeSelected;
   final VoidCallback onNext;
 
   const CreateVacancyBasicInfoStep({
@@ -112,13 +112,13 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
             spacing: 8,
             children:
                 [
-                  JobType.fullTime,
-                  JobType.partTime,
-                  JobType.contract,
+                  EmploymentType.fullTime,
+                  EmploymentType.partTime,
+                  EmploymentType.contract,
                 ].map((type) {
                   final isSelected = selectedJobType == type;
                   return ChoiceChip(
-                    label: Text(type.title),
+                    label: Text(type.localizedLabel),
                     selected: isSelected,
                     onSelected: (selected) {
                       if (selected) onJobTypeSelected(type);

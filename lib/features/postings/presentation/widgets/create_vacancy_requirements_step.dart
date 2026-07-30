@@ -1,10 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/core/enums/app_enums.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/features/postings/presentation/widgets/skills_selection_sheet.dart';
-import 'package:mobile/features/postings/presentation/widgets/tallent_filter_sheet.dart';
 
 class CreateVacancyRequirementsStep extends StatelessWidget {
   final TextEditingController descriptionController;
@@ -12,8 +12,8 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
   final TextEditingController requirementsController;
   final List<String> selectedSkills;
   final ValueChanged<List<String>> onSkillsChanged;
-  final ExperienceLevel selectedExperience;
-  final ValueChanged<ExperienceLevel> onExperienceSelected;
+  final AppExperienceLevel selectedExperience;
+  final ValueChanged<AppExperienceLevel> onExperienceSelected;
   final VoidCallback onNext;
 
   const CreateVacancyRequirementsStep({
@@ -161,10 +161,10 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
           Wrap(
             spacing: 8,
             runSpacing: 8,
-            children: ExperienceLevel.values.map((level) {
+            children: AppExperienceLevel.values.map((level) {
               final isSelected = selectedExperience == level;
               return ChoiceChip(
-                label: Text(level.title),
+                label: Text(level.localizedLabel),
                 selected: isSelected,
                 onSelected: (selected) {
                   if (selected) onExperienceSelected(level);

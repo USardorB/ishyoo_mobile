@@ -6,6 +6,7 @@ import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/resume/data/models/resume.dart';
 
+// TODO mock data removal
 class CandidateResumesSection extends StatelessWidget {
   final List<Resume> resumes;
 
@@ -94,19 +95,34 @@ class CandidateResumesSection extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            _buildStat(context, "applicants.unseen".tr(), "0", false),
+                            _buildStat(
+                              context,
+                              "applicants.view_count".tr(),
+                              "0",
+                              false,
+                            ),
                             Container(
                               width: 1,
                               height: 32,
                               color: context.colors.bgTertiary,
                             ),
-                            _buildStat(context, "applicants.shortlisted".tr(), "0", true),
+                            _buildStat(
+                              context,
+                              "applicants.shortlisted".tr(),
+                              "0",
+                              true,
+                            ),
                             Container(
                               width: 1,
                               height: 32,
                               color: context.colors.bgTertiary,
                             ),
-                            _buildStat(context, "applicants.invited".tr(), "0", true),
+                            _buildStat(
+                              context,
+                              "applicants.invited".tr(),
+                              "0",
+                              true,
+                            ),
                           ],
                         ),
                       ),

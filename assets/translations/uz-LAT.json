@@ -179,7 +179,7 @@
     "no_applicants": "Nomzodlar topilmadi",
     "invite_button": "Suhbatga taklif qilish",
     "contact_button": "Bog'lanish",
-    "unseen": "Ko‘rilmaganlar",
+    "view_count": "Ko'rishlar",
     "invited": "Taklif etilganlar",
     "unsuitable": "To‘g‘ri kelmaydi",
     "archived": "Arxivlanganlar",
@@ -246,10 +246,12 @@
     "active": "AKTIV",
     "active_sub": "vakansiya",
     "responses_count": "{} ta javob",
-    "key_skills": "Ko'nikmalar"
+    "key_skills": "Ko'nikmalar",
+    "no_salary_specified": "Maosh ko'rsatilmagan"
   },
   "resume": {
     "title": "Rezume",
+    "boost_score": "Reytingi",
     "create_resume": "Rezume yaratish",
     "contacts": "Kontaktlar",
     "workplace": "Ish joyi",
@@ -277,5 +279,75 @@
     "search_placeholder": "Maqolalarni qidirish...",
     "no_articles": "Hozircha maqolalar yo‘q. Yangi va foydali maqolalar tez orada shu yerda paydo bo‘ladi.",
     "not_found": "Maqola topilmadi"
+  },
+  "enums": {
+    "status": {
+      "active": "Faol",
+      "inactive": "Nofaol",
+      "blocked": "Bloklangan",
+      "deleted": "O'chirilgan",
+      "archived": "Arxivlangan",
+      "draft": "Qoralama",
+      "published": "Nashr etilgan",
+      "confirmed": "Tasdiqlangan",
+      "closed": "Yopilgan",
+      "pending": "Kutilmoqda",
+      "invited": "Taklif etilgan",
+      "rejected": "Rad etilgan",
+      "hired": "Qabul qilindi",
+      "shortlisted": "Saralangan",
+      "past_due": "Muddati o'tgan",
+      "paid": "To'langan",
+      "failed": "Muvaffaqiyatsiz"
+    },
+    "vacancy_status": {
+      "draft": "Qoralama",
+      "published": "Faol",
+      "archived": "Arxivlangan",
+      "rejected": "Rad etilgan",
+      "confirmed": "Tasdiqlangan",
+      "closed": "Yopilgan"
+    },
+    "employment_type": {
+      "full_time": "To'liq stavka",
+      "part_time": "Yarim stavka",
+      "freelance": "Frilanser",
+      "contract": "Shartnoma",
+      "internship": "Stajirovka"
+    },
+    "experience_level": {
+      "no_experience": "Tajribasiz",
+      "one_to_three": "1–3 yil",
+      "three_to_six": "3–6 yil",
+      "over_six": "6 yildan ortiq"
+    },
+    "work_format": {
+      "on_site": "Ofisda",
+      "remote": "Masofadan",
+      "hybrid": "Gibrid",
+      "travel": "Sayohat"
+    },
+    "currency": {
+      "uzs": "UZS",
+      "usd": "USD",
+      "eur": "EUR"
+    },
+    "visibility": {
+      "public": "Ommaviy",
+      "private": "Yopiq"
+    },
+    "network_status": {
+      "online": "Onlayn",
+      "offline": "Oflayn"
+    },
+    "gender": {
+      "male": "Erkak",
+      "female": "Ayol"
+    },
+    "role": {
+      "candidate": "Nomzod",
+      "employer": "Ish beruvchi",
+      "admin": "Administrator"
+    }
   }
 }

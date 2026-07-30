@@ -179,7 +179,7 @@
     "no_applicants": "Кандидаты не найдены",
     "invite_button": "Пригласить на собеседование",
     "contact_button": "Связаться",
-    "unseen": "Непросмотренные",
+    "view_count": "Просмотренные",
     "invited": "Приглашенные",
     "unsuitable": "Не подходят",
     "archived": "В архиве",
@@ -246,10 +246,12 @@
     "active": "АКТИВНЫЕ",
     "active_sub": "вакансии",
     "responses_count": "{} откликов",
-    "key_skills": "Ключевые навыки"
+    "key_skills": "Ключевые навыки",
+    "no_salary_specified": "Зарплата не указана"
   },
   "resume": {
     "title": "Резюме",
+    "boost_score": "Рейтинг",
     "create_resume": "Создать резюме",
     "contacts": "Контакты",
     "workplace": "Место работы",
@@ -277,5 +279,75 @@
     "search_placeholder": "Поиск статей...",
     "no_articles": "Статей пока нет. Новые и полезные статьи появятся здесь.",
     "not_found": "Статья не найдена"
+  },
+  "enums": {
+    "status": {
+      "active": "Активен",
+      "inactive": "Неактивен",
+      "blocked": "Заблокирован",
+      "deleted": "Удалён",
+      "archived": "В архиве",
+      "draft": "Черновик",
+      "published": "Опубликован",
+      "confirmed": "Подтверждён",
+      "closed": "Закрыт",
+      "pending": "В ожидании",
+      "invited": "Приглашён",
+      "rejected": "Отклонён",
+      "hired": "Принят",
+      "shortlisted": "В списке",
+      "past_due": "Просрочен",
+      "paid": "Оплачен",
+      "failed": "Ошибка"
+    },
+    "vacancy_status": {
+      "draft": "Черновик",
+      "published": "Активна",
+      "archived": "В архиве",
+      "rejected": "Отклонена",
+      "confirmed": "Подтверждена",
+      "closed": "Закрыта"
+    },
+    "employment_type": {
+      "full_time": "Полная занятость",
+      "part_time": "Частичная занятость",
+      "freelance": "Фриланс",
+      "contract": "Контракт",
+      "internship": "Стажировка"
+    },
+    "experience_level": {
+      "no_experience": "Без опыта",
+      "one_to_three": "1–3 года",
+      "three_to_six": "3–6 лет",
+      "over_six": "Более 6 лет"
+    },
+    "work_format": {
+      "on_site": "В офисе",
+      "remote": "Удалённо",
+      "hybrid": "Гибрид",
+      "travel": "Разъездной"
+    },
+    "currency": {
+      "uzs": "UZS",
+      "usd": "USD",
+      "eur": "EUR"
+    },
+    "visibility": {
+      "public": "Публичное",
+      "private": "Приватное"
+    },
+    "network_status": {
+      "online": "Онлайн",
+      "offline": "Офлайн"
+    },
+    "gender": {
+      "male": "Мужской",
+      "female": "Женский"
+    },
+    "role": {
+      "candidate": "Кандидат",
+      "employer": "Работодатель",
+      "admin": "Администратор"
+    }
   }
 }

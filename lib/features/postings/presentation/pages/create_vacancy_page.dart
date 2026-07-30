@@ -3,13 +3,13 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
+import 'package:mobile/core/enums/app_enums.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/opportunities/data/models/vacancy.dart';
 import 'package:mobile/features/postings/presentation/bloc/postings_bloc.dart';
 import 'package:mobile/features/postings/presentation/widgets/create_vacancy_basic_info_step.dart';
 import 'package:mobile/features/postings/presentation/widgets/create_vacancy_requirements_step.dart';
 import 'package:mobile/features/postings/presentation/widgets/create_vacancy_summary_step.dart';
-import 'package:mobile/features/postings/presentation/widgets/tallent_filter_sheet.dart';
 
 @RoutePage()
 class CreateVacancyPage extends StatefulWidget {
@@ -33,13 +33,13 @@ class _CreateVacancyPageState extends State<CreateVacancyPage> {
   final _salaryFromController = TextEditingController();
   final _salaryToController = TextEditingController();
   final _phoneController = TextEditingController();
-  JobType _selectedJobType = JobType.fullTime;
+  EmploymentType _selectedJobType = EmploymentType.fullTime;
 
   final _descriptionController = TextEditingController();
   final _tasksController = TextEditingController();
   final _requirementsController = TextEditingController();
   List<String> _selectedSkills = [];
-  ExperienceLevel _selectedExperience = ExperienceLevel.oneToThree;
+  AppExperienceLevel _selectedExperience = AppExperienceLevel.oneToThree;
 
   @override
   void initState() {
@@ -52,18 +52,12 @@ class _CreateVacancyPageState extends State<CreateVacancyPage> {
       _salaryFromController.text = v.salaryFrom?.toString() ?? '';
       _salaryToController.text = v.salaryTo?.toString() ?? '';
       _phoneController.text = v.contact?.phoneNumber ?? '';
-      _selectedJobType = JobType.values.firstWhere(
-        (e) => e.serverValue == v.jobType,
-        orElse: () => JobType.fullTime,
-      );
+      _selectedJobType = EmploymentType.fromServer(v.jobType) ?? EmploymentType.fullTime;
       _descriptionController.text = v.description ?? '';
       _tasksController.text = v.responsibilities ?? '';
       _requirementsController.text = v.requirements ?? '';
       _selectedSkills = v.keySkills ?? [];
-      _selectedExperience = ExperienceLevel.values.firstWhere(
-        (e) => e.serverValue == v.experienceLevel,
-        orElse: () => ExperienceLevel.oneToThree,
-      );
+      _selectedExperience = AppExperienceLevel.fromServer(v.experienceLevel) ?? AppExperienceLevel.oneToThree;
     }
   }
 

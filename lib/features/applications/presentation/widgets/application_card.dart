@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/core/enums/app_enums.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
@@ -23,24 +24,33 @@ class ApplicationCard extends StatelessWidget {
   Widget build(BuildContext context) {
     Color statusBgColor;
     Color statusTextColor = Colors.white;
-
     String displayStatus;
-    switch (application.status) {
-      case 'rejected':
-        displayStatus = "applications.status.rejected".tr();
+
+    final appStatus = AppStatus.fromServer(application.status);
+    switch (appStatus) {
+      case AppStatus.rejected:
+        displayStatus = AppStatus.rejected.localizedLabel;
         statusBgColor = context.colors.danger;
         break;
-      case 'invited':
-        displayStatus = "applications.status.interview".tr();
+      case AppStatus.invited:
+        displayStatus = AppStatus.invited.localizedLabel;
         statusBgColor = context.colors.success;
         break;
-      case 'archived':
-        displayStatus = "applications.status.archived".tr();
+      case AppStatus.hired:
+        displayStatus = AppStatus.hired.localizedLabel;
+        statusBgColor = context.colors.brandDefault;
+        break;
+      case AppStatus.archived:
+        displayStatus = AppStatus.archived.localizedLabel;
         statusBgColor = context.colors.textSecondary;
         break;
-      case 'pending':
+      case AppStatus.shortlisted:
+        displayStatus = AppStatus.shortlisted.localizedLabel;
+        statusBgColor = context.colors.info;
+        break;
+      case AppStatus.pending:
       default:
-        displayStatus = "applications.status.pending".tr();
+        displayStatus = AppStatus.pending.localizedLabel;
         statusBgColor = context.colors.bgTertiary;
         statusTextColor = context.colors.textPrimary;
         break;
@@ -108,7 +118,7 @@ class ApplicationCard extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              "${application.vacancy?.location?.split(',').first ?? ''} • ${application.vacancy?.jobType?.replaceAll('_', ' ') ?? ''}",
+              "${application.vacancy?.location?.split(',').first ?? ''} • ${EmploymentType.fromServer(application.vacancy?.jobType)?.localizedLabel ?? application.vacancy?.jobType ?? ''}",
               style: context.textThemes.b1.copyWith(
                 color: context.colors.textSecondary,
               ),

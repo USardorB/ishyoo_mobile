@@ -2,7 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
+import 'package:mobile/core/enums/app_enums.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
@@ -43,10 +43,10 @@ class TrendingVacancyCard extends StatelessWidget {
     final title = v?.jobTitle ?? "";
 
     final details = [
-      v?.location ?? "",
-      v?.jobType?.replaceAll('_', ' ') ?? "",
-      v?.experienceLevel?.replaceAll('_', ' ') ?? "",
-    ].where((s) => s.isNotEmpty).join(" • ");
+      v?.location ?? '',
+      EmploymentType.fromServer(v?.jobType)?.localizedLabel ?? '',
+      AppExperienceLevel.fromServer(v?.experienceLevel)?.localizedLabel ?? '',
+    ].where((s) => s.isNotEmpty).join(' • ');
 
     return InkWell(
       onTap: () => context.pushRoute(VacancyDetailsRoute(id: v!.id)),

@@ -1,54 +1,10 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/core/enums/app_enums.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
-
-enum JobType {
-  fullTime,
-  partTime,
-  freelance,
-  contract,
-  internship;
-
-  String get title => switch (this) {
-    JobType.fullTime => 'opportunities.employment_type'.tr(),
-    JobType.partTime => 'opportunities.employment_type'.tr(),
-    JobType.freelance => 'Frilans',
-    JobType.contract => 'Shartnoma',
-    JobType.internship => 'Stajirovka',
-  };
-
-  String get serverValue => switch (this) {
-    JobType.fullTime => 'full_time',
-    JobType.partTime => 'part_time',
-    JobType.freelance => 'freelance',
-    JobType.contract => 'contract',
-    JobType.internship => 'internship',
-  };
-}
-
-enum ExperienceLevel {
-  inexperienced,
-  oneToThree,
-  threeToSix,
-  moreThanSix;
-
-  String get title => switch (this) {
-    ExperienceLevel.inexperienced => 'applicants.unsuitable'.tr(),
-    ExperienceLevel.oneToThree => '1-3 yil',
-    ExperienceLevel.threeToSix => '3-6 yil',
-    ExperienceLevel.moreThanSix => '6 yildan ortiq',
-  };
-
-  String get serverValue => switch (this) {
-    ExperienceLevel.inexperienced => 'inexperienced',
-    ExperienceLevel.oneToThree => 'one_to_three',
-    ExperienceLevel.threeToSix => 'three_to_six',
-    ExperienceLevel.moreThanSix => 'more_than_six',
-  };
-}
 
 class VacancyFilterSheet extends StatefulWidget {
   final String? initialJobType;
@@ -73,15 +29,15 @@ class VacancyFilterSheet extends StatefulWidget {
 }
 
 class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
-  JobType? _selectedJobType;
-  ExperienceLevel? _selectedExperienceLevel;
+  EmploymentType? _selectedJobType;
+  AppExperienceLevel? _selectedExperienceLevel;
   late final TextEditingController _specializationController;
 
   @override
   void initState() {
     super.initState();
-    _selectedJobType = JobType.values.where((e) => e.serverValue == widget.initialJobType).firstOrNull;
-    _selectedExperienceLevel = ExperienceLevel.values.where((e) => e.serverValue == widget.initialExperienceLevel).firstOrNull;
+    _selectedJobType = EmploymentType.fromServer(widget.initialJobType);
+    _selectedExperienceLevel = AppExperienceLevel.fromServer(widget.initialExperienceLevel);
     _specializationController = TextEditingController(text: widget.initialSpecialization);
   }
 
@@ -157,7 +113,7 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
             const SizedBox(height: 16),
             Wrap(
               spacing: 8,
-              children: JobType.values.map(_wrapJobChoiceChip).toList(),
+              children: EmploymentType.values.map(_wrapJobChoiceChip).toList(),
             ),
             const SizedBox(height: 18),
             _sectionTitle(context, 'talents.search_placeholder'.tr()),
@@ -171,7 +127,7 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
             const SizedBox(height: 16),
             Wrap(
               spacing: 8,
-              children: ExperienceLevel.values
+              children: AppExperienceLevel.values
                   .map(_wrapExperienceChoiceChip)
                   .toList(),
             ),
@@ -230,10 +186,10 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
     );
   }
 
-  Widget _wrapJobChoiceChip(JobType jobType) {
+  Widget _wrapJobChoiceChip(EmploymentType jobType) {
     return FilterChip(
       selected: _selectedJobType == jobType,
-      label: Text(jobType.title),
+      label: Text(jobType.localizedLabel),
       onSelected: (bool value) {
         setState(() {
           _selectedJobType = value ? jobType : null;
@@ -242,10 +198,10 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
     );
   }
 
-  Widget _wrapExperienceChoiceChip(ExperienceLevel experienceLevel) {
+  Widget _wrapExperienceChoiceChip(AppExperienceLevel experienceLevel) {
     return FilterChip(
       selected: _selectedExperienceLevel == experienceLevel,
-      label: Text(experienceLevel.title),
+      label: Text(experienceLevel.localizedLabel),
       onSelected: (bool value) {
         setState(() {
           _selectedExperienceLevel = value ? experienceLevel : null;

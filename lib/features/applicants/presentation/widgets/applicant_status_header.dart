@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/core/enums/app_enums.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/applicants/data/models/applicant.dart';
@@ -18,23 +19,6 @@ class ApplicantStatusHeader extends StatelessWidget {
     required this.applicantId,
   });
 
-  String _statusLabel(String? status) {
-    switch (status) {
-      case 'applied':
-        return 'applications.status.pending'.tr();
-      case 'interview':
-        return 'applications.status.interview'.tr();
-      case 'offered':
-        return 'applicants.invited'.tr();
-      case 'rejected':
-        return 'applications.status.rejected'.tr();
-      case 'hired':
-        return 'applications.status.interview'.tr();
-      default:
-        return status ?? 'Noma\'lum';
-    }
-  }
-
   String _formattedDate(DateTime? date) {
     if (date == null) return '';
     return '${date.day.toString().padLeft(2, '0')}.${date.month.toString().padLeft(2, '0')}.${date.year}';
@@ -42,6 +26,8 @@ class ApplicantStatusHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final status = AppStatus.fromServer(applicant?.applicationStatus);
+
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
@@ -52,7 +38,7 @@ class ApplicantStatusHeader extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "applicants.unseen",
+            "applicants.title",
             style: context.textThemes.b1.copyWith(
               color: context.colors.textSecondary,
             ),
@@ -62,7 +48,7 @@ class ApplicantStatusHeader extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                _statusLabel(applicant?.applicationStatus),
+                status?.localizedLabel ?? applicant?.applicationStatus ?? '—',
                 style: context.textThemes.s1,
               ),
               if (applicant?.updatedAt != null)
@@ -104,7 +90,15 @@ class ApplicantStatusHeader extends StatelessWidget {
   }
 
   void _showStatusPicker(BuildContext context) {
-    final statuses = ['applied', 'interview', 'offered', 'rejected', 'hired'];
+    final statuses = [
+      AppStatus.pending,
+      AppStatus.invited,
+      AppStatus.shortlisted,
+      AppStatus.hired,
+      AppStatus.rejected,
+      AppStatus.archived,
+    ];
+
     showModalBottomSheet(
       context: context,
       builder: (ctx) => ListView(
@@ -112,14 +106,14 @@ class ApplicantStatusHeader extends StatelessWidget {
         children: statuses
             .map(
               (s) => ListTile(
-                title: Text(_statusLabel(s)),
+                title: Text(s.localizedLabel),
                 onTap: () {
                   Navigator.pop(ctx);
                   context.read<ApplicantDetailBloc>().add(
                     UpdateApplicantDetailStatus(
                       vacancyId: vacancyId,
                       applicantId: applicantId,
-                      status: s,
+                      status: s.serverValue,
                     ),
                   );
                 },

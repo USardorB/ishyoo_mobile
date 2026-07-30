@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
+import 'package:mobile/core/enums/app_enums.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/opportunities/data/models/vacancy.dart';
 import 'package:mobile/features/postings/presentation/bloc/hr_vacancy_details_bloc.dart';
@@ -152,11 +153,17 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                 _buildSmallTag(context, vacancy.location!),
               ],
               if (vacancy.jobType != null && vacancy.jobType!.isNotEmpty) ...[
-                _buildSmallTag(context, vacancy.jobType!),
+                _buildSmallTag(
+                  context,
+                  EmploymentType.fromServer(vacancy.jobType)?.localizedLabel ?? vacancy.jobType!,
+                ),
               ],
               if (vacancy.experienceLevel != null &&
                   vacancy.experienceLevel!.isNotEmpty) ...[
-                _buildSmallTag(context, vacancy.experienceLevel!),
+                _buildSmallTag(
+                  context,
+                  AppExperienceLevel.fromServer(vacancy.experienceLevel)?.localizedLabel ?? vacancy.experienceLevel!,
+                ),
               ],
             ],
           ),
@@ -280,31 +287,19 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
   );
 
   Color _getStatusColor(BuildContext context, String? status) {
-    switch (status) {
-      case 'published':
-        return context.colors.brandDefault;
-      case 'draft':
-      case 'archived':
-        return context.colors.textSecondary;
-      case 'rejected':
-        return context.colors.danger;
-      default:
-        return context.colors.textSecondary;
-    }
+    final s = VacancyStatus.fromServer(status);
+    return switch (s) {
+      VacancyStatus.published => context.colors.brandDefault,
+      VacancyStatus.confirmed => context.colors.brandDefault,
+      VacancyStatus.rejected => context.colors.danger,
+      VacancyStatus.draft => context.colors.textSecondary,
+      VacancyStatus.archived => context.colors.textSecondary,
+      VacancyStatus.closed => context.colors.textSecondary,
+      null => context.colors.textSecondary,
+    };
   }
 
   String _getStatusText(String? status) {
-    switch (status) {
-      case 'published':
-        return "applications.status.accepted".tr();
-      case 'draft':
-        return "applications.status.pending".tr();
-      case 'archived':
-        return "applicants.archived".tr();
-      case 'rejected':
-        return "applications.status.rejected".tr();
-      default:
-        return "";
-    }
+    return VacancyStatus.fromServer(status)?.localizedLabel ?? '';
   }
 }
