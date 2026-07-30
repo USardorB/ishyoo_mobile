@@ -42,9 +42,9 @@ abstract class ProfileRemoteDataSource {
     @Body() Map<String, dynamic> body,
   );
 
-  @PUT('/mobile/employer/organization/logo')
+  @POST('/mobile/employer/organization/logo-upload')
   @MultiPart()
-  Future<BaseResult<Organization>> updateEmployerOrganizationLogo(
-    @Part(name: 'logo') File logo,
+  Future<BaseResult<String>> updateEmployerOrganizationLogo(
+    @Part(name: 'file') File logo,
   );
 }

@@ -88,12 +88,15 @@ class EmployerOrganizationBloc
           error: failure.message,
         ),
       ),
-      (organization) => emit(
-        state.copyWith(
-          updateStatus: EmployerOrganizationUpdateStatus.success,
-          organization: organization,
-        ),
-      ),
+      (logoUrl) {
+        final updatedOrganization = state.organization?.copyWith(logo: logoUrl);
+        emit(
+          state.copyWith(
+            updateStatus: EmployerOrganizationUpdateStatus.success,
+            organization: updatedOrganization,
+          ),
+        );
+      },
     );
   }
 }

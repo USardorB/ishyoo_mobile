@@ -1,11 +1,12 @@
 import 'dart:io';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
-import 'package:mobile/features/profile/data/models/profile.dart';
 import 'package:mobile/features/opportunities/data/models/organization.dart';
+import 'package:mobile/features/profile/data/models/profile.dart';
 import 'package:mobile/features/profile/presentation/bloc/employer_organization_bloc.dart';
 
 class HrProfileAvatarSection extends StatelessWidget {
@@ -15,7 +16,12 @@ class HrProfileAvatarSection extends StatelessWidget {
 
   Future<void> _pickAndUploadLogo(BuildContext context) async {
     final picker = ImagePicker();
-    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    final pickedFile = await picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 75,
+      maxWidth: 720,
+      maxHeight: 720,
+    );
     if (pickedFile != null) {
       context.read<EmployerOrganizationBloc>().add(
         UploadOrganizationLogo(File(pickedFile.path)),
@@ -78,15 +84,15 @@ class HrProfileAvatarSection extends StatelessWidget {
                   ),
                 ],
               ),
-              if (profile?.role != null && profile!.role!.isNotEmpty) ...[
-                const SizedBox(height: 4),
-                Text(
-                  profile!.role![0].toUpperCase() + profile!.role!.substring(1),
-                  style: context.textThemes.c1.copyWith(
-                    color: context.colors.textSecondary,
-                  ),
-                ),
-              ],
+              // if (profile?.role != null && profile!.role!.isNotEmpty) ...[
+              //   const SizedBox(height: 4),
+              //   Text(
+              //     profile!.role![0].toUpperCase() + profile!.role!.substring(1),
+              //     style: context.textThemes.c1.copyWith(
+              //       color: context.colors.textSecondary,
+              //     ),
+              //   ),
+              // ],
               if (profile?.email != null) ...[
                 const SizedBox(height: 4),
                 Text(

@@ -53,7 +53,7 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
-  Future<Either<Failure, Organization>> updateEmployerOrganizationLogo(
+  Future<Either<Failure, String>> updateEmployerOrganizationLogo(
     dart_io.File logo,
   ) {
     return remoteDataSource.updateEmployerOrganizationLogo(logo).asEither();

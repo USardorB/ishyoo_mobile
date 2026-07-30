@@ -1,16 +1,15 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
-import 'package:mobile/features/postings/presentation/widgets/dark_glass_search_field.dart';
-import 'package:mobile/features/postings/presentation/widgets/tallent_filter_sheet.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mobile/features/profile/presentation/bloc/employer_organization_bloc.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-
 import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
 import 'package:mobile/core/shared/widgets/app_notification.dart';
+import 'package:mobile/features/postings/presentation/widgets/dark_glass_search_field.dart';
+import 'package:mobile/features/postings/presentation/widgets/tallent_filter_sheet.dart';
+import 'package:mobile/features/profile/presentation/bloc/employer_organization_bloc.dart';
 
 class HrDashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
   const HrDashboardAppBar({
@@ -37,6 +36,7 @@ class HrDashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
                       fit: BoxFit.cover,
                     )
                   : null,
+              color: context.colors.bgSecondary,
             ),
             child: org?.logo == null
                 ? Center(

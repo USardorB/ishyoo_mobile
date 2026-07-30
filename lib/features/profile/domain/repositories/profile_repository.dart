@@ -19,7 +19,7 @@ abstract class ProfileRepository {
   Future<Either<Failure, Organization>> updateEmployerOrganization(
     Map<String, dynamic> body,
   );
-  Future<Either<Failure, Organization>> updateEmployerOrganizationLogo(
+  Future<Either<Failure, String>> updateEmployerOrganizationLogo(
     File logo,
   );
 }

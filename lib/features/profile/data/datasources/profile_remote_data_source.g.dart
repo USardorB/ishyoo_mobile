@@ -209,43 +209,41 @@ class _ProfileRemoteDataSource implements ProfileRemoteDataSource {
   }
 
   @override
-  Future<BaseResult<Organization>> updateEmployerOrganizationLogo(
-    File logo,
-  ) async {
+  Future<BaseResult<String>> updateEmployerOrganizationLogo(File logo) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = FormData();
     _data.files.add(
       MapEntry(
-        'logo',
+        'file',
         MultipartFile.fromFileSync(
           logo.path,
           filename: logo.path.split(Platform.pathSeparator).last,
         ),
       ),
     );
-    final _options = _setStreamType<BaseResult<Organization>>(
+    final _options = _setStreamType<BaseResult<String>>(
       Options(
-            method: 'PUT',
+            method: 'POST',
             headers: _headers,
             extra: _extra,
             contentType: 'multipart/form-data',
           )
           .compose(
             _dio.options,
-            '/mobile/employer/organization/logo',
+            '/mobile/employer/organization/logo-upload',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
     final _result = await _dio.fetch<Map<String, dynamic>>(_options);
-    late BaseResult<Organization> _value;
+    late BaseResult<String> _value;
     try {
-      _value = BaseResult<Organization>.fromJson(
+      _value = BaseResult<String>.fromJson(
         _result.data!,
-        (json) => Organization.fromJson(json as Map<String, dynamic>),
+        (json) => json as String,
       );
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options, response: _result);
