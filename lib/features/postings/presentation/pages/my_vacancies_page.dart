@@ -24,21 +24,12 @@ class _MyVacanciesPageState extends State<MyVacanciesPage> {
   void initState() {
     super.initState();
     _postingsBloc = sl<PostingsBloc>()..add(LoadPostings());
-    _scrollController.addListener(_onScroll);
   }
 
   @override
   void dispose() {
-    _scrollController.removeListener(_onScroll);
     _scrollController.dispose();
     super.dispose();
-  }
-
-  void _onScroll() {
-    if (_scrollController.position.pixels >=
-        _scrollController.position.maxScrollExtent * 0.9) {
-      _postingsBloc.add(LoadMorePostings());
-    }
   }
 
   @override
@@ -74,13 +65,23 @@ class _MyVacanciesPageState extends State<MyVacanciesPage> {
             final vacancies = state.vacancies ?? <Vacancy>[];
 
             if (vacancies.isEmpty) {
-              return Center(
-                child: Text(
-                  "shared.no_data",
-                  style: context.textThemes.b2.copyWith(
-                    color: context.colors.textSecondary,
+              return RefreshIndicator(
+                onRefresh: () async {
+                  context.read<PostingsBloc>().add(LoadPostings());
+                },
+                child: SingleChildScrollView(
+                  physics: const AlwaysScrollableScrollPhysics(),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height - 150,
+                    alignment: Alignment.center,
+                    child: Text(
+                      "shared.no_data",
+                      style: context.textThemes.b2.copyWith(
+                        color: context.colors.textSecondary,
+                      ),
+                    ).tr(),
                   ),
-                ).tr(),
+                ),
               );
             }
 
@@ -94,16 +95,10 @@ class _MyVacanciesPageState extends State<MyVacanciesPage> {
                   horizontal: 16,
                   vertical: 16,
                 ).copyWith(bottom: MediaQuery.paddingOf(context).bottom + 16),
-                itemCount: vacancies.length + (state.isLoadingMore ? 1 : 0),
+                itemCount: vacancies.length,
                 separatorBuilder: (context, index) =>
                     const SizedBox(height: 12),
                 itemBuilder: (context, index) {
-                  if (index == vacancies.length) {
-                    return const Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Center(child: CircularProgressIndicator()),
-                    );
-                  }
                   return HrVacancyCard(vacancy: vacancies[index]);
                 },
               ),
