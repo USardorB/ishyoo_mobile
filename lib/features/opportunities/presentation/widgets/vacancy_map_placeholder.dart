@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:maplibre_gl/maplibre_gl.dart';
 import 'package:mobile/core/configs/app_map_config.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
@@ -25,6 +26,28 @@ class _VacancyMapState extends State<VacancyMap> {
     _mapController = controller;
   }
 
+  Future<void> _onStyleLoaded() async {
+    if (_mapController == null) return;
+    try {
+      final ByteData bytes = await rootBundle.load(
+        "assets/images/locate_me.webp",
+      );
+      final Uint8List list = bytes.buffer.asUint8List();
+      await _mapController!.addImage("custom_locate_pin", list);
+
+      await _mapController!.addSymbol(
+        SymbolOptions(
+          geometry: LatLng(widget.latitude, widget.longitude),
+          iconImage: "custom_locate_pin",
+          iconSize: 0.4,
+          iconOffset: Offset(0, -50),
+        ),
+      );
+    } catch (e) {
+      // ignore
+    }
+  }
+
   void _zoomIn() {
     if (_mapController != null) {
       _mapController!.animateCamera(CameraUpdate.zoomIn());
@@ -40,7 +63,7 @@ class _VacancyMapState extends State<VacancyMap> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      height: 220,
       width: double.infinity,
       decoration: BoxDecoration(
         color: const Color(0xFF2B2E3D),
@@ -52,23 +75,18 @@ class _VacancyMapState extends State<VacancyMap> {
           MapLibreMap(
             styleString: AppMapConfig.styleUrl,
             onMapCreated: _onMapCreated,
+            onStyleLoadedCallback: _onStyleLoaded,
             initialCameraPosition: CameraPosition(
               target: LatLng(widget.latitude, widget.longitude),
               zoom: 14.0,
             ),
-            myLocationEnabled: false,
+            myLocationEnabled: true,
             trackCameraPosition: true,
             compassEnabled: false,
             rotateGesturesEnabled: false,
             tiltGesturesEnabled: false,
             scrollGesturesEnabled: false, // Static map for details view
             zoomGesturesEnabled: false,
-          ),
-          Center(
-            child: Image.asset(
-              "assets/images/locate_me.webp",
-              width: 60,
-            ),
           ),
           Positioned(
             right: 12,
@@ -104,31 +122,37 @@ class _VacancyMapState extends State<VacancyMap> {
               ),
             ),
           ),
-          Positioned(
-            left: 12,
-            bottom: 12,
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              decoration: BoxDecoration(
-                color: context.colors.bgPrimary.withValues(alpha: 0.9),
-                borderRadius: .circular(10),
-              ),
-              child: Row(
-                children: [
-                  Icon(
-                    Icons.navigation,
-                    color: context.colors.brandDefault,
-                    size: 16,
-                  ),
-                  const SizedBox(width: 8),
-                  Text(
-                    "opportunities.location",
-                    style: context.textThemes.b2.copyWith(color: Colors.white),
-                  ).tr(),
-                ],
+          if (false)
+            Positioned(
+              left: 12,
+              bottom: 12,
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 10,
+                ),
+                decoration: BoxDecoration(
+                  color: context.colors.bgPrimary.withValues(alpha: 0.9),
+                  borderRadius: .circular(10),
+                ),
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.navigation,
+                      color: context.colors.brandDefault,
+                      size: 16,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      "opportunities.location",
+                      style: context.textThemes.b2.copyWith(
+                        color: Colors.white,
+                      ),
+                    ).tr(),
+                  ],
+                ),
               ),
             ),
-          ),
         ],
       ),
     );
