@@ -1,26 +1,24 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maplibre_gl/maplibre_gl.dart';
 import 'package:mobile/core/configs/app_map_config.dart';
-import 'package:mobile/core/consts/app_assets.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
-class VacancyLocationMap extends StatefulWidget {
+class VacancyMap extends StatefulWidget {
   final double latitude;
   final double longitude;
 
-  const VacancyLocationMap({
+  const VacancyMap({
     super.key,
     required this.latitude,
     required this.longitude,
   });
 
   @override
-  State<VacancyLocationMap> createState() => _VacancyLocationMapState();
+  State<VacancyMap> createState() => _VacancyMapState();
 }
 
-class _VacancyLocationMapState extends State<VacancyLocationMap> {
+class _VacancyMapState extends State<VacancyMap> {
   MapLibreMapController? _mapController;
 
   void _onMapCreated(MapLibreMapController controller) {
@@ -67,34 +65,9 @@ class _VacancyLocationMapState extends State<VacancyLocationMap> {
             zoomGesturesEnabled: false,
           ),
           Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 12,
-                  ),
-                  decoration: BoxDecoration(
-                    color: context.colors.brandDefault,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: SvgPicture.asset(
-                    AppAssets.ishYoo,
-                    height: 24,
-                    colorFilter: const ColorFilter.mode(
-                      Colors.black,
-                      BlendMode.srcIn,
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 3,
-                  height: 24,
-                  color: Colors.white,
-                ),
-                const SizedBox(height: 48),
-              ],
+            child: Image.asset(
+              "assets/images/locate_me.webp",
+              width: 60,
             ),
           ),
           Positioned(
@@ -103,7 +76,7 @@ class _VacancyLocationMapState extends State<VacancyLocationMap> {
             child: Container(
               decoration: BoxDecoration(
                 color: context.colors.bgPrimary.withValues(alpha: 0.9),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: .circular(10),
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -111,19 +84,19 @@ class _VacancyLocationMapState extends State<VacancyLocationMap> {
                   InkWell(
                     onTap: _zoomIn,
                     child: const Padding(
-                      padding: EdgeInsets.all(10.0),
+                      padding: .all(10.0),
                       child: Icon(Icons.add, color: Colors.white, size: 20),
                     ),
                   ),
                   Container(
                     height: 1,
                     width: 32,
-                    color: context.colors.bgTertiary,
+                    color: context.colors.linePrimary,
                   ),
                   InkWell(
                     onTap: _zoomOut,
                     child: const Padding(
-                      padding: EdgeInsets.all(10.0),
+                      padding: .all(10.0),
                       child: Icon(Icons.remove, color: Colors.white, size: 20),
                     ),
                   ),
@@ -138,7 +111,7 @@ class _VacancyLocationMapState extends State<VacancyLocationMap> {
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               decoration: BoxDecoration(
                 color: context.colors.bgPrimary.withValues(alpha: 0.9),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: .circular(10),
               ),
               child: Row(
                 children: [

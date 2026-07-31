@@ -192,7 +192,8 @@
     "search_results": "Қидирув натижалари",
     "search_placeholder": "Мутахассислик ёки кўникма...",
     "results_count": "{} та номзод топилди",
-    "no_resumes_found": "Ҳозирча резюмелар топилмади."
+    "no_resumes_found": "Ҳозирча резюмелар топилмади.",
+    "contact_info": "Контакт маълумотлари"
   },
   "applications": {
     "title": "Жавоблар",
@@ -230,7 +231,8 @@
     "location": "Жойлашув",
     "employment_type": "Бандлик тури",
     "requirements": "Талаблар",
-    "description": "Тавсиф"
+    "description": "Тавсиф",
+    "responsibilities": "Масъулиятлар"
   },
   "postings": {
     "dashboard_title": "Бошқарув панели",
@@ -247,7 +249,8 @@
     "active_sub": "вакансия",
     "responses_count": "{} та жавоб",
     "key_skills": "Кўникмалар",
-    "no_salary_specified": "Маош кўрсатилмаган"
+    "no_salary_specified": "Маош кўрсатилмаган",
+    "full_name_label": "Ф.И.О"
   },
   "resume": {
     "title": "Резюме",

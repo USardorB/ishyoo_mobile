@@ -17,7 +17,7 @@ class ApplicantContacts extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text('profile.contact_information', style: context.textThemes.s2).tr(),
+        Text('talents.contact_info', style: context.textThemes.s2).tr(),
         const SizedBox(height: 16),
         Container(
           decoration: BoxDecoration(

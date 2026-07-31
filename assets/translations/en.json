@@ -192,7 +192,8 @@
     "search_results": "Search Results",
     "search_placeholder": "Specialization or skill...",
     "results_count": "{} candidates found",
-    "no_resumes_found": "No resumes found yet."
+    "no_resumes_found": "No resumes found yet.",
+    "contact_info": "Contact Info"
   },
   "applications": {
     "title": "Applications",
@@ -230,7 +231,8 @@
     "location": "Location",
     "employment_type": "Employment Type",
     "requirements": "Requirements",
-    "description": "Description"
+    "description": "Description",
+    "responsibilities": "Responsibilities"
   },
   "postings": {
     "dashboard_title": "Dashboard",
@@ -247,7 +249,8 @@
     "active_sub": "vacancies",
     "responses_count": "{} responses",
     "key_skills": "Key Skills",
-    "no_salary_specified": "Salary not specified"
+    "no_salary_specified": "Salary not specified",
+    "full_name_label": "Full Name"
   },
   "resume": {
     "title": "Resume",

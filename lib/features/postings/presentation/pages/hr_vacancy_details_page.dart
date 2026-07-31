@@ -6,9 +6,9 @@ import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/enums/app_enums.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/opportunities/data/models/vacancy.dart';
+import 'package:mobile/features/opportunities/presentation/widgets/vacancy_map_placeholder.dart';
 import 'package:mobile/features/postings/presentation/bloc/hr_vacancy_details_bloc.dart';
 import 'package:mobile/features/postings/presentation/bloc/postings_bloc.dart';
-import 'package:mobile/features/opportunities/presentation/widgets/vacancy_map_placeholder.dart';
 import 'package:mobile/features/postings/presentation/widgets/posting_actions_sheet.dart';
 
 @RoutePage()
@@ -22,12 +22,7 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
     final state = context.watch<HrVacancyDetailsBloc>().state;
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "nav.vacancies",
-          style: context.textThemes.h4.copyWith(
-            color: context.colors.textPrimary,
-          ),
-        ).tr(),
+        title: const Text("nav.vacancies").tr(),
         actions: [
           IconButton(
             onPressed: () {
@@ -80,11 +75,11 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
         children: [
           const SizedBox(height: 16),
           _buildTopCard(context, vacancy),
-          const SizedBox(height: 32),
+          const SizedBox(height: 20),
           if (vacancy.description != null &&
               vacancy.description!.isNotEmpty) ...[
             _buildSectionTitle(context, "opportunities.description".tr()),
-            const SizedBox(height: 16),
+            const SizedBox(height: 10),
             Text(
               vacancy.description!,
               style: context.textThemes.b2.copyWith(
@@ -104,11 +99,11 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                 .map(
                   (req) => _buildBulletPoint(context, req),
                 ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 20),
           ],
           if (vacancy.keySkills != null && vacancy.keySkills!.isNotEmpty) ...[
             _buildSectionTitle(context, "postings.key_skills".tr()),
-            const SizedBox(height: 16),
+            const SizedBox(height: 10),
             Wrap(
               spacing: 8,
               runSpacing: 8,
@@ -116,11 +111,11 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                   .map((skill) => _buildSkillChip(context, skill))
                   .toList(),
             ),
-            const SizedBox(height: 32),
+            const SizedBox(height: 20),
           ],
           _buildSectionTitle(context, "opportunities.location".tr()),
-          const SizedBox(height: 16),
-          VacancyLocationMap(
+          const SizedBox(height: 10),
+          VacancyMap(
             latitude: double.tryParse(vacancy.latitude ?? '') ?? 41.311081,
             longitude: double.tryParse(vacancy.longitude ?? '') ?? 69.240562,
           ),
@@ -140,14 +135,14 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            vacancy.specialization!,
+            vacancy.jobTitle,
             style: context.textThemes.h5,
           ),
           const SizedBox(height: 12),
           if (vacancy.salaryFrom != null || vacancy.salaryTo != null)
             Text(
-              "${vacancy.salaryFrom?.toInt() ?? 0}–${vacancy.salaryTo?.toInt() ?? 0} ${vacancy.currency ?? "so'm"}",
-              style: context.textThemes.h5.copyWith(
+              "${vacancy.salaryFrom?.toInt() ?? 0}–${vacancy.salaryTo?.toInt() ?? 0} ${vacancy.currency?.toUpperCase() ?? "so'm"}",
+              style: context.textThemes.s2.copyWith(
                 color: context.colors.brandDefault,
               ),
             ),
@@ -162,19 +157,23 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
               if (vacancy.jobType != null && vacancy.jobType!.isNotEmpty) ...[
                 _buildSmallTag(
                   context,
-                  EmploymentType.fromServer(vacancy.jobType)?.localizedLabel ?? vacancy.jobType!,
+                  EmploymentType.fromServer(vacancy.jobType)?.localizedLabel ??
+                      vacancy.jobType!,
                 ),
               ],
               if (vacancy.experienceLevel != null &&
                   vacancy.experienceLevel!.isNotEmpty) ...[
                 _buildSmallTag(
                   context,
-                  AppExperienceLevel.fromServer(vacancy.experienceLevel)?.localizedLabel ?? vacancy.experienceLevel!,
+                  AppExperienceLevel.fromServer(
+                        vacancy.experienceLevel,
+                      )?.localizedLabel ??
+                      vacancy.experienceLevel!,
                 ),
               ],
             ],
           ),
-          const SizedBox(height: 20),
+          const SizedBox(height: 12),
           Row(
             children: [
               Container(
@@ -188,13 +187,13 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
               const SizedBox(width: 8),
               Text(
                 _getStatusText(vacancy.status),
-                style: context.textThemes.b3.copyWith(
+                style: context.textThemes.c1.copyWith(
                   color: context.colors.textSecondary,
                 ),
               ),
               Text(
                 " • ${'postings.responses_count'.tr(args: [vacancy.totalApplicationsCount.toString()])}",
-                style: context.textThemes.b3.copyWith(
+                style: context.textThemes.c1.copyWith(
                   color: context.colors.textSecondary,
                 ),
               ),
@@ -210,11 +209,11 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         color: context.colors.bgTertiary,
-        borderRadius: BorderRadius.circular(6),
+        borderRadius: .circular(8),
       ),
       child: Text(
         text,
-        style: context.textThemes.buttonMedium.copyWith(
+        style: context.textThemes.c1.copyWith(
           color: context.colors.textSecondary,
         ),
       ),

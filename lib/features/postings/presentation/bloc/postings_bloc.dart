@@ -1,11 +1,12 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:injectable/injectable.dart';
-import '../../../opportunities/data/models/vacancy.dart';
-import '../../domain/repositories/postings_repository.dart';
-import '../../data/models/employer_stats.dart';
+
 import '../../../../core/shared/failures.dart';
+import '../../../opportunities/data/models/vacancy.dart';
 import '../../../resume/data/models/specialization.dart';
+import '../../data/models/employer_stats.dart';
+import '../../domain/repositories/postings_repository.dart';
 
 abstract class PostingsEvent {}
 
@@ -15,7 +16,8 @@ class LoadMorePostings extends PostingsEvent {}
 
 class CreatePosting extends PostingsEvent {
   final Map<String, dynamic> body;
-  CreatePosting(this.body);
+  final bool isForDraft;
+  CreatePosting(this.body, {this.isForDraft = false});
 }
 
 class UpdatePosting extends PostingsEvent {
@@ -188,7 +190,9 @@ class PostingsBloc extends Bloc<PostingsEvent, PostingsState> {
       (failure) async =>
           emit(state.copyWith(isSubmitting: false, error: failure.message)),
       (vacancy) async {
-        await _postingsRepository.publishVacancy(vacancy.id);
+        if (!event.isForDraft) {
+          await _postingsRepository.publishVacancy(vacancy.id);
+        }
         emit(state.copyWith(isSubmitting: false, isCreateSuccess: true));
       },
     );

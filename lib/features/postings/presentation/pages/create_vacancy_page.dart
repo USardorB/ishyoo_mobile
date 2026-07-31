@@ -11,15 +11,24 @@ import 'package:mobile/features/postings/presentation/widgets/create_vacancy_bas
 import 'package:mobile/features/postings/presentation/widgets/create_vacancy_location_step.dart';
 import 'package:mobile/features/postings/presentation/widgets/create_vacancy_requirements_step.dart';
 import 'package:mobile/features/postings/presentation/widgets/create_vacancy_summary_step.dart';
+import 'package:mobile/features/profile/presentation/bloc/employer_organization_bloc.dart';
 
 @RoutePage()
-class CreateVacancyPage extends StatefulWidget {
+class CreateVacancyPage extends StatefulWidget implements AutoRouteWrapper {
   final Vacancy? vacancyToEdit;
 
   const CreateVacancyPage({super.key, this.vacancyToEdit});
 
   @override
   State<CreateVacancyPage> createState() => _CreateVacancyPageState();
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider(
+      create: (_) => sl<EmployerOrganizationBloc>(),
+      child: this,
+    );
+  }
 }
 
 class _CreateVacancyPageState extends State<CreateVacancyPage> {
@@ -256,11 +265,51 @@ class _CreateVacancyPageState extends State<CreateVacancyPage> {
                                 );
                               } else {
                                 context.read<PostingsBloc>().add(
-                                  CreatePosting(body),
+                                  CreatePosting(body, isForDraft: false),
                                 );
                               }
                             },
-                            onSaveDraft: () => context.pop(),
+                            onSaveDraft: () {
+                              final body = {
+                                'job_title': _titleController.text,
+                                'specialization': _selectedSpecialization,
+                                'location': _addressController.text,
+                                'salary_from': int.tryParse(
+                                  _salaryFromController.text,
+                                ),
+                                'salary_to': int.tryParse(
+                                  _salaryToController.text,
+                                ),
+                                'currency': _selectedCurrency.name,
+                                'contact': {
+                                  if (_contactNameController.text.isNotEmpty)
+                                    'name': _contactNameController.text,
+                                  if (_contactEmailController.text.isNotEmpty)
+                                    'email': _contactEmailController.text,
+                                  if (_phoneController.text.isNotEmpty)
+                                    'phone_number': _phoneController.text,
+                                },
+                                'job_type': _selectedJobType.serverValue,
+                                'description': _descriptionController.text,
+                                'responsibilities': _tasksController.text,
+                                'requirements': _requirementsController.text,
+                                'key_skills': _selectedSkills,
+                                'experience_level':
+                                    _selectedExperience.serverValue,
+                                'is_temporary': false,
+                                'latitude': _latitude,
+                                'longitude': _longitude,
+                              };
+                              if (_isEditMode) {
+                                context.read<PostingsBloc>().add(
+                                  UpdatePosting(widget.vacancyToEdit!.id, body),
+                                );
+                              } else {
+                                context.read<PostingsBloc>().add(
+                                  CreatePosting(body, isForDraft: true),
+                                );
+                              }
+                            },
                           ),
                         ],
                       );

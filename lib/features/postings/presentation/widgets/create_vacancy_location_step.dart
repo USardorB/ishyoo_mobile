@@ -1,9 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maplibre_gl/maplibre_gl.dart';
 import 'package:mobile/core/configs/app_map_config.dart';
-import 'package:mobile/core/consts/app_assets.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
@@ -106,34 +104,9 @@ class _CreateVacancyLocationStepState extends State<CreateVacancyLocationStep> {
                         tiltGesturesEnabled: false,
                       ),
                       Center(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 12,
-                                vertical: 12,
-                              ),
-                              decoration: BoxDecoration(
-                                color: context.colors.brandDefault,
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: SvgPicture.asset(
-                                AppAssets.ishYoo,
-                                height: 24,
-                                colorFilter: const ColorFilter.mode(
-                                  Colors.black,
-                                  BlendMode.srcIn,
-                                ),
-                              ),
-                            ),
-                            Container(
-                              width: 3,
-                              height: 24,
-                              color: Colors.white,
-                            ),
-                            const SizedBox(height: 48),
-                          ],
+                        child: Image.asset(
+                          "assets/images/locate_me.webp",
+                          width: 60,
                         ),
                       ),
                       Positioned(
@@ -144,7 +117,7 @@ class _CreateVacancyLocationStepState extends State<CreateVacancyLocationStep> {
                             color: context.colors.bgPrimary.withValues(
                               alpha: 0.9,
                             ),
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: .circular(10),
                           ),
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
@@ -163,7 +136,7 @@ class _CreateVacancyLocationStepState extends State<CreateVacancyLocationStep> {
                               Container(
                                 height: 1,
                                 width: 32,
-                                color: context.colors.bgTertiary,
+                                color: context.colors.linePrimary,
                               ),
                               InkWell(
                                 onTap: _zoomOut,
@@ -192,10 +165,10 @@ class _CreateVacancyLocationStepState extends State<CreateVacancyLocationStep> {
                             color: context.colors.bgPrimary.withValues(
                               alpha: 0.9,
                             ),
-                            borderRadius: BorderRadius.circular(8),
+                            borderRadius: .circular(10),
                           ),
                           child: Row(
-                             children: [
+                            children: [
                               Icon(
                                 Icons.navigation,
                                 color: context.colors.brandDefault,

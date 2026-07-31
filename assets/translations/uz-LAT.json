@@ -192,7 +192,8 @@
     "search_results": "Qidiruv natijalari",
     "search_placeholder": "Mutaxassislik yoki ko'nikma...",
     "results_count": "{} ta nomzod topildi",
-    "no_resumes_found": "Hozircha rezyumelar topilmadi."
+    "no_resumes_found": "Hozircha rezyumelar topilmadi.",
+    "contact_info": "Kontakt ma'lumotlari"
   },
   "applications": {
     "title": "Javoblar",
@@ -230,7 +231,8 @@
     "location": "Joylashuv",
     "employment_type": "Bandlik turi",
     "requirements": "Talablar",
-    "description": "Tavsif"
+    "description": "Tavsif",
+    "responsibilities": "Mas'uliyatlar"
   },
   "postings": {
     "dashboard_title": "Boshqaruv paneli",
@@ -247,7 +249,8 @@
     "active_sub": "vakansiya",
     "responses_count": "{} ta javob",
     "key_skills": "Ko'nikmalar",
-    "no_salary_specified": "Maosh ko'rsatilmagan"
+    "no_salary_specified": "Maosh ko'rsatilmagan",
+    "full_name_label": "F.I.O"
   },
   "resume": {
     "title": "Rezume",

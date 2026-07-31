@@ -192,7 +192,8 @@
     "search_results": "Результаты поиска",
     "search_placeholder": "Специальность или навык...",
     "results_count": "Найдено {} кандидатов",
-    "no_resumes_found": "Резюме пока не найдены."
+    "no_resumes_found": "Резюме пока не найдены.",
+    "contact_info": "Контактная информация"
   },
   "applications": {
     "title": "Отклики",
@@ -230,7 +231,8 @@
     "location": "Локация",
     "employment_type": "Тип занятости",
     "requirements": "Требования",
-    "description": "Описание"
+    "description": "Описание",
+    "responsibilities": "Обязанности"
   },
   "postings": {
     "dashboard_title": "Панель управления",
@@ -247,7 +249,8 @@
     "active_sub": "вакансии",
     "responses_count": "{} откликов",
     "key_skills": "Ключевые навыки",
-    "no_salary_specified": "Зарплата не указана"
+    "no_salary_specified": "Зарплата не указана",
+    "full_name_label": "Ф.И.О."
   },
   "resume": {
     "title": "Резюме",

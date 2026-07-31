@@ -54,12 +54,17 @@ class CreateVacancySummaryStep extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                BlocBuilder<EmployerOrganizationBloc, EmployerOrganizationState>(
+                BlocBuilder<
+                  EmployerOrganizationBloc,
+                  EmployerOrganizationState
+                >(
                   builder: (context, state) {
                     final org = state.organization;
                     final logoUrl = org?.logo;
                     final orgName = org?.name ?? 'Company';
-                    final firstLetter = orgName.isNotEmpty ? orgName[0].toUpperCase() : 'C';
+                    final firstLetter = orgName.isNotEmpty
+                        ? orgName[0].toUpperCase()
+                        : 'C';
 
                     return Row(
                       children: [
@@ -125,8 +130,8 @@ class CreateVacancySummaryStep extends StatelessWidget {
                           ? 'opportunities.location'.tr()
                           : location,
                     ),
-                    _buildSmallTag(context, jobType.label),
-                    _buildSmallTag(context, experience.label),
+                    _buildSmallTag(context, jobType.label.tr()),
+                    _buildSmallTag(context, experience.label.tr()),
                   ],
                 ),
                 const SizedBox(height: 16),

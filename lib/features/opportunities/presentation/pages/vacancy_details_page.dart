@@ -247,9 +247,13 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                   style: context.textThemes.s2,
                 ).tr(),
                 const SizedBox(height: 12),
-                VacancyLocationMap(
-                  latitude: double.tryParse(state.vacancy.latitude ?? '') ?? 41.311081,
-                  longitude: double.tryParse(state.vacancy.longitude ?? '') ?? 69.240562,
+                VacancyMap(
+                  latitude:
+                      double.tryParse(state.vacancy.latitude ?? '') ??
+                      41.311081,
+                  longitude:
+                      double.tryParse(state.vacancy.longitude ?? '') ??
+                      69.240562,
                 ),
               ],
             ),

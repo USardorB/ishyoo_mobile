@@ -53,7 +53,10 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text("auth.complete_profile.title", style: context.textThemes.h5).tr(),
+          Text(
+            "auth.complete_profile.title",
+            style: context.textThemes.h5,
+          ).tr(),
           const SizedBox(height: 20),
           AppInputField(
             label: "opportunities.title".tr(),
@@ -85,7 +88,10 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
             },
           ),
           const SizedBox(height: 16),
-          Text("opportunities.salary".tr(args: ['']), style: context.textThemes.s3),
+          Text(
+            "opportunities.salary".tr(args: ['']),
+            style: context.textThemes.s3,
+          ),
           const SizedBox(height: 8),
           Row(
             children: [
@@ -121,7 +127,9 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
                       value: selectedCurrency,
                       icon: const Icon(Icons.arrow_drop_down, size: 20),
                       isExpanded: true,
-                      style: context.textThemes.b2.copyWith(color: context.colors.textPrimary),
+                      style: context.textThemes.b2.copyWith(
+                        color: context.colors.textPrimary,
+                      ),
                       dropdownColor: context.colors.bgPrimary,
                       onChanged: (AppCurrency? newValue) {
                         if (newValue != null) {
@@ -129,12 +137,15 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
                         }
                       },
                       items: AppCurrency.values
-                          .map<DropdownMenuItem<AppCurrency>>((AppCurrency value) {
-                        return DropdownMenuItem<AppCurrency>(
-                          value: value,
-                          child: Text(value.name.toUpperCase()),
-                        );
-                      }).toList(),
+                          .map<DropdownMenuItem<AppCurrency>>((
+                            AppCurrency value,
+                          ) {
+                            return DropdownMenuItem<AppCurrency>(
+                              value: value,
+                              child: Text(value.name.toUpperCase()),
+                            );
+                          })
+                          .toList(),
                     ),
                   ),
                 ),
@@ -143,7 +154,7 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           AppInputField(
-            label: "auth.complete_profile.full_name_label".tr(),
+            label: "postings.full_name_label".tr(),
             controller: contactNameController,
           ),
           const SizedBox(height: 16),
@@ -158,7 +169,10 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
             keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(height: 16),
-          Text("opportunities.employment_type".tr(), style: context.textThemes.s3),
+          Text(
+            "opportunities.employment_type".tr(),
+            style: context.textThemes.s3,
+          ),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8,
@@ -212,4 +226,3 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
     );
   }
 }
-

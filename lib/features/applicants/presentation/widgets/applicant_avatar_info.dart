@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/core/enums/app_enums.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/applicants/data/models/applicant.dart';
 
@@ -9,11 +10,16 @@ class ApplicantAvatarInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final name =
-        applicant?.user?.name ?? applicant?.profile?.name ?? '';
+    final name = applicant?.user?.name ?? applicant?.profile?.name ?? '';
     final workFormats = [
-      ...(applicant?.employmentType ?? []),
-      ...(applicant?.workFormat ?? []),
+      ...(applicant?.employmentType?.map(
+            (e) => EmploymentType.fromServer(e)?.localizedLabel,
+          ) ??
+          []),
+      ...(applicant?.workFormat?.map(
+            (e) => WorkFormat.fromServer(e)?.localizedLabel,
+          ) ??
+          []),
     ].join(' • ');
 
     return Column(
