@@ -573,9 +573,11 @@ class CreateVacancyRoute extends _i47.PageRouteInfo<CreateVacancyRouteArgs> {
       final args = data.argsAs<CreateVacancyRouteArgs>(
         orElse: () => const CreateVacancyRouteArgs(),
       );
-      return _i15.CreateVacancyPage(
-        key: args.key,
-        vacancyToEdit: args.vacancyToEdit,
+      return _i47.WrappedRoute(
+        child: _i15.CreateVacancyPage(
+          key: args.key,
+          vacancyToEdit: args.vacancyToEdit,
+        ),
       );
     },
   );

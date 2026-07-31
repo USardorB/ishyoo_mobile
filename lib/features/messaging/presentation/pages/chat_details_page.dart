@@ -103,18 +103,18 @@ class ChatDetailsPage extends StatelessWidget {
                   },
                   title: isEmployer
                       ? state
-                                 .currentChat
-                                 ?.application
-                                 ?.resume
-                                 ?.specialization ??
-                             ""
+                                .currentChat
+                                ?.application
+                                ?.resume
+                                ?.specialization ??
+                            ""
                       : state
-                                 .currentChat
-                                 ?.application
-                                 ?.vacancy
-                                 ?.organization
-                                 ?.name ??
-                             "",
+                                .currentChat
+                                ?.application
+                                ?.vacancy
+                                ?.organization
+                                ?.name ??
+                            "",
                   isEmployer: isEmployer,
                 );
               },

@@ -50,6 +50,42 @@ class ChatItem extends StatelessWidget {
                         imageUrl: image,
                         width: 52,
                         height: 52,
+                        placeholder: (context, url) => SizedBox.square(
+                          dimension: 52,
+                          child: Center(
+                            child: Container(
+                              alignment: .center,
+                              decoration: BoxDecoration(
+                                color: context.colors.bgSecondary,
+                                shape: .circle,
+                              ),
+                              child: Text(
+                                title.substring(0, 1),
+                                style: context.textThemes.h5.copyWith(
+                                  color: context.colors.brandDefault,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        errorWidget: (context, url, error) => SizedBox.square(
+                          dimension: 52,
+                          child: Center(
+                            child: Container(
+                              alignment: .center,
+                              decoration: BoxDecoration(
+                                color: context.colors.bgSecondary,
+                                shape: .circle,
+                              ),
+                              child: Text(
+                                title.substring(0, 1),
+                                style: context.textThemes.h5.copyWith(
+                                  color: context.colors.brandDefault,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                         fit: BoxFit.cover,
                       ),
                     ),

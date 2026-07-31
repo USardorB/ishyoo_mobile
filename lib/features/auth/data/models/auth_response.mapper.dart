@@ -611,6 +611,12 @@ class UserMeResponseMapper extends ClassMapperBase<UserMeResponse> {
   @override
   final String id = 'UserMeResponse';
 
+  static String _$avatarUrl(UserMeResponse v) => v.avatarUrl;
+  static const Field<UserMeResponse, String> _f$avatarUrl = Field(
+    'avatarUrl',
+    _$avatarUrl,
+    key: r'avatar_url',
+  );
   static String _$id(UserMeResponse v) => v.id;
   static const Field<UserMeResponse, String> _f$id = Field('id', _$id);
   static String _$name(UserMeResponse v) => v.name;
@@ -656,6 +662,7 @@ class UserMeResponseMapper extends ClassMapperBase<UserMeResponse> {
 
   @override
   final MappableFields<UserMeResponse> fields = const {
+    #avatarUrl: _f$avatarUrl,
     #id: _f$id,
     #name: _f$name,
     #phoneNumber: _f$phoneNumber,
@@ -669,6 +676,7 @@ class UserMeResponseMapper extends ClassMapperBase<UserMeResponse> {
 
   static UserMeResponse _instantiate(DecodingData data) {
     return UserMeResponse(
+      avatarUrl: data.dec(_f$avatarUrl),
       id: data.dec(_f$id),
       name: data.dec(_f$name),
       phoneNumber: data.dec(_f$phoneNumber),
@@ -746,6 +754,7 @@ abstract class UserMeResponseCopyWith<$R, $In extends UserMeResponse, $Out>
   UserOrganizationCopyWith<$R, UserOrganization, UserOrganization>?
   get organization;
   $R call({
+    String? avatarUrl,
     String? id,
     String? name,
     String? phoneNumber,
@@ -775,6 +784,7 @@ class _UserMeResponseCopyWithImpl<$R, $Out>
       $value.organization?.copyWith.$chain((v) => call(organization: v));
   @override
   $R call({
+    String? avatarUrl,
     String? id,
     String? name,
     String? phoneNumber,
@@ -786,6 +796,7 @@ class _UserMeResponseCopyWithImpl<$R, $Out>
     Object? organization = $none,
   }) => $apply(
     FieldCopyWithData({
+      if (avatarUrl != null) #avatarUrl: avatarUrl,
       if (id != null) #id: id,
       if (name != null) #name: name,
       if (phoneNumber != null) #phoneNumber: phoneNumber,
@@ -799,6 +810,7 @@ class _UserMeResponseCopyWithImpl<$R, $Out>
   );
   @override
   UserMeResponse $make(CopyWithData data) => UserMeResponse(
+    avatarUrl: data.get(#avatarUrl, or: $value.avatarUrl),
     id: data.get(#id, or: $value.id),
     name: data.get(#name, or: $value.name),
     phoneNumber: data.get(#phoneNumber, or: $value.phoneNumber),

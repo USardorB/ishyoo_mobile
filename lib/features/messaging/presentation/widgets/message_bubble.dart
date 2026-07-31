@@ -51,6 +51,8 @@ class MessageBubble extends StatelessWidget {
     }
   }
 
+  bool isSingleGrapheme(String text) => text.trim().characters.length == 1;
+
   void _showImageFullScreen(
     BuildContext context,
     String imageUrl,
@@ -94,6 +96,38 @@ class MessageBubble extends StatelessWidget {
     final headers = token != null
         ? {'Authorization': 'Bearer $token'}
         : const <String, String>{};
+
+    if (isSingleGrapheme(message.content ?? "")) {
+      return GestureDetector(
+        onLongPress: isMine ? () => _showActions(context) : null,
+        child: Align(
+          alignment: isMine ? Alignment.centerRight : Alignment.centerLeft,
+          child: Container(
+            constraints: BoxConstraints(
+              maxWidth: MediaQuery.of(context).size.width * 0.8,
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(14),
+              color:
+                  (isMine
+                          ? context.colors.brandProgress
+                          : context.colors.bgPrimary)
+                      .withAlpha(60),
+            ),
+            padding: const EdgeInsets.all(8),
+            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            child: Text(
+              message.content!,
+              style: TextStyle(
+                color: isMine ? Colors.white : context.colors.textPrimary,
+                fontSize: 72,
+                height: 1.2,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
 
     return GestureDetector(
       onLongPress: isMine ? () => _showActions(context) : null,

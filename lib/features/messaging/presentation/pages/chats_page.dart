@@ -59,7 +59,8 @@ class ChatsPage extends StatelessWidget {
                   final chat = state.chats![index];
 
                   String title = "Noma'lum";
-                  String image = "https://i.pravatar.cc/100?u=${chat.id}";
+                  String image = "";
+                  //  chat.partner?.avatar ?? '';
 
                   if (isEmployer) {
                     title =
@@ -77,7 +78,8 @@ class ChatsPage extends StatelessWidget {
 
                   final lastMessage =
                       chat.messages != null && chat.messages!.isNotEmpty
-                      ? (chat.messages!.first.content ?? 'messaging.attachment'.tr())
+                      ? (chat.messages!.first.content ??
+                            'messaging.attachment'.tr())
                       : "messaging.title".tr();
 
                   return ChatItem(

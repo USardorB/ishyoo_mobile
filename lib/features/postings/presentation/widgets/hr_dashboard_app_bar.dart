@@ -7,6 +7,7 @@ import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
 import 'package:mobile/core/shared/widgets/app_notification.dart';
+import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/postings/presentation/widgets/dark_glass_search_field.dart';
 import 'package:mobile/features/postings/presentation/widgets/tallent_filter_sheet.dart';
 import 'package:mobile/features/profile/presentation/bloc/employer_organization_bloc.dart';
@@ -18,6 +19,7 @@ class HrDashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(BuildContext context) {
+    final avatarUrl = context.read<AuthBloc>().state.user?.avatarUrl ?? '';
     return AppBar(
       leading: BlocBuilder<EmployerOrganizationBloc, EmployerOrganizationState>(
         builder: (context, state) {
@@ -30,9 +32,9 @@ class HrDashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
             margin: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              image: org?.logo != null
+              image: avatarUrl.isNotEmpty
                   ? DecorationImage(
-                      image: CachedNetworkImageProvider(org!.logo!),
+                      image: CachedNetworkImageProvider(avatarUrl),
                       fit: BoxFit.cover,
                     )
                   : null,

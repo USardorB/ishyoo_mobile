@@ -72,6 +72,8 @@ class UserMeResponse with UserMeResponseMappable {
   final String name;
   @MappableField(key: 'phone_number')
   final String phoneNumber;
+  @MappableField(key: 'avatar_url')
+  final String avatarUrl;
   final String? email;
   final String? password;
   final String role;
@@ -82,6 +84,7 @@ class UserMeResponse with UserMeResponseMappable {
   final UserOrganization? organization;
 
   const UserMeResponse({
+    required this.avatarUrl,
     required this.id,
     required this.name,
     required this.phoneNumber,
