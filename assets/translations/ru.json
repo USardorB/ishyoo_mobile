@@ -250,7 +250,9 @@
     "responses_count": "{} откликов",
     "key_skills": "Ключевые навыки",
     "no_salary_specified": "Зарплата не указана",
-    "full_name_label": "Ф.И.О."
+    "full_name_label": "Ф.И.О.",
+    "cancel_creation_title": "Отменить создание?",
+    "cancel_creation_desc": "Вы уверены, что хотите отменить? Все несохраненные данные будут потеряны."
   },
   "resume": {
     "title": "Резюме",

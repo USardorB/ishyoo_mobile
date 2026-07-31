@@ -114,8 +114,8 @@ class _CreateVacancyPageState extends State<CreateVacancyPage> {
       final confirm = await showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(
-          title: const Text("opportunities.cancel_creation_title").tr(),
-          content: const Text("opportunities.cancel_creation_desc").tr(),
+          title: const Text("postings.cancel_creation_title").tr(),
+          content: const Text("postings.cancel_creation_desc").tr(),
           actions: [
             TextButton(
               onPressed: () => context.pop(false),

@@ -250,7 +250,9 @@
     "responses_count": "{} та жавоб",
     "key_skills": "Кўникмалар",
     "no_salary_specified": "Маош кўрсатилмаган",
-    "full_name_label": "Ф.И.О"
+    "full_name_label": "Ф.И.О",
+    "cancel_creation_title": "Яратишни бекор қилиш?",
+    "cancel_creation_desc": "Ҳақиқатан ҳам бекор қилмоқчимисиз? Сақланмаган барча маълумотлар ўчирилади."
   },
   "resume": {
     "title": "Резюме",

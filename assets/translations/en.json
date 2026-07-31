@@ -250,7 +250,9 @@
     "responses_count": "{} responses",
     "key_skills": "Key Skills",
     "no_salary_specified": "Salary not specified",
-    "full_name_label": "Full Name"
+    "full_name_label": "Full Name",
+    "cancel_creation_title": "Cancel Creation?",
+    "cancel_creation_desc": "Are you sure you want to cancel? All unsaved data will be lost."
   },
   "resume": {
     "title": "Resume",

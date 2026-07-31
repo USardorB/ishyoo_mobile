@@ -250,7 +250,9 @@
     "responses_count": "{} ta javob",
     "key_skills": "Ko'nikmalar",
     "no_salary_specified": "Maosh ko'rsatilmagan",
-    "full_name_label": "F.I.O"
+    "full_name_label": "F.I.O",
+    "cancel_creation_title": "Yaratishni bekor qilish?",
+    "cancel_creation_desc": "Haqiqatan ham bekor qilmoqchimisiz? Saqlanmagan barcha ma'lumotlar o'chiriladi."
   },
   "resume": {
     "title": "Rezume",
