@@ -24,6 +24,10 @@ class OnboardingPage extends HookWidget {
       resizeToAvoidBottomInset: false,
       body: Column(
         children: [
+          const Flexible(
+            flex: 0,
+            child: SizedBox(height: 24),
+          ),
           Expanded(
             flex: 5,
             child: PageView(
@@ -32,14 +36,17 @@ class OnboardingPage extends HookWidget {
                 OnboardingPageViewItem(
                   title: 'onboarding.slide1.title'.tr(),
                   subTitle: 'onboarding.slide1.subtitle'.tr(),
+                  imageURL: 'assets/images/onboarding1.webp',
                 ),
                 OnboardingPageViewItem(
                   title: 'onboarding.slide2.title'.tr(),
                   subTitle: 'onboarding.slide2.subtitle'.tr(),
+                  imageURL: 'assets/images/onboarding2.webp',
                 ),
                 OnboardingPageViewItem(
                   title: 'onboarding.slide3.title'.tr(),
                   subTitle: 'onboarding.slide3.subtitle'.tr(),
+                  imageURL: 'assets/images/onboarding3.webp',
                 ),
               ],
             ),

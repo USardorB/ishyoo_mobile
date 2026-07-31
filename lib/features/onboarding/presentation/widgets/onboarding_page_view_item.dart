@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:mobile/core/consts/app_assets.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
 class OnboardingPageViewItem extends StatelessWidget {
   final String title;
   final String subTitle;
+  final String imageURL;
   const OnboardingPageViewItem({
     super.key,
     required this.title,
     required this.subTitle,
+    required this.imageURL,
   });
 
   @override
@@ -17,11 +18,7 @@ class OnboardingPageViewItem extends StatelessWidget {
       padding: .symmetric(horizontal: 24),
       child: Column(
         children: [
-          Flexible(
-            child: Image.asset(
-              AppAssets.onboardingDark,
-            ),
-          ),
+          Flexible(child: Image.asset(imageURL)),
           Flexible(flex: 0, child: SizedBox(height: 32)),
           Column(
             crossAxisAlignment: .stretch,
@@ -29,7 +26,7 @@ class OnboardingPageViewItem extends StatelessWidget {
               Text(
                 title,
                 style: context.textThemes.h5,
-                maxLines: 1,
+                maxLines: 2,
                 overflow: .ellipsis,
                 textAlign: .center,
               ),

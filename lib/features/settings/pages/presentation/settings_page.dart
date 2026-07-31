@@ -1,9 +1,12 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/enums/app_languages.dart';
+import 'package:mobile/core/enums/user_role.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
+import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/settings/pages/widgets/choose_language_sheet.dart';
 import 'package:mobile/features/settings/pages/widgets/choose_theme_sheet.dart';
 import 'package:mobile/features/settings/pages/widgets/configure_notification_preferences_sheet.dart';
@@ -17,7 +20,8 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final currentLang = AppLanguages.fromLocale(context.locale);
-
+    final currentRole = context.read<AuthBloc>().state.userRole;
+    final isCandidate = currentRole == UserRole.job_seeker;
     return Scaffold(
       appBar: AppBar(
         title: Text('settings.title', style: context.textThemes.h5).tr(),
@@ -36,28 +40,30 @@ class SettingsPage extends StatelessWidget {
               color: context.colors.bgPrimary,
               child: Column(
                 children: [
-                  ListTile(
-                    onTap: () => context.router.push(const EditCompanyInfoRoute()),
-                    leading: Container(
-                      padding: const EdgeInsets.all(4),
-                      decoration: BoxDecoration(
-                        color: context.colors.bgSecondary,
-                        borderRadius: BorderRadius.circular(8),
+                  if (!isCandidate)
+                    ListTile(
+                      onTap: () =>
+                          context.router.push(const EditCompanyInfoRoute()),
+                      leading: Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                          color: context.colors.bgSecondary,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Icon(
+                          Icons.person,
+                          color: context.colors.textSecondary,
+                        ),
                       ),
-                      child: Icon(
-                        Icons.person,
+                      title: Text(
+                        'profile.company_info',
+                        style: context.textThemes.buttonLarge,
+                      ).tr(),
+                      trailing: Icon(
+                        Icons.arrow_forward_ios,
                         color: context.colors.textSecondary,
                       ),
                     ),
-                    title: Text(
-                      'profile.company_info',
-                      style: context.textThemes.buttonLarge,
-                    ).tr(),
-                    trailing: Icon(
-                      Icons.arrow_forward_ios,
-                      color: context.colors.textSecondary,
-                    ),
-                  ),
                   ListTile(
                     onTap: () => showModalBottomSheet(
                       context: context,

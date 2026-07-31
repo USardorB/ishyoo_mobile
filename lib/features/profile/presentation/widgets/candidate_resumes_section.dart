@@ -54,7 +54,10 @@ class CandidateResumesSection extends StatelessWidget {
                                 const SizedBox(height: 4),
                                 Text(
                                   resume.updatedAt != null
-                                      ? "${resume.updatedAt!.toString().substring(0, 10)}"
+                                      ? resume.updatedAt!.toString().substring(
+                                          0,
+                                          10,
+                                        )
                                       : "",
                                   style: context.textThemes.b1.copyWith(
                                     color: context.colors.textSecondary,

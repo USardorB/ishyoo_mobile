@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:mobile/core/enums/app_languages.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
@@ -33,7 +34,14 @@ class LanguageTile extends StatelessWidget {
           padding: const EdgeInsets.all(12),
           child: Row(
             children: [
-              const Icon(Icons.language),
+              SvgPicture.asset(
+                'assets/vectors/${switch (value) {
+                  AppLanguages.uzLat => 'UZ.svg',
+                  AppLanguages.uzKr => 'UZ.svg',
+                  AppLanguages.ru => 'RU.svg',
+                  AppLanguages.en => 'US.svg',
+                }}',
+              ),
               const SizedBox(width: 12),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,7 +61,9 @@ class LanguageTile extends StatelessWidget {
               ),
               const Spacer(),
               Icon(
-                isSelected ? Icons.radio_button_checked : Icons.radio_button_off,
+                isSelected
+                    ? Icons.radio_button_checked
+                    : Icons.radio_button_off,
                 color: isSelected
                     ? context.colors.brandDefault
                     : context.colors.textSecondary,

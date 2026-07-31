@@ -28,6 +28,12 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
     required this.onNext,
   });
 
+  bool _isValid() {
+    return descriptionController.text.trim().isNotEmpty &&
+        tasksController.text.trim().isNotEmpty &&
+        requirementsController.text.trim().isNotEmpty;
+  }
+
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
@@ -53,6 +59,21 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
           ),
           const SizedBox(height: 16),
 
+          // Tasks / Responsibilities
+          Text(
+            "opportunities.responsibilities".tr(),
+            style: context.textThemes.c1.copyWith(
+              color: context.colors.textSecondary,
+            ),
+          ),
+          const SizedBox(height: 8),
+          AppInputField(
+            controller: tasksController,
+            minLines: 4,
+            maxLines: 6,
+          ),
+          const SizedBox(height: 16),
+
           // Requirements
           Text(
             "opportunities.requirements".tr(),
@@ -70,7 +91,7 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
 
           // Skills
           Text(
-            "profile.languages".tr(),
+            "postings.key_skills".tr(),
             style: context.textThemes.c1.copyWith(
               color: context.colors.textSecondary,
             ),
@@ -104,47 +125,63 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
                   .toList(),
             ),
           if (selectedSkills.isNotEmpty) const SizedBox(height: 12),
-          InkWell(
-            onTap: () async {
-              final result = await showModalBottomSheet<List<String>>(
-                context: context,
-                isScrollControlled: true,
-                backgroundColor: context.colors.bgPrimary,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-                ),
-                builder: (context) =>
-                    SkillsSelectionSheet(initialSkills: selectedSkills),
-              );
-              if (result != null) {
-                onSkillsChanged(result);
-              }
-            },
+          Material(
+            color: context.colors.bgSecondary,
             borderRadius: BorderRadius.circular(12),
-            child: Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(vertical: 14),
-              decoration: BoxDecoration(
-                color: context.colors.bgSecondary,
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: context.colors.bgTertiary),
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.add,
-                    size: 20,
-                    color: context.colors.brandProgress,
+            clipBehavior: Clip.antiAlias,
+            child: InkWell(
+              onTap: () async {
+                final result = await showModalBottomSheet<List<String>>(
+                  context: context,
+                  isScrollControlled: true,
+                  backgroundColor: context.colors.bgPrimary,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.vertical(
+                      top: Radius.circular(24),
+                    ),
                   ),
-                  const SizedBox(width: 8),
-                  Text(
-                    "shared.add",
-                    style: context.textThemes.b2.copyWith(
+                  builder: (context) => Padding(
+                    padding: EdgeInsets.only(
+                      bottom: MediaQuery.viewInsetsOf(context).bottom,
+                    ),
+                    child: ConstrainedBox(
+                      constraints: BoxConstraints(
+                        maxHeight: MediaQuery.sizeOf(context).height * 0.9,
+                      ),
+                      child: SkillsSelectionSheet(
+                        initialSkills: selectedSkills,
+                      ),
+                    ),
+                  ),
+                );
+                if (result != null) {
+                  onSkillsChanged(result);
+                }
+              },
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                decoration: BoxDecoration(
+                  border: Border.all(color: context.colors.bgTertiary),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.add,
+                      size: 20,
                       color: context.colors.brandProgress,
                     ),
-                  ).tr(),
-                ],
+                    const SizedBox(width: 8),
+                    Text(
+                      "shared.add",
+                      style: context.textThemes.b2.copyWith(
+                        color: context.colors.brandProgress,
+                      ),
+                    ).tr(),
+                  ],
+                ),
               ),
             ),
           ),
@@ -171,7 +208,7 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
                 },
                 showCheckmark: false,
                 backgroundColor: context.colors.bgSecondary,
-                selectedColor: context.colors.bgTertiary,
+                selectedColor: context.colors.brandProgress,
                 side: BorderSide.none,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
@@ -183,9 +220,20 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
             }).toList(),
           ),
           const SizedBox(height: 32),
-          AppButton(
-            label: "shared.continue".tr(),
-            onTap: onNext,
+          ListenableBuilder(
+            listenable: Listenable.merge([
+              descriptionController,
+              tasksController,
+              requirementsController,
+            ]),
+            builder: (context, _) {
+              final isValid = _isValid();
+              return AppButton(
+                label: "shared.continue".tr(),
+                enabled: isValid,
+                onTap: onNext,
+              );
+            },
           ),
           const SizedBox(height: 16),
         ],

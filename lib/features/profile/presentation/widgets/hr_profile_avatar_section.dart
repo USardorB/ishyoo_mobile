@@ -22,7 +22,7 @@ class HrProfileAvatarSection extends StatelessWidget {
       maxWidth: 720,
       maxHeight: 720,
     );
-    if (pickedFile != null) {
+    if (pickedFile != null && context.mounted) {
       context.read<EmployerOrganizationBloc>().add(
         UploadOrganizationLogo(File(pickedFile.path)),
       );

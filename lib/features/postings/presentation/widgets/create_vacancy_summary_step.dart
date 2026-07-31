@@ -1,8 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/enums/app_enums.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/features/profile/presentation/bloc/employer_organization_bloc.dart';
 
 class CreateVacancySummaryStep extends StatelessWidget {
   final String title;
@@ -11,6 +13,7 @@ class CreateVacancySummaryStep extends StatelessWidget {
   final String description;
   final String? salaryFrom;
   final String? salaryTo;
+  final AppCurrency currency;
   final String location;
   final VoidCallback onEditBasicInfo;
   final VoidCallback onEditRequirements;
@@ -25,6 +28,7 @@ class CreateVacancySummaryStep extends StatelessWidget {
     required this.description,
     this.salaryFrom,
     this.salaryTo,
+    required this.currency,
     required this.location,
     required this.onEditBasicInfo,
     required this.onEditRequirements,
@@ -50,27 +54,51 @@ class CreateVacancySummaryStep extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Container(
-                      width: 32,
-                      height: 32,
-                      decoration: BoxDecoration(
-                        color: context.colors.brandDefault,
-                        borderRadius: BorderRadius.circular(8),
-                      ),
-                      child: Center(
-                        child: Text(
-                          "U",
-                          style: context.textThemes.h5.copyWith(
-                            color: context.colors.midnightImmutable,
+                BlocBuilder<EmployerOrganizationBloc, EmployerOrganizationState>(
+                  builder: (context, state) {
+                    final org = state.organization;
+                    final logoUrl = org?.logo;
+                    final orgName = org?.name ?? 'Company';
+                    final firstLetter = orgName.isNotEmpty ? orgName[0].toUpperCase() : 'C';
+
+                    return Row(
+                      children: [
+                        Container(
+                          width: 32,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            color: context.colors.brandDefault,
+                            borderRadius: BorderRadius.circular(8),
+                            image: logoUrl != null && logoUrl.isNotEmpty
+                                ? DecorationImage(
+                                    image: NetworkImage(logoUrl),
+                                    fit: BoxFit.cover,
+                                  )
+                                : null,
+                          ),
+                          child: logoUrl == null || logoUrl.isEmpty
+                              ? Center(
+                                  child: Text(
+                                    firstLetter,
+                                    style: context.textThemes.h5.copyWith(
+                                      color: context.colors.midnightImmutable,
+                                    ),
+                                  ),
+                                )
+                              : null,
+                        ),
+                        const SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            orgName,
+                            style: context.textThemes.b2,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
                           ),
                         ),
-                      ),
-                    ),
-                    const SizedBox(width: 8),
-                    Text("Uzum Bank", style: context.textThemes.b2),
-                  ],
+                      ],
+                    );
+                  },
                 ),
                 const SizedBox(height: 12),
                 Text(
@@ -78,15 +106,18 @@ class CreateVacancySummaryStep extends StatelessWidget {
                   style: context.textThemes.h4,
                 ),
                 const SizedBox(height: 4),
-                if (salaryFrom != null || salaryTo != null)
+                if ((salaryFrom != null && salaryFrom!.isNotEmpty) ||
+                    (salaryTo != null && salaryTo!.isNotEmpty))
                   Text(
-                    "${salaryFrom?.isNotEmpty == true ? salaryFrom : '0'}–${salaryTo?.isNotEmpty == true ? salaryTo : '0'} so'm",
+                    "${salaryFrom?.isNotEmpty == true ? salaryFrom : '0'}–${salaryTo?.isNotEmpty == true ? salaryTo : '0'} ${currency.name.toUpperCase()}",
                     style: context.textThemes.h5.copyWith(
                       color: context.colors.brandDefault,
                     ),
                   ),
                 const SizedBox(height: 12),
-                Row(
+                Wrap(
+                  spacing: 8,
+                  runSpacing: 8,
                   children: [
                     _buildSmallTag(
                       context,
@@ -94,9 +125,7 @@ class CreateVacancySummaryStep extends StatelessWidget {
                           ? 'opportunities.location'.tr()
                           : location,
                     ),
-                    const SizedBox(width: 8),
                     _buildSmallTag(context, jobType.label),
-                    const SizedBox(width: 8),
                     _buildSmallTag(context, experience.label),
                   ],
                 ),

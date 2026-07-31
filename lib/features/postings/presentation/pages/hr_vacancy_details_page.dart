@@ -8,6 +8,7 @@ import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/opportunities/data/models/vacancy.dart';
 import 'package:mobile/features/postings/presentation/bloc/hr_vacancy_details_bloc.dart';
 import 'package:mobile/features/postings/presentation/bloc/postings_bloc.dart';
+import 'package:mobile/features/opportunities/presentation/widgets/vacancy_map_placeholder.dart';
 import 'package:mobile/features/postings/presentation/widgets/posting_actions_sheet.dart';
 
 @RoutePage()
@@ -117,6 +118,12 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
             ),
             const SizedBox(height: 32),
           ],
+          _buildSectionTitle(context, "opportunities.location".tr()),
+          const SizedBox(height: 16),
+          VacancyLocationMap(
+            latitude: double.tryParse(vacancy.latitude ?? '') ?? 41.311081,
+            longitude: double.tryParse(vacancy.longitude ?? '') ?? 69.240562,
+          ),
         ],
       ),
     );

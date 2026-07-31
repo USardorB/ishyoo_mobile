@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
-import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/features/profile/data/models/profile.dart';
 import 'package:mobile/features/profile/presentation/bloc/candidate_profile_bloc.dart';
@@ -98,30 +98,7 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
 
           return Scaffold(
             appBar: AppBar(
-              leading: IconButton(
-                icon: const Icon(Icons.arrow_back),
-                onPressed: () => context.maybePop(),
-              ),
               title: const Text("profile.edit_profile").tr(),
-              centerTitle: true,
-              actions: [
-                TextButton(
-                  onPressed: state.isUpdating ? null : () => _save(context),
-                  child: state.isUpdating
-                      ? const SizedBox(
-                          width: 16,
-                          height: 16,
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        )
-                      : Text(
-                          "shared.save",
-                          style: context.textThemes.b2.copyWith(
-                            color: context.colors.brandProgress,
-                          ),
-                        ).tr(),
-                ),
-                const SizedBox(width: 8),
-              ],
             ),
             body: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(

@@ -123,10 +123,12 @@ class ResumePdfGenerator {
 
     final locationDetails = <String>[];
     if (data.location != null) locationDetails.add(data.location!);
-    if (data.citizenship != null)
+    if (data.citizenship != null) {
       locationDetails.add('${data.citizenship} fuqarosi');
-    if (data.hasWorkPermit == true)
+    }
+    if (data.hasWorkPermit == true) {
       locationDetails.add('Ishlashga ruxsati bor');
+    }
 
     return pw.Row(
       crossAxisAlignment: pw.CrossAxisAlignment.start,
@@ -382,7 +384,7 @@ class ResumePdfGenerator {
               ],
             ),
           );
-        }).toList(),
+        }),
       ],
     );
   }
@@ -456,7 +458,7 @@ class ResumePdfGenerator {
               ],
             ),
           );
-        }).toList(),
+        }),
       ],
     );
   }

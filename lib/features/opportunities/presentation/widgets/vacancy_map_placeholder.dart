@@ -1,13 +1,43 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:maplibre_gl/maplibre_gl.dart';
+import 'package:mobile/core/configs/app_map_config.dart';
 import 'package:mobile/core/consts/app_assets.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
-import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
-import 'package:mobile/core/shared/widgets/app_notification.dart';
 
-class VacancyMapPlaceholder extends StatelessWidget {
-  const VacancyMapPlaceholder({super.key});
+class VacancyLocationMap extends StatefulWidget {
+  final double latitude;
+  final double longitude;
+
+  const VacancyLocationMap({
+    super.key,
+    required this.latitude,
+    required this.longitude,
+  });
+
+  @override
+  State<VacancyLocationMap> createState() => _VacancyLocationMapState();
+}
+
+class _VacancyLocationMapState extends State<VacancyLocationMap> {
+  MapLibreMapController? _mapController;
+
+  void _onMapCreated(MapLibreMapController controller) {
+    _mapController = controller;
+  }
+
+  void _zoomIn() {
+    if (_mapController != null) {
+      _mapController!.animateCamera(CameraUpdate.zoomIn());
+    }
+  }
+
+  void _zoomOut() {
+    if (_mapController != null) {
+      _mapController!.animateCamera(CameraUpdate.zoomOut());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +51,21 @@ class VacancyMapPlaceholder extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       child: Stack(
         children: [
+          MapLibreMap(
+            styleString: AppMapConfig.styleUrl,
+            onMapCreated: _onMapCreated,
+            initialCameraPosition: CameraPosition(
+              target: LatLng(widget.latitude, widget.longitude),
+              zoom: 14.0,
+            ),
+            myLocationEnabled: false,
+            trackCameraPosition: true,
+            compassEnabled: false,
+            rotateGesturesEnabled: false,
+            tiltGesturesEnabled: false,
+            scrollGesturesEnabled: false, // Static map for details view
+            zoomGesturesEnabled: false,
+          ),
           Center(
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -64,12 +109,7 @@ class VacancyMapPlaceholder extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   InkWell(
-                    onTap: () {
-                      AppNotificationOverlay.instance.show(
-                        message: "shared.coming_soon".tr(),
-                        type: AppNotificationType.warning,
-                      );
-                    },
+                    onTap: _zoomIn,
                     child: const Padding(
                       padding: EdgeInsets.all(10.0),
                       child: Icon(Icons.add, color: Colors.white, size: 20),
@@ -81,12 +121,7 @@ class VacancyMapPlaceholder extends StatelessWidget {
                     color: context.colors.bgTertiary,
                   ),
                   InkWell(
-                    onTap: () {
-                      AppNotificationOverlay.instance.show(
-                        message: "shared.coming_soon".tr(),
-                        type: AppNotificationType.warning,
-                      );
-                    },
+                    onTap: _zoomOut,
                     child: const Padding(
                       padding: EdgeInsets.all(10.0),
                       child: Icon(Icons.remove, color: Colors.white, size: 20),

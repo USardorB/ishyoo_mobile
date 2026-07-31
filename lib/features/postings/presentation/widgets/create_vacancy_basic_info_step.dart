@@ -12,9 +12,12 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
   final String? selectedSpecialization;
   final ValueChanged<String?> onSpecializationSelected;
   final List<Specialization> specializations;
-  final TextEditingController addressController;
   final TextEditingController salaryFromController;
   final TextEditingController salaryToController;
+  final AppCurrency selectedCurrency;
+  final ValueChanged<AppCurrency> onCurrencySelected;
+  final TextEditingController contactNameController;
+  final TextEditingController contactEmailController;
   final TextEditingController phoneController;
   final EmploymentType selectedJobType;
   final ValueChanged<EmploymentType> onJobTypeSelected;
@@ -26,14 +29,22 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
     required this.selectedSpecialization,
     required this.onSpecializationSelected,
     required this.specializations,
-    required this.addressController,
     required this.salaryFromController,
     required this.salaryToController,
+    required this.selectedCurrency,
+    required this.onCurrencySelected,
+    required this.contactNameController,
+    required this.contactEmailController,
     required this.phoneController,
     required this.selectedJobType,
     required this.onJobTypeSelected,
     required this.onNext,
   });
+
+  bool _isValid() {
+    return titleController.text.trim().isNotEmpty &&
+        selectedSpecialization != null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,36 +85,77 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
             },
           ),
           const SizedBox(height: 16),
-          AppInputField(
-            label: "opportunities.location".tr(),
-            controller: addressController,
-          ),
-          const SizedBox(height: 16),
           Text("opportunities.salary".tr(args: ['']), style: context.textThemes.s3),
           const SizedBox(height: 8),
           Row(
             children: [
               Expanded(
+                flex: 2,
                 child: AppInputField(
                   hintText: "shared.all".tr(),
                   controller: salaryFromController,
                   keyboardType: TextInputType.number,
                 ),
               ),
-              const SizedBox(width: 16),
+              const SizedBox(width: 8),
               Expanded(
+                flex: 2,
                 child: AppInputField(
                   hintText: "shared.all".tr(),
                   controller: salaryToController,
                   keyboardType: TextInputType.number,
                 ),
               ),
+              const SizedBox(width: 8),
+              Expanded(
+                flex: 1,
+                child: Container(
+                  height: 48,
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
+                  decoration: BoxDecoration(
+                    color: context.colors.bgSecondary,
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton<AppCurrency>(
+                      value: selectedCurrency,
+                      icon: const Icon(Icons.arrow_drop_down, size: 20),
+                      isExpanded: true,
+                      style: context.textThemes.b2.copyWith(color: context.colors.textPrimary),
+                      dropdownColor: context.colors.bgPrimary,
+                      onChanged: (AppCurrency? newValue) {
+                        if (newValue != null) {
+                          onCurrencySelected(newValue);
+                        }
+                      },
+                      items: AppCurrency.values
+                          .map<DropdownMenuItem<AppCurrency>>((AppCurrency value) {
+                        return DropdownMenuItem<AppCurrency>(
+                          value: value,
+                          child: Text(value.name.toUpperCase()),
+                        );
+                      }).toList(),
+                    ),
+                  ),
+                ),
+              ),
             ],
+          ),
+          const SizedBox(height: 16),
+          AppInputField(
+            label: "auth.complete_profile.full_name_label".tr(),
+            controller: contactNameController,
           ),
           const SizedBox(height: 16),
           AppInputField(
             label: "auth.login.phone_label".tr(),
             controller: phoneController,
+          ),
+          const SizedBox(height: 16),
+          AppInputField(
+            label: "Email",
+            controller: contactEmailController,
+            keyboardType: TextInputType.emailAddress,
           ),
           const SizedBox(height: 16),
           Text("opportunities.employment_type".tr(), style: context.textThemes.s3),
@@ -143,9 +195,16 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
                 }).toList(),
           ),
           const SizedBox(height: 32),
-          AppButton(
-            label: "shared.continue".tr(),
-            onTap: onNext,
+          ListenableBuilder(
+            listenable: titleController,
+            builder: (context, _) {
+              final isValid = _isValid();
+              return AppButton(
+                label: "shared.continue".tr(),
+                enabled: isValid,
+                onTap: onNext,
+              );
+            },
           ),
           const SizedBox(height: 16),
         ],
@@ -153,3 +212,4 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
     );
   }
 }
+

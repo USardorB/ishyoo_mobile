@@ -75,7 +75,10 @@ class _ApplicationsPageView extends HookWidget {
                   isScrollable: true,
                   tabAlignment: TabAlignment.start,
                   dividerColor: Colors.transparent,
-                  padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 6,
+                    vertical: 4,
+                  ),
                   indicatorSize: TabBarIndicatorSize.tab,
                   indicator: BoxDecoration(
                     color: context.colors.brandProgress,
@@ -99,7 +102,7 @@ class _ApplicationsPageView extends HookWidget {
               children: List.generate(tabs.length, (tabIndex) {
                 return BlocBuilder<ApplicationsBloc, ApplicationsState>(
                   builder: (context, state) {
-                    final tabStatus = tabs[tabIndex]["status"] as String?;
+                    final tabStatus = tabs[tabIndex]["status"];
                     final applications = state.applicationsByStatus[tabStatus];
 
                     if (state.isLoading && applications == null) {

@@ -107,7 +107,7 @@ class _SkillsSelectionSheetState extends State<SkillsSelectionSheet> {
       const SizedBox(width: 48),
       Expanded(
         child: Text(
-          'profile.languages',
+          'postings.key_skills',
           style: context.textThemes.h5,
           textAlign: TextAlign.center,
           maxLines: 1,
