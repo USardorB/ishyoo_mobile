@@ -95,9 +95,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       ),
       (response) {
         _tokenService.saveAccessToken(response.accessToken);
-        if (response.did != null) {
-          _tokenService.saveDid(response.did!, role: event.role);
-        }
+        
+        // Backend may omit did in the response, so we always use the one we sent in the request
+        final did = response.did ?? event.request.deviceId;
+        _tokenService.saveDid(did, role: event.role);
+
         add(AuthGetMeRequested(event.role));
       },
     );
@@ -147,9 +149,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       ),
       (response) {
         _tokenService.saveAccessToken(response.accessToken);
-        if (response.did != null) {
-          _tokenService.saveDid(response.did!, role: event.role);
-        }
+
+        // Backend may omit did in the response, so we always use the one we sent in the request
+        final did = response.did ?? event.request.deviceId;
+        _tokenService.saveDid(did, role: event.role);
+
         add(AuthGetMeRequested(event.role));
       },
     );

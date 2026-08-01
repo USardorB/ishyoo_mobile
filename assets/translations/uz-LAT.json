@@ -109,7 +109,9 @@
       "title": "Tasdiqlash kodi",
       "subtitle": "{} raqamiga yuborilgan 4 xonali SMS-kodni kiriting",
       "resend_text": "Qayta yuborish: {}",
-      "resend_button": "Kodni qayta yuborish"
+      "resend_button": "Kodni qayta yuborish",
+      "resend_in": "Qayta yuborish: {}",
+      "verify_button": "Tasdiqlash"
     },
     "forgot_password": {
       "title": "Parolni tiklash",
@@ -363,7 +365,7 @@
     "no": "Yo'q, Namangandan emasman",
     "screen_title": "Tez orada",
     "screen_subtitle": "Kechirasiz, hozircha servis faqat Namangan shahrida faoliyat yuritmoqda. Tez orada boshqa hududlarda ham ishga tushiramiz!",
-    "logout": "Chiqish",
+    "logout": "Hisobdan Chiqish",
     "exit": "Dasturdan chiqish"
   }
 }

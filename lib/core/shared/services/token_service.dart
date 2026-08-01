@@ -9,8 +9,11 @@ class TokenService {
 
   static const String _didKey = 'device_id';
   static const String _roleKey = 'user_role';
+  static const String _accessTokenKey = 'access_token';
+  static const String _refreshTokenKey = 'refresh_token';
 
   String? _accessToken;
+  String? _refreshToken;
 
   Future<void> saveDid(String did, {String? role}) async {
     await _prefs.setString(_didKey, did);
@@ -19,12 +22,21 @@ class TokenService {
     }
   }
 
-  void saveAccessToken(String token) {
+  Future<void> saveAccessToken(String token, {String? refreshToken}) async {
     _accessToken = token;
+    await _prefs.setString(_accessTokenKey, token);
+    if (refreshToken != null) {
+      _refreshToken = refreshToken;
+      await _prefs.setString(_refreshTokenKey, refreshToken);
+    }
   }
 
   String? getAccessToken() {
-    return _accessToken;
+    return _accessToken ?? _prefs.getString(_accessTokenKey);
+  }
+
+  String? getRefreshToken() {
+    return _refreshToken ?? _prefs.getString(_refreshTokenKey);
   }
 
   String? getDid() {
@@ -37,6 +49,9 @@ class TokenService {
 
   Future<void> clearTokens() async {
     _accessToken = null;
+    _refreshToken = null;
+    await _prefs.remove(_accessTokenKey);
+    await _prefs.remove(_refreshTokenKey);
     await _prefs.remove(_didKey);
     await _prefs.remove(_roleKey);
   }

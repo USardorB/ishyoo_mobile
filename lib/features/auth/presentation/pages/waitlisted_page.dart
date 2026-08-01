@@ -19,7 +19,6 @@ class WaitlistedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: context.colors.bgPrimary,
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
@@ -32,7 +31,7 @@ class WaitlistedPage extends StatelessWidget {
                 child: Container(
                   padding: const EdgeInsets.all(32),
                   decoration: BoxDecoration(
-                    color: context.colors.bgTertiary,
+                    color: context.colors.bgSecondary,
                     shape: BoxShape.circle,
                   ),
                   child: Icon(
@@ -72,11 +71,12 @@ class WaitlistedPage extends StatelessWidget {
               TextButton.icon(
                 onPressed: () {
                   final role = context.read<AuthBloc>().state.userRole;
-                  final roleStr =
-                      role?.name == 'employer' ? 'employer' : 'candidate';
+                  final roleStr = role?.name == 'employer'
+                      ? 'employer'
+                      : 'candidate';
                   context.read<AuthBloc>().add(AuthLogoutRequested(roleStr));
-                  final userRole = role?.name == 'employer' 
-                      ? UserRole.employer 
+                  final userRole = role?.name == 'employer'
+                      ? UserRole.employer
                       : UserRole.job_seeker;
                   context.router.replaceAll([LoginRoute(role: userRole)]);
                 },
