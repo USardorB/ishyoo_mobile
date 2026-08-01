@@ -20,9 +20,20 @@ class _TalentsRemoteDataSource implements TalentsRemoteDataSource {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<BaseResult<List<Resume>>> getTalentFeed() async {
+  Future<BaseResult<List<Resume>>> getTalentFeed({
+    String? query,
+    String? jobType,
+    String? experienceLevel,
+    String? specialization,
+  }) async {
     final _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'search_query': query,
+      r'employment_type': jobType,
+      r'experience_level': experienceLevel,
+      r'specialization': specialization,
+    };
+    queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _options = _setStreamType<BaseResult<List<Resume>>>(

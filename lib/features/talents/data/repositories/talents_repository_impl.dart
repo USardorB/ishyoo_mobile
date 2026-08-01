@@ -14,8 +14,20 @@ class TalentsRepositoryImpl implements TalentsRepository {
   TalentsRepositoryImpl(this.remoteDataSource);
 
   @override
-  Future<Either<Failure, List<Resume>>> getTalentFeed() {
-    return remoteDataSource.getTalentFeed().asEither();
+  Future<Either<Failure, List<Resume>>> getTalentFeed({
+    String? query,
+    String? jobType,
+    String? experienceLevel,
+    String? specialization,
+  }) {
+    return remoteDataSource
+        .getTalentFeed(
+          query: query,
+          jobType: jobType,
+          experienceLevel: experienceLevel,
+          specialization: specialization,
+        )
+        .asEither();
   }
 
   @override

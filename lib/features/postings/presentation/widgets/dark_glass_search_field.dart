@@ -10,16 +10,27 @@ class DarkGlassSearchField extends StatelessWidget {
   final Widget? prefixIcon;
   final String? hintText;
   final VoidCallback? onTap;
+  final TextEditingController? controller;
+  final ValueChanged<String>? onSubmitted;
+  final ValueChanged<String>? onChanged;
+  final bool readOnly;
+  final bool autoFocus;
+
   const DarkGlassSearchField({
     super.key,
     this.prefixIcon,
     this.hintText,
     this.onTap,
+    this.controller,
+    this.onSubmitted,
+    this.onChanged,
+    this.readOnly = false,
+    this.autoFocus = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    Widget content = Container(
       height: 48,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(32),
@@ -54,6 +65,10 @@ class DarkGlassSearchField extends StatelessWidget {
                 ),
               ),
               child: SearchBar(
+                controller: controller,
+                onSubmitted: onSubmitted,
+                onChanged: onChanged,
+                autoFocus: autoFocus,
                 hintText: hintText ?? "shared.search".tr(),
                 hintStyle: WidgetStatePropertyAll(
                   context.textThemes.buttonLarge.copyWith(
@@ -61,19 +76,38 @@ class DarkGlassSearchField extends StatelessWidget {
                   ),
                 ),
                 leading: prefixIcon,
-                onTap: () {
-                  if (onTap != null) {
-                    onTap!();
-                  } else if (context.routeData.name !=
-                      TalentsSearchResultRoute.name) {
-                    context.pushRoute(const TalentsSearchResultRoute());
-                  }
-                },
+                onTap: readOnly
+                    ? null
+                    : () {
+                        if (onTap != null) {
+                          onTap!();
+                        } else if (context.routeData.name !=
+                            TalentsSearchResultRoute.name) {
+                          context.pushRoute(TalentsSearchResultRoute());
+                        }
+                      },
               ),
             ),
           ),
         ),
       ),
     );
+
+    if (readOnly) {
+      content = GestureDetector(
+        onTap:
+            onTap ??
+            () {
+              if (context.routeData.name != TalentsSearchResultRoute.name) {
+                context.pushRoute(TalentsSearchResultRoute());
+              }
+            },
+        child: AbsorbPointer(
+          child: content,
+        ),
+      );
+    }
+
+    return content;
   }
 }

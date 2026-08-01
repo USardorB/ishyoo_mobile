@@ -10,7 +10,7 @@ import 'package:mobile/features/opportunities/data/models/vacancy.dart';
 import 'package:mobile/features/postings/presentation/bloc/postings_bloc.dart';
 
 enum PostingAction {
-  view,
+  // view,
   edit,
   pause,
   copy,
@@ -20,7 +20,7 @@ enum PostingAction {
   delete;
 
   String get title => switch (this) {
-    PostingAction.view => 'shared.show_all'.tr(),
+    // PostingAction.view => 'shared.show_all'.tr(),
     PostingAction.edit => 'shared.edit'.tr(),
     PostingAction.pause => 'shared.cancel'.tr(),
     PostingAction.applicants => 'applications.title'.tr(),
@@ -31,7 +31,7 @@ enum PostingAction {
   };
 
   IconData get icon => switch (this) {
-    PostingAction.view => Icons.visibility,
+    // PostingAction.view => Icons.visibility,
     PostingAction.edit => Icons.edit,
     PostingAction.pause => Icons.pause,
     PostingAction.copy => Icons.copy,
@@ -101,9 +101,9 @@ class PostingActionsSheet extends StatelessWidget {
       onTap: () {
         Navigator.pop(context);
         switch (action) {
-          case PostingAction.view:
-            context.pushRoute(HrVacancyDetailsRoute(id: vacancy.id));
-            break;
+          // case PostingAction.view:
+          //   context.pushRoute(HrVacancyDetailsRoute(id: vacancy.id));
+          //   break;
           case PostingAction.applicants:
             context.pushRoute(VacancyApplicantsRoute(vacancyId: vacancy.id));
             break;

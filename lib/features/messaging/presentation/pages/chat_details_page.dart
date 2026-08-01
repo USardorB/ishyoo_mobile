@@ -91,14 +91,14 @@ class ChatDetailsPage extends StatelessWidget {
                       return;
                     }
                     if (isEmployer) {
-                      context.pushRoute(
+                      context.replaceRoute(
                         ApplicantDetailsRoute(
                           vacancyId: vacancyId!,
                           applicantResumeId: resumeId!,
                         ),
                       );
                     } else {
-                      context.router.push(VacancyDetailsRoute(id: vacancyId!));
+                      context.replaceRoute(VacancyDetailsRoute(id: vacancyId!));
                     }
                   },
                   title: isEmployer

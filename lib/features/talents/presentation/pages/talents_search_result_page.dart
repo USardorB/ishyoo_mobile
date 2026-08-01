@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:auto_route/auto_route.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -10,38 +11,113 @@ import 'package:mobile/features/postings/presentation/widgets/tallent_filter_she
 import 'package:mobile/features/talents/presentation/bloc/talents_bloc.dart';
 
 @RoutePage()
-class TalentsSearchResultPage extends StatelessWidget {
-  const TalentsSearchResultPage({super.key});
+class TalentsSearchResultPage extends StatefulWidget {
+  final bool autoFocusSearch;
+  final String? initialJobType;
+  final String? initialExperienceLevel;
+  final String? initialSpecialization;
+
+  const TalentsSearchResultPage({
+    super.key,
+    this.autoFocusSearch = true,
+    this.initialJobType,
+    this.initialExperienceLevel,
+    this.initialSpecialization,
+  });
+
+  @override
+  State<TalentsSearchResultPage> createState() =>
+      _TalentsSearchResultPageState();
+}
+
+class _TalentsSearchResultPageState extends State<TalentsSearchResultPage> {
+  final TextEditingController _searchController = TextEditingController();
+  Timer? _debounce;
+  String? _jobType;
+  String? _experienceLevel;
+  String? _specialization;
+
+  @override
+  void initState() {
+    super.initState();
+    _jobType = widget.initialJobType;
+    _experienceLevel = widget.initialExperienceLevel;
+    _specialization = widget.initialSpecialization;
+  }
+
+  @override
+  void dispose() {
+    _debounce?.cancel();
+    _searchController.dispose();
+    super.dispose();
+  }
+
+  void _onSearchChanged(String query, BuildContext innerContext) {
+    if (_debounce?.isActive ?? false) _debounce!.cancel();
+    _debounce = Timer(const Duration(milliseconds: 500), () {
+      _loadTalents(innerContext);
+    });
+  }
+
+  void _loadTalents(BuildContext context) {
+    context.read<TalentsBloc>().add(
+          LoadTalents(
+            query: _searchController.text.isNotEmpty ? _searchController.text : null,
+            jobType: _jobType,
+            experienceLevel: _experienceLevel,
+            specialization: _specialization,
+          ),
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => sl<TalentsBloc>()..add(LoadTalents()),
-      child: Scaffold(
-        appBar: AppBar(
-          toolbarHeight: 64,
-          title: const Text('talents.search_results').tr(),
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(48),
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: Row(
-                children: [
-                  const Flexible(child: DarkGlassSearchField()),
-                  const SizedBox(width: 12),
-                  IconButton(
-                    onPressed: () => showModalBottomSheet(
-                      context: context,
-                      isScrollControlled: true,
-                      builder: (_) => const TallentFilterSheet(),
-                    ),
-                    icon: const Icon(Icons.tune),
+      child: Builder(
+        builder: (context) {
+          return Scaffold(
+            appBar: AppBar(
+              toolbarHeight: 64,
+              title: const Text('talents.search_results').tr(),
+              bottom: PreferredSize(
+                preferredSize: const Size.fromHeight(48),
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Row(
+                    children: [
+                      Flexible(
+                        child: DarkGlassSearchField(
+                          controller: _searchController,
+                          autoFocus: widget.autoFocusSearch,
+                          onChanged: (query) => _onSearchChanged(query, context),
+                          onSubmitted: (_) => _loadTalents(context),
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      IconButton(
+                        onPressed: () => showModalBottomSheet(
+                          context: context,
+                          isScrollControlled: true,
+                          builder: (_) => TallentFilterSheet(
+                            initialJobType: _jobType,
+                            initialExperienceLevel: _experienceLevel,
+                            initialSpecialization: _specialization,
+                            onApply: (jobType, experienceLevel, specialization) {
+                              _jobType = jobType;
+                              _experienceLevel = experienceLevel;
+                              _specialization = specialization;
+                              _loadTalents(context);
+                            },
+                          ),
+                        ),
+                        icon: const Icon(Icons.tune),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
             ),
-          ),
-        ),
         body: BlocBuilder<TalentsBloc, TalentsState>(
           builder: (context, state) {
             if (state.isLoading) {
@@ -73,13 +149,14 @@ class TalentsSearchResultPage extends StatelessWidget {
                   ),
                   tileColor: context.colors.bgPrimary,
                   minTileHeight: 64,
-                  leading: const CircleAvatar(
+                  leading: CircleAvatar(
                     foregroundImage: CachedNetworkImageProvider(
-                      "https://ui-avatars.com/api/?name=Kandidat",
+                      resume.profile?.avatarUrl ??
+                          "https://ui-avatars.com/api/?name=${resume.profile?.name ?? 'Kandidat'}",
                     ),
                   ),
                   title: Text(
-                    'nav.candidates'.tr(),
+                    resume.profile?.name ?? 'nav.candidates'.tr(),
                     style: context.textThemes.b2,
                   ),
                   subtitle: Text(
@@ -120,7 +197,8 @@ class TalentsSearchResultPage extends StatelessWidget {
             );
           },
         ),
-      ),
+      );
+    }),
     );
   }
 }

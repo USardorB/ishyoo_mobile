@@ -59,8 +59,7 @@ class ChatsPage extends StatelessWidget {
                   final chat = state.chats![index];
 
                   String title = "Noma'lum";
-                  String image = "";
-                  //  chat.partner?.avatar ?? '';
+                  String image = chat.partner?.avatar ?? '';
 
                   if (isEmployer) {
                     title =
@@ -71,9 +70,6 @@ class ChatsPage extends StatelessWidget {
                   } else {
                     title =
                         chat.application?.vacancy?.organization?.name ?? title;
-                    image =
-                        chat.application?.vacancy?.organization?.logoUrl ??
-                        image;
                   }
 
                   final lastMessage =

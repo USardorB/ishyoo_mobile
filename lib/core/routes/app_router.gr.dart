@@ -1396,18 +1396,88 @@ class SplashRoute extends _i47.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i43.TalentsSearchResultPage]
-class TalentsSearchResultRoute extends _i47.PageRouteInfo<void> {
-  const TalentsSearchResultRoute({List<_i47.PageRouteInfo>? children})
-    : super(TalentsSearchResultRoute.name, initialChildren: children);
+class TalentsSearchResultRoute
+    extends _i47.PageRouteInfo<TalentsSearchResultRouteArgs> {
+  TalentsSearchResultRoute({
+    _i48.Key? key,
+    bool autoFocusSearch = true,
+    String? initialJobType,
+    String? initialExperienceLevel,
+    String? initialSpecialization,
+    List<_i47.PageRouteInfo>? children,
+  }) : super(
+         TalentsSearchResultRoute.name,
+         args: TalentsSearchResultRouteArgs(
+           key: key,
+           autoFocusSearch: autoFocusSearch,
+           initialJobType: initialJobType,
+           initialExperienceLevel: initialExperienceLevel,
+           initialSpecialization: initialSpecialization,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'TalentsSearchResultRoute';
 
   static _i47.PageInfo page = _i47.PageInfo(
     name,
     builder: (data) {
-      return const _i43.TalentsSearchResultPage();
+      final args = data.argsAs<TalentsSearchResultRouteArgs>(
+        orElse: () => const TalentsSearchResultRouteArgs(),
+      );
+      return _i43.TalentsSearchResultPage(
+        key: args.key,
+        autoFocusSearch: args.autoFocusSearch,
+        initialJobType: args.initialJobType,
+        initialExperienceLevel: args.initialExperienceLevel,
+        initialSpecialization: args.initialSpecialization,
+      );
     },
   );
+}
+
+class TalentsSearchResultRouteArgs {
+  const TalentsSearchResultRouteArgs({
+    this.key,
+    this.autoFocusSearch = true,
+    this.initialJobType,
+    this.initialExperienceLevel,
+    this.initialSpecialization,
+  });
+
+  final _i48.Key? key;
+
+  final bool autoFocusSearch;
+
+  final String? initialJobType;
+
+  final String? initialExperienceLevel;
+
+  final String? initialSpecialization;
+
+  @override
+  String toString() {
+    return 'TalentsSearchResultRouteArgs{key: $key, autoFocusSearch: $autoFocusSearch, initialJobType: $initialJobType, initialExperienceLevel: $initialExperienceLevel, initialSpecialization: $initialSpecialization}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! TalentsSearchResultRouteArgs) return false;
+    return key == other.key &&
+        autoFocusSearch == other.autoFocusSearch &&
+        initialJobType == other.initialJobType &&
+        initialExperienceLevel == other.initialExperienceLevel &&
+        initialSpecialization == other.initialSpecialization;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^
+      autoFocusSearch.hashCode ^
+      initialJobType.hashCode ^
+      initialExperienceLevel.hashCode ^
+      initialSpecialization.hashCode;
 }
 
 /// generated route for

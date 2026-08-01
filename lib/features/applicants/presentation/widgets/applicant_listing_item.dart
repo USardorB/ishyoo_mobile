@@ -143,7 +143,7 @@ class ApplicantListingItem extends StatelessWidget {
                   width: 56,
                   height: 56,
                   padding: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
+                  foregroundDecoration: BoxDecoration(
                     color: context.colors.bgSecondary,
                     borderRadius: BorderRadius.circular(8),
                     image: DecorationImage(

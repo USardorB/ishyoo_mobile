@@ -30,7 +30,7 @@ class HrDashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
 
           return Container(
             margin: const EdgeInsets.only(left: 16, top: 8, bottom: 8),
-            decoration: BoxDecoration(
+            foregroundDecoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               image: avatarUrl.isNotEmpty
                   ? DecorationImage(
@@ -40,18 +40,16 @@ class HrDashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
                   : null,
               color: context.colors.bgSecondary,
             ),
-            child: org?.logo == null
-                ? Center(
-                    child: Text(
-                      initial,
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w700,
-                        color: context.colors.brandDefault,
-                      ),
-                    ),
-                  )
-                : null,
+            child: Center(
+              child: Text(
+                initial,
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w700,
+                  color: context.colors.brandDefault,
+                ),
+              ),
+            ),
           );
         },
       ),
@@ -99,13 +97,22 @@ class HrDashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
           padding: const EdgeInsets.all(16),
           child: Row(
             children: [
-              const Flexible(child: DarkGlassSearchField()),
+              const Flexible(child: DarkGlassSearchField(readOnly: true)),
               const SizedBox(width: 12),
               IconButton(
                 onPressed: () => showModalBottomSheet(
                   context: context,
                   isScrollControlled: true,
-                  builder: (_) => const TallentFilterSheet(),
+                  builder: (_) => TallentFilterSheet(
+                    onApply: (jobType, experienceLevel, specialization) {
+                      context.pushRoute(TalentsSearchResultRoute(
+                        initialJobType: jobType,
+                        initialExperienceLevel: experienceLevel,
+                        initialSpecialization: specialization,
+                        autoFocusSearch: false,
+                      ));
+                    },
+                  ),
                 ),
                 icon: const Icon(Icons.tune),
               ),

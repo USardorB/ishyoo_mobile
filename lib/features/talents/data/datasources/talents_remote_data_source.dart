@@ -14,7 +14,12 @@ abstract class TalentsRemoteDataSource {
   factory TalentsRemoteDataSource(Dio dio) = _TalentsRemoteDataSource;
 
   @GET('/mobile/employer/resume/feed')
-  Future<BaseResult<List<Resume>>> getTalentFeed();
+  Future<BaseResult<List<Resume>>> getTalentFeed({
+    @Query('search_query') String? query,
+    @Query('employment_type') String? jobType,
+    @Query('experience_level') String? experienceLevel,
+    @Query('specialization') String? specialization,
+  });
 
   @GET('/mobile/employer/resume/feed/{id}')
   Future<BaseResult<Resume>> getTalentDetail(@Path('id') String id);

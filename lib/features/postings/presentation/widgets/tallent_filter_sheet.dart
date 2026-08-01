@@ -1,10 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/enums/app_enums.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
+import 'package:mobile/features/postings/presentation/bloc/postings_bloc.dart';
+import 'package:mobile/features/postings/presentation/widgets/category_selection_sheet.dart';
 
 class TallentFilterSheet extends StatefulWidget {
   final void Function(
@@ -14,7 +18,17 @@ class TallentFilterSheet extends StatefulWidget {
   )?
   onApply;
 
-  const TallentFilterSheet({super.key, this.onApply});
+  final String? initialJobType;
+  final String? initialExperienceLevel;
+  final String? initialSpecialization;
+
+  const TallentFilterSheet({
+    super.key,
+    this.onApply,
+    this.initialJobType,
+    this.initialExperienceLevel,
+    this.initialSpecialization,
+  });
 
   @override
   State<TallentFilterSheet> createState() => _TallentFilterSheetState();
@@ -24,6 +38,20 @@ class _TallentFilterSheetState extends State<TallentFilterSheet> {
   EmploymentType? _selectedJobType;
   AppExperienceLevel? _selectedExperienceLevel;
   String? _specialization;
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.initialJobType != null) {
+      _selectedJobType = EmploymentType.values.cast<EmploymentType?>().firstWhere(
+        (e) => e?.serverValue == widget.initialJobType, orElse: () => null);
+    }
+    if (widget.initialExperienceLevel != null) {
+      _selectedExperienceLevel = AppExperienceLevel.values.cast<AppExperienceLevel?>().firstWhere(
+        (e) => e?.serverValue == widget.initialExperienceLevel, orElse: () => null);
+    }
+    _specialization = widget.initialSpecialization;
+  }
 
   void _clearFilters() {
     setState(() {
@@ -95,12 +123,38 @@ class _TallentFilterSheetState extends State<TallentFilterSheet> {
             const SizedBox(height: 18),
             _sectionTitle(context, 'talents.search_placeholder'.tr()),
             const SizedBox(height: 16),
-            AppInputField(
-              hintText: "shared.search".tr(),
-              readOnly: true,
-              suffixIcon: Icon(
-                Icons.arrow_forward_ios_rounded,
-                color: context.colors.textSecondary,
+            BlocProvider(
+              create: (context) => sl<PostingsBloc>()..add(LoadPostings()),
+              child: BlocBuilder<PostingsBloc, PostingsState>(
+                builder: (context, state) {
+                  return AppInputField(
+                    hintText: _specialization ?? "shared.search".tr(),
+                    readOnly: true,
+                    suffixIcon: Icon(
+                      Icons.chevron_right,
+                      color: context.colors.textSecondary,
+                    ),
+                    onTap: () async {
+                      final result = await showModalBottomSheet<String>(
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: context.colors.bgPrimary,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(24)),
+                        ),
+                        builder: (context) => CategorySelectionSheet(
+                          specializations: state.specializations ?? [],
+                        ),
+                      );
+                      if (result != null) {
+                        setState(() {
+                          _specialization = result;
+                        });
+                      }
+                    },
+                  );
+                },
               ),
             ),
             const SizedBox(height: 20),

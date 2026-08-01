@@ -351,6 +351,140 @@ class _ResumeExperienceCopyWithImpl<$R, $Out>
   ) => _ResumeExperienceCopyWithImpl<$R2, $Out2>($value, $cast, t);
 }
 
+class ResumeProfileMapper extends ClassMapperBase<ResumeProfile> {
+  ResumeProfileMapper._();
+
+  static ResumeProfileMapper? _instance;
+  static ResumeProfileMapper ensureInitialized() {
+    if (_instance == null) {
+      MapperContainer.globals.use(_instance = ResumeProfileMapper._());
+    }
+    return _instance!;
+  }
+
+  @override
+  final String id = 'ResumeProfile';
+
+  static String? _$name(ResumeProfile v) => v.name;
+  static const Field<ResumeProfile, String> _f$name = Field(
+    'name',
+    _$name,
+    opt: true,
+  );
+  static String? _$avatarUrl(ResumeProfile v) => v.avatarUrl;
+  static const Field<ResumeProfile, String> _f$avatarUrl = Field(
+    'avatarUrl',
+    _$avatarUrl,
+    key: r'avatar_url',
+    opt: true,
+  );
+
+  @override
+  final MappableFields<ResumeProfile> fields = const {
+    #name: _f$name,
+    #avatarUrl: _f$avatarUrl,
+  };
+
+  static ResumeProfile _instantiate(DecodingData data) {
+    return ResumeProfile(
+      name: data.dec(_f$name),
+      avatarUrl: data.dec(_f$avatarUrl),
+    );
+  }
+
+  @override
+  final Function instantiate = _instantiate;
+
+  static ResumeProfile fromMap(Map<String, dynamic> map) {
+    return ensureInitialized().decodeMap<ResumeProfile>(map);
+  }
+
+  static ResumeProfile fromJson(String json) {
+    return ensureInitialized().decodeJson<ResumeProfile>(json);
+  }
+}
+
+mixin ResumeProfileMappable {
+  String toJson() {
+    return ResumeProfileMapper.ensureInitialized().encodeJson<ResumeProfile>(
+      this as ResumeProfile,
+    );
+  }
+
+  Map<String, dynamic> toMap() {
+    return ResumeProfileMapper.ensureInitialized().encodeMap<ResumeProfile>(
+      this as ResumeProfile,
+    );
+  }
+
+  ResumeProfileCopyWith<ResumeProfile, ResumeProfile, ResumeProfile>
+  get copyWith => _ResumeProfileCopyWithImpl<ResumeProfile, ResumeProfile>(
+    this as ResumeProfile,
+    $identity,
+    $identity,
+  );
+  @override
+  String toString() {
+    return ResumeProfileMapper.ensureInitialized().stringifyValue(
+      this as ResumeProfile,
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return ResumeProfileMapper.ensureInitialized().equalsValue(
+      this as ResumeProfile,
+      other,
+    );
+  }
+
+  @override
+  int get hashCode {
+    return ResumeProfileMapper.ensureInitialized().hashValue(
+      this as ResumeProfile,
+    );
+  }
+}
+
+extension ResumeProfileValueCopy<$R, $Out>
+    on ObjectCopyWith<$R, ResumeProfile, $Out> {
+  ResumeProfileCopyWith<$R, ResumeProfile, $Out> get $asResumeProfile =>
+      $base.as((v, t, t2) => _ResumeProfileCopyWithImpl<$R, $Out>(v, t, t2));
+}
+
+abstract class ResumeProfileCopyWith<$R, $In extends ResumeProfile, $Out>
+    implements ClassCopyWith<$R, $In, $Out> {
+  $R call({String? name, String? avatarUrl});
+  ResumeProfileCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
+}
+
+class _ResumeProfileCopyWithImpl<$R, $Out>
+    extends ClassCopyWithBase<$R, ResumeProfile, $Out>
+    implements ResumeProfileCopyWith<$R, ResumeProfile, $Out> {
+  _ResumeProfileCopyWithImpl(super.value, super.then, super.then2);
+
+  @override
+  late final ClassMapperBase<ResumeProfile> $mapper =
+      ResumeProfileMapper.ensureInitialized();
+  @override
+  $R call({Object? name = $none, Object? avatarUrl = $none}) => $apply(
+    FieldCopyWithData({
+      if (name != $none) #name: name,
+      if (avatarUrl != $none) #avatarUrl: avatarUrl,
+    }),
+  );
+  @override
+  ResumeProfile $make(CopyWithData data) => ResumeProfile(
+    name: data.get(#name, or: $value.name),
+    avatarUrl: data.get(#avatarUrl, or: $value.avatarUrl),
+  );
+
+  @override
+  ResumeProfileCopyWith<$R2, ResumeProfile, $Out2> $chain<$R2, $Out2>(
+    Then<$Out2, $R2> t,
+  ) => _ResumeProfileCopyWithImpl<$R2, $Out2>($value, $cast, t);
+}
+
 class ResumeMapper extends ClassMapperBase<Resume> {
   ResumeMapper._();
 
@@ -360,6 +494,7 @@ class ResumeMapper extends ClassMapperBase<Resume> {
       MapperContainer.globals.use(_instance = ResumeMapper._());
       ResumeEducationMapper.ensureInitialized();
       ResumeExperienceMapper.ensureInitialized();
+      ResumeProfileMapper.ensureInitialized();
     }
     return _instance!;
   }
@@ -495,6 +630,19 @@ class ResumeMapper extends ClassMapperBase<Resume> {
     key: r'available_for_boost',
     opt: true,
   );
+  static String? _$profileId(Resume v) => v.profileId;
+  static const Field<Resume, String> _f$profileId = Field(
+    'profileId',
+    _$profileId,
+    key: r'profile_id',
+    opt: true,
+  );
+  static ResumeProfile? _$profile(Resume v) => v.profile;
+  static const Field<Resume, ResumeProfile> _f$profile = Field(
+    'profile',
+    _$profile,
+    opt: true,
+  );
 
   @override
   final MappableFields<Resume> fields = const {
@@ -518,6 +666,8 @@ class ResumeMapper extends ClassMapperBase<Resume> {
     #createdAt: _f$createdAt,
     #updatedAt: _f$updatedAt,
     #availableForBoost: _f$availableForBoost,
+    #profileId: _f$profileId,
+    #profile: _f$profile,
   };
 
   static Resume _instantiate(DecodingData data) {
@@ -542,6 +692,8 @@ class ResumeMapper extends ClassMapperBase<Resume> {
       createdAt: data.dec(_f$createdAt),
       updatedAt: data.dec(_f$updatedAt),
       availableForBoost: data.dec(_f$availableForBoost),
+      profileId: data.dec(_f$profileId),
+      profile: data.dec(_f$profile),
     );
   }
 
@@ -607,6 +759,7 @@ abstract class ResumeCopyWith<$R, $In extends Resume, $Out>
     ResumeExperienceCopyWith<$R, ResumeExperience, ResumeExperience>
   >?
   get experiences;
+  ResumeProfileCopyWith<$R, ResumeProfile, ResumeProfile>? get profile;
   $R call({
     String? id,
     String? userId,
@@ -628,6 +781,8 @@ abstract class ResumeCopyWith<$R, $In extends Resume, $Out>
     DateTime? createdAt,
     DateTime? updatedAt,
     bool? availableForBoost,
+    String? profileId,
+    ResumeProfile? profile,
   });
   ResumeCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(Then<$Out2, $R2> t);
 }
@@ -692,6 +847,9 @@ class _ResumeCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Resume, $Out>
         )
       : null;
   @override
+  ResumeProfileCopyWith<$R, ResumeProfile, ResumeProfile>? get profile =>
+      $value.profile?.copyWith.$chain((v) => call(profile: v));
+  @override
   $R call({
     String? id,
     Object? userId = $none,
@@ -713,6 +871,8 @@ class _ResumeCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Resume, $Out>
     Object? createdAt = $none,
     Object? updatedAt = $none,
     Object? availableForBoost = $none,
+    Object? profileId = $none,
+    Object? profile = $none,
   }) => $apply(
     FieldCopyWithData({
       if (id != null) #id: id,
@@ -735,6 +895,8 @@ class _ResumeCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Resume, $Out>
       if (createdAt != $none) #createdAt: createdAt,
       if (updatedAt != $none) #updatedAt: updatedAt,
       if (availableForBoost != $none) #availableForBoost: availableForBoost,
+      if (profileId != $none) #profileId: profileId,
+      if (profile != $none) #profile: profile,
     }),
   );
   @override
@@ -762,6 +924,8 @@ class _ResumeCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Resume, $Out>
       #availableForBoost,
       or: $value.availableForBoost,
     ),
+    profileId: data.get(#profileId, or: $value.profileId),
+    profile: data.get(#profile, or: $value.profile),
   );
 
   @override

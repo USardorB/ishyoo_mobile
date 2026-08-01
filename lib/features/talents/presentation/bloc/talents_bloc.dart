@@ -5,7 +5,19 @@ import '../../domain/repositories/talents_repository.dart';
 
 abstract class TalentsEvent {}
 
-class LoadTalents extends TalentsEvent {}
+class LoadTalents extends TalentsEvent {
+  final String? query;
+  final String? jobType;
+  final String? experienceLevel;
+  final String? specialization;
+
+  LoadTalents({
+    this.query,
+    this.jobType,
+    this.experienceLevel,
+    this.specialization,
+  });
+}
 
 class TalentsState {
   final bool isLoading;
@@ -41,7 +53,12 @@ class TalentsBloc extends Bloc<TalentsEvent, TalentsState> {
 
   Future<void> _onLoad(LoadTalents event, Emitter<TalentsState> emit) async {
     emit(state.copyWith(isLoading: true, error: null));
-    final result = await _talentsRepository.getTalentFeed();
+    final result = await _talentsRepository.getTalentFeed(
+      query: event.query,
+      jobType: event.jobType,
+      experienceLevel: event.experienceLevel,
+      specialization: event.specialization,
+    );
 
     result.fold(
       (failure) =>

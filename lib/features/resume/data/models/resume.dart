@@ -46,6 +46,21 @@ class ResumeExperience with ResumeExperienceMappable {
 }
 
 @MappableClass()
+class ResumeProfile with ResumeProfileMappable {
+  final String? name;
+  @MappableField(key: 'avatar_url')
+  final String? avatarUrl;
+
+  ResumeProfile({
+    this.name,
+    this.avatarUrl,
+  });
+
+  factory ResumeProfile.fromJson(Map<String, dynamic> json) =>
+      ResumeProfileMapper.fromMap(json);
+}
+
+@MappableClass()
 class Resume with ResumeMappable {
   final String id;
   @MappableField(key: 'user_id')
@@ -79,7 +94,10 @@ class Resume with ResumeMappable {
   final DateTime? updatedAt;
   @MappableField(key: 'available_for_boost')
   final bool? availableForBoost;
-
+  @MappableField(key: 'profile_id')
+  final String? profileId;
+  final ResumeProfile? profile;
+  @MappableField(key: 'has_saved')
   Resume({
     required this.id,
     this.userId,
@@ -101,6 +119,8 @@ class Resume with ResumeMappable {
     this.createdAt,
     this.updatedAt,
     this.availableForBoost,
+    this.profileId,
+    this.profile,
   });
 
   factory Resume.fromJson(Map<String, dynamic> json) =>
