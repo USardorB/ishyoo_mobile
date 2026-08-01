@@ -73,9 +73,9 @@ class CandidateProfilePage extends StatelessWidget {
                       style: context.textThemes.buttonLarge,
                     ).tr(),
                     trailing: const Icon(Icons.chevron_right),
-                    tileColor: context.colors.bgSecondary,
+                    tileColor: context.colors.bgPrimary,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(16),
                     ),
                   ),
                   const SizedBox(height: 24),

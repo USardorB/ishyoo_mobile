@@ -14,7 +14,7 @@ class CandidateEducationSection extends StatelessWidget {
       return Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: context.colors.bgSecondary,
+          color: context.colors.bgPrimary,
           borderRadius: BorderRadius.circular(16),
         ),
         child: const Text("shared.no_data").tr(),
@@ -24,7 +24,7 @@ class CandidateEducationSection extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: context.colors.bgSecondary,
+        color: context.colors.bgPrimary,
         borderRadius: BorderRadius.circular(16),
       ),
       child: Column(

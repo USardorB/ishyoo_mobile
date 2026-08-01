@@ -34,7 +34,7 @@ class ResumeContactsForm extends HookWidget {
           'email': emailController.text,
           'phone': phoneController.text,
           'specialization': specializationController.text,
-          if (salary != null) 'expected_salary': salary,
+          'expected_salary': salary, // Can be null if empty
         }),
       );
     }

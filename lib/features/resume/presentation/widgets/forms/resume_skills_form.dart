@@ -63,30 +63,19 @@ class ResumeSkillsForm extends HookWidget {
     String label,
     VoidCallback onRemove,
   ) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-      decoration: BoxDecoration(
-        color: context.colors.bgTertiary.withValues(alpha: 0.5),
-        borderRadius: BorderRadius.circular(8),
+    return Chip(
+      label: Text(label),
+      onDeleted: onRemove,
+      deleteIcon: const Icon(Icons.close, size: 16),
+      backgroundColor: context.colors.brandDefault,
+      side: BorderSide.none,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(12),
       ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            label,
-            style: context.textThemes.b2,
-          ),
-          const SizedBox(width: 8),
-          InkWell(
-            onTap: onRemove,
-            child: Icon(
-              Icons.close,
-              size: 16,
-              color: context.colors.textPrimary,
-            ),
-          ),
-        ],
+      labelStyle: context.textThemes.b3.copyWith(
+        color: context.colors.midnightImmutable,
       ),
+      deleteIconColor: context.colors.midnightImmutable,
     );
   }
 }

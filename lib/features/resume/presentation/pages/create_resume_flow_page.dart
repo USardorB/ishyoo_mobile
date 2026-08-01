@@ -7,8 +7,8 @@ import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
-import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/resume/data/models/resume.dart';
 import 'package:mobile/features/resume/presentation/bloc/resume_form_bloc.dart';
@@ -110,37 +110,6 @@ class _CreateResumeFlowContent extends HookWidget {
           ),
           title: Text(titles[currentPage.value]),
           centerTitle: true,
-          actions: [
-            if (currentPage.value == 0 || currentPage.value == 3)
-              BlocBuilder<ResumeFormBloc, ResumeFormState>(
-                builder: (context, state) {
-                  if (state.isSubmitting && currentPage.value == 3) {
-                    return const Padding(
-                      padding: EdgeInsets.only(right: 16),
-                      child: Center(
-                        child: SizedBox(
-                          width: 20,
-                          height: 20,
-                          child: CircularProgressIndicator(strokeWidth: 2),
-                        ),
-                      ),
-                    );
-                  }
-                  return TextButton(
-                    onPressed: nextStep,
-                    child: Text(
-                      "shared.save",
-                      style: context.textThemes.b2.copyWith(
-                        color: context.colors.brandProgress,
-                      ),
-                    ).tr(),
-                  );
-                },
-              )
-            else
-              const SizedBox(width: 48),
-            const SizedBox(width: 8),
-          ],
           bottom: PreferredSize(
             preferredSize: const Size.fromHeight(4),
             child: _ProgressBar(currentIndex: currentPage.value, totalSteps: 4),
@@ -153,20 +122,34 @@ class _CreateResumeFlowContent extends HookWidget {
             currentPage.value = index;
           },
           children: [
-            _buildPage(context, const ResumeContactsForm()),
+            _buildPage(
+              context,
+              const ResumeContactsForm(),
+              buttonLabel: "shared.continue".tr(),
+              onAction: nextStep,
+              validator: (state) {
+                final spec = state.formData['specialization'];
+                return spec != null && spec.toString().trim().isNotEmpty;
+              },
+            ),
             _buildPage(
               context,
               const ResumeExperienceListStep(),
-              showSaveButton: true,
-              onSave: nextStep,
+              buttonLabel: "shared.continue".tr(),
+              onAction: nextStep,
             ),
             _buildPage(
               context,
               const ResumeEducationListStep(),
-              showSaveButton: true,
-              onSave: nextStep,
+              buttonLabel: "shared.continue".tr(),
+              onAction: nextStep,
             ),
-            _buildPage(context, const ResumeSkillsForm()),
+            _buildPage(
+              context,
+              const ResumeSkillsForm(),
+              buttonLabel: "shared.save".tr(),
+              onAction: nextStep,
+            ),
           ],
         ),
       ),
@@ -176,8 +159,9 @@ class _CreateResumeFlowContent extends HookWidget {
   Widget _buildPage(
     BuildContext context,
     Widget form, {
-    bool showSaveButton = false,
-    VoidCallback? onSave,
+    required String buttonLabel,
+    required VoidCallback onAction,
+    bool Function(ResumeFormState)? validator,
   }) {
     return Column(
       children: [
@@ -187,18 +171,22 @@ class _CreateResumeFlowContent extends HookWidget {
             child: form,
           ),
         ),
-        if (showSaveButton)
-          Padding(
-            padding: const EdgeInsets.all(16).copyWith(
-              bottom: MediaQuery.paddingOf(context).bottom + 16,
-            ),
-            child: AppButton(
-              onTap: onSave!,
-              label: "shared.save".tr(),
-              color: context.colors.brandProgress,
-              foregroundColor: Colors.black,
-            ),
-          ),
+        BlocBuilder<ResumeFormBloc, ResumeFormState>(
+          builder: (context, state) {
+            final isValid = validator != null ? validator(state) : true;
+            return Padding(
+              padding: const EdgeInsets.all(16).copyWith(
+                bottom: MediaQuery.paddingOf(context).bottom + 16,
+              ),
+              child: AppButton(
+                onTap: onAction,
+                label: buttonLabel,
+                enabled: isValid,
+                isLoading: state.isSubmitting,
+              ),
+            );
+          },
+        ),
       ],
     );
   }

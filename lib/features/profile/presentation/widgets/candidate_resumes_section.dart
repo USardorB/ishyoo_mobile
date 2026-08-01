@@ -92,7 +92,7 @@ class CandidateResumesSection extends StatelessWidget {
                       Container(
                         padding: const EdgeInsets.symmetric(vertical: 12),
                         decoration: BoxDecoration(
-                          color: context.colors.bgPrimary,
+                          color: context.colors.bgSecondary,
                           borderRadius: BorderRadius.circular(12),
                         ),
                         child: Row(
@@ -143,7 +143,7 @@ class CandidateResumesSection extends StatelessWidget {
           icon: Icons.add,
           label: "resume.create_resume".tr(),
           color: context.colors.bgSecondary,
-          foregroundColor: context.colors.brandProgress,
+          foregroundColor: context.colors.brandDefault,
           labelStyle: context.textThemes.b2.copyWith(
             fontWeight: FontWeight.w600,
           ),

@@ -19,8 +19,8 @@ class CandidateProfileHeader extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: context.colors.bgSecondary,
-        borderRadius: BorderRadius.circular(16),
+        color: context.colors.bgPrimary,
+        borderRadius: BorderRadius.circular(20),
       ),
       child: Row(
         children: [
@@ -28,7 +28,7 @@ class CandidateProfileHeader extends StatelessWidget {
             width: 56,
             height: 56,
             decoration: BoxDecoration(
-              color: context.colors.bgPrimary,
+              color: context.colors.bgSecondary,
               shape: BoxShape.circle,
             ),
             alignment: Alignment.center,
@@ -63,7 +63,8 @@ class CandidateProfileHeader extends StatelessWidget {
               visualDensity: VisualDensity.compact,
               padding: EdgeInsets.zero,
             ),
-            onPressed: () => context.pushRoute(const EditCandidateProfileRoute()),
+            onPressed: () =>
+                context.pushRoute(const EditCandidateProfileRoute()),
             icon: Icon(
               Icons.edit,
               color: context.colors.textPrimary,
