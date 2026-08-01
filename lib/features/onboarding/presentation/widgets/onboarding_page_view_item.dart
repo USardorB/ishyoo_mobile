@@ -15,11 +15,11 @@ class OnboardingPageViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: .symmetric(horizontal: 24),
+      padding: const .symmetric(horizontal: 24),
       child: Column(
         children: [
           Flexible(child: Image.asset(imageURL)),
-          Flexible(flex: 0, child: SizedBox(height: 32)),
+          const Flexible(flex: 0, child: SizedBox(height: 32)),
           Column(
             crossAxisAlignment: .stretch,
             children: [
@@ -30,7 +30,7 @@ class OnboardingPageViewItem extends StatelessWidget {
                 overflow: .ellipsis,
                 textAlign: .center,
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
               Text(
                 subTitle,
                 style: context.textThemes.b1.copyWith(

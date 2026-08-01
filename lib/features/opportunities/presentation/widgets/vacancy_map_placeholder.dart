@@ -40,7 +40,7 @@ class _VacancyMapState extends State<VacancyMap> {
           geometry: LatLng(widget.latitude, widget.longitude),
           iconImage: "custom_locate_pin",
           iconSize: 0.4,
-          iconOffset: Offset(0, -50),
+          iconOffset: const Offset(0, -50),
         ),
       );
     } catch (e) {

@@ -40,7 +40,7 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
               child: Column(
                 crossAxisAlignment: .stretch,
                 children: [
-                  SizedBox(height: 24),
+                  const SizedBox(height: 24),
                   Text(
                     "onboarding.choose_language.title",
                     style: context.textThemes.h4,

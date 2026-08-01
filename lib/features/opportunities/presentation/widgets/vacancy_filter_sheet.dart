@@ -67,7 +67,7 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      padding: EdgeInsets.symmetric(horizontal: 16).copyWith(
+      padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
         bottom: MediaQuery.paddingOf(context).bottom + 12,
       ),
       child: ChipTheme(
@@ -199,7 +199,7 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
               textStyle: context.textThemes.buttonLarge,
               visualDensity: VisualDensity.compact,
             ),
-            child: Text('shared.clear').tr(),
+            child: const Text('shared.clear').tr(),
           ),
         ),
       ),

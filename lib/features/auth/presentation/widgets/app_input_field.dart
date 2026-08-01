@@ -54,7 +54,7 @@ class AppInputField extends StatelessWidget {
             overflow: .ellipsis,
             style: context.textThemes.s3,
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
         ],
         TextFormField(
           minLines: minLines,

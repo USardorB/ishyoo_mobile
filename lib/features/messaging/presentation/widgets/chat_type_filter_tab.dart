@@ -55,7 +55,7 @@ class ChatTypeFilterTab extends StatelessWidget implements PreferredSizeWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("shared.all").tr(),
+                        const Text("shared.all").tr(),
                         const SizedBox(width: 6),
                         const Flexible(
                           child: CircleAvatar(
@@ -68,7 +68,7 @@ class ChatTypeFilterTab extends StatelessWidget implements PreferredSizeWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("applications.tabs.received").tr(),
+                        const Text("applications.tabs.received").tr(),
                         const SizedBox(width: 6),
                         const Flexible(
                           child: CircleAvatar(
@@ -81,7 +81,7 @@ class ChatTypeFilterTab extends StatelessWidget implements PreferredSizeWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text("applications.tabs.rejected").tr(),
+                        const Text("applications.tabs.rejected").tr(),
                         const SizedBox(width: 6),
                         const Flexible(
                           child: CircleAvatar(

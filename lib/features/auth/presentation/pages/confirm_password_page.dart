@@ -85,7 +85,7 @@ class ConfirmPasswordPage extends HookWidget {
               ),
             ),
             const SizedBox(height: 16),
-            Text("auth.confirm_password.requirements_title").tr(),
+            const Text("auth.confirm_password.requirements_title").tr(),
             const SizedBox(height: 8),
             ValueListenableBuilder(
               valueListenable: passwordController,

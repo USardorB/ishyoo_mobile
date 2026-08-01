@@ -91,7 +91,7 @@ class HrDashboardPage extends StatelessWidget {
                     ],
                   ),
 
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
 
                   Row(
                     children: [
@@ -108,7 +108,7 @@ class HrDashboardPage extends StatelessWidget {
                           const MyVacanciesRoute(),
                         ),
                         icon: const Icon(Icons.arrow_forward_ios_rounded),
-                        label: Text("shared.show_all").tr(),
+                        label: const Text("shared.show_all").tr(),
                         style: TextButton.styleFrom(
                           textStyle: context.textThemes.buttonSmall,
                           iconAlignment: .end,
@@ -158,9 +158,9 @@ class HrDashboardPage extends StatelessWidget {
                       }
                     },
                     icon: const Icon(Icons.add),
-                    label: Text("opportunities.create_vacancy").tr(),
+                    label: const Text("opportunities.create_vacancy").tr(),
                     style: FilledButton.styleFrom(
-                      padding: .all(14),
+                      padding: const .all(14),
                       shape: DashedOutlineBorder(
                         borderRadius: BorderRadius.circular(12),
                         side: BorderSide(color: context.colors.bgTertiary),

@@ -53,7 +53,7 @@ class PasswordRequirements extends StatelessWidget {
             size: 16,
           ),
         ),
-        SizedBox(width: 8),
+        const SizedBox(width: 8),
         Text(text, style: context.textThemes.c1.copyWith(color: color)),
       ],
     );

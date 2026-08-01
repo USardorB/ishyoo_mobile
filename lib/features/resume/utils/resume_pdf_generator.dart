@@ -88,7 +88,7 @@ class ResumePdfGenerator {
         pw.SvgImage(svg: logoSvg, height: 24),
         pw.Text(
           'Rezyume',
-          style: pw.TextStyle(
+          style: const pw.TextStyle(
             color: _mutedColor,
             fontSize: 14,
           ),
@@ -149,7 +149,7 @@ class ResumePdfGenerator {
           pw.Container(
             width: 80,
             height: 80,
-            decoration: pw.BoxDecoration(
+            decoration: const pw.BoxDecoration(
               shape: pw.BoxShape.circle,
               color: PdfColor.fromInt(0xFF2A2A2A),
             ),
@@ -275,9 +275,9 @@ class ResumePdfGenerator {
     return pw.Container(
       padding: const pw.EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: pw.BoxDecoration(
-        color: PdfColor.fromInt(0xFF232323),
+        color: const PdfColor.fromInt(0xFF232323),
         borderRadius: pw.BorderRadius.circular(6),
-        border: pw.Border.all(color: PdfColor.fromInt(0xFF333333)),
+        border: pw.Border.all(color: const PdfColor.fromInt(0xFF333333)),
       ),
       child: pw.Text(
         text,
@@ -501,9 +501,9 @@ class ResumePdfGenerator {
     return pw.Container(
       padding: const pw.EdgeInsets.symmetric(horizontal: 12, vertical: 6),
       decoration: pw.BoxDecoration(
-        color: PdfColor.fromInt(0xFF232323),
+        color: const PdfColor.fromInt(0xFF232323),
         borderRadius: pw.BorderRadius.circular(6),
-        border: pw.Border.all(color: PdfColor.fromInt(0xFF333333)),
+        border: pw.Border.all(color: const PdfColor.fromInt(0xFF333333)),
       ),
       child: pw.Text(
         text,

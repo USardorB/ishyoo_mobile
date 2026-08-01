@@ -20,7 +20,7 @@ class ApplicationMenuSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 20).copyWith(
+      padding: const EdgeInsets.symmetric(vertical: 20).copyWith(
         bottom: MediaQuery.paddingOf(context).bottom + 16,
       ),
       decoration: BoxDecoration(

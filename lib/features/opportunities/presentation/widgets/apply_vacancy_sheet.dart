@@ -75,7 +75,7 @@ class _ApplyVacancySheetState extends State<ApplyVacancySheet> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 16).copyWith(
+      padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
         bottom:
             MediaQuery.viewInsetsOf(context).bottom +
             MediaQuery.paddingOf(context).bottom +

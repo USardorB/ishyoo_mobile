@@ -33,17 +33,17 @@ class NotificationItem extends StatelessWidget {
           children: [
             if (imageUrl != null) ...[
               ConstrainedBox(
-                constraints: BoxConstraints(maxHeight: 200),
+                constraints: const BoxConstraints(maxHeight: 200),
                 child: CachedNetworkImage(
                   imageUrl: imageUrl!,
                   maxWidthDiskCache: 400,
                   maxHeightDiskCache: 200,
                 ),
               ),
-              SizedBox(height: 12),
+              const SizedBox(height: 12),
             ],
             Padding(
-              padding: .all(12),
+              padding: const .all(12),
               child: Column(
                 crossAxisAlignment: .stretch,
                 children: [
@@ -51,14 +51,14 @@ class NotificationItem extends StatelessWidget {
                     title,
                     style: context.textThemes.s2,
                   ),
-                  SizedBox(height: 6),
+                  const SizedBox(height: 6),
                   Text(
                     body,
                     style: context.textThemes.b2.copyWith(
                       color: context.colors.textSecondary,
                     ),
                   ),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   Row(
                     children: [
                       Text(
@@ -67,8 +67,8 @@ class NotificationItem extends StatelessWidget {
                           color: context.colors.textSecondary,
                         ),
                       ),
-                      Spacer(),
-                      if (!read) Icon(Icons.done) else Icon(Icons.done_all),
+                      const Spacer(),
+                      if (!read) const Icon(Icons.done) else const Icon(Icons.done_all),
                     ],
                   ),
                 ],

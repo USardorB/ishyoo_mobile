@@ -28,7 +28,7 @@ class ChatItem extends StatelessWidget {
     return InkWell(
       onTap: () => context.pushRoute(ChatDetailsRoute(chatId: chatId)),
       child: Padding(
-        padding: .symmetric(vertical: 10),
+        padding: const .symmetric(vertical: 10),
         child: Row(
           children: [
             Flexible(
@@ -37,8 +37,8 @@ class ChatItem extends StatelessWidget {
                   Badge(
                     isLabelVisible: isOnline,
                     backgroundColor: context.colors.brightMutable,
-                    padding: .all(1),
-                    alignment: Alignment(.8, .7),
+                    padding: const .all(1),
+                    alignment: const Alignment(.8, .7),
                     label: Icon(
                       Icons.circle,
                       size: 16,
@@ -90,10 +90,10 @@ class ChatItem extends StatelessWidget {
                       ),
                     ),
                   ),
-                  SizedBox(width: 12),
+                  const SizedBox(width: 12),
                   Flexible(
                     child: Padding(
-                      padding: .symmetric(horizontal: 5),
+                      padding: const .symmetric(horizontal: 5),
                       child: Column(
                         mainAxisSize: .min,
                         spacing: 6,
@@ -132,7 +132,7 @@ class ChatItem extends StatelessWidget {
                 Text(time, style: context.textThemes.b3),
                 if (unreadCount > 0)
                   Container(
-                    padding: .all(6),
+                    padding: const .all(6),
                     decoration: BoxDecoration(
                       color: context.colors.brandDefault,
                       shape: .circle,

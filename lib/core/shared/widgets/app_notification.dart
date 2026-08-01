@@ -29,7 +29,7 @@ class AppNotification extends StatelessWidget {
       ),
       color: context.colors.bgPrimary,
       child: Padding(
-        padding: .all(12),
+        padding: const .all(12),
         child: Row(
           children: [
             CircleAvatar(
@@ -41,13 +41,13 @@ class AppNotification extends StatelessWidget {
                 .warning => Icons.priority_high_rounded,
               }, color: context.colors.textPrimary),
             ),
-            SizedBox(width: 12),
+            const SizedBox(width: 12),
             Flexible(
               child: Row(
                 mainAxisAlignment: .spaceBetween,
                 children: [
                   Flexible(child: Text(msg, style: context.textThemes.b2)),
-                  IconButton(onPressed: onClose, icon: Icon(Icons.close)),
+                  IconButton(onPressed: onClose, icon: const Icon(Icons.close)),
                 ],
               ),
             ),

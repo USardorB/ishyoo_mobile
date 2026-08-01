@@ -74,7 +74,7 @@ class ApplicantPageMoreActions extends StatelessWidget {
       spacing: 8,
       children: [
         Container(
-          padding: .all(4),
+          padding: const .all(4),
           decoration: BoxDecoration(
             color: context.colors.bgSecondary,
             borderRadius: BorderRadius.circular(8),

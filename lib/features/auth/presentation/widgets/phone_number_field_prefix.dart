@@ -8,9 +8,9 @@ class PhoneNumberFieldPrefix extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: .center,
-      margin: .symmetric(horizontal: 8, vertical: 6),
-      padding: .symmetric(horizontal: 16, vertical: 9),
-      constraints: BoxConstraints(maxWidth: 80),
+      margin: const .symmetric(horizontal: 8, vertical: 6),
+      padding: const .symmetric(horizontal: 16, vertical: 9),
+      constraints: const BoxConstraints(maxWidth: 80),
       decoration: BoxDecoration(
         color: context.colors.bgSecondary,
         borderRadius: BorderRadius.circular(10),

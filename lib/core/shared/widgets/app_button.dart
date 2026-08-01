@@ -48,7 +48,7 @@ class AppButton extends StatelessWidget {
             elevation: 3,
             disabledBackgroundColor: color.withValues(alpha: .5),
             backgroundColor: color,
-            padding: .all(14),
+            padding: const .all(14),
             shape: RoundedRectangleBorder(borderRadius: .circular(12)),
           ),
           onPressed: (enabled && !isLoading) ? onTap : null,

@@ -21,7 +21,7 @@ class LogoutConfirmationDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),
-      title: Text(
+      title: const Text(
         "settings.logout_confirm_title",
         textAlign: TextAlign.center,
       ).tr(),
@@ -32,7 +32,7 @@ class LogoutConfirmationDialog extends StatelessWidget {
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(
+          const Text(
             "settings.logout_confirm_desc",
             textAlign: TextAlign.center,
           ).tr(),
