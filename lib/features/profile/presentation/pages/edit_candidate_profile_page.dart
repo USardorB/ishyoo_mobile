@@ -1,7 +1,11 @@
+import 'dart:io';
+
 import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
@@ -30,6 +34,22 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
   final _bioCtrl = TextEditingController();
 
   bool _initialized = false;
+  File? _avatarFile;
+
+  Future<void> _pickAvatar() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 75,
+      maxWidth: 720,
+      maxHeight: 720,
+    );
+    if (pickedFile != null && mounted) {
+      setState(() {
+        _avatarFile = File(pickedFile.path);
+      });
+    }
+  }
 
   void _populateFromProfile(Profile profile) {
     if (_initialized) return;
@@ -65,7 +85,7 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
         'city': _cityCtrl.text.trim(),
         'birth_date': _birthDateCtrl.text.trim(),
         'bio': _bioCtrl.text.trim(),
-      }),
+      }, avatar: _avatarFile),
     );
   }
 
@@ -109,40 +129,60 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                 children: [
                   const SizedBox(height: 24),
                   Center(
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: 100,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            color: context.colors.bgSecondary,
-                            shape: BoxShape.circle,
-                          ),
-                          alignment: Alignment.center,
-                          child: Text(
-                            initials.isEmpty ? 'U' : initials,
-                            style: context.textThemes.h4.copyWith(
-                              color: context.colors.brandProgress,
-                            ),
-                          ),
-                        ),
-                        Positioned(
-                          bottom: 0,
-                          right: 0,
-                          child: Container(
-                            padding: const EdgeInsets.all(6),
+                    child: GestureDetector(
+                      onTap: _pickAvatar,
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: 100,
+                            height: 100,
                             decoration: BoxDecoration(
-                              color: context.colors.bgTertiary,
+                              color: context.colors.bgSecondary,
                               shape: BoxShape.circle,
+                              image: _avatarFile != null
+                                  ? DecorationImage(
+                                      image: FileImage(_avatarFile!),
+                                      fit: BoxFit.cover,
+                                    )
+                                  : (state.profile?.avatarUrl != null
+                                        ? DecorationImage(
+                                            image: CachedNetworkImageProvider(
+                                              state.profile!.avatarUrl!,
+                                            ),
+                                            fit: BoxFit.cover,
+                                          )
+                                        : null),
                             ),
-                            child: const Icon(
-                              Icons.edit,
-                              size: 16,
-                              color: Colors.white,
+                            alignment: Alignment.center,
+                            child:
+                                _avatarFile == null &&
+                                    state.profile?.avatarUrl == null
+                                ? Text(
+                                    initials.isEmpty ? 'U' : initials,
+                                    style: context.textThemes.h4.copyWith(
+                                      color: context.colors.brandProgress,
+                                    ),
+                                  )
+                                : null,
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: Container(
+                              padding: const EdgeInsets.all(6),
+                              decoration: BoxDecoration(
+                                color: context.colors.bgTertiary,
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(
+                                Icons.edit,
+                                size: 16,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                   const SizedBox(height: 32),

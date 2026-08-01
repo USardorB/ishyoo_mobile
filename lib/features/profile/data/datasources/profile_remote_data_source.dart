@@ -25,6 +25,12 @@ abstract class ProfileRemoteDataSource {
     @Body() Map<String, dynamic> body,
   );
 
+  @POST('/mobile/candidate/profile/upload-avatar')
+  @MultiPart()
+  Future<BaseResult<String>> uploadCandidateAvatar(
+    @Part(name: 'file') File avatar,
+  );
+
   // Employer Endpoints
   @GET('/mobile/employer/profile')
   Future<BaseResult<Profile>> getEmployerProfile();

@@ -11,6 +11,9 @@ abstract class ProfileRepository {
   Future<Either<Failure, Profile>> updateCandidateProfile(
     Map<String, dynamic> body,
   );
+  Future<Either<Failure, String>> uploadCandidateAvatar(
+    File avatar,
+  );
   Future<Either<Failure, Profile>> getEmployerProfile();
   Future<Either<Failure, Profile>> updateEmployerProfile(
     Map<String, dynamic> body,

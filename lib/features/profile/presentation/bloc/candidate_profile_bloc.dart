@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../../resume/data/models/resume.dart';
@@ -11,7 +12,8 @@ class LoadCandidateProfile extends CandidateProfileEvent {}
 
 class UpdateCandidateProfile extends CandidateProfileEvent {
   final Map<String, dynamic> body;
-  UpdateCandidateProfile(this.body);
+  final File? avatar;
+  UpdateCandidateProfile(this.body, {this.avatar});
 }
 
 class CandidateProfileState {
@@ -97,7 +99,23 @@ class CandidateProfileBloc
     Emitter<CandidateProfileState> emit,
   ) async {
     emit(state.copyWith(isUpdating: true, error: null));
-    final result = await _profileRepository.updateCandidateProfile(event.body);
+    
+    final body = Map<String, dynamic>.from(event.body);
+
+    if (event.avatar != null) {
+      final uploadResult = await _profileRepository.uploadCandidateAvatar(event.avatar!);
+      final avatarUrl = uploadResult.fold(
+        (failure) {
+          emit(state.copyWith(isUpdating: false, error: failure.message));
+          return null;
+        },
+        (url) => url,
+      );
+      if (avatarUrl == null) return;
+      body['avatar_url'] = avatarUrl;
+    }
+
+    final result = await _profileRepository.updateCandidateProfile(body);
     result.fold(
       (failure) =>
           emit(state.copyWith(isUpdating: false, error: failure.message)),

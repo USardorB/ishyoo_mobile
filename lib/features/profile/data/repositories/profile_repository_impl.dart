@@ -29,6 +29,13 @@ class ProfileRepositoryImpl implements ProfileRepository {
   }
 
   @override
+  Future<Either<Failure, String>> uploadCandidateAvatar(
+    dart_io.File avatar,
+  ) {
+    return remoteDataSource.uploadCandidateAvatar(avatar).asEither();
+  }
+
+  @override
   Future<Either<Failure, Profile>> getEmployerProfile() {
     return remoteDataSource.getEmployerProfile().asEither();
   }
