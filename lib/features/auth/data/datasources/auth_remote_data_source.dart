@@ -47,7 +47,7 @@ abstract class AuthRemoteDataSource {
     @Path("role") String role,
   );
 
-  @POST(ApiEndpoints.logout)
+  @GET(ApiEndpoints.logout)
   Future<BaseResult<void>> logout(
     @Path("role") String role,
   );

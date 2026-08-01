@@ -159,6 +159,7 @@ class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
                     );
                   }
                   return Column(
+                    spacing: 12,
                     children: state.vacancies
                         .map(
                           (vacancy) => TrendingVacancyCard(
