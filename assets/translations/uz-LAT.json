@@ -355,5 +355,15 @@
       "employer": "Ish beruvchi",
       "admin": "Administrator"
     }
+  },
+  "waitlist": {
+    "title": "Siz Namangandanmisiz?",
+    "description": "Hozircha servis faqat Namangan shahrida faoliyat yuritmoqda. Tez orada boshqa hududlarda ham ishga tushiramiz.",
+    "yes": "Ha, Namangandanman",
+    "no": "Yo'q, Namangandan emasman",
+    "screen_title": "Tez orada",
+    "screen_subtitle": "Kechirasiz, hozircha servis faqat Namangan shahrida faoliyat yuritmoqda. Tez orada boshqa hududlarda ham ishga tushiramiz!",
+    "logout": "Chiqish",
+    "exit": "Dasturdan chiqish"
   }
 }

@@ -80,6 +80,8 @@ class LoginPage extends HookWidget {
         listener: (context, state) {
           if (state.status == AuthStatus.authenticated) {
             context.router.replaceAll([const MainLayoutRoute()]);
+          } else if (state.status == AuthStatus.waitlisted) {
+            context.router.replaceAll([const WaitlistedRoute()]);
           } else if (state.status == AuthStatus.failure) {
             AppNotificationOverlay.instance.show(
               message: state.errorMessage ?? 'shared.error_occurred'.tr(),

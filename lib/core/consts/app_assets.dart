@@ -4,4 +4,5 @@ abstract final class AppAssets {
   static const onboarding = "assets/images/onboarding.png";
   static const onboardingDark = "assets/images/onboarding_dark.png";
   static const pageNotFound = "assets/lotties/page_not_found.json";
+  static const location = "assets/vectors/location.svg";
 }

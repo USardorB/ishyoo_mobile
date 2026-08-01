@@ -355,5 +355,15 @@
       "employer": "Employer",
       "admin": "Administrator"
     }
+  },
+  "waitlist": {
+    "title": "Are you from Namangan?",
+    "description": "Currently, the service operates only in Namangan. We will launch in other regions soon.",
+    "yes": "Yes, I am from Namangan",
+    "no": "No, I am not from Namangan",
+    "screen_title": "Coming Soon",
+    "screen_subtitle": "Sorry, our service is currently only available in Namangan. We will expand our services to other regions soon!",
+    "logout": "Logout",
+    "exit": "Exit App"
   }
 }

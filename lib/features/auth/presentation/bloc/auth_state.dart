@@ -11,6 +11,7 @@ enum AuthStatus {
   otpSent,
   verified,
   authenticated,
+  waitlisted,
   unauthenticated,
   failure,
   passwordResetSuccess,

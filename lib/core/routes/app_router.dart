@@ -43,6 +43,7 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: ForgotPasswordRoute.page),
     AutoRoute(page: ForgotPasswordOtpRoute.page),
     AutoRoute(page: ResetPasswordRoute.page),
+    AutoRoute(page: WaitlistedRoute.page),
 
     AutoRoute(
       initial: !true,

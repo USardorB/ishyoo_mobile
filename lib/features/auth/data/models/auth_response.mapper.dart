@@ -611,11 +611,12 @@ class UserMeResponseMapper extends ClassMapperBase<UserMeResponse> {
   @override
   final String id = 'UserMeResponse';
 
-  static String _$avatarUrl(UserMeResponse v) => v.avatarUrl;
+  static String? _$avatarUrl(UserMeResponse v) => v.avatarUrl;
   static const Field<UserMeResponse, String> _f$avatarUrl = Field(
     'avatarUrl',
     _$avatarUrl,
     key: r'avatar_url',
+    opt: true,
   );
   static String _$id(UserMeResponse v) => v.id;
   static const Field<UserMeResponse, String> _f$id = Field('id', _$id);
@@ -653,6 +654,13 @@ class UserMeResponseMapper extends ClassMapperBase<UserMeResponse> {
     _$updatedAt,
     key: r'updated_at',
   );
+  static bool? _$isWaitlistedUser(UserMeResponse v) => v.isWaitlistedUser;
+  static const Field<UserMeResponse, bool> _f$isWaitlistedUser = Field(
+    'isWaitlistedUser',
+    _$isWaitlistedUser,
+    key: r'is_waitlisted_user',
+    opt: true,
+  );
   static UserOrganization? _$organization(UserMeResponse v) => v.organization;
   static const Field<UserMeResponse, UserOrganization> _f$organization = Field(
     'organization',
@@ -671,6 +679,7 @@ class UserMeResponseMapper extends ClassMapperBase<UserMeResponse> {
     #role: _f$role,
     #createdAt: _f$createdAt,
     #updatedAt: _f$updatedAt,
+    #isWaitlistedUser: _f$isWaitlistedUser,
     #organization: _f$organization,
   };
 
@@ -685,6 +694,7 @@ class UserMeResponseMapper extends ClassMapperBase<UserMeResponse> {
       role: data.dec(_f$role),
       createdAt: data.dec(_f$createdAt),
       updatedAt: data.dec(_f$updatedAt),
+      isWaitlistedUser: data.dec(_f$isWaitlistedUser),
       organization: data.dec(_f$organization),
     );
   }
@@ -763,6 +773,7 @@ abstract class UserMeResponseCopyWith<$R, $In extends UserMeResponse, $Out>
     String? role,
     String? createdAt,
     String? updatedAt,
+    bool? isWaitlistedUser,
     UserOrganization? organization,
   });
   UserMeResponseCopyWith<$R2, $In, $Out2> $chain<$R2, $Out2>(
@@ -784,7 +795,7 @@ class _UserMeResponseCopyWithImpl<$R, $Out>
       $value.organization?.copyWith.$chain((v) => call(organization: v));
   @override
   $R call({
-    String? avatarUrl,
+    Object? avatarUrl = $none,
     String? id,
     String? name,
     String? phoneNumber,
@@ -793,10 +804,11 @@ class _UserMeResponseCopyWithImpl<$R, $Out>
     String? role,
     String? createdAt,
     String? updatedAt,
+    Object? isWaitlistedUser = $none,
     Object? organization = $none,
   }) => $apply(
     FieldCopyWithData({
-      if (avatarUrl != null) #avatarUrl: avatarUrl,
+      if (avatarUrl != $none) #avatarUrl: avatarUrl,
       if (id != null) #id: id,
       if (name != null) #name: name,
       if (phoneNumber != null) #phoneNumber: phoneNumber,
@@ -805,6 +817,7 @@ class _UserMeResponseCopyWithImpl<$R, $Out>
       if (role != null) #role: role,
       if (createdAt != null) #createdAt: createdAt,
       if (updatedAt != null) #updatedAt: updatedAt,
+      if (isWaitlistedUser != $none) #isWaitlistedUser: isWaitlistedUser,
       if (organization != $none) #organization: organization,
     }),
   );
@@ -819,6 +832,7 @@ class _UserMeResponseCopyWithImpl<$R, $Out>
     role: data.get(#role, or: $value.role),
     createdAt: data.get(#createdAt, or: $value.createdAt),
     updatedAt: data.get(#updatedAt, or: $value.updatedAt),
+    isWaitlistedUser: data.get(#isWaitlistedUser, or: $value.isWaitlistedUser),
     organization: data.get(#organization, or: $value.organization),
   );
 

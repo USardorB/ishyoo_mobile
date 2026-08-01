@@ -73,7 +73,7 @@ class UserMeResponse with UserMeResponseMappable {
   @MappableField(key: 'phone_number')
   final String phoneNumber;
   @MappableField(key: 'avatar_url')
-  final String avatarUrl;
+  final String? avatarUrl;
   final String? email;
   final String? password;
   final String role;
@@ -81,10 +81,12 @@ class UserMeResponse with UserMeResponseMappable {
   final String createdAt;
   @MappableField(key: 'updated_at')
   final String updatedAt;
+  @MappableField(key: 'is_waitlisted_user')
+  final bool? isWaitlistedUser;
   final UserOrganization? organization;
 
   const UserMeResponse({
-    required this.avatarUrl,
+    this.avatarUrl,
     required this.id,
     required this.name,
     required this.phoneNumber,
@@ -93,6 +95,7 @@ class UserMeResponse with UserMeResponseMappable {
     required this.role,
     required this.createdAt,
     required this.updatedAt,
+    this.isWaitlistedUser,
     this.organization,
   });
 

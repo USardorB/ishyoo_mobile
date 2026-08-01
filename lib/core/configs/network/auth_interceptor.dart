@@ -33,7 +33,7 @@ class AuthInterceptor extends Interceptor {
 
     // Save token on register/login
     if ((path.contains('/register') || path.contains('/login')) &&
-        response.statusCode == 200) {
+        (response.statusCode == 200 || response.statusCode == 201)) {
       final data = response.data;
       if (data is Map<String, dynamic> && data['data'] != null) {
         final token = data['data']['access_token'] as String?;

@@ -94,6 +94,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ),
       ),
       (response) {
+        _tokenService.saveAccessToken(response.accessToken);
+        if (response.did != null) {
+          _tokenService.saveDid(response.did!, role: event.role);
+        }
         add(AuthGetMeRequested(event.role));
       },
     );
@@ -142,6 +146,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         ),
       ),
       (response) {
+        _tokenService.saveAccessToken(response.accessToken);
+        if (response.did != null) {
+          _tokenService.saveDid(response.did!, role: event.role);
+        }
         add(AuthGetMeRequested(event.role));
       },
     );
@@ -156,13 +164,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     result.fold(
       (failure) => emit(state.copyWith(status: AuthStatus.unauthenticated)),
-      (response) => emit(
-        state.copyWith(
-          status: AuthStatus.authenticated,
-          role: event.role,
-          user: response,
-        ),
-      ),
+      (response) {
+        final isWaitlisted = response.isWaitlistedUser == true;
+        emit(
+          state.copyWith(
+            status: isWaitlisted ? AuthStatus.waitlisted : AuthStatus.authenticated,
+            role: event.role,
+            user: response,
+          ),
+        );
+      },
     );
   }
 

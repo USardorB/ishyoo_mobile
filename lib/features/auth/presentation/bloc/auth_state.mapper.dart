@@ -37,6 +37,8 @@ class AuthStatusMapper extends EnumMapper<AuthStatus> {
         return AuthStatus.verified;
       case r'authenticated':
         return AuthStatus.authenticated;
+      case r'waitlisted':
+        return AuthStatus.waitlisted;
       case r'unauthenticated':
         return AuthStatus.unauthenticated;
       case r'failure':
@@ -61,6 +63,8 @@ class AuthStatusMapper extends EnumMapper<AuthStatus> {
         return r'verified';
       case AuthStatus.authenticated:
         return r'authenticated';
+      case AuthStatus.waitlisted:
+        return r'waitlisted';
       case AuthStatus.unauthenticated:
         return r'unauthenticated';
       case AuthStatus.failure:

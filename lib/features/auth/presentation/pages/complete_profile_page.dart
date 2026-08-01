@@ -18,6 +18,7 @@ import 'package:mobile/features/auth/presentation/bloc/auth_event.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_state.dart'
     as bloc_state;
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
+import 'package:mobile/features/auth/presentation/widgets/waitlist_location_dialog.dart';
 import 'package:uuid/uuid.dart';
 
 @RoutePage()
@@ -72,6 +73,10 @@ class CompleteProfilePage extends HookWidget {
           ? '+998${phoneNumber!.replaceAll(' ', '')}'
           : null;
 
+      final isFromNamangan = await WaitlistLocationDialog.show(context);
+      if (isFromNamangan == null) return; // User dismissed the sheet
+
+      if (!context.mounted) return;
       context.read<AuthBloc>().add(
         AuthRegisterRequested(
           roleString,
@@ -84,7 +89,7 @@ class CompleteProfilePage extends HookWidget {
             deviceName: deviceName,
             companyName: isCompany ? companyNameController.text : null,
             phoneNumber: isCompany ? formattedNumber : null,
-            isWaitlistedUser: false,
+            isWaitlistedUser: !isFromNamangan,
           ),
         ),
       );
@@ -101,6 +106,8 @@ class CompleteProfilePage extends HookWidget {
         listener: (context, state) {
           if (state.status == bloc_state.AuthStatus.authenticated) {
             context.router.replaceAll([const MainLayoutRoute()]);
+          } else if (state.status == bloc_state.AuthStatus.waitlisted) {
+            context.router.replaceAll([const WaitlistedRoute()]);
           } else if (state.status == bloc_state.AuthStatus.failure) {
             AppNotificationOverlay.instance.show(
               message: state.errorMessage ?? 'shared.error_occurred'.tr(),
