@@ -1594,16 +1594,85 @@ class VacancyDetailsRouteArgs {
 
 /// generated route for
 /// [_i46.VacancySearchPage]
-class VacancySearchRoute extends _i47.PageRouteInfo<void> {
-  const VacancySearchRoute({List<_i47.PageRouteInfo>? children})
-    : super(VacancySearchRoute.name, initialChildren: children);
+class VacancySearchRoute extends _i47.PageRouteInfo<VacancySearchRouteArgs> {
+  VacancySearchRoute({
+    _i48.Key? key,
+    bool autoFocusSearch = true,
+    String? initialJobType,
+    String? initialExperienceLevel,
+    String? initialSpecialization,
+    List<_i47.PageRouteInfo>? children,
+  }) : super(
+         VacancySearchRoute.name,
+         args: VacancySearchRouteArgs(
+           key: key,
+           autoFocusSearch: autoFocusSearch,
+           initialJobType: initialJobType,
+           initialExperienceLevel: initialExperienceLevel,
+           initialSpecialization: initialSpecialization,
+         ),
+         initialChildren: children,
+       );
 
   static const String name = 'VacancySearchRoute';
 
   static _i47.PageInfo page = _i47.PageInfo(
     name,
     builder: (data) {
-      return _i47.WrappedRoute(child: const _i46.VacancySearchPage());
+      final args = data.argsAs<VacancySearchRouteArgs>(
+        orElse: () => const VacancySearchRouteArgs(),
+      );
+      return _i46.VacancySearchPage(
+        key: args.key,
+        autoFocusSearch: args.autoFocusSearch,
+        initialJobType: args.initialJobType,
+        initialExperienceLevel: args.initialExperienceLevel,
+        initialSpecialization: args.initialSpecialization,
+      );
     },
   );
+}
+
+class VacancySearchRouteArgs {
+  const VacancySearchRouteArgs({
+    this.key,
+    this.autoFocusSearch = true,
+    this.initialJobType,
+    this.initialExperienceLevel,
+    this.initialSpecialization,
+  });
+
+  final _i48.Key? key;
+
+  final bool autoFocusSearch;
+
+  final String? initialJobType;
+
+  final String? initialExperienceLevel;
+
+  final String? initialSpecialization;
+
+  @override
+  String toString() {
+    return 'VacancySearchRouteArgs{key: $key, autoFocusSearch: $autoFocusSearch, initialJobType: $initialJobType, initialExperienceLevel: $initialExperienceLevel, initialSpecialization: $initialSpecialization}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! VacancySearchRouteArgs) return false;
+    return key == other.key &&
+        autoFocusSearch == other.autoFocusSearch &&
+        initialJobType == other.initialJobType &&
+        initialExperienceLevel == other.initialExperienceLevel &&
+        initialSpecialization == other.initialSpecialization;
+  }
+
+  @override
+  int get hashCode =>
+      key.hashCode ^
+      autoFocusSearch.hashCode ^
+      initialJobType.hashCode ^
+      initialExperienceLevel.hashCode ^
+      initialSpecialization.hashCode;
 }

@@ -13,8 +13,8 @@ import 'package:mobile/features/opportunities/presentation/bloc/vacancy_feed_blo
 import 'package:mobile/features/opportunities/presentation/widgets/candidate_home_banner.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/candidate_quick_access_cards.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/trending_vacancy_card.dart';
-import 'package:mobile/features/postings/presentation/widgets/dark_glass_search_field.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/vacancy_filter_sheet.dart';
+import 'package:mobile/features/postings/presentation/widgets/dark_glass_search_field.dart';
 
 @RoutePage()
 class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
@@ -68,8 +68,9 @@ class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
               children: [
                 Flexible(
                   child: DarkGlassSearchField(
+                    readOnly: true,
                     onTap: () {
-                      context.pushRoute(const VacancySearchRoute());
+                      context.pushRoute(VacancySearchRoute());
                     },
                   ),
                 ),
@@ -86,21 +87,23 @@ class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
                             initialJobType: bloc.currentJobType,
                             initialExperienceLevel: bloc.currentExperienceLevel,
                             initialSpecialization: bloc.currentSpecialization,
-                            onApply: (jobType, experienceLevel, specialization) {
-                              bloc.add(
-                                UpdateVacancyFeedFilters(
-                                  jobType: jobType,
-                                  experienceLevel: experienceLevel,
-                                  specialization: specialization,
-                                ),
-                              );
-                            },
+                            onApply:
+                                (jobType, experienceLevel, specialization) {
+                                  context.pushRoute(
+                                    VacancySearchRoute(
+                                      autoFocusSearch: false,
+                                      initialJobType: jobType,
+                                      initialExperienceLevel: experienceLevel,
+                                      initialSpecialization: specialization,
+                                    ),
+                                  );
+                                },
                           ),
                         );
                       },
                       icon: const Icon(Icons.tune),
                     );
-                  }
+                  },
                 ),
               ],
             ),

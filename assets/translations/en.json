@@ -213,7 +213,8 @@
       "pending": "Pending",
       "accepted": "Accepted",
       "rejected": "Rejected",
-      "interview": "Interview"
+      "interview": "Interview",
+      "archived": "Archived"
     }
   },
   "opportunities": {

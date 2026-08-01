@@ -212,12 +212,13 @@ enum AppCurrency {
   usd,
   eur;
 
-  static AppCurrency? fromServer(String? value) => switch (value?.toLowerCase()) {
-    'uzs' => AppCurrency.uzs,
-    'usd' => AppCurrency.usd,
-    'eur' => AppCurrency.eur,
-    _ => null,
-  };
+  static AppCurrency? fromServer(String? value) =>
+      switch (value?.toLowerCase()) {
+        'uzs' => AppCurrency.uzs,
+        'usd' => AppCurrency.usd,
+        'eur' => AppCurrency.eur,
+        _ => null,
+      };
 
   String get serverValue => switch (this) {
     AppCurrency.uzs => 'uzs',
@@ -376,37 +377,4 @@ enum AppRole {
   };
 
   String get localizedLabel => label.tr();
-}
-
-// ─── Notification Type ────────────────────────────────────────────────────────
-
-enum AppNotificationType {
-  applicationViewed,
-  newMessage,
-  interviewScheduled,
-  applicationAccepted,
-  applicationRejected,
-  interviewReminder,
-  system;
-
-  static AppNotificationType? fromServer(String? value) => switch (value) {
-    'application_viewed' => AppNotificationType.applicationViewed,
-    'new_message' => AppNotificationType.newMessage,
-    'interview_scheduled' => AppNotificationType.interviewScheduled,
-    'application_accepted' => AppNotificationType.applicationAccepted,
-    'application_rejected' => AppNotificationType.applicationRejected,
-    'interview_reminder' => AppNotificationType.interviewReminder,
-    'system' => AppNotificationType.system,
-    _ => null,
-  };
-
-  String get serverValue => switch (this) {
-    AppNotificationType.applicationViewed => 'application_viewed',
-    AppNotificationType.newMessage => 'new_message',
-    AppNotificationType.interviewScheduled => 'interview_scheduled',
-    AppNotificationType.applicationAccepted => 'application_accepted',
-    AppNotificationType.applicationRejected => 'application_rejected',
-    AppNotificationType.interviewReminder => 'interview_reminder',
-    AppNotificationType.system => 'system',
-  };
 }

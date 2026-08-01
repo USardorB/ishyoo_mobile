@@ -3,6 +3,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
+import 'package:mobile/core/enums/app_enums.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
@@ -151,6 +152,17 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                   vacancy.jobTitle,
                   style: context.textThemes.h5,
                 ),
+                const SizedBox(height: 8),
+                Text(
+                  _formatSalary(
+                    vacancy.salaryFrom,
+                    vacancy.salaryTo,
+                    vacancy.currency,
+                  ),
+                  style: context.textThemes.s1.copyWith(
+                    color: context.colors.brandDefault,
+                  ),
+                ),
                 const SizedBox(height: 12),
                 Wrap(
                   spacing: 6,
@@ -159,9 +171,21 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                     if (vacancy.location != null)
                       _buildBadge(context, vacancy.location!),
                     if (vacancy.jobType != null)
-                      _buildBadge(context, vacancy.jobType!),
+                      _buildBadge(
+                        context,
+                        EmploymentType.fromServer(
+                              vacancy.jobType,
+                            )?.localizedLabel ??
+                            vacancy.jobType!,
+                      ),
                     if (vacancy.experienceLevel != null)
-                      _buildBadge(context, vacancy.experienceLevel!),
+                      _buildBadge(
+                        context,
+                        AppExperienceLevel.fromServer(
+                              vacancy.experienceLevel,
+                            )?.localizedLabel ??
+                            vacancy.experienceLevel!,
+                      ),
                   ],
                 ),
                 const SizedBox(height: 14),
@@ -292,18 +316,36 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
 
   Widget _buildBadge(BuildContext context, String text) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
         color: context.colors.bgSecondary,
-        borderRadius: BorderRadius.circular(6),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(
+          color: context.colors.lineSecondary,
+          width: 1,
+        ),
       ),
       child: Text(
         text,
-        style: context.textThemes.b2.copyWith(
+        style: context.textThemes.b3.copyWith(
           color: context.colors.textSecondary,
         ),
       ),
     );
+  }
+
+  String _formatNumber(double n) {
+    return n.truncateToDouble() == n ? n.toInt().toString() : n.toString();
+  }
+
+  String _formatSalary(double? from, double? to, String? currency) {
+    if (from == null && to == null) return "shared.negotiable".tr();
+    final c = currency?.toUpperCase() ?? "UZS";
+    if (from != null && to != null) {
+      return "${_formatNumber(from)} - ${_formatNumber(to)} $c";
+    }
+    if (from != null) return "${_formatNumber(from)} $c";
+    return "${_formatNumber(to!)} $c";
   }
 
   Widget _buildBulletPoint(BuildContext context, String text) {

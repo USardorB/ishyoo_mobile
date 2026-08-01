@@ -79,8 +79,9 @@ class MainLayoutPage extends StatelessWidget {
                         child: Container(
                           decoration: isActive
                               ? BoxDecoration(
-                                  color: context.colors.brandDefault
-                                      .withValues(alpha: 0.25),
+                                  color: context.colors.brandDefault.withValues(
+                                    alpha: 0.25,
+                                  ),
                                   borderRadius: BorderRadius.circular(40),
                                 )
                               : null,

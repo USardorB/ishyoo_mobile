@@ -213,7 +213,8 @@
       "pending": "Кутилмоқда",
       "accepted": "Қабул қилинди",
       "rejected": "Рад этилди",
-      "interview": "Суҳбат"
+      "interview": "Суҳбат",
+      "archived": "Архивланган"
     }
   },
   "opportunities": {

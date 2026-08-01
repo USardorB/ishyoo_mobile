@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../data/models/vacancy.dart';
+import '../../domain/usecases/apply_to_vacancy_usecase.dart';
 import '../../domain/usecases/get_vacancy_feed_usecase.dart';
 import '../../domain/usecases/save_vacancy_usecase.dart';
 import '../../domain/usecases/unsave_vacancy_usecase.dart';
@@ -12,6 +13,7 @@ part 'vacancy_feed_state.dart';
 @injectable
 class VacancyFeedBloc extends Bloc<VacancyFeedEvent, VacancyFeedState> {
   final GetVacancyFeedUseCase _getVacancyFeedUseCase;
+  final ApplyToVacancyUseCase _applyToVacancyUseCase;
   final SaveVacancyUseCase _saveVacancyUseCase;
   final UnsaveVacancyUseCase _unsaveVacancyUseCase;
 
@@ -27,6 +29,7 @@ class VacancyFeedBloc extends Bloc<VacancyFeedEvent, VacancyFeedState> {
 
   VacancyFeedBloc({
     required this._getVacancyFeedUseCase,
+    required this._applyToVacancyUseCase,
     required this._saveVacancyUseCase,
     required this._unsaveVacancyUseCase,
   }) : super(const VacancyFeedInitial()) {
@@ -34,6 +37,7 @@ class VacancyFeedBloc extends Bloc<VacancyFeedEvent, VacancyFeedState> {
     on<UpdateVacancyFeedFilters>(_onUpdateFilters);
     on<UpdateVacancyFeedSearch>(_onUpdateSearch);
     on<ToggleSaveVacancyFeed>(_onToggleSaveVacancyFeed);
+    on<ApplyToVacancyFeed>(_onApplyToVacancyFeed);
   }
 
   Future<void> _fetchData(Emitter<VacancyFeedState> emit) async {
@@ -91,6 +95,7 @@ class VacancyFeedBloc extends Bloc<VacancyFeedEvent, VacancyFeedState> {
   ) async {
     if (state is VacancyFeedLoaded) {
       final currentState = state as VacancyFeedLoaded;
+      final originalHasSaved = event.currentlySaved;
 
       final updatedVacancies = currentState.vacancies.map((v) {
         if (v.id == event.id) {
@@ -107,11 +112,9 @@ class VacancyFeedBloc extends Bloc<VacancyFeedEvent, VacancyFeedState> {
 
       result.fold(
         (failure) {
-          // In case of failure, we might want to revert the state,
-          // but for now we just leave it or could re-fetch/revert.
           final revertedVacancies = currentState.vacancies.map((v) {
             if (v.id == event.id) {
-              return v.copyWith(hasSaved: event.currentlySaved);
+              return v.copyWith(hasSaved: originalHasSaved);
             }
             return v;
           }).toList();
@@ -120,5 +123,37 @@ class VacancyFeedBloc extends Bloc<VacancyFeedEvent, VacancyFeedState> {
         (_) {},
       );
     }
+  }
+
+  Future<void> _onApplyToVacancyFeed(
+    ApplyToVacancyFeed event,
+    Emitter<VacancyFeedState> emit,
+  ) async {
+    if (state is! VacancyFeedLoaded) return;
+    final currentState = state as VacancyFeedLoaded;
+
+    final result = await _applyToVacancyUseCase(
+      ApplyToVacancyParams(
+        id: event.id,
+        request: {
+          'resume_id': event.resumeId,
+          if (event.coverLetter != null && event.coverLetter!.isNotEmpty)
+            'cover_letter': event.coverLetter,
+        },
+      ),
+    );
+
+    result.fold(
+      (failure) {},
+      (_) {
+        final updatedVacancies = currentState.vacancies.map((v) {
+          if (v.id == event.id) {
+            return v.copyWith(hasApplied: true);
+          }
+          return v;
+        }).toList();
+        emit(VacancyFeedLoaded(updatedVacancies));
+      },
+    );
   }
 }

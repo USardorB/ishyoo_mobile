@@ -79,7 +79,7 @@ class CandidateHomeBanner extends HookWidget {
                         children: [
                           Text(
                             banner.title,
-                            maxLines: 2,
+                            maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                             style: context.textThemes.s1.copyWith(
                               color: banner.textColor,
@@ -88,6 +88,8 @@ class CandidateHomeBanner extends HookWidget {
                           const SizedBox(height: 4),
                           Text(
                             banner.subtitle,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
                             style: context.textThemes.c1.copyWith(
                               color: banner.subtitleColor,
                             ),
@@ -107,6 +109,8 @@ class CandidateHomeBanner extends HookWidget {
                             ),
                             child: Text(
                               banner.buttonText,
+                              maxLines: 1,
+                              overflow: .ellipsis,
                               style: context.textThemes.c2.copyWith(
                                 color: banner.buttonFgColor,
                               ),

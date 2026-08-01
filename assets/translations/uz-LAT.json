@@ -213,7 +213,8 @@
       "pending": "Kutilmoqda",
       "accepted": "Qabul qilindi",
       "rejected": "Rad etildi",
-      "interview": "Suhbat"
+      "interview": "Suhbat",
+      "archived": "Arxivlangan"
     }
   },
   "opportunities": {

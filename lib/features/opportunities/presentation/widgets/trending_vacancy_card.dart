@@ -7,7 +7,7 @@ import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/opportunities/presentation/bloc/vacancy_feed_bloc.dart';
-import 'package:mobile/features/opportunities/presentation/widgets/apply_to_vacancy_sheet.dart';
+import 'package:mobile/features/opportunities/presentation/widgets/apply_vacancy_sheet.dart';
 
 import '../../data/models/vacancy.dart';
 
@@ -25,14 +25,18 @@ class TrendingVacancyCard extends StatelessWidget {
     return DateFormat("MMM dd, yyyy").format(date);
   }
 
+  String _formatNumber(double n) {
+    return n.truncateToDouble() == n ? n.toInt().toString() : n.toString();
+  }
+
   String _formatSalary(double? from, double? to, String? currency) {
     if (from == null && to == null) return "shared.negotiable".tr();
     final c = currency?.toUpperCase() ?? "UZS";
     if (from != null && to != null) {
-      return "$from - $to $c";
+      return "${_formatNumber(from)} - ${_formatNumber(to)} $c";
     }
-    if (from != null) return "$from $c";
-    return "$to $c";
+    if (from != null) return "${_formatNumber(from)} $c";
+    return "${_formatNumber(to!)} $c";
   }
 
   @override
@@ -148,26 +152,43 @@ class TrendingVacancyCard extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Row(
+              mainAxisAlignment: .spaceBetween,
+              spacing: 8,
               children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
+                Flexible(
+                  child: FittedBox(
+                    fit: .scaleDown,
+                    child: Text(
                       _formatSalary(v?.salaryFrom, v?.salaryTo, v?.currency),
                       style: context.textThemes.s2,
                     ),
-                  ],
+                  ),
                 ),
-                const Spacer(),
                 AppButton(
                   widthType: ButtonWidthType.shrink,
-                  onTap: () => showModalBottomSheet(
-                    context: context,
-                    isScrollControlled: true,
-                    backgroundColor: Colors.transparent,
-                    builder: (_) => const ApplyToVacancySheet(),
-                  ),
-                  label: "opportunities.apply".tr(),
+                  onTap: () {
+                    if (v?.hasApplied == true) return;
+                    showModalBottomSheet(
+                      context: context,
+                      isScrollControlled: true,
+                      builder: (_) => ApplyVacancySheet(
+                        onApply: (resumeId, coverLetter) {
+                          if (v?.id != null) {
+                            context.read<VacancyFeedBloc>().add(
+                              ApplyToVacancyFeed(
+                                id: v!.id,
+                                resumeId: resumeId,
+                                coverLetter: coverLetter,
+                              ),
+                            );
+                          }
+                        },
+                      ),
+                    );
+                  },
+                  label: v?.hasApplied == true
+                      ? "opportunities.already_applied".tr()
+                      : "opportunities.apply_button".tr(),
                   foregroundColor: context.colors.brandDefault,
                   color: context.colors.brandProgress,
                   labelStyle: context.textThemes.b3,

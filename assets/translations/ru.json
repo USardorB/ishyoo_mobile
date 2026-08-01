@@ -213,7 +213,8 @@
       "pending": "В ожидании",
       "accepted": "Принято",
       "rejected": "Отклонено",
-      "interview": "Собеседование"
+      "interview": "Собеседование",
+      "archived": "В архиве"
     }
   },
   "opportunities": {

@@ -35,7 +35,7 @@ class _ApplicationsPageView extends HookWidget {
       {"nameKey": "applications.status.interview", "status": "invited"},
       {"nameKey": "applications.status.pending", "status": "pending"},
       {"nameKey": "applications.status.rejected", "status": "rejected"},
-      {"nameKey": "shared.all", "status": "archived"},
+      {"nameKey": "applications.status.archived", "status": "archived"},
     ];
     final tabController = useTabController(initialLength: tabs.length);
 

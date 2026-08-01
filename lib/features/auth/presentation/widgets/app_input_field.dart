@@ -50,6 +50,8 @@ class AppInputField extends StatelessWidget {
           Text(
             label!,
             textAlign: .start,
+            maxLines: 1,
+            overflow: .ellipsis,
             style: context.textThemes.s3,
           ),
           SizedBox(height: 8),

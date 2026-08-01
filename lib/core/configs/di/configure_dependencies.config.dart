@@ -467,18 +467,19 @@ extension GetItInjectableX on _i174.GetIt {
         gh<_i360.UnsaveVacancyUseCase>(),
       ),
     );
+    gh.factory<_i328.VacancyFeedBloc>(
+      () => _i328.VacancyFeedBloc(
+        getVacancyFeedUseCase: gh<_i933.GetVacancyFeedUseCase>(),
+        applyToVacancyUseCase: gh<_i1058.ApplyToVacancyUseCase>(),
+        saveVacancyUseCase: gh<_i301.SaveVacancyUseCase>(),
+        unsaveVacancyUseCase: gh<_i360.UnsaveVacancyUseCase>(),
+      ),
+    );
     gh.factory<_i865.ResumeDetailBloc>(
       () => _i865.ResumeDetailBloc(gh<_i140.GetResumeDetailUseCase>()),
     );
     gh.factory<_i1060.ApplicantsBloc>(
       () => _i1060.ApplicantsBloc(gh<_i777.ApplicantsRepository>()),
-    );
-    gh.factory<_i328.VacancyFeedBloc>(
-      () => _i328.VacancyFeedBloc(
-        getVacancyFeedUseCase: gh<_i933.GetVacancyFeedUseCase>(),
-        saveVacancyUseCase: gh<_i301.SaveVacancyUseCase>(),
-        unsaveVacancyUseCase: gh<_i360.UnsaveVacancyUseCase>(),
-      ),
     );
     gh.factory<_i656.NotificationDetailBloc>(
       () => _i656.NotificationDetailBloc(

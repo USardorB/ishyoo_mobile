@@ -47,3 +47,15 @@ class ToggleSaveVacancyFeed extends VacancyFeedEvent {
     required this.currentlySaved,
   });
 }
+
+class ApplyToVacancyFeed extends VacancyFeedEvent {
+  final String id;
+  final String resumeId;
+  final String? coverLetter;
+
+  const ApplyToVacancyFeed({
+    required this.id,
+    required this.resumeId,
+    this.coverLetter,
+  });
+}

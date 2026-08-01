@@ -1,10 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/enums/app_enums.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
+import 'package:mobile/features/postings/presentation/bloc/postings_bloc.dart';
+import 'package:mobile/features/postings/presentation/widgets/category_selection_sheet.dart';
 
 class VacancyFilterSheet extends StatefulWidget {
   final String? initialJobType;
@@ -31,37 +35,30 @@ class VacancyFilterSheet extends StatefulWidget {
 class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
   EmploymentType? _selectedJobType;
   AppExperienceLevel? _selectedExperienceLevel;
-  late final TextEditingController _specializationController;
+  String? _specialization;
 
   @override
   void initState() {
     super.initState();
     _selectedJobType = EmploymentType.fromServer(widget.initialJobType);
     _selectedExperienceLevel = AppExperienceLevel.fromServer(widget.initialExperienceLevel);
-    _specializationController = TextEditingController(text: widget.initialSpecialization);
-  }
-
-  @override
-  void dispose() {
-    _specializationController.dispose();
-    super.dispose();
+    _specialization = widget.initialSpecialization;
   }
 
   void _clearFilters() {
     setState(() {
       _selectedJobType = null;
       _selectedExperienceLevel = null;
-      _specializationController.clear();
+      _specialization = null;
     });
   }
 
   void _applyFilters() {
     if (widget.onApply != null) {
-      final spec = _specializationController.text.trim();
       widget.onApply!(
         _selectedJobType?.serverValue,
         _selectedExperienceLevel?.serverValue,
-        spec.isEmpty ? null : spec,
+        _specialization,
       );
     }
     context.pop();
@@ -118,9 +115,39 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
             const SizedBox(height: 18),
             _sectionTitle(context, 'talents.search_placeholder'.tr()),
             const SizedBox(height: 16),
-            AppInputField(
-              controller: _specializationController,
-              hintText: "shared.search".tr(),
+            BlocProvider(
+              create: (context) => sl<PostingsBloc>()..add(LoadPostings()),
+              child: BlocBuilder<PostingsBloc, PostingsState>(
+                builder: (context, state) {
+                  return AppInputField(
+                    hintText: _specialization ?? "shared.search".tr(),
+                    readOnly: true,
+                    suffixIcon: Icon(
+                      Icons.chevron_right,
+                      color: context.colors.textSecondary,
+                    ),
+                    onTap: () async {
+                      final result = await showModalBottomSheet<String>(
+                        context: context,
+                        isScrollControlled: true,
+                        backgroundColor: context.colors.bgPrimary,
+                        shape: const RoundedRectangleBorder(
+                          borderRadius: BorderRadius.vertical(
+                              top: Radius.circular(24)),
+                        ),
+                        builder: (context) => CategorySelectionSheet(
+                          specializations: state.specializations ?? [],
+                        ),
+                      );
+                      if (result != null) {
+                        setState(() {
+                          _specialization = result;
+                        });
+                      }
+                    },
+                  );
+                },
+              ),
             ),
             const SizedBox(height: 20),
             _sectionTitle(context, 'profile.experience'.tr()),
