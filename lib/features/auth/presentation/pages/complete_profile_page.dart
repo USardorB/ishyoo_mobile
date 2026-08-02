@@ -45,7 +45,7 @@ class CompleteProfilePage extends HookWidget {
     Future<void> onRegister() async {
       if (firstNameController.text.isEmpty || passwordController.text.isEmpty) {
         AppNotificationOverlay.instance.show(
-          message: 'auth.complete_profile.fill_all'.tr(),
+          message: 'auth.completeProfile.errors.fillAll'.tr(),
           type: .warning,
         );
         return;
@@ -63,7 +63,7 @@ class CompleteProfilePage extends HookWidget {
 
       if (requestId == null) {
         AppNotificationOverlay.instance.show(
-          message: 'shared.error_occurred'.tr(),
+          message: 'auth.completeProfile.errors.general'.tr(),
           type: .error,
         );
         return;
@@ -110,7 +110,7 @@ class CompleteProfilePage extends HookWidget {
             context.router.replaceAll([const WaitlistedRoute()]);
           } else if (state.status == bloc_state.AuthStatus.failure) {
             AppNotificationOverlay.instance.show(
-              message: state.errorMessage ?? 'shared.error_occurred'.tr(),
+              message: state.errorMessage ?? 'auth.completeProfile.errors.general'.tr(),
               type: .error,
             );
           }
@@ -127,7 +127,7 @@ class CompleteProfilePage extends HookWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        "auth.complete_profile.title",
+                        "auth.completeProfile.title",
                         textAlign: TextAlign.center,
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
@@ -135,7 +135,7 @@ class CompleteProfilePage extends HookWidget {
                       ).tr(),
                       const SizedBox(height: 12),
                       Text(
-                        "auth.complete_profile.subtitle",
+                        'auth.completeProfile.subtitle',
                         textAlign: TextAlign.center,
                         maxLines: 3,
                         overflow: TextOverflow.ellipsis,
@@ -147,7 +147,7 @@ class CompleteProfilePage extends HookWidget {
                   ),
                   const SizedBox(height: 16),
                   AppInputField(
-                    hintText: "auth.complete_profile.first_name_hint".tr(),
+                    hintText: "auth.completeProfile.firstNameHint".tr(),
                     autofillHints: const [AutofillHints.name],
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.name,
@@ -155,7 +155,7 @@ class CompleteProfilePage extends HookWidget {
                   ),
                   const SizedBox(height: 12),
                   AppInputField(
-                    hintText: "auth.complete_profile.last_name_hint".tr(),
+                    hintText: "auth.completeProfile.lastNameHint".tr(),
                     autofillHints: const [AutofillHints.familyName],
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.name,
@@ -164,7 +164,7 @@ class CompleteProfilePage extends HookWidget {
                   if (isCompany) ...[
                     const SizedBox(height: 12),
                     AppInputField(
-                      hintText: "auth.complete_profile.company_name_hint".tr(),
+                      hintText: "auth.completeProfile.companyNameHint".tr(),
                       autofillHints: const [AutofillHints.organizationName],
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.name,
@@ -173,7 +173,7 @@ class CompleteProfilePage extends HookWidget {
                   ] else ...[
                     const SizedBox(height: 12),
                     AppInputField(
-                      hintText: "auth.complete_profile.birth_date_hint".tr(),
+                      hintText: "auth.completeProfile.birthDateHint".tr(),
                       textInputAction: TextInputAction.next,
                       readOnly: true,
                       onTap: () async {
@@ -197,7 +197,7 @@ class CompleteProfilePage extends HookWidget {
                   const SizedBox(height: 12),
                   AppInputField(
                     obscureText: isObscured.value,
-                    hintText: "auth.complete_profile.new_password_hint".tr(),
+                    hintText: "auth.confirmPassword.passwordHint".tr(),
                     autofillHints: const [AutofillHints.newPassword],
                     textInputAction: TextInputAction.done,
                     keyboardType: TextInputType.visiblePassword,
@@ -215,7 +215,7 @@ class CompleteProfilePage extends HookWidget {
                   AppButton(
                     onTap: onRegister,
                     isLoading: state.status == bloc_state.AuthStatus.loading,
-                    label: 'shared.continue'.tr(),
+                    label: 'auth.completeProfile.buttons.continue'.tr(),
                   ),
                   const SizedBox(height: 12),
                 ],

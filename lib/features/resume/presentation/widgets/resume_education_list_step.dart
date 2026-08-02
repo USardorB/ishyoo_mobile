@@ -53,7 +53,7 @@ class ResumeEducationListStep extends StatelessWidget {
                 }
               },
               icon: Icons.add,
-              label: "shared.add".tr(),
+              label: "resume.actions.add".tr(),
               color: context.colors.brandProgress.withValues(alpha: 0.15),
               foregroundColor: context.colors.brandProgress,
               labelStyle: context.textThemes.b2,
@@ -128,7 +128,7 @@ class ResumeEducationListStep extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              "${edu.startDate?.year ?? ''} - ${edu.endDate?.year ?? 'shared.present'.tr()}",
+              "${edu.startDate?.year ?? ''} - ${edu.endDate?.year ?? 'resume.present'.tr()}",
               style: context.textThemes.c1.copyWith(
                 color: context.colors.textSecondary,
               ),

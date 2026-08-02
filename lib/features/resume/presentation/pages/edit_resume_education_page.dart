@@ -38,7 +38,7 @@ class EditResumeEducationPage extends HookWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => context.maybePop(),
         ),
-        title: const Text("resume.education").tr(),
+        title: const Text("resume.sections.education").tr(),
         centerTitle: true,
         actions: [
           if (education != null)

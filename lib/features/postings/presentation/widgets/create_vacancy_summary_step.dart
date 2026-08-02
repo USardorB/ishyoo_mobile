@@ -43,7 +43,7 @@ class CreateVacancySummaryStep extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text("shared.saved_success", style: context.textThemes.h5).tr(),
+          Text("postings.create.savedSuccess", style: context.textThemes.h5).tr(),
           const SizedBox(height: 20),
           Container(
             padding: const EdgeInsets.all(16),

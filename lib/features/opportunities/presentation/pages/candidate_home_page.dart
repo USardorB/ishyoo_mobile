@@ -42,7 +42,7 @@ class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
           IconButton.filled(
             onPressed: () {
               AppNotificationOverlay.instance.show(
-                message: "shared.coming_soon".tr(),
+                message: "opportunities.details.comingSoon".tr(),
                 type: AppNotificationType.warning,
               );
             },

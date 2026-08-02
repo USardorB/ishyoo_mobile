@@ -84,12 +84,12 @@ class _ApplicantsPageState extends State<ApplicantsPage>
           labelPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
           tabAlignment: TabAlignment.start,
           tabs: [
-            const Text('applications.status.pending').tr(),
-            const Text('applications.status.interview').tr(),
-            const Text('applications.status.rejected').tr(),
-            const Text('shared.all').tr(),
-            const Text('applications.status.accepted').tr(),
-            const Text('shared.filter').tr(),
+            const Text('applicants.tabs.pending').tr(),
+            const Text('applicants.tabs.interview').tr(),
+            const Text('applicants.tabs.rejected').tr(),
+            const Text('applicants.tabs.all').tr(),
+            const Text('applicants.tabs.accepted').tr(),
+            const Text('applicants.actions.filter').tr(),
           ],
         ),
       ),
@@ -112,7 +112,7 @@ class _ApplicantsPageState extends State<ApplicantsPage>
 
               if (applicants.isEmpty) {
                 return NoApplicationPlaceholder(
-                  message: "applications.no_applications".tr(),
+                  message: "applicants.emptyState".tr(),
                 );
               }
 

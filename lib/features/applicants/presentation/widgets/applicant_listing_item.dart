@@ -17,7 +17,7 @@ class ApplicantListingItem extends StatelessWidget {
   });
 
   String _formatDate(DateTime? date) {
-    if (date == null) return 'shared.present'.tr();
+    if (date == null) return 'applicants.card.present'.tr();
     try {
       final year = date.year.toString();
       final month = date.month.toString();
@@ -36,9 +36,9 @@ class ApplicantListingItem extends StatelessWidget {
     final remainingMonths = (days % 365) ~/ 30;
 
     if (years > 0 && remainingMonths > 0) {
-      return 'applicants.experience_years'.tr(args: [years.toString()]);
+      return 'applicants.card.experienceYears'.tr(args: [years.toString()]);
     } else if (years > 0) {
-      return 'applicants.experience_years'.tr(args: [years.toString()]);
+      return 'applicants.card.experienceYears'.tr(args: [years.toString()]);
     } else if (remainingMonths > 0) {
       return '$remainingMonths m';
     } else {
@@ -62,10 +62,10 @@ class ApplicantListingItem extends StatelessWidget {
 
     String experienceText;
     if (totalExperienceDays == 0) {
-      experienceText = "shared.no_data".tr();
+      experienceText = "applicants.card.noData".tr();
     } else {
       final years = totalExperienceDays ~/ 365;
-      experienceText = "applicants.experience_years".tr(
+      experienceText = "applicants.card.experienceYears".tr(
         args: [years.toString()],
       );
     }
@@ -134,7 +134,7 @@ class ApplicantListingItem extends StatelessWidget {
                     Text(
                       applicant.expectedSalary != null
                           ? '${applicant.expectedSalary} ${applicant.currency ?? 'UZS'}'
-                          : 'shared.all'.tr(),
+                          : 'applicants.card.negotiable'.tr(),
                       style: context.textThemes.s3,
                     ),
                   ],
@@ -165,7 +165,7 @@ class ApplicantListingItem extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              'profile.experience',
+              'applicants.card.experience',
               style: context.textThemes.c1.copyWith(
                 color: context.colors.textSecondary,
               ),
@@ -177,7 +177,7 @@ class ApplicantListingItem extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              'resume.workplace',
+              'applicants.card.workplace',
               style: context.textThemes.c1.copyWith(
                 color: context.colors.textSecondary,
               ),

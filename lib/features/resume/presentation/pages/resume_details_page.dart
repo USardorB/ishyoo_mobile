@@ -34,7 +34,7 @@ class ResumeDetailsPage extends StatelessWidget implements AutoRouteWrapper {
           IconButton(
             onPressed: () {
               AppNotificationOverlay.instance.show(
-                message: "shared.coming_soon".tr(),
+                message: "resume.actions.comingSoon".tr(),
                 type: AppNotificationType.warning,
               );
             },
@@ -68,7 +68,7 @@ class ResumeDetailsPage extends StatelessWidget implements AutoRouteWrapper {
 
           final resume = state.resume;
           if (resume == null) {
-            return Center(child: const Text("shared.no_data").tr());
+            return Center(child: const Text("resume.noData").tr());
           }
 
           final employmentTypeStr = (resume.employmentType ?? []).join(', ');
@@ -122,7 +122,7 @@ class ResumeDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                       CreateResumeFlowRoute(resume: resume),
                     );
                   },
-                  label: "shared.edit".tr(),
+                  label: "resume.actions.edit".tr(),
                   color: context.colors.bgSecondary,
                   foregroundColor: context.colors.textPrimary,
                 ),

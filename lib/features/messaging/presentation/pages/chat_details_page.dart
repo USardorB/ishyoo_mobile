@@ -36,7 +36,7 @@ class ChatDetailsPage extends StatelessWidget {
           title: BlocBuilder<MessagingBloc, MessagingState>(
             builder: (context, state) {
               final partner = state.currentChat?.partner;
-              final name = partner?.name ?? 'shared.loading'.tr();
+              final name = partner?.name ?? 'messaging.loading'.tr();
               final avatarUrl = partner?.avatar;
               return ListTile(
                 leading: CircleAvatar(
@@ -64,7 +64,7 @@ class ChatDetailsPage extends StatelessWidget {
             preferredSize: const Size.fromHeight(kToolbarHeight + 10),
             child: BlocBuilder<MessagingBloc, MessagingState>(
               builder: (context, state) {
-                String title = "nav.vacancies".tr();
+                String title = "messaging.vacancies".tr();
                 if (state.currentChat != null) {
                   final chat = state.currentChat!;
                   if (isEmployer) {
@@ -85,7 +85,7 @@ class ChatDetailsPage extends StatelessWidget {
 
                     if ((resumeId ?? vacancyId) == null) {
                       AppNotificationOverlay.instance.show(
-                        message: "shared.no_data".tr(),
+                        message: "messaging.noData".tr(),
                         type: AppNotificationType.warning,
                       );
                       return;
@@ -130,7 +130,7 @@ class ChatDetailsPage extends StatelessWidget {
             } else if (state.currentChat == null ||
                 state.currentChat!.messages == null ||
                 state.currentChat!.messages!.isEmpty) {
-              return Center(child: const Text("messaging.no_chats").tr());
+              return Center(child: const Text("messaging.emptyState").tr());
             }
 
             final messages = state.currentChat!.messages!;

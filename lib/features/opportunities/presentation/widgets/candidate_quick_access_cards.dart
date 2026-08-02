@@ -22,7 +22,7 @@ class CandidateQuickAccessCards extends StatelessWidget {
         const SizedBox(width: 8),
         Expanded(
           child: _QuickAccessCard(
-            title: "resume.create_resume".tr(),
+            title: "opportunities.quickAccess.createResume".tr(),
             icon: Icons.insights_outlined,
             iconColor: context.colors.success,
             onTap: () => context.pushRoute(CreateResumeFlowRoute()),
@@ -31,7 +31,7 @@ class CandidateQuickAccessCards extends StatelessWidget {
         const SizedBox(width: 8),
         Expanded(
           child: _QuickAccessCard(
-            title: "articles.title".tr(),
+            title: "opportunities.quickAccess.articles".tr(),
             icon: Icons.assignment_outlined,
             iconColor: context.colors.warning,
             onTap: () => context.pushRoute(const ArticlesRoute()),

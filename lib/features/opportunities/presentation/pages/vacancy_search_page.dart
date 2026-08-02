@@ -89,7 +89,7 @@ class _VacancySearchPageState extends State<VacancySearchPage> {
           return Scaffold(
             appBar: AppBar(
               toolbarHeight: 64,
-              title: const Text('talents.search_results').tr(),
+              title: const Text('opportunities.searchResults').tr(),
               bottom: PreferredSize(
                 preferredSize: const Size.fromHeight(48),
                 child: Padding(
@@ -149,7 +149,7 @@ class _VacancySearchPageState extends State<VacancySearchPage> {
                               width: 280,
                             ),
                             Text(
-                              "shared.no_data",
+                              "opportunities.search.empty",
                               textAlign: TextAlign.center,
                               style: context.textThemes.b1.copyWith(
                                 color: context.colors.textSecondary,

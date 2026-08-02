@@ -71,7 +71,7 @@ class _CreateVacancyLocationStepState extends State<CreateVacancyLocationStep> {
                 ).tr(),
                 const SizedBox(height: 16),
                 AppInputField(
-                  label: "opportunities.location".tr(),
+                  label: "postings.create.location".tr(),
                   controller: widget.addressController,
                   textInputAction: TextInputAction.done,
                 ),
@@ -214,7 +214,7 @@ class _CreateVacancyLocationStepState extends State<CreateVacancyLocationStep> {
             builder: (context, _) {
               final isValid = widget.addressController.text.trim().isNotEmpty;
               return AppButton(
-                label: "shared.continue".tr(),
+                label: "postings.create.continueButton".tr(),
                 enabled: isValid,
                 onTap: widget.onNext,
               );

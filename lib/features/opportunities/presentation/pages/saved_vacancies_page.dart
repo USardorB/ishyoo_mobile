@@ -48,7 +48,7 @@ class _SavedVacanciesPageState extends State<SavedVacanciesPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'talents.results_count'.tr(args: [count.toString()]),
+                      'opportunities.resultsCount'.tr(args: [count.toString()]),
                       style: context.textThemes.s2,
                     ),
                     const Spacer(),

@@ -21,7 +21,7 @@ class ResumeStatsSection extends StatelessWidget {
       listener: (context, state) {
         if (state.isBoosted) {
           AppNotificationOverlay.instance.show(
-            message: "shared.saved_success".tr(),
+            message: "resume.actions.savedSuccess".tr(),
             type: AppNotificationType.success,
           );
           context.read<ResumeDetailBloc>().add(LoadResumeDetail(resume.id));
@@ -61,10 +61,10 @@ class ResumeStatsSection extends StatelessWidget {
                   ),
                   _buildStat(
                     context,
-                    "applicants.invited".tr(),
+                    "resume.stats.invited".tr(),
                     AppStatus.fromServer(resume.status) == AppStatus.active
-                        ? 'shared.all'.tr()
-                        : 'shared.cancel'.tr(),
+                        ? 'resume.visibility.all'.tr()
+                        : 'resume.visibility.hidden'.tr(),
                     false,
                   ),
                   Container(
@@ -74,11 +74,11 @@ class ResumeStatsSection extends StatelessWidget {
                   ),
                   _buildStat(
                     context,
-                    "applicants.shortlisted".tr(),
+                    "resume.stats.shortlisted".tr(),
                     ResumeVisibility.fromServer(resume.visibility) ==
                             ResumeVisibility.public
-                        ? 'shared.all'.tr()
-                        : 'shared.cancel'.tr(),
+                        ? 'resume.visibility.all'.tr()
+                        : 'resume.visibility.hidden'.tr(),
                     false,
                   ),
                 ],
@@ -93,8 +93,8 @@ class ResumeStatsSection extends StatelessWidget {
                       }
                     : () {},
                 label: isSubmitting
-                    ? "shared.continue".tr()
-                    : "shared.save".tr(),
+                    ? "resume.actions.continueButton".tr()
+                    : "resume.actions.save".tr(),
                 color: canBoost
                     ? context.colors.brandProgress.withValues(alpha: 0.15)
                     : context.colors.bgTertiary,

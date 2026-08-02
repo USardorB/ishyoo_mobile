@@ -271,7 +271,7 @@ class MessageBubble extends StatelessWidget {
           children: [
             ListTile(
               leading: const Icon(Icons.edit_outlined),
-              title: const Text("shared.edit").tr(),
+              title: const Text("messaging.actions.edit").tr(),
               onTap: () {
                 Navigator.pop(ctx);
                 _showEditDialog(context, isEmployer);
@@ -283,7 +283,7 @@ class MessageBubble extends StatelessWidget {
                 color: context.colors.danger,
               ),
               title: Text(
-                "shared.delete".tr(),
+                "messaging.actions.delete".tr(),
                 style: TextStyle(color: context.colors.danger),
               ),
               onTap: () {
@@ -308,17 +308,17 @@ class MessageBubble extends StatelessWidget {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text("messaging.edit_message").tr(),
+        title: const Text("messaging.dialogs.editMessage.title").tr(),
         content: TextField(
           controller: ctrl,
           autofocus: true,
           maxLines: null,
-          decoration: InputDecoration(hintText: "messaging.type_message".tr()),
+          decoration: InputDecoration(hintText: "messaging.input.placeholder".tr()),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(ctx),
-            child: const Text("shared.cancel").tr(),
+            child: const Text("messaging.actions.cancel").tr(),
           ),
           TextButton(
             onPressed: () {
@@ -335,7 +335,7 @@ class MessageBubble extends StatelessWidget {
               }
               Navigator.pop(ctx);
             },
-            child: const Text("shared.save").tr(),
+            child: const Text("messaging.actions.save").tr(),
           ),
         ],
       ),

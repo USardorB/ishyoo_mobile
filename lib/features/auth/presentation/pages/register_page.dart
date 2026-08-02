@@ -34,7 +34,7 @@ class RegisterPage extends HookWidget {
     void onRequestSms() {
       if (phoneController.text.isEmpty) {
         AppNotificationOverlay.instance.show(
-          message: 'shared.error_occurred'.tr(),
+          message: 'auth.register.errors.general'.tr(),
           type: .warning,
         );
         return;
@@ -70,7 +70,7 @@ class RegisterPage extends HookWidget {
             );
           } else if (state.status == bloc_state.AuthStatus.failure) {
             AppNotificationOverlay.instance.show(
-              message: state.errorMessage ?? 'shared.error_occurred'.tr(),
+              message: state.errorMessage ?? 'auth.register.errors.general'.tr(),
               type: .error,
             );
           }
@@ -112,13 +112,13 @@ class RegisterPage extends HookWidget {
                   keyboardType: TextInputType.phone,
                   controller: phoneController,
                   prefixIcon: const PhoneNumberFieldPrefix(),
-                  label: 'auth.register.phone_label'.tr(),
+                  label: 'auth.register.phoneLabel'.tr(),
                 ),
                 const Spacer(),
                 AppButton(
                   onTap: onRequestSms,
                   isLoading: state.status == bloc_state.AuthStatus.loading,
-                  label: 'shared.continue'.tr(),
+                  label: 'auth.register.buttons.continue'.tr(),
                 ),
                 const SizedBox(height: 12),
                 const PrivacyPolicyNotice(),
@@ -127,7 +127,7 @@ class RegisterPage extends HookWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'auth.register.has_account',
+                      'auth.register.loginPrompt.text',
                       textAlign: TextAlign.center,
                       style: context.textThemes.b1,
                     ).tr(),
@@ -138,7 +138,7 @@ class RegisterPage extends HookWidget {
                         visualDensity: VisualDensity.compact,
                       ),
                       child: Text(
-                        'auth.register.login_link',
+                        'auth.register.loginPrompt.link',
                         style: context.textThemes.b1,
                       ).tr(),
                     ),

@@ -32,10 +32,10 @@ class _ApplicationsPageView extends HookWidget {
   Widget build(BuildContext context) {
     final tabs = [
       {"nameKey": "applications.tabs.all", "status": null},
-      {"nameKey": "applications.status.interview", "status": "invited"},
-      {"nameKey": "applications.status.pending", "status": "pending"},
-      {"nameKey": "applications.status.rejected", "status": "rejected"},
-      {"nameKey": "applications.status.archived", "status": "archived"},
+      {"nameKey": "applications.tabs.interview", "status": "invited"},
+      {"nameKey": "applications.tabs.pending", "status": "pending"},
+      {"nameKey": "applications.tabs.rejected", "status": "rejected"},
+      {"nameKey": "applications.tabs.archived", "status": "archived"},
     ];
     final tabController = useTabController(initialLength: tabs.length);
 
@@ -119,7 +119,7 @@ class _ApplicationsPageView extends HookWidget {
 
                     if (applications.isEmpty) {
                       return NoApplicationPlaceholder(
-                        message: "applications.no_applications".tr(),
+                        message: "applications.emptyState".tr(),
                       );
                     }
 

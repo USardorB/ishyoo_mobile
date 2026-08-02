@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/features/profile/data/models/profile.dart';
@@ -123,7 +124,7 @@ class _ResumePdfPreviewPageState extends State<ResumePdfPreviewPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Rezyumeni PDF sifatida ko'rish"),
+        title: const Text("resume.previewPdf").tr(),
         leading: IconButton(
           icon: const Icon(Icons.arrow_back),
           onPressed: () => context.maybePop(),

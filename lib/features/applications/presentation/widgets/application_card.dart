@@ -157,7 +157,7 @@ class ApplicationCard extends StatelessWidget {
                       Text(
                         application.vacancy?.salaryFrom != null
                             ? "${application.vacancy!.salaryFrom} ${application.vacancy!.currency ?? 'UZS'}"
-                            : "shared.negotiable".tr(),
+                            : "applications.card.negotiable".tr(),
                         style: context.textThemes.s2,
                       ),
                     ],
@@ -175,7 +175,7 @@ class ApplicationCard extends StatelessWidget {
                       onTap: () => context.pushRoute(
                         ChatDetailsRoute(chatId: "application.chatId"),
                       ),
-                      label: "nav.chats".tr(),
+                      label: "applications.card.chat".tr(),
                       color: context.colors.brandProgress,
                       foregroundColor: context.colors.brandDefault,
                     ),

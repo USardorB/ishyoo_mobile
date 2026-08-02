@@ -34,18 +34,18 @@ class OnboardingPage extends HookWidget {
               controller: pageController,
               children: [
                 OnboardingPageViewItem(
-                  title: 'onboarding.slide1.title'.tr(),
-                  subTitle: 'onboarding.slide1.subtitle'.tr(),
+                  title: 'onboarding.slides.slide1.title'.tr(),
+                  subTitle: 'onboarding.slides.slide1.subtitle'.tr(),
                   imageURL: 'assets/images/onboarding1.webp',
                 ),
                 OnboardingPageViewItem(
-                  title: 'onboarding.slide2.title'.tr(),
-                  subTitle: 'onboarding.slide2.subtitle'.tr(),
+                  title: 'onboarding.slides.slide2.title'.tr(),
+                  subTitle: 'onboarding.slides.slide2.subtitle'.tr(),
                   imageURL: 'assets/images/onboarding2.webp',
                 ),
                 OnboardingPageViewItem(
-                  title: 'onboarding.slide3.title'.tr(),
-                  subTitle: 'onboarding.slide3.subtitle'.tr(),
+                  title: 'onboarding.slides.slide3.title'.tr(),
+                  subTitle: 'onboarding.slides.slide3.subtitle'.tr(),
                   imageURL: 'assets/images/onboarding3.webp',
                 ),
               ],
@@ -79,8 +79,8 @@ class OnboardingPage extends HookWidget {
                         );
                       },
                       label: isLastPage
-                          ? "auth.select_role.employer_sub".tr()
-                          : "shared.continue".tr(),
+                          ? "onboarding.actions.hireTalent".tr()
+                          : "onboarding.actions.continueAction".tr(),
                     ),
                     const SizedBox(height: 12),
                     AppButton(
@@ -95,8 +95,8 @@ class OnboardingPage extends HookWidget {
                         );
                       },
                       label: isLastPage
-                          ? "auth.select_role.candidate_sub".tr()
-                          : "shared.skip".tr(),
+                          ? "onboarding.actions.findJob".tr()
+                          : "onboarding.actions.skip".tr(),
                       color: context.colors.bgPrimary,
                     ),
                     const Flexible(flex: 0, child: SizedBox(height: 12)),

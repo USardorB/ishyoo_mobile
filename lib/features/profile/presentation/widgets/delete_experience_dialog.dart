@@ -17,13 +17,13 @@ class DeleteExperienceDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "profile.delete_exp_title",
+              "profile.candidate.deleteExperienceTitle",
               textAlign: TextAlign.center,
               style: context.textThemes.s1,
             ).tr(),
             const SizedBox(height: 12),
             Text(
-              "profile.delete_exp_desc",
+              "profile.candidate.deleteExperienceDesc",
               textAlign: TextAlign.center,
               style: context.textThemes.b2.copyWith(
                 color: context.colors.textSecondary,
@@ -44,7 +44,7 @@ class DeleteExperienceDialog extends StatelessWidget {
                       ),
                       alignment: Alignment.center,
                       child: Text(
-                        "shared.cancel",
+                        "profile.candidate.cancel",
                         style: context.textThemes.b2,
                       ).tr(),
                     ),
@@ -63,7 +63,7 @@ class DeleteExperienceDialog extends StatelessWidget {
                       ),
                       alignment: Alignment.center,
                       child: Text(
-                        "shared.delete",
+                        "profile.candidate.delete",
                         style: context.textThemes.b2.copyWith(
                           color: Colors.white,
                         ),

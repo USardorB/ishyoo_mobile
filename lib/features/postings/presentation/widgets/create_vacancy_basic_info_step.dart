@@ -59,13 +59,13 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
           ).tr(),
           const SizedBox(height: 20),
           AppInputField(
-            label: "opportunities.title".tr(),
+            label: "postings.create.title".tr(),
             controller: titleController,
           ),
           const SizedBox(height: 16),
           AppInputField(
-            label: "talents.search_placeholder".tr(),
-            hintText: selectedSpecialization ?? "shared.search".tr(),
+            label: "postings.create.searchPlaceholder".tr(),
+            hintText: selectedSpecialization ?? "postings.create.search".tr(),
             readOnly: true,
             suffixIcon: Icon(
               Icons.chevron_right,
@@ -89,7 +89,7 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            "opportunities.salary".tr(args: ['']),
+            "postings.create.salary".tr(args: ['']),
             style: context.textThemes.s3,
           ),
           const SizedBox(height: 8),
@@ -98,7 +98,7 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: AppInputField(
-                  hintText: "shared.all".tr(),
+                  hintText: "postings.create.all".tr(),
                   controller: salaryFromController,
                   keyboardType: TextInputType.number,
                 ),
@@ -107,7 +107,7 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: AppInputField(
-                  hintText: "shared.all".tr(),
+                  hintText: "postings.create.all".tr(),
                   controller: salaryToController,
                   keyboardType: TextInputType.number,
                 ),
@@ -154,12 +154,12 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           AppInputField(
-            label: "postings.full_name_label".tr(),
+            label: "postings.fullNameLabel".tr(),
             controller: contactNameController,
           ),
           const SizedBox(height: 16),
           AppInputField(
-            label: "auth.login.phone_label".tr(),
+            label: "postings.create.phoneLabel".tr(),
             controller: phoneController,
           ),
           const SizedBox(height: 16),
@@ -170,7 +170,7 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            "opportunities.employment_type".tr(),
+            "postings.create.employmentType".tr(),
             style: context.textThemes.s3,
           ),
           const SizedBox(height: 8),
@@ -214,7 +214,7 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
             builder: (context, _) {
               final isValid = _isValid();
               return AppButton(
-                label: "shared.continue".tr(),
+                label: "postings.create.continueButton".tr(),
                 enabled: isValid,
                 onTap: onNext,
               );

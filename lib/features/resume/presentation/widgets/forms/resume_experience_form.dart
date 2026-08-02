@@ -31,7 +31,7 @@ class ResumeExperienceForm extends StatelessWidget {
   });
 
   String _formatDate(DateTime? date) {
-    if (date == null) return "shared.search".tr();
+    if (date == null) return "resume.searchPlaceholder".tr();
     return "${date.month}/${date.year}";
   }
 
@@ -46,30 +46,30 @@ class ResumeExperienceForm extends StatelessWidget {
         const SizedBox(height: 16),
         _buildTextField(
           context,
-          "profile.about_company".tr(),
+          "resume.companyPlaceholder".tr(),
           "Masalan: Uzum bank",
           controller: companyController,
         ),
         const SizedBox(height: 24),
         _buildTextField(
           context,
-          "talents.search_placeholder".tr(),
+          "resume.specializationPlaceholder".tr(),
           "Masalan: UX/UI Dizayner",
           controller: positionController,
         ),
         const SizedBox(height: 24),
-        _buildActionField(context, "opportunities.location".tr(), location, onTap: onLocationTapped),
+        _buildActionField(context, "resume.location".tr(), location, onTap: onLocationTapped),
         const SizedBox(height: 24),
         _buildTextField(
           context,
-          "opportunities.description".tr(),
+          "resume.description".tr(),
           "Vazifalaringizni kiriting",
           controller: descriptionController,
           maxLines: 4,
         ),
         const SizedBox(height: 24),
         Text(
-          "shared.all".tr(),
+          "resume.yearHint".tr(),
           style: context.textThemes.c2.copyWith(
             color: context.colors.textSecondary,
           ),
@@ -84,7 +84,7 @@ class ResumeExperienceForm extends StatelessWidget {
         ),
         const SizedBox(height: 24),
         Text(
-          "shared.present".tr(),
+          "resume.present".tr(),
           style: context.textThemes.c2.copyWith(
             color: context.colors.textSecondary,
           ),
@@ -93,7 +93,7 @@ class ResumeExperienceForm extends StatelessWidget {
         _buildActionField(
           context,
           "",
-          isWorking ? "shared.present".tr() : endStr,
+          isWorking ? "resume.present".tr() : endStr,
           hasLabel: false,
           isPlaceholder: isWorking,
           onTap: isWorking ? null : onEndMonthTapped,

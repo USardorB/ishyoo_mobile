@@ -55,7 +55,7 @@ class RegionsSheet extends HookWidget {
                   const SizedBox(width: 48),
                   Expanded(
                     child: Text(
-                      "opportunities.location",
+                      "location.title",
                       textAlign: TextAlign.center,
                       style: context.textThemes.s1,
                     ).tr(),

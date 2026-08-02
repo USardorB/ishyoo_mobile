@@ -44,7 +44,7 @@ class NotificationDetailsPage extends StatelessWidget {
             }
 
             if (state.notification == null) {
-              return Center(child: const Text("shared.no_data").tr());
+              return Center(child: const Text("notifications.noData").tr());
             }
 
             final notification = state.notification!;

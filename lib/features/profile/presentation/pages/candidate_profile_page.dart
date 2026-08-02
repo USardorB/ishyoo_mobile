@@ -24,7 +24,7 @@ class CandidateProfilePage extends StatelessWidget {
           sl<CandidateProfileBloc>()..add(LoadCandidateProfile()),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text("profile.title").tr(),
+          title: const Text("profile.candidate.personalInfo").tr(),
           automaticallyImplyLeading: false,
           actions: [
             IconButton(
@@ -79,19 +79,19 @@ class CandidateProfilePage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  _buildSectionTitle(context, "profile.resumes"),
+                  _buildSectionTitle(context, "profile.candidate.resumes"),
                   const SizedBox(height: 12),
                   CandidateResumesSection(resumes: resumes),
                   const SizedBox(height: 24),
-                  _buildSectionTitle(context, "profile.experience"),
+                  _buildSectionTitle(context, "profile.candidate.experience"),
                   const SizedBox(height: 12),
                   CandidateExperienceSection(experiences: experiences),
                   const SizedBox(height: 24),
-                  _buildSectionTitle(context, "profile.education"),
+                  _buildSectionTitle(context, "profile.candidate.education"),
                   const SizedBox(height: 12),
                   CandidateEducationSection(educations: educations),
                   const SizedBox(height: 24),
-                  _buildSectionTitle(context, "profile.languages"),
+                  _buildSectionTitle(context, "profile.candidate.languages"),
                   const SizedBox(height: 12),
                   const CandidateLanguagesSection(),
                 ],

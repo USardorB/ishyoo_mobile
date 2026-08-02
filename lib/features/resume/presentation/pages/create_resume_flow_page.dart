@@ -63,10 +63,10 @@ class _CreateResumeFlowContent extends HookWidget {
     final currentPage = useState(0);
 
     final titles = [
-      "resume.contacts".tr(),
-      "resume.workplace".tr(),
-      "resume.education".tr(),
-      "profile.languages".tr(),
+      "resume.sections.contacts".tr(),
+      "resume.sections.workplace".tr(),
+      "resume.sections.education".tr(),
+      "resume.sections.languages".tr(),
     ];
 
     void nextStep() {
@@ -125,7 +125,7 @@ class _CreateResumeFlowContent extends HookWidget {
             _buildPage(
               context,
               const ResumeContactsForm(),
-              buttonLabel: "shared.continue".tr(),
+              buttonLabel: "resume.actions.continueButton".tr(),
               onAction: nextStep,
               validator: (state) {
                 final spec = state.formData['specialization'];
@@ -135,19 +135,19 @@ class _CreateResumeFlowContent extends HookWidget {
             _buildPage(
               context,
               const ResumeExperienceListStep(),
-              buttonLabel: "shared.continue".tr(),
+              buttonLabel: "resume.actions.continueButton".tr(),
               onAction: nextStep,
             ),
             _buildPage(
               context,
               const ResumeEducationListStep(),
-              buttonLabel: "shared.continue".tr(),
+              buttonLabel: "resume.actions.continueButton".tr(),
               onAction: nextStep,
             ),
             _buildPage(
               context,
               const ResumeSkillsForm(),
-              buttonLabel: "shared.save".tr(),
+              buttonLabel: "resume.actions.save".tr(),
               onAction: nextStep,
             ),
           ],

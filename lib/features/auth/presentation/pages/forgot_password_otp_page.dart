@@ -56,7 +56,7 @@ class ForgotPasswordOtpPage extends HookWidget {
     void onVerify() {
       if (otpController.text.length < 5) {
         AppNotificationOverlay.instance.show(
-          message: 'auth.otp.enter_full'.tr(),
+          message: 'auth.forgotPasswordOtp.errors.enterFull'.tr(),
           type: .warning,
         );
         return;
@@ -68,7 +68,7 @@ class ForgotPasswordOtpPage extends HookWidget {
 
       if (requestId == null) {
         AppNotificationOverlay.instance.show(
-          message: 'shared.error_occurred'.tr(),
+          message: 'auth.forgotPasswordOtp.errors.general'.tr(),
           type: .error,
         );
         return;
@@ -95,7 +95,7 @@ class ForgotPasswordOtpPage extends HookWidget {
             context.pushRoute(const ResetPasswordRoute());
           } else if (state.status == bloc_state.AuthStatus.failure) {
             AppNotificationOverlay.instance.show(
-              message: state.errorMessage ?? 'auth.otp.invalid_code'.tr(),
+              message: state.errorMessage ?? 'auth.forgotPasswordOtp.errors.invalidCode'.tr(),
               type: .error,
             );
           }
@@ -111,7 +111,7 @@ class ForgotPasswordOtpPage extends HookWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      'auth.otp.subtitle',
+                      'auth.forgotPasswordOtp.subtitle',
                       textAlign: TextAlign.center,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
@@ -175,8 +175,8 @@ class ForgotPasswordOtpPage extends HookWidget {
                     ),
                     child: Text(
                       remainingSeconds.value == 0
-                          ? 'auth.otp.new_code'.tr()
-                          : 'auth.otp.resend_in'.tr(args: ['00:${remainingSeconds.value.toString().padLeft(2, '0')}']),
+                          ? 'auth.forgotPasswordOtp.buttons.newCode'.tr()
+                          : 'auth.forgotPasswordOtp.buttons.resendIn'.tr(args: ['00:${remainingSeconds.value.toString().padLeft(2, '0')}']),
                     ),
                   ),
                 ),
@@ -184,7 +184,7 @@ class ForgotPasswordOtpPage extends HookWidget {
                 AppButton(
                   onTap: onVerify,
                   isLoading: state.status == bloc_state.AuthStatus.loading,
-                  label: 'auth.otp.verify_button'.tr(),
+                  label: 'auth.forgotPasswordOtp.buttons.verify'.tr(),
                 ),
                 const SizedBox(height: 12),
                 const Flexible(flex: 0, child: SizedBox(height: 12)),

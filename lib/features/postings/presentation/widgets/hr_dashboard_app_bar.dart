@@ -80,7 +80,7 @@ class HrDashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
         IconButton(
           onPressed: () {
             AppNotificationOverlay.instance.show(
-              message: "shared.coming_soon".tr(),
+              message: "postings.dashboard.comingSoon".tr(),
               type: AppNotificationType.warning,
             );
           },

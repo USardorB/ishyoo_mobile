@@ -28,7 +28,7 @@ class ChatsPage extends StatelessWidget {
         child: Scaffold(
           appBar: AppBar(
             title: DarkGlassSearchField(
-              hintText: "messaging.search_placeholder".tr(),
+              hintText: "messaging.search.placeholder".tr(),
               prefixIcon: const IconButton(
                 onPressed: null,
                 icon: Icon(Icons.search),
@@ -43,7 +43,7 @@ class ChatsPage extends StatelessWidget {
                 return Center(child: Text(state.error!));
               } else if (state.chats == null || state.chats!.isEmpty) {
                 return NoApplicationPlaceholder(
-                  message: "messaging.no_chats".tr(),
+                  message: "messaging.emptyState".tr(),
                 );
               }
 
@@ -75,7 +75,7 @@ class ChatsPage extends StatelessWidget {
                   final lastMessage =
                       chat.messages != null && chat.messages!.isNotEmpty
                       ? (chat.messages!.first.content ??
-                            'messaging.attachment'.tr())
+                            'messaging.attachment.label'.tr())
                       : "messaging.title".tr();
 
                   return ChatItem(

@@ -28,7 +28,7 @@ class ForgotPasswordPage extends HookWidget {
     void onRequestSms() {
       if (phoneController.text.isEmpty) {
         AppNotificationOverlay.instance.show(
-          message: 'shared.error_occurred'.tr(),
+          message: 'auth.forgotPassword.errors.general'.tr(),
           type: .warning,
         );
         return;
@@ -66,7 +66,7 @@ class ForgotPasswordPage extends HookWidget {
             );
           } else if (state.status == AuthStatus.failure) {
             AppNotificationOverlay.instance.show(
-              message: state.errorMessage ?? 'shared.error_occurred'.tr(),
+              message: state.errorMessage ?? 'auth.forgotPassword.errors.general'.tr(),
               type: .error,
             );
           }
@@ -82,7 +82,7 @@ class ForgotPasswordPage extends HookWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      "auth.forgot_password.title",
+                      "auth.forgotPassword.title",
                       textAlign: TextAlign.center,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -90,7 +90,7 @@ class ForgotPasswordPage extends HookWidget {
                     ).tr(),
                     const SizedBox(height: 12),
                     Text(
-                      'auth.forgot_password.subtitle',
+                      'auth.forgotPassword.subtitle',
                       textAlign: TextAlign.center,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
@@ -108,14 +108,14 @@ class ForgotPasswordPage extends HookWidget {
                   keyboardType: TextInputType.phone,
                   controller: phoneController,
                   prefixIcon: const PhoneNumberFieldPrefix(),
-                  label: 'auth.login.phone_label'.tr(),
+                  label: 'auth.forgotPassword.phoneLabel'.tr(),
                 ),
                 const Spacer(),
                 const SizedBox(height: 16),
                 AppButton(
                   onTap: onRequestSms,
                   isLoading: state.status == AuthStatus.loading,
-                  label: 'auth.forgot_password.cta_button'.tr(),
+                  label: 'auth.forgotPassword.buttons.getCode'.tr(),
                 ),
                 const Flexible(flex: 0, child: SizedBox(height: 12)),
               ],

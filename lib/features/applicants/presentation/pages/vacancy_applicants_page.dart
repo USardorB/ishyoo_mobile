@@ -39,12 +39,12 @@ class VacancyApplicantsPage extends HookWidget implements AutoRouteWrapper {
   }
 
   final tabs = const [
-    {"nameKey": "applications.status.pending", "status": "pending"},
-    {"nameKey": "applicants.invited", "status": "invited"},
-    {"nameKey": "applications.status.rejected", "status": "rejected"},
-    {"nameKey": "applicants.archived", "status": "archived"},
-    {"nameKey": "applicants.hired", "status": "hired"},
-    {"nameKey": "applicants.shortlisted", "status": "shortlisted"},
+    {"nameKey": "applicants.tabs.pending", "status": "pending"},
+    {"nameKey": "applicants.tabs.invited", "status": "invited"},
+    {"nameKey": "applicants.tabs.rejected", "status": "rejected"},
+    {"nameKey": "applicants.tabs.archived", "status": "archived"},
+    {"nameKey": "applicants.tabs.hired", "status": "hired"},
+    {"nameKey": "applicants.tabs.shortlisted", "status": "shortlisted"},
   ];
 
   @override
@@ -69,7 +69,7 @@ class VacancyApplicantsPage extends HookWidget implements AutoRouteWrapper {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('applications.title').tr(),
+        title: const Text('applicants.title').tr(),
         bottom: TabBar(
           controller: tabController,
           dividerColor: Colors.transparent,
@@ -140,7 +140,7 @@ class VacancyApplicantsPage extends HookWidget implements AutoRouteWrapper {
                           visualDensity: VisualDensity.compact,
                           foregroundColor: context.colors.brandDefault,
                         ),
-                        child: const Text("shared.show_all").tr(),
+                        child: const Text("applicants.actions.showAll").tr(),
                       ),
                     ],
                   ),
@@ -170,7 +170,7 @@ class VacancyApplicantsPage extends HookWidget implements AutoRouteWrapper {
 
                     if (applicants.isEmpty) {
                       return NoApplicationPlaceholder(
-                        message: "applicants.no_responses".tr(),
+                        message: "applicants.emptyState".tr(),
                       );
                     }
                     return ListView.separated(

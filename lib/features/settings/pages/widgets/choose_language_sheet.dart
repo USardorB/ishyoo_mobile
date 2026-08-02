@@ -93,7 +93,7 @@ class _ChooseLanguageSheetState extends State<ChooseLanguageSheet> {
           minimum: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           child: AppButton(
             onTap: _applyLanguage,
-            label: "shared.apply".tr(),
+            label: "settings.actions.apply".tr(),
           ),
         ),
       ],

@@ -31,7 +31,7 @@ class ResetPasswordPage extends HookWidget {
     void onResetPassword() {
       if (passwordController.text != passwordConfirmController.text) {
         AppNotificationOverlay.instance.show(
-          message: 'auth.reset_password.mismatch'.tr(),
+          message: 'auth.resetPassword.errors.mismatch'.tr(),
           type: .warning,
         );
         return;
@@ -42,7 +42,7 @@ class ResetPasswordPage extends HookWidget {
 
       if (requestId == null) {
         AppNotificationOverlay.instance.show(
-          message: 'shared.error_occurred'.tr(),
+          message: 'auth.resetPassword.errors.general'.tr(),
           type: .error,
         );
         return;
@@ -116,7 +116,7 @@ class ResetPasswordPage extends HookWidget {
                         ),
                       ]);
                     },
-                    label: 'auth.login.cta_button'.tr(),
+                    label: 'auth.resetPassword.buttons.saveAndLogin'.tr(),
                   ),
                 ],
               ),
@@ -139,7 +139,7 @@ class ResetPasswordPage extends HookWidget {
             showSuccessDialog();
           } else if (state.status == bloc_state.AuthStatus.failure) {
             AppNotificationOverlay.instance.show(
-              message: state.errorMessage ?? 'shared.error_occurred'.tr(),
+              message: state.errorMessage ?? 'auth.resetPassword.errors.general'.tr(),
               type: .error,
             );
           }
@@ -155,7 +155,7 @@ class ResetPasswordPage extends HookWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      "auth.reset_password.title",
+                      "auth.resetPassword.title",
                       textAlign: TextAlign.center,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -163,7 +163,7 @@ class ResetPasswordPage extends HookWidget {
                     ).tr(),
                     const SizedBox(height: 12),
                     Text(
-                      "auth.reset_password.subtitle",
+                      'auth.resetPassword.subtitle',
                       textAlign: TextAlign.center,
                       maxLines: 3,
                       overflow: TextOverflow.ellipsis,
@@ -175,7 +175,7 @@ class ResetPasswordPage extends HookWidget {
                 ),
                 const SizedBox(height: 32),
                 AppInputField(
-                  hintText: "auth.confirm_password.password_hint".tr(),
+                  hintText: "auth.confirmPassword.passwordHint".tr(),
                   autofillHints: const [AutofillHints.newPassword],
                   textInputAction: TextInputAction.next,
                   keyboardType: TextInputType.visiblePassword,
@@ -190,7 +190,7 @@ class ResetPasswordPage extends HookWidget {
                 const SizedBox(height: 12),
                 AppInputField(
                   obscureText: isObscured.value,
-                  hintText: "auth.confirm_password.confirm_hint".tr(),
+                  hintText: "auth.confirmPassword.confirmHint".tr(),
                   autofillHints: const [AutofillHints.newPassword],
                   textInputAction: TextInputAction.done,
                   keyboardType: TextInputType.visiblePassword,
@@ -203,7 +203,7 @@ class ResetPasswordPage extends HookWidget {
                   ),
                 ),
                 const SizedBox(height: 16),
-                const Text("auth.confirm_password.requirements_title").tr(),
+                const Text("auth.confirmPassword.requirements.title").tr(),
                 const SizedBox(height: 8),
                 ValueListenableBuilder(
                   valueListenable: passwordController,
@@ -215,7 +215,7 @@ class ResetPasswordPage extends HookWidget {
                 AppButton(
                   onTap: onResetPassword,
                   isLoading: state.status == bloc_state.AuthStatus.loading,
-                  label: 'shared.continue'.tr(),
+                  label: 'auth.resetPassword.buttons.saveAndLogin'.tr(),
                 ),
                 const Flexible(flex: 0, child: SizedBox(height: 12)),
               ],

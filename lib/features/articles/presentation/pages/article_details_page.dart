@@ -59,7 +59,7 @@ class _ArticleDetailsPageView extends StatelessWidget {
           }
 
           if (article == null) {
-            return Center(child: const Text("articles.no_articles_found").tr());
+            return Center(child: const Text("articles.notFound").tr());
           }
 
           return SingleChildScrollView(
@@ -138,7 +138,7 @@ class _ArticleDetailsPageView extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     Text(
-                      "${article.readTimeMinutes ?? 1} m",
+                      "articles.readTime".tr(args: [(article.readTimeMinutes ?? 1).toString()]),
                       style: context.textThemes.c1.copyWith(
                         color: context.colors.textSecondary,
                       ),

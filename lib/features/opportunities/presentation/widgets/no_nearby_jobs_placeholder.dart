@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
 class NoNearbyJobsPlaceholder extends StatelessWidget {
@@ -17,12 +18,12 @@ class NoNearbyJobsPlaceholder extends StatelessWidget {
               width: 224,
             ),
             Text(
-              "Yaqin atrofda bo'sh ish o'rinlari topilmadi, iltimos radiusni oshiring",
+              "opportunities.noNearbyJobs",
               textAlign: TextAlign.center,
               style: context.textThemes.b2.copyWith(
                 color: context.colors.textSecondary,
               ),
-            ),
+            ).tr(),
           ],
         ),
       ),

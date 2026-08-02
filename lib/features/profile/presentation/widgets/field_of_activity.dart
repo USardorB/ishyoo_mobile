@@ -16,7 +16,7 @@ class FieldOfActivity extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const SizedBox(height: 20),
-        Text('profile.field_of_activity', style: context.textThemes.s2).tr(),
+        Text('profile.company.fieldOfActivity', style: context.textThemes.s2).tr(),
         const SizedBox(height: 16),
         Container(
           padding: const EdgeInsets.all(12),
@@ -34,13 +34,13 @@ class FieldOfActivity extends StatelessWidget {
                   children: [_buildPill(context, organization!.industry!)],
                 )
               else
-                Text("shared.no_data", style: context.textThemes.b2).tr(),
+                Text("profile.noData", style: context.textThemes.b2).tr(),
               const SizedBox(height: 12),
               AppButton(
                 onTap: () {
                   context.pushRoute(const EditCompanyInfoRoute());
                 },
-                label: "profile.edit_profile".tr(),
+                label: "profile.edit".tr(),
                 color: context.colors.bgSecondary,
               ),
             ],

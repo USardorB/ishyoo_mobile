@@ -79,7 +79,7 @@ class _TalentsSearchResultPageState extends State<TalentsSearchResultPage> {
           return Scaffold(
             appBar: AppBar(
               toolbarHeight: 64,
-              title: const Text('talents.search_results').tr(),
+              title: const Text('talents.searchResults').tr(),
               bottom: PreferredSize(
                 preferredSize: const Size.fromHeight(48),
                 child: Padding(
@@ -126,7 +126,7 @@ class _TalentsSearchResultPageState extends State<TalentsSearchResultPage> {
               return Center(child: Text(state.error!));
             } else if (state.talents == null || state.talents!.isEmpty) {
               return Center(
-                child: const Text("talents.no_resumes_found").tr(),
+                child: const Text("talents.noData").tr(),
               );
             }
 
@@ -137,7 +137,7 @@ class _TalentsSearchResultPageState extends State<TalentsSearchResultPage> {
               itemBuilder: (context, index) {
                 if (index == 0) {
                   return Text(
-                    'talents.results_count'.tr(args: [state.talents!.length.toString()]),
+                    'talents.resultsCount'.tr(args: [state.talents!.length.toString()]),
                     style: context.textThemes.s2,
                   );
                 }
@@ -156,11 +156,11 @@ class _TalentsSearchResultPageState extends State<TalentsSearchResultPage> {
                     ),
                   ),
                   title: Text(
-                    resume.profile?.name ?? 'nav.candidates'.tr(),
+                    resume.profile?.name ?? 'talents.candidate'.tr(),
                     style: context.textThemes.b2,
                   ),
                   subtitle: Text(
-                    resume.specialization ?? 'nav.candidates'.tr(),
+                    resume.specialization ?? 'talents.candidate'.tr(),
                     style: context.textThemes.b3.copyWith(
                       color: context.colors.textSecondary,
                     ),
@@ -184,7 +184,7 @@ class _TalentsSearchResultPageState extends State<TalentsSearchResultPage> {
                           ),
                         ),
                         Text(
-                          "opportunities.matches_filter".tr(),
+                          "talents.matchesFilter".tr(),
                           style: context.textThemes.c1.copyWith(
                             color: context.colors.brandDefault,
                           ),

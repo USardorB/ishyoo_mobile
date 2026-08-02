@@ -97,7 +97,7 @@ class _ChatPageBottomPartState extends State<ChatPageBottomPart> {
     } catch (e) {
       if (mounted) {
         AppNotificationOverlay.instance.show(
-          message: 'shared.error_occurred'.tr(),
+          message: 'messaging.errors.occurred'.tr(),
           type: AppNotificationType.error,
         );
       }
@@ -135,7 +135,7 @@ class _ChatPageBottomPartState extends State<ChatPageBottomPart> {
               controller: _controller,
               onSubmitted: (_) => _sendMessage(),
               decoration: InputDecoration(
-                hintText: "messaging.type_message".tr(),
+                hintText: "messaging.input.placeholder".tr(),
                 fillColor: context.colors.bgPrimary,
                 filled: true,
                 contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),

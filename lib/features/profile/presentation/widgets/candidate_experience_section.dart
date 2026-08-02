@@ -17,7 +17,7 @@ class CandidateExperienceSection extends StatelessWidget {
           color: context.colors.bgPrimary,
           borderRadius: BorderRadius.circular(16),
         ),
-        child: const Text("shared.no_data").tr(),
+        child: const Text("profile.noData").tr(),
       );
     }
 
@@ -36,7 +36,7 @@ class CandidateExperienceSection extends StatelessWidget {
                 : "";
             final endStr = exp.endDate != null
                 ? "${exp.endDate!.year}"
-                : "shared.present".tr();
+                : "profile.candidate.present".tr();
             return Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: _buildTimelineItem(

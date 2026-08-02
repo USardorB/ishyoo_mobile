@@ -13,7 +13,7 @@ class ApplicantSkills extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text("profile.languages", style: context.textThemes.s2).tr(),
+        Text("applicants.card.languages", style: context.textThemes.s2).tr(),
         const SizedBox(height: 16),
         Container(
           decoration: BoxDecoration(

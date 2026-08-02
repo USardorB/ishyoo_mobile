@@ -22,7 +22,7 @@ class LogoutConfirmationDialog extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       title: const Text(
-        "settings.logout_confirm_title",
+        "settings.logoutConfirmTitle",
         textAlign: TextAlign.center,
       ).tr(),
       titleTextStyle: context.textThemes.h5,
@@ -33,7 +33,7 @@ class LogoutConfirmationDialog extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           const Text(
-            "settings.logout_confirm_desc",
+            "settings.logoutConfirmDesc",
             textAlign: TextAlign.center,
           ).tr(),
           const SizedBox(height: 16),
@@ -49,7 +49,7 @@ class LogoutConfirmationDialog extends StatelessWidget {
                   Expanded(
                     child: AppButton(
                       onTap: context.pop,
-                      label: "shared.cancel".tr(),
+                      label: "settings.actions.cancel".tr(),
                       color: context.colors.bgTertiary,
                     ),
                   ),
@@ -65,7 +65,7 @@ class LogoutConfirmationDialog extends StatelessWidget {
                           AuthLogoutRequested(roleString),
                         );
                       },
-                      label: "settings.logout".tr(),
+                      label: "settings.actions.logout".tr(),
                       color: context.colors.danger,
                       isLoading: state.status == AuthStatus.loading,
                     ),

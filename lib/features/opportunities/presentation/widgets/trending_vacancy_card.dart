@@ -30,7 +30,7 @@ class TrendingVacancyCard extends StatelessWidget {
   }
 
   String _formatSalary(double? from, double? to, String? currency) {
-    if (from == null && to == null) return "shared.negotiable".tr();
+    if (from == null && to == null) return "opportunities.vacancyCard.negotiable".tr();
     final c = currency?.toUpperCase() ?? "UZS";
     if (from != null && to != null) {
       return "${_formatNumber(from)} - ${_formatNumber(to)} $c";

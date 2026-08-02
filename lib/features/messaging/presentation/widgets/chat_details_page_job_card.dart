@@ -54,7 +54,7 @@ class ChatDetailsPageJobCard extends StatelessWidget
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      isEmployer ? "resume.create_resume".tr() : "profile.my_vacancies".tr(),
+                      isEmployer ? "messaging.jobCard.createResume".tr() : "messaging.jobCard.myVacancies".tr(),
                       style: context.textThemes.c1.copyWith(
                         color: context.colors.textSecondary,
                       ),

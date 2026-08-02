@@ -48,8 +48,8 @@ class _RespondApplicationSheetState extends State<RespondApplicationSheet> {
     if (widget.type == ApplicationResponseType.invite) {
       _options = [
         ApplicationResponseOption(
-          title: "applicants.invite_button".tr(),
-          subtitle: "applicants.invited".tr(),
+          title: "applicants.actions.invite".tr(),
+          subtitle: "applicants.actions.invited".tr(),
           messageTemplate:
               "Hurmatli {Name},\n\nVakansiyamizga yuborgan rezyumengizni ko'rib chiqdik. Sizning profilingiz bizda qiziqish uyg'otdi.\n\nKo'nikmalaringizni batafsilroq muhokama qilish uchun siz bilan 10-15 daqiqalik qisqa telefon suhbati tashkil qilmoqchimiz. Yaqin kunlar ichida sizga aloqaga chiqamiz.\n\nHurmat bilan,\nKompaniya jamoasi",
         ),
@@ -57,8 +57,8 @@ class _RespondApplicationSheetState extends State<RespondApplicationSheet> {
     } else {
       _options = [
         ApplicationResponseOption(
-          title: "applications.tabs.rejected".tr(),
-          subtitle: "applicants.unsuitable".tr(),
+          title: "applicants.actions.reject".tr(),
+          subtitle: "applicants.actions.unsuitable".tr(),
           messageTemplate:
               "Hurmatli {Name},\n\nVakansiyaga qiziqqaningiz uchun rahmat. Afsuski, bu safar boshqa nomzod tanlandi.\n\nKelajakda yangi imkoniyatlar uchun yana murojaat qiling.\n\nHurmat bilan,\nKompaniya jamoasi",
         ),
@@ -99,7 +99,7 @@ class _RespondApplicationSheetState extends State<RespondApplicationSheet> {
           _buildHandler(context),
           const SizedBox(height: 4),
           Text(
-            isInvite ? "applicants.invite_button" : "applications.reject_title",
+            isInvite ? "applicants.actions.invite" : "applicants.actions.rejectTitle",
             style: context.textThemes.h5,
           ).tr(),
           const SizedBox(height: 4),
@@ -122,7 +122,7 @@ class _RespondApplicationSheetState extends State<RespondApplicationSheet> {
           }),
           const SizedBox(height: 4),
           Text(
-            "messaging.type_message".tr(),
+            "applicants.messaging.typeMessage".tr(),
             style: context.textThemes.b2.copyWith(
               color: context.colors.textSecondary,
             ),
@@ -147,8 +147,8 @@ class _RespondApplicationSheetState extends State<RespondApplicationSheet> {
               Navigator.pop(context, _textController.text);
             },
             label: isInvite
-                ? "applicants.invite_button".tr()
-                : "shared.cancel".tr(),
+                ? "applicants.actions.invite".tr()
+                : "applicants.actions.cancel".tr(),
             color: isInvite
                 ? context.colors.brandDefault
                 : context.colors.danger,

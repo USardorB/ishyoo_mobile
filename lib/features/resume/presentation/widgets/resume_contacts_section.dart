@@ -11,7 +11,7 @@ class ResumeContactsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final user = context.read<AuthBloc>().state.user;
     final phone = user?.phoneNumber ?? '';
-    final email = user?.email ?? "shared.no_data".tr();
+    final email = user?.email ?? "resume.noData".tr();
 
     return Container(
       padding: const EdgeInsets.all(16),

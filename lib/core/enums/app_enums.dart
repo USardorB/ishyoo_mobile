@@ -70,23 +70,23 @@ enum AppStatus {
   };
 
   String get label => switch (this) {
-    AppStatus.active => 'enums.status.active',
-    AppStatus.inactive => 'enums.status.inactive',
-    AppStatus.blocked => 'enums.status.blocked',
-    AppStatus.deleted => 'enums.status.deleted',
-    AppStatus.archived => 'enums.status.archived',
-    AppStatus.draft => 'enums.status.draft',
-    AppStatus.published => 'enums.status.published',
-    AppStatus.confirmed => 'enums.status.confirmed',
-    AppStatus.closed => 'enums.status.closed',
-    AppStatus.pending => 'enums.status.pending',
-    AppStatus.invited => 'enums.status.invited',
-    AppStatus.rejected => 'enums.status.rejected',
-    AppStatus.hired => 'enums.status.hired',
-    AppStatus.shortlisted => 'enums.status.shortlisted',
-    AppStatus.pastDue => 'enums.status.past_due',
-    AppStatus.paid => 'enums.status.paid',
-    AppStatus.failed => 'enums.status.failed',
+    AppStatus.active => 'core.enums.status.active',
+    AppStatus.inactive => 'core.enums.status.inactive',
+    AppStatus.blocked => 'core.enums.status.blocked',
+    AppStatus.deleted => 'core.enums.status.deleted',
+    AppStatus.archived => 'core.enums.status.archived',
+    AppStatus.draft => 'core.enums.status.draft',
+    AppStatus.published => 'core.enums.status.published',
+    AppStatus.confirmed => 'core.enums.status.confirmed',
+    AppStatus.closed => 'core.enums.status.closed',
+    AppStatus.pending => 'core.enums.status.pending',
+    AppStatus.invited => 'core.enums.status.invited',
+    AppStatus.rejected => 'core.enums.status.rejected',
+    AppStatus.hired => 'core.enums.status.hired',
+    AppStatus.shortlisted => 'core.enums.status.shortlisted',
+    AppStatus.pastDue => 'core.enums.status.pastDue',
+    AppStatus.paid => 'core.enums.status.paid',
+    AppStatus.failed => 'core.enums.status.failed',
   };
 
   String get localizedLabel => label.tr();
@@ -122,12 +122,12 @@ enum VacancyStatus {
   };
 
   String get label => switch (this) {
-    VacancyStatus.draft => 'enums.vacancy_status.draft',
-    VacancyStatus.published => 'enums.vacancy_status.published',
-    VacancyStatus.archived => 'enums.vacancy_status.archived',
-    VacancyStatus.rejected => 'enums.vacancy_status.rejected',
-    VacancyStatus.confirmed => 'enums.vacancy_status.confirmed',
-    VacancyStatus.closed => 'enums.vacancy_status.closed',
+    VacancyStatus.draft => 'core.enums.vacancyStatus.draft',
+    VacancyStatus.published => 'core.enums.vacancyStatus.published',
+    VacancyStatus.archived => 'core.enums.vacancyStatus.archived',
+    VacancyStatus.rejected => 'core.enums.vacancyStatus.rejected',
+    VacancyStatus.confirmed => 'core.enums.vacancyStatus.confirmed',
+    VacancyStatus.closed => 'core.enums.vacancyStatus.closed',
   };
 
   String get localizedLabel => label.tr();
@@ -160,11 +160,11 @@ enum EmploymentType {
   };
 
   String get label => switch (this) {
-    EmploymentType.fullTime => 'enums.employment_type.full_time',
-    EmploymentType.partTime => 'enums.employment_type.part_time',
-    EmploymentType.freelance => 'enums.employment_type.freelance',
-    EmploymentType.contract => 'enums.employment_type.contract',
-    EmploymentType.internship => 'enums.employment_type.internship',
+    EmploymentType.fullTime => 'core.enums.employmentType.fullTime',
+    EmploymentType.partTime => 'core.enums.employmentType.partTime',
+    EmploymentType.freelance => 'core.enums.employmentType.freelance',
+    EmploymentType.contract => 'core.enums.employmentType.contract',
+    EmploymentType.internship => 'core.enums.employmentType.internship',
   };
 
   String get localizedLabel => label.tr();
@@ -196,10 +196,10 @@ enum AppExperienceLevel {
   };
 
   String get label => switch (this) {
-    AppExperienceLevel.noExperience => 'enums.experience_level.no_experience',
-    AppExperienceLevel.oneToThree => 'enums.experience_level.one_to_three',
-    AppExperienceLevel.threeToSix => 'enums.experience_level.three_to_six',
-    AppExperienceLevel.overSix => 'enums.experience_level.over_six',
+    AppExperienceLevel.noExperience => 'core.enums.experienceLevel.noExperience',
+    AppExperienceLevel.oneToThree => 'core.enums.experienceLevel.oneToThree',
+    AppExperienceLevel.threeToSix => 'core.enums.experienceLevel.threeToSix',
+    AppExperienceLevel.overSix => 'core.enums.experienceLevel.overSix',
   };
 
   String get localizedLabel => label.tr();
@@ -227,9 +227,9 @@ enum AppCurrency {
   };
 
   String get label => switch (this) {
-    AppCurrency.uzs => 'enums.currency.uzs',
-    AppCurrency.usd => 'enums.currency.usd',
-    AppCurrency.eur => 'enums.currency.eur',
+    AppCurrency.uzs => 'core.enums.currency.uzs',
+    AppCurrency.usd => 'core.enums.currency.usd',
+    AppCurrency.eur => 'core.enums.currency.eur',
   };
 
   /// Displayable symbol/code — does not require localization
@@ -266,10 +266,10 @@ enum WorkFormat {
   };
 
   String get label => switch (this) {
-    WorkFormat.onSite => 'enums.work_format.on_site',
-    WorkFormat.remote => 'enums.work_format.remote',
-    WorkFormat.hybrid => 'enums.work_format.hybrid',
-    WorkFormat.travel => 'enums.work_format.travel',
+    WorkFormat.onSite => 'core.enums.workFormat.onSite',
+    WorkFormat.remote => 'core.enums.workFormat.remote',
+    WorkFormat.hybrid => 'core.enums.workFormat.hybrid',
+    WorkFormat.travel => 'core.enums.workFormat.travel',
   };
 
   String get localizedLabel => label.tr();
@@ -293,8 +293,8 @@ enum ResumeVisibility {
   };
 
   String get label => switch (this) {
-    ResumeVisibility.public => 'enums.visibility.public',
-    ResumeVisibility.private => 'enums.visibility.private',
+    ResumeVisibility.public => 'core.enums.visibility.public',
+    ResumeVisibility.private => 'core.enums.visibility.private',
   };
 
   String get localizedLabel => label.tr();
@@ -318,8 +318,8 @@ enum NetworkStatus {
   };
 
   String get label => switch (this) {
-    NetworkStatus.online => 'enums.network_status.online',
-    NetworkStatus.offline => 'enums.network_status.offline',
+    NetworkStatus.online => 'core.enums.networkStatus.online',
+    NetworkStatus.offline => 'core.enums.networkStatus.offline',
   };
 
   String get localizedLabel => label.tr();
@@ -343,8 +343,8 @@ enum AppGender {
   };
 
   String get label => switch (this) {
-    AppGender.male => 'enums.gender.male',
-    AppGender.female => 'enums.gender.female',
+    AppGender.male => 'core.enums.gender.male',
+    AppGender.female => 'core.enums.gender.female',
   };
 
   String get localizedLabel => label.tr();
@@ -371,9 +371,9 @@ enum AppRole {
   };
 
   String get label => switch (this) {
-    AppRole.candidate => 'enums.role.candidate',
-    AppRole.employer => 'enums.role.employer',
-    AppRole.admin => 'enums.role.admin',
+    AppRole.candidate => 'core.enums.role.candidate',
+    AppRole.employer => 'core.enums.role.employer',
+    AppRole.admin => 'core.enums.role.admin',
   };
 
   String get localizedLabel => label.tr();

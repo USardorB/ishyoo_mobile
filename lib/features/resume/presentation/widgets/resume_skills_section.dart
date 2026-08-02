@@ -17,7 +17,7 @@ class ResumeSkillsSection extends StatelessWidget {
           color: context.colors.bgSecondary,
           borderRadius: BorderRadius.circular(16),
         ),
-        child: const Text("shared.no_data").tr(),
+        child: const Text("resume.noData").tr(),
       );
     }
 

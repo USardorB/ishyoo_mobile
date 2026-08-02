@@ -20,13 +20,13 @@ class DeleteResumeDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "applications.delete_title",
+              "resume.deleteTitle",
               textAlign: TextAlign.center,
               style: context.textThemes.s1,
             ).tr(),
             const SizedBox(height: 12),
             Text(
-              "applications.delete_subtitle",
+              "resume.deleteDesc",
               textAlign: TextAlign.center,
               style: context.textThemes.b2.copyWith(
                 color: context.colors.textSecondary,
@@ -38,7 +38,7 @@ class DeleteResumeDialog extends StatelessWidget {
                 Expanded(
                   child: AppButton(
                     onTap: context.pop,
-                    label: "shared.cancel".tr(),
+                    label: "resume.actions.cancel".tr(),
                     color: context.colors.bgTertiary,
                     foregroundColor: context.colors.textPrimary,
                   ),
@@ -47,7 +47,7 @@ class DeleteResumeDialog extends StatelessWidget {
                 Expanded(
                   child: AppButton(
                     onTap: () => context.pop(true),
-                    label: "shared.delete".tr(),
+                    label: "resume.actions.delete".tr(),
                     color: context.colors.danger,
                     foregroundColor: Colors.white,
                   ),

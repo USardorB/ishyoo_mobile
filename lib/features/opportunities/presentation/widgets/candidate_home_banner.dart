@@ -13,9 +13,9 @@ class CandidateHomeBanner extends HookWidget {
 
     final banners = [
       _BannerData(
-        title: "onboarding.slide1.title".tr(),
-        subtitle: "onboarding.slide1.subtitle".tr(),
-        buttonText: "shared.continue".tr(),
+        title: "opportunities.banner.title1".tr(),
+        subtitle: "opportunities.banner.subtitle1".tr(),
+        buttonText: "opportunities.banner.continue".tr(),
         icon: Icons.lock_outline,
         color: context.colors.brandDefault,
         textColor: context.colors.midnightImmutable,
@@ -26,9 +26,9 @@ class CandidateHomeBanner extends HookWidget {
         iconColor: Colors.black54,
       ),
       _BannerData(
-        title: "onboarding.slide2.title".tr(),
-        subtitle: "onboarding.slide2.subtitle".tr(),
-        buttonText: "shared.show_all".tr(),
+        title: "opportunities.banner.title2".tr(),
+        subtitle: "opportunities.banner.subtitle2".tr(),
+        buttonText: "opportunities.banner.showAll".tr(),
         icon: Icons.rocket_launch_outlined,
         color: context.colors.info,
         textColor: Colors.white,
@@ -39,9 +39,9 @@ class CandidateHomeBanner extends HookWidget {
         iconColor: Colors.white70,
       ),
       _BannerData(
-        title: "onboarding.slide3.title".tr(),
-        subtitle: "onboarding.slide3.subtitle".tr(),
-        buttonText: "shared.show_all".tr(),
+        title: "opportunities.banner.title3".tr(),
+        subtitle: "opportunities.banner.subtitle3".tr(),
+        buttonText: "opportunities.banner.showAll".tr(),
         icon: Icons.business_outlined,
         color: context.colors.warning,
         textColor: Colors.white,

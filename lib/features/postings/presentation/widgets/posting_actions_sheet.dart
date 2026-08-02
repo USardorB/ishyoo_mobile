@@ -20,14 +20,14 @@ enum PostingAction {
   delete;
 
   String get title => switch (this) {
-    // PostingAction.view => 'shared.show_all'.tr(),
-    PostingAction.edit => 'shared.edit'.tr(),
-    PostingAction.pause => 'shared.cancel'.tr(),
-    PostingAction.applicants => 'applications.title'.tr(),
-    PostingAction.copy => 'shared.copy'.tr(),
-    PostingAction.share => 'shared.coming_soon'.tr(),
-    PostingAction.archive => 'applicants.archived'.tr(),
-    PostingAction.delete => 'shared.delete'.tr(),
+    // PostingAction.view => 'postings.actions.view'.tr(),
+    PostingAction.edit => 'postings.actions.edit'.tr(),
+    PostingAction.pause => 'postings.actions.pause'.tr(),
+    PostingAction.applicants => 'postings.actions.applicants'.tr(),
+    PostingAction.copy => 'postings.actions.copy'.tr(),
+    PostingAction.share => 'postings.actions.share'.tr(),
+    PostingAction.archive => 'postings.actions.archive'.tr(),
+    PostingAction.delete => 'postings.actions.delete'.tr(),
   };
 
   IconData get icon => switch (this) {
@@ -115,13 +115,13 @@ class PostingActionsSheet extends StatelessWidget {
             break;
           case PostingAction.delete:
             AppNotificationOverlay.instance.show(
-              message: "shared.coming_soon".tr(),
+              message: "postings.actions.share".tr(),
               type: AppNotificationType.warning,
             );
             break;
           case PostingAction.share:
             AppNotificationOverlay.instance.show(
-              message: "shared.coming_soon".tr(),
+              message: "postings.actions.share".tr(),
               type: AppNotificationType.warning,
             );
             break;

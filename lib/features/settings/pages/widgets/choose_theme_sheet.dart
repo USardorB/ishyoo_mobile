@@ -77,9 +77,9 @@ class _ChooseThemeSheetState extends State<ChooseThemeSheet> {
               final mode = _vectors.keys.elementAt(index);
               final isSelected = _selectedTheme == mode;
               final name = switch (mode) {
-                ThemeMode.light => 'settings.theme'.tr(),
-                ThemeMode.dark => 'settings.dark_mode'.tr(),
-                ThemeMode.system => 'shared.all'.tr(),
+                ThemeMode.light => 'settings.lightMode'.tr(),
+                ThemeMode.dark => 'settings.darkMode'.tr(),
+                ThemeMode.system => 'settings.systemTheme'.tr(),
               };
 
               return Expanded(
@@ -129,7 +129,7 @@ class _ChooseThemeSheetState extends State<ChooseThemeSheet> {
           minimum: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
           child: AppButton(
             onTap: _applyTheme,
-            label: "shared.apply".tr(),
+            label: "settings.actions.apply".tr(),
           ),
         ),
       ],

@@ -52,12 +52,12 @@ class ResumeMenuSheet extends StatelessWidget {
             const SizedBox(height: 24),
             _MenuItem(
               icon: Icons.rocket_launch_outlined,
-              label: "shared.saved_success".tr(),
+              label: "resume.actions.savedSuccess".tr(),
               onTap: () {
                 context.read<ResumeFormBloc>().add(BoostResume(resumeId));
                 context.pop();
                 AppNotificationOverlay.instance.show(
-                  message: "shared.saved_success".tr(),
+                  message: "resume.actions.savedSuccess".tr(),
                   type: AppNotificationType.success,
                 );
               },
@@ -65,7 +65,7 @@ class ResumeMenuSheet extends StatelessWidget {
             Divider(color: context.colors.bgTertiary, height: 1),
             _MenuItem(
               icon: Icons.picture_as_pdf_outlined,
-              label: "resume.download_pdf".tr(),
+              label: "resume.downloadPdf".tr(),
               onTap: () {
                 context.pop();
                 context.pushRoute(ResumePdfPreviewRoute(resumeId: resumeId));
@@ -74,7 +74,7 @@ class ResumeMenuSheet extends StatelessWidget {
             Divider(color: context.colors.bgTertiary, height: 1),
             _MenuItem(
               icon: Icons.delete_outline,
-              label: "shared.delete".tr(),
+              label: "resume.actions.delete".tr(),
               isDestructive: true,
               onTap: () async {
                 final confirmed = await showDialog<bool>(

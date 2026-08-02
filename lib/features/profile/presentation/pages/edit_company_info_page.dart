@@ -75,7 +75,7 @@ class _EditCompanyInfoPageState extends State<EditCompanyInfoPage> {
           }
           if (state.isUpdateSuccess) {
             AppNotificationOverlay.instance.show(
-              message: 'shared.saved_success'.tr(),
+              message: 'profile.savedSuccess'.tr(),
               type: AppNotificationType.success,
             );
             context.maybePop();
@@ -97,7 +97,7 @@ class _EditCompanyInfoPageState extends State<EditCompanyInfoPage> {
 
           return Scaffold(
             appBar: AppBar(
-              title: const Text('profile.company_edit').tr(),
+              title: const Text('profile.company.edit').tr(),
             ),
             body: SingleChildScrollView(
               padding: const EdgeInsets.all(16),
@@ -105,17 +105,17 @@ class _EditCompanyInfoPageState extends State<EditCompanyInfoPage> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   AppInputField(
-                    label: 'auth.complete_profile.company_name_hint'.tr(),
+                    label: 'profile.company.nameHint'.tr(),
                     controller: _nameCtrl,
                   ),
                   const SizedBox(height: 16),
                   AppInputField(
-                    label: 'profile.field_of_activity'.tr(),
+                    label: 'profile.company.fieldOfActivity'.tr(),
                     controller: _industryCtrl,
                   ),
                   const SizedBox(height: 16),
                   AppInputField(
-                    label: 'applicants.filter_title'.tr(),
+                    label: 'profile.company.filterTitle'.tr(),
                     keyboardType: TextInputType.number,
                     controller: _sizeCtrl,
                   ),
@@ -127,12 +127,12 @@ class _EditCompanyInfoPageState extends State<EditCompanyInfoPage> {
                   ),
                   const SizedBox(height: 16),
                   AppInputField(
-                    label: 'opportunities.location'.tr(),
+                    label: 'profile.company.location'.tr(),
                     controller: _locationCtrl,
                   ),
                   const SizedBox(height: 16),
                   AppInputField(
-                    label: 'profile.about_company'.tr(),
+                    label: 'profile.company.about'.tr(),
                     minLines: 4,
                     maxLines: 6,
                     controller: _descriptionCtrl,
@@ -141,7 +141,7 @@ class _EditCompanyInfoPageState extends State<EditCompanyInfoPage> {
                   AppButton(
                     onTap: state.isUpdating ? () {} : () => _save(context),
                     enabled: !state.isUpdating,
-                    label: 'shared.save'.tr(),
+                    label: 'profile.save'.tr(),
                   ),
                   const SizedBox(height: 32),
                 ],

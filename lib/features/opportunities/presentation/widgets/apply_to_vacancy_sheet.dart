@@ -92,7 +92,7 @@ class ApplyToVacancySheet extends HookWidget {
                           ),
                           const SizedBox(width: 8),
                           Text(
-                            "resume.create_resume",
+                            "opportunities.apply.selectResume",
                             style: context.textThemes.b2.copyWith(
                               color: context.colors.brandDefault,
                             ),
@@ -105,7 +105,7 @@ class ApplyToVacancySheet extends HookWidget {
                   if (!showCoverLetter.value)
                     AppButton(
                       onTap: () => showCoverLetter.value = true,
-                      label: "shared.add".tr(),
+                      label: "opportunities.apply.add".tr(),
                       color: context.colors.bgTertiary,
                       foregroundColor: context.colors.textPrimary,
                     )

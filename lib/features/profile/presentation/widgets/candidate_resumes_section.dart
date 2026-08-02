@@ -19,7 +19,7 @@ class CandidateResumesSection extends StatelessWidget {
         if (resumes.isEmpty)
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
-            child: const Text("profile.no_resumes").tr(),
+            child: const Text("profile.candidate.noResumes").tr(),
           )
         else
           ...resumes.map(
@@ -80,7 +80,7 @@ class CandidateResumesSection extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: Text(
-                                "shared.all",
+                                  "profile.candidate.all",
                                 style: context.textThemes.c2.copyWith(
                                   color: context.colors.brandProgress,
                                 ),
@@ -100,7 +100,7 @@ class CandidateResumesSection extends StatelessWidget {
                           children: [
                             _buildStat(
                               context,
-                              "applicants.view_count".tr(),
+                              "profile.candidate.views".tr(),
                               "0",
                               false,
                             ),
@@ -111,7 +111,7 @@ class CandidateResumesSection extends StatelessWidget {
                             ),
                             _buildStat(
                               context,
-                              "applicants.shortlisted".tr(),
+                              "profile.candidate.shortlisted".tr(),
                               "0",
                               true,
                             ),
@@ -122,7 +122,7 @@ class CandidateResumesSection extends StatelessWidget {
                             ),
                             _buildStat(
                               context,
-                              "applicants.invited".tr(),
+                              "profile.candidate.invited".tr(),
                               "0",
                               true,
                             ),
@@ -141,7 +141,7 @@ class CandidateResumesSection extends StatelessWidget {
             context.pushRoute(CreateResumeFlowRoute());
           },
           icon: Icons.add,
-          label: "resume.create_resume".tr(),
+          label: "profile.candidate.createResume".tr(),
           color: context.colors.bgSecondary,
           foregroundColor: context.colors.brandDefault,
           labelStyle: context.textThemes.b2.copyWith(

@@ -24,7 +24,7 @@ class MyVacancies extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('profile.my_vacancies', style: context.textThemes.s2).tr(),
+              Text('profile.company.myVacancies', style: context.textThemes.s2).tr(),
               GestureDetector(
                 onTap: () => context.pushRoute(const MyVacanciesRoute()),
                 child: Text(
@@ -67,7 +67,7 @@ class MyVacancies extends StatelessWidget {
           ),
           const SizedBox(height: 4),
           AppButton(
-            label: 'opportunities.create_vacancy'.tr(),
+            label: 'profile.company.createVacancy'.tr(),
             onTap: () async {
               final result = await context.pushRoute(CreateVacancyRoute());
               if (result == true && context.mounted) {

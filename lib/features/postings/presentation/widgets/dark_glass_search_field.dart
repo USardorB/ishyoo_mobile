@@ -69,7 +69,7 @@ class DarkGlassSearchField extends StatelessWidget {
                 onSubmitted: onSubmitted,
                 onChanged: onChanged,
                 autoFocus: autoFocus,
-                hintText: hintText ?? "shared.search".tr(),
+                hintText: hintText ?? "postings.searchPlaceholder".tr(),
                 hintStyle: WidgetStatePropertyAll(
                   context.textThemes.buttonLarge.copyWith(
                     color: context.colors.textSecondary,

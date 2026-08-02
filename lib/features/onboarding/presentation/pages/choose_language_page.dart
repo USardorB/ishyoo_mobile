@@ -42,12 +42,12 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
                 children: [
                   const SizedBox(height: 24),
                   Text(
-                    "onboarding.choose_language.title",
+                    "onboarding.language.title",
                     style: context.textThemes.h4,
                   ).tr(),
                   const SizedBox(height: 8),
                   Text(
-                    "onboarding.choose_language.subtitle",
+                    "onboarding.language.subtitle",
                     style: context.textThemes.b1.copyWith(
                       color: context.colors.textSecondary,
                     ),
@@ -67,7 +67,7 @@ class _ChooseLanguagePageState extends State<ChooseLanguagePage> {
                   AppButton(
                     onTap: () => context.pushRoute(const OnboardingRoute()),
                     enabled: true,
-                    label: "onboarding.choose_language.cta_button".tr(),
+                    label: "onboarding.language.ctaButton".tr(),
                   ),
                 ],
               ),

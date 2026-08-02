@@ -110,7 +110,7 @@ class _CompanyDetailsView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "profile.my_vacancies",
+                                "opportunities.company.vacancies",
                                 style: context.textThemes.s2.copyWith(
                                   color: Colors.black,
                                 ),
@@ -127,7 +127,7 @@ class _CompanyDetailsView extends StatelessWidget {
                       if (organization.description != null &&
                           organization.description!.isNotEmpty) ...[
                         Text(
-                          "profile.about_company",
+                          "opportunities.company.about",
                           style: context.textThemes.h3,
                         ).tr(),
                         const SizedBox(height: 12),

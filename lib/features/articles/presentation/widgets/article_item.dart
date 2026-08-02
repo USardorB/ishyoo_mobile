@@ -113,7 +113,7 @@ class ArticleItem extends StatelessWidget {
                       ),
                       const SizedBox(width: 4),
                       Text(
-                        "${article.readTimeMinutes ?? 1} m",
+                        "articles.readTime".tr(args: [(article.readTimeMinutes ?? 1).toString()]),
                         style: context.textThemes.c1.copyWith(
                           color: context.colors.textSecondary,
                         ),

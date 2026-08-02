@@ -35,16 +35,16 @@ class MainLayoutPage extends StatelessWidget {
       bottomNavigationBuilder: (context, tabsRouter) {
         final navItems = isCandidate
             ? [
-                ('nav.home', Icons.home_outlined),
-                ('nav.applications', Icons.assignment_outlined),
-                ('nav.chats', Icons.chat),
-                ('nav.profile', Icons.person),
+                ('core.nav.home', Icons.home_outlined),
+                ('core.nav.applications', Icons.assignment_outlined),
+                ('core.nav.chats', Icons.chat),
+                ('core.nav.profile', Icons.person),
               ]
             : [
-                ('nav.home', Icons.home_outlined),
-                ('nav.candidates', Icons.people_outline),
-                ('nav.chats', Icons.chat),
-                ('nav.profile', Icons.person),
+                ('core.nav.home', Icons.home_outlined),
+                ('core.nav.candidates', Icons.people_outline),
+                ('core.nav.chats', Icons.chat),
+                ('core.nav.profile', Icons.person),
               ];
 
         return SafeArea(

@@ -54,7 +54,7 @@ class ApplicantDetailsPage extends StatelessWidget {
               IconButton(
                 onPressed: () {
                   AppNotificationOverlay.instance.show(
-                    message: "shared.coming_soon".tr(),
+                    message: "applicants.comingSoon".tr(),
                     type: AppNotificationType.warning,
                   );
                 },

@@ -35,7 +35,7 @@ class ApplicantAvatarInfo extends StatelessWidget {
         ),
         const SizedBox(height: 12),
         Text(
-          name.isEmpty ? "shared.no_data".tr() : name,
+          name.isEmpty ? "applicants.card.noData".tr() : name,
           style: context.textThemes.s1,
         ),
         const SizedBox(height: 6),

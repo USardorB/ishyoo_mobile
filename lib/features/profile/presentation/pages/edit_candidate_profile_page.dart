@@ -118,7 +118,7 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
 
           return Scaffold(
             appBar: AppBar(
-              title: const Text("profile.edit_profile").tr(),
+              title: const Text("profile.edit").tr(),
             ),
             body: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(

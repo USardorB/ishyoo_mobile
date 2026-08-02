@@ -19,7 +19,7 @@ class NoNotificationsPlaceholder extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            "notifications.no_notifications",
+            "notifications.emptyState",
             textAlign: TextAlign.center,
             style: context.textThemes.b1.copyWith(
               color: context.colors.textSecondary,

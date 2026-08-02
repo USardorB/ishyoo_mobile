@@ -16,7 +16,7 @@ class AboutTheCompany extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const SizedBox(height: 20),
-        Text('profile.about_company', style: context.textThemes.s2).tr(),
+        Text('profile.company.about', style: context.textThemes.s2).tr(),
         const SizedBox(height: 16),
         Container(
           padding: const EdgeInsets.all(12),
@@ -32,12 +32,12 @@ class AboutTheCompany extends StatelessWidget {
                 children: [
                   _buildStats(
                     context,
-                    "nav.candidates".tr(),
+                    "profile.company.candidates".tr(),
                     organization?.size?.toString() ?? "-",
                   ),
                   _buildStats(
                     context,
-                    "profile.experience".tr(),
+                    "profile.candidate.experience".tr(),
                     organization?.createdAt?.year.toString() ?? "-",
                   ),
                 ],
@@ -49,7 +49,7 @@ class AboutTheCompany extends StatelessWidget {
               ),
               Text(
                 organization?.description ??
-                    "shared.no_data".tr(),
+                    "profile.noData".tr(),
                 style: context.textThemes.b2,
               ),
               const SizedBox(height: 12),
@@ -57,7 +57,7 @@ class AboutTheCompany extends StatelessWidget {
                 onTap: () {
                   context.pushRoute(const EditCompanyInfoRoute());
                 },
-                label: "profile.edit_profile".tr(),
+                label: "profile.edit".tr(),
                 color: context.colors.bgSecondary,
               ),
             ],

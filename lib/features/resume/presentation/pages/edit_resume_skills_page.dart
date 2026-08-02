@@ -16,7 +16,7 @@ class EditResumeSkillsPage extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => context.maybePop(),
         ),
-        title: const Text("profile.languages").tr(),
+        title: const Text("resume.sections.languages").tr(),
         centerTitle: true,
         actions: [
           TextButton(

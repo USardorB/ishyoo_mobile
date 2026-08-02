@@ -79,8 +79,8 @@ class ApplicantStatusHeader extends StatelessWidget {
                 color: context.colors.brandProgress,
                 foregroundColor: context.colors.brandDefault,
                 label: state.isUpdating
-                    ? "shared.continue".tr()
-                    : "shared.edit".tr(),
+                    ? "applicants.actions.continue".tr()
+                    : "applicants.actions.edit".tr(),
               );
             },
           ),

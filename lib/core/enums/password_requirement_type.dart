@@ -9,11 +9,11 @@ enum PasswordRequirementType {
   String get text {
     switch (this) {
       case PasswordRequirementType.minLength:
-        return 'auth.confirm_password.req_min_length'.tr();
+        return 'auth.confirmPassword.requirements.minLength'.tr();
       case PasswordRequirementType.hasCapitalLetter:
-        return 'auth.confirm_password.req_capital_letter'.tr();
+        return 'auth.confirmPassword.requirements.capitalLetter'.tr();
       case PasswordRequirementType.hasNumber:
-        return 'auth.confirm_password.req_number'.tr();
+        return 'auth.confirmPassword.requirements.number'.tr();
     }
   }
 }

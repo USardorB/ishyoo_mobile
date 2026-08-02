@@ -114,21 +114,21 @@ class _TallentFilterSheetState extends State<TallentFilterSheet> {
             const SizedBox(height: 16),
             _buildHeader(context),
             const SizedBox(height: 18),
-            _sectionTitle(context, 'opportunities.employment_type'.tr()),
+            _sectionTitle(context, 'postings.filter.employmentType'.tr()),
             const SizedBox(height: 16),
             Wrap(
               spacing: 8,
               children: EmploymentType.values.map(_wrapJobChoiceChip).toList(),
             ),
             const SizedBox(height: 18),
-            _sectionTitle(context, 'talents.search_placeholder'.tr()),
+            _sectionTitle(context, 'postings.filter.searchPlaceholder'.tr()),
             const SizedBox(height: 16),
             BlocProvider(
               create: (context) => sl<PostingsBloc>()..add(LoadPostings()),
               child: BlocBuilder<PostingsBloc, PostingsState>(
                 builder: (context, state) {
                   return AppInputField(
-                    hintText: _specialization ?? "shared.search".tr(),
+                    hintText: _specialization ?? "postings.filter.search".tr(),
                     readOnly: true,
                     suffixIcon: Icon(
                       Icons.chevron_right,
@@ -158,7 +158,7 @@ class _TallentFilterSheetState extends State<TallentFilterSheet> {
               ),
             ),
             const SizedBox(height: 20),
-            _sectionTitle(context, 'profile.experience'.tr()),
+            _sectionTitle(context, 'postings.filter.experience'.tr()),
             const SizedBox(height: 16),
             Wrap(
               spacing: 8,
@@ -169,7 +169,7 @@ class _TallentFilterSheetState extends State<TallentFilterSheet> {
             const SizedBox(height: 20),
             AppButton(
               onTap: _applyFilters,
-              label: "shared.apply".tr(),
+              label: "postings.filter.apply".tr(),
             ),
           ],
         ),
@@ -207,7 +207,7 @@ class _TallentFilterSheetState extends State<TallentFilterSheet> {
               textStyle: context.textThemes.buttonLarge,
               visualDensity: VisualDensity.compact,
             ),
-            child: const Text('shared.clear').tr(),
+            child: const Text('postings.filter.clear').tr(),
           ),
         ),
       ),

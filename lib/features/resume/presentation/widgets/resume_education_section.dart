@@ -18,7 +18,7 @@ class ResumeEducationSection extends StatelessWidget {
           color: context.colors.bgSecondary,
           borderRadius: BorderRadius.circular(16),
         ),
-        child: const Text("shared.no_data").tr(),
+        child: const Text("resume.noData").tr(),
       );
     }
 
@@ -37,7 +37,7 @@ class ResumeEducationSection extends StatelessWidget {
                 : "";
             final endStr = edu.endDate != null
                 ? "${edu.endDate!.year}"
-                : "shared.present".tr();
+                : "resume.present".tr();
             return Padding(
               padding: const EdgeInsets.only(bottom: 16),
               child: ResumeEducationItem(

@@ -44,7 +44,7 @@ class ApplicationMenuSheet extends StatelessWidget {
           const SizedBox(height: 16),
           _MenuItem(
             icon: Icons.chat_bubble_outline,
-            label: "nav.chats".tr(),
+            label: "applications.menu.chat".tr(),
             onTap: () {
               context.pop();
               context.pushRoute(
@@ -55,7 +55,7 @@ class ApplicationMenuSheet extends StatelessWidget {
           _buildDivider(context),
           _MenuItem(
             icon: Icons.description_outlined,
-            label: "opportunities.description".tr(),
+            label: "applications.menu.description".tr(),
             onTap: () {
               context.pop();
               context.pushRoute(
@@ -66,7 +66,7 @@ class ApplicationMenuSheet extends StatelessWidget {
           _buildDivider(context),
           _MenuItem(
             icon: Icons.business_center_outlined,
-            label: "profile.about_company".tr(),
+            label: "applications.menu.aboutCompany".tr(),
             onTap: () {
               context.pop();
               if (application.vacancy?.organization != null) {
@@ -81,7 +81,7 @@ class ApplicationMenuSheet extends StatelessWidget {
           _buildDivider(context),
           _MenuItem(
             icon: Icons.cancel_outlined,
-            label: "applications.tabs.rejected".tr(),
+            label: "applications.menu.reject".tr(),
             onTap: () {
               context.pop();
               showDialog(
@@ -95,7 +95,7 @@ class ApplicationMenuSheet extends StatelessWidget {
           _buildDivider(context),
           _MenuItem(
             icon: Icons.delete_outline,
-            label: "shared.delete".tr(),
+            label: "applications.menu.delete".tr(),
             isDestructive: true,
             onTap: () {
               context.pop();

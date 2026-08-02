@@ -22,7 +22,7 @@ class HrProfileCompanyInfo extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             const SizedBox(height: 20),
-            Text('profile.company_info', style: context.textThemes.s2).tr(),
+            Text('profile.company.companyInfo', style: context.textThemes.s2).tr(),
             const SizedBox(height: 16),
             Container(
               padding: const EdgeInsets.all(12),
@@ -45,7 +45,7 @@ class HrProfileCompanyInfo extends StatelessWidget {
                     _buildContactTile(
                       context,
                       icon: Icons.location_on_outlined,
-                      label: 'opportunities.location'.tr(),
+                      label: 'profile.company.location'.tr(),
                       value: organization!.location!,
                     ),
                   ],
@@ -56,7 +56,7 @@ class HrProfileCompanyInfo extends StatelessWidget {
                     _buildContactTile(
                       context,
                       icon: Icons.phone_outlined,
-                      label: 'auth.login.phone_label'.tr(),
+                      label: 'profile.company.phoneLabel'.tr(),
                       value: organization!.phoneNumber!,
                     ),
                   ],
@@ -77,7 +77,7 @@ class HrProfileCompanyInfo extends StatelessWidget {
                     onTap: () {
                       context.pushRoute(const EditCompanyInfoRoute());
                     },
-                    label: "profile.edit_profile".tr(),
+                    label: "profile.edit".tr(),
                   ),
                 ],
               ),

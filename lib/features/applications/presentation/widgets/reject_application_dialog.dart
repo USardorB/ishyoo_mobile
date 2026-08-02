@@ -29,7 +29,7 @@ class RejectApplicationDialog extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             Text(
-              "applications.reject_title",
+              "applications.dialogs.reject.title",
               textAlign: TextAlign.center,
               style: context.textThemes.h5,
             ).tr(),
@@ -39,13 +39,13 @@ class RejectApplicationDialog extends StatelessWidget {
                 context.pop();
                 onConfirm();
               },
-              label: "shared.yes".tr(),
+              label: "applications.dialogs.reject.buttons.yes".tr(),
               color: context.colors.brandDefault,
             ),
             const SizedBox(height: 12),
             AppButton(
               onTap: context.pop,
-              label: "shared.no".tr(),
+              label: "applications.dialogs.reject.buttons.no".tr(),
               color: context.colors.bgTertiary,
               foregroundColor: context.colors.textPrimary,
             ),

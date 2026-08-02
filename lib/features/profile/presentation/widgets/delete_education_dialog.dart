@@ -17,13 +17,13 @@ class DeleteEducationDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              "profile.delete_edu_title",
+              "profile.candidate.deleteEducationTitle",
               textAlign: TextAlign.center,
               style: context.textThemes.s1,
             ).tr(),
             const SizedBox(height: 12),
             Text(
-              "profile.delete_edu_desc",
+              "profile.candidate.deleteEducationDesc",
               textAlign: TextAlign.center,
               style: context.textThemes.b2.copyWith(
                 color: context.colors.textSecondary,
@@ -44,7 +44,7 @@ class DeleteEducationDialog extends StatelessWidget {
                       ),
                       alignment: Alignment.center,
                       child: Text(
-                        "shared.cancel",
+                        "profile.candidate.cancel",
                         style: context.textThemes.b2,
                       ).tr(),
                     ),
@@ -63,7 +63,7 @@ class DeleteEducationDialog extends StatelessWidget {
                       ),
                       alignment: Alignment.center,
                       child: Text(
-                        "shared.delete",
+                        "profile.candidate.delete",
                         style: context.textThemes.b2.copyWith(
                           color: Colors.white,
                         ),

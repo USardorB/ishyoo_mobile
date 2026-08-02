@@ -27,7 +27,7 @@ class ResumeExperienceListStep extends StatelessWidget {
             const SizedBox(height: 16),
             if (experiences.isNotEmpty)
               Text(
-                "profile.experience".tr(),
+                "resume.sections.experience".tr(),
                 style: context.textThemes.s1,
               ),
             const SizedBox(height: 16),
@@ -60,7 +60,7 @@ class ResumeExperienceListStep extends StatelessWidget {
                 }
               },
               icon: Icons.add,
-              label: "shared.add".tr(),
+              label: "resume.actions.add".tr(),
               color: context.colors.brandProgress.withValues(alpha: 0.15),
               foregroundColor: context.colors.brandProgress,
               labelStyle: context.textThemes.b2,
@@ -131,7 +131,7 @@ class ResumeExperienceListStep extends StatelessWidget {
             ),
             const SizedBox(height: 4),
             Text(
-              "${exp.startDate?.year ?? ''} - ${exp.endDate?.year ?? 'shared.present'.tr()}",
+              "${exp.startDate?.year ?? ''} - ${exp.endDate?.year ?? 'resume.present'.tr()}",
               style: context.textThemes.c1.copyWith(
                 color: context.colors.textSecondary,
               ),

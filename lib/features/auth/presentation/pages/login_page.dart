@@ -42,7 +42,7 @@ class LoginPage extends HookWidget {
     Future<void> onLogin() async {
       if (phoneController.text.isEmpty || passwordController.text.isEmpty) {
         AppNotificationOverlay.instance.show(
-          message: 'shared.error_occurred'.tr(),
+          message: 'auth.login.errors.general'.tr(),
           type: .warning,
         );
         return;
@@ -84,7 +84,7 @@ class LoginPage extends HookWidget {
             context.router.replaceAll([const WaitlistedRoute()]);
           } else if (state.status == AuthStatus.failure) {
             AppNotificationOverlay.instance.show(
-              message: state.errorMessage ?? 'shared.error_occurred'.tr(),
+              message: state.errorMessage ?? 'auth.login.errors.general'.tr(),
               type: .error,
             );
           }
@@ -126,7 +126,7 @@ class LoginPage extends HookWidget {
                   keyboardType: TextInputType.phone,
                   controller: phoneController,
                   prefixIcon: const PhoneNumberFieldPrefix(),
-                  label: 'auth.login.phone_label'.tr(),
+                  label: 'auth.login.phoneLabel'.tr(),
                 ),
                 const SizedBox(height: 12),
                 AppInputField(
@@ -136,7 +136,7 @@ class LoginPage extends HookWidget {
                   textInputAction: TextInputAction.done,
                   keyboardType: TextInputType.visiblePassword,
                   controller: passwordController,
-                  label: 'auth.login.password_label'.tr(),
+                  label: 'auth.login.passwordLabel'.tr(),
                   suffixIcon: IconButton(
                     onPressed: () {
                       isObscured.value = !isObscured.value;
@@ -154,7 +154,7 @@ class LoginPage extends HookWidget {
                       context.router.push(const ForgotPasswordRoute());
                     },
                     child: Text(
-                      'auth.login.forgot_password',
+                      'auth.login.buttons.forgotPassword',
                       style: context.textThemes.b1,
                     ).tr(),
                   ),
@@ -164,14 +164,14 @@ class LoginPage extends HookWidget {
                 AppButton(
                   onTap: onLogin,
                   isLoading: state.status == AuthStatus.loading,
-                  label: 'auth.login.cta_button'.tr(),
+                  label: 'auth.login.buttons.login'.tr(),
                 ),
                 const SizedBox(height: 12),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'auth.login.no_account',
+                      'auth.login.registrationPrompt.text',
                       textAlign: TextAlign.center,
                       style: context.textThemes.b1,
                     ).tr(),
@@ -182,7 +182,7 @@ class LoginPage extends HookWidget {
                         );
                       },
                       child: Text(
-                        'auth.login.register_link',
+                        'auth.login.registrationPrompt.link',
                         style: context.textThemes.b1,
                       ).tr(),
                     ),
@@ -198,7 +198,7 @@ class LoginPage extends HookWidget {
                       foregroundColor: context.colors.textSecondary,
                     ),
                     child: Text(
-                      "shared.skip",
+                      "auth.login.buttons.skip",
                       style: context.textThemes.buttonMedium,
                     ).tr(),
                   ),

@@ -166,7 +166,7 @@ class HrVacancyCard extends StatelessWidget {
       );
     } else {
       return Text(
-        'postings.no_salary_specified',
+        'postings.noSalarySpecified',
         maxLines: 1,
         overflow: TextOverflow.ellipsis,
         style: context.textThemes.s2.copyWith(

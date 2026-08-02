@@ -19,7 +19,7 @@ class NoArticleFoundPlaceholder extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             Text(
-              "articles.no_articles",
+              "articles.emptyState",
               textAlign: TextAlign.center,
               style: context.textThemes.b1.copyWith(
                 color: context.colors.textSecondary,

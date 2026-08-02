@@ -68,7 +68,7 @@ class MonthPickerSheet extends HookWidget {
                 onTap: () {
                   context.maybePop(selectedDate.value);
                 },
-                label: "shared.apply".tr(),
+                label: "profile.candidate.apply".tr(),
                 color: context.colors.brandProgress,
                 foregroundColor: Colors.black,
               ),

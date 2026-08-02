@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
 enum ChatActions {
-  profile(icon: Icons.person_outline, labelKey: 'nav.profile'),
-  logout(icon: Icons.logout, labelKey: 'messaging.delete_chat');
+  profile(icon: Icons.person_outline, labelKey: 'messaging.actions.viewProfile'),
+  logout(icon: Icons.logout, labelKey: 'messaging.actions.deleteChat');
 
   final IconData icon;
   final String labelKey;

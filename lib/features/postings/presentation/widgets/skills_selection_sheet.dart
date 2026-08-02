@@ -234,7 +234,7 @@ class _SkillsSelectionSheetState extends State<SkillsSelectionSheet> {
             AppInputField(
               controller: _searchController,
               onChanged: _onSearchChanged,
-              hintText: "shared.search".tr(),
+              hintText: "postings.skills.searchPlaceholder".tr(),
               prefixIcon: Icon(
                 Icons.search,
                 color: context.colors.textSecondary,
@@ -301,7 +301,7 @@ class _SkillsSelectionSheetState extends State<SkillsSelectionSheet> {
                 if (showAddOption)
                   ActionChip(
                     onPressed: () => _addNewSkill(_searchQuery),
-                    label: Text('${"shared.add".tr()} "$_searchQuery"'),
+                    label: Text('${"postings.skills.add".tr()} "$_searchQuery"'),
                     avatar: Icon(
                       Icons.add,
                       size: 16,
@@ -330,7 +330,7 @@ class _SkillsSelectionSheetState extends State<SkillsSelectionSheet> {
       const SizedBox(width: 48),
       Expanded(
         child: Text(
-          'postings.key_skills',
+          'postings.keySkills',
           style: context.textThemes.h5,
           textAlign: TextAlign.center,
           maxLines: 1,

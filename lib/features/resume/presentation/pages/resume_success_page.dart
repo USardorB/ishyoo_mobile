@@ -34,12 +34,12 @@ class ResumeSuccessPage extends StatelessWidget {
               ),
               const SizedBox(height: 32),
               Text(
-                "shared.saved_success",
+                "resume.successTitle",
                 style: context.textThemes.h4,
               ).tr(),
               const SizedBox(height: 16),
               Text(
-                "shared.saved_success",
+                "resume.successDesc",
                 textAlign: TextAlign.center,
                 style: context.textThemes.b2.copyWith(
                   color: context.colors.textSecondary,
@@ -50,7 +50,7 @@ class ResumeSuccessPage extends StatelessWidget {
                 onTap: () {
                   context.router.popUntilRoot();
                 },
-                label: "resume.create_resume".tr(),
+                label: "resume.createResume".tr(),
                 color: context.colors.brandProgress,
                 foregroundColor: Colors.black,
               ),

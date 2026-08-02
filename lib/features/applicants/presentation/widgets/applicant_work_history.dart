@@ -10,11 +10,11 @@ class ApplicantWorkHistory extends StatelessWidget {
   const ApplicantWorkHistory({
     super.key,
     required this.experiences,
-    this.label = 'profile.experience',
+    this.label = 'applicants.card.experience',
   });
 
   String _formatDate(DateTime? date) {
-    if (date == null) return 'shared.present'.tr();
+    if (date == null) return 'applicants.card.present'.tr();
     return '${date.year}';
   }
 

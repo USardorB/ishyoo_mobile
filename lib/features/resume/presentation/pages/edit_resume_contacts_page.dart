@@ -16,7 +16,7 @@ class EditResumeContactsPage extends StatelessWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => context.maybePop(),
         ),
-        title: const Text("resume.contacts").tr(),
+        title: const Text("resume.sections.contacts").tr(),
         centerTitle: true,
         actions: [
           TextButton(

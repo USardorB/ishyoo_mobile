@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
 enum AttatchmentOptionsSheetType {
-  file(icon: Icons.file_present_outlined, key: 'messaging.file'),
-  gallery(icon: Icons.photo_outlined, key: 'messaging.gallery'),
-  camera(icon: Icons.camera_alt_outlined, key: 'messaging.camera');
+  file(icon: Icons.file_present_outlined, key: 'messaging.attachment.file'),
+  gallery(icon: Icons.photo_outlined, key: 'messaging.attachment.gallery'),
+  camera(icon: Icons.camera_alt_outlined, key: 'messaging.attachment.camera');
 
   final IconData icon;
   final String key;

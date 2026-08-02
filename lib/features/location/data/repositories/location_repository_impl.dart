@@ -22,12 +22,12 @@ class LocationRepositoryImpl implements LocationRepository {
         return Right(result.data!);
       }
       return Left(
-        ServerFailure(message: "shared.error_occurred".tr()),
+        ServerFailure(message: "location.errors.occurred".tr()),
       );
     } on DioException catch (e) {
       return Left(
         ServerFailure(
-          message: e.response?.data['message'] ?? e.message ?? "shared.error_occurred".tr(),
+          message: e.response?.data['message'] ?? e.message ?? "location.errors.occurred".tr(),
         ),
       );
     } catch (e) {
@@ -43,12 +43,12 @@ class LocationRepositoryImpl implements LocationRepository {
         return Right(result.data!);
       }
       return Left(
-        ServerFailure(message: "shared.error_occurred".tr()),
+        ServerFailure(message: "location.errors.occurred".tr()),
       );
     } on DioException catch (e) {
       return Left(
         ServerFailure(
-          message: e.response?.data['message'] ?? e.message ?? "shared.error_occurred".tr(),
+          message: e.response?.data['message'] ?? e.message ?? "location.errors.occurred".tr(),
         ),
       );
     } catch (e) {

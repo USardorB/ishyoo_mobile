@@ -45,7 +45,7 @@ class CandidateProfileHeader extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  name.isEmpty ? "shared.no_data".tr() : name,
+                  name.isEmpty ? "profile.noData".tr() : name,
                   style: context.textThemes.s1,
                 ),
                 const SizedBox(height: 4),

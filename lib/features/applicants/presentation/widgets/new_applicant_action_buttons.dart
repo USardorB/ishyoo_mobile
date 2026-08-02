@@ -57,7 +57,7 @@ class NewApplicantActionButtons extends StatelessWidget {
                   });
                 },
                 enabled: !isUpdating,
-                label: "applicants.invite_button".tr(),
+                label: "applicants.actions.invite".tr(),
                 labelStyle: context.textThemes.b3,
                 color: context.colors.brandProgress,
                 foregroundColor: context.colors.brandDefault,
@@ -95,7 +95,7 @@ class NewApplicantActionButtons extends StatelessWidget {
                   });
                 },
                 enabled: !isUpdating,
-                label: "applications.tabs.rejected".tr(),
+                label: "applicants.actions.reject".tr(),
                 labelStyle: context.textThemes.b3,
               ),
             ),

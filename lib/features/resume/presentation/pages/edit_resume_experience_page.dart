@@ -35,7 +35,7 @@ class EditResumeExperiencePage extends HookWidget {
     final isWorking = useState<bool>(
       experience != null && experience!.endDate == null,
     );
-    final locationStr = useState<String>("shared.select".tr());
+    final locationStr = useState<String>("resume.actions.select".tr());
 
     return Scaffold(
       appBar: AppBar(
@@ -43,7 +43,7 @@ class EditResumeExperiencePage extends HookWidget {
           icon: const Icon(Icons.arrow_back),
           onPressed: () => context.maybePop(),
         ),
-        title: const Text("resume.workplace").tr(),
+        title: const Text("resume.sections.workplace").tr(),
         centerTitle: true,
         actions: [
           if (experience != null)
@@ -147,7 +147,7 @@ class EditResumeExperiencePage extends HookWidget {
                 };
                 context.maybePop(result);
               },
-              label: "shared.save".tr(),
+              label: "resume.actions.save".tr(),
               color: context.colors.brandProgress,
               foregroundColor: Colors.black,
             ),

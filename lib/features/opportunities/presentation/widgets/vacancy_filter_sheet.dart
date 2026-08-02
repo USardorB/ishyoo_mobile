@@ -113,14 +113,14 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
               children: EmploymentType.values.map(_wrapJobChoiceChip).toList(),
             ),
             const SizedBox(height: 18),
-            _sectionTitle(context, 'talents.search_placeholder'.tr()),
+            _sectionTitle(context, 'opportunities.filter.searchPlaceholder'.tr()),
             const SizedBox(height: 16),
             BlocProvider(
               create: (context) => sl<PostingsBloc>()..add(LoadPostings()),
               child: BlocBuilder<PostingsBloc, PostingsState>(
                 builder: (context, state) {
                   return AppInputField(
-                    hintText: _specialization ?? "shared.search".tr(),
+                    hintText: _specialization ?? "opportunities.filter.search".tr(),
                     readOnly: true,
                     suffixIcon: Icon(
                       Icons.chevron_right,
@@ -150,7 +150,7 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
               ),
             ),
             const SizedBox(height: 20),
-            _sectionTitle(context, 'profile.experience'.tr()),
+            _sectionTitle(context, 'opportunities.filter.experience'.tr()),
             const SizedBox(height: 16),
             Wrap(
               spacing: 8,
@@ -161,7 +161,7 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
             const SizedBox(height: 20),
             AppButton(
               onTap: _applyFilters,
-              label: "shared.apply".tr(),
+              label: "opportunities.filter.apply".tr(),
             ),
           ],
         ),
@@ -199,7 +199,7 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
               textStyle: context.textThemes.buttonLarge,
               visualDensity: VisualDensity.compact,
             ),
-            child: const Text('shared.clear').tr(),
+            child: const Text('opportunities.filter.clear').tr(),
           ),
         ),
       ),

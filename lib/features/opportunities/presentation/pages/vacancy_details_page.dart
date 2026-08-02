@@ -60,7 +60,7 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
         if (state is! VacancyDetailsLoaded) {
           return Scaffold(
             appBar: AppBar(),
-            body: Center(child: const Text("shared.error_occurred").tr()),
+            body: Center(child: const Text("opportunities.errorOccurred").tr()),
           );
         }
 
@@ -79,7 +79,7 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                 icon: const Icon(Icons.share_outlined),
                 onPressed: () {
                   AppNotificationOverlay.instance.show(
-                    message: "shared.coming_soon".tr(),
+                    message: "opportunities.details.comingSoon".tr(),
                     type: AppNotificationType.warning,
                   );
                 },
@@ -339,7 +339,7 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
   }
 
   String _formatSalary(double? from, double? to, String? currency) {
-    if (from == null && to == null) return "shared.negotiable".tr();
+    if (from == null && to == null) return "opportunities.vacancyCard.negotiable".tr();
     final c = currency?.toUpperCase() ?? "UZS";
     if (from != null && to != null) {
       return "${_formatNumber(from)} - ${_formatNumber(to)} $c";

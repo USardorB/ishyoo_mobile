@@ -56,7 +56,7 @@ class SettingsPage extends StatelessWidget {
                         ),
                       ),
                       title: Text(
-                        'profile.company_info',
+                        'profile.company.companyInfo',
                         style: context.textThemes.buttonLarge,
                       ).tr(),
                       trailing: Icon(

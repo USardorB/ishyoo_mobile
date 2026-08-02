@@ -32,7 +32,7 @@ class CategorySelectionSheet extends StatelessWidget {
           ),
           const SizedBox(height: 24),
           Text(
-            "talents.search_placeholder",
+            "postings.category.searchPlaceholder",
             style: context.textThemes.h3,
           ).tr(),
           const SizedBox(height: 24),

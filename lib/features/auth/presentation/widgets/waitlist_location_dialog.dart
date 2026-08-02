@@ -37,13 +37,13 @@ class WaitlistLocationDialog extends StatelessWidget {
             ),
             const SizedBox(height: 24),
             Text(
-              "waitlist.title".tr(),
+              "auth.waitlistDialog.title".tr(),
               style: context.textThemes.h4,
               textAlign: TextAlign.center,
             ),
             const SizedBox(height: 12),
             Text(
-              "waitlist.description".tr(),
+              "auth.waitlistDialog.description".tr(),
               style: context.textThemes.b2.copyWith(
                 color: context.colors.textSecondary,
                 height: 1.4,
@@ -53,12 +53,12 @@ class WaitlistLocationDialog extends StatelessWidget {
             const SizedBox(height: 32),
             AppButton(
               onTap: () => Navigator.of(context).pop(true),
-              label: "waitlist.yes".tr(),
+              label: "auth.waitlistDialog.buttons.yes".tr(),
             ),
             const SizedBox(height: 16),
             AppButton(
               onTap: () => Navigator.of(context).pop(false),
-              label: "waitlist.no".tr(),
+              label: "auth.waitlistDialog.buttons.no".tr(),
               color: context.colors.bgTertiary,
               foregroundColor: context.colors.textPrimary,
             ),

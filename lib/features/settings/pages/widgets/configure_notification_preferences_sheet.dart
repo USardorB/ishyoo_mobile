@@ -109,7 +109,7 @@ class _SheetContentState extends State<_SheetContent> {
                   ),
                   ListTile(
                     title: Text(
-                      "applications.title",
+                      "settings.preferences.applicationUpdates",
                       style: context.textThemes.buttonLarge,
                     ).tr(),
                     trailing: Switch.adaptive(
@@ -121,7 +121,7 @@ class _SheetContentState extends State<_SheetContent> {
                   ),
                   ListTile(
                     title: Text(
-                      "nav.chats",
+                      "settings.preferences.messages",
                       style: context.textThemes.buttonLarge,
                     ).tr(),
                     trailing: Switch.adaptive(
@@ -132,7 +132,7 @@ class _SheetContentState extends State<_SheetContent> {
                   ),
                   ListTile(
                     title: Text(
-                      "applications.status.interview",
+                      "settings.preferences.interviews",
                       style: context.textThemes.buttonLarge,
                     ).tr(),
                     trailing: Switch.adaptive(
@@ -158,7 +158,7 @@ class _SheetContentState extends State<_SheetContent> {
                   );
                   context.pop();
                 },
-                label: "shared.apply".tr(),
+                label: "settings.actions.apply".tr(),
               ),
             ),
           ],

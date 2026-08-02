@@ -37,7 +37,7 @@ class ConfirmPasswordPage extends HookWidget {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  "auth.confirm_password.title",
+                  "auth.confirmPassword.title",
                   textAlign: TextAlign.center,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -45,7 +45,7 @@ class ConfirmPasswordPage extends HookWidget {
                 ).tr(),
                 const SizedBox(height: 12),
                 Text(
-                  "auth.confirm_password.subtitle",
+                  "auth.confirmPassword.subtitle",
                   textAlign: TextAlign.center,
                   maxLines: 3,
                   overflow: TextOverflow.ellipsis,
@@ -57,7 +57,7 @@ class ConfirmPasswordPage extends HookWidget {
             ),
             const SizedBox(height: 16),
             AppInputField(
-              hintText: "auth.confirm_password.password_hint".tr(),
+              hintText: "auth.confirmPassword.passwordHint".tr(),
               autofillHints: const [AutofillHints.newPassword],
               textInputAction: TextInputAction.next,
               keyboardType: TextInputType.visiblePassword,
@@ -72,7 +72,7 @@ class ConfirmPasswordPage extends HookWidget {
             const SizedBox(height: 12),
             AppInputField(
               obscureText: isObscured.value,
-              hintText: "auth.confirm_password.confirm_hint".tr(),
+              hintText: "auth.confirmPassword.confirmHint".tr(),
               autofillHints: const [AutofillHints.newPassword],
               textInputAction: TextInputAction.done,
               keyboardType: TextInputType.visiblePassword,
@@ -85,7 +85,7 @@ class ConfirmPasswordPage extends HookWidget {
               ),
             ),
             const SizedBox(height: 16),
-            const Text("auth.confirm_password.requirements_title").tr(),
+            const Text("auth.confirmPassword.requirements.title").tr(),
             const SizedBox(height: 8),
             ValueListenableBuilder(
               valueListenable: passwordController,
@@ -96,7 +96,7 @@ class ConfirmPasswordPage extends HookWidget {
             const Spacer(),
             AppButton(
               onTap: () {},
-              label: 'shared.continue'.tr(),
+              label: 'auth.confirmPassword.buttons.continue'.tr(),
             ),
             const Flexible(flex: 0, child: SizedBox(height: 12)),
           ],

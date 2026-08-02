@@ -17,19 +17,19 @@ class PrivacyPolicyNotice extends StatelessWidget {
           color: context.colors.textSecondary,
         ),
         children: [
-          TextSpan(text: 'auth.privacy_notice.text1'.tr()),
+          TextSpan(text: 'auth.privacyPolicy.text1'.tr()),
           TextSpan(
-            text: 'auth.privacy_notice.privacy_policy'.tr(),
+            text: 'auth.privacyPolicy.privacyPolicy'.tr(),
             style: const TextStyle().copyWith(decoration: TextDecoration.underline),
             recognizer: TapGestureRecognizer()..onTap = () {},
           ),
-          TextSpan(text: 'auth.privacy_notice.and'.tr()),
+          TextSpan(text: 'auth.privacyPolicy.and'.tr()),
           TextSpan(
-            text: 'auth.privacy_notice.terms'.tr(),
+            text: 'auth.privacyPolicy.terms'.tr(),
             style: const TextStyle().copyWith(decoration: TextDecoration.underline),
             recognizer: TapGestureRecognizer()..onTap = () {},
           ),
-          TextSpan(text: 'auth.privacy_notice.text2'.tr()),
+          TextSpan(text: 'auth.privacyPolicy.text2'.tr()),
         ],
       ),
     );

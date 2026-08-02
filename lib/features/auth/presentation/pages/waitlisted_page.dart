@@ -43,13 +43,13 @@ class WaitlistedPage extends StatelessWidget {
               ),
               const SizedBox(height: 48),
               Text(
-                "waitlist.screen_title".tr(),
+                "auth.waitlisted.title".tr(),
                 style: context.textThemes.h2,
                 textAlign: TextAlign.center,
               ),
               const SizedBox(height: 16),
               Text(
-                "waitlist.screen_subtitle".tr(),
+                "auth.waitlisted.subtitle".tr(),
                 style: context.textThemes.b1.copyWith(
                   color: context.colors.textSecondary,
                   height: 1.5,
@@ -65,7 +65,7 @@ class WaitlistedPage extends StatelessWidget {
                     exit(0);
                   }
                 },
-                label: "waitlist.exit".tr(),
+                label: "auth.waitlisted.buttons.exit".tr(),
               ),
               const SizedBox(height: 16),
               TextButton.icon(
@@ -82,7 +82,7 @@ class WaitlistedPage extends StatelessWidget {
                 },
                 icon: Icon(Icons.logout, color: context.colors.danger),
                 label: Text(
-                  "waitlist.logout".tr(),
+                  "auth.waitlisted.buttons.logout".tr(),
                   style: context.textThemes.b1.copyWith(
                     color: context.colors.danger,
                     fontWeight: FontWeight.w600,

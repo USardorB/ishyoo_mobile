@@ -1,4 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:maplibre_gl/maplibre_gl.dart';
@@ -122,37 +122,6 @@ class _VacancyMapState extends State<VacancyMap> {
               ),
             ),
           ),
-          if (false)
-            Positioned(
-              left: 12,
-              bottom: 12,
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 16,
-                  vertical: 10,
-                ),
-                decoration: BoxDecoration(
-                  color: context.colors.bgPrimary.withValues(alpha: 0.9),
-                  borderRadius: .circular(10),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.navigation,
-                      color: context.colors.brandDefault,
-                      size: 16,
-                    ),
-                    const SizedBox(width: 8),
-                    Text(
-                      "opportunities.location",
-                      style: context.textThemes.b2.copyWith(
-                        color: Colors.white,
-                      ),
-                    ).tr(),
-                  ],
-                ),
-              ),
-            ),
         ],
       ),
     );

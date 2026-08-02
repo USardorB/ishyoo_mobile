@@ -41,12 +41,12 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text("opportunities.description", style: context.textThemes.h5).tr(),
+          Text("postings.create.description", style: context.textThemes.h5).tr(),
           const SizedBox(height: 20),
 
           // About Vacancy
           Text(
-            "opportunities.description".tr(),
+            "postings.create.description".tr(),
             style: context.textThemes.c1.copyWith(
               color: context.colors.textSecondary,
             ),
@@ -61,7 +61,7 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
 
           // Tasks / Responsibilities
           Text(
-            "opportunities.responsibilities".tr(),
+            "postings.create.responsibilities".tr(),
             style: context.textThemes.c1.copyWith(
               color: context.colors.textSecondary,
             ),
@@ -76,7 +76,7 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
 
           // Requirements
           Text(
-            "opportunities.requirements".tr(),
+            "postings.create.requirements".tr(),
             style: context.textThemes.c1.copyWith(
               color: context.colors.textSecondary,
             ),
@@ -91,7 +91,7 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
 
           // Skills
           Text(
-            "postings.key_skills".tr(),
+            "postings.keySkills".tr(),
             style: context.textThemes.c1.copyWith(
               color: context.colors.textSecondary,
             ),
@@ -189,7 +189,7 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
 
           // Experience
           Text(
-            "profile.experience".tr(),
+            "postings.create.experience".tr(),
             style: context.textThemes.c1.copyWith(
               color: context.colors.textSecondary,
             ),
@@ -229,7 +229,7 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
             builder: (context, _) {
               final isValid = _isValid();
               return AppButton(
-                label: "shared.continue".tr(),
+                label: "postings.create.continueButton".tr(),
                 enabled: isValid,
                 onTap: onNext,
               );

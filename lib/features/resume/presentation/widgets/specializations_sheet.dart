@@ -69,7 +69,7 @@ class _SpecializationsSheetState extends State<SpecializationsSheet> {
           ),
           const SizedBox(height: 24),
           Text(
-            "talents.search_placeholder",
+            "resume.specializationPlaceholder",
             style: context.textThemes.h3,
           ).tr(),
           const SizedBox(height: 24),

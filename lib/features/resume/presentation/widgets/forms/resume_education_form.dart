@@ -37,7 +37,7 @@ class ResumeEducationForm extends StatelessWidget {
         const SizedBox(height: 24),
         _buildTextField(
           context,
-          "talents.search_placeholder".tr(),
+          "resume.specializationPlaceholder".tr(),
           "Masalan: Dasturiy injiniring",
           controller: degreeController,
         ),
@@ -48,7 +48,7 @@ class ResumeEducationForm extends StatelessWidget {
             Expanded(
               child: _buildTextField(
                 context,
-                "shared.all".tr(),
+                "resume.yearHint".tr(),
                 "2019",
                 controller: startYearController,
                 keyboardType: TextInputType.number,
@@ -57,7 +57,7 @@ class ResumeEducationForm extends StatelessWidget {
             Expanded(
               child: _buildTextField(
                 context,
-                "shared.all".tr(),
+                "resume.yearHint".tr(),
                 "2023",
                 controller: endYearController,
                 keyboardType: TextInputType.number,
@@ -69,7 +69,7 @@ class ResumeEducationForm extends StatelessWidget {
           const SizedBox(height: 32),
           AppButton(
             onTap: onSave ?? () {},
-            label: "shared.save".tr(),
+            label: "resume.actions.save".tr(),
             color: context.colors.brandProgress,
             foregroundColor: Colors.black,
           ),

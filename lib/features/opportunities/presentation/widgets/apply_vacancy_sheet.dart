@@ -116,11 +116,11 @@ class _ApplyVacancySheetState extends State<ApplyVacancySheet> {
           if (_isLoading)
             const Center(child: CircularProgressIndicator())
           else if (_error != null)
-            Text('Xatolik: $_error', style: const TextStyle(color: Colors.red))
+            Text("opportunities.errorApplying".tr(args: [_error!]), style: const TextStyle(color: Colors.red))
           else if (_resumes == null || _resumes!.isEmpty)
-            const Text("profile.no_resumes").tr()
+            const Text("opportunities.apply.noResumes").tr()
           else ...[
-            Text('resume.create_resume', style: context.textThemes.s2).tr(),
+            Text('opportunities.apply.selectResume', style: context.textThemes.s2).tr(),
             const SizedBox(height: 8),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -154,7 +154,7 @@ class _ApplyVacancySheetState extends State<ApplyVacancySheet> {
               ),
             ),
             const SizedBox(height: 16),
-            Text('messaging.type_message', style: context.textThemes.s2).tr(),
+            Text('opportunities.apply.coverLetter', style: context.textThemes.s2).tr(),
             const SizedBox(height: 8),
             AppInputField(
               controller: _coverLetterController,

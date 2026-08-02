@@ -48,7 +48,7 @@ class _NotificationsPageView extends StatelessWidget {
                 );
               },
               icon: const Icon(Icons.checklist),
-              tooltip: "notifications.mark_all_read".tr(),
+              tooltip: "notifications.markAllRead".tr(),
             ),
         ],
       ),
