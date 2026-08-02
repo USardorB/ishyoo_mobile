@@ -10,6 +10,8 @@ import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
+import 'package:mobile/core/utils/app_validators.dart';
 import 'package:mobile/features/auth/data/models/auth_request.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_event.dart';
@@ -27,15 +29,10 @@ class ResetPasswordPage extends HookWidget {
     final passwordController = useTextEditingController(text: '');
     final passwordConfirmController = useTextEditingController();
     final isObscured = useState(true);
+    final formKey = useMemoized(() => GlobalKey<FormState>());
 
     void onResetPassword() {
-      if (passwordController.text != passwordConfirmController.text) {
-        AppNotificationOverlay.instance.show(
-          message: 'auth.resetPassword.errors.mismatch'.tr(),
-          type: .warning,
-        );
-        return;
-      }
+      if (!formKey.currentState!.validate()) return;
 
       final authState = context.read<AuthBloc>().state;
       final requestId = authState.requestId;
@@ -43,7 +40,7 @@ class ResetPasswordPage extends HookWidget {
       if (requestId == null) {
         AppNotificationOverlay.instance.show(
           message: 'auth.resetPassword.errors.general'.tr(),
-          type: .error,
+          type: AppNotificationType.error,
         );
         return;
       }
@@ -139,86 +136,98 @@ class ResetPasswordPage extends HookWidget {
             showSuccessDialog();
           } else if (state.status == bloc_state.AuthStatus.failure) {
             AppNotificationOverlay.instance.show(
-              message: state.errorMessage ?? 'auth.resetPassword.errors.general'.tr(),
-              type: .error,
+              message:
+                  state.errorMessage ??
+                  'auth.resetPassword.errors.general'.tr(),
+              type: AppNotificationType.error,
             );
           }
         },
         builder: (context, state) {
           return SafeArea(
             minimum: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(height: 8),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      "auth.resetPassword.title",
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: context.textThemes.h5,
-                    ).tr(),
-                    const SizedBox(height: 12),
-                    Text(
-                      'auth.resetPassword.subtitle',
-                      textAlign: TextAlign.center,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: context.textThemes.b1.copyWith(
-                        color: context.colors.textSecondary,
-                      ),
-                    ).tr(),
-                  ],
-                ),
-                const SizedBox(height: 32),
-                AppInputField(
-                  hintText: "auth.confirmPassword.passwordHint".tr(),
-                  autofillHints: const [AutofillHints.newPassword],
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.visiblePassword,
-                  controller: passwordController,
-                  suffixIcon: IconButton(
-                    onPressed: () => isObscured.value = !isObscured.value,
-                    isSelected: isObscured.value,
-                    selectedIcon: const Icon(Icons.visibility_off),
-                    icon: const Icon(Icons.visibility),
+            child: Form(
+              key: formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(height: 8),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        "auth.resetPassword.title",
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: context.textThemes.h5,
+                      ).tr(),
+                      const SizedBox(height: 12),
+                      Text(
+                        'auth.resetPassword.subtitle',
+                        textAlign: TextAlign.center,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: context.textThemes.b1.copyWith(
+                          color: context.colors.textSecondary,
+                        ),
+                      ).tr(),
+                    ],
                   ),
-                ),
-                const SizedBox(height: 12),
-                AppInputField(
-                  obscureText: isObscured.value,
-                  hintText: "auth.confirmPassword.confirmHint".tr(),
-                  autofillHints: const [AutofillHints.newPassword],
-                  textInputAction: TextInputAction.done,
-                  keyboardType: TextInputType.visiblePassword,
-                  controller: passwordConfirmController,
-                  suffixIcon: IconButton(
-                    onPressed: () => isObscured.value = !isObscured.value,
-                    isSelected: isObscured.value,
-                    selectedIcon: const Icon(Icons.visibility_off),
-                    icon: const Icon(Icons.visibility),
+                  const SizedBox(height: 32),
+                  AppInputField(
+                    hintText: "auth.confirmPassword.passwordHint".tr(),
+                    autofillHints: const [AutofillHints.newPassword],
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.visiblePassword,
+                    controller: passwordController,
+                    validator: AppValidators.password,
+                    suffixIcon: IconButton(
+                      onPressed: () => isObscured.value = !isObscured.value,
+                      isSelected: isObscured.value,
+                      selectedIcon: const Icon(Icons.visibility_off),
+                      icon: const Icon(Icons.visibility),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 16),
-                const Text("auth.confirmPassword.requirements.title").tr(),
-                const SizedBox(height: 8),
-                ValueListenableBuilder(
-                  valueListenable: passwordController,
-                  builder: (_, value, _) => PasswordRequirements(
-                    password: value.text,
+                  const SizedBox(height: 12),
+                  AppInputField(
+                    obscureText: isObscured.value,
+                    hintText: "auth.confirmPassword.confirmHint".tr(),
+                    autofillHints: const [AutofillHints.newPassword],
+                    textInputAction: TextInputAction.done,
+                    keyboardType: TextInputType.visiblePassword,
+                    controller: passwordConfirmController,
+                    validator: (val) {
+                      if (val != passwordController.text) {
+                        return 'shared.validation.passwordsMustMatch'.tr();
+                      }
+                      return AppValidators.password(val);
+                    },
+                    suffixIcon: IconButton(
+                      onPressed: () => isObscured.value = !isObscured.value,
+                      isSelected: isObscured.value,
+                      selectedIcon: const Icon(Icons.visibility_off),
+                      icon: const Icon(Icons.visibility),
+                    ),
                   ),
-                ),
-                const Spacer(),
-                AppButton(
-                  onTap: onResetPassword,
-                  isLoading: state.status == bloc_state.AuthStatus.loading,
-                  label: 'auth.resetPassword.buttons.saveAndLogin'.tr(),
-                ),
-                const Flexible(flex: 0, child: SizedBox(height: 12)),
-              ],
+                  const SizedBox(height: 16),
+                  const Text("auth.confirmPassword.requirements.title").tr(),
+                  const SizedBox(height: 8),
+                  ValueListenableBuilder(
+                    valueListenable: passwordController,
+                    builder: (_, value, _) => PasswordRequirements(
+                      password: value.text,
+                    ),
+                  ),
+                  const Spacer(),
+                  AppButton(
+                    onTap: onResetPassword,
+                    isLoading: state.status == bloc_state.AuthStatus.loading,
+                    label: 'auth.resetPassword.buttons.saveAndLogin'.tr(),
+                  ),
+                  const Flexible(flex: 0, child: SizedBox(height: 12)),
+                ],
+              ),
             ),
           );
         },

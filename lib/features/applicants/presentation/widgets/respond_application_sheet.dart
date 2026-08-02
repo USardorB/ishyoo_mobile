@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 
@@ -128,18 +129,13 @@ class _RespondApplicationSheetState extends State<RespondApplicationSheet> {
             ),
           ),
           const SizedBox(height: 12),
-          TextField(
+          AppInputField(
             controller: _textController,
-            decoration: InputDecoration(
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(14),
-                borderSide: BorderSide.none,
-              ),
-              fillColor: context.colors.bgCard,
-              filled: true,
-            ),
             minLines: 4,
             maxLines: 6,
+            maxLength: 1000,
+            keyboardType: TextInputType.multiline,
+            textInputAction: TextInputAction.newline,
           ),
           const SizedBox(height: 24),
           AppButton(

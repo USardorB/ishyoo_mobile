@@ -637,5 +637,14 @@
     "contactInfo": "Kontaktlar",
     "candidate": "Nomzod",
     "matchesFilter": "Mos keladi"
+  },
+  "shared": {
+    "validation": {
+      "required": "Bu maydon to'ldirilishi shart",
+      "invalidEmail": "Yaroqsiz elektron pochta manzili",
+      "passwordLength": "Parol kamida 8 ta belgidan iborat bo'lishi kerak",
+      "invalidUrl": "Yaroqsiz URL",
+      "passwordsMustMatch": "Parollar mos kelishi kerak"
+    }
   }
 }

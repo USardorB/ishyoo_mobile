@@ -12,6 +12,8 @@ import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
+import 'package:mobile/core/utils/app_validators.dart';
 import 'package:mobile/features/auth/data/models/auth_request.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_event.dart';
@@ -38,15 +40,10 @@ class LoginPage extends HookWidget {
     final phoneController = useTextEditingController(text: '942351906');
     final passwordController = useTextEditingController(text: 'password');
     final isObscured = useState(true);
+    final formKey = useMemoized(() => GlobalKey<FormState>());
 
     Future<void> onLogin() async {
-      if (phoneController.text.isEmpty || passwordController.text.isEmpty) {
-        AppNotificationOverlay.instance.show(
-          message: 'auth.login.errors.general'.tr(),
-          type: .warning,
-        );
-        return;
-      }
+      if (!formKey.currentState!.validate()) return;
 
       String deviceName =
           '${Platform.operatingSystem} ${Platform.operatingSystemVersion}';
@@ -85,126 +82,133 @@ class LoginPage extends HookWidget {
           } else if (state.status == AuthStatus.failure) {
             AppNotificationOverlay.instance.show(
               message: state.errorMessage ?? 'auth.login.errors.general'.tr(),
-              type: .error,
+              type: AppNotificationType.error,
             );
           }
         },
         builder: (context, state) {
           return SafeArea(
             minimum: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const SizedBox(height: 8),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      "auth.login.title",
-                      textAlign: TextAlign.center,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: context.textThemes.h5,
-                    ).tr(),
-                    const SizedBox(height: 12),
-                    Text(
-                      'auth.login.subtitle',
-                      textAlign: TextAlign.center,
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                      style: context.textThemes.b1.copyWith(
-                        color: context.colors.textSecondary,
-                      ),
-                    ).tr(),
-                  ],
-                ),
-                const SizedBox(height: 32),
-                AppInputField(
-                  hintText: '99 888 99 88',
-                  autofillHints: const [AutofillHints.telephoneNumberNational],
-                  textInputAction: TextInputAction.next,
-                  keyboardType: TextInputType.phone,
-                  controller: phoneController,
-                  prefixIcon: const PhoneNumberFieldPrefix(),
-                  label: 'auth.login.phoneLabel'.tr(),
-                ),
-                const SizedBox(height: 12),
-                AppInputField(
-                  obscureText: isObscured.value,
-                  hintText: '********',
-                  autofillHints: const [AutofillHints.password],
-                  textInputAction: TextInputAction.done,
-                  keyboardType: TextInputType.visiblePassword,
-                  controller: passwordController,
-                  label: 'auth.login.passwordLabel'.tr(),
-                  suffixIcon: IconButton(
-                    onPressed: () {
-                      isObscured.value = !isObscured.value;
-                    },
-                    isSelected: isObscured.value,
-                    selectedIcon: const Icon(Icons.visibility_off),
-                    icon: const Icon(Icons.visibility),
+            child: Form(
+              key: formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(height: 8),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        "auth.login.title",
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: context.textThemes.h5,
+                      ).tr(),
+                      const SizedBox(height: 12),
+                      Text(
+                        'auth.login.subtitle',
+                        textAlign: TextAlign.center,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: context.textThemes.b1.copyWith(
+                          color: context.colors.textSecondary,
+                        ),
+                      ).tr(),
+                    ],
                   ),
-                ),
-                const SizedBox(height: 8),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton(
-                    onPressed: () {
-                      context.router.push(const ForgotPasswordRoute());
-                    },
-                    child: Text(
-                      'auth.login.buttons.forgotPassword',
-                      style: context.textThemes.b1,
-                    ).tr(),
+                  const SizedBox(height: 32),
+                  AppInputField(
+                    hintText: '99 888 99 88',
+                    autofillHints: const [
+                      AutofillHints.telephoneNumberNational,
+                    ],
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.phone,
+                    controller: phoneController,
+                    validator: AppValidators.required,
+                    prefixIcon: const PhoneNumberFieldPrefix(),
+                    label: 'auth.login.phoneLabel'.tr(),
                   ),
-                ),
-                const Spacer(),
-                const SizedBox(height: 16),
-                AppButton(
-                  onTap: onLogin,
-                  isLoading: state.status == AuthStatus.loading,
-                  label: 'auth.login.buttons.login'.tr(),
-                ),
-                const SizedBox(height: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'auth.login.registrationPrompt.text',
-                      textAlign: TextAlign.center,
-                      style: context.textThemes.b1,
-                    ).tr(),
-                    TextButton(
+                  const SizedBox(height: 12),
+                  AppInputField(
+                    obscureText: isObscured.value,
+                    hintText: '********',
+                    autofillHints: const [AutofillHints.password],
+                    textInputAction: TextInputAction.done,
+                    keyboardType: TextInputType.visiblePassword,
+                    controller: passwordController,
+                    validator: AppValidators.required,
+                    label: 'auth.login.passwordLabel'.tr(),
+                    suffixIcon: IconButton(
                       onPressed: () {
-                        context.router.push(
-                          RegisterRoute(phoneNumber: phoneController.text),
-                        );
+                        isObscured.value = !isObscured.value;
+                      },
+                      isSelected: isObscured.value,
+                      selectedIcon: const Icon(Icons.visibility_off),
+                      icon: const Icon(Icons.visibility),
+                    ),
+                  ),
+                  const SizedBox(height: 8),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: TextButton(
+                      onPressed: () {
+                        context.router.push(const ForgotPasswordRoute());
                       },
                       child: Text(
-                        'auth.login.registrationPrompt.link',
+                        'auth.login.buttons.forgotPassword',
                         style: context.textThemes.b1,
                       ).tr(),
                     ),
-                  ],
-                ),
-                Align(
-                  child: TextButton(
-                    onPressed: () =>
-                        context.router.replaceAll([const MainLayoutRoute()]),
-                    style: TextButton.styleFrom(
-                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                      visualDensity: VisualDensity.compact,
-                      foregroundColor: context.colors.textSecondary,
-                    ),
-                    child: Text(
-                      "auth.login.buttons.skip",
-                      style: context.textThemes.buttonMedium,
-                    ).tr(),
                   ),
-                ),
-                const Flexible(flex: 0, child: SizedBox(height: 12)),
-              ],
+                  const Spacer(),
+                  const SizedBox(height: 16),
+                  AppButton(
+                    onTap: onLogin,
+                    isLoading: state.status == AuthStatus.loading,
+                    label: 'auth.login.buttons.login'.tr(),
+                  ),
+                  const SizedBox(height: 12),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        'auth.login.registrationPrompt.text',
+                        textAlign: TextAlign.center,
+                        style: context.textThemes.b1,
+                      ).tr(),
+                      TextButton(
+                        onPressed: () {
+                          context.router.push(
+                            RegisterRoute(phoneNumber: phoneController.text),
+                          );
+                        },
+                        child: Text(
+                          'auth.login.registrationPrompt.link',
+                          style: context.textThemes.b1,
+                        ).tr(),
+                      ),
+                    ],
+                  ),
+                  Align(
+                    child: TextButton(
+                      onPressed: () =>
+                          context.router.replaceAll([const MainLayoutRoute()]),
+                      style: TextButton.styleFrom(
+                        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        visualDensity: VisualDensity.compact,
+                        foregroundColor: context.colors.textSecondary,
+                      ),
+                      child: Text(
+                        "auth.login.buttons.skip",
+                        style: context.textThemes.buttonMedium,
+                      ).tr(),
+                    ),
+                  ),
+                  const Flexible(flex: 0, child: SizedBox(height: 12)),
+                ],
+              ),
             ),
           );
         },

@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobile/core/enums/user_role.dart';
@@ -131,19 +132,14 @@ class _ChatPageBottomPartState extends State<ChatPageBottomPart> {
           ),
           const SizedBox(width: 8),
           Expanded(
-            child: TextField(
+            child: AppInputField(
               controller: _controller,
-              onSubmitted: (_) => _sendMessage(),
-              decoration: InputDecoration(
-                hintText: "messaging.input.placeholder".tr(),
-                fillColor: context.colors.bgPrimary,
-                filled: true,
-                contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(100),
-                  borderSide: BorderSide.none,
-                ),
-              ),
+              onFieldSubmitted: (_) => _sendMessage(),
+              hintText: "messaging.input.placeholder".tr(),
+              keyboardType: TextInputType.multiline,
+              textInputAction: TextInputAction.send,
+              maxLines: 4,
+              minLines: 1,
             ),
           ),
           const SizedBox(width: 8),

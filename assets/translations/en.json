@@ -637,5 +637,14 @@
     "contactInfo": "Contact Info",
     "candidate": "Candidate",
     "matchesFilter": "Match"
+  },
+  "shared": {
+    "validation": {
+      "required": "This field is required",
+      "invalidEmail": "Invalid email address",
+      "passwordLength": "Password must be at least 8 characters",
+      "invalidUrl": "Invalid URL",
+      "passwordsMustMatch": "Passwords must match"
+    }
   }
 }

@@ -1,7 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/core/utils/app_validators.dart';
 
 class ResumeEducationForm extends StatelessWidget {
   final TextEditingController schoolController;
@@ -33,6 +35,9 @@ class ResumeEducationForm extends StatelessWidget {
           "Masalan: TATU",
           controller: schoolController,
           maxLines: 2,
+          keyboardType: TextInputType.text,
+          autofillHints: const [AutofillHints.organizationName],
+          textInputAction: TextInputAction.next,
         ),
         const SizedBox(height: 24),
         _buildTextField(
@@ -40,6 +45,8 @@ class ResumeEducationForm extends StatelessWidget {
           "resume.specializationPlaceholder".tr(),
           "Masalan: Dasturiy injiniring",
           controller: degreeController,
+          keyboardType: TextInputType.text,
+          textInputAction: TextInputAction.next,
         ),
         const SizedBox(height: 24),
         Row(
@@ -52,6 +59,7 @@ class ResumeEducationForm extends StatelessWidget {
                 "2019",
                 controller: startYearController,
                 keyboardType: TextInputType.number,
+                textInputAction: TextInputAction.next,
               ),
             ),
             Expanded(
@@ -61,6 +69,7 @@ class ResumeEducationForm extends StatelessWidget {
                 "2023",
                 controller: endYearController,
                 keyboardType: TextInputType.number,
+                textInputAction: TextInputAction.done,
               ),
             ),
           ],
@@ -86,40 +95,19 @@ class ResumeEducationForm extends StatelessWidget {
     required TextEditingController controller,
     int maxLines = 1,
     TextInputType? keyboardType,
+    TextInputAction? textInputAction,
+    Iterable<String>? autofillHints,
+    String? Function(String?)? validator,
   }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: context.textThemes.c2.copyWith(
-            color: context.colors.textSecondary,
-          ),
-        ),
-        const SizedBox(height: 8),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-          decoration: BoxDecoration(
-            color: context.colors.bgSecondary,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: TextField(
-            controller: controller,
-            style: context.textThemes.b2,
-            maxLines: maxLines,
-            keyboardType: keyboardType,
-            decoration: InputDecoration(
-              hintText: hint,
-              hintStyle: context.textThemes.b2.copyWith(
-                color: context.colors.textSecondary,
-              ),
-              border: InputBorder.none,
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
-            ),
-          ),
-        ),
-      ],
+    return AppInputField(
+      label: label,
+      hintText: hint,
+      controller: controller,
+      maxLines: maxLines,
+      keyboardType: keyboardType ?? TextInputType.text,
+      textInputAction: textInputAction ?? TextInputAction.next,
+      autofillHints: autofillHints?.toList() ?? const [],
+      validator: validator ?? AppValidators.required,
     );
   }
 }

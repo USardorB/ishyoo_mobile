@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/consts/api_endpoints.dart';
@@ -309,11 +310,11 @@ class MessageBubble extends StatelessWidget {
       context: context,
       builder: (ctx) => AlertDialog(
         title: const Text("messaging.dialogs.editMessage.title").tr(),
-        content: TextField(
+        content: AppInputField(
           controller: ctrl,
           autofocus: true,
           maxLines: null,
-          decoration: InputDecoration(hintText: "messaging.input.placeholder".tr()),
+          hintText: "messaging.input.placeholder".tr(),
         ),
         actions: [
           TextButton(

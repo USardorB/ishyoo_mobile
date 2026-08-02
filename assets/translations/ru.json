@@ -637,5 +637,14 @@
     "contactInfo": "Контакты",
     "candidate": "Кандидат",
     "matchesFilter": "Совпадение"
+  },
+  "shared": {
+    "validation": {
+      "required": "Обязательное поле",
+      "invalidEmail": "Неверный адрес электронной почты",
+      "passwordLength": "Пароль должен состоять минимум из 8 символов",
+      "invalidUrl": "Неверный URL",
+      "passwordsMustMatch": "Пароли должны совпадать"
+    }
   }
 }

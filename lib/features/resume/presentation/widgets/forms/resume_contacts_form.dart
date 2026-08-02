@@ -65,6 +65,7 @@ class ResumeContactsForm extends HookWidget {
           label: "opportunities.salary".tr(args: ['']),
           controller: salaryController,
           keyboardType: TextInputType.number,
+          textInputAction: TextInputAction.done,
           onChanged: (_) => updateData(),
         ),
         const SizedBox(height: 24),

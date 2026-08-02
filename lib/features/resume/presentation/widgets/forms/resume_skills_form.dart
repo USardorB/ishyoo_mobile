@@ -29,6 +29,7 @@ class ResumeSkillsForm extends HookWidget {
               hintText: "resume.searchPlaceholder".tr(),
               controller: controller,
               keyboardType: TextInputType.text,
+              textInputAction: TextInputAction.done,
               onFieldSubmitted: (value) {
                 if (value.trim().isNotEmpty && !skills.contains(value.trim())) {
                   final newSkills = List<String>.from(skills)

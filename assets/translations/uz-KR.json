@@ -637,5 +637,14 @@
     "contactInfo": "Контактлар",
     "candidate": "Номзод",
     "matchesFilter": "Мос келади"
+  },
+  "shared": {
+    "validation": {
+      "required": "Бу майдон тўлдирилиши шарт",
+      "invalidEmail": "Яроқсиз электрон почта манзили",
+      "passwordLength": "Парол камида 8 та белгидан иборат бўлиши керак",
+      "invalidUrl": "Яроқсиз URL",
+      "passwordsMustMatch": "Пароллар мос келиши керак"
+    }
   }
 }

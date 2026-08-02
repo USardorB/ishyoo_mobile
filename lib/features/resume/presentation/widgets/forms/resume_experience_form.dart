@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/utils/app_validators.dart';
+import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 
 class ResumeExperienceForm extends StatelessWidget {
   final TextEditingController companyController;
@@ -49,6 +51,9 @@ class ResumeExperienceForm extends StatelessWidget {
           "resume.companyPlaceholder".tr(),
           "Masalan: Uzum bank",
           controller: companyController,
+          keyboardType: TextInputType.name,
+          autofillHints: const [AutofillHints.organizationName],
+          textInputAction: TextInputAction.next,
         ),
         const SizedBox(height: 24),
         _buildTextField(
@@ -56,9 +61,17 @@ class ResumeExperienceForm extends StatelessWidget {
           "resume.specializationPlaceholder".tr(),
           "Masalan: UX/UI Dizayner",
           controller: positionController,
+          keyboardType: TextInputType.text,
+          autofillHints: const [AutofillHints.jobTitle],
+          textInputAction: TextInputAction.next,
         ),
         const SizedBox(height: 24),
-        _buildActionField(context, "resume.location".tr(), location, onTap: onLocationTapped),
+        _buildActionField(
+          context,
+          "resume.location".tr(),
+          location,
+          onTap: onLocationTapped,
+        ),
         const SizedBox(height: 24),
         _buildTextField(
           context,
@@ -66,6 +79,9 @@ class ResumeExperienceForm extends StatelessWidget {
           "Vazifalaringizni kiriting",
           controller: descriptionController,
           maxLines: 4,
+          keyboardType: TextInputType.multiline,
+          textInputAction: TextInputAction.newline,
+          validator: (v) => AppValidators.required(v), // or null if optional, assuming required
         ),
         const SizedBox(height: 24),
         Text(
@@ -141,42 +157,21 @@ class ResumeExperienceForm extends StatelessWidget {
     int maxLines = 1,
     bool hasLabel = true,
     bool isPlaceholder = false,
+    TextInputType? keyboardType,
+    TextInputAction? textInputAction,
+    Iterable<String>? autofillHints,
+    String? Function(String?)? validator,
   }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        if (hasLabel) ...[
-          Text(
-            label,
-            style: context.textThemes.c2.copyWith(
-              color: context.colors.textSecondary,
-            ),
-          ),
-          const SizedBox(height: 8),
-        ],
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
-          decoration: BoxDecoration(
-            color: context.colors.bgSecondary,
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: TextField(
-            controller: controller,
-            style: context.textThemes.b2,
-            maxLines: maxLines,
-            enabled: !isPlaceholder,
-            decoration: InputDecoration(
-              hintText: hint,
-              hintStyle: context.textThemes.b2.copyWith(
-                color: context.colors.textSecondary,
-              ),
-              border: InputBorder.none,
-              enabledBorder: InputBorder.none,
-              focusedBorder: InputBorder.none,
-            ),
-          ),
-        ),
-      ],
+    return AppInputField(
+      label: hasLabel ? label : null,
+      hintText: hint,
+      controller: controller,
+      maxLines: maxLines,
+      enabled: !isPlaceholder,
+      keyboardType: keyboardType ?? TextInputType.text,
+      textInputAction: textInputAction ?? TextInputAction.next,
+      autofillHints: autofillHints?.toList() ?? const [],
+      validator: validator ?? AppValidators.required,
     );
   }
 

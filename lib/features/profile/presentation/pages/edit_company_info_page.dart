@@ -7,6 +7,7 @@ import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
 import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
+import 'package:mobile/core/utils/app_validators.dart';
 import 'package:mobile/features/opportunities/data/models/organization.dart';
 import 'package:mobile/features/profile/presentation/bloc/employer_organization_bloc.dart';
 
@@ -50,7 +51,10 @@ class _EditCompanyInfoPageState extends State<EditCompanyInfoPage> {
     super.dispose();
   }
 
+  final _formKey = GlobalKey<FormState>();
+
   void _save(BuildContext context) {
+    if (!_formKey.currentState!.validate()) return;
     context.read<EmployerOrganizationBloc>().add(
       UpdateEmployerOrganization({
         'name': _nameCtrl.text.trim(),
@@ -101,41 +105,61 @@ class _EditCompanyInfoPageState extends State<EditCompanyInfoPage> {
             ),
             body: SingleChildScrollView(
               padding: const EdgeInsets.all(16),
-              child: Column(
+              child: Form(
+                key: _formKey,
+                child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   AppInputField(
                     label: 'profile.company.nameHint'.tr(),
                     controller: _nameCtrl,
+                    validator: AppValidators.required,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.name,
+                    autofillHints: const [AutofillHints.organizationName],
                   ),
                   const SizedBox(height: 16),
                   AppInputField(
                     label: 'profile.company.fieldOfActivity'.tr(),
                     controller: _industryCtrl,
+                    validator: AppValidators.required,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   AppInputField(
                     label: 'profile.company.filterTitle'.tr(),
                     keyboardType: TextInputType.number,
                     controller: _sizeCtrl,
+                    validator: AppValidators.required,
+                    textInputAction: TextInputAction.next,
                   ),
                   const SizedBox(height: 16),
                   AppInputField(
                     label: 'WEBSITE',
                     controller: _websiteCtrl,
                     keyboardType: TextInputType.url,
+                    validator: (v) => AppValidators.url(v, isRequired: false),
+                    textInputAction: TextInputAction.next,
+                    autofillHints: const [AutofillHints.url],
                   ),
                   const SizedBox(height: 16),
                   AppInputField(
                     label: 'profile.company.location'.tr(),
                     controller: _locationCtrl,
+                    validator: AppValidators.required,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.streetAddress,
+                    autofillHints: const [AutofillHints.fullStreetAddress],
                   ),
                   const SizedBox(height: 16),
                   AppInputField(
                     label: 'profile.company.about'.tr(),
                     minLines: 4,
                     maxLines: 6,
+                    maxLength: 1000,
                     controller: _descriptionCtrl,
+                    textInputAction: TextInputAction.newline,
+                    keyboardType: TextInputType.multiline,
                   ),
                   const SizedBox(height: 24),
                   AppButton(
@@ -146,6 +170,7 @@ class _EditCompanyInfoPageState extends State<EditCompanyInfoPage> {
                   const SizedBox(height: 32),
                 ],
               ),
+            ),
             ),
           );
         },

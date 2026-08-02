@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
@@ -119,21 +120,13 @@ class ApplyToVacancySheet extends HookWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          TextField(
+                          AppInputField(
                             controller: coverLetterController,
                             maxLines: 4,
                             maxLength: 500,
-                            style: context.textThemes.b2,
-                            decoration: InputDecoration(
-                              hintText: "...",
-                              hintStyle: context.textThemes.b2.copyWith(
-                                color: context.colors.textSecondary,
-                              ),
-                              border: InputBorder.none,
-                              enabledBorder: InputBorder.none,
-                              focusedBorder: InputBorder.none,
-                              counterText: "",
-                            ),
+                            hintText: "...",
+                            keyboardType: TextInputType.multiline,
+                            textInputAction: TextInputAction.newline,
                           ),
                           Text(
                             "${coverLetterController.text.length} / 500",

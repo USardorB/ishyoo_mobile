@@ -17,6 +17,8 @@ class AppInputField extends StatelessWidget {
   final bool readOnly;
   final int? minLines;
   final int? maxLines;
+  final int? maxLength;
+  final bool autofocus;
   final ValueChanged<String>? onChanged;
   final ValueChanged<String>? onFieldSubmitted;
 
@@ -26,6 +28,8 @@ class AppInputField extends StatelessWidget {
     this.validator,
     this.minLines,
     this.maxLines = 1,
+    this.maxLength,
+    this.autofocus = false,
     this.hintText,
     this.enabled = true,
     this.onTap,
@@ -59,6 +63,8 @@ class AppInputField extends StatelessWidget {
         TextFormField(
           minLines: minLines,
           maxLines: maxLines,
+          maxLength: maxLength,
+          autofocus: autofocus,
           readOnly: readOnly,
           style: context.textThemes.buttonLarge,
           autofillHints: autofillHints,
@@ -73,6 +79,7 @@ class AppInputField extends StatelessWidget {
           controller: controller,
           obscureText: obscureText,
           decoration: InputDecoration(
+            counterText: "", // Hide the default character counter
             errorStyle: context.textThemes.b1,
             hintText: hintText,
             hintStyle: context.textThemes.buttonLarge.copyWith(

@@ -12,6 +12,7 @@ import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
+import 'package:mobile/core/utils/app_validators.dart';
 import 'package:mobile/features/profile/data/models/profile.dart';
 import 'package:mobile/features/profile/presentation/bloc/candidate_profile_bloc.dart';
 
@@ -75,7 +76,10 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
     super.dispose();
   }
 
+  final _formKey = GlobalKey<FormState>();
+
   void _save(BuildContext context) {
+    if (!_formKey.currentState!.validate()) return;
     context.read<CandidateProfileBloc>().add(
       UpdateCandidateProfile({
         'first_name': _firstNameCtrl.text.trim(),
@@ -186,12 +190,21 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                     ),
                   ),
                   const SizedBox(height: 32),
-                  Row(
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Row(
                     children: [
                       Expanded(
                         child: AppInputField(
                           label: "auth.register.full_name_hint".tr(),
                           controller: _firstNameCtrl,
+                          validator: AppValidators.required,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.name,
+                          autofillHints: const [AutofillHints.givenName],
                         ),
                       ),
                       const SizedBox(width: 12),
@@ -199,6 +212,10 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                         child: AppInputField(
                           label: "auth.complete_profile.last_name_hint".tr(),
                           controller: _lastNameCtrl,
+                          validator: AppValidators.required,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.name,
+                          autofillHints: const [AutofillHints.familyName],
                         ),
                       ),
                     ],
@@ -208,17 +225,27 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                     label: "Email",
                     controller: _emailCtrl,
                     keyboardType: TextInputType.emailAddress,
+                    validator: AppValidators.email,
+                    textInputAction: TextInputAction.next,
+                    autofillHints: const [AutofillHints.email],
                   ),
                   const SizedBox(height: 24),
                   AppInputField(
                     label: "auth.login.phone_label".tr(),
                     controller: _phoneCtrl,
                     keyboardType: TextInputType.phone,
+                    validator: AppValidators.required,
+                    textInputAction: TextInputAction.next,
+                    autofillHints: const [AutofillHints.telephoneNumber],
                   ),
                   const SizedBox(height: 24),
                   AppInputField(
                     label: "opportunities.location".tr(),
                     controller: _cityCtrl,
+                    validator: AppValidators.required,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.streetAddress,
+                    autofillHints: const [AutofillHints.addressCity],
                   ),
                   const SizedBox(height: 24),
                   AppInputField(
@@ -249,6 +276,9 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                     controller: _bioCtrl,
                     maxLines: 4,
                     minLines: 4,
+                    maxLength: 1000,
+                    textInputAction: TextInputAction.newline,
+                    keyboardType: TextInputType.multiline,
                   ),
                   const SizedBox(height: 24),
                   AppButton(
@@ -256,6 +286,9 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                     enabled: !state.isUpdating,
                     label: 'shared.save'.tr(),
                   ),
+                ],
+              ),
+            ),
                 ],
               ),
             ),
