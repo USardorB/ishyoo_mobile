@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
 class NoNearbyJobsPlaceholder extends StatelessWidget {
@@ -14,7 +14,7 @@ class NoNearbyJobsPlaceholder extends StatelessWidget {
           mainAxisSize: .min,
           children: [
             Image.asset(
-              "assets/images/no_results.png",
+              "assets/images/no_results.webp",
               width: 224,
             ),
             Text(

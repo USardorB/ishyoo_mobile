@@ -14,7 +14,7 @@ class NoNotificationsPlaceholder extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Image.asset(
-            "assets/images/no_notifications.png",
+            "assets/images/no_notifications.webp",
             width: 260,
           ),
           const SizedBox(height: 16),

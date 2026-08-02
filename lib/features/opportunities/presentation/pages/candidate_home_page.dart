@@ -146,7 +146,7 @@ class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Image.asset("assets/images/no_results.png"),
+                          Image.asset("assets/images/no_results.webp"),
                           Text(
                             "shared.no_data",
                             textAlign: TextAlign.center,

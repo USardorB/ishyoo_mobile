@@ -14,7 +14,7 @@ class NoArticleFoundPlaceholder extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Image.asset(
-              "assets/images/no_article.png",
+              "assets/images/no_results.webp",
               width: 224,
             ),
             const SizedBox(height: 16),

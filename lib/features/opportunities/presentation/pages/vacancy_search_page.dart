@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -60,30 +61,35 @@ class _VacancySearchPageState extends State<VacancySearchPage> {
 
   void _loadVacancies(BuildContext context) {
     context.read<VacancyFeedBloc>().add(
-          UpdateVacancyFeedFilters(
-            jobType: _jobType,
-            experienceLevel: _experienceLevel,
-            specialization: _specialization,
-          ),
-        );
+      UpdateVacancyFeedFilters(
+        jobType: _jobType,
+        experienceLevel: _experienceLevel,
+        specialization: _specialization,
+      ),
+    );
     context.read<VacancyFeedBloc>().add(
-          UpdateVacancyFeedSearch(
-            title: _searchController.text.isNotEmpty ? _searchController.text : null,
-          ),
-        );
+      UpdateVacancyFeedSearch(
+        title: _searchController.text.isNotEmpty
+            ? _searchController.text
+            : null,
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => sl<VacancyFeedBloc>()..add(
-        LoadVacancyFeed(
-          title: _searchController.text.isNotEmpty ? _searchController.text : null,
-          jobType: _jobType,
-          experienceLevel: _experienceLevel,
-          specialization: _specialization,
+      create: (_) => sl<VacancyFeedBloc>()
+        ..add(
+          LoadVacancyFeed(
+            title: _searchController.text.isNotEmpty
+                ? _searchController.text
+                : null,
+            jobType: _jobType,
+            experienceLevel: _experienceLevel,
+            specialization: _specialization,
+          ),
         ),
-      ),
       child: Builder(
         builder: (context) {
           return Scaffold(
@@ -100,7 +106,8 @@ class _VacancySearchPageState extends State<VacancySearchPage> {
                         child: DarkGlassSearchField(
                           controller: _searchController,
                           autoFocus: widget.autoFocusSearch,
-                          onChanged: (query) => _onSearchChanged(query, context),
+                          onChanged: (query) =>
+                              _onSearchChanged(query, context),
                           onSubmitted: (_) => _loadVacancies(context),
                         ),
                       ),
@@ -113,12 +120,13 @@ class _VacancySearchPageState extends State<VacancySearchPage> {
                             initialJobType: _jobType,
                             initialExperienceLevel: _experienceLevel,
                             initialSpecialization: _specialization,
-                            onApply: (jobType, experienceLevel, specialization) {
-                              _jobType = jobType;
-                              _experienceLevel = experienceLevel;
-                              _specialization = specialization;
-                              _loadVacancies(context);
-                            },
+                            onApply:
+                                (jobType, experienceLevel, specialization) {
+                                  _jobType = jobType;
+                                  _experienceLevel = experienceLevel;
+                                  _specialization = specialization;
+                                  _loadVacancies(context);
+                                },
                           ),
                         ),
                         icon: const Icon(Icons.tune),
@@ -145,7 +153,7 @@ class _VacancySearchPageState extends State<VacancySearchPage> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Image.asset(
-                              "assets/images/no_results.png",
+                              "assets/images/no_results.webp",
                               width: 280,
                             ),
                             Text(
@@ -165,7 +173,9 @@ class _VacancySearchPageState extends State<VacancySearchPage> {
                     itemCount: state.vacancies.length,
                     separatorBuilder: (_, _) => const SizedBox(height: 12),
                     itemBuilder: (context, index) {
-                      return TrendingVacancyCard(vacancy: state.vacancies[index]);
+                      return TrendingVacancyCard(
+                        vacancy: state.vacancies[index],
+                      );
                     },
                   );
                 }
@@ -173,7 +183,7 @@ class _VacancySearchPageState extends State<VacancySearchPage> {
               },
             ),
           );
-        }
+        },
       ),
     );
   }
