@@ -92,13 +92,13 @@ class ResetPasswordPage extends HookWidget {
                   ),
                   const SizedBox(height: 16),
                   Text(
-                    'auth.reset_password.changed_title',
+                    'auth.resetPassword.successDialog.title',
                     style: context.textThemes.h5,
                     textAlign: TextAlign.center,
                   ).tr(),
                   const SizedBox(height: 8),
                   Text(
-                    'auth.reset_password.changed_sub',
+                    'auth.resetPassword.successDialog.subtitle',
                     style: context.textThemes.b1.copyWith(
                       color: context.colors.textSecondary,
                     ),

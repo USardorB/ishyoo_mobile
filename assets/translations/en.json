@@ -164,6 +164,10 @@
       "buttons": {
         "saveAndLogin": "Save & Log in"
       },
+      "successDialog": {
+        "title": "Password Changed",
+        "subtitle": "Your password has been successfully updated."
+      },
       "errors": {
         "mismatch": "Passwords do not match.",
         "general": "An error occurred. Please try again."

@@ -1,0 +1,641 @@
+{
+  "applicants": {
+    "title": "Номзодлар",
+    "tabs": {
+      "all": "Барчаси",
+      "pending": "Янги",
+      "invited": "Таклиф қилинган",
+      "interview": "Суҳбат",
+      "rejected": "Рад этилган",
+      "accepted": "Қабул қилинган",
+      "archived": "Архив",
+      "hired": "Ишга олинган",
+      "shortlisted": "Сақланганлар"
+    },
+    "card": {
+      "noData": "Маълумот йўқ",
+      "present": "Ҳозиргача",
+      "experienceYears": "Тажриба {} йил",
+      "experience": "Иш тажрибаси",
+      "workplace": "Иш жойи",
+      "negotiable": "Келишилган ҳолда",
+      "languages": "Тиллар",
+      "contactInfo": "Алоқа учун"
+    },
+    "actions": {
+      "invite": "Таклиф қилиш",
+      "reject": "Рад этиш",
+      "rejectTitle": "Номзодни рад этасизми?",
+      "unsuitable": "Мос келмайди",
+      "cancel": "Бекор қилиш",
+      "continue": "Давом этиш",
+      "edit": "Таҳрирлаш",
+      "showAll": "Барчасини кўриш",
+      "filter": "Филтр"
+    },
+    "messaging": {
+      "typeMessage": "Хабар ёзинг..."
+    },
+    "emptyState": "Номзодлар топилмади.",
+    "comingSoon": "Тез кунда"
+  },
+  "applications": {
+    "title": "Менинг аризаларим",
+    "tabs": {
+      "all": "Барчаси",
+      "interview": "Суҳбат",
+      "pending": "Кутилмоқда",
+      "rejected": "Рад этилган",
+      "archived": "Архив"
+    },
+    "emptyState": "Аризалар йўқ.",
+    "card": {
+      "negotiable": "Келишилган ҳолда",
+      "chat": "Чат"
+    },
+    "menu": {
+      "chat": "Чат",
+      "description": "Вакансия ҳақида",
+      "aboutCompany": "Компания ҳақида",
+      "reject": "Рад этиш",
+      "delete": "Ўчириш"
+    },
+    "dialogs": {
+      "delete": {
+        "title": "Ариза ўчирилсинми?",
+        "buttons": {
+          "delete": "Ўчириш",
+          "cancel": "Бекор қилиш"
+        }
+      },
+      "reject": {
+        "title": "Аризани бекор қиласизми?",
+        "buttons": {
+          "yes": "Ҳа, бекор қилиш",
+          "no": "Йўқ"
+        }
+      }
+    }
+  },
+  "articles": {
+    "title": "Мақолалар",
+    "emptyState": "Мақолалар йўқ.",
+    "notFound": "Мақола топилмади.",
+    "readTime": "{} дақ"
+  },
+  "auth": {
+    "login": {
+      "title": "Хуш келибсиз",
+      "subtitle": "Давом этиш учун тизимга киринг",
+      "phoneLabel": "Телефон рақами",
+      "passwordLabel": "Парол",
+      "buttons": {
+        "forgotPassword": "Паролни унутдингизми?",
+        "login": "Кириш",
+        "skip": "Ўтказиб юбориш"
+      },
+      "registrationPrompt": {
+        "text": "Аккаунтингиз йўқми?",
+        "link": "Рўйхатдан ўтиш"
+      },
+      "errors": {
+        "general": "Хатолик юз берди. Қайтадан уриниб кўринг."
+      }
+    },
+    "register": {
+      "title": "Аккаунт яратиш",
+      "subtitle": "Бошлаш учун рўйхатдан ўтинг",
+      "phoneLabel": "Телефон рақами",
+      "buttons": {
+        "continue": "Давом этиш"
+      },
+      "loginPrompt": {
+        "text": "Аккаунтингиз борми?",
+        "link": "Кириш"
+      },
+      "errors": {
+        "general": "Хатолик юз берди. Қайтадан уриниб кўринг."
+      }
+    },
+    "otpConfirmation": {
+      "title": "Тасдиқлаш коди",
+      "subtitle": "{} рақамига юборилган 4 хонали кодни киритинг",
+      "buttons": {
+        "resendCode": "Кодни қайта юбориш",
+        "resendIn": "{} дан кейин қайта юбориш",
+        "verify": "Тасдиқлаш"
+      },
+      "errors": {
+        "enterFull": "Кодни тўлиқ киритинг.",
+        "invalidCode": "Код нотўғри.",
+        "general": "Хатолик юз берди. Қайтадан уриниб кўринг."
+      }
+    },
+    "forgotPasswordOtp": {
+      "title": "Паролни тиклаш",
+      "subtitle": "{} рақамига юборилган 4 хонали кодни киритинг",
+      "buttons": {
+        "newCode": "Янги кодни олиш",
+        "resendIn": "{} дан кейин қайта юбориш",
+        "verify": "Тасдиқлаш"
+      },
+      "errors": {
+        "enterFull": "Кодни тўлиқ киритинг.",
+        "invalidCode": "Код нотўғри.",
+        "general": "Хатолик юз берди. Қайтадан уриниб кўринг."
+      }
+    },
+    "forgotPassword": {
+      "title": "Паролни тиклаш",
+      "subtitle": "Кодни олиш учун телефон рақамингизни киритинг",
+      "phoneLabel": "Телефон рақами",
+      "buttons": {
+        "getCode": "Кодни олиш"
+      },
+      "errors": {
+        "general": "Хатолик юз берди. Қайтадан уриниб кўринг."
+      }
+    },
+    "resetPassword": {
+      "title": "Янги парол",
+      "subtitle": "Янги ва хавфсиз парол ўрнатинг",
+      "newPasswordLabel": "Янги парол",
+      "confirmPasswordLabel": "Паролни тасдиқланг",
+      "buttons": {
+        "saveAndLogin": "Сақлаш ва кириш"
+      },
+      "successDialog": {
+        "title": "Парол ўзгартирилди",
+        "subtitle": "Паролингиз муваффақиятли янгиланди."
+      },
+      "errors": {
+        "mismatch": "Пароллар мос келмади.",
+        "general": "Хатолик юз берди. Қайтадан уриниб кўринг."
+      }
+    },
+    "confirmPassword": {
+      "title": "Парол яратиш",
+      "subtitle": "Аккаунтингиз учун хавфсиз парол ўрнатинг",
+      "passwordHint": "Парол ўрнатинг",
+      "confirmHint": "Паролни тасдиқланг",
+      "buttons": {
+        "continue": "Давом этиш"
+      },
+      "requirements": {
+        "title": "Паролга қўйиладиган талаблар:",
+        "minLength": "Камида 8 та белги",
+        "capitalLetter": "Камида 1 та катта ҳарф",
+        "number": "Камида 1 та рақам"
+      }
+    },
+    "completeProfile": {
+      "title": "Профилни тўлдириш",
+      "subtitle": "Ўзингиз ҳақингизда маълумот беринг",
+      "firstNameHint": "Исм",
+      "lastNameHint": "Фамилия",
+      "companyNameHint": "Компания номи",
+      "birthDateHint": "Туғилган сана",
+      "buttons": {
+        "continue": "Давом этиш"
+      },
+      "errors": {
+        "fillAll": "Илтимос, барча майдонларни тўлдиринг.",
+        "general": "Хатолик юз берди. Қайтадан уриниб кўринг."
+      }
+    },
+    "waitlisted": {
+      "title": "Сиз кутиш рўйхатидасиз!",
+      "subtitle": "Аккаунтингиз тайёр бўлганда сизга хабар берамиз.",
+      "buttons": {
+        "exit": "Чиқиш",
+        "logout": "Бошқа аккаунтга кириш"
+      }
+    },
+    "waitlistDialog": {
+      "title": "Жойлашувни ёқасизми?",
+      "description": "Яқин атрофдаги вакансияларни топиш учун жойлашувингиз керак.",
+      "buttons": {
+        "yes": "Ҳа, ёқиш",
+        "no": "Йўқ, раҳмат"
+      }
+    },
+    "privacyPolicy": {
+      "text1": "Давом этиш тугмасини босиш орқали сиз бизнинг ",
+      "privacyPolicy": "Махфийлик сиёсатимиз",
+      "and": " ва ",
+      "terms": "Фойдаланиш шартларимиз",
+      "text2": "га розилик билдирасиз."
+    }
+  },
+  "core": {
+    "nav": {
+      "home": "Асосий",
+      "vacancies": "Вакансиялар",
+      "candidates": "Номзодлар",
+      "applications": "Аризалар",
+      "chats": "Чатлар",
+      "profile": "Профил"
+    },
+    "enums": {
+      "status": {
+        "active": "Фаол",
+        "inactive": "Нофаол",
+        "blocked": "Блокланган",
+        "deleted": "Ўчирилган",
+        "archived": "Архивда",
+        "draft": "Қоралама",
+        "published": "Чоп этилган",
+        "confirmed": "Тасдиқланган",
+        "closed": "Ёпилган",
+        "pending": "Кутилмоқда",
+        "invited": "Таклиф қилинган",
+        "rejected": "Рад этилган",
+        "hired": "Ишга олинган",
+        "shortlisted": "Сақланганлар",
+        "pastDue": "Муддати ўтган",
+        "paid": "Тўланган",
+        "failed": "Хатолик"
+      },
+      "vacancyStatus": {
+        "draft": "Қоралама",
+        "published": "Фаол",
+        "archived": "Архивда",
+        "rejected": "Рад этилган",
+        "confirmed": "Тасдиқланган",
+        "closed": "Ёпилган"
+      },
+      "employmentType": {
+        "fullTime": "Тўлиқ бандлик",
+        "partTime": "Қисман бандлик",
+        "freelance": "Фриланс",
+        "contract": "Шартнома асосида",
+        "internship": "Амалиёт"
+      },
+      "experienceLevel": {
+        "noExperience": "Тажрибасиз",
+        "oneToThree": "1–3 йил",
+        "threeToSix": "3–6 йил",
+        "overSix": "6 йилдан ортиқ"
+      },
+      "workFormat": {
+        "onSite": "Офисда",
+        "remote": "Масофадан",
+        "hybrid": "Гибрид",
+        "travel": "Хизмат сафарлари"
+      },
+      "currency": {
+        "uzs": "УЗС",
+        "usd": "УСД",
+        "eur": "ЭУР"
+      },
+      "visibility": {
+        "public": "Барчага очиқ",
+        "private": "Ёпиқ"
+      },
+      "networkStatus": {
+        "online": "Онлайн",
+        "offline": "Офлайн"
+      },
+      "gender": {
+        "male": "Эркак",
+        "female": "Аёл"
+      },
+      "role": {
+        "candidate": "Номзод",
+        "employer": "Иш берувчи",
+        "admin": "Администратор"
+      }
+    }
+  },
+  "location": {
+    "title": "Манзил",
+    "errors": {
+      "occurred": "Хатолик юз берди."
+    }
+  },
+  "messaging": {
+    "title": "Хабарлар",
+    "vacancies": "Вакансиялар",
+    "loading": "Юкланмоқда...",
+    "noData": "Маълумот йўқ",
+    "emptyState": "Чатлар топилмади.",
+    "search": {
+      "placeholder": "Қидириш..."
+    },
+    "tabs": {
+      "all": "Барчаси",
+      "received": "Қабул қилинган",
+      "rejected": "Рад этилган"
+    },
+    "jobCard": {
+      "createResume": "Резюме яратиш",
+      "myVacancies": "Менинг вакансияларим"
+    },
+    "input": {
+      "placeholder": "Хабар ёзинг..."
+    },
+    "actions": {
+      "edit": "Таҳрирлаш",
+      "delete": "Ўчириш",
+      "cancel": "Бекор қилиш",
+      "save": "Сақлаш",
+      "viewProfile": "Профилни кўриш",
+      "deleteChat": "Чатни ўчириш"
+    },
+    "dialogs": {
+      "editMessage": {
+        "title": "Хабарни таҳрирлаш"
+      }
+    },
+    "errors": {
+      "occurred": "Хатолик юз берди."
+    },
+    "attachment": {
+      "label": "Файл",
+      "file": "Файл",
+      "gallery": "Галерея",
+      "camera": "Камера"
+    }
+  },
+  "notifications": {
+    "title": "Билдиришномалар",
+    "emptyState": "Билдиришномалар йўқ.",
+    "noData": "Маълумот йўқ",
+    "markAllRead": "Барчасини ўқилган деб белгилаш"
+  },
+  "onboarding": {
+    "language": {
+      "title": "Тилни танланг",
+      "subtitle": "Тилни кейинроқ созламалардан ўзгартиришингиз мумкин",
+      "ctaButton": "Давом этиш"
+    },
+    "slides": {
+      "slide1": {
+        "title": "Иш ва ходим излаш платформаси",
+        "subtitle": "Мос вакансиялар ва малакали мутахассисларни осонгина топинг"
+      },
+      "slide2": {
+        "title": "Қулай чат ва тезкор хабарлар",
+        "subtitle": "Иш берувчилар ва номзодлар билан тўғридан-тўғри боғланинг"
+      },
+      "slide3": {
+        "title": "Резюмеингизни яратинг",
+        "subtitle": "Ўз тажрибангизни кўрсатинг ва вакансияларга ариза топширинг"
+      }
+    },
+    "actions": {
+      "continueAction": "Давом этиш",
+      "skip": "Ўтказиб юбориш",
+      "hireTalent": "Мен ходим қидиряпман",
+      "findJob": "Мен иш қидиряпман"
+    }
+  },
+  "opportunities": {
+    "title": "Вакансиялар",
+    "savedVacancies": "Сақланганлар",
+    "nearbyJobs": "Яқин атрофдаги ишлар",
+    "noNearbyJobs": "Яқин атрофда иш топилмади, қидирув масофасини ошириб кўринг.",
+    "matchesFilter": "Мос келади",
+    "appliedSuccess": "Аризангиз муваффақиятли юборилди!",
+    "alreadyApplied": "Ариза юборилган",
+    "applyButton": "Ариза топшириш",
+    "location": "Манзил",
+    "employmentType": "Бандлик тури",
+    "searchResults": "Қидирув натижалари",
+    "resultsCount": "{} та вакансия топилди",
+    "errorOccurred": "Хатолик юз берди.",
+    "errorApplying": "Хатолик: {}",
+    "search": {
+      "empty": "Сўровингиз бўйича вакансиялар топилмади."
+    },
+    "company": {
+      "vacancies": "Фаол вакансиялар",
+      "about": "Компания ҳақида"
+    },
+    "apply": {
+      "noResumes": "Сизда ҳали резюме йўқ.",
+      "selectResume": "Резюме яратиш",
+      "coverLetter": "Илова хати (ихтиёрий)",
+      "add": "Қўшиш"
+    },
+    "quickAccess": {
+      "createResume": "Резюме яратиш",
+      "articles": "Мақолалар"
+    },
+    "banner": {
+      "title1": "Иш ва ходим излаш платформаси",
+      "subtitle1": "Мос вакансиялар ва малакали мутахассисларни осонгина топинг",
+      "title2": "Қулай чат ва тезкор хабарлар",
+      "subtitle2": "Иш берувчилар ва номзодлар билан тўғридан-тўғри боғланинг",
+      "title3": "Резюмеингизни яратинг",
+      "subtitle3": "Ўз тажрибангизни кўрсатинг ва вакансияларга ариза топширинг",
+      "continue": "Давом этиш",
+      "showAll": "Барчасини кўриш"
+    },
+    "vacancyCard": {
+      "negotiable": "Келишилган ҳолда"
+    },
+    "details": {
+      "comingSoon": "Тез кунда",
+      "showAll": "Барчасини кўриш"
+    },
+    "filter": {
+      "searchPlaceholder": "Вакансия ва лавозимларни қидириш...",
+      "search": "Қидириш",
+      "experience": "Иш тажрибаси",
+      "apply": "Филтрни қўллаш",
+      "clear": "Тозалаш"
+    }
+  },
+  "postings": {
+    "dashboardTitle": "Бошқарув панели",
+    "activeVacancies": "Фаол вакансиялар",
+    "all": "Барчаси",
+    "createVacancy": "Вакансия қўшиш",
+    "greeting": "Салом, {}!",
+    "todaySummary": "Бугун {} та янги ариза ва {} та фаол вакансия",
+    "interviews": "СУҲБАТЛАР",
+    "interviewsSub": "бугун",
+    "responses": "АРИЗАЛАР",
+    "responsesSub": "янги",
+    "active": "ФАОЛ",
+    "activeSub": "вакансиялар",
+    "responsesCount": "{} та ариза",
+    "keySkills": "Асосий кўникмалар",
+    "noSalarySpecified": "Маош кўрсатилмаган",
+    "fullNameLabel": "Ф.И.Ш.",
+    "cancelCreationTitle": "Бекор қилинсинми?",
+    "cancelCreationDesc": "Ишончингиз комилми? Сақланмаган маълумотлар ўчиб кетади.",
+    "searchPlaceholder": "Қидириш...",
+    "add": "Қўшиш",
+    "negotiable": "Келишилган ҳолда",
+    "dashboard": {
+      "comingSoon": "Тез кунда"
+    },
+    "actions": {
+      "view": "Кўриш",
+      "edit": "Таҳрирлаш",
+      "pause": "Тўхтатиб туриш",
+      "applicants": "Номзодлар",
+      "copy": "Нусхалаш",
+      "share": "Тез кунда",
+      "archive": "Архивлаш",
+      "delete": "Ўчириш"
+    },
+    "create": {
+      "title": "Вакансиялар",
+      "searchPlaceholder": "Мутахассислик ёки кўникма...",
+      "search": "Қидириш",
+      "salary": "Маош: {}",
+      "all": "Барчаси",
+      "phoneLabel": "Телефон рақами",
+      "employmentType": "Бандлик тури",
+      "continueButton": "Давом этиш",
+      "description": "Тавсиф",
+      "responsibilities": "Вазифалар",
+      "requirements": "Талаблар",
+      "experience": "Тажриба",
+      "location": "Манзил",
+      "savedSuccess": "Муваффақиятли сақланди!"
+    },
+    "filter": {
+      "employmentType": "Бандлик тури",
+      "searchPlaceholder": "Мутахассислик ёки кўникма...",
+      "search": "Қидириш",
+      "experience": "Тажриба",
+      "apply": "Қўллаш",
+      "clear": "Тозалаш"
+    },
+    "category": {
+      "searchPlaceholder": "Қидириш..."
+    },
+    "skills": {
+      "searchPlaceholder": "Қидириш...",
+      "add": "Қўшиш"
+    }
+  },
+  "profile": {
+    "title": "Профил",
+    "edit": "Таҳрирлаш",
+    "save": "Сақлаш",
+    "savedSuccess": "Муваффақиятли сақланди!",
+    "noData": "Кўрсатилмаган",
+    "company": {
+      "edit": "Таҳрирлаш",
+      "companyInfo": "Компания ҳақида",
+      "about": "Компания ҳақида маълумот",
+      "myVacancies": "Менинг вакансияларим",
+      "createVacancy": "Вакансия қўшиш",
+      "fieldOfActivity": "Фаолият соҳаси",
+      "nameHint": "Компания номи",
+      "filterTitle": "Номзодларни филтрлаш",
+      "location": "Манзил",
+      "phoneLabel": "Телефон рақами",
+      "candidates": "Номзодлар"
+    },
+    "candidate": {
+      "personalInfo": "Шахсий маълумотлар",
+      "experience": "Иш тажрибаси",
+      "education": "Таълим",
+      "languages": "Тиллар",
+      "resumes": "Резюме",
+      "noResumes": "Сизда ҳали резюме йўқ",
+      "createResume": "Резюме яратиш",
+      "deleteExperienceTitle": "Иш тажрибаси ўчирилсинми?",
+      "deleteExperienceDesc": "Ўчирилгандан сўнг қайта тиклаб бўлмайди.",
+      "deleteEducationTitle": "Таълим ҳақида маълумот ўчирилсинми?",
+      "deleteEducationDesc": "Ўчирилгандан сўнг қайта тиклаб бўлмайди.",
+      "present": "Ҳозиргача",
+      "views": "Кўришлар",
+      "shortlisted": "Сақланганлар",
+      "invited": "Таклифлар",
+      "cancel": "Бекор қилиш",
+      "delete": "Ўчириш",
+      "apply": "Қўллаш",
+      "all": "Барчаси"
+    }
+  },
+  "resume": {
+    "title": "Резюме",
+    "boostScore": "Рейтинг",
+    "createResume": "Резюме яратиш",
+    "downloadPdf": "ПДФ юклаб олиш",
+    "previewPdf": "ПДФ кўриш",
+    "noData": "Кўрсатилмаган",
+    "present": "Ҳозиргача",
+    "searchPlaceholder": "Қидириш...",
+    "specializationPlaceholder": "Мутахассислик...",
+    "companyPlaceholder": "Компания ҳақида",
+    "location": "Манзил",
+    "description": "Тавсиф",
+    "yearHint": "Йил",
+    "deleteTitle": "Резюме ўчирилсинми?",
+    "deleteDesc": "Бу амални ортга қайтариб бўлмайди.",
+    "successTitle": "Муваффақиятли!",
+    "successDesc": "Резюмеингиз муваффақиятли яратилди.",
+    "stats": {
+      "invited": "Таклифлар",
+      "shortlisted": "Сақланганлар"
+    },
+    "visibility": {
+      "all": "Барчага",
+      "hidden": "Яширин"
+    },
+    "sections": {
+      "contacts": "Контактлар",
+      "workplace": "Иш жойи",
+      "experience": "Тажриба",
+      "education": "Таълим",
+      "languages": "Тиллар",
+      "preview": "Кўриш"
+    },
+    "actions": {
+      "continueButton": "Давом этиш",
+      "save": "Сақлаш",
+      "edit": "Таҳрирлаш",
+      "add": "Қўшиш",
+      "cancel": "Бекор қилиш",
+      "delete": "Ўчириш",
+      "select": "Танлаш",
+      "comingSoon": "Тез кунда",
+      "savedSuccess": "Муваффақиятли сақланди!"
+    }
+  },
+  "settings": {
+    "title": "Созламалар",
+    "language": "Илова тили",
+    "theme": "Мавзу",
+    "lightMode": "Ёруғ мавзу",
+    "darkMode": "Қоронғи мавзу",
+    "systemTheme": "Тизим мавзуси",
+    "notifications": "Билдиришномалар",
+    "privacyPolicy": "Махфийлик сиёсати",
+    "termsOfUse": "Фойдаланиш шартлари",
+    "helpCenter": "Ёрдам маркази",
+    "aboutApp": "Илова ҳақида",
+    "logout": "Тизимдан чиқиш",
+    "deleteAccount": "Аккаунтни ўчириш",
+    "logoutConfirmTitle": "Тизимдан чиқишни хоҳлайсизми?",
+    "logoutConfirmDesc": "Диққат! Қайта кириш учун паролингиз керак бўлади.",
+    "preferences": {
+      "applicationUpdates": "Аризалар",
+      "messages": "Хабарлар",
+      "interviews": "Суҳбатлар"
+    },
+    "actions": {
+      "apply": "Қўллаш",
+      "cancel": "Бекор қилиш",
+      "logout": "Чиқиш"
+    }
+  },
+  "talents": {
+    "title": "Истеъдодлар",
+    "searchResults": "Қидирув натижалари",
+    "searchPlaceholder": "Мутахассислик ёки кўникма...",
+    "resultsCount": "{} та номзод топилди",
+    "noData": "Резюме топилмади.",
+    "contactInfo": "Контактлар",
+    "candidate": "Номзод",
+    "matchesFilter": "Мос келади"
+  }
+}
