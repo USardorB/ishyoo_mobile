@@ -160,6 +160,8 @@ class _ApplyVacancySheetState extends State<ApplyVacancySheet> {
               controller: _coverLetterController,
               hintText: "...",
               maxLines: 4,
+              keyboardType: TextInputType.multiline,
+              textInputAction: TextInputAction.newline,
             ),
             const SizedBox(height: 24),
             AppButton(

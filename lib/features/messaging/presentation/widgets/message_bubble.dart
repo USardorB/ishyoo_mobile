@@ -314,6 +314,8 @@ class MessageBubble extends StatelessWidget {
           controller: ctrl,
           autofocus: true,
           maxLines: null,
+          keyboardType: TextInputType.multiline,
+          textInputAction: TextInputAction.newline,
           hintText: "messaging.input.placeholder".tr(),
         ),
         actions: [

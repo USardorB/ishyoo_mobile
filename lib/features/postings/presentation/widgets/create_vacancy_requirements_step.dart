@@ -1,12 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mobile/core/enums/app_enums.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/core/utils/app_validators.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/features/postings/presentation/widgets/skills_selection_sheet.dart';
 
-class CreateVacancyRequirementsStep extends StatelessWidget {
+class CreateVacancyRequirementsStep extends HookWidget {
   final TextEditingController descriptionController;
   final TextEditingController tasksController;
   final TextEditingController requirementsController;
@@ -28,20 +30,18 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
     required this.onNext,
   });
 
-  bool _isValid() {
-    return descriptionController.text.trim().isNotEmpty &&
-        tasksController.text.trim().isNotEmpty &&
-        requirementsController.text.trim().isNotEmpty;
-  }
-
   @override
   Widget build(BuildContext context) {
+    final formKey = useMemoized(() => GlobalKey<FormState>());
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text("postings.create.description", style: context.textThemes.h5).tr(),
+      child: Form(
+        key: formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text("postings.create.description", style: context.textThemes.h5).tr(),
           const SizedBox(height: 20),
 
           // About Vacancy
@@ -56,6 +56,9 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
             controller: descriptionController,
             minLines: 4,
             maxLines: 6,
+            keyboardType: TextInputType.multiline,
+            textInputAction: TextInputAction.newline,
+            validator: AppValidators.required,
           ),
           const SizedBox(height: 16),
 
@@ -71,6 +74,9 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
             controller: tasksController,
             minLines: 4,
             maxLines: 6,
+            keyboardType: TextInputType.multiline,
+            textInputAction: TextInputAction.newline,
+            validator: AppValidators.required,
           ),
           const SizedBox(height: 16),
 
@@ -86,6 +92,9 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
             controller: requirementsController,
             minLines: 4,
             maxLines: 6,
+            keyboardType: TextInputType.multiline,
+            textInputAction: TextInputAction.newline,
+            validator: AppValidators.required,
           ),
           const SizedBox(height: 16),
 
@@ -227,16 +236,20 @@ class CreateVacancyRequirementsStep extends StatelessWidget {
               requirementsController,
             ]),
             builder: (context, _) {
-              final isValid = _isValid();
               return AppButton(
                 label: "postings.create.continueButton".tr(),
-                enabled: isValid,
-                onTap: onNext,
+                enabled: true,
+                onTap: () {
+                  if (formKey.currentState!.validate()) {
+                    onNext();
+                  }
+                },
               );
             },
           ),
           const SizedBox(height: 16),
         ],
+        ),
       ),
     );
   }

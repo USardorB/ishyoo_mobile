@@ -235,6 +235,7 @@ class _SkillsSelectionSheetState extends State<SkillsSelectionSheet> {
               controller: _searchController,
               onChanged: _onSearchChanged,
               hintText: "postings.skills.searchPlaceholder".tr(),
+              textInputAction: TextInputAction.search,
               prefixIcon: Icon(
                 Icons.search,
                 color: context.colors.textSecondary,

@@ -12,11 +12,13 @@ import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/features/auth/data/models/auth_request.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_event.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_state.dart'
     as bloc_state;
+import 'package:mobile/core/utils/app_validators.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/features/auth/presentation/widgets/waitlist_location_dialog.dart';
 import 'package:uuid/uuid.dart';
@@ -38,18 +40,13 @@ class CompleteProfilePage extends HookWidget {
     final birthDateController = useTextEditingController();
     final passwordController = useTextEditingController();
     final isObscured = useState(true);
+    final formKey = useMemoized(() => GlobalKey<FormState>());
 
     final isCompany =
         context.read<AuthBloc>().state.userRole == UserRole.employer;
 
     Future<void> onRegister() async {
-      if (firstNameController.text.isEmpty || passwordController.text.isEmpty) {
-        AppNotificationOverlay.instance.show(
-          message: 'auth.completeProfile.errors.fillAll'.tr(),
-          type: .warning,
-        );
-        return;
-      }
+      if (!formKey.currentState!.validate()) return;
 
       String deviceName =
           '${Platform.operatingSystem} ${Platform.operatingSystemVersion}';
@@ -111,7 +108,7 @@ class CompleteProfilePage extends HookWidget {
           } else if (state.status == bloc_state.AuthStatus.failure) {
             AppNotificationOverlay.instance.show(
               message: state.errorMessage ?? 'auth.completeProfile.errors.general'.tr(),
-              type: .error,
+              type: AppNotificationType.error,
             );
           }
         },
@@ -119,9 +116,11 @@ class CompleteProfilePage extends HookWidget {
           return SafeArea(
             minimum: const EdgeInsets.all(16),
             child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
+              child: Form(
+                key: formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
                   const SizedBox(height: 8),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -152,6 +151,7 @@ class CompleteProfilePage extends HookWidget {
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.name,
                     controller: firstNameController,
+                    validator: AppValidators.required,
                   ),
                   const SizedBox(height: 12),
                   AppInputField(
@@ -160,6 +160,7 @@ class CompleteProfilePage extends HookWidget {
                     textInputAction: TextInputAction.next,
                     keyboardType: TextInputType.name,
                     controller: lastNameController,
+                    validator: AppValidators.required,
                   ),
                   if (isCompany) ...[
                     const SizedBox(height: 12),
@@ -169,6 +170,7 @@ class CompleteProfilePage extends HookWidget {
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.name,
                       controller: companyNameController,
+                      validator: AppValidators.required,
                     ),
                   ] else ...[
                     const SizedBox(height: 12),
@@ -202,6 +204,7 @@ class CompleteProfilePage extends HookWidget {
                     textInputAction: TextInputAction.done,
                     keyboardType: TextInputType.visiblePassword,
                     controller: passwordController,
+                    validator: AppValidators.password,
                     suffixIcon: IconButton(
                       onPressed: () {
                         isObscured.value = !isObscured.value;
@@ -218,7 +221,8 @@ class CompleteProfilePage extends HookWidget {
                     label: 'auth.completeProfile.buttons.continue'.tr(),
                   ),
                   const SizedBox(height: 12),
-                ],
+                  ],
+                ),
               ),
             ),
           );

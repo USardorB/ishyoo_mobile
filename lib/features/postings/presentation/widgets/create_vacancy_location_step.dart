@@ -4,6 +4,7 @@ import 'package:maplibre_gl/maplibre_gl.dart';
 import 'package:mobile/core/configs/app_map_config.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/core/utils/app_validators.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 
 class CreateVacancyLocationStep extends StatefulWidget {
@@ -29,6 +30,7 @@ class CreateVacancyLocationStep extends StatefulWidget {
 
 class _CreateVacancyLocationStepState extends State<CreateVacancyLocationStep> {
   MapLibreMapController? _mapController;
+  final _formKey = GlobalKey<FormState>();
 
   void _onMapCreated(MapLibreMapController controller) {
     _mapController = controller;
@@ -57,9 +59,11 @@ class _CreateVacancyLocationStepState extends State<CreateVacancyLocationStep> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
+    return Form(
+      key: _formKey,
+      child: Column(
+        children: [
+          Expanded(
           child: SingleChildScrollView(
             padding: const EdgeInsets.all(16),
             child: Column(
@@ -74,6 +78,8 @@ class _CreateVacancyLocationStepState extends State<CreateVacancyLocationStep> {
                   label: "postings.create.location".tr(),
                   controller: widget.addressController,
                   textInputAction: TextInputAction.done,
+                  keyboardType: TextInputType.streetAddress,
+                  validator: AppValidators.required,
                 ),
                 const SizedBox(height: 24),
                 Container(
@@ -212,16 +218,20 @@ class _CreateVacancyLocationStepState extends State<CreateVacancyLocationStep> {
           child: ListenableBuilder(
             listenable: widget.addressController,
             builder: (context, _) {
-              final isValid = widget.addressController.text.trim().isNotEmpty;
               return AppButton(
                 label: "postings.create.continueButton".tr(),
-                enabled: isValid,
-                onTap: widget.onNext,
+                enabled: true,
+                onTap: () {
+                  if (_formKey.currentState!.validate()) {
+                    widget.onNext();
+                  }
+                },
               );
             },
           ),
         ),
       ],
+      ),
     );
   }
 }

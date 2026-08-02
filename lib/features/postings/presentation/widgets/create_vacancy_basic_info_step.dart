@@ -1,13 +1,15 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mobile/core/enums/app_enums.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/core/utils/app_validators.dart';
 import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/features/postings/presentation/widgets/category_selection_sheet.dart';
 import 'package:mobile/features/resume/data/models/specialization.dart';
 
-class CreateVacancyBasicInfoStep extends StatelessWidget {
+class CreateVacancyBasicInfoStep extends HookWidget {
   final TextEditingController titleController;
   final String? selectedSpecialization;
   final ValueChanged<String?> onSpecializationSelected;
@@ -41,18 +43,17 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
     required this.onNext,
   });
 
-  bool _isValid() {
-    return titleController.text.trim().isNotEmpty &&
-        selectedSpecialization != null;
-  }
-
   @override
   Widget build(BuildContext context) {
+    final formKey = useMemoized(() => GlobalKey<FormState>());
+
     return SingleChildScrollView(
       padding: const EdgeInsets.all(16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
+      child: Form(
+        key: formKey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
           Text(
             "auth.complete_profile.title",
             style: context.textThemes.h5,
@@ -61,6 +62,9 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
           AppInputField(
             label: "postings.create.title".tr(),
             controller: titleController,
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.text,
+            validator: AppValidators.required,
           ),
           const SizedBox(height: 16),
           AppInputField(
@@ -101,6 +105,7 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
                   hintText: "postings.create.all".tr(),
                   controller: salaryFromController,
                   keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
                 ),
               ),
               const SizedBox(width: 8),
@@ -110,6 +115,7 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
                   hintText: "postings.create.all".tr(),
                   controller: salaryToController,
                   keyboardType: TextInputType.number,
+                  textInputAction: TextInputAction.next,
                 ),
               ),
               const SizedBox(width: 8),
@@ -156,17 +162,26 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
           AppInputField(
             label: "postings.fullNameLabel".tr(),
             controller: contactNameController,
+            autofillHints: const [AutofillHints.name],
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.name,
           ),
           const SizedBox(height: 16),
           AppInputField(
             label: "postings.create.phoneLabel".tr(),
             controller: phoneController,
+            autofillHints: const [AutofillHints.telephoneNumberNational],
+            textInputAction: TextInputAction.next,
+            keyboardType: TextInputType.phone,
           ),
           const SizedBox(height: 16),
           AppInputField(
             label: "Email",
             controller: contactEmailController,
             keyboardType: TextInputType.emailAddress,
+            autofillHints: const [AutofillHints.email],
+            textInputAction: TextInputAction.next,
+            validator: (v) => AppValidators.email(v, isRequired: false),
           ),
           const SizedBox(height: 16),
           Text(
@@ -212,16 +227,20 @@ class CreateVacancyBasicInfoStep extends StatelessWidget {
           ListenableBuilder(
             listenable: titleController,
             builder: (context, _) {
-              final isValid = _isValid();
               return AppButton(
                 label: "postings.create.continueButton".tr(),
-                enabled: isValid,
-                onTap: onNext,
+                enabled: selectedSpecialization != null,
+                onTap: () {
+                  if (formKey.currentState!.validate()) {
+                    onNext();
+                  }
+                },
               );
             },
           ),
           const SizedBox(height: 16),
         ],
+        ),
       ),
     );
   }
