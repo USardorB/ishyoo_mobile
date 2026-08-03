@@ -679,7 +679,12 @@
     "workFormat": "Work Format",
     "languages": "Languages",
     "languageLabel": "Language",
-    "levelLabel": "Proficiency"
+    "levelLabel": "Proficiency",
+    "levels": {
+      "fluent": "Fluent",
+      "intermediate": "Intermediate",
+      "upper-intermediate": "Upper-Intermediate"
+    }
   },
   "settings": {
     "title": "Settings",

@@ -679,7 +679,12 @@
     "workFormat": "Формат работы",
     "languages": "Языки",
     "languageLabel": "Язык",
-    "levelLabel": "Уровень владения"
+    "levelLabel": "Уровень владения",
+    "levels": {
+      "fluent": "Свободный",
+      "intermediate": "Средний",
+      "upper-intermediate": "Выше среднего"
+    }
   },
   "settings": {
     "title": "Настройки",

@@ -679,7 +679,12 @@
     "workFormat": "Ish formati",
     "languages": "Tillar",
     "languageLabel": "Til",
-    "levelLabel": "Bilish darajasi"
+    "levelLabel": "Bilish darajasi",
+    "levels": {
+      "fluent": "Erkin",
+      "intermediate": "O'rta",
+      "upper-intermediate": "O'rtadan yuqori"
+    }
   },
   "settings": {
     "title": "Sozlamalar",

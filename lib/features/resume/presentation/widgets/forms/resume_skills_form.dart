@@ -91,24 +91,69 @@ class ResumeSkillsForm extends HookWidget {
                 const SizedBox(width: 12),
                 Expanded(
                   flex: 2,
-                  child: AppInputField(
-                    label: "resume.levelLabel".tr(),
-                    hintText: "resume.hints.level".tr(),
-                    controller: levelController,
-                    keyboardType: TextInputType.text,
-                    textInputAction: TextInputAction.done,
-                    onFieldSubmitted: (_) {
-                      final lang = langController.text.trim();
-                      final level = levelController.text.trim();
-                      if (lang.isNotEmpty && level.isNotEmpty) {
-                        final newLangs = List<Map<String, dynamic>>.from(
-                          languages,
-                        )..add({'lang': lang, 'level': level});
-                        bloc.add(UpdateFormData({'languages': newLangs}));
-                        langController.clear();
-                        levelController.clear();
-                      }
-                    },
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        "resume.levelLabel".tr(),
+                        style: context.textThemes.s3,
+                      ),
+                      const SizedBox(height: 8),
+                      ListenableBuilder(
+                        listenable: levelController,
+                        builder: (context, _) {
+                          return Container(
+                            height: 48,
+                            padding: const EdgeInsets.symmetric(horizontal: 16),
+                            decoration: BoxDecoration(
+                              color: context.colors.bgPrimary,
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: DropdownButtonHideUnderline(
+                              child: DropdownButton<String>(
+                                value: levelController.text.isEmpty
+                                    ? null
+                                    : levelController.text,
+                                hint: Text(
+                                  "resume.hints.level".tr(),
+                                  style: context.textThemes.buttonLarge
+                                      .copyWith(
+                                        color: context.colors.textSecondary,
+                                      ),
+                                ),
+                                icon: const Icon(
+                                  Icons.arrow_drop_down,
+                                  size: 24,
+                                ),
+                                isExpanded: true,
+                                style: context.textThemes.buttonLarge.copyWith(
+                                  color: context.colors.textPrimary,
+                                ),
+                                dropdownColor: context.colors.bgPrimary,
+                                onChanged: (String? newValue) {
+                                  if (newValue != null) {
+                                    levelController.text = newValue;
+                                  }
+                                },
+                                items:
+                                    [
+                                      'fluent',
+                                      'intermediate',
+                                      'upper-intermediate',
+                                    ].map((level) {
+                                      return DropdownMenuItem<String>(
+                                        value: level,
+                                        child: Text(
+                                          "resume.levels.$level".tr(),
+                                        ),
+                                      );
+                                    }).toList(),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ),
               ],

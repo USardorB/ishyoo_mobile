@@ -679,7 +679,12 @@
     "workFormat": "Иш формати",
     "languages": "Тиллар",
     "languageLabel": "Тил",
-    "levelLabel": "Билиш даражаси"
+    "levelLabel": "Билиш даражаси",
+    "levels": {
+      "fluent": "Эркин",
+      "intermediate": "Ўрта",
+      "upper-intermediate": "Ўртадан юқори"
+    }
   },
   "settings": {
     "title": "Созламалар",
