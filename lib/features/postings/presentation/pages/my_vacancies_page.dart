@@ -39,7 +39,7 @@ class _MyVacanciesPageState extends State<MyVacanciesPage> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(
-            'profile.my_vacancies',
+            'postings.activeVacancies',
             style: context.textThemes.h5,
           ).tr(),
           centerTitle: false,
@@ -75,7 +75,7 @@ class _MyVacanciesPageState extends State<MyVacanciesPage> {
                     height: MediaQuery.of(context).size.height - 150,
                     alignment: Alignment.center,
                     child: Text(
-                      "shared.no_data",
+                      "postings.emptyState",
                       style: context.textThemes.b2.copyWith(
                         color: context.colors.textSecondary,
                       ),

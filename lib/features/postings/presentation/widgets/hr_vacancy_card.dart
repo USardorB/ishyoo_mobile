@@ -219,7 +219,7 @@ class HrVacancyCard extends StatelessWidget {
               icon: Icons.remove_red_eye_outlined,
               iconColor: context.colors.textSecondary,
               count: viewsCount,
-              label: 'applicants.view_count',
+              label: 'postings.analytics.views',
               countColor: context.colors.textPrimary,
             ),
             VerticalDivider(
@@ -232,7 +232,7 @@ class HrVacancyCard extends StatelessWidget {
               icon: Icons.people_alt_outlined,
               iconColor: context.colors.brandDefault,
               count: newResponses > 0 ? newResponses : totalResponses,
-              label: 'applicants.invited',
+              label: 'postings.analytics.responses',
               countColor: newResponses > 0
                   ? context.colors.brandDefault
                   : context.colors.textPrimary,

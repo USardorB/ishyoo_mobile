@@ -31,13 +31,23 @@
       "continue": "Continue",
       "edit": "Edit",
       "showAll": "Show All",
-      "filter": "Filter"
+      "filter": "Filter",
+      "inviteTitle": "Invite Applicant?",
+      "invited": "Invited"
     },
     "messaging": {
-      "typeMessage": "Type a message..."
+      "typeMessage": "Type a message...",
+      "message": "Message"
     },
     "emptyState": "No applicants found.",
-    "comingSoon": "Coming Soon"
+    "comingSoon": "Coming Soon",
+    "moreActions": {
+      "chat": "Chat",
+      "invitation": "Invite",
+      "share": "Share",
+      "decline": "Reject",
+      "complaint": "Report"
+    }
   },
   "applications": {
     "title": "Applications",
@@ -481,7 +491,7 @@
       "pause": "Pause",
       "applicants": "Applicants",
       "copy": "Copy",
-      "share": "Coming Soon",
+      "share": "Share",
       "archive": "Archive",
       "delete": "Delete"
     },
@@ -507,7 +517,8 @@
       "search": "Search",
       "experience": "Experience",
       "apply": "Apply Filter",
-      "clear": "Clear"
+      "clear": "Clear",
+      "title": "Filter"
     },
     "category": {
       "searchPlaceholder": "Search..."
@@ -515,7 +526,16 @@
     "skills": {
       "searchPlaceholder": "Search...",
       "add": "Add"
-    }
+    },
+    "hrAccount": "HR Account",
+    "analytics": {
+      "views": "Views",
+      "responses": "Responses",
+      "invited": "Invited"
+    },
+    "viewAll": "View All",
+    "emptyState": "No vacancies found.",
+    "vacancyDetails": "Vacancy"
   },
   "profile": {
     "title": "Profile",
@@ -534,7 +554,8 @@
       "filterTitle": "Filter Applicants",
       "location": "Location",
       "phoneLabel": "Phone Number",
-      "candidates": "Candidates"
+      "candidates": "Candidates",
+      "viewAll": "View All"
     },
     "candidate": {
       "personalInfo": "Personal Info",

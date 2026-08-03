@@ -24,11 +24,14 @@ class MyVacancies extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text('profile.company.myVacancies', style: context.textThemes.s2).tr(),
+              Text(
+                'profile.company.myVacancies',
+                style: context.textThemes.s2,
+              ).tr(),
               GestureDetector(
                 onTap: () => context.pushRoute(const MyVacanciesRoute()),
                 child: Text(
-                  'shared.show_all',
+                  'profile.company.viewAll',
                   style: context.textThemes.b2.copyWith(
                     color: context.colors.brandDefault,
                   ),

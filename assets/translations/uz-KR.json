@@ -31,13 +31,23 @@
       "continue": "Давом этиш",
       "edit": "Таҳрирлаш",
       "showAll": "Барчасини кўриш",
-      "filter": "Филтр"
+      "filter": "Филтр",
+      "inviteTitle": "Номзодни таклиф қиласизми?",
+      "invited": "Таклиф қилинган"
     },
     "messaging": {
-      "typeMessage": "Хабар ёзинг..."
+      "typeMessage": "Хабар ёзинг...",
+      "message": "Хабар"
     },
     "emptyState": "Номзодлар топилмади.",
-    "comingSoon": "Тез кунда"
+    "comingSoon": "Тез кунда",
+    "moreActions": {
+      "chat": "Чат",
+      "invitation": "Таклиф қилиш",
+      "share": "Улашиш",
+      "decline": "Рад этиш",
+      "complaint": "Шикоят қилиш"
+    }
   },
   "applications": {
     "title": "Менинг аризаларим",
@@ -481,7 +491,7 @@
       "pause": "Тўхтатиб туриш",
       "applicants": "Номзодлар",
       "copy": "Нусхалаш",
-      "share": "Тез кунда",
+      "share": "Улашиш",
       "archive": "Архивлаш",
       "delete": "Ўчириш"
     },
@@ -507,7 +517,8 @@
       "search": "Қидириш",
       "experience": "Тажриба",
       "apply": "Қўллаш",
-      "clear": "Тозалаш"
+      "clear": "Тозалаш",
+      "title": "Филтр"
     },
     "category": {
       "searchPlaceholder": "Қидириш..."
@@ -515,7 +526,16 @@
     "skills": {
       "searchPlaceholder": "Қидириш...",
       "add": "Қўшиш"
-    }
+    },
+    "hrAccount": "HR Аккаунт",
+    "analytics": {
+      "views": "Кўришлар",
+      "responses": "Жавоблар",
+      "invited": "Таклиф қилинганлар"
+    },
+    "viewAll": "Барчасини кўриш",
+    "emptyState": "Ваканcиялар топилмади.",
+    "vacancyDetails": "Вакансия"
   },
   "profile": {
     "title": "Профил",
@@ -534,7 +554,8 @@
       "filterTitle": "Номзодларни филтрлаш",
       "location": "Манзил",
       "phoneLabel": "Телефон рақами",
-      "candidates": "Номзодлар"
+      "candidates": "Номзодлар",
+      "viewAll": "Барчаси"
     },
     "candidate": {
       "personalInfo": "Шахсий маълумотлар",

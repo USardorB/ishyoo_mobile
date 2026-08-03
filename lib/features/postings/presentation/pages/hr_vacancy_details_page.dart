@@ -22,7 +22,7 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
     final state = context.watch<HrVacancyDetailsBloc>().state;
     return Scaffold(
       appBar: AppBar(
-        title: const Text("nav.vacancies").tr(),
+        title: const Text("postings.vacancyDetails").tr(),
         actions: [
           IconButton(
             onPressed: () {
@@ -102,7 +102,7 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
             const SizedBox(height: 20),
           ],
           if (vacancy.keySkills != null && vacancy.keySkills!.isNotEmpty) ...[
-            _buildSectionTitle(context, "postings.key_skills".tr()),
+            _buildSectionTitle(context, "postings.keySkills".tr()),
             const SizedBox(height: 10),
             Wrap(
               spacing: 8,
@@ -192,7 +192,7 @@ class HrVacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                 ),
               ),
               Text(
-                " • ${'postings.responses_count'.tr(args: [vacancy.totalApplicationsCount.toString()])}",
+                " • ${'postings.responsesCount'.tr(args: [vacancy.totalApplicationsCount.toString()])}",
                 style: context.textThemes.c1.copyWith(
                   color: context.colors.textSecondary,
                 ),

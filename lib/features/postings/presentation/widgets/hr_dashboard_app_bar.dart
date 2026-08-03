@@ -67,7 +67,7 @@ class HrDashboardAppBar extends StatelessWidget implements PreferredSizeWidget {
                 style: context.textThemes.s2,
               ),
               Text(
-                "auth.login.hr_account",
+                "postings.hrAccount",
                 style: context.textThemes.c1.copyWith(
                   color: context.colors.textSecondary,
                 ),

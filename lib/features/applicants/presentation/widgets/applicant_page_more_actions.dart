@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 
@@ -25,7 +26,7 @@ class ApplicantPageMoreActions extends StatelessWidget {
               return _buildAction(
                 context,
                 icon: item.icon,
-                title: item.name,
+                title: "applicants.moreActions.${item.name}".tr(),
                 foregroundColor: item == ApplicantPageActions.complaint
                     ? context.colors.danger
                     : null,

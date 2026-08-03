@@ -31,13 +31,23 @@
       "continue": "Davom etish",
       "edit": "Tahrirlash",
       "showAll": "Barchasini ko'rish",
-      "filter": "Filtr"
+      "filter": "Filtr",
+      "inviteTitle": "Nomzodni taklif qilasizmi?",
+      "invited": "Taklif qilingan"
     },
     "messaging": {
-      "typeMessage": "Xabar yozing..."
+      "typeMessage": "Xabar yozing...",
+      "message": "Xabar"
     },
     "emptyState": "Nomzodlar topilmadi.",
-    "comingSoon": "Tez kunda"
+    "comingSoon": "Tez kunda",
+    "moreActions": {
+      "chat": "Chat",
+      "invitation": "Taklif qilish",
+      "share": "Ulashish",
+      "decline": "Rad etish",
+      "complaint": "Shikoyat qilish"
+    }
   },
   "applications": {
     "title": "Mening arizalarim",
@@ -481,7 +491,7 @@
       "pause": "To'xtatib turish",
       "applicants": "Nomzodlar",
       "copy": "Nusxalash",
-      "share": "Tez kunda",
+      "share": "Ulashish",
       "archive": "Arxivlash",
       "delete": "O'chirish"
     },
@@ -507,7 +517,8 @@
       "search": "Qidirish",
       "experience": "Tajriba",
       "apply": "Qo'llash",
-      "clear": "Tozalash"
+      "clear": "Tozalash",
+      "title": "Filtr"
     },
     "category": {
       "searchPlaceholder": "Qidirish..."
@@ -515,7 +526,16 @@
     "skills": {
       "searchPlaceholder": "Qidirish...",
       "add": "Qo'shish"
-    }
+    },
+    "hrAccount": "HR Akkaunt",
+    "analytics": {
+      "views": "Ko'rishlar",
+      "responses": "Javoblar",
+      "invited": "Taklif qilinganlar"
+    },
+    "viewAll": "Barchasini ko'rish",
+    "emptyState": "Vakansiyalar topilmadi.",
+    "vacancyDetails": "Vakansiya"
   },
   "profile": {
     "title": "Profil",
@@ -534,7 +554,8 @@
       "filterTitle": "Nomzodlarni filtrlash",
       "location": "Manzil",
       "phoneLabel": "Telefon raqami",
-      "candidates": "Nomzodlar"
+      "candidates": "Nomzodlar",
+      "viewAll": "Barchasi"
     },
     "candidate": {
       "personalInfo": "Shaxsiy ma'lumotlar",

@@ -6,11 +6,11 @@ import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/painters/dashed_outline_border.dart';
+import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/opportunities/data/models/vacancy.dart';
 import 'package:mobile/features/postings/presentation/bloc/postings_bloc.dart';
 import 'package:mobile/features/postings/presentation/widgets/hr_dashboard_app_bar.dart';
 import 'package:mobile/features/postings/presentation/widgets/hr_vacancy_card.dart';
-import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:mobile/features/profile/presentation/bloc/employer_organization_bloc.dart';
 
 @RoutePage()
@@ -46,14 +46,18 @@ class HrDashboardPage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    'postings.greeting'.tr(args: [userName.isEmpty ? 'HR' : userName]),
+                    'postings.greeting'.tr(
+                      args: [userName.isEmpty ? 'HR' : userName],
+                    ),
                     style: context.textThemes.h5,
                   ),
                   Text(
-                    'postings.today_summary'.tr(args: [
-                      (stats?.newApplicantsCount ?? 0).toString(),
-                      (stats?.activeVacanciesCount ?? 0).toString(),
-                    ]),
+                    'postings.todaySummary'.tr(
+                      args: [
+                        (stats?.newApplicantsCount ?? 0).toString(),
+                        (stats?.activeVacanciesCount ?? 0).toString(),
+                      ],
+                    ),
                     style: context.textThemes.b2.copyWith(
                       color: context.colors.textSecondary,
                     ),
@@ -67,7 +71,7 @@ class HrDashboardPage extends StatelessWidget {
                           context,
                           title: "postings.interviews".tr(),
                           value: "${stats?.interviewsTodayCount ?? 0}",
-                          bottomText: "postings.interviews_sub".tr(),
+                          bottomText: "postings.interviewsSub".tr(),
                           isPrimary: true,
                         ),
                       ),
@@ -76,7 +80,7 @@ class HrDashboardPage extends StatelessWidget {
                           context,
                           title: "postings.responses".tr(),
                           value: "${stats?.newApplicantsCount ?? 0}",
-                          bottomText: "postings.responses_sub".tr(),
+                          bottomText: "postings.responsesSub".tr(),
                         ),
                       ),
                       Expanded(
@@ -84,7 +88,7 @@ class HrDashboardPage extends StatelessWidget {
                           context,
                           title: "postings.active".tr(),
                           value: "${stats?.activeVacanciesCount ?? 0}",
-                          bottomText: "postings.active_sub".tr(),
+                          bottomText: "postings.activeSub".tr(),
                           showTrendingIcon: false,
                         ),
                       ),
@@ -97,7 +101,7 @@ class HrDashboardPage extends StatelessWidget {
                     children: [
                       Expanded(
                         child: Text(
-                          'profile.my_vacancies',
+                          'postings.activeVacancies',
                           style: context.textThemes.s2,
                           maxLines: 2,
                           overflow: .ellipsis,
@@ -108,12 +112,12 @@ class HrDashboardPage extends StatelessWidget {
                           const MyVacanciesRoute(),
                         ),
                         icon: const Icon(Icons.arrow_forward_ios_rounded),
-                        label: const Text("shared.show_all").tr(),
+                        label: const Text("postings.viewAll").tr(),
                         style: TextButton.styleFrom(
                           textStyle: context.textThemes.buttonSmall,
-                          iconAlignment: .end,
-                          visualDensity: .compact,
-                          tapTargetSize: .shrinkWrap,
+                          iconAlignment: IconAlignment.end,
+                          visualDensity: VisualDensity.compact,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         ),
                       ),
                     ],
@@ -129,7 +133,7 @@ class HrDashboardPage extends StatelessWidget {
                       padding: const EdgeInsets.all(24.0),
                       child: Center(
                         child: Text(
-                          "shared.no_data",
+                          "postings.emptyState",
                           style: context.textThemes.b2.copyWith(
                             color: context.colors.textSecondary,
                           ),
@@ -158,7 +162,7 @@ class HrDashboardPage extends StatelessWidget {
                       }
                     },
                     icon: const Icon(Icons.add),
-                    label: const Text("opportunities.create_vacancy").tr(),
+                    label: const Text("postings.createVacancy").tr(),
                     style: FilledButton.styleFrom(
                       padding: const .all(14),
                       shape: DashedOutlineBorder(

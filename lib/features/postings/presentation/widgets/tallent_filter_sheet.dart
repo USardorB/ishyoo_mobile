@@ -193,7 +193,7 @@ class _TallentFilterSheetState extends State<TallentFilterSheet> {
         ),
       ),
       Text(
-        'shared.filter',
+        'postings.filter.title',
         style: context.textThemes.h5,
         maxLines: 1,
       ).tr(),

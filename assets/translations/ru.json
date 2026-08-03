@@ -31,13 +31,23 @@
       "continue": "Продолжить",
       "edit": "Редактировать",
       "showAll": "Показать все",
-      "filter": "Фильтр"
+      "filter": "Фильтр",
+      "inviteTitle": "Пригласить кандидата?",
+      "invited": "Приглашен"
     },
     "messaging": {
-      "typeMessage": "Введите сообщение..."
+      "typeMessage": "Введите сообщение...",
+      "message": "Сообщение"
     },
     "emptyState": "Кандидаты не найдены.",
-    "comingSoon": "Скоро"
+    "comingSoon": "Скоро",
+    "moreActions": {
+      "chat": "Чат",
+      "invitation": "Пригласить",
+      "share": "Поделиться",
+      "decline": "Отказать",
+      "complaint": "Пожаловаться"
+    }
   },
   "applications": {
     "title": "Мои отклики",
@@ -481,7 +491,7 @@
       "pause": "Приостановить",
       "applicants": "Кандидаты",
       "copy": "Копировать",
-      "share": "Скоро",
+      "share": "Поделиться",
       "archive": "В архив",
       "delete": "Удалить"
     },
@@ -507,7 +517,8 @@
       "search": "Поиск",
       "experience": "Опыт",
       "apply": "Применить",
-      "clear": "Сбросить"
+      "clear": "Сбросить",
+      "title": "Фильтр"
     },
     "category": {
       "searchPlaceholder": "Поиск..."
@@ -515,7 +526,16 @@
     "skills": {
       "searchPlaceholder": "Поиск...",
       "add": "Добавить"
-    }
+    },
+    "hrAccount": "HR Аккаунт",
+    "analytics": {
+      "views": "Просмотры",
+      "responses": "Отклики",
+      "invited": "Приглашенные"
+    },
+    "viewAll": "Смотреть все",
+    "emptyState": "Нет вакансий.",
+    "vacancyDetails": "Вакансия"
   },
   "profile": {
     "title": "Профиль",
@@ -534,7 +554,8 @@
       "filterTitle": "Фильтр кандидатов",
       "location": "Локация",
       "phoneLabel": "Номер телефона",
-      "candidates": "Кандидаты"
+      "candidates": "Кандидаты",
+      "viewAll": "Все"
     },
     "candidate": {
       "personalInfo": "Личная информация",

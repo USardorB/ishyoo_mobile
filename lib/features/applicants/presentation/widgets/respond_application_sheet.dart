@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 
 enum ApplicationResponseType {
   invite,
@@ -100,7 +100,9 @@ class _RespondApplicationSheetState extends State<RespondApplicationSheet> {
           _buildHandler(context),
           const SizedBox(height: 4),
           Text(
-            isInvite ? "applicants.actions.invite" : "applicants.actions.rejectTitle",
+            isInvite
+                ? "applicants.actions.inviteTitle"
+                : "applicants.actions.rejectTitle",
             style: context.textThemes.h5,
           ).tr(),
           const SizedBox(height: 4),
@@ -121,16 +123,11 @@ class _RespondApplicationSheetState extends State<RespondApplicationSheet> {
               ),
             );
           }),
-          const SizedBox(height: 4),
-          Text(
-            "applicants.messaging.typeMessage".tr(),
-            style: context.textThemes.b2.copyWith(
-              color: context.colors.textSecondary,
-            ),
-          ),
           const SizedBox(height: 12),
           AppInputField(
             controller: _textController,
+            label: "applicants.messaging.message".tr(),
+            hintText: "applicants.messaging.typeMessage".tr(),
             minLines: 4,
             maxLines: 6,
             maxLength: 1000,
