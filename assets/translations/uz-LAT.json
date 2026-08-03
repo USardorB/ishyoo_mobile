@@ -162,7 +162,7 @@
       "newPasswordLabel": "Yangi parol",
       "confirmPasswordLabel": "Parolni tasdiqlang",
       "buttons": {
-        "saveAndLogin": "Saqlash va kirish"
+        "confirm": "Tasdiqlash"
       },
       "successDialog": {
         "title": "Parol o'zgartirildi",
@@ -212,11 +212,11 @@
       }
     },
     "waitlistDialog": {
-      "title": "Joylashuvni yoqasizmi?",
-      "description": "Yaqin atrofdagi vakansiyalarni topish uchun joylashuvingiz kerak.",
+      "title": "Siz Navoiydanmisiz?",
+      "description": "Hozircha servis faqat Navoiy shahrida faoliyat yuritmoqda. Tez orada boshqa hududlarda ham ishga tushiramiz.",
       "buttons": {
-        "yes": "Ha, yoqish",
-        "no": "Yo'q, rahmat"
+        "yes": "Ha, Navoiydanman",
+        "no": "Yo'q, Navoiydan emasman"
       }
     },
     "privacyPolicy": {
@@ -615,7 +615,8 @@
       "savedSuccess": "Muvaffaqiyatli saqlandi!",
       "boostVisibility": "Rezyumeni ko'tarish",
       "boostSuccess": "Rezyume muvaffaqiyatli ko'tarildi!",
-      "backToHome": "Bosh sahifaga qaytish"
+      "backToHome": "Bosh sahifaga qaytish",
+      "addLanguage": "Til qo'shish"
     },
     "contacts": "Kontaktlar",
     "experience": "Ish tajribasi",
@@ -636,9 +637,17 @@
       "company": "mas., Uzum",
       "position": "mas., Dasturchi",
       "description": "Vazifalaringizni kiriting...",
-      "skill": "mas., Figma, Java"
+      "skill": "mas., Figma, Java",
+      "language": "mas., Ingliz tili",
+      "level": "mas., Erkin"
     },
-    "apply": "Qo'llash"
+    "apply": "Qo'llash",
+    "currency": "Valyuta",
+    "employmentType": "Bandlik turi",
+    "workFormat": "Ish formati",
+    "languages": "Tillar",
+    "languageLabel": "Til",
+    "levelLabel": "Bilish darajasi"
   },
   "settings": {
     "title": "Sozlamalar",

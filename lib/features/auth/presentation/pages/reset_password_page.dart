@@ -113,7 +113,7 @@ class ResetPasswordPage extends HookWidget {
                         ),
                       ]);
                     },
-                    label: 'auth.resetPassword.buttons.saveAndLogin'.tr(),
+                    label: 'auth.login.buttons.login'.tr(),
                   ),
                 ],
               ),
@@ -223,7 +223,7 @@ class ResetPasswordPage extends HookWidget {
                   AppButton(
                     onTap: onResetPassword,
                     isLoading: state.status == bloc_state.AuthStatus.loading,
-                    label: 'auth.resetPassword.buttons.saveAndLogin'.tr(),
+                    label: 'auth.resetPassword.buttons.confirm'.tr(),
                   ),
                   const Flexible(flex: 0, child: SizedBox(height: 12)),
                 ],

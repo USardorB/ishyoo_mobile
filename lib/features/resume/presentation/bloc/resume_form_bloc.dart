@@ -102,6 +102,8 @@ class ResumeFormBloc extends Bloc<ResumeFormEvent, ResumeFormState> {
     submitData['educations'] ??= [];
     submitData['experiences'] ??= [];
     submitData['languages'] ??= [];
+    submitData['employment_type'] ??= [];
+    submitData['work_format'] ??= [];
 
     final result = event.resumeId == null
         ? await _createResumeUseCase(CreateResumeParams(submitData))

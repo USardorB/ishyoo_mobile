@@ -162,7 +162,7 @@
       "newPasswordLabel": "New Password",
       "confirmPasswordLabel": "Confirm New Password",
       "buttons": {
-        "saveAndLogin": "Save & Log in"
+        "confirm": "Confirm"
       },
       "successDialog": {
         "title": "Password Changed",
@@ -212,11 +212,11 @@
       }
     },
     "waitlistDialog": {
-      "title": "Enable Location?",
-      "description": "We need your location to find nearby opportunities.",
+      "title": "Are you from Navoiy?",
+      "description": "Currently, the service is only active in Navoiy city. We will launch in other regions soon.",
       "buttons": {
-        "yes": "Yes, enable",
-        "no": "No, thanks"
+        "yes": "Yes, I am from Navoiy",
+        "no": "No, I am not from Navoiy"
       }
     },
     "privacyPolicy": {
@@ -615,7 +615,8 @@
       "savedSuccess": "Successfully saved!",
       "boostVisibility": "Boost Visibility",
       "boostSuccess": "Visibility boosted successfully!",
-      "backToHome": "Back to Home"
+      "backToHome": "Back to Home",
+      "addLanguage": "Add Language"
     },
     "contacts": "Contacts",
     "experience": "Work Experience",
@@ -636,9 +637,17 @@
       "company": "e.g., Apple",
       "position": "e.g., Software Engineer",
       "description": "Describe your responsibilities...",
-      "skill": "e.g., Figma, Java"
+      "skill": "e.g., Figma, Java",
+      "language": "e.g., English",
+      "level": "e.g., Fluent"
     },
-    "apply": "Apply"
+    "apply": "Apply",
+    "currency": "Currency",
+    "employmentType": "Employment Type",
+    "workFormat": "Work Format",
+    "languages": "Languages",
+    "languageLabel": "Language",
+    "levelLabel": "Proficiency"
   },
   "settings": {
     "title": "Settings",

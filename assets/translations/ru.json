@@ -162,7 +162,7 @@
       "newPasswordLabel": "Новый пароль",
       "confirmPasswordLabel": "Подтвердите пароль",
       "buttons": {
-        "saveAndLogin": "Сохранить и войти"
+        "confirm": "Подтвердить"
       },
       "successDialog": {
         "title": "Пароль изменен",
@@ -212,11 +212,11 @@
       }
     },
     "waitlistDialog": {
-      "title": "Включить геолокацию?",
-      "description": "Нам нужна ваша локация для поиска вакансий поблизости.",
+      "title": "Вы из Навои?",
+      "description": "В настоящее время сервис работает только в городе Навои. Скоро мы запустимся и в других регионах.",
       "buttons": {
-        "yes": "Включить",
-        "no": "Нет, спасибо"
+        "yes": "Да, я из Навои",
+        "no": "Нет, я не из Навои"
       }
     },
     "privacyPolicy": {
@@ -615,7 +615,8 @@
       "savedSuccess": "Успешно сохранено!",
       "boostVisibility": "Продвинуть резюме",
       "boostSuccess": "Резюме успешно продвинуто!",
-      "backToHome": "Вернуться на главную"
+      "backToHome": "Вернуться на главную",
+      "addLanguage": "Добавить язык"
     },
     "contacts": "Контакты",
     "experience": "Опыт работы",
@@ -636,9 +637,17 @@
       "company": "напр., Яндекс",
       "position": "напр., Разработчик",
       "description": "Опишите ваши обязанности...",
-      "skill": "напр., Figma, Java"
+      "skill": "напр., Figma, Java",
+      "language": "напр., Английский",
+      "level": "напр., Свободное владение"
     },
-    "apply": "Применить"
+    "apply": "Применить",
+    "currency": "Валюта",
+    "employmentType": "Тип занятости",
+    "workFormat": "Формат работы",
+    "languages": "Языки",
+    "languageLabel": "Язык",
+    "levelLabel": "Уровень владения"
   },
   "settings": {
     "title": "Настройки",

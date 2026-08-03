@@ -494,6 +494,7 @@ class ResumeMapper extends ClassMapperBase<Resume> {
       MapperContainer.globals.use(_instance = ResumeMapper._());
       ResumeEducationMapper.ensureInitialized();
       ResumeExperienceMapper.ensureInitialized();
+      ResumeLanguageMapper.ensureInitialized();
       ResumeProfileMapper.ensureInitialized();
     }
     return _instance!;
@@ -560,6 +561,12 @@ class ResumeMapper extends ClassMapperBase<Resume> {
   static const Field<Resume, List<ResumeExperience>> _f$experiences = Field(
     'experiences',
     _$experiences,
+    opt: true,
+  );
+  static List<ResumeLanguage>? _$languages(Resume v) => v.languages;
+  static const Field<Resume, List<ResumeLanguage>> _f$languages = Field(
+    'languages',
+    _$languages,
     opt: true,
   );
   static String? _$visibility(Resume v) => v.visibility;
@@ -656,6 +663,7 @@ class ResumeMapper extends ClassMapperBase<Resume> {
     #skills: _f$skills,
     #educations: _f$educations,
     #experiences: _f$experiences,
+    #languages: _f$languages,
     #visibility: _f$visibility,
     #status: _f$status,
     #isPrimary: _f$isPrimary,
@@ -682,6 +690,7 @@ class ResumeMapper extends ClassMapperBase<Resume> {
       skills: data.dec(_f$skills),
       educations: data.dec(_f$educations),
       experiences: data.dec(_f$experiences),
+      languages: data.dec(_f$languages),
       visibility: data.dec(_f$visibility),
       status: data.dec(_f$status),
       isPrimary: data.dec(_f$isPrimary),
@@ -759,6 +768,12 @@ abstract class ResumeCopyWith<$R, $In extends Resume, $Out>
     ResumeExperienceCopyWith<$R, ResumeExperience, ResumeExperience>
   >?
   get experiences;
+  ListCopyWith<
+    $R,
+    ResumeLanguage,
+    ResumeLanguageCopyWith<$R, ResumeLanguage, ResumeLanguage>
+  >?
+  get languages;
   ResumeProfileCopyWith<$R, ResumeProfile, ResumeProfile>? get profile;
   $R call({
     String? id,
@@ -771,6 +786,7 @@ abstract class ResumeCopyWith<$R, $In extends Resume, $Out>
     List<String>? skills,
     List<ResumeEducation>? educations,
     List<ResumeExperience>? experiences,
+    List<ResumeLanguage>? languages,
     String? visibility,
     String? status,
     bool? isPrimary,
@@ -847,6 +863,19 @@ class _ResumeCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Resume, $Out>
         )
       : null;
   @override
+  ListCopyWith<
+    $R,
+    ResumeLanguage,
+    ResumeLanguageCopyWith<$R, ResumeLanguage, ResumeLanguage>
+  >?
+  get languages => $value.languages != null
+      ? ListCopyWith(
+          $value.languages!,
+          (v, t) => v.copyWith.$chain(t),
+          (v) => call(languages: v),
+        )
+      : null;
+  @override
   ResumeProfileCopyWith<$R, ResumeProfile, ResumeProfile>? get profile =>
       $value.profile?.copyWith.$chain((v) => call(profile: v));
   @override
@@ -861,6 +890,7 @@ class _ResumeCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Resume, $Out>
     Object? skills = $none,
     Object? educations = $none,
     Object? experiences = $none,
+    Object? languages = $none,
     Object? visibility = $none,
     Object? status = $none,
     Object? isPrimary = $none,
@@ -885,6 +915,7 @@ class _ResumeCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Resume, $Out>
       if (skills != $none) #skills: skills,
       if (educations != $none) #educations: educations,
       if (experiences != $none) #experiences: experiences,
+      if (languages != $none) #languages: languages,
       if (visibility != $none) #visibility: visibility,
       if (status != $none) #status: status,
       if (isPrimary != $none) #isPrimary: isPrimary,
@@ -911,6 +942,7 @@ class _ResumeCopyWithImpl<$R, $Out> extends ClassCopyWithBase<$R, Resume, $Out>
     skills: data.get(#skills, or: $value.skills),
     educations: data.get(#educations, or: $value.educations),
     experiences: data.get(#experiences, or: $value.experiences),
+    languages: data.get(#languages, or: $value.languages),
     visibility: data.get(#visibility, or: $value.visibility),
     status: data.get(#status, or: $value.status),
     isPrimary: data.get(#isPrimary, or: $value.isPrimary),

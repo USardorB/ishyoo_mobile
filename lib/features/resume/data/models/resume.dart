@@ -1,4 +1,5 @@
 import 'package:dart_mappable/dart_mappable.dart';
+import 'package:mobile/features/resume/data/models/resume_language.dart';
 
 part 'resume.mapper.dart';
 
@@ -76,6 +77,7 @@ class Resume with ResumeMappable {
   final List<String>? skills;
   final List<ResumeEducation>? educations;
   final List<ResumeExperience>? experiences;
+  final List<ResumeLanguage>? languages;
   final String? visibility;
   final String? status;
   @MappableField(key: 'is_primary')
@@ -109,6 +111,7 @@ class Resume with ResumeMappable {
     this.skills,
     this.educations,
     this.experiences,
+    this.languages,
     this.visibility,
     this.status,
     this.isPrimary,

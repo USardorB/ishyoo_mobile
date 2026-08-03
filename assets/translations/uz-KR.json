@@ -162,7 +162,7 @@
       "newPasswordLabel": "Янги парол",
       "confirmPasswordLabel": "Паролни тасдиқланг",
       "buttons": {
-        "saveAndLogin": "Сақлаш ва кириш"
+        "confirm": "Тасдиқлаш"
       },
       "successDialog": {
         "title": "Парол ўзгартирилди",
@@ -212,11 +212,11 @@
       }
     },
     "waitlistDialog": {
-      "title": "Жойлашувни ёқасизми?",
-      "description": "Яқин атрофдаги вакансияларни топиш учун жойлашувингиз керак.",
+      "title": "Сиз Навоийданмисиз?",
+      "description": "Ҳозирча сервис фақат Навоий шаҳрида фаолият юритмоқда. Тез орада бошқа ҳудудларда ҳам ишга туширамиз.",
       "buttons": {
-        "yes": "Ҳа, ёқиш",
-        "no": "Йўқ, раҳмат"
+        "yes": "Ҳа, Навоийданман",
+        "no": "Йўқ, Навоийдан эмасман"
       }
     },
     "privacyPolicy": {
@@ -615,7 +615,8 @@
       "savedSuccess": "Муваффақиятли сақланди!",
       "boostVisibility": "Резюмени кўтариш",
       "boostSuccess": "Резюме муваффақиятли кўтарилди!",
-      "backToHome": "Бош саҳифага қайтиш"
+      "backToHome": "Бош саҳифага қайтиш",
+      "addLanguage": "Тил қўшиш"
     },
     "contacts": "Контактлар",
     "experience": "Иш тажрибаси",
@@ -636,9 +637,17 @@
       "company": "мас., Uzum",
       "position": "мас., Дастурчи",
       "description": "Вазифаларингизни киритинг...",
-      "skill": "мас., Figma, Java"
+      "skill": "мас., Figma, Java",
+      "language": "мас., Инглиз тили",
+      "level": "мас., Эркин"
     },
-    "apply": "Қўллаш"
+    "apply": "Қўллаш",
+    "currency": "Валюта",
+    "employmentType": "Бандлик тури",
+    "workFormat": "Иш формати",
+    "languages": "Тиллар",
+    "languageLabel": "Тил",
+    "levelLabel": "Билиш даражаси"
   },
   "settings": {
     "title": "Созламалар",

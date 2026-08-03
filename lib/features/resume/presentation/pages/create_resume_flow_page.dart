@@ -38,11 +38,16 @@ class CreateResumeFlowPage extends HookWidget {
           data.addAll({
             'specialization': resume!.specialization,
             'expected_salary': resume!.expectedSalary?.toString(),
+            'currency': resume!.currency,
+            'employment_type': resume!.employmentType ?? [],
+            'work_format': resume!.workFormat ?? [],
             'experiences':
                 resume!.experiences?.map((e) => e.toMap()).toList() ?? [],
             'educations':
                 resume!.educations?.map((e) => e.toMap()).toList() ?? [],
             'skills': resume!.skills ?? [],
+            'languages':
+                resume!.languages?.map((e) => e.toMap()).toList() ?? [],
           });
         }
         return sl<ResumeFormBloc>(param1: data);
