@@ -565,7 +565,9 @@
       "phoneLabel": "Номер телефона",
       "aboutMe": "Обо мне",
       "primary": "Основное"
-    }
+    },
+    "selectDate": "Выберите дату",
+    "apply": "Применить"
   },
   "resume": {
     "title": "Резюме",
@@ -590,7 +592,7 @@
       "shortlisted": "В избранном"
     },
     "visibility": {
-      "all": "Для всех",
+      "all": "Видно всем",
       "hidden": "Скрыто"
     },
     "sections": {
@@ -612,12 +614,31 @@
       "comingSoon": "Скоро",
       "savedSuccess": "Успешно сохранено!",
       "boostVisibility": "Продвинуть резюме",
-      "boostSuccess": "Резюме успешно продвинуто!"
+      "boostSuccess": "Резюме успешно продвинуто!",
+      "backToHome": "Вернуться на главную"
     },
     "contacts": "Контакты",
     "experience": "Опыт работы",
     "education": "Образование",
-    "skills": "Навыки"
+    "skills": "Навыки",
+    "expectedSalary": "Ожидаемая зарплата",
+    "emailLabel": "Эл. почта",
+    "phoneLabel": "Номер телефона",
+    "selectDate": "Выберите дату",
+    "company": "Название компании",
+    "position": "Должность",
+    "institution": "Учебное заведение / Университет",
+    "degree": "Степень / Специальность",
+    "hints": {
+      "institution": "напр., МГУ",
+      "degree": "напр., Программная инженерия",
+      "year": "2019",
+      "company": "напр., Яндекс",
+      "position": "напр., Разработчик",
+      "description": "Опишите ваши обязанности...",
+      "skill": "напр., Figma, Java"
+    },
+    "apply": "Применить"
   },
   "settings": {
     "title": "Настройки",

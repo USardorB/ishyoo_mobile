@@ -9,9 +9,9 @@ import 'package:mobile/features/location/data/models/region.dart';
 import 'package:mobile/features/location/presentation/widgets/districts_sheet.dart';
 import 'package:mobile/features/location/presentation/widgets/regions_sheet.dart';
 import 'package:mobile/features/profile/presentation/widgets/delete_experience_dialog.dart';
-import 'package:mobile/features/profile/presentation/widgets/month_picker_sheet.dart';
 import 'package:mobile/features/resume/data/models/resume.dart';
 import 'package:mobile/features/resume/presentation/widgets/forms/resume_experience_form.dart';
+import 'package:mobile/features/resume/presentation/widgets/month_picker_sheet.dart';
 
 @RoutePage()
 class EditResumeExperiencePage extends HookWidget {
@@ -106,8 +106,9 @@ class EditResumeExperiencePage extends HookWidget {
                     context: context,
                     isScrollControlled: true,
                     backgroundColor: Colors.transparent,
-                    builder: (context) =>
-                        MonthPickerSheet(initialDate: startDate.value),
+                    builder: (_) => MonthPickerSheet(
+                      initialDate: startDate.value,
+                    ),
                   );
                   if (picked != null) {
                     startDate.value = DateTime(picked.year, picked.month, 1);
@@ -118,8 +119,9 @@ class EditResumeExperiencePage extends HookWidget {
                     context: context,
                     isScrollControlled: true,
                     backgroundColor: Colors.transparent,
-                    builder: (context) =>
-                        MonthPickerSheet(initialDate: endDate.value),
+                    builder: (_) => MonthPickerSheet(
+                      initialDate: endDate.value,
+                    ),
                   );
                   if (picked != null) {
                     endDate.value = DateTime(picked.year, picked.month, 1);
@@ -148,8 +150,7 @@ class EditResumeExperiencePage extends HookWidget {
                 context.maybePop(result);
               },
               label: "resume.actions.save".tr(),
-              color: context.colors.brandProgress,
-              foregroundColor: Colors.black,
+              color: context.colors.brandDefault,
             ),
           ),
         ],

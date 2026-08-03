@@ -44,7 +44,7 @@ class ResumeContactsForm extends HookWidget {
       children: [
         const SizedBox(height: 16),
         AppInputField(
-          label: "talents.search_placeholder".tr(),
+          label: "resume.specializationPlaceholder".tr(),
           controller: specializationController,
           readOnly: true,
           onTap: () async {
@@ -62,7 +62,7 @@ class ResumeContactsForm extends HookWidget {
         ),
         const SizedBox(height: 24),
         AppInputField(
-          label: "opportunities.salary".tr(args: ['']),
+          label: "resume.expectedSalary".tr(),
           controller: salaryController,
           keyboardType: TextInputType.number,
           textInputAction: TextInputAction.done,
@@ -70,14 +70,14 @@ class ResumeContactsForm extends HookWidget {
         ),
         const SizedBox(height: 24),
         AppInputField(
-          label: "EMAIL",
+          label: "resume.emailLabel".tr(),
           controller: emailController,
           keyboardType: TextInputType.emailAddress,
           readOnly: true,
         ),
         const SizedBox(height: 24),
         AppInputField(
-          label: "auth.login.phone_label".tr(),
+          label: "resume.phoneLabel".tr(),
           controller: phoneController,
           keyboardType: TextInputType.phone,
           readOnly: true,

@@ -1,9 +1,9 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
 import 'package:mobile/core/utils/app_validators.dart';
+import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 
 class ResumeEducationForm extends StatelessWidget {
   final TextEditingController schoolController;
@@ -31,8 +31,8 @@ class ResumeEducationForm extends StatelessWidget {
         const SizedBox(height: 16),
         _buildTextField(
           context,
-          "resume.sections.education".tr(),
-          "Masalan: TATU",
+          "resume.institution".tr(),
+          "resume.hints.institution".tr(),
           controller: schoolController,
           maxLines: 2,
           keyboardType: TextInputType.text,
@@ -42,8 +42,8 @@ class ResumeEducationForm extends StatelessWidget {
         const SizedBox(height: 24),
         _buildTextField(
           context,
-          "resume.specializationPlaceholder".tr(),
-          "Masalan: Dasturiy injiniring",
+          "resume.degree".tr(),
+          "resume.hints.degree".tr(),
           controller: degreeController,
           keyboardType: TextInputType.text,
           textInputAction: TextInputAction.next,
@@ -56,7 +56,7 @@ class ResumeEducationForm extends StatelessWidget {
               child: _buildTextField(
                 context,
                 "resume.yearHint".tr(),
-                "2019",
+                "resume.hints.year".tr(),
                 controller: startYearController,
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.next,
@@ -66,7 +66,7 @@ class ResumeEducationForm extends StatelessWidget {
               child: _buildTextField(
                 context,
                 "resume.yearHint".tr(),
-                "2023",
+                "resume.hints.year".tr(),
                 controller: endYearController,
                 keyboardType: TextInputType.number,
                 textInputAction: TextInputAction.done,
@@ -79,8 +79,7 @@ class ResumeEducationForm extends StatelessWidget {
           AppButton(
             onTap: onSave ?? () {},
             label: "resume.actions.save".tr(),
-            color: context.colors.brandProgress,
-            foregroundColor: Colors.black,
+            color: context.colors.brandDefault,
           ),
           const SizedBox(height: 32),
         ],

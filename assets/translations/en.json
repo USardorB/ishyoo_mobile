@@ -565,7 +565,9 @@
       "phoneLabel": "Phone Number",
       "aboutMe": "About Me",
       "primary": "Primary"
-    }
+    },
+    "selectDate": "Select Date",
+    "apply": "Apply"
   },
   "resume": {
     "title": "Resume",
@@ -590,7 +592,7 @@
       "shortlisted": "Shortlisted"
     },
     "visibility": {
-      "all": "All",
+      "all": "Visible to all",
       "hidden": "Hidden"
     },
     "sections": {
@@ -612,12 +614,31 @@
       "comingSoon": "Coming Soon",
       "savedSuccess": "Successfully saved!",
       "boostVisibility": "Boost Visibility",
-      "boostSuccess": "Visibility boosted successfully!"
+      "boostSuccess": "Visibility boosted successfully!",
+      "backToHome": "Back to Home"
     },
     "contacts": "Contacts",
     "experience": "Work Experience",
     "education": "Education",
-    "skills": "Skills"
+    "skills": "Skills",
+    "expectedSalary": "Expected Salary",
+    "emailLabel": "Email",
+    "phoneLabel": "Phone Number",
+    "selectDate": "Select Date",
+    "company": "Company Name",
+    "position": "Position",
+    "institution": "Institution / University",
+    "degree": "Degree / Major",
+    "hints": {
+      "institution": "e.g., Harvard University",
+      "degree": "e.g., Computer Science",
+      "year": "2019",
+      "company": "e.g., Apple",
+      "position": "e.g., Software Engineer",
+      "description": "Describe your responsibilities...",
+      "skill": "e.g., Figma, Java"
+    },
+    "apply": "Apply"
   },
   "settings": {
     "title": "Settings",

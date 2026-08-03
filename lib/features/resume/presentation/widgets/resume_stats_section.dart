@@ -21,7 +21,7 @@ class ResumeStatsSection extends StatelessWidget {
       listener: (context, state) {
         if (state.isBoosted) {
           AppNotificationOverlay.instance.show(
-            message: "resume.actions.savedSuccess".tr(),
+            message: "resume.actions.boostSuccess".tr(),
             type: AppNotificationType.success,
           );
           context.read<ResumeDetailBloc>().add(LoadResumeDetail(resume.id));

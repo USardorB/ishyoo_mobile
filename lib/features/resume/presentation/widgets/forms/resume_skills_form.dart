@@ -25,8 +25,8 @@ class ResumeSkillsForm extends HookWidget {
           children: [
             const SizedBox(height: 16),
             AppInputField(
-              label: "resume.sections.languages".tr(),
-              hintText: "resume.searchPlaceholder".tr(),
+              label: "resume.skills".tr(),
+              hintText: "resume.hints.skill".tr(),
               controller: controller,
               keyboardType: TextInputType.text,
               textInputAction: TextInputAction.done,

@@ -33,7 +33,7 @@ class ResumeExperienceForm extends StatelessWidget {
   });
 
   String _formatDate(DateTime? date) {
-    if (date == null) return "resume.searchPlaceholder".tr();
+    if (date == null) return "resume.selectDate".tr();
     return "${date.month}/${date.year}";
   }
 
@@ -48,8 +48,8 @@ class ResumeExperienceForm extends StatelessWidget {
         const SizedBox(height: 16),
         _buildTextField(
           context,
-          "resume.companyPlaceholder".tr(),
-          "Masalan: Uzum bank",
+          "resume.company".tr(),
+          "resume.hints.company".tr(),
           controller: companyController,
           keyboardType: TextInputType.name,
           autofillHints: const [AutofillHints.organizationName],
@@ -58,8 +58,8 @@ class ResumeExperienceForm extends StatelessWidget {
         const SizedBox(height: 24),
         _buildTextField(
           context,
-          "resume.specializationPlaceholder".tr(),
-          "Masalan: UX/UI Dizayner",
+          "resume.position".tr(),
+          "resume.hints.position".tr(),
           controller: positionController,
           keyboardType: TextInputType.text,
           autofillHints: const [AutofillHints.jobTitle],
@@ -76,7 +76,7 @@ class ResumeExperienceForm extends StatelessWidget {
         _buildTextField(
           context,
           "resume.description".tr(),
-          "Vazifalaringizni kiriting",
+          "resume.hints.description".tr(),
           controller: descriptionController,
           maxLines: 4,
           keyboardType: TextInputType.multiline,
@@ -120,7 +120,7 @@ class ResumeExperienceForm extends StatelessWidget {
           child: Row(
             children: [
               Text(
-                "shared.present",
+                "resume.present",
                 style: context.textThemes.b2,
               ).tr(),
               const Spacer(),

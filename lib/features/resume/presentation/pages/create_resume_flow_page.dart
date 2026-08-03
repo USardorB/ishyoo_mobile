@@ -63,10 +63,10 @@ class _CreateResumeFlowContent extends HookWidget {
     final currentPage = useState(0);
 
     final titles = [
-      "resume.sections.contacts".tr(),
-      "resume.sections.workplace".tr(),
-      "resume.sections.education".tr(),
-      "resume.sections.languages".tr(),
+      "resume.contacts".tr(),
+      "resume.experience".tr(),
+      "resume.education".tr(),
+      "resume.skills".tr(),
     ];
 
     void nextStep() {
@@ -211,7 +211,7 @@ class _ProgressBar extends StatelessWidget {
               height: 2,
               decoration: BoxDecoration(
                 color: isActive
-                    ? context.colors.brandProgress
+                    ? context.colors.brandDefault
                     : context.colors.bgTertiary,
                 borderRadius: BorderRadius.circular(1),
               ),

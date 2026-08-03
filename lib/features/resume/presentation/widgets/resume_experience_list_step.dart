@@ -27,7 +27,7 @@ class ResumeExperienceListStep extends StatelessWidget {
             const SizedBox(height: 16),
             if (experiences.isNotEmpty)
               Text(
-                "resume.sections.experience".tr(),
+                "resume.experience".tr(),
                 style: context.textThemes.s1,
               ),
             const SizedBox(height: 16),
@@ -61,9 +61,9 @@ class ResumeExperienceListStep extends StatelessWidget {
               },
               icon: Icons.add,
               label: "resume.actions.add".tr(),
-              color: context.colors.brandProgress.withValues(alpha: 0.15),
-              foregroundColor: context.colors.brandProgress,
-              labelStyle: context.textThemes.b2,
+              color: context.colors.brandProgress,
+              foregroundColor: context.colors.brandDefault,
+              labelStyle: context.textThemes.buttonMedium,
             ),
             const SizedBox(height: 24),
           ],
@@ -82,7 +82,9 @@ class ResumeExperienceListStep extends StatelessWidget {
         final result = await context.pushRoute(
           EditResumeExperienceRoute(experience: exp),
         );
-        if (result != null && result is Map<String, dynamic> && context.mounted) {
+        if (result != null &&
+            result is Map<String, dynamic> &&
+            context.mounted) {
           final bloc = context.read<ResumeFormBloc>();
           final currentData = bloc.state.formData;
           final newExperiences = List<Map<String, dynamic>>.from(

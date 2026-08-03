@@ -22,14 +22,14 @@ class ResumeSuccessPage extends StatelessWidget {
                 width: 120,
                 height: 120,
                 decoration: BoxDecoration(
-                  color: context.colors.brandProgress.withValues(alpha: 0.2),
+                  color: context.colors.brandProgress,
                   shape: BoxShape.circle,
                 ),
                 alignment: Alignment.center,
                 child: Icon(
                   Icons.check,
                   size: 64,
-                  color: context.colors.brandProgress,
+                  color: context.colors.brandDefault,
                 ),
               ),
               const SizedBox(height: 32),
@@ -50,9 +50,8 @@ class ResumeSuccessPage extends StatelessWidget {
                 onTap: () {
                   context.router.popUntilRoot();
                 },
-                label: "resume.createResume".tr(),
-                color: context.colors.brandProgress,
-                foregroundColor: Colors.black,
+                label: "resume.actions.backToHome".tr(),
+                color: context.colors.brandDefault,
               ),
             ],
           ),

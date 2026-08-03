@@ -30,7 +30,7 @@ class MonthPickerSheet extends HookWidget {
                   const SizedBox(width: 48),
                   Expanded(
                     child: Text(
-                      "shared.search",
+                      "resume.selectDate",
                       textAlign: TextAlign.center,
                       style: context.textThemes.s1,
                     ).tr(),
@@ -55,7 +55,7 @@ class MonthPickerSheet extends HookWidget {
                   mode: CupertinoDatePickerMode.monthYear,
                   initialDateTime: selectedDate.value,
                   minimumYear: 1950,
-                  maximumYear: DateTime.now().year + 5,
+                  maximumYear: 2026,
                   onDateTimeChanged: (date) {
                     selectedDate.value = date;
                   },
@@ -68,9 +68,8 @@ class MonthPickerSheet extends HookWidget {
                 onTap: () {
                   context.maybePop(selectedDate.value);
                 },
-                label: "profile.candidate.apply".tr(),
-                color: context.colors.brandProgress,
-                foregroundColor: Colors.black,
+                label: "resume.apply".tr(),
+                color: context.colors.brandDefault,
               ),
             ),
           ],

@@ -565,7 +565,9 @@
       "phoneLabel": "Telefon raqami",
       "aboutMe": "Men haqimda",
       "primary": "Asosiy"
-    }
+    },
+    "selectDate": "Sanani tanlang",
+    "apply": "Qo'llash"
   },
   "resume": {
     "title": "Rezyume",
@@ -590,7 +592,7 @@
       "shortlisted": "Saqlanganlar"
     },
     "visibility": {
-      "all": "Barchaga",
+      "all": "Barchaga ko'rinadi",
       "hidden": "Yashirin"
     },
     "sections": {
@@ -612,12 +614,31 @@
       "comingSoon": "Tez kunda",
       "savedSuccess": "Muvaffaqiyatli saqlandi!",
       "boostVisibility": "Rezyumeni ko'tarish",
-      "boostSuccess": "Rezyume muvaffaqiyatli ko'tarildi!"
+      "boostSuccess": "Rezyume muvaffaqiyatli ko'tarildi!",
+      "backToHome": "Bosh sahifaga qaytish"
     },
     "contacts": "Kontaktlar",
     "experience": "Ish tajribasi",
     "education": "Ta'lim",
-    "skills": "Ko'nikmalar"
+    "skills": "Ko'nikmalar",
+    "expectedSalary": "Kutilayotgan maosh",
+    "emailLabel": "El. pochta",
+    "phoneLabel": "Telefon raqami",
+    "selectDate": "Sanani tanlang",
+    "company": "Kompaniya nomi",
+    "position": "Lavozim",
+    "institution": "Ta'lim muassasasi / Universitet",
+    "degree": "Daraja / Mutaxassislik",
+    "hints": {
+      "institution": "mas., O'zMU",
+      "degree": "mas., Dasturiy injiniring",
+      "year": "2019",
+      "company": "mas., Uzum",
+      "position": "mas., Dasturchi",
+      "description": "Vazifalaringizni kiriting...",
+      "skill": "mas., Figma, Java"
+    },
+    "apply": "Qo'llash"
   },
   "settings": {
     "title": "Sozlamalar",

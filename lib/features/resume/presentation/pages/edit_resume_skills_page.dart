@@ -12,17 +12,13 @@ class EditResumeSkillsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () => context.maybePop(),
-        ),
-        title: const Text("resume.sections.languages").tr(),
+        title: const Text("resume.skills").tr(),
         centerTitle: true,
         actions: [
           TextButton(
             onPressed: () => context.maybePop(),
             child: Text(
-              "shared.save",
+              "resume.actions.save",
               style: context.textThemes.b2.copyWith(
                 color: context.colors.brandProgress,
               ),

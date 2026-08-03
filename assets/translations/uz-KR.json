@@ -565,7 +565,9 @@
       "phoneLabel": "Телефон рақами",
       "aboutMe": "Мен ҳақимда",
       "primary": "Асосий"
-    }
+    },
+    "selectDate": "Санани танланг",
+    "apply": "Қўллаш"
   },
   "resume": {
     "title": "Резюме",
@@ -590,7 +592,7 @@
       "shortlisted": "Сақланганлар"
     },
     "visibility": {
-      "all": "Барчага",
+      "all": "Барчага кўринади",
       "hidden": "Яширин"
     },
     "sections": {
@@ -612,12 +614,31 @@
       "comingSoon": "Тез кунда",
       "savedSuccess": "Муваффақиятли сақланди!",
       "boostVisibility": "Резюмени кўтариш",
-      "boostSuccess": "Резюме муваффақиятли кўтарилди!"
+      "boostSuccess": "Резюме муваффақиятли кўтарилди!",
+      "backToHome": "Бош саҳифага қайтиш"
     },
     "contacts": "Контактлар",
     "experience": "Иш тажрибаси",
     "education": "Таълим",
-    "skills": "Кўникмалар"
+    "skills": "Кўникмалар",
+    "expectedSalary": "Кутилаётган маош",
+    "emailLabel": "Эл. почта",
+    "phoneLabel": "Телефон рақами",
+    "selectDate": "Санани танланг",
+    "company": "Компания номи",
+    "position": "Лавозим",
+    "institution": "Таълим муассасаси / Университет",
+    "degree": "Даража / Мутахассислик",
+    "hints": {
+      "institution": "мас., ЎзМУ",
+      "degree": "мас., Дастурий инжиниринг",
+      "year": "2019",
+      "company": "мас., Uzum",
+      "position": "мас., Дастурчи",
+      "description": "Вазифаларингизни киритинг...",
+      "skill": "мас., Figma, Java"
+    },
+    "apply": "Қўллаш"
   },
   "settings": {
     "title": "Созламалар",
