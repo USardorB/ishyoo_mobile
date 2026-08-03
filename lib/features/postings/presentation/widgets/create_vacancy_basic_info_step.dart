@@ -55,7 +55,7 @@ class CreateVacancyBasicInfoStep extends HookWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
           Text(
-            "auth.complete_profile.title",
+            "postings.create.basicInfo",
             style: context.textThemes.h5,
           ).tr(),
           const SizedBox(height: 20),

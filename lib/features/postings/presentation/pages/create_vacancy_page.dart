@@ -114,16 +114,16 @@ class _CreateVacancyPageState extends State<CreateVacancyPage> {
       final confirm = await showDialog<bool>(
         context: context,
         builder: (context) => AlertDialog(
-          title: const Text("postings.cancel_creation_title").tr(),
-          content: const Text("postings.cancel_creation_desc").tr(),
+          title: const Text("postings.create.cancelTitle").tr(),
+          content: const Text("postings.create.cancelDesc").tr(),
           actions: [
             TextButton(
               onPressed: () => context.pop(false),
-              child: const Text("shared.no").tr(),
+              child: const Text("postings.create.no").tr(),
             ),
             TextButton(
               onPressed: () => context.pop(true),
-              child: const Text("shared.yes").tr(),
+              child: const Text("postings.create.yes").tr(),
             ),
           ],
         ),
@@ -148,8 +148,8 @@ class _CreateVacancyPageState extends State<CreateVacancyPage> {
             appBar: AppBar(
               title: Text(
                 _isEditMode
-                    ? 'opportunities.edit_vacancy'
-                    : 'opportunities.create_vacancy',
+                    ? 'postings.create.editVacancy'
+                    : 'postings.create.createVacancy',
               ).tr(),
               leading: IconButton(
                 icon: const Icon(Icons.arrow_back),

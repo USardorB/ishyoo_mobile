@@ -496,7 +496,7 @@
       "delete": "Delete"
     },
     "create": {
-      "title": "Jobs",
+      "title": "Job Title",
       "searchPlaceholder": "Specialization or skill...",
       "search": "Search",
       "salary": "Salary: {}",
@@ -509,7 +509,18 @@
       "requirements": "Requirements",
       "experience": "Experience",
       "location": "Location",
-      "savedSuccess": "Successfully saved!"
+      "savedSuccess": "Successfully saved!",
+      "editVacancy": "Edit Vacancy",
+      "createVacancy": "Create Vacancy",
+      "cancelTitle": "Cancel Creation?",
+      "cancelDesc": "Are you sure you want to cancel? All progress will be lost.",
+      "yes": "Yes",
+      "no": "No",
+      "save": "Save",
+      "editBasicInfo": "Edit Basic Info",
+      "editRequirements": "Edit Requirements",
+      "add": "Add",
+      "basicInfo": "Basic Info"
     },
     "filter": {
       "employmentType": "Employment Type",

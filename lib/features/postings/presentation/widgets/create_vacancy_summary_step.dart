@@ -107,7 +107,7 @@ class CreateVacancySummaryStep extends StatelessWidget {
                 ),
                 const SizedBox(height: 12),
                 Text(
-                  title.isEmpty ? 'opportunities.title'.tr() : title,
+                  title.isEmpty ? 'postings.create.title'.tr() : title,
                   style: context.textThemes.h4,
                 ),
                 const SizedBox(height: 4),
@@ -127,7 +127,7 @@ class CreateVacancySummaryStep extends StatelessWidget {
                     _buildSmallTag(
                       context,
                       location.isEmpty
-                          ? 'opportunities.location'.tr()
+                          ? 'postings.create.location'.tr()
                           : location,
                     ),
                     _buildSmallTag(context, jobType.label.tr()),
@@ -153,7 +153,7 @@ class CreateVacancySummaryStep extends StatelessWidget {
               color: context.colors.brandDefault,
             ),
             title: Text(
-              "profile.edit_profile",
+              "postings.create.editBasicInfo",
               style: context.textThemes.s2.copyWith(
                 color: context.colors.brandDefault,
               ),
@@ -167,7 +167,7 @@ class CreateVacancySummaryStep extends StatelessWidget {
               color: context.colors.brandDefault,
             ),
             title: Text(
-              "opportunities.edit_vacancy",
+              "postings.create.editRequirements",
               style: context.textThemes.s2.copyWith(
                 color: context.colors.brandDefault,
               ),
@@ -177,12 +177,12 @@ class CreateVacancySummaryStep extends StatelessWidget {
           ),
           const SizedBox(height: 40),
           AppButton(
-            label: "opportunities.create_vacancy".tr(),
+            label: "postings.create.createVacancy".tr(),
             onTap: onPost,
           ),
           const SizedBox(height: 12),
           AppButton(
-            label: "shared.save".tr(),
+            label: "postings.create.save".tr(),
             color: context.colors.bgSecondary,
             foregroundColor: context.colors.textPrimary,
             onTap: onSaveDraft,

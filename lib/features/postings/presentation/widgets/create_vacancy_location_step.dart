@@ -70,7 +70,7 @@ class _CreateVacancyLocationStepState extends State<CreateVacancyLocationStep> {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Text(
-                    "opportunities.location",
+                    "postings.create.location",
                     style: context.textThemes.h5,
                   ).tr(),
                   const SizedBox(height: 16),
@@ -182,7 +182,7 @@ class _CreateVacancyLocationStepState extends State<CreateVacancyLocationStep> {
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
-                                  "opportunities.location",
+                                  "postings.create.location",
                                   style: context.textThemes.b2.copyWith(
                                     color: Colors.white,
                                   ),

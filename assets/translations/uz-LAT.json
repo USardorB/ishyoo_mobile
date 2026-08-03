@@ -496,7 +496,7 @@
       "delete": "O'chirish"
     },
     "create": {
-      "title": "Vakansiyalar",
+      "title": "Vakansiya nomi",
       "searchPlaceholder": "Mutaxassislik yoki ko'nikma...",
       "search": "Qidirish",
       "salary": "Maosh: {}",
@@ -509,7 +509,18 @@
       "requirements": "Talablar",
       "experience": "Tajriba",
       "location": "Manzil",
-      "savedSuccess": "Muvaffaqiyatli saqlandi!"
+      "savedSuccess": "Muvaffaqiyatli saqlandi!",
+      "editVacancy": "Vakansiyani tahrirlash",
+      "createVacancy": "Vakansiya yaratish",
+      "cancelTitle": "Yaratishni bekor qilish?",
+      "cancelDesc": "Haqiqatan ham bekor qilmoqchimisiz? Barcha ma'lumotlar yo'qoladi.",
+      "yes": "Ha",
+      "no": "Yo'q",
+      "save": "Saqlash",
+      "editBasicInfo": "Asosiy ma'lumotlarni tahrirlash",
+      "editRequirements": "Talablarni tahrirlash",
+      "add": "Qo'shish",
+      "basicInfo": "Asosiy ma'lumotlar"
     },
     "filter": {
       "employmentType": "Bandlik turi",
