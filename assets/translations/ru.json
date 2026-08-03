@@ -268,8 +268,7 @@
         "fullTime": "Полная занятость",
         "partTime": "Частичная занятость",
         "freelance": "Фриланс",
-        "contract": "По контракту",
-        "internship": "Стажировка"
+        "contract": "По контракту"
       },
       "experienceLevel": {
         "noExperience": "Без опыта",
@@ -564,7 +563,8 @@
       "birthDateHint": "Дата рождения",
       "phoneLabel": "Номер телефона",
       "aboutMe": "Обо мне",
-      "primary": "Основное"
+      "primary": "Основное",
+      "viewAll": "Все"
     },
     "selectDate": "Выберите дату",
     "apply": "Применить"

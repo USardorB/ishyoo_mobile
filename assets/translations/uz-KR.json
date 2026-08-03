@@ -268,8 +268,7 @@
         "fullTime": "Тўлиқ бандлик",
         "partTime": "Қисман бандлик",
         "freelance": "Фриланс",
-        "contract": "Шартнома асосида",
-        "internship": "Амалиёт"
+        "contract": "Шартнома асосида"
       },
       "experienceLevel": {
         "noExperience": "Тажрибасиз",
@@ -564,7 +563,8 @@
       "birthDateHint": "Туғилган сана",
       "phoneLabel": "Телефон рақами",
       "aboutMe": "Мен ҳақимда",
-      "primary": "Асосий"
+      "primary": "Асосий",
+      "viewAll": "Барчаси"
     },
     "selectDate": "Санани танланг",
     "apply": "Қўллаш"

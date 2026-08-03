@@ -3,11 +3,12 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
+import 'package:mobile/core/enums/app_enums.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/routes/app_router.gr.dart';
 import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
-import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/features/resume/presentation/bloc/resume_detail_bloc.dart';
 import 'package:mobile/features/resume/presentation/bloc/resume_form_bloc.dart';
 import 'package:mobile/features/resume/presentation/widgets/resume_contacts_section.dart';
@@ -71,8 +72,12 @@ class ResumeDetailsPage extends StatelessWidget implements AutoRouteWrapper {
             return Center(child: const Text("resume.noData").tr());
           }
 
-          final employmentTypeStr = (resume.employmentType ?? []).join(', ');
-          final workFormatStr = (resume.workFormat ?? []).join(', ');
+          final employmentTypeStr = (resume.employmentType ?? [])
+              .map((e) => EmploymentType.fromServer(e)?.localizedLabel)
+              .join(', ');
+          final workFormatStr = (resume.workFormat ?? [])
+              .map((e) => WorkFormat.fromServer(e)?.localizedLabel)
+              .join(', ');
           final workStr = [
             employmentTypeStr,
             workFormatStr,
@@ -141,7 +146,10 @@ class ResumeDetailsPage extends StatelessWidget implements AutoRouteWrapper {
                 const SizedBox(height: 32),
                 _buildSectionTitle(context, "resume.skills"),
                 const SizedBox(height: 16),
-                ResumeSkillsSection(skills: resume.skills ?? []),
+                ResumeSkillsSection(
+                  skills: resume.skills ?? [],
+                  languages: resume.languages ?? [],
+                ),
               ],
             ),
           );

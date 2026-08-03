@@ -53,12 +53,20 @@ class CandidateProfilePage extends StatelessWidget {
                 .take(3)
                 .toList();
 
+            final Map<String, dynamic> langMap = {};
+            for (final r in resumes) {
+              for (final l in (r.languages ?? [])) {
+                langMap['${l.lang}-${l.level}'] = l;
+              }
+            }
+            final languages = langMap.values.toList();
+
             return SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
                 bottom: MediaQuery.paddingOf(context).bottom + 24,
               ),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   const CandidateProfileHeader(),
                   const SizedBox(height: 16),
@@ -79,9 +87,43 @@ class CandidateProfilePage extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 24),
-                  _buildSectionTitle(context, "profile.candidate.resumes"),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _buildSectionTitle(context, "profile.candidate.resumes"),
+                      TextButton(
+                        onPressed: () {
+                          // TODO: Navigate to all resumes page
+                        },
+                        style: TextButton.styleFrom(
+                          padding: EdgeInsets.zero,
+                          minimumSize: Size.zero,
+                          tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                        ),
+                        child: Text(
+                          "profile.candidate.viewAll".tr(),
+                          style: context.textThemes.s3.copyWith(
+                            color: context.colors.brandDefault,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                   const SizedBox(height: 12),
-                  CandidateResumesSection(resumes: resumes),
+                  CandidateResumesSection(
+                    resumes:
+                        (resumes.toList()..sort(
+                              (a, b) =>
+                                  (b.updatedAt ?? b.createdAt ?? DateTime.now())
+                                      .compareTo(
+                                        a.updatedAt ??
+                                            a.createdAt ??
+                                            DateTime.now(),
+                                      ),
+                            ))
+                            .take(3)
+                            .toList(),
+                  ),
                   const SizedBox(height: 24),
                   _buildSectionTitle(context, "profile.candidate.experience"),
                   const SizedBox(height: 12),
@@ -93,7 +135,7 @@ class CandidateProfilePage extends StatelessWidget {
                   const SizedBox(height: 24),
                   _buildSectionTitle(context, "profile.candidate.languages"),
                   const SizedBox(height: 12),
-                  const CandidateLanguagesSection(),
+                  CandidateLanguagesSection(languages: List.from(languages)),
                 ],
               ),
             );

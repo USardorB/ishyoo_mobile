@@ -140,14 +140,13 @@ enum EmploymentType {
   partTime,
   freelance,
   contract,
-  internship;
+  ;
 
   static EmploymentType? fromServer(String? value) => switch (value) {
     'full_time' => EmploymentType.fullTime,
     'part_time' => EmploymentType.partTime,
     'freelance' => EmploymentType.freelance,
     'contract' => EmploymentType.contract,
-    'internship' => EmploymentType.internship,
     _ => null,
   };
 
@@ -156,7 +155,6 @@ enum EmploymentType {
     EmploymentType.partTime => 'part_time',
     EmploymentType.freelance => 'freelance',
     EmploymentType.contract => 'contract',
-    EmploymentType.internship => 'internship',
   };
 
   String get label => switch (this) {
@@ -164,7 +162,6 @@ enum EmploymentType {
     EmploymentType.partTime => 'core.enums.employmentType.partTime',
     EmploymentType.freelance => 'core.enums.employmentType.freelance',
     EmploymentType.contract => 'core.enums.employmentType.contract',
-    EmploymentType.internship => 'core.enums.employmentType.internship',
   };
 
   String get localizedLabel => label.tr();
@@ -196,7 +193,8 @@ enum AppExperienceLevel {
   };
 
   String get label => switch (this) {
-    AppExperienceLevel.noExperience => 'core.enums.experienceLevel.noExperience',
+    AppExperienceLevel.noExperience =>
+      'core.enums.experienceLevel.noExperience',
     AppExperienceLevel.oneToThree => 'core.enums.experienceLevel.oneToThree',
     AppExperienceLevel.threeToSix => 'core.enums.experienceLevel.threeToSix',
     AppExperienceLevel.overSix => 'core.enums.experienceLevel.overSix',

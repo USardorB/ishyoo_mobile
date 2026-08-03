@@ -268,8 +268,7 @@
         "fullTime": "Full-time",
         "partTime": "Part-time",
         "freelance": "Freelance",
-        "contract": "Contract",
-        "internship": "Internship"
+        "contract": "Contract"
       },
       "experienceLevel": {
         "noExperience": "No experience",
@@ -564,7 +563,8 @@
       "birthDateHint": "Date of Birth",
       "phoneLabel": "Phone Number",
       "aboutMe": "About Me",
-      "primary": "Primary"
+      "primary": "Primary",
+      "viewAll": "View All"
     },
     "selectDate": "Select Date",
     "apply": "Apply"

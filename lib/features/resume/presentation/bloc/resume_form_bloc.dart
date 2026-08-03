@@ -104,6 +104,12 @@ class ResumeFormBloc extends Bloc<ResumeFormEvent, ResumeFormState> {
     submitData['languages'] ??= [];
     submitData['employment_type'] ??= [];
     submitData['work_format'] ??= [];
+    
+    if (submitData['expected_salary'] != null) {
+      submitData['expected_salary'] = int.tryParse(
+        submitData['expected_salary'].toString().replaceAll(RegExp(r'\D'), '')
+      );
+    }
 
     final result = event.resumeId == null
         ? await _createResumeUseCase(CreateResumeParams(submitData))

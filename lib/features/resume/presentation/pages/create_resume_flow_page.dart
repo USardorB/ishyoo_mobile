@@ -98,64 +98,79 @@ class _CreateResumeFlowContent extends HookWidget {
           );
         }
       },
-      child: Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(Icons.arrow_back),
-            onPressed: () {
-              if (currentPage.value > 0) {
-                pageController.previousPage(
-                  duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeInOut,
-                );
-              } else {
-                context.maybePop();
-              }
-            },
-          ),
-          title: Text(titles[currentPage.value]),
-          centerTitle: true,
-          bottom: PreferredSize(
-            preferredSize: const Size.fromHeight(4),
-            child: _ProgressBar(currentIndex: currentPage.value, totalSteps: 4),
-          ),
-        ),
-        body: PageView(
-          controller: pageController,
-          physics: const NeverScrollableScrollPhysics(),
-          onPageChanged: (index) {
-            currentPage.value = index;
-          },
-          children: [
-            _buildPage(
-              context,
-              const ResumeContactsForm(),
-              buttonLabel: "resume.actions.continueButton".tr(),
-              onAction: nextStep,
-              validator: (state) {
-                final spec = state.formData['specialization'];
-                return spec != null && spec.toString().trim().isNotEmpty;
+      child: PopScope(
+        canPop: currentPage.value == 0,
+        onPopInvokedWithResult: (didPop, result) {
+          if (didPop) return;
+          if (currentPage.value > 0) {
+            pageController.previousPage(
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeInOut,
+            );
+          }
+        },
+        child: Scaffold(
+          appBar: AppBar(
+            leading: IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                if (currentPage.value > 0) {
+                  pageController.previousPage(
+                    duration: const Duration(milliseconds: 300),
+                    curve: Curves.easeInOut,
+                  );
+                } else {
+                  context.maybePop();
+                }
               },
             ),
-            _buildPage(
-              context,
-              const ResumeExperienceListStep(),
-              buttonLabel: "resume.actions.continueButton".tr(),
-              onAction: nextStep,
+            title: Text(titles[currentPage.value]),
+            centerTitle: true,
+            bottom: PreferredSize(
+              preferredSize: const Size.fromHeight(4),
+              child: _ProgressBar(
+                currentIndex: currentPage.value,
+                totalSteps: 4,
+              ),
             ),
-            _buildPage(
-              context,
-              const ResumeEducationListStep(),
-              buttonLabel: "resume.actions.continueButton".tr(),
-              onAction: nextStep,
-            ),
-            _buildPage(
-              context,
-              const ResumeSkillsForm(),
-              buttonLabel: "resume.actions.save".tr(),
-              onAction: nextStep,
-            ),
-          ],
+          ),
+          body: PageView(
+            controller: pageController,
+            physics: const NeverScrollableScrollPhysics(),
+            onPageChanged: (index) {
+              currentPage.value = index;
+            },
+            children: [
+              _buildPage(
+                context,
+                const ResumeContactsForm(),
+                buttonLabel: "resume.actions.continueButton".tr(),
+                onAction: nextStep,
+                validator: (state) {
+                  final spec = state.formData['specialization'];
+                  return spec != null && spec.toString().trim().isNotEmpty;
+                },
+              ),
+              _buildPage(
+                context,
+                const ResumeExperienceListStep(),
+                buttonLabel: "resume.actions.continueButton".tr(),
+                onAction: nextStep,
+              ),
+              _buildPage(
+                context,
+                const ResumeEducationListStep(),
+                buttonLabel: "resume.actions.continueButton".tr(),
+                onAction: nextStep,
+              ),
+              _buildPage(
+                context,
+                const ResumeSkillsForm(),
+                buttonLabel: "resume.actions.save".tr(),
+                onAction: nextStep,
+              ),
+            ],
+          ),
         ),
       ),
     );

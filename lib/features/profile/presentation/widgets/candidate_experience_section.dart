@@ -69,7 +69,7 @@ class CandidateExperienceSection extends StatelessWidget {
           height: 10,
           decoration: BoxDecoration(
             color: isActive
-                ? context.colors.brandProgress
+                ? context.colors.brandDefault
                 : context.colors.bgTertiary,
             shape: BoxShape.circle,
           ),

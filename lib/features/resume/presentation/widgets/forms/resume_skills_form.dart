@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
-import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/features/resume/presentation/bloc/resume_form_bloc.dart';
 
 class ResumeSkillsForm extends HookWidget {
@@ -22,15 +22,20 @@ class ResumeSkillsForm extends HookWidget {
         final List<String> skills = List<String>.from(
           state.formData['skills'] ?? [],
         );
-        final List<Map<String, dynamic>> languages = List<Map<String, dynamic>>.from(
-          (state.formData['languages'] as List?)?.map((e) {
-            if (e is Map) return Map<String, dynamic>.from(e);
-            if (e.runtimeType.toString() == 'ResumeLanguage') {
-              return {'lang': (e as dynamic).lang, 'level': (e as dynamic).level};
-            }
-            return <String, dynamic>{};
-          }) ?? [],
-        );
+        final List<Map<String, dynamic>> languages =
+            List<Map<String, dynamic>>.from(
+              (state.formData['languages'] as List?)?.map((e) {
+                    if (e is Map) return Map<String, dynamic>.from(e);
+                    if (e.runtimeType.toString() == 'ResumeLanguage') {
+                      return {
+                        'lang': (e as dynamic).lang,
+                        'level': (e as dynamic).level,
+                      };
+                    }
+                    return <String, dynamic>{};
+                  }) ??
+                  [],
+            );
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,8 +101,9 @@ class ResumeSkillsForm extends HookWidget {
                       final lang = langController.text.trim();
                       final level = levelController.text.trim();
                       if (lang.isNotEmpty && level.isNotEmpty) {
-                        final newLangs = List<Map<String, dynamic>>.from(languages)
-                          ..add({'lang': lang, 'level': level});
+                        final newLangs = List<Map<String, dynamic>>.from(
+                          languages,
+                        )..add({'lang': lang, 'level': level});
                         bloc.add(UpdateFormData({'languages': newLangs}));
                         langController.clear();
                         levelController.clear();
@@ -121,8 +127,8 @@ class ResumeSkillsForm extends HookWidget {
                 }
               },
               label: "resume.actions.addLanguage".tr(),
-              color: context.colors.brandProgress.withValues(alpha: 0.1),
-              foregroundColor: context.colors.brandProgress,
+              color: context.colors.brandProgress,
+              foregroundColor: context.colors.brandDefault,
             ),
             const SizedBox(height: 24),
             Wrap(
@@ -131,8 +137,13 @@ class ResumeSkillsForm extends HookWidget {
               children: languages
                   .map(
                     (langMap) => _buildLanguageChip(context, langMap, () {
-                      final newLangs = List<Map<String, dynamic>>.from(languages)
-                        ..removeWhere((l) => l['lang'] == langMap['lang'] && l['level'] == langMap['level']);
+                      final newLangs =
+                          List<Map<String, dynamic>>.from(languages)
+                            ..removeWhere(
+                              (l) =>
+                                  l['lang'] == langMap['lang'] &&
+                                  l['level'] == langMap['level'],
+                            );
                       bloc.add(UpdateFormData({'languages': newLangs}));
                     }),
                   )

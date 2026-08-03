@@ -268,8 +268,7 @@
         "fullTime": "To'liq bandlik",
         "partTime": "Qisman bandlik",
         "freelance": "Frilans",
-        "contract": "Shartnoma asosida",
-        "internship": "Amaliyot"
+        "contract": "Shartnoma asosida"
       },
       "experienceLevel": {
         "noExperience": "Tajribasiz",
@@ -564,7 +563,8 @@
       "birthDateHint": "Tug'ilgan sana",
       "phoneLabel": "Telefon raqami",
       "aboutMe": "Men haqimda",
-      "primary": "Asosiy"
+      "primary": "Asosiy",
+      "viewAll": "Barchasi"
     },
     "selectDate": "Sanani tanlang",
     "apply": "Qo'llash"
