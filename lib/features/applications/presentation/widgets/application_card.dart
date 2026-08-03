@@ -79,7 +79,10 @@ class ApplicationCard extends StatelessWidget {
                 ),
                 const SizedBox(width: 8),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: statusBgColor,
                     borderRadius: BorderRadius.circular(8),
@@ -192,7 +195,7 @@ class ApplicationCard extends StatelessWidget {
                           onConfirm: onRefuse,
                         ),
                       ),
-                      label: "applications.tabs.rejected".tr(),
+                      label: "applications.menu.reject".tr(),
                       color: context.colors.bgTertiary,
                       foregroundColor: context.colors.textPrimary,
                     ),
