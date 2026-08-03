@@ -305,8 +305,8 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
               },
               isLoading: isApplying,
               label: vacancy.hasApplied == true
-                  ? "opportunities.already_applied".tr()
-                  : "opportunities.apply_button".tr(),
+                  ? "opportunities.alreadyApplied".tr()
+                  : "opportunities.applyButton".tr(),
             ),
           ),
         );
@@ -339,7 +339,8 @@ class VacancyDetailsPage extends StatelessWidget implements AutoRouteWrapper {
   }
 
   String _formatSalary(double? from, double? to, String? currency) {
-    if (from == null && to == null) return "opportunities.vacancyCard.negotiable".tr();
+    if (from == null && to == null)
+      return "opportunities.vacancyCard.negotiable".tr();
     final c = currency?.toUpperCase() ?? "UZS";
     if (from != null && to != null) {
       return "${_formatNumber(from)} - ${_formatNumber(to)} $c";

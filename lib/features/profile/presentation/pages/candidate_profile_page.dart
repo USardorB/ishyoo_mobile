@@ -69,7 +69,7 @@ class CandidateProfilePage extends StatelessWidget {
                       color: context.colors.brandDefault,
                     ),
                     title: Text(
-                      "opportunities.saved_vacancies",
+                      "opportunities.savedVacancies",
                       style: context.textThemes.buttonLarge,
                     ).tr(),
                     trailing: const Icon(Icons.chevron_right),

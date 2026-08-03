@@ -28,9 +28,10 @@ class ResumeMenuSheet extends StatelessWidget {
         }
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12).copyWith(
-          bottom: MediaQuery.paddingOf(context).bottom + 16,
-        ),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12)
+            .copyWith(
+              bottom: MediaQuery.paddingOf(context).bottom + 16,
+            ),
         decoration: BoxDecoration(
           color: context.colors.bgPrimary,
           borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
@@ -52,12 +53,12 @@ class ResumeMenuSheet extends StatelessWidget {
             const SizedBox(height: 24),
             _MenuItem(
               icon: Icons.rocket_launch_outlined,
-              label: "resume.actions.savedSuccess".tr(),
+              label: "resume.actions.boostVisibility".tr(),
               onTap: () {
                 context.read<ResumeFormBloc>().add(BoostResume(resumeId));
                 context.pop();
                 AppNotificationOverlay.instance.show(
-                  message: "resume.actions.savedSuccess".tr(),
+                  message: "resume.actions.boostSuccess".tr(),
                   type: AppNotificationType.success,
                 );
               },

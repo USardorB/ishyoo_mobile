@@ -10,6 +10,9 @@ import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import '../../../resume/data/models/resume.dart';
 import '../../../resume/domain/usecases/get_candidate_resumes_usecase.dart';
 
+@Deprecated(
+  'Dublicated with [/Users/novo/dev/builds/mobile/lib/features/opportunities/presentation/widgets/apply_to_vacancy_sheet.dart]',
+)
 class ApplyVacancySheet extends StatefulWidget {
   final void Function(String resumeId, String? coverLetter) onApply;
 
@@ -101,7 +104,7 @@ class _ApplyVacancySheetState extends State<ApplyVacancySheet> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                'opportunities.apply_button',
+                'opportunities.applyButton',
                 style: context.textThemes.h5,
               ).tr(),
               IconButton(
@@ -116,11 +119,17 @@ class _ApplyVacancySheetState extends State<ApplyVacancySheet> {
           if (_isLoading)
             const Center(child: CircularProgressIndicator())
           else if (_error != null)
-            Text("opportunities.errorApplying".tr(args: [_error!]), style: const TextStyle(color: Colors.red))
+            Text(
+              "opportunities.errorApplying".tr(args: [_error!]),
+              style: const TextStyle(color: Colors.red),
+            )
           else if (_resumes == null || _resumes!.isEmpty)
             const Text("opportunities.apply.noResumes").tr()
           else ...[
-            Text('opportunities.apply.selectResume', style: context.textThemes.s2).tr(),
+            Text(
+              'opportunities.apply.selectResume',
+              style: context.textThemes.s2,
+            ).tr(),
             const SizedBox(height: 8),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12),
@@ -154,7 +163,10 @@ class _ApplyVacancySheetState extends State<ApplyVacancySheet> {
               ),
             ),
             const SizedBox(height: 16),
-            Text('opportunities.apply.coverLetter', style: context.textThemes.s2).tr(),
+            Text(
+              'opportunities.apply.coverLetter',
+              style: context.textThemes.s2,
+            ).tr(),
             const SizedBox(height: 8),
             AppInputField(
               controller: _coverLetterController,
@@ -167,7 +179,7 @@ class _ApplyVacancySheetState extends State<ApplyVacancySheet> {
             AppButton(
               onTap: _onApply,
               isLoading: _selectedResume == null,
-              label: "opportunities.apply_button".tr(),
+              label: "opportunities.applyButton".tr(),
             ),
           ],
         ],

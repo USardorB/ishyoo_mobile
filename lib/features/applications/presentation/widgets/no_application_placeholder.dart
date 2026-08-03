@@ -14,7 +14,7 @@ class NoApplicationPlaceholder extends StatelessWidget {
           mainAxisSize: .min,
           children: [
             Image.asset(
-              "assets/images/no_applications.png",
+              "assets/images/no_applications.webp",
               width: 198,
             ),
             const SizedBox(height: 4),

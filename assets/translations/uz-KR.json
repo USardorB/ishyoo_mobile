@@ -414,7 +414,7 @@
     },
     "apply": {
       "noResumes": "Сизда ҳали резюме йўқ.",
-      "selectResume": "Резюме яратиш",
+      "selectResume": "Резюмени танлаш",
       "coverLetter": "Илова хати (ихтиёрий)",
       "add": "Қўшиш"
     },
@@ -440,12 +440,16 @@
       "showAll": "Барчасини кўриш"
     },
     "filter": {
+      "title": "Филтр",
       "searchPlaceholder": "Вакансия ва лавозимларни қидириш...",
       "search": "Қидириш",
       "experience": "Иш тажрибаси",
       "apply": "Филтрни қўллаш",
       "clear": "Тозалаш"
-    }
+    },
+    "description": "Тавсиф",
+    "requirements": "Талаблар",
+    "savedVacanciesEmpty": "Сақланган вакансиялар йўқ."
   },
   "postings": {
     "dashboardTitle": "Бошқарув панели",
@@ -552,7 +556,15 @@
       "cancel": "Бекор қилиш",
       "delete": "Ўчириш",
       "apply": "Қўллаш",
-      "all": "Барчаси"
+      "all": "Барчаси",
+      "edit": "Профилни таҳрирлаш",
+      "firstNameHint": "Исм",
+      "lastNameHint": "Фамилия",
+      "cityHint": "Шаҳар",
+      "birthDateHint": "Туғилган сана",
+      "phoneLabel": "Телефон рақами",
+      "aboutMe": "Мен ҳақимда",
+      "primary": "Асосий"
     }
   },
   "resume": {
@@ -598,8 +610,14 @@
       "delete": "Ўчириш",
       "select": "Танлаш",
       "comingSoon": "Тез кунда",
-      "savedSuccess": "Муваффақиятли сақланди!"
-    }
+      "savedSuccess": "Муваффақиятли сақланди!",
+      "boostVisibility": "Резюмени кўтариш",
+      "boostSuccess": "Резюме муваффақиятли кўтарилди!"
+    },
+    "contacts": "Контактлар",
+    "experience": "Иш тажрибаси",
+    "education": "Таълим",
+    "skills": "Кўникмалар"
   },
   "settings": {
     "title": "Созламалар",

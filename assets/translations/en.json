@@ -414,7 +414,7 @@
     },
     "apply": {
       "noResumes": "You don't have a resume yet.",
-      "selectResume": "Create Resume",
+      "selectResume": "Select Resume",
       "coverLetter": "Cover Letter (optional)",
       "add": "Add"
     },
@@ -440,12 +440,16 @@
       "showAll": "Show All"
     },
     "filter": {
+      "title": "Filter",
       "searchPlaceholder": "Search jobs and positions...",
       "search": "Search",
       "experience": "Experience",
       "apply": "Apply Filter",
       "clear": "Clear"
-    }
+    },
+    "description": "Description",
+    "requirements": "Requirements",
+    "savedVacanciesEmpty": "No saved vacancies yet."
   },
   "postings": {
     "dashboardTitle": "Dashboard",
@@ -552,7 +556,15 @@
       "cancel": "Cancel",
       "delete": "Delete",
       "apply": "Apply",
-      "all": "All"
+      "all": "All",
+      "edit": "Edit Profile",
+      "firstNameHint": "First Name",
+      "lastNameHint": "Last Name",
+      "cityHint": "Location",
+      "birthDateHint": "Date of Birth",
+      "phoneLabel": "Phone Number",
+      "aboutMe": "About Me",
+      "primary": "Primary"
     }
   },
   "resume": {
@@ -598,8 +610,14 @@
       "delete": "Delete",
       "select": "Select",
       "comingSoon": "Coming Soon",
-      "savedSuccess": "Successfully saved!"
-    }
+      "savedSuccess": "Successfully saved!",
+      "boostVisibility": "Boost Visibility",
+      "boostSuccess": "Visibility boosted successfully!"
+    },
+    "contacts": "Contacts",
+    "experience": "Work Experience",
+    "education": "Education",
+    "skills": "Skills"
   },
   "settings": {
     "title": "Settings",

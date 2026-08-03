@@ -30,7 +30,8 @@ class TrendingVacancyCard extends StatelessWidget {
   }
 
   String _formatSalary(double? from, double? to, String? currency) {
-    if (from == null && to == null) return "opportunities.vacancyCard.negotiable".tr();
+    if (from == null && to == null)
+      return "opportunities.vacancyCard.negotiable".tr();
     final c = currency?.toUpperCase() ?? "UZS";
     if (from != null && to != null) {
       return "${_formatNumber(from)} - ${_formatNumber(to)} $c";
@@ -65,30 +66,40 @@ class TrendingVacancyCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              mainAxisAlignment: .spaceBetween,
               children: [
-                Text(
-                  orgName,
-                  style: context.textThemes.c2.copyWith(
-                    color: context.colors.textSecondary,
+                Flexible(
+                  child: Row(
+                    children: [
+                      Flexible(
+                        child: Text(
+                          orgName,
+                          style: context.textThemes.c2.copyWith(
+                            color: context.colors.textSecondary,
+                          ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      if (isHot)
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 6,
+                            vertical: 2,
+                          ),
+                          decoration: BoxDecoration(
+                            color: context.colors.bgTertiary,
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          child: Text(
+                            "HOT",
+                            style: context.textThemes.c3,
+                          ),
+                        ),
+                    ],
                   ),
                 ),
-                const SizedBox(width: 8),
-                if (isHot)
-                  Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 6,
-                      vertical: 2,
-                    ),
-                    decoration: BoxDecoration(
-                      color: context.colors.bgTertiary,
-                      borderRadius: BorderRadius.circular(4),
-                    ),
-                    child: Text(
-                      "HOT",
-                      style: context.textThemes.c3,
-                    ),
-                  ),
-                const Spacer(),
                 IconButton(
                   style: IconButton.styleFrom(
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
@@ -187,8 +198,8 @@ class TrendingVacancyCard extends StatelessWidget {
                     );
                   },
                   label: v?.hasApplied == true
-                      ? "opportunities.already_applied".tr()
-                      : "opportunities.apply_button".tr(),
+                      ? "opportunities.alreadyApplied".tr()
+                      : "opportunities.applyButton".tr(),
                   foregroundColor: context.colors.brandDefault,
                   color: context.colors.brandProgress,
                   labelStyle: context.textThemes.b3,

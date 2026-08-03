@@ -12,6 +12,7 @@ import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/features/opportunities/presentation/bloc/vacancy_feed_bloc.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/candidate_home_banner.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/candidate_quick_access_cards.dart';
+import 'package:mobile/features/opportunities/presentation/widgets/no_candidate_vacancy_placeholder.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/trending_vacancy_card.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/vacancy_filter_sheet.dart';
 import 'package:mobile/features/postings/presentation/widgets/dark_glass_search_field.dart';
@@ -142,21 +143,7 @@ class CandidateHomePage extends StatelessWidget implements AutoRouteWrapper {
                   );
                 } else if (state is VacancyFeedLoaded) {
                   if (state.vacancies.isEmpty) {
-                    return Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Image.asset("assets/images/no_results.webp"),
-                          Text(
-                            "shared.no_data",
-                            textAlign: TextAlign.center,
-                            style: context.textThemes.b1.copyWith(
-                              color: context.colors.textSecondary,
-                            ),
-                          ).tr(),
-                        ],
-                      ),
-                    );
+                    return const NoCandidateVacancyPlaceholder();
                   }
                   return Column(
                     spacing: 12,

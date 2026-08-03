@@ -414,7 +414,7 @@
     },
     "apply": {
       "noResumes": "У вас еще нет резюме.",
-      "selectResume": "Создать резюме",
+      "selectResume": "Выберите резюме",
       "coverLetter": "Сопроводительное письмо (необязательно)",
       "add": "Добавить"
     },
@@ -440,12 +440,16 @@
       "showAll": "Показать все"
     },
     "filter": {
+      "title": "Фильтр",
       "searchPlaceholder": "Поиск вакансий и должностей...",
       "search": "Поиск",
       "experience": "Опыт работы",
       "apply": "Применить фильтр",
       "clear": "Сбросить"
-    }
+    },
+    "description": "Описание",
+    "requirements": "Требования",
+    "savedVacanciesEmpty": "Нет сохраненных вакансий."
   },
   "postings": {
     "dashboardTitle": "Панель",
@@ -552,7 +556,15 @@
       "cancel": "Отмена",
       "delete": "Удалить",
       "apply": "Применить",
-      "all": "Все"
+      "all": "Все",
+      "edit": "Редактировать профиль",
+      "firstNameHint": "Имя",
+      "lastNameHint": "Фамилия",
+      "cityHint": "Город",
+      "birthDateHint": "Дата рождения",
+      "phoneLabel": "Номер телефона",
+      "aboutMe": "Обо мне",
+      "primary": "Основное"
     }
   },
   "resume": {
@@ -598,8 +610,14 @@
       "delete": "Удалить",
       "select": "Выбрать",
       "comingSoon": "Скоро",
-      "savedSuccess": "Успешно сохранено!"
-    }
+      "savedSuccess": "Успешно сохранено!",
+      "boostVisibility": "Продвинуть резюме",
+      "boostSuccess": "Резюме успешно продвинуто!"
+    },
+    "contacts": "Контакты",
+    "experience": "Опыт работы",
+    "education": "Образование",
+    "skills": "Навыки"
   },
   "settings": {
     "title": "Настройки",

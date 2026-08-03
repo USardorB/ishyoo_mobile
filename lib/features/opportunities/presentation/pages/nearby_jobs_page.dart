@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mobile/core/configs/di/configure_dependencies.dart';
 import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/features/opportunities/presentation/bloc/nearby_jobs_bloc.dart';
+import 'package:mobile/features/opportunities/presentation/bloc/vacancy_feed_bloc.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/no_nearby_jobs_placeholder.dart';
 import 'package:mobile/features/opportunities/presentation/widgets/trending_vacancy_card.dart';
 
@@ -14,8 +15,14 @@ class NearbyJobsPage extends StatefulWidget implements AutoRouteWrapper {
 
   @override
   Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (_) => sl<NearbyJobsBloc>()..add(const LoadNearbyJobs(radius: 3)),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) =>
+              sl<NearbyJobsBloc>()..add(const LoadNearbyJobs(radius: 3)),
+        ),
+        BlocProvider(create: (_) => sl<VacancyFeedBloc>()),
+      ],
       child: this,
     );
   }
@@ -38,7 +45,7 @@ class _NearbyJobsPageState extends State<NearbyJobsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("opportunities.nearby_jobs").tr(),
+        title: const Text("opportunities.nearbyJobs").tr(),
       ),
       body: Column(
         children: [
@@ -77,17 +84,18 @@ class _NearbyJobsPageState extends State<NearbyJobsPage> {
                       style: context.textThemes.s2,
                     ),
                     const Spacer(),
-                    TextButton.icon(
-                      onPressed: () {},
-                      label: const Text("opportunities.matches_filter").tr(),
-                      style: TextButton.styleFrom(
-                        textStyle: context.textThemes.buttonLarge,
-                        visualDensity: VisualDensity.compact,
-                        iconAlignment: IconAlignment.end,
-                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                    if (false)
+                      TextButton.icon(
+                        onPressed: () {},
+                        label: const Text("opportunities.matchesFilter").tr(),
+                        style: TextButton.styleFrom(
+                          textStyle: context.textThemes.buttonLarge,
+                          visualDensity: VisualDensity.compact,
+                          iconAlignment: IconAlignment.end,
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                        ),
+                        icon: const Icon(Icons.swap_vert, size: 20),
                       ),
-                      icon: const Icon(Icons.swap_vert, size: 20),
-                    ),
                   ],
                 ),
               );
@@ -124,9 +132,12 @@ class _NearbyJobsPageState extends State<NearbyJobsPage> {
                     itemCount: state.vacancies.length,
                     separatorBuilder: (context, index) =>
                         const SizedBox(height: 12),
-                    itemBuilder: (context, index) {
-                      return TrendingVacancyCard(
-                        vacancy: state.vacancies[index],
+                    itemBuilder: (_, index) {
+                      return BlocProvider.value(
+                        value: context.read<VacancyFeedBloc>(),
+                        child: TrendingVacancyCard(
+                          vacancy: state.vacancies[index],
+                        ),
                       );
                     },
                   );

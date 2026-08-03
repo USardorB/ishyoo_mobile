@@ -48,6 +48,7 @@ class AppInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: .min,
       crossAxisAlignment: .stretch,
       children: [
         if (label != null) ...[

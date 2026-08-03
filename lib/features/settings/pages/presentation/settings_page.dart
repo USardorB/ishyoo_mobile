@@ -112,7 +112,7 @@ class SettingsPage extends StatelessWidget {
                       ),
                     ),
                     title: Text(
-                      'settings.terms_of_use',
+                      'settings.termsOfUse',
                       style: context.textThemes.buttonLarge,
                     ).tr(),
                     trailing: Icon(
@@ -250,7 +250,7 @@ class SettingsPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "settings.about_app",
+                  "settings.aboutApp",
                   style: context.textThemes.s2,
                 ).tr(),
                 const SizedBox(height: 8),

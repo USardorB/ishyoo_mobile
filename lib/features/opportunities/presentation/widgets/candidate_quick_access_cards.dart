@@ -9,35 +9,37 @@ class CandidateQuickAccessCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Expanded(
-          child: _QuickAccessCard(
-            title: "opportunities.nearby_jobs".tr(),
-            icon: Icons.location_on_outlined,
-            iconColor: context.colors.info,
-            onTap: () => context.pushRoute(const NearbyJobsRoute()),
+    return IntrinsicHeight(
+      child: Row(
+        children: [
+          Expanded(
+            child: _QuickAccessCard(
+              title: "opportunities.nearbyJobs".tr(),
+              icon: Icons.location_on_outlined,
+              iconColor: context.colors.info,
+              onTap: () => context.pushRoute(const NearbyJobsRoute()),
+            ),
           ),
-        ),
-        const SizedBox(width: 8),
-        Expanded(
-          child: _QuickAccessCard(
-            title: "opportunities.quickAccess.createResume".tr(),
-            icon: Icons.insights_outlined,
-            iconColor: context.colors.success,
-            onTap: () => context.pushRoute(CreateResumeFlowRoute()),
+          const SizedBox(width: 8),
+          Expanded(
+            child: _QuickAccessCard(
+              title: "opportunities.quickAccess.createResume".tr(),
+              icon: Icons.insights_outlined,
+              iconColor: context.colors.success,
+              onTap: () => context.pushRoute(CreateResumeFlowRoute()),
+            ),
           ),
-        ),
-        const SizedBox(width: 8),
-        Expanded(
-          child: _QuickAccessCard(
-            title: "opportunities.quickAccess.articles".tr(),
-            icon: Icons.assignment_outlined,
-            iconColor: context.colors.warning,
-            onTap: () => context.pushRoute(const ArticlesRoute()),
+          const SizedBox(width: 8),
+          Expanded(
+            child: _QuickAccessCard(
+              title: "opportunities.quickAccess.articles".tr(),
+              icon: Icons.assignment_outlined,
+              iconColor: context.colors.warning,
+              onTap: () => context.pushRoute(const ArticlesRoute()),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
@@ -69,6 +71,7 @@ class _QuickAccessCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
         ),
         child: Column(
+          mainAxisAlignment: .spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(

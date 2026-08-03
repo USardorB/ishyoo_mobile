@@ -28,7 +28,7 @@ class _SavedVacanciesPageState extends State<SavedVacanciesPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("opportunities.saved_vacancies").tr(),
+        title: const Text("opportunities.savedVacancies").tr(),
       ),
       body: Column(
         children: [
@@ -54,7 +54,7 @@ class _SavedVacanciesPageState extends State<SavedVacanciesPage> {
                     const Spacer(),
                     TextButton.icon(
                       onPressed: () {},
-                      label: const Text("opportunities.matches_filter").tr(),
+                      label: const Text("opportunities.matchesFilter").tr(),
                       style: TextButton.styleFrom(
                         textStyle: context.textThemes.buttonLarge,
                         visualDensity: VisualDensity.compact,
@@ -80,7 +80,7 @@ class _SavedVacanciesPageState extends State<SavedVacanciesPage> {
                   if (state.vacancies.isEmpty) {
                     return Center(
                       child: Text(
-                        "shared.no_data",
+                        "opportunities.savedVacanciesEmpty",
                         style: TextStyle(color: context.colors.textSecondary),
                       ).tr(),
                     );

@@ -414,7 +414,7 @@
     },
     "apply": {
       "noResumes": "Sizda hali rezyume yo'q.",
-      "selectResume": "Rezyume yaratish",
+      "selectResume": "Resumeni tanlang",
       "coverLetter": "Ilova xati (ixtiyoriy)",
       "add": "Qo'shish"
     },
@@ -440,12 +440,16 @@
       "showAll": "Barchasini ko'rish"
     },
     "filter": {
+      "title": "Filtr",
       "searchPlaceholder": "Vakansiya va lavozimlarni qidirish...",
       "search": "Qidirish",
       "experience": "Ish tajribasi",
       "apply": "Filtrni qo'llash",
       "clear": "Tozalash"
-    }
+    },
+    "description": "Tavsif",
+    "requirements": "Talablar",
+    "savedVacanciesEmpty": "Saqlangan vakansiyalar yo'q."
   },
   "postings": {
     "dashboardTitle": "Boshqaruv paneli",
@@ -552,7 +556,15 @@
       "cancel": "Bekor qilish",
       "delete": "O'chirish",
       "apply": "Qo'llash",
-      "all": "Barchasi"
+      "all": "Barchasi",
+      "edit": "Profilni tahrirlash",
+      "firstNameHint": "Ism",
+      "lastNameHint": "Familiya",
+      "cityHint": "Shahar",
+      "birthDateHint": "Tug'ilgan sana",
+      "phoneLabel": "Telefon raqami",
+      "aboutMe": "Men haqimda",
+      "primary": "Asosiy"
     }
   },
   "resume": {
@@ -598,8 +610,14 @@
       "delete": "O'chirish",
       "select": "Tanlash",
       "comingSoon": "Tez kunda",
-      "savedSuccess": "Muvaffaqiyatli saqlandi!"
-    }
+      "savedSuccess": "Muvaffaqiyatli saqlandi!",
+      "boostVisibility": "Rezyumeni ko'tarish",
+      "boostSuccess": "Rezyume muvaffaqiyatli ko'tarildi!"
+    },
+    "contacts": "Kontaktlar",
+    "experience": "Ish tajribasi",
+    "education": "Ta'lim",
+    "skills": "Ko'nikmalar"
   },
   "settings": {
     "title": "Sozlamalar",

@@ -18,7 +18,8 @@ class VacancyFilterSheet extends StatefulWidget {
     String? jobType,
     String? experienceLevel,
     String? specialization,
-  )? onApply;
+  )?
+  onApply;
 
   const VacancyFilterSheet({
     super.key,
@@ -41,7 +42,9 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
   void initState() {
     super.initState();
     _selectedJobType = EmploymentType.fromServer(widget.initialJobType);
-    _selectedExperienceLevel = AppExperienceLevel.fromServer(widget.initialExperienceLevel);
+    _selectedExperienceLevel = AppExperienceLevel.fromServer(
+      widget.initialExperienceLevel,
+    );
     _specialization = widget.initialSpecialization;
   }
 
@@ -106,21 +109,25 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
             const SizedBox(height: 16),
             _buildHeader(context),
             const SizedBox(height: 18),
-            _sectionTitle(context, 'opportunities.employment_type'.tr()),
+            _sectionTitle(context, 'opportunities.employmentType'.tr()),
             const SizedBox(height: 16),
             Wrap(
               spacing: 8,
               children: EmploymentType.values.map(_wrapJobChoiceChip).toList(),
             ),
             const SizedBox(height: 18),
-            _sectionTitle(context, 'opportunities.filter.searchPlaceholder'.tr()),
+            _sectionTitle(
+              context,
+              'opportunities.filter.searchPlaceholder'.tr(),
+            ),
             const SizedBox(height: 16),
             BlocProvider(
               create: (context) => sl<PostingsBloc>()..add(LoadPostings()),
               child: BlocBuilder<PostingsBloc, PostingsState>(
                 builder: (context, state) {
                   return AppInputField(
-                    hintText: _specialization ?? "opportunities.filter.search".tr(),
+                    hintText:
+                        _specialization ?? "opportunities.filter.search".tr(),
                     readOnly: true,
                     suffixIcon: Icon(
                       Icons.chevron_right,
@@ -133,7 +140,8 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
                         backgroundColor: context.colors.bgPrimary,
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.vertical(
-                              top: Radius.circular(24)),
+                            top: Radius.circular(24),
+                          ),
                         ),
                         builder: (context) => CategorySelectionSheet(
                           specializations: state.specializations ?? [],
@@ -185,7 +193,7 @@ class _VacancyFilterSheetState extends State<VacancyFilterSheet> {
         ),
       ),
       Text(
-        'shared.filter',
+        'opportunities.filter.title',
         style: context.textThemes.h5,
         maxLines: 1,
       ).tr(),

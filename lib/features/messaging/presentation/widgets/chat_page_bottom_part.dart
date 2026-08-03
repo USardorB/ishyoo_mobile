@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
-import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:mobile/core/enums/user_role.dart';
@@ -11,6 +10,7 @@ import 'package:mobile/core/extensions/app_theme_extension.dart';
 import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
 import 'package:mobile/core/shared/widgets/app_notification.dart';
 import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
+import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
 import 'package:mobile/features/messaging/presentation/bloc/messaging_bloc.dart';
 import 'package:mobile/features/messaging/presentation/widgets/attatchment_options_sheet.dart';
 

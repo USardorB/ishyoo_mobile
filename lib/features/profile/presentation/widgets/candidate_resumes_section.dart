@@ -80,7 +80,7 @@ class CandidateResumesSection extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(4),
                               ),
                               child: Text(
-                                  "profile.candidate.all",
+                                "profile.candidate.primary",
                                 style: context.textThemes.c2.copyWith(
                                   color: context.colors.brandProgress,
                                 ),

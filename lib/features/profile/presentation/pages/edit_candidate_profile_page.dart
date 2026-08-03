@@ -102,7 +102,7 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
           if (state.profile != null) _populateFromProfile(state.profile!);
           if (state.isUpdateSuccess) {
             AppNotificationOverlay.instance.show(
-              message: 'shared.saved_success'.tr(),
+              message: 'profile.savedSuccess'.tr(),
               type: AppNotificationType.success,
             );
             context.maybePop();
@@ -122,7 +122,7 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
 
           return Scaffold(
             appBar: AppBar(
-              title: const Text("profile.edit").tr(),
+              title: const Text("profile.candidate.edit").tr(),
             ),
             body: SingleChildScrollView(
               padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
@@ -199,7 +199,7 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                     children: [
                       Expanded(
                         child: AppInputField(
-                          label: "auth.register.full_name_hint".tr(),
+                          label: "profile.candidate.firstNameHint".tr(),
                           controller: _firstNameCtrl,
                           validator: AppValidators.required,
                           textInputAction: TextInputAction.next,
@@ -210,7 +210,7 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                       const SizedBox(width: 12),
                       Expanded(
                         child: AppInputField(
-                          label: "auth.complete_profile.last_name_hint".tr(),
+                          label: "profile.candidate.lastNameHint".tr(),
                           controller: _lastNameCtrl,
                           validator: AppValidators.required,
                           textInputAction: TextInputAction.next,
@@ -231,7 +231,7 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                   ),
                   const SizedBox(height: 24),
                   AppInputField(
-                    label: "auth.login.phone_label".tr(),
+                    label: "profile.candidate.phoneLabel".tr(),
                     controller: _phoneCtrl,
                     keyboardType: TextInputType.phone,
                     validator: AppValidators.required,
@@ -240,7 +240,7 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                   ),
                   const SizedBox(height: 24),
                   AppInputField(
-                    label: "opportunities.location".tr(),
+                    label: "profile.candidate.cityHint".tr(),
                     controller: _cityCtrl,
                     validator: AppValidators.required,
                     textInputAction: TextInputAction.next,
@@ -249,7 +249,7 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                   ),
                   const SizedBox(height: 24),
                   AppInputField(
-                    label: "auth.complete_profile.birth_date_hint".tr(),
+                    label: "profile.candidate.birthDateHint".tr(),
                     controller: _birthDateCtrl,
                     readOnly: true,
                     onTap: () async {
@@ -272,7 +272,7 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                   ),
                   const SizedBox(height: 24),
                   AppInputField(
-                    label: "profile.about_me".tr(),
+                    label: "profile.candidate.aboutMe".tr(),
                     controller: _bioCtrl,
                     maxLines: 4,
                     minLines: 4,
@@ -284,7 +284,7 @@ class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
                   AppButton(
                     onTap: () => _save(context),
                     enabled: !state.isUpdating,
-                    label: 'shared.save'.tr(),
+                    label: 'profile.save'.tr(),
                   ),
                 ],
               ),
