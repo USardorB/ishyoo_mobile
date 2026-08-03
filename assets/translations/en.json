@@ -1,0 +1,668 @@
+{
+  "applicants": {
+    "title": "Applicants",
+    "tabs": {
+      "all": "All",
+      "pending": "Pending",
+      "invited": "Invited",
+      "interview": "Interview",
+      "rejected": "Rejected",
+      "accepted": "Accepted",
+      "archived": "Archived",
+      "hired": "Hired",
+      "shortlisted": "Shortlisted"
+    },
+    "card": {
+      "noData": "No data",
+      "present": "Present",
+      "experienceYears": "{} years of experience",
+      "experience": "Experience",
+      "workplace": "Workplace",
+      "negotiable": "Negotiable",
+      "languages": "Languages",
+      "contactInfo": "Contact Info"
+    },
+    "actions": {
+      "invite": "Invite",
+      "reject": "Reject",
+      "rejectTitle": "Reject Applicant?",
+      "unsuitable": "Unsuitable",
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "edit": "Edit",
+      "showAll": "Show All",
+      "filter": "Filter"
+    },
+    "messaging": {
+      "typeMessage": "Type a message..."
+    },
+    "emptyState": "No applicants found.",
+    "comingSoon": "Coming Soon"
+  },
+  "applications": {
+    "title": "Applications",
+    "tabs": {
+      "all": "All",
+      "interview": "Interview",
+      "pending": "Pending",
+      "rejected": "Rejected",
+      "archived": "Archived"
+    },
+    "emptyState": "No applications found.",
+    "card": {
+      "negotiable": "Negotiable",
+      "chat": "Chat"
+    },
+    "menu": {
+      "chat": "Chat",
+      "description": "Job Description",
+      "aboutCompany": "About Company",
+      "reject": "Reject",
+      "delete": "Delete"
+    },
+    "dialogs": {
+      "delete": {
+        "title": "Delete Application?",
+        "buttons": {
+          "delete": "Delete",
+          "cancel": "Cancel"
+        }
+      },
+      "reject": {
+        "title": "Reject Application?",
+        "buttons": {
+          "yes": "Yes, reject",
+          "no": "Cancel"
+        }
+      }
+    }
+  },
+  "articles": {
+    "title": "Articles",
+    "emptyState": "No articles yet.",
+    "notFound": "Article not found.",
+    "readTime": "{} m"
+  },
+  "auth": {
+    "login": {
+      "title": "Welcome Back",
+      "subtitle": "Sign in to continue",
+      "phoneLabel": "Phone Number",
+      "passwordLabel": "Password",
+      "buttons": {
+        "forgotPassword": "Forgot password?",
+        "login": "Log In",
+        "skip": "Skip for now"
+      },
+      "registrationPrompt": {
+        "text": "New here?",
+        "link": "Sign up"
+      },
+      "errors": {
+        "general": "An error occurred. Please try again."
+      }
+    },
+    "register": {
+      "title": "Create Account",
+      "subtitle": "Sign up to get started",
+      "phoneLabel": "Phone Number",
+      "buttons": {
+        "continue": "Continue"
+      },
+      "loginPrompt": {
+        "text": "Already have an account?",
+        "link": "Log in"
+      },
+      "errors": {
+        "general": "An error occurred. Please try again."
+      }
+    },
+    "otpConfirmation": {
+      "title": "Verification Code",
+      "subtitle": "Enter the 4-digit code sent to {}",
+      "buttons": {
+        "resendCode": "Resend Code",
+        "resendIn": "Resend in {}",
+        "verify": "Verify"
+      },
+      "errors": {
+        "enterFull": "Please enter the full code.",
+        "invalidCode": "Invalid code.",
+        "general": "An error occurred. Please try again."
+      }
+    },
+    "forgotPasswordOtp": {
+      "title": "Reset Password",
+      "subtitle": "Enter the 4-digit code sent to {}",
+      "buttons": {
+        "newCode": "Get New Code",
+        "resendIn": "Resend in {}",
+        "verify": "Verify"
+      },
+      "errors": {
+        "enterFull": "Please enter the full code.",
+        "invalidCode": "Invalid code.",
+        "general": "An error occurred. Please try again."
+      }
+    },
+    "forgotPassword": {
+      "title": "Reset Password",
+      "subtitle": "Enter your phone number to get a code",
+      "phoneLabel": "Phone Number",
+      "buttons": {
+        "getCode": "Get Code"
+      },
+      "errors": {
+        "general": "An error occurred. Please try again."
+      }
+    },
+    "resetPassword": {
+      "title": "New Password",
+      "subtitle": "Create a secure new password",
+      "newPasswordLabel": "New Password",
+      "confirmPasswordLabel": "Confirm New Password",
+      "buttons": {
+        "saveAndLogin": "Save & Log in"
+      },
+      "successDialog": {
+        "title": "Password Changed",
+        "subtitle": "Your password has been successfully updated."
+      },
+      "errors": {
+        "mismatch": "Passwords do not match.",
+        "general": "An error occurred. Please try again."
+      }
+    },
+    "confirmPassword": {
+      "title": "Create Password",
+      "subtitle": "Set a secure password for your account",
+      "passwordHint": "Create a password",
+      "confirmHint": "Confirm password",
+      "buttons": {
+        "continue": "Continue"
+      },
+      "requirements": {
+        "title": "Password requirements:",
+        "minLength": "At least 8 characters",
+        "capitalLetter": "At least 1 uppercase letter",
+        "number": "At least 1 number"
+      }
+    },
+    "completeProfile": {
+      "title": "Complete Profile",
+      "subtitle": "Tell us a bit about yourself",
+      "firstNameHint": "First Name",
+      "lastNameHint": "Last Name",
+      "companyNameHint": "Company Name",
+      "birthDateHint": "Date of Birth",
+      "buttons": {
+        "continue": "Continue"
+      },
+      "errors": {
+        "fillAll": "Please fill in all fields.",
+        "general": "An error occurred. Please try again."
+      }
+    },
+    "waitlisted": {
+      "title": "You're on the waitlist!",
+      "subtitle": "We'll notify you when your account is ready.",
+      "buttons": {
+        "exit": "Exit",
+        "logout": "Log out"
+      }
+    },
+    "waitlistDialog": {
+      "title": "Enable Location?",
+      "description": "We need your location to find nearby opportunities.",
+      "buttons": {
+        "yes": "Yes, enable",
+        "no": "No, thanks"
+      }
+    },
+    "privacyPolicy": {
+      "text1": "By tapping Continue, you agree to our ",
+      "privacyPolicy": "Privacy Policy",
+      "and": " and ",
+      "terms": "Terms of Use",
+      "text2": ""
+    }
+  },
+  "core": {
+    "nav": {
+      "home": "Home",
+      "vacancies": "Jobs",
+      "candidates": "Candidates",
+      "applications": "Applications",
+      "chats": "Chats",
+      "profile": "Profile"
+    },
+    "enums": {
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive",
+        "blocked": "Blocked",
+        "deleted": "Deleted",
+        "archived": "Archived",
+        "draft": "Draft",
+        "published": "Published",
+        "confirmed": "Confirmed",
+        "closed": "Closed",
+        "pending": "Pending",
+        "invited": "Invited",
+        "rejected": "Rejected",
+        "hired": "Hired",
+        "shortlisted": "Shortlisted",
+        "pastDue": "Past Due",
+        "paid": "Paid",
+        "failed": "Failed"
+      },
+      "vacancyStatus": {
+        "draft": "Draft",
+        "published": "Active",
+        "archived": "Archived",
+        "rejected": "Rejected",
+        "confirmed": "Confirmed",
+        "closed": "Closed"
+      },
+      "employmentType": {
+        "fullTime": "Full-time",
+        "partTime": "Part-time",
+        "freelance": "Freelance",
+        "contract": "Contract",
+        "internship": "Internship"
+      },
+      "experienceLevel": {
+        "noExperience": "No experience",
+        "oneToThree": "1–3 years",
+        "threeToSix": "3–6 years",
+        "overSix": "6+ years"
+      },
+      "workFormat": {
+        "onSite": "On-site",
+        "remote": "Remote",
+        "hybrid": "Hybrid",
+        "travel": "Travel"
+      },
+      "currency": {
+        "uzs": "UZS",
+        "usd": "USD",
+        "eur": "EUR"
+      },
+      "visibility": {
+        "public": "Public",
+        "private": "Private"
+      },
+      "networkStatus": {
+        "online": "Online",
+        "offline": "Offline"
+      },
+      "gender": {
+        "male": "Male",
+        "female": "Female"
+      },
+      "role": {
+        "candidate": "Candidate",
+        "employer": "Employer",
+        "admin": "Administrator"
+      }
+    }
+  },
+  "location": {
+    "title": "Location",
+    "errors": {
+      "occurred": "An error occurred."
+    }
+  },
+  "messaging": {
+    "title": "Messages",
+    "vacancies": "Vacancies",
+    "loading": "Loading...",
+    "noData": "No data",
+    "emptyState": "No chats found.",
+    "search": {
+      "placeholder": "Search..."
+    },
+    "tabs": {
+      "all": "All",
+      "received": "Received",
+      "rejected": "Rejected"
+    },
+    "jobCard": {
+      "createResume": "Create Resume",
+      "myVacancies": "My Vacancies"
+    },
+    "input": {
+      "placeholder": "Type a message..."
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "save": "Save",
+      "viewProfile": "View Profile",
+      "deleteChat": "Delete Chat"
+    },
+    "dialogs": {
+      "editMessage": {
+        "title": "Edit Message"
+      }
+    },
+    "errors": {
+      "occurred": "An error occurred."
+    },
+    "attachment": {
+      "label": "Attachment",
+      "file": "File",
+      "gallery": "Gallery",
+      "camera": "Camera"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "emptyState": "No notifications yet.",
+    "noData": "No data",
+    "markAllRead": "Mark all as read"
+  },
+  "onboarding": {
+    "language": {
+      "title": "Select Language",
+      "subtitle": "You can change the language later in app settings",
+      "ctaButton": "Continue"
+    },
+    "slides": {
+      "slide1": {
+        "title": "Job search and talent hiring platform",
+        "subtitle": "Easily find suitable vacancies and talented professionals"
+      },
+      "slide2": {
+        "title": "Real-time messaging & convenient chat",
+        "subtitle": "Connect directly with employers and candidates"
+      },
+      "slide3": {
+        "title": "Create and upload your resume",
+        "subtitle": "Showcase your career experience and submit applications"
+      }
+    },
+    "actions": {
+      "continueAction": "Continue",
+      "skip": "Skip",
+      "hireTalent": "Looking for employees and talents",
+      "findJob": "Looking for jobs and vacancies"
+    }
+  },
+  "opportunities": {
+    "title": "Jobs",
+    "savedVacancies": "Saved Jobs",
+    "nearbyJobs": "Jobs Nearby",
+    "noNearbyJobs": "No nearby jobs found, please increase the radius.",
+    "matchesFilter": "Match",
+    "appliedSuccess": "Successfully applied!",
+    "alreadyApplied": "Already Applied",
+    "applyButton": "Apply Now",
+    "location": "Location",
+    "employmentType": "Employment Type",
+    "searchResults": "Search Results",
+    "resultsCount": "{} jobs found",
+    "errorOccurred": "An error occurred.",
+    "errorApplying": "Error: {}",
+    "search": {
+      "empty": "No jobs found for your search."
+    },
+    "company": {
+      "vacancies": "Active Vacancies",
+      "about": "About Company"
+    },
+    "apply": {
+      "noResumes": "You don't have a resume yet.",
+      "selectResume": "Select Resume",
+      "coverLetter": "Cover Letter (optional)",
+      "add": "Add"
+    },
+    "quickAccess": {
+      "createResume": "Create Resume",
+      "articles": "Articles"
+    },
+    "banner": {
+      "title1": "Job search and talent hiring platform",
+      "subtitle1": "Easily find suitable vacancies and talented professionals",
+      "title2": "Real-time messaging & convenient chat",
+      "subtitle2": "Connect directly with employers and candidates",
+      "title3": "Create and upload your resume",
+      "subtitle3": "Showcase your career experience and submit applications",
+      "continue": "Continue",
+      "showAll": "Show All"
+    },
+    "vacancyCard": {
+      "negotiable": "Negotiable"
+    },
+    "details": {
+      "comingSoon": "Coming Soon",
+      "showAll": "Show All"
+    },
+    "filter": {
+      "title": "Filter",
+      "searchPlaceholder": "Search jobs and positions...",
+      "search": "Search",
+      "experience": "Experience",
+      "apply": "Apply Filter",
+      "clear": "Clear"
+    },
+    "description": "Description",
+    "requirements": "Requirements",
+    "savedVacanciesEmpty": "No saved vacancies yet."
+  },
+  "postings": {
+    "dashboardTitle": "Dashboard",
+    "activeVacancies": "Active Vacancies",
+    "all": "All",
+    "createVacancy": "Post a Job",
+    "greeting": "Hello, {}!",
+    "todaySummary": "Today {} new responses and {} active vacancies",
+    "interviews": "INTERVIEWS",
+    "interviewsSub": "today",
+    "responses": "RESPONSES",
+    "responsesSub": "new",
+    "active": "ACTIVE",
+    "activeSub": "vacancies",
+    "responsesCount": "{} responses",
+    "keySkills": "Key Skills",
+    "noSalarySpecified": "Salary not specified",
+    "fullNameLabel": "Full Name",
+    "cancelCreationTitle": "Cancel Creation?",
+    "cancelCreationDesc": "Are you sure you want to cancel? All unsaved data will be lost.",
+    "searchPlaceholder": "Search...",
+    "add": "Add",
+    "negotiable": "Negotiable",
+    "dashboard": {
+      "comingSoon": "Coming Soon"
+    },
+    "actions": {
+      "view": "View",
+      "edit": "Edit",
+      "pause": "Pause",
+      "applicants": "Applicants",
+      "copy": "Copy",
+      "share": "Coming Soon",
+      "archive": "Archive",
+      "delete": "Delete"
+    },
+    "create": {
+      "title": "Jobs",
+      "searchPlaceholder": "Specialization or skill...",
+      "search": "Search",
+      "salary": "Salary: {}",
+      "all": "All",
+      "phoneLabel": "Phone Number",
+      "employmentType": "Employment Type",
+      "continueButton": "Continue",
+      "description": "Description",
+      "responsibilities": "Responsibilities",
+      "requirements": "Requirements",
+      "experience": "Experience",
+      "location": "Location",
+      "savedSuccess": "Successfully saved!"
+    },
+    "filter": {
+      "employmentType": "Employment Type",
+      "searchPlaceholder": "Specialization or skill...",
+      "search": "Search",
+      "experience": "Experience",
+      "apply": "Apply Filter",
+      "clear": "Clear"
+    },
+    "category": {
+      "searchPlaceholder": "Search..."
+    },
+    "skills": {
+      "searchPlaceholder": "Search...",
+      "add": "Add"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "edit": "Edit Profile",
+    "save": "Save",
+    "savedSuccess": "Successfully saved!",
+    "noData": "Not specified",
+    "company": {
+      "edit": "Edit Company",
+      "companyInfo": "Company Info",
+      "about": "About Company",
+      "myVacancies": "My Vacancies",
+      "createVacancy": "Post a Job",
+      "fieldOfActivity": "Field of Activity",
+      "nameHint": "Company Name",
+      "filterTitle": "Filter Applicants",
+      "location": "Location",
+      "phoneLabel": "Phone Number",
+      "candidates": "Candidates"
+    },
+    "candidate": {
+      "personalInfo": "Personal Info",
+      "experience": "Work Experience",
+      "education": "Education",
+      "languages": "Languages",
+      "resumes": "Resumes",
+      "noResumes": "No resumes available",
+      "createResume": "Create Resume",
+      "deleteExperienceTitle": "Delete work experience?",
+      "deleteExperienceDesc": "Once deleted, this work experience cannot be recovered.",
+      "deleteEducationTitle": "Delete education details?",
+      "deleteEducationDesc": "Once deleted, this education record cannot be recovered.",
+      "present": "Present",
+      "views": "Views",
+      "shortlisted": "Shortlisted",
+      "invited": "Invited",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "apply": "Apply",
+      "all": "All",
+      "edit": "Edit Profile",
+      "firstNameHint": "First Name",
+      "lastNameHint": "Last Name",
+      "cityHint": "Location",
+      "birthDateHint": "Date of Birth",
+      "phoneLabel": "Phone Number",
+      "aboutMe": "About Me",
+      "primary": "Primary"
+    }
+  },
+  "resume": {
+    "title": "Resume",
+    "boostScore": "Rating",
+    "createResume": "Create Resume",
+    "downloadPdf": "Download PDF",
+    "previewPdf": "Preview PDF",
+    "noData": "Not specified",
+    "present": "Present",
+    "searchPlaceholder": "Search...",
+    "specializationPlaceholder": "Specialization...",
+    "companyPlaceholder": "About Company",
+    "location": "Location",
+    "description": "Description",
+    "yearHint": "Year",
+    "deleteTitle": "Delete Resume?",
+    "deleteDesc": "This action cannot be undone.",
+    "successTitle": "Success!",
+    "successDesc": "Your resume has been successfully created.",
+    "stats": {
+      "invited": "Invited",
+      "shortlisted": "Shortlisted"
+    },
+    "visibility": {
+      "all": "All",
+      "hidden": "Hidden"
+    },
+    "sections": {
+      "contacts": "Contacts",
+      "workplace": "Workplace",
+      "experience": "Experience",
+      "education": "Education",
+      "languages": "Languages",
+      "preview": "Preview"
+    },
+    "actions": {
+      "continueButton": "Continue",
+      "save": "Save",
+      "edit": "Edit",
+      "add": "Add",
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "select": "Select",
+      "comingSoon": "Coming Soon",
+      "savedSuccess": "Successfully saved!",
+      "boostVisibility": "Boost Visibility",
+      "boostSuccess": "Visibility boosted successfully!"
+    },
+    "contacts": "Contacts",
+    "experience": "Work Experience",
+    "education": "Education",
+    "skills": "Skills"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "App Language",
+    "theme": "App Theme",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "systemTheme": "System",
+    "notifications": "Notifications",
+    "privacyPolicy": "Privacy Policy",
+    "termsOfUse": "Terms of Use",
+    "helpCenter": "Help Center",
+    "aboutApp": "About App",
+    "logout": "Log out",
+    "deleteAccount": "Delete Account",
+    "logoutConfirmTitle": "Are you sure you want to log out?",
+    "logoutConfirmDesc": "Attention! You will need your password to log back in.",
+    "preferences": {
+      "applicationUpdates": "Applications",
+      "messages": "Messages",
+      "interviews": "Interviews"
+    },
+    "actions": {
+      "apply": "Apply",
+      "cancel": "Cancel",
+      "logout": "Log out"
+    }
+  },
+  "talents": {
+    "title": "Talents",
+    "searchResults": "Search Results",
+    "searchPlaceholder": "Specialization or skill...",
+    "resultsCount": "{} candidates found",
+    "noData": "No resumes found yet.",
+    "contactInfo": "Contact Info",
+    "candidate": "Candidate",
+    "matchesFilter": "Match"
+  },
+  "shared": {
+    "validation": {
+      "required": "This field is required",
+      "invalidEmail": "Invalid email address",
+      "passwordLength": "Password must be at least 8 characters",
+      "invalidUrl": "Invalid URL",
+      "passwordsMustMatch": "Passwords must match"
+    }
+  }
+}

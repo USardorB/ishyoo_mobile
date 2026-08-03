@@ -1,0 +1,48 @@
+{
+    "name": "v2 branch prod env",
+    "values": [
+        {
+            "key": "baseUrl",
+            "value": "https://dev.api.ishyoo.uz/api/v1",
+            "type": "default",
+            "enabled": true
+        },
+        {
+            "key": "candidateToken",
+            "value": "",
+            "type": "default",
+            "enabled": true
+        },
+        {
+            "key": "employerToken",
+            "value": "",
+            "type": "default",
+            "enabled": true
+        },
+        {
+            "key": "adminToken",
+            "value": "",
+            "type": "default",
+            "enabled": true
+        },
+        {
+            "key": "cdid",
+            "value": "",
+            "type": "default",
+            "enabled": true
+        },
+        {
+            "key": "edid",
+            "value": "",
+            "type": "default",
+            "enabled": true
+        },
+        {
+            "key": "adid",
+            "value": "",
+            "type": "default",
+            "enabled": true
+        }
+    ],
+    "_postman_variable_scope": "environment"
+}

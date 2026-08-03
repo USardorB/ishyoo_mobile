@@ -1,0 +1,668 @@
+{
+  "applicants": {
+    "title": "Кандидаты",
+    "tabs": {
+      "all": "Все",
+      "pending": "Новые",
+      "invited": "Приглашены",
+      "interview": "Собеседование",
+      "rejected": "Отказ",
+      "accepted": "Приняты",
+      "archived": "Архив",
+      "hired": "Наняты",
+      "shortlisted": "В избранном"
+    },
+    "card": {
+      "noData": "Нет данных",
+      "present": "По настоящее время",
+      "experienceYears": "Опыт {} лет",
+      "experience": "Опыт работы",
+      "workplace": "Место работы",
+      "negotiable": "По договоренности",
+      "languages": "Языки",
+      "contactInfo": "Контакты"
+    },
+    "actions": {
+      "invite": "Пригласить",
+      "reject": "Отказать",
+      "rejectTitle": "Отказать кандидату?",
+      "unsuitable": "Не подходит",
+      "cancel": "Отмена",
+      "continue": "Продолжить",
+      "edit": "Редактировать",
+      "showAll": "Показать все",
+      "filter": "Фильтр"
+    },
+    "messaging": {
+      "typeMessage": "Введите сообщение..."
+    },
+    "emptyState": "Кандидаты не найдены.",
+    "comingSoon": "Скоро"
+  },
+  "applications": {
+    "title": "Мои отклики",
+    "tabs": {
+      "all": "Все",
+      "interview": "Собеседование",
+      "pending": "На рассмотрении",
+      "rejected": "Отказ",
+      "archived": "Архив"
+    },
+    "emptyState": "Откликов пока нет.",
+    "card": {
+      "negotiable": "По договоренности",
+      "chat": "Чат"
+    },
+    "menu": {
+      "chat": "Чат",
+      "description": "Описание вакансии",
+      "aboutCompany": "О компании",
+      "reject": "Отказаться",
+      "delete": "Удалить"
+    },
+    "dialogs": {
+      "delete": {
+        "title": "Удалить отклик?",
+        "buttons": {
+          "delete": "Удалить",
+          "cancel": "Отмена"
+        }
+      },
+      "reject": {
+        "title": "Отменить отклик?",
+        "buttons": {
+          "yes": "Да, отменить",
+          "no": "Назад"
+        }
+      }
+    }
+  },
+  "articles": {
+    "title": "Статьи",
+    "emptyState": "Статей пока нет.",
+    "notFound": "Статья не найдена.",
+    "readTime": "{} мин"
+  },
+  "auth": {
+    "login": {
+      "title": "С возвращением",
+      "subtitle": "Войдите, чтобы продолжить",
+      "phoneLabel": "Номер телефона",
+      "passwordLabel": "Пароль",
+      "buttons": {
+        "forgotPassword": "Забыли пароль?",
+        "login": "Войти",
+        "skip": "Пропустить"
+      },
+      "registrationPrompt": {
+        "text": "Впервые у нас?",
+        "link": "Зарегистрироваться"
+      },
+      "errors": {
+        "general": "Произошла ошибка. Попробуйте еще раз."
+      }
+    },
+    "register": {
+      "title": "Создать аккаунт",
+      "subtitle": "Зарегистрируйтесь для начала работы",
+      "phoneLabel": "Номер телефона",
+      "buttons": {
+        "continue": "Продолжить"
+      },
+      "loginPrompt": {
+        "text": "Уже есть аккаунт?",
+        "link": "Войти"
+      },
+      "errors": {
+        "general": "Произошла ошибка. Попробуйте еще раз."
+      }
+    },
+    "otpConfirmation": {
+      "title": "Код подтверждения",
+      "subtitle": "Введите 4-значный код, отправленный на {}",
+      "buttons": {
+        "resendCode": "Отправить код повторно",
+        "resendIn": "Повтор через {}",
+        "verify": "Подтвердить"
+      },
+      "errors": {
+        "enterFull": "Пожалуйста, введите код полностью.",
+        "invalidCode": "Неверный код.",
+        "general": "Произошла ошибка. Попробуйте еще раз."
+      }
+    },
+    "forgotPasswordOtp": {
+      "title": "Сброс пароля",
+      "subtitle": "Введите 4-значный код, отправленный на {}",
+      "buttons": {
+        "newCode": "Получить новый код",
+        "resendIn": "Повтор через {}",
+        "verify": "Подтвердить"
+      },
+      "errors": {
+        "enterFull": "Пожалуйста, введите код полностью.",
+        "invalidCode": "Неверный код.",
+        "general": "Произошла ошибка. Попробуйте еще раз."
+      }
+    },
+    "forgotPassword": {
+      "title": "Сброс пароля",
+      "subtitle": "Введите номер телефона для получения кода",
+      "phoneLabel": "Номер телефона",
+      "buttons": {
+        "getCode": "Получить код"
+      },
+      "errors": {
+        "general": "Произошла ошибка. Попробуйте еще раз."
+      }
+    },
+    "resetPassword": {
+      "title": "Новый пароль",
+      "subtitle": "Придумайте надежный пароль",
+      "newPasswordLabel": "Новый пароль",
+      "confirmPasswordLabel": "Подтвердите пароль",
+      "buttons": {
+        "saveAndLogin": "Сохранить и войти"
+      },
+      "successDialog": {
+        "title": "Пароль изменен",
+        "subtitle": "Ваш пароль был успешно обновлен."
+      },
+      "errors": {
+        "mismatch": "Пароли не совпадают.",
+        "general": "Произошла ошибка. Попробуйте еще раз."
+      }
+    },
+    "confirmPassword": {
+      "title": "Создать пароль",
+      "subtitle": "Задайте надежный пароль для аккаунта",
+      "passwordHint": "Придумайте пароль",
+      "confirmHint": "Подтвердите пароль",
+      "buttons": {
+        "continue": "Продолжить"
+      },
+      "requirements": {
+        "title": "Требования к паролю:",
+        "minLength": "Минимум 8 символов",
+        "capitalLetter": "Минимум 1 заглавная буква",
+        "number": "Минимум 1 цифра"
+      }
+    },
+    "completeProfile": {
+      "title": "Заполните профиль",
+      "subtitle": "Расскажите немного о себе",
+      "firstNameHint": "Имя",
+      "lastNameHint": "Фамилия",
+      "companyNameHint": "Название компании",
+      "birthDateHint": "Дата рождения",
+      "buttons": {
+        "continue": "Продолжить"
+      },
+      "errors": {
+        "fillAll": "Пожалуйста, заполните все поля.",
+        "general": "Произошла ошибка. Попробуйте еще раз."
+      }
+    },
+    "waitlisted": {
+      "title": "Вы в листе ожидания!",
+      "subtitle": "Мы сообщим вам, когда ваш аккаунт будет готов.",
+      "buttons": {
+        "exit": "Выйти",
+        "logout": "Сменить аккаунт"
+      }
+    },
+    "waitlistDialog": {
+      "title": "Включить геолокацию?",
+      "description": "Нам нужна ваша локация для поиска вакансий поблизости.",
+      "buttons": {
+        "yes": "Включить",
+        "no": "Нет, спасибо"
+      }
+    },
+    "privacyPolicy": {
+      "text1": "Нажимая «Продолжить», вы соглашаетесь с нашей ",
+      "privacyPolicy": "Политикой конфиденциальности",
+      "and": " и ",
+      "terms": "Пользовательским соглашением",
+      "text2": ""
+    }
+  },
+  "core": {
+    "nav": {
+      "home": "Главная",
+      "vacancies": "Вакансии",
+      "candidates": "Кандидаты",
+      "applications": "Отклики",
+      "chats": "Чаты",
+      "profile": "Профиль"
+    },
+    "enums": {
+      "status": {
+        "active": "Активен",
+        "inactive": "Неактивен",
+        "blocked": "Заблокирован",
+        "deleted": "Удален",
+        "archived": "В архиве",
+        "draft": "Черновик",
+        "published": "Опубликован",
+        "confirmed": "Подтвержден",
+        "closed": "Закрыт",
+        "pending": "В ожидании",
+        "invited": "Приглашен",
+        "rejected": "Отклонен",
+        "hired": "Нанят",
+        "shortlisted": "В избранном",
+        "pastDue": "Просрочен",
+        "paid": "Оплачен",
+        "failed": "Ошибка"
+      },
+      "vacancyStatus": {
+        "draft": "Черновик",
+        "published": "Активна",
+        "archived": "В архиве",
+        "rejected": "Отклонена",
+        "confirmed": "Подтверждена",
+        "closed": "Закрыта"
+      },
+      "employmentType": {
+        "fullTime": "Полная занятость",
+        "partTime": "Частичная занятость",
+        "freelance": "Фриланс",
+        "contract": "По контракту",
+        "internship": "Стажировка"
+      },
+      "experienceLevel": {
+        "noExperience": "Без опыта",
+        "oneToThree": "1–3 года",
+        "threeToSix": "3–6 лет",
+        "overSix": "Более 6 лет"
+      },
+      "workFormat": {
+        "onSite": "В офисе",
+        "remote": "Удаленно",
+        "hybrid": "Гибрид",
+        "travel": "Готовность к командировкам"
+      },
+      "currency": {
+        "uzs": "UZS",
+        "usd": "USD",
+        "eur": "EUR"
+      },
+      "visibility": {
+        "public": "Публичный",
+        "private": "Приватный"
+      },
+      "networkStatus": {
+        "online": "В сети",
+        "offline": "Не в сети"
+      },
+      "gender": {
+        "male": "Мужской",
+        "female": "Женский"
+      },
+      "role": {
+        "candidate": "Кандидат",
+        "employer": "Работодатель",
+        "admin": "Администратор"
+      }
+    }
+  },
+  "location": {
+    "title": "Локация",
+    "errors": {
+      "occurred": "Произошла ошибка."
+    }
+  },
+  "messaging": {
+    "title": "Сообщения",
+    "vacancies": "Вакансии",
+    "loading": "Загрузка...",
+    "noData": "Нет данных",
+    "emptyState": "Чатов пока нет.",
+    "search": {
+      "placeholder": "Поиск..."
+    },
+    "tabs": {
+      "all": "Все",
+      "received": "Входящие",
+      "rejected": "Отказ"
+    },
+    "jobCard": {
+      "createResume": "Создать резюме",
+      "myVacancies": "Мои вакансии"
+    },
+    "input": {
+      "placeholder": "Напишите сообщение..."
+    },
+    "actions": {
+      "edit": "Редактировать",
+      "delete": "Удалить",
+      "cancel": "Отмена",
+      "save": "Сохранить",
+      "viewProfile": "Профиль",
+      "deleteChat": "Удалить чат"
+    },
+    "dialogs": {
+      "editMessage": {
+        "title": "Редактировать сообщение"
+      }
+    },
+    "errors": {
+      "occurred": "Произошла ошибка."
+    },
+    "attachment": {
+      "label": "Приложение",
+      "file": "Файл",
+      "gallery": "Галерея",
+      "camera": "Камера"
+    }
+  },
+  "notifications": {
+    "title": "Уведомления",
+    "emptyState": "Уведомлений пока нет.",
+    "noData": "Нет данных",
+    "markAllRead": "Прочитать все"
+  },
+  "onboarding": {
+    "language": {
+      "title": "Выберите язык",
+      "subtitle": "Вы сможете изменить язык позже в настройках",
+      "ctaButton": "Продолжить"
+    },
+    "slides": {
+      "slide1": {
+        "title": "Платформа для поиска работы и талантов",
+        "subtitle": "Легко находите подходящие вакансии и классных специалистов"
+      },
+      "slide2": {
+        "title": "Общение в реальном времени",
+        "subtitle": "Связывайтесь напрямую с работодателями и кандидатами"
+      },
+      "slide3": {
+        "title": "Создайте и опубликуйте резюме",
+        "subtitle": "Покажите свой опыт работы и откликайтесь на вакансии"
+      }
+    },
+    "actions": {
+      "continueAction": "Продолжить",
+      "skip": "Пропустить",
+      "hireTalent": "Я ищу сотрудников",
+      "findJob": "Я ищу работу"
+    }
+  },
+  "opportunities": {
+    "title": "Вакансии",
+    "savedVacancies": "Сохраненные",
+    "nearbyJobs": "Вакансии поблизости",
+    "noNearbyJobs": "Рядом нет вакансий. Попробуйте увеличить радиус.",
+    "matchesFilter": "Совпадение",
+    "appliedSuccess": "Отклик успешно отправлен!",
+    "alreadyApplied": "Вы уже откликнулись",
+    "applyButton": "Откликнуться",
+    "location": "Локация",
+    "employmentType": "Тип занятости",
+    "searchResults": "Результаты поиска",
+    "resultsCount": "Найдено вакансий: {}",
+    "errorOccurred": "Произошла ошибка.",
+    "errorApplying": "Ошибка: {}",
+    "search": {
+      "empty": "По вашему запросу ничего не найдено."
+    },
+    "company": {
+      "vacancies": "Активные вакансии",
+      "about": "О компании"
+    },
+    "apply": {
+      "noResumes": "У вас еще нет резюме.",
+      "selectResume": "Выберите резюме",
+      "coverLetter": "Сопроводительное письмо (необязательно)",
+      "add": "Добавить"
+    },
+    "quickAccess": {
+      "createResume": "Создать резюме",
+      "articles": "Статьи"
+    },
+    "banner": {
+      "title1": "Поиск работы и найм",
+      "subtitle1": "Легко находите вакансии и профессионалов",
+      "title2": "Общение в реальном времени",
+      "subtitle2": "Связывайтесь с работодателями напрямую",
+      "title3": "Создайте резюме",
+      "subtitle3": "Покажите свой опыт и откликайтесь на вакансии",
+      "continue": "Продолжить",
+      "showAll": "Все"
+    },
+    "vacancyCard": {
+      "negotiable": "По договоренности"
+    },
+    "details": {
+      "comingSoon": "Скоро",
+      "showAll": "Показать все"
+    },
+    "filter": {
+      "title": "Фильтр",
+      "searchPlaceholder": "Поиск вакансий и должностей...",
+      "search": "Поиск",
+      "experience": "Опыт работы",
+      "apply": "Применить фильтр",
+      "clear": "Сбросить"
+    },
+    "description": "Описание",
+    "requirements": "Требования",
+    "savedVacanciesEmpty": "Нет сохраненных вакансий."
+  },
+  "postings": {
+    "dashboardTitle": "Панель",
+    "activeVacancies": "Активные вакансии",
+    "all": "Все",
+    "createVacancy": "Разместить вакансию",
+    "greeting": "Здравствуйте, {}!",
+    "todaySummary": "Сегодня {} новых откликов и {} активных вакансий",
+    "interviews": "СОБЕСЕДОВАНИЯ",
+    "interviewsSub": "сегодня",
+    "responses": "ОТКЛИКИ",
+    "responsesSub": "новые",
+    "active": "АКТИВНЫЕ",
+    "activeSub": "вакансии",
+    "responsesCount": "{} откликов",
+    "keySkills": "Ключевые навыки",
+    "noSalarySpecified": "Зарплата не указана",
+    "fullNameLabel": "Ф.И.О.",
+    "cancelCreationTitle": "Отменить создание?",
+    "cancelCreationDesc": "Вы уверены? Все несохраненные данные будут утеряны.",
+    "searchPlaceholder": "Поиск...",
+    "add": "Добавить",
+    "negotiable": "По договоренности",
+    "dashboard": {
+      "comingSoon": "Скоро"
+    },
+    "actions": {
+      "view": "Просмотр",
+      "edit": "Редактировать",
+      "pause": "Приостановить",
+      "applicants": "Кандидаты",
+      "copy": "Копировать",
+      "share": "Скоро",
+      "archive": "В архив",
+      "delete": "Удалить"
+    },
+    "create": {
+      "title": "Вакансии",
+      "searchPlaceholder": "Специализация или навык...",
+      "search": "Поиск",
+      "salary": "Зарплата: {}",
+      "all": "Все",
+      "phoneLabel": "Номер телефона",
+      "employmentType": "Тип занятости",
+      "continueButton": "Продолжить",
+      "description": "Описание",
+      "responsibilities": "Обязанности",
+      "requirements": "Требования",
+      "experience": "Опыт",
+      "location": "Локация",
+      "savedSuccess": "Успешно сохранено!"
+    },
+    "filter": {
+      "employmentType": "Тип занятости",
+      "searchPlaceholder": "Специализация или навык...",
+      "search": "Поиск",
+      "experience": "Опыт",
+      "apply": "Применить",
+      "clear": "Сбросить"
+    },
+    "category": {
+      "searchPlaceholder": "Поиск..."
+    },
+    "skills": {
+      "searchPlaceholder": "Поиск...",
+      "add": "Добавить"
+    }
+  },
+  "profile": {
+    "title": "Профиль",
+    "edit": "Редактировать",
+    "save": "Сохранить",
+    "savedSuccess": "Успешно сохранено!",
+    "noData": "Не указано",
+    "company": {
+      "edit": "Изменить",
+      "companyInfo": "Информация",
+      "about": "О компании",
+      "myVacancies": "Мои вакансии",
+      "createVacancy": "Разместить вакансию",
+      "fieldOfActivity": "Сфера деятельности",
+      "nameHint": "Название компании",
+      "filterTitle": "Фильтр кандидатов",
+      "location": "Локация",
+      "phoneLabel": "Номер телефона",
+      "candidates": "Кандидаты"
+    },
+    "candidate": {
+      "personalInfo": "Личная информация",
+      "experience": "Опыт работы",
+      "education": "Образование",
+      "languages": "Языки",
+      "resumes": "Резюме",
+      "noResumes": "У вас пока нет резюме",
+      "createResume": "Создать резюме",
+      "deleteExperienceTitle": "Удалить опыт работы?",
+      "deleteExperienceDesc": "Это действие нельзя отменить.",
+      "deleteEducationTitle": "Удалить образование?",
+      "deleteEducationDesc": "Это действие нельзя отменить.",
+      "present": "По настоящее время",
+      "views": "Просмотры",
+      "shortlisted": "В избранном",
+      "invited": "Приглашения",
+      "cancel": "Отмена",
+      "delete": "Удалить",
+      "apply": "Применить",
+      "all": "Все",
+      "edit": "Редактировать профиль",
+      "firstNameHint": "Имя",
+      "lastNameHint": "Фамилия",
+      "cityHint": "Город",
+      "birthDateHint": "Дата рождения",
+      "phoneLabel": "Номер телефона",
+      "aboutMe": "Обо мне",
+      "primary": "Основное"
+    }
+  },
+  "resume": {
+    "title": "Резюме",
+    "boostScore": "Рейтинг",
+    "createResume": "Создать резюме",
+    "downloadPdf": "Скачать PDF",
+    "previewPdf": "Просмотр PDF",
+    "noData": "Не указано",
+    "present": "По настоящее время",
+    "searchPlaceholder": "Поиск...",
+    "specializationPlaceholder": "Специализация...",
+    "companyPlaceholder": "О компании",
+    "location": "Локация",
+    "description": "Описание",
+    "yearHint": "Год",
+    "deleteTitle": "Удалить резюме?",
+    "deleteDesc": "Это действие нельзя отменить.",
+    "successTitle": "Успех!",
+    "successDesc": "Ваше резюме успешно создано.",
+    "stats": {
+      "invited": "Приглашения",
+      "shortlisted": "В избранном"
+    },
+    "visibility": {
+      "all": "Для всех",
+      "hidden": "Скрыто"
+    },
+    "sections": {
+      "contacts": "Контакты",
+      "workplace": "Место работы",
+      "experience": "Опыт",
+      "education": "Образование",
+      "languages": "Языки",
+      "preview": "Просмотр"
+    },
+    "actions": {
+      "continueButton": "Продолжить",
+      "save": "Сохранить",
+      "edit": "Редактировать",
+      "add": "Добавить",
+      "cancel": "Отмена",
+      "delete": "Удалить",
+      "select": "Выбрать",
+      "comingSoon": "Скоро",
+      "savedSuccess": "Успешно сохранено!",
+      "boostVisibility": "Продвинуть резюме",
+      "boostSuccess": "Резюме успешно продвинуто!"
+    },
+    "contacts": "Контакты",
+    "experience": "Опыт работы",
+    "education": "Образование",
+    "skills": "Навыки"
+  },
+  "settings": {
+    "title": "Настройки",
+    "language": "Язык приложения",
+    "theme": "Тема оформления",
+    "lightMode": "Светлая",
+    "darkMode": "Темная",
+    "systemTheme": "Системная",
+    "notifications": "Уведомления",
+    "privacyPolicy": "Политика конфиденциальности",
+    "termsOfUse": "Условия использования",
+    "helpCenter": "Помощь",
+    "aboutApp": "О приложении",
+    "logout": "Выйти",
+    "deleteAccount": "Удалить аккаунт",
+    "logoutConfirmTitle": "Вы уверены, что хотите выйти?",
+    "logoutConfirmDesc": "Внимание! Вам понадобится пароль, чтобы войти снова.",
+    "preferences": {
+      "applicationUpdates": "Отклики",
+      "messages": "Сообщения",
+      "interviews": "Собеседования"
+    },
+    "actions": {
+      "apply": "Применить",
+      "cancel": "Отмена",
+      "logout": "Выйти"
+    }
+  },
+  "talents": {
+    "title": "Таланты",
+    "searchResults": "Результаты поиска",
+    "searchPlaceholder": "Специализация или навык...",
+    "resultsCount": "Найдено кандидатов: {}",
+    "noData": "Резюме пока не найдены.",
+    "contactInfo": "Контакты",
+    "candidate": "Кандидат",
+    "matchesFilter": "Совпадение"
+  },
+  "shared": {
+    "validation": {
+      "required": "Обязательное поле",
+      "invalidEmail": "Неверный адрес электронной почты",
+      "passwordLength": "Пароль должен состоять минимум из 8 символов",
+      "invalidUrl": "Неверный URL",
+      "passwordsMustMatch": "Пароли должны совпадать"
+    }
+  }
+}

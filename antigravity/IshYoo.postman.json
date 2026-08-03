@@ -1,0 +1,3416 @@
+{
+    "info": {
+        "name": "IshYoo",
+        "description": "",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Candidate",
+            "description": "",
+            "item": [
+                {
+                    "name": "Register",
+                    "description": "",
+                    "item": [
+                        {
+                            "name": "SMS-Request",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {},
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"phone_number\": \"+998900431906\",\n    \"method\": \"register\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/candidate/sms-request",
+                                    "path": [
+                                        "candidate",
+                                        "sms-request"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/sms-request",
+                                            "path": [
+                                                "candidate",
+                                                "sms-request"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"phone_number\": \"+998942351906\",\n    \"method\": \"register\"\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "75"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"4b-+byUISvedqhevMsG+HeMUXXB6F0\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Fri, 03 Jul 2026 11:16:59 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\"success\":true,\"data\":{\"request_id\":\"38e333b91f208c9d4ab5ea7d\",\"ttl\":600}}"
+                                },
+                                {
+                                    "name": "Failure",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/sms-request",
+                                            "path": [
+                                                "candidate",
+                                                "sms-request"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"phone_number\": \"+998942351906\",\n    \"method\": \"register\"\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "Conflict",
+                                    "code": 409,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "73"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"49-q0+a95+waCTpNyGk1TM1ZkdQpkA\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Fri, 03 Jul 2026 11:14:07 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\"success\":false,\"message\":\"User already registered with candidate role\"}"
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "Verify",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {
+                                    "type": "noauth",
+                                    "noauth": []
+                                },
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"request_id\": \"7ec337197b676d41f84dde5f\",\n    \"code\": 44604\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/candidate/verify",
+                                    "path": [
+                                        "candidate",
+                                        "verify"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/verify",
+                                            "path": [
+                                                "candidate",
+                                                "verify"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"request_id\": \"e49aade38948ae6d17b96c89\",\n    \"code\": 78280\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "147"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"93-nwn2gCzpxTVonmuyljc2nV9IFoU\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Fri, 03 Jul 2026 11:19:22 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\"success\":true,\"message\":\"Phone number verified successfully\",\"metadata\":{\"request_id\":\"e49aade38948ae6d17b96c89\",\"next_step\":\"complete_profile\"}}"
+                                },
+                                {
+                                    "name": "Failure",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/verify",
+                                            "path": [
+                                                "candidate",
+                                                "verify"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"request_id\": \"320f3b4efbcf218611e29f14\",\n    \"code\": 78280\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "Forbidden",
+                                    "code": 403,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "42"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"2a-vJSFrYrRXrEuQLUZ6hZieQV6eqI\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Fri, 03 Jul 2026 11:25:57 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\"success\":false,\"message\":\"Invalid code\"}"
+                                },
+                                {
+                                    "name": "Record Not Found",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/verify",
+                                            "path": [
+                                                "candidate",
+                                                "verify"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"request_id\": \"320f3b4efbcf218611e29f14\",\n    \"code\": 99443\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "Internal Server Error",
+                                    "code": 500,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "45"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"2d-UoTirPLK3vhoblzgxFgZ+bCQXIc\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Fri, 03 Jul 2026 11:26:39 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\"success\":false,\"message\":\"Request timeout\"}"
+                                },
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/verify",
+                                            "path": [
+                                                "candidate",
+                                                "verify"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"request_id\": \"b23c6dd90f40893ab01f51eb\",\n    \"code\": 257632,\n    \"device_id\": \"c844c6c-5dcd4c08-b59-ae456f313232\",\n    \"device_name\": \"Xioami 201200\"\n    // \"fcm_token\": \"37123ecb-e2b-43a7-8591-0bd47c61d0b\" //required in mobile\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "description": "",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "305"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"131-/iEu2kw7fmQ3ESZXZu+T4q8MZZI\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Thu, 22 Jan 2026 07:24:45 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\n    \"success\": true,\n    \"data\": {\n        \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJiOGY1MDgyMi0xMmFmLTQxMTQtOGE2Ny1hNmZiNWU3OTYwNDMiLCJpYXQiOjE3NjkwNjY2ODUsImV4cCI6MTc2OTA2NzU4NX0.3VCdFTjzqCl0gVnXOArT21QKuSx69VG49cFgrypzPek\",\n        \"type\": \"Bearer\",\n        \"expires\": \"15m\",\n        \"did\": \"c844c6c-5dcd4c08-b59-ae456f313232\"\n    }\n}"
+                                },
+                                {
+                                    "name": "Expired",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/verify",
+                                            "path": [
+                                                "candidate",
+                                                "verify"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"request_id\": \"b23c6dd0f40893ab01f51eb\",\n    \"code\": 257632,\n    \"device_id\": \"c844c6c-5dcd4c08-b59-ae456f313232\",\n    \"device_name\": \"Xioami 201200\"\n    // \"fcm_token\": \"37123ecb-e2b-43a7-8591-0bd47c61d0b\" //required in mobile\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "Internal Server Error",
+                                    "code": 500,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "42"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"2a-Pes8vYUzjkDFlmgP+Qm0dbPRlkc\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Thu, 22 Jan 2026 07:26:22 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\n    \"success\": false,\n    \"message\": \"Code expired\"\n}"
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "Register",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {},
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"request_id\": \"5dde84da7ecd8b0a7cd9fc65\",\n    \"name\": \"Joshqin Alimboyev\",\n    \"is_waitlisted_user\": false,\n    \"password\": \"password\",\n    \"device_id\": \"device-1\",\n    \"device_name\": \"iPhone 12\",\n    \"fcm_token\": \"b6a0e7cd-2460-4e7d-b057-b699a198f8f4\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/candidate/register",
+                                    "path": [
+                                        "candidate",
+                                        "register"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/register",
+                                            "path": [
+                                                "candidate",
+                                                "register"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"request_id\": \"65b6b95a4ee549f0120a3d61\",\n    \"name\": \"Joshqin Alimboyev\",\n    \"is_waitlisted_user\": false,\n    \"password\": \"password\",\n    \"device_id\": \"device-1\",\n    \"device_name\": \"iPhone 12\",\n    \"fcm_token\": \"b6a0e7cd-2460-4e7d-b057-b699a198f8f4\"\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "605"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"25d-ETlB+5VHvGWbBdYuxs3dn3LNShI\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Fri, 03 Jul 2026 11:27:52 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\"success\":true,\"data\":{\"user\":{\"id\":\"a5300442-d2d9-4140-8260-1c039fea9916\",\"name\":\"Joshqin Alimboyev\",\"phone_number\":\"+998942351906\",\"email\":null,\"password\":\"$2b$12$KAU8WgA/SpQHF1VITpZIdOcKipWEVOUe0q4DMRThkMees/PSagAMq\",\"role\":\"candidate\",\"is_waitlisted_user\":false,\"created_at\":\"2026-07-03T11:27:52.736Z\",\"updated_at\":\"2026-07-03T11:27:52.736Z\",\"organization\":{}},\"access_token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNTMwMDQ0Mi1kMmQ5LTQxNDAtODI2MC0xYzAzOWZlYTk5MTYiLCJpYXQiOjE3ODMwNzgwNzIsImV4cCI6MTc4MzA3ODk3Mn0.QN7MkQMVuM5MECNnjnhW1aQqoDVJsf4RNv4gL6W148o\",\"type\":\"Bearer\",\"expires\":\"15m\"}}"
+                                },
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/register",
+                                            "path": [
+                                                "candidate",
+                                                "register"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"name\": \"Candidate\",\n    \"phone_number\": \"998900431905\"\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "description": "",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "78"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"4e-iQIC532dSpPfTyhJx1Np+xM1Ivs\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Thu, 22 Jan 2026 07:24:29 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\n    \"success\": true,\n    \"data\": {\n        \"request_id\": \"b23c6dd90f40893ab01f51eb\",\n        \"otp\": 257632\n    }\n}"
+                                },
+                                {
+                                    "name": "Already exist",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/register",
+                                            "path": [
+                                                "candidate",
+                                                "register"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"name\": \"Candidate\",\n    \"phone_number\": \"998900431906\"\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "Conflict",
+                                    "code": 409,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "49"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"31-WKEMg8zALB1Ko0WjUHi/6RBGHVc\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Thu, 22 Jan 2026 07:25:58 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\n    \"success\": false,\n    \"message\": \"User already exists\"\n}"
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "Resend code",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {},
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"request_id\": \"7ec337197b676d41f84dde5f\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/candidate/resend",
+                                    "path": [
+                                        "candidate",
+                                        "resend"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/resend",
+                                            "path": [
+                                                "candidate",
+                                                "resend"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"request_id\": \"e30d2917b9b25a26602710e2\"\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "52"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"34-YzHzLlR9k6nGxuebyUB6jPdWu/0\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Mon, 06 Jul 2026 14:23:37 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\"success\":true,\"message\":\"OTP resent successfully\"}"
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        }
+                    ],
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "auth": {}
+                },
+                {
+                    "name": "Login",
+                    "description": "",
+                    "item": [
+                        {
+                            "name": "Login",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {},
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"phone_number\": \"+998942351906\",\n    \"password\": \"employer.password\",\n    \"device_id\": \"device-1\",\n    \"device_name\": \"iPhone 12\",\n    \"fcm_token\": \"b6a0e7cd-2460-4e7d-b057-b699a198f8f4\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/employer/login",
+                                    "path": [
+                                        "employer",
+                                        "login"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/employer/login",
+                                            "path": [
+                                                "employer",
+                                                "login"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"phone_number\": \"+998900431906\"\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": []
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        }
+                    ],
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "auth": {}
+                },
+                {
+                    "name": "Me",
+                    "description": "",
+                    "item": [
+                        {
+                            "name": "Me",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "{{candidateToken}}",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "body": {},
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/candidate/me",
+                                    "path": [
+                                        "candidate",
+                                        "me"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/me",
+                                            "path": [
+                                                "candidate",
+                                                "me"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {}
+                                    },
+                                    "cookie": [],
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "430"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"1ae-aNwx+MJHIBeXpVwhPYmjxRCWAPk\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Sun, 05 Jul 2026 04:30:38 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\"success\":true,\"data\":{\"id\":\"1e7d44fb-cc4f-4d83-ad9c-89a999a7d7be\",\"avatar_url\":null,\"name\":\"Joshqin Alimboyev\",\"email\":null,\"is_waitlisted_user\":false,\"role\":\"candidate\",\"password\":\"$2b$12$lNvCKmQ7tJ9G18GkGwjKSOSU2rmMf74fdm0Jkd7hhR4phY4mSpYI.\",\"city\":null,\"bio\":null,\"created_at\":\"2026-07-05T04:28:31.057Z\",\"updated_at\":\"2026-07-05T04:28:31.057Z\",\"user_id\":\"d80cda9e-d802-413c-9122-27f47ee209be\",\"phone_number\":\"+998942351906\"}}"
+                                },
+                                {
+                                    "name": "Me",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/me",
+                                            "path": [
+                                                "candidate",
+                                                "me"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {}
+                                    },
+                                    "cookie": [],
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "description": "",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "282"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"11a-Gn0/qaiQNiAjIMu9RSHcjefSsEA\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Thu, 22 Jan 2026 07:29:17 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\n    \"success\": true,\n    \"data\": {\n        \"id\": \"42cd3364-3e57-4322-ac54-d7b6264abeca\",\n        \"name\": \"Candidate \",\n        \"phone_number\": \"998900431906\",\n        \"email\": null,\n        \"password\": null,\n        \"role\": \"candidate\",\n        \"created_at\": \"2026-01-20T05:42:01.690Z\",\n        \"updated_at\": \"2026-01-20T05:42:01.690Z\",\n        \"organization\": {\n            \"membership\": null\n        }\n    }\n}"
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        }
+                    ],
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "auth": {}
+                },
+                {
+                    "name": "Refresh",
+                    "description": "",
+                    "item": [
+                        {
+                            "name": "Refresh token",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {},
+                                "method": "GET",
+                                "body": {},
+                                "header": [
+                                    {
+                                        "key": "x-did",
+                                        "value": "{{cdid}}",
+                                        "description": "required for refresh access token",
+                                        "type": "string"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{baseUrl}}/candidate/refresh-token",
+                                    "path": [
+                                        "candidate",
+                                        "refresh-token"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "x-did",
+                                                "value": "{{cdid}}",
+                                                "description": "required for refresh access token",
+                                                "disabled": false
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/refresh-token",
+                                            "path": [
+                                                "candidate",
+                                                "refresh-token"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {}
+                                    },
+                                    "cookie": [],
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "description": "",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "263"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"107-To4Icqf9OAYbiVEKxOxbOJWn5oI\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Thu, 22 Jan 2026 07:30:52 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\n    \"success\": true,\n    \"data\": {\n        \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI0MmNkMzM2NC0zZTU3LTQzMjItYWM1NC1kN2I2MjY0YWJlY2EiLCJpYXQiOjE3NjkwNjcwNTIsImV4cCI6MTc2OTA2Nzk1Mn0.3_1588srqWGcsYclDeUQDqkiDyz3sQFFyvQFkGTbS8M\",\n        \"type\": \"Bearer\",\n        \"expires\": \"15m\"\n    }\n}"
+                                },
+                                {
+                                    "name": "Device ID missing",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "x-did",
+                                                "value": "{{cdid}}",
+                                                "description": "required for refresh access token",
+                                                "disabled": true
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/refresh-token",
+                                            "path": [
+                                                "candidate",
+                                                "refresh-token"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {}
+                                    },
+                                    "cookie": [],
+                                    "status": "Unauthorized",
+                                    "code": 401,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "description": "",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "47"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"2f-gca198PMWqWPJ26qnSIwidq1ZVE\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Thu, 22 Jan 2026 07:31:08 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\n    \"success\": false,\n    \"message\": \"Device id missing\"\n}"
+                                },
+                                {
+                                    "name": "Session not found",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "x-did",
+                                                "value": "{{cdid}}",
+                                                "description": "required for refresh access token",
+                                                "disabled": false
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/refresh-token",
+                                            "path": [
+                                                "candidate",
+                                                "refresh-token"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {}
+                                    },
+                                    "cookie": [],
+                                    "status": "Not Found",
+                                    "code": 404,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "description": "",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "47"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"2f-gPLtKJslxPBDHKqS0svu5pI/VCc\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Thu, 22 Jan 2026 07:32:30 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\n    \"success\": false,\n    \"message\": \"Session not found\"\n}"
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        }
+                    ],
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "auth": {}
+                },
+                {
+                    "name": "Logout",
+                    "description": "",
+                    "item": [
+                        {
+                            "name": "Logout",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "{{candidateToken}}",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "body": {},
+                                "header": [
+                                    {
+                                        "key": "x-did",
+                                        "value": "{{cdid}}",
+                                        "description": "",
+                                        "type": "string"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{baseUrl}}/candidate/logout",
+                                    "path": [
+                                        "candidate",
+                                        "logout"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "x-did",
+                                                "value": "{{cdid}}",
+                                                "description": "",
+                                                "disabled": false
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/logout",
+                                            "path": [
+                                                "candidate",
+                                                "logout"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {}
+                                    },
+                                    "cookie": [],
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "description": "",
+                                            "type": "text"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "39"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"27-0i0XDAVBFPHNbBUI7HOv0F24L4E\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Thu, 22 Jan 2026 07:33:01 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\n    \"success\": true,\n    \"message\": \"Logged out\"\n}"
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        }
+                    ],
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "auth": {}
+                },
+                {
+                    "name": "Forget password",
+                    "description": "",
+                    "item": [
+                        {
+                            "name": "Forget password SMS request",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {},
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"phone_number\": \"+998942351906\",\n    \"method\": \"recovery_password\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/candidate/forgot-password/sms-request",
+                                    "path": [
+                                        "candidate",
+                                        "forgot-password",
+                                        "sms-request"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "Forget password verify",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {},
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"request_id\": \"d56ae822e0f9a037735f617b\",\n    \"code\": 55501\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/candidate/forgot-password/verify",
+                                    "path": [
+                                        "candidate",
+                                        "forgot-password",
+                                        "verify"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "Forget password reset",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {},
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"request_id\": \"d56ae822e0f9a037735f617b\",\n    \"password\": \"password\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/candidate/forgot-password/reset",
+                                    "path": [
+                                        "candidate",
+                                        "forgot-password",
+                                        "reset"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        }
+                    ],
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "auth": {}
+                },
+                {
+                    "name": "Login",
+                    "description": "",
+                    "item": [
+                        {
+                            "name": "Login",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {},
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"phone_number\": \"+998942351906\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/candidate/login",
+                                    "path": [
+                                        "candidate",
+                                        "login"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Login",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/login",
+                                            "path": [
+                                                "candidate",
+                                                "login"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"phone_number\": \"998900431906\"\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Server",
+                                            "value": "nginx/1.24.0 (Ubuntu)"
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Fri, 30 Jan 2026 20:29:15 GMT"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "78"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"4e-bJMajI6A6T4YqdFMsgfjQrh6YXQ\""
+                                        }
+                                    ],
+                                    "body": "{\n    \"success\": true,\n    \"data\": {\n        \"request_id\": \"c36a8a8a5c584cef1297382e\",\n        \"otp\": 332623\n    }\n}"
+                                },
+                                {
+                                    "name": "Not found",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/login",
+                                            "path": [
+                                                "candidate",
+                                                "login"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"phone_number\": \"998900431907\"\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "Not Found",
+                                    "code": 404,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "44"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"2c-EAnCIFy1uGovyo/FU6KYwnjLgrc\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Thu, 22 Jan 2026 07:26:56 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\n    \"success\": false,\n    \"message\": \"User not found\"\n}"
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "Verify",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {
+                                    "type": "noauth",
+                                    "noauth": []
+                                },
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"request_id\": \"c89504bd9f53a0a4ecee5c59\",\n    \"code\": 552816,\n    \"device_id\": \"device-2\",\n    \"device_name\": \"Samsung A50 FN\"\n    // \"fcm_token\": \"37123ecb-e2b6-43a7-8591-0bd47c61d0b\" // required in mobile\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/candidate/verify",
+                                    "path": [
+                                        "candidate",
+                                        "verify"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Verify",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/candidate/verify",
+                                            "path": [
+                                                "candidate",
+                                                "verify"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"request_id\": \"1f04c6d5927883a705b9da48\",\n    \"code\": 220103,\n    \"device_id\": \"device-4\",\n    \"device_name\": \"Samsung A50 FN\",\n    \"fcm_token\": \"37123ecb-e2b6-43a7-8591-0bd47c61d0b\" // required in mobile\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "Server",
+                                            "value": "nginx/1.24.0 (Ubuntu)"
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Fri, 30 Jan 2026 20:33:36 GMT"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "280"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"118-p/N7LxjjCcLVlb3jGB0XG7c2CpI\""
+                                        }
+                                    ],
+                                    "body": "{\n    \"success\": true,\n    \"data\": {\n        \"access_token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIwN2MyYTk0MS1iOWJhLTQzNDYtYmM0ZS1hNmQ5NTE0M2RjNGIiLCJpYXQiOjE3Njk4MDUyMTYsImV4cCI6MTc2OTgwNjExNn0.GDVvBNkS6sZD0nFgq-uLfPmmP1lctyqCpxRxxlxa_U4\",\n        \"type\": \"Bearer\",\n        \"expires\": \"15m\",\n        \"did\": \"device-4\"\n    }\n}"
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        }
+                    ],
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "auth": {}
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        },
+        {
+            "name": "Employer",
+            "description": "",
+            "item": [
+                {
+                    "name": "Register",
+                    "description": "",
+                    "item": [
+                        {
+                            "name": "SMS-Request",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {},
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"phone_number\": \"+998942351906\",\n    \"method\": \"register\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/employer/sms-request",
+                                    "path": [
+                                        "employer",
+                                        "sms-request"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/employer/sms-request",
+                                            "path": [
+                                                "employer",
+                                                "sms-request"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"phone_number\": \"+998942351906\",\n    \"method\": \"register\"\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "75"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"4b-+byUISvedqhevMsG+HeMUXXB6F0\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Fri, 03 Jul 2026 11:16:59 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\"success\":true,\"data\":{\"request_id\":\"38e333b91f208c9d4ab5ea7d\",\"ttl\":600}}"
+                                },
+                                {
+                                    "name": "Failure",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/employer/sms-request",
+                                            "path": [
+                                                "employer",
+                                                "sms-request"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"phone_number\": \"+998942351906\",\n    \"method\": \"register\"\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "Conflict",
+                                    "code": 409,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "73"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"49-q0+a95+waCTpNyGk1TM1ZkdQpkA\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Fri, 03 Jul 2026 11:14:07 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\"success\":false,\"message\":\"User already registered with candidate role\"}"
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "Verify",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {
+                                    "type": "noauth",
+                                    "noauth": []
+                                },
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"request_id\": \"d502ab74f6ce1130dcc3de1d\",\n    \"code\": 74828\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/employer/verify",
+                                    "path": [
+                                        "employer",
+                                        "verify"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/employer/verify",
+                                            "path": [
+                                                "employer",
+                                                "verify"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"request_id\": \"e49aade38948ae6d17b96c89\",\n    \"code\": 78280\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "147"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"93-nwn2gCzpxTVonmuyljc2nV9IFoU\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Fri, 03 Jul 2026 11:19:22 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\"success\":true,\"message\":\"Phone number verified successfully\",\"metadata\":{\"request_id\":\"e49aade38948ae6d17b96c89\",\"next_step\":\"complete_profile\"}}"
+                                },
+                                {
+                                    "name": "Failure",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/employer/verify",
+                                            "path": [
+                                                "employer",
+                                                "verify"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"request_id\": \"320f3b4efbcf218611e29f14\",\n    \"code\": 78280\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "Forbidden",
+                                    "code": 403,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "42"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"2a-vJSFrYrRXrEuQLUZ6hZieQV6eqI\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Fri, 03 Jul 2026 11:25:57 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\"success\":false,\"message\":\"Invalid code\"}"
+                                },
+                                {
+                                    "name": "Record Not Found",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/employer/verify",
+                                            "path": [
+                                                "employer",
+                                                "verify"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"request_id\": \"320f3b4efbcf218611e29f14\",\n    \"code\": 99443\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "Internal Server Error",
+                                    "code": 500,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "45"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"2d-UoTirPLK3vhoblzgxFgZ+bCQXIc\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Fri, 03 Jul 2026 11:26:39 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\"success\":false,\"message\":\"Request timeout\"}"
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "Register",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {},
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"request_id\": \"d502ab74f6ce1130dcc3de1d\",\n    \"name\": \"Joshqin Alimboyev\",\n    \"is_waitlisted_user\": false,\n    \"password\": \"password\",\n    \"company_name\": \"Meezan\",\n    \"phone_number\": \"+998712853235\",\n    \"device_id\": \"device-2\",\n    \"device_name\": \"iPhone 12 Pro\",\n    \"fcm_token\": \"21ae0119-dc5a-4e05-9661-e852f585c595\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/employer/register",
+                                    "path": [
+                                        "employer",
+                                        "register"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/employer/register",
+                                            "path": [
+                                                "employer",
+                                                "register"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"request_id\": \"65b6b95a4ee549f0120a3d61\",\n    \"name\": \"Joshqin Alimboyev\",\n    \"is_waitlisted_user\": false,\n    \"password\": \"password\",\n    \"device_id\": \"device-1\",\n    \"device_name\": \"iPhone 12\",\n    \"fcm_token\": \"b6a0e7cd-2460-4e7d-b057-b699a198f8f4\"\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "605"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"25d-ETlB+5VHvGWbBdYuxs3dn3LNShI\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Fri, 03 Jul 2026 11:27:52 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\"success\":true,\"data\":{\"user\":{\"id\":\"a5300442-d2d9-4140-8260-1c039fea9916\",\"name\":\"Joshqin Alimboyev\",\"phone_number\":\"+998942351906\",\"email\":null,\"password\":\"$2b$12$KAU8WgA/SpQHF1VITpZIdOcKipWEVOUe0q4DMRThkMees/PSagAMq\",\"role\":\"candidate\",\"is_waitlisted_user\":false,\"created_at\":\"2026-07-03T11:27:52.736Z\",\"updated_at\":\"2026-07-03T11:27:52.736Z\",\"organization\":{}},\"access_token\":\"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJhNTMwMDQ0Mi1kMmQ5LTQxNDAtODI2MC0xYzAzOWZlYTk5MTYiLCJpYXQiOjE3ODMwNzgwNzIsImV4cCI6MTc4MzA3ODk3Mn0.QN7MkQMVuM5MECNnjnhW1aQqoDVJsf4RNv4gL6W148o\",\"type\":\"Bearer\",\"expires\":\"15m\"}}"
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "Resend code",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {},
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"request_id\": \"e30d2917b9b25a26602710e2\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/employer/resend",
+                                    "path": [
+                                        "employer",
+                                        "resend"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/employer/resend",
+                                            "path": [
+                                                "employer",
+                                                "resend"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"request_id\": \"e30d2917b9b25a26602710e2\"\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": [],
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "52"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"34-YzHzLlR9k6nGxuebyUB6jPdWu/0\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Mon, 06 Jul 2026 14:23:37 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\"success\":true,\"message\":\"OTP resent successfully\"}"
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "Register",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {},
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"name\": \"Joshqin Alimboyev\",\n    \"phone_number\": \"+998965365456\",\n    \"company_name\": \"ONEi\",\n    \"is_waitlisted_user\": true\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/employer/register",
+                                    "path": [
+                                        "employer",
+                                        "register"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/employer/register",
+                                            "path": [
+                                                "employer",
+                                                "register"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"name\": \"Joshqin Alimboyev\",\n    \"phone_number\": \"+998965365456\",\n    \"company_name\": \"ONEi\",\n    \"is_waitlisted_user\": true\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": []
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "Verify",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {
+                                    "type": "noauth",
+                                    "noauth": []
+                                },
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"request_id\": \"4a3aa563bdfa5e27c8b3ea8e\",\n    \"code\": 693092,\n    \"device_id\": \"device-6\",\n    \"device_name\": \"Xioami 201200\"\n    // \"fcm_token\": \"37123ec-e2b-43a7-8591-0bd47c61d0b\" // require in mobile\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/employer/verify",
+                                    "path": [
+                                        "employer",
+                                        "verify"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/employer/verify",
+                                            "path": [
+                                                "employer",
+                                                "verify"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"request_id\": \"4a3aa563bdfa5e27c8b3ea8e\",\n    \"code\": 693092,\n    \"device_id\": \"device-6\",\n    \"device_name\": \"Xioami 201200\"\n    // \"fcm_token\": \"37123ec-e2b-43a7-8591-0bd47c61d0b\" // require in mobile\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": []
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        }
+                    ],
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "auth": {}
+                },
+                {
+                    "name": "Login",
+                    "description": "",
+                    "item": [
+                        {
+                            "name": "Login",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {},
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"phone_number\": \"+998942351906\",\n    \"password\": \"employer.password\",\n    \"device_id\": \"device-1\",\n    \"device_name\": \"iPhone 12\",\n    \"fcm_token\": \"b6a0e7cd-2460-4e7d-b057-b699a198f8f4\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/employer/login",
+                                    "path": [
+                                        "employer",
+                                        "login"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/employer/login",
+                                            "path": [
+                                                "employer",
+                                                "login"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"phone_number\": \"+998900431906\"\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": []
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "Verify",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {
+                                    "type": "noauth",
+                                    "noauth": []
+                                },
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"request_id\": \"98819a38b15e4f868358b384\",\n    \"code\": 910871,\n    \"device_id\": \"device-3\",\n    \"device_name\": \"Xioami 201200\"\n    // \"fcm_token\": \"37123ec-e2b-43a7-8591-0bd47c61d0b\" // require in mobile\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/employer/verify",
+                                    "path": [
+                                        "employer",
+                                        "verify"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "POST",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/employer/verify",
+                                            "path": [
+                                                "employer",
+                                                "verify"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {
+                                            "mode": "raw",
+                                            "raw": "{\n    \"request_id\": \"98819a38b15e4f868358b384\",\n    \"code\": 910871,\n    \"device_id\": \"device-3\",\n    \"device_name\": \"Xioami 201200\"\n    // \"fcm_token\": \"37123ec-e2b-43a7-8591-0bd47c61d0b\" // require in mobile\n}",
+                                            "options": {
+                                                "raw": {
+                                                    "language": "json"
+                                                }
+                                            }
+                                        }
+                                    },
+                                    "cookie": []
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        }
+                    ],
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "auth": {}
+                },
+                {
+                    "name": "Me",
+                    "description": "",
+                    "item": [
+                        {
+                            "name": "Me",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "{{employerToken}}",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "body": {},
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/employer/me",
+                                    "path": [
+                                        "employer",
+                                        "me"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/employer/me",
+                                            "path": [
+                                                "employer",
+                                                "me"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {}
+                                    },
+                                    "cookie": [],
+                                    "status": "OK",
+                                    "code": 200,
+                                    "_postman_previewlanguage": "json",
+                                    "header": [
+                                        {
+                                            "key": "X-Powered-By",
+                                            "value": "Express"
+                                        },
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json; charset=utf-8"
+                                        },
+                                        {
+                                            "key": "Content-Length",
+                                            "value": "429"
+                                        },
+                                        {
+                                            "key": "ETag",
+                                            "value": "W/\"1ad-U3gDnJKdXxtZdN74+90YSvpRWzc\""
+                                        },
+                                        {
+                                            "key": "Date",
+                                            "value": "Sun, 05 Jul 2026 06:01:53 GMT"
+                                        },
+                                        {
+                                            "key": "Connection",
+                                            "value": "keep-alive"
+                                        },
+                                        {
+                                            "key": "Keep-Alive",
+                                            "value": "timeout=5"
+                                        }
+                                    ],
+                                    "body": "{\"success\":true,\"data\":{\"id\":\"c014f474-64fc-41d9-890e-e7b7c02a7673\",\"avatar_url\":null,\"name\":\"Joshqin Alimboyev\",\"email\":null,\"is_waitlisted_user\":false,\"role\":\"employer\",\"password\":\"$2b$12$1Z6QEotqdirreccRe.5B0.r1R.0E9zTl9xEdN1AX0dtOGNSN8km2G\",\"city\":null,\"bio\":null,\"created_at\":\"2026-07-05T05:52:54.563Z\",\"updated_at\":\"2026-07-05T05:52:54.563Z\",\"user_id\":\"6ebd8900-cc72-44fb-b09c-13ff1661962e\",\"phone_number\":\"+998942351906\"}}"
+                                },
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/employer/me",
+                                            "path": [
+                                                "employer",
+                                                "me"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {}
+                                    },
+                                    "cookie": []
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        }
+                    ],
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "auth": {}
+                },
+                {
+                    "name": "Refresh",
+                    "description": "",
+                    "item": [
+                        {
+                            "name": "Refresh token",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {},
+                                "method": "GET",
+                                "body": {},
+                                "header": [
+                                    {
+                                        "key": "x-did",
+                                        "value": "{{edid}}",
+                                        "description": "",
+                                        "type": "string"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{baseUrl}}/employer/refresh-token",
+                                    "path": [
+                                        "employer",
+                                        "refresh-token"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "x-did",
+                                                "value": "{{edid}}",
+                                                "description": "",
+                                                "disabled": false
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/employer/refresh-token",
+                                            "path": [
+                                                "employer",
+                                                "refresh-token"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {}
+                                    },
+                                    "cookie": []
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        }
+                    ],
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "auth": {}
+                },
+                {
+                    "name": "Logout",
+                    "description": "",
+                    "item": [
+                        {
+                            "name": "Logout",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {
+                                    "type": "bearer",
+                                    "bearer": [
+                                        {
+                                            "key": "token",
+                                            "value": "{{CANDIDATE_TOKEN}}",
+                                            "type": "string"
+                                        }
+                                    ]
+                                },
+                                "method": "GET",
+                                "body": {},
+                                "header": [
+                                    {
+                                        "key": "x-did",
+                                        "value": "{{cdid}}",
+                                        "description": "",
+                                        "type": "string"
+                                    }
+                                ],
+                                "url": {
+                                    "raw": "{{baseUrl}}/employer/logout",
+                                    "path": [
+                                        "employer",
+                                        "logout"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [
+                                {
+                                    "name": "Success",
+                                    "originalRequest": {
+                                        "method": "GET",
+                                        "header": [
+                                            {
+                                                "key": "x-did",
+                                                "value": "{{cdid}}",
+                                                "description": "",
+                                                "disabled": false
+                                            }
+                                        ],
+                                        "url": {
+                                            "raw": "{{baseUrl}}/employer/logout",
+                                            "path": [
+                                                "employer",
+                                                "logout"
+                                            ],
+                                            "host": [
+                                                "{{baseUrl}}"
+                                            ],
+                                            "query": [],
+                                            "variable": []
+                                        },
+                                        "body": {}
+                                    },
+                                    "cookie": []
+                                }
+                            ],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        }
+                    ],
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "auth": {}
+                },
+                {
+                    "name": "Forget password",
+                    "description": "",
+                    "item": [
+                        {
+                            "name": "Forget password reset",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {},
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"request_id\": \"b8925055dd2bd173036502cc\",\n    \"password\": \"password\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/employer/forgot-password/reset",
+                                    "path": [
+                                        "employer",
+                                        "forgot-password",
+                                        "reset"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "Forget password verify",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {},
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"request_id\": \"b8925055dd2bd173036502cc\",\n    \"code\": 42538\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/employer/forgot-password/verify",
+                                    "path": [
+                                        "employer",
+                                        "forgot-password",
+                                        "verify"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        },
+                        {
+                            "name": "Forget password SMS request",
+                            "description": "",
+                            "event": [],
+                            "auth": {},
+                            "request": {
+                                "auth": {},
+                                "method": "POST",
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\n    \"phone_number\": \"+998942351906\",\n    \"method\": \"recovery_password\"\n}",
+                                    "options": {
+                                        "raw": {
+                                            "language": "json"
+                                        }
+                                    }
+                                },
+                                "header": [],
+                                "url": {
+                                    "raw": "{{baseUrl}}/employer/forgot-password/sms-request",
+                                    "path": [
+                                        "employer",
+                                        "forgot-password",
+                                        "sms-request"
+                                    ],
+                                    "host": [
+                                        "{{baseUrl}}"
+                                    ],
+                                    "query": [],
+                                    "variable": []
+                                }
+                            },
+                            "response": [],
+                            "protocolProfileBehavior": {
+                                "strictSSL": false,
+                                "followRedirects": true
+                            }
+                        }
+                    ],
+                    "event": [
+                        {
+                            "listen": "prerequest",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        },
+                        {
+                            "listen": "test",
+                            "script": {
+                                "exec": [],
+                                "type": "text/javascript",
+                                "packages": {}
+                            }
+                        }
+                    ],
+                    "auth": {}
+                }
+            ],
+            "event": [
+                {
+                    "listen": "prerequest",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                },
+                {
+                    "listen": "test",
+                    "script": {
+                        "exec": [],
+                        "type": "text/javascript",
+                        "packages": {}
+                    }
+                }
+            ],
+            "auth": {}
+        }
+    ],
+    "variable": [],
+    "event": [],
+    "auth": {}
+}

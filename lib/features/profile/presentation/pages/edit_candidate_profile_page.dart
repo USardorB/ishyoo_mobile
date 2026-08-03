@@ -1,0 +1,300 @@
+import 'dart:io';
+
+import 'package:auto_route/auto_route.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:mobile/core/configs/di/configure_dependencies.dart';
+import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/shared/overlays/app_notification_overlay.dart';
+import 'package:mobile/core/shared/widgets/app_button.dart';
+import 'package:mobile/core/shared/widgets/app_notification.dart';
+import 'package:mobile/features/auth/presentation/widgets/app_input_field.dart';
+import 'package:mobile/core/utils/app_validators.dart';
+import 'package:mobile/features/profile/data/models/profile.dart';
+import 'package:mobile/features/profile/presentation/bloc/candidate_profile_bloc.dart';
+
+@RoutePage()
+class EditCandidateProfilePage extends StatefulWidget {
+  const EditCandidateProfilePage({super.key});
+
+  @override
+  State<EditCandidateProfilePage> createState() =>
+      _EditCandidateProfilePageState();
+}
+
+class _EditCandidateProfilePageState extends State<EditCandidateProfilePage> {
+  final _firstNameCtrl = TextEditingController();
+  final _lastNameCtrl = TextEditingController();
+  final _emailCtrl = TextEditingController();
+  final _phoneCtrl = TextEditingController();
+  final _cityCtrl = TextEditingController();
+  final _birthDateCtrl = TextEditingController();
+  final _bioCtrl = TextEditingController();
+
+  bool _initialized = false;
+  File? _avatarFile;
+
+  Future<void> _pickAvatar() async {
+    final picker = ImagePicker();
+    final pickedFile = await picker.pickImage(
+      source: ImageSource.gallery,
+      imageQuality: 75,
+      maxWidth: 720,
+      maxHeight: 720,
+    );
+    if (pickedFile != null && mounted) {
+      setState(() {
+        _avatarFile = File(pickedFile.path);
+      });
+    }
+  }
+
+  void _populateFromProfile(Profile profile) {
+    if (_initialized) return;
+    _firstNameCtrl.text = profile.firstName ?? '';
+    _lastNameCtrl.text = profile.lastName ?? '';
+    _emailCtrl.text = profile.email ?? '';
+    _phoneCtrl.text = profile.phoneNumber ?? '';
+    _cityCtrl.text = profile.city ?? '';
+    _birthDateCtrl.text = profile.birthDate ?? '';
+    _bioCtrl.text = profile.bio ?? '';
+    _initialized = true;
+  }
+
+  @override
+  void dispose() {
+    _firstNameCtrl.dispose();
+    _lastNameCtrl.dispose();
+    _emailCtrl.dispose();
+    _phoneCtrl.dispose();
+    _cityCtrl.dispose();
+    _birthDateCtrl.dispose();
+    _bioCtrl.dispose();
+    super.dispose();
+  }
+
+  final _formKey = GlobalKey<FormState>();
+
+  void _save(BuildContext context) {
+    if (!_formKey.currentState!.validate()) return;
+    context.read<CandidateProfileBloc>().add(
+      UpdateCandidateProfile({
+        'first_name': _firstNameCtrl.text.trim(),
+        'last_name': _lastNameCtrl.text.trim(),
+        'email': _emailCtrl.text.trim(),
+        'phone_number': _phoneCtrl.text.trim(),
+        'city': _cityCtrl.text.trim(),
+        'birth_date': _birthDateCtrl.text.trim(),
+        'bio': _bioCtrl.text.trim(),
+      }, avatar: _avatarFile),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => sl<CandidateProfileBloc>()..add(LoadCandidateProfile()),
+      child: BlocConsumer<CandidateProfileBloc, CandidateProfileState>(
+        listener: (context, state) {
+          if (state.profile != null) _populateFromProfile(state.profile!);
+          if (state.isUpdateSuccess) {
+            AppNotificationOverlay.instance.show(
+              message: 'profile.savedSuccess'.tr(),
+              type: AppNotificationType.success,
+            );
+            context.maybePop();
+          }
+          if (state.error != null) {
+            AppNotificationOverlay.instance.show(
+              message: state.error!,
+              type: AppNotificationType.error,
+            );
+          }
+        },
+        builder: (context, state) {
+          final initials = [
+            (_firstNameCtrl.text.isNotEmpty ? _firstNameCtrl.text[0] : ''),
+            (_lastNameCtrl.text.isNotEmpty ? _lastNameCtrl.text[0] : ''),
+          ].join().toUpperCase();
+
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text("profile.candidate.edit").tr(),
+            ),
+            body: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 16).copyWith(
+                bottom: MediaQuery.paddingOf(context).bottom + 24,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const SizedBox(height: 24),
+                  Center(
+                    child: GestureDetector(
+                      onTap: _pickAvatar,
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(
+                              color: context.colors.bgSecondary,
+                              shape: BoxShape.circle,
+                              image: _avatarFile != null
+                                  ? DecorationImage(
+                                      image: FileImage(_avatarFile!),
+                                      fit: BoxFit.cover,
+                                    )
+                                  : (state.profile?.avatarUrl != null
+                                        ? DecorationImage(
+                                            image: CachedNetworkImageProvider(
+                                              state.profile!.avatarUrl!,
+                                            ),
+                                            fit: BoxFit.cover,
+                                          )
+                                        : null),
+                            ),
+                            alignment: Alignment.center,
+                            child:
+                                _avatarFile == null &&
+                                    state.profile?.avatarUrl == null
+                                ? Text(
+                                    initials.isEmpty ? 'U' : initials,
+                                    style: context.textThemes.h4.copyWith(
+                                      color: context.colors.brandProgress,
+                                    ),
+                                  )
+                                : null,
+                          ),
+                          Positioned(
+                            bottom: 0,
+                            right: 0,
+                            child: Container(
+                              padding: const EdgeInsets.all(6),
+                              decoration: BoxDecoration(
+                                color: context.colors.bgTertiary,
+                                shape: BoxShape.circle,
+                              ),
+                              child: const Icon(
+                                Icons.edit,
+                                size: 16,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 32),
+                  Form(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Row(
+                    children: [
+                      Expanded(
+                        child: AppInputField(
+                          label: "profile.candidate.firstNameHint".tr(),
+                          controller: _firstNameCtrl,
+                          validator: AppValidators.required,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.name,
+                          autofillHints: const [AutofillHints.givenName],
+                        ),
+                      ),
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: AppInputField(
+                          label: "profile.candidate.lastNameHint".tr(),
+                          controller: _lastNameCtrl,
+                          validator: AppValidators.required,
+                          textInputAction: TextInputAction.next,
+                          keyboardType: TextInputType.name,
+                          autofillHints: const [AutofillHints.familyName],
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  AppInputField(
+                    label: "Email",
+                    controller: _emailCtrl,
+                    keyboardType: TextInputType.emailAddress,
+                    validator: AppValidators.email,
+                    textInputAction: TextInputAction.next,
+                    autofillHints: const [AutofillHints.email],
+                  ),
+                  const SizedBox(height: 24),
+                  AppInputField(
+                    label: "profile.candidate.phoneLabel".tr(),
+                    controller: _phoneCtrl,
+                    keyboardType: TextInputType.phone,
+                    validator: AppValidators.required,
+                    textInputAction: TextInputAction.next,
+                    autofillHints: const [AutofillHints.telephoneNumber],
+                  ),
+                  const SizedBox(height: 24),
+                  AppInputField(
+                    label: "profile.candidate.cityHint".tr(),
+                    controller: _cityCtrl,
+                    validator: AppValidators.required,
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.streetAddress,
+                    autofillHints: const [AutofillHints.addressCity],
+                  ),
+                  const SizedBox(height: 24),
+                  AppInputField(
+                    label: "profile.candidate.birthDateHint".tr(),
+                    controller: _birthDateCtrl,
+                    readOnly: true,
+                    onTap: () async {
+                      final date = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime(2000),
+                        firstDate: DateTime(1950),
+                        lastDate: DateTime.now(),
+                      );
+                      if (date != null) {
+                        _birthDateCtrl.text =
+                            '${date.day.toString().padLeft(2, '0')}.${date.month.toString().padLeft(2, '0')}.${date.year}';
+                      }
+                    },
+                    suffixIcon: Icon(
+                      Icons.chevron_right,
+                      color: context.colors.textSecondary,
+                      size: 20,
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  AppInputField(
+                    label: "profile.candidate.aboutMe".tr(),
+                    controller: _bioCtrl,
+                    maxLines: 4,
+                    minLines: 4,
+                    maxLength: 1000,
+                    textInputAction: TextInputAction.newline,
+                    keyboardType: TextInputType.multiline,
+                  ),
+                  const SizedBox(height: 24),
+                  AppButton(
+                    onTap: () => _save(context),
+                    enabled: !state.isUpdating,
+                    label: 'profile.save'.tr(),
+                  ),
+                ],
+              ),
+            ),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}

@@ -1,0 +1,77 @@
+import 'package:auto_route/auto_route.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:mobile/core/extensions/app_theme_extension.dart';
+import 'package:mobile/core/routes/app_router.gr.dart';
+import 'package:mobile/features/auth/presentation/bloc/auth_bloc.dart';
+
+class CandidateProfileHeader extends StatelessWidget {
+  const CandidateProfileHeader({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final user = context.read<AuthBloc>().state.user;
+    final name = user?.name ?? '';
+    final phone = user?.phoneNumber ?? '';
+    final initials = name.isNotEmpty ? name.substring(0, 1).toUpperCase() : '?';
+
+    return Container(
+      padding: const EdgeInsets.all(16),
+      decoration: BoxDecoration(
+        color: context.colors.bgPrimary,
+        borderRadius: BorderRadius.circular(20),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 56,
+            height: 56,
+            decoration: BoxDecoration(
+              color: context.colors.bgSecondary,
+              shape: BoxShape.circle,
+            ),
+            alignment: Alignment.center,
+            child: Text(
+              initials,
+              style: context.textThemes.h5.copyWith(
+                color: context.colors.brandDefault,
+              ),
+            ),
+          ),
+          const SizedBox(width: 16),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  name.isEmpty ? "profile.noData".tr() : name,
+                  style: context.textThemes.s1,
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  phone,
+                  style: context.textThemes.c1.copyWith(
+                    color: context.colors.textSecondary,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          IconButton(
+            style: IconButton.styleFrom(
+              visualDensity: VisualDensity.compact,
+              padding: EdgeInsets.zero,
+            ),
+            onPressed: () =>
+                context.pushRoute(const EditCandidateProfileRoute()),
+            icon: Icon(
+              Icons.edit,
+              color: context.colors.textPrimary,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

@@ -1,0 +1,235 @@
+{
+    "info": {
+        "name": "IshYoo",
+        "description": "",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "Regions",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "GET",
+                "body": {},
+                "header": [
+                    {
+                        "key": "x-did",
+                        "value": "{{adid}}",
+                        "description": "",
+                        "type": "string"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/regions",
+                    "path": [
+                        "regions"
+                    ],
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "query": [],
+                    "variable": []
+                }
+            },
+            "response": [
+                {
+                    "name": "Success",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "x-did",
+                                "value": "{{adid}}",
+                                "description": "",
+                                "disabled": false
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/regions",
+                            "path": [
+                                "regions"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": []
+                        },
+                        "body": {}
+                    },
+                    "cookie": []
+                }
+            ],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "Region detail",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "GET",
+                "body": {},
+                "header": [
+                    {
+                        "key": "x-did",
+                        "value": "{{adid}}",
+                        "description": "",
+                        "type": "string"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/regions/:id",
+                    "path": [
+                        "regions",
+                        ":id"
+                    ],
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "query": [],
+                    "variable": [
+                        {
+                            "key": "id",
+                            "value": "",
+                            "description": "",
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "name": "Success",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "x-did",
+                                "value": "{{adid}}",
+                                "description": "",
+                                "disabled": false
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/regions/:id",
+                            "path": [
+                                "regions",
+                                ":id"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "",
+                                    "description": "",
+                                    "disabled": false
+                                }
+                            ]
+                        },
+                        "body": {}
+                    },
+                    "cookie": []
+                }
+            ],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        },
+        {
+            "name": "Region districts",
+            "description": "",
+            "event": [],
+            "auth": {},
+            "request": {
+                "auth": {},
+                "method": "GET",
+                "body": {},
+                "header": [
+                    {
+                        "key": "x-did",
+                        "value": "{{adid}}",
+                        "description": "",
+                        "type": "string"
+                    }
+                ],
+                "url": {
+                    "raw": "{{baseUrl}}/regions/:id/districts",
+                    "path": [
+                        "regions",
+                        ":id",
+                        "districts"
+                    ],
+                    "host": [
+                        "{{baseUrl}}"
+                    ],
+                    "query": [],
+                    "variable": [
+                        {
+                            "key": "id",
+                            "value": "",
+                            "description": "",
+                            "type": "string"
+                        }
+                    ]
+                }
+            },
+            "response": [
+                {
+                    "name": "Success",
+                    "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "x-did",
+                                "value": "{{adid}}",
+                                "description": "",
+                                "disabled": false
+                            }
+                        ],
+                        "url": {
+                            "raw": "{{baseUrl}}/regions/:id/districts",
+                            "path": [
+                                "regions",
+                                ":id",
+                                "districts"
+                            ],
+                            "host": [
+                                "{{baseUrl}}"
+                            ],
+                            "query": [],
+                            "variable": [
+                                {
+                                    "key": "id",
+                                    "value": "",
+                                    "description": "",
+                                    "disabled": false
+                                }
+                            ]
+                        },
+                        "body": {}
+                    },
+                    "cookie": []
+                }
+            ],
+            "protocolProfileBehavior": {
+                "strictSSL": false,
+                "followRedirects": true
+            }
+        }
+    ],
+    "variable": [],
+    "event": [],
+    "auth": {}
+}

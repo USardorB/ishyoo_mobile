@@ -1,0 +1,668 @@
+{
+  "applicants": {
+    "title": "Nomzodlar",
+    "tabs": {
+      "all": "Barchasi",
+      "pending": "Yangi",
+      "invited": "Taklif qilingan",
+      "interview": "Suhbat",
+      "rejected": "Rad etilgan",
+      "accepted": "Qabul qilingan",
+      "archived": "Arxiv",
+      "hired": "Ishga olingan",
+      "shortlisted": "Saqlanganlar"
+    },
+    "card": {
+      "noData": "Ma'lumot yo'q",
+      "present": "Hozirgacha",
+      "experienceYears": "Tajriba {} yil",
+      "experience": "Ish tajribasi",
+      "workplace": "Ish joyi",
+      "negotiable": "Kelishilgan holda",
+      "languages": "Tillar",
+      "contactInfo": "Aloqa uchun"
+    },
+    "actions": {
+      "invite": "Taklif qilish",
+      "reject": "Rad etish",
+      "rejectTitle": "Nomzodni rad etasizmi?",
+      "unsuitable": "Mos kelmaydi",
+      "cancel": "Bekor qilish",
+      "continue": "Davom etish",
+      "edit": "Tahrirlash",
+      "showAll": "Barchasini ko'rish",
+      "filter": "Filtr"
+    },
+    "messaging": {
+      "typeMessage": "Xabar yozing..."
+    },
+    "emptyState": "Nomzodlar topilmadi.",
+    "comingSoon": "Tez kunda"
+  },
+  "applications": {
+    "title": "Mening arizalarim",
+    "tabs": {
+      "all": "Barchasi",
+      "interview": "Suhbat",
+      "pending": "Kutilmoqda",
+      "rejected": "Rad etilgan",
+      "archived": "Arxiv"
+    },
+    "emptyState": "Arizalar yo'q.",
+    "card": {
+      "negotiable": "Kelishilgan holda",
+      "chat": "Chat"
+    },
+    "menu": {
+      "chat": "Chat",
+      "description": "Vakansiya haqida",
+      "aboutCompany": "Kompaniya haqida",
+      "reject": "Rad etish",
+      "delete": "O'chirish"
+    },
+    "dialogs": {
+      "delete": {
+        "title": "Ariza o'chirilsinmi?",
+        "buttons": {
+          "delete": "O'chirish",
+          "cancel": "Bekor qilish"
+        }
+      },
+      "reject": {
+        "title": "Arizani bekor qilasizmi?",
+        "buttons": {
+          "yes": "Ha, bekor qilish",
+          "no": "Yo'q"
+        }
+      }
+    }
+  },
+  "articles": {
+    "title": "Maqolalar",
+    "emptyState": "Maqolalar yo'q.",
+    "notFound": "Maqola topilmadi.",
+    "readTime": "{} daq"
+  },
+  "auth": {
+    "login": {
+      "title": "Xush kelibsiz",
+      "subtitle": "Davom etish uchun tizimga kiring",
+      "phoneLabel": "Telefon raqami",
+      "passwordLabel": "Parol",
+      "buttons": {
+        "forgotPassword": "Parolni unutdingizmi?",
+        "login": "Kirish",
+        "skip": "O'tkazib yuborish"
+      },
+      "registrationPrompt": {
+        "text": "Akkauntingiz yo'qmi?",
+        "link": "Ro'yxatdan o'tish"
+      },
+      "errors": {
+        "general": "Xatolik yuz berdi. Qaytadan urinib ko'ring."
+      }
+    },
+    "register": {
+      "title": "Akkaunt yaratish",
+      "subtitle": "Boshlash uchun ro'yxatdan o'ting",
+      "phoneLabel": "Telefon raqami",
+      "buttons": {
+        "continue": "Davom etish"
+      },
+      "loginPrompt": {
+        "text": "Akkauntingiz bormi?",
+        "link": "Kirish"
+      },
+      "errors": {
+        "general": "Xatolik yuz berdi. Qaytadan urinib ko'ring."
+      }
+    },
+    "otpConfirmation": {
+      "title": "Tasdiqlash kodi",
+      "subtitle": "{} raqamiga yuborilgan 4 xonali kodni kiriting",
+      "buttons": {
+        "resendCode": "Kodni qayta yuborish",
+        "resendIn": "{} dan keyin qayta yuborish",
+        "verify": "Tasdiqlash"
+      },
+      "errors": {
+        "enterFull": "Kodni to'liq kiriting.",
+        "invalidCode": "Kod noto'g'ri.",
+        "general": "Xatolik yuz berdi. Qaytadan urinib ko'ring."
+      }
+    },
+    "forgotPasswordOtp": {
+      "title": "Parolni tiklash",
+      "subtitle": "{} raqamiga yuborilgan 4 xonali kodni kiriting",
+      "buttons": {
+        "newCode": "Yangi kodni olish",
+        "resendIn": "{} dan keyin qayta yuborish",
+        "verify": "Tasdiqlash"
+      },
+      "errors": {
+        "enterFull": "Kodni to'liq kiriting.",
+        "invalidCode": "Kod noto'g'ri.",
+        "general": "Xatolik yuz berdi. Qaytadan urinib ko'ring."
+      }
+    },
+    "forgotPassword": {
+      "title": "Parolni tiklash",
+      "subtitle": "Kodni olish uchun telefon raqamingizni kiriting",
+      "phoneLabel": "Telefon raqami",
+      "buttons": {
+        "getCode": "Kodni olish"
+      },
+      "errors": {
+        "general": "Xatolik yuz berdi. Qaytadan urinib ko'ring."
+      }
+    },
+    "resetPassword": {
+      "title": "Yangi parol",
+      "subtitle": "Yangi va xavfsiz parol o'rnating",
+      "newPasswordLabel": "Yangi parol",
+      "confirmPasswordLabel": "Parolni tasdiqlang",
+      "buttons": {
+        "saveAndLogin": "Saqlash va kirish"
+      },
+      "successDialog": {
+        "title": "Parol o'zgartirildi",
+        "subtitle": "Parolingiz muvaffaqiyatli yangilandi."
+      },
+      "errors": {
+        "mismatch": "Parollar mos kelmadi.",
+        "general": "Xatolik yuz berdi. Qaytadan urinib ko'ring."
+      }
+    },
+    "confirmPassword": {
+      "title": "Parol yaratish",
+      "subtitle": "Akkauntingiz uchun xavfsiz parol o'rnating",
+      "passwordHint": "Parol o'rnating",
+      "confirmHint": "Parolni tasdiqlang",
+      "buttons": {
+        "continue": "Davom etish"
+      },
+      "requirements": {
+        "title": "Parolga qo'yiladigan talablar:",
+        "minLength": "Kamida 8 ta belgi",
+        "capitalLetter": "Kamida 1 ta katta harf",
+        "number": "Kamida 1 ta raqam"
+      }
+    },
+    "completeProfile": {
+      "title": "Profilni to'ldirish",
+      "subtitle": "O'zingiz haqingizda ma'lumot bering",
+      "firstNameHint": "Ism",
+      "lastNameHint": "Familiya",
+      "companyNameHint": "Kompaniya nomi",
+      "birthDateHint": "Tug'ilgan sana",
+      "buttons": {
+        "continue": "Davom etish"
+      },
+      "errors": {
+        "fillAll": "Iltimos, barcha maydonlarni to'ldiring.",
+        "general": "Xatolik yuz berdi. Qaytadan urinib ko'ring."
+      }
+    },
+    "waitlisted": {
+      "title": "Siz kutish ro'yxatidasiz!",
+      "subtitle": "Akkauntingiz tayyor bo'lganda sizga xabar beramiz.",
+      "buttons": {
+        "exit": "Chiqish",
+        "logout": "Boshqa akkauntga kirish"
+      }
+    },
+    "waitlistDialog": {
+      "title": "Joylashuvni yoqasizmi?",
+      "description": "Yaqin atrofdagi vakansiyalarni topish uchun joylashuvingiz kerak.",
+      "buttons": {
+        "yes": "Ha, yoqish",
+        "no": "Yo'q, rahmat"
+      }
+    },
+    "privacyPolicy": {
+      "text1": "Davom etish tugmasini bosish orqali siz bizning ",
+      "privacyPolicy": "Maxfiylik siyosatimiz",
+      "and": " va ",
+      "terms": "Foydalanish shartlarimiz",
+      "text2": "ga rozilik bildirasiz."
+    }
+  },
+  "core": {
+    "nav": {
+      "home": "Asosiy",
+      "vacancies": "Vakansiyalar",
+      "candidates": "Nomzodlar",
+      "applications": "Arizalar",
+      "chats": "Chatlar",
+      "profile": "Profil"
+    },
+    "enums": {
+      "status": {
+        "active": "Faol",
+        "inactive": "Nofaol",
+        "blocked": "Bloklangan",
+        "deleted": "O'chirilgan",
+        "archived": "Arxivda",
+        "draft": "Qoralama",
+        "published": "Chop etilgan",
+        "confirmed": "Tasdiqlangan",
+        "closed": "Yopilgan",
+        "pending": "Kutilmoqda",
+        "invited": "Taklif qilingan",
+        "rejected": "Rad etilgan",
+        "hired": "Ishga olingan",
+        "shortlisted": "Saqlanganlar",
+        "pastDue": "Muddati o'tgan",
+        "paid": "To'langan",
+        "failed": "Xatolik"
+      },
+      "vacancyStatus": {
+        "draft": "Qoralama",
+        "published": "Faol",
+        "archived": "Arxivda",
+        "rejected": "Rad etilgan",
+        "confirmed": "Tasdiqlangan",
+        "closed": "Yopilgan"
+      },
+      "employmentType": {
+        "fullTime": "To'liq bandlik",
+        "partTime": "Qisman bandlik",
+        "freelance": "Frilans",
+        "contract": "Shartnoma asosida",
+        "internship": "Amaliyot"
+      },
+      "experienceLevel": {
+        "noExperience": "Tajribasiz",
+        "oneToThree": "1–3 yil",
+        "threeToSix": "3–6 yil",
+        "overSix": "6 yildan ortiq"
+      },
+      "workFormat": {
+        "onSite": "Ofisda",
+        "remote": "Masofadan",
+        "hybrid": "Gibrid",
+        "travel": "Xizmat safarlari"
+      },
+      "currency": {
+        "uzs": "UZS",
+        "usd": "USD",
+        "eur": "EUR"
+      },
+      "visibility": {
+        "public": "Barchaga ochiq",
+        "private": "Yopiq"
+      },
+      "networkStatus": {
+        "online": "Onlayn",
+        "offline": "Oflayn"
+      },
+      "gender": {
+        "male": "Erkak",
+        "female": "Ayol"
+      },
+      "role": {
+        "candidate": "Nomzod",
+        "employer": "Ish beruvchi",
+        "admin": "Administrator"
+      }
+    }
+  },
+  "location": {
+    "title": "Manzil",
+    "errors": {
+      "occurred": "Xatolik yuz berdi."
+    }
+  },
+  "messaging": {
+    "title": "Xabarlar",
+    "vacancies": "Vakansiyalar",
+    "loading": "Yuklanmoqda...",
+    "noData": "Ma'lumot yo'q",
+    "emptyState": "Chatlar topilmadi.",
+    "search": {
+      "placeholder": "Qidirish..."
+    },
+    "tabs": {
+      "all": "Barchasi",
+      "received": "Qabul qilingan",
+      "rejected": "Rad etilgan"
+    },
+    "jobCard": {
+      "createResume": "Rezyume yaratish",
+      "myVacancies": "Mening vakansiyalarim"
+    },
+    "input": {
+      "placeholder": "Xabar yozing..."
+    },
+    "actions": {
+      "edit": "Tahrirlash",
+      "delete": "O'chirish",
+      "cancel": "Bekor qilish",
+      "save": "Saqlash",
+      "viewProfile": "Profilni ko'rish",
+      "deleteChat": "Chatni o'chirish"
+    },
+    "dialogs": {
+      "editMessage": {
+        "title": "Xabarni tahrirlash"
+      }
+    },
+    "errors": {
+      "occurred": "Xatolik yuz berdi."
+    },
+    "attachment": {
+      "label": "Fayl",
+      "file": "Fayl",
+      "gallery": "Galereya",
+      "camera": "Kamera"
+    }
+  },
+  "notifications": {
+    "title": "Bildirishnomalar",
+    "emptyState": "Bildirishnomalar yo'q.",
+    "noData": "Ma'lumot yo'q",
+    "markAllRead": "Barchasini o'qilgan deb belgilash"
+  },
+  "onboarding": {
+    "language": {
+      "title": "Tilni tanlang",
+      "subtitle": "Tilni keyinroq sozlamalardan o'zgartirishingiz mumkin",
+      "ctaButton": "Davom etish"
+    },
+    "slides": {
+      "slide1": {
+        "title": "Ish va xodim izlash platformasi",
+        "subtitle": "Mos vakansiyalar va malakali mutaxassislarni osongina toping"
+      },
+      "slide2": {
+        "title": "Qulay chat va tezkor xabarlar",
+        "subtitle": "Ish beruvchilar va nomzodlar bilan to'g'ridan-to'g'ri bog'laning"
+      },
+      "slide3": {
+        "title": "Rezyumeingizni yarating",
+        "subtitle": "O'z tajribangizni ko'rsating va vakansiyalarga ariza topshiring"
+      }
+    },
+    "actions": {
+      "continueAction": "Davom etish",
+      "skip": "O'tkazib yuborish",
+      "hireTalent": "Men xodim qidiryapman",
+      "findJob": "Men ish qidiryapman"
+    }
+  },
+  "opportunities": {
+    "title": "Vakansiyalar",
+    "savedVacancies": "Saqlanganlar",
+    "nearbyJobs": "Yaqin atrofdagi ishlar",
+    "noNearbyJobs": "Yaqin atrofda ish topilmadi, qidiruv masofasini oshirib ko'ring.",
+    "matchesFilter": "Mos keladi",
+    "appliedSuccess": "Arizangiz muvaffaqiyatli yuborildi!",
+    "alreadyApplied": "Ariza yuborilgan",
+    "applyButton": "Ariza topshirish",
+    "location": "Manzil",
+    "employmentType": "Bandlik turi",
+    "searchResults": "Qidiruv natijalari",
+    "resultsCount": "{} ta vakansiya topildi",
+    "errorOccurred": "Xatolik yuz berdi.",
+    "errorApplying": "Xatolik: {}",
+    "search": {
+      "empty": "So'rovingiz bo'yicha vakansiyalar topilmadi."
+    },
+    "company": {
+      "vacancies": "Faol vakansiyalar",
+      "about": "Kompaniya haqida"
+    },
+    "apply": {
+      "noResumes": "Sizda hali rezyume yo'q.",
+      "selectResume": "Resumeni tanlang",
+      "coverLetter": "Ilova xati (ixtiyoriy)",
+      "add": "Qo'shish"
+    },
+    "quickAccess": {
+      "createResume": "Rezyume yaratish",
+      "articles": "Maqolalar"
+    },
+    "banner": {
+      "title1": "Ish va xodim izlash platformasi",
+      "subtitle1": "Mos vakansiyalar va malakali mutaxassislarni osongina toping",
+      "title2": "Qulay chat va tezkor xabarlar",
+      "subtitle2": "Ish beruvchilar va nomzodlar bilan to'g'ridan-to'g'ri bog'laning",
+      "title3": "Rezyumeingizni yarating",
+      "subtitle3": "O'z tajribangizni ko'rsating va vakansiyalarga ariza topshiring",
+      "continue": "Davom etish",
+      "showAll": "Barchasini ko'rish"
+    },
+    "vacancyCard": {
+      "negotiable": "Kelishilgan holda"
+    },
+    "details": {
+      "comingSoon": "Tez kunda",
+      "showAll": "Barchasini ko'rish"
+    },
+    "filter": {
+      "title": "Filtr",
+      "searchPlaceholder": "Vakansiya va lavozimlarni qidirish...",
+      "search": "Qidirish",
+      "experience": "Ish tajribasi",
+      "apply": "Filtrni qo'llash",
+      "clear": "Tozalash"
+    },
+    "description": "Tavsif",
+    "requirements": "Talablar",
+    "savedVacanciesEmpty": "Saqlangan vakansiyalar yo'q."
+  },
+  "postings": {
+    "dashboardTitle": "Boshqaruv paneli",
+    "activeVacancies": "Faol vakansiyalar",
+    "all": "Barchasi",
+    "createVacancy": "Vakansiya qo'shish",
+    "greeting": "Salom, {}!",
+    "todaySummary": "Bugun {} ta yangi ariza va {} ta faol vakansiya",
+    "interviews": "SUHBATLAR",
+    "interviewsSub": "bugun",
+    "responses": "ARIZALAR",
+    "responsesSub": "yangi",
+    "active": "FAOL",
+    "activeSub": "vakansiyalar",
+    "responsesCount": "{} ta ariza",
+    "keySkills": "Asosiy ko'nikmalar",
+    "noSalarySpecified": "Maosh ko'rsatilmagan",
+    "fullNameLabel": "F.I.Sh.",
+    "cancelCreationTitle": "Bekor qilinsinmi?",
+    "cancelCreationDesc": "Ishonchingiz komilmi? Saqlanmagan ma'lumotlar o'chib ketadi.",
+    "searchPlaceholder": "Qidirish...",
+    "add": "Qo'shish",
+    "negotiable": "Kelishilgan holda",
+    "dashboard": {
+      "comingSoon": "Tez kunda"
+    },
+    "actions": {
+      "view": "Ko'rish",
+      "edit": "Tahrirlash",
+      "pause": "To'xtatib turish",
+      "applicants": "Nomzodlar",
+      "copy": "Nusxalash",
+      "share": "Tez kunda",
+      "archive": "Arxivlash",
+      "delete": "O'chirish"
+    },
+    "create": {
+      "title": "Vakansiyalar",
+      "searchPlaceholder": "Mutaxassislik yoki ko'nikma...",
+      "search": "Qidirish",
+      "salary": "Maosh: {}",
+      "all": "Barchasi",
+      "phoneLabel": "Telefon raqami",
+      "employmentType": "Bandlik turi",
+      "continueButton": "Davom etish",
+      "description": "Tavsif",
+      "responsibilities": "Vazifalar",
+      "requirements": "Talablar",
+      "experience": "Tajriba",
+      "location": "Manzil",
+      "savedSuccess": "Muvaffaqiyatli saqlandi!"
+    },
+    "filter": {
+      "employmentType": "Bandlik turi",
+      "searchPlaceholder": "Mutaxassislik yoki ko'nikma...",
+      "search": "Qidirish",
+      "experience": "Tajriba",
+      "apply": "Qo'llash",
+      "clear": "Tozalash"
+    },
+    "category": {
+      "searchPlaceholder": "Qidirish..."
+    },
+    "skills": {
+      "searchPlaceholder": "Qidirish...",
+      "add": "Qo'shish"
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "edit": "Tahrirlash",
+    "save": "Saqlash",
+    "savedSuccess": "Muvaffaqiyatli saqlandi!",
+    "noData": "Ko'rsatilmagan",
+    "company": {
+      "edit": "Tahrirlash",
+      "companyInfo": "Kompaniya haqida",
+      "about": "Kompaniya haqida ma'lumot",
+      "myVacancies": "Mening vakansiyalarim",
+      "createVacancy": "Vakansiya qo'shish",
+      "fieldOfActivity": "Faoliyat sohasi",
+      "nameHint": "Kompaniya nomi",
+      "filterTitle": "Nomzodlarni filtrlash",
+      "location": "Manzil",
+      "phoneLabel": "Telefon raqami",
+      "candidates": "Nomzodlar"
+    },
+    "candidate": {
+      "personalInfo": "Shaxsiy ma'lumotlar",
+      "experience": "Ish tajribasi",
+      "education": "Ta'lim",
+      "languages": "Tillar",
+      "resumes": "Rezyume",
+      "noResumes": "Sizda hali rezyume yo'q",
+      "createResume": "Rezyume yaratish",
+      "deleteExperienceTitle": "Ish tajribasi o'chirilsinmi?",
+      "deleteExperienceDesc": "O'chirilgandan so'ng qayta tiklab bo'lmaydi.",
+      "deleteEducationTitle": "Ta'lim haqida ma'lumot o'chirilsinmi?",
+      "deleteEducationDesc": "O'chirilgandan so'ng qayta tiklab bo'lmaydi.",
+      "present": "Hozirgacha",
+      "views": "Ko'rishlar",
+      "shortlisted": "Saqlanganlar",
+      "invited": "Takliflar",
+      "cancel": "Bekor qilish",
+      "delete": "O'chirish",
+      "apply": "Qo'llash",
+      "all": "Barchasi",
+      "edit": "Profilni tahrirlash",
+      "firstNameHint": "Ism",
+      "lastNameHint": "Familiya",
+      "cityHint": "Shahar",
+      "birthDateHint": "Tug'ilgan sana",
+      "phoneLabel": "Telefon raqami",
+      "aboutMe": "Men haqimda",
+      "primary": "Asosiy"
+    }
+  },
+  "resume": {
+    "title": "Rezyume",
+    "boostScore": "Reyting",
+    "createResume": "Rezyume yaratish",
+    "downloadPdf": "PDF yuklab olish",
+    "previewPdf": "PDF ko'rish",
+    "noData": "Ko'rsatilmagan",
+    "present": "Hozirgacha",
+    "searchPlaceholder": "Qidirish...",
+    "specializationPlaceholder": "Mutaxassislik...",
+    "companyPlaceholder": "Kompaniya haqida",
+    "location": "Manzil",
+    "description": "Tavsif",
+    "yearHint": "Yil",
+    "deleteTitle": "Rezyume o'chirilsinmi?",
+    "deleteDesc": "Bu amalni ortga qaytarib bo'lmaydi.",
+    "successTitle": "Muvaffaqiyatli!",
+    "successDesc": "Rezyumeingiz muvaffaqiyatli yaratildi.",
+    "stats": {
+      "invited": "Takliflar",
+      "shortlisted": "Saqlanganlar"
+    },
+    "visibility": {
+      "all": "Barchaga",
+      "hidden": "Yashirin"
+    },
+    "sections": {
+      "contacts": "Kontaktlar",
+      "workplace": "Ish joyi",
+      "experience": "Tajriba",
+      "education": "Ta'lim",
+      "languages": "Tillar",
+      "preview": "Ko'rish"
+    },
+    "actions": {
+      "continueButton": "Davom etish",
+      "save": "Saqlash",
+      "edit": "Tahrirlash",
+      "add": "Qo'shish",
+      "cancel": "Bekor qilish",
+      "delete": "O'chirish",
+      "select": "Tanlash",
+      "comingSoon": "Tez kunda",
+      "savedSuccess": "Muvaffaqiyatli saqlandi!",
+      "boostVisibility": "Rezyumeni ko'tarish",
+      "boostSuccess": "Rezyume muvaffaqiyatli ko'tarildi!"
+    },
+    "contacts": "Kontaktlar",
+    "experience": "Ish tajribasi",
+    "education": "Ta'lim",
+    "skills": "Ko'nikmalar"
+  },
+  "settings": {
+    "title": "Sozlamalar",
+    "language": "Ilova tili",
+    "theme": "Mavzu",
+    "lightMode": "Yorug' mavzu",
+    "darkMode": "Qorong'i mavzu",
+    "systemTheme": "Tizim mavzusi",
+    "notifications": "Bildirishnomalar",
+    "privacyPolicy": "Maxfiylik siyosati",
+    "termsOfUse": "Foydalanish shartlari",
+    "helpCenter": "Yordam markazi",
+    "aboutApp": "Ilova haqida",
+    "logout": "Tizimdan chiqish",
+    "deleteAccount": "Akkauntni o'chirish",
+    "logoutConfirmTitle": "Tizimdan chiqishni xohlaysizmi?",
+    "logoutConfirmDesc": "Diqqat! Qayta kirish uchun parolingiz kerak bo'ladi.",
+    "preferences": {
+      "applicationUpdates": "Arizalar",
+      "messages": "Xabarlar",
+      "interviews": "Suhbatlar"
+    },
+    "actions": {
+      "apply": "Qo'llash",
+      "cancel": "Bekor qilish",
+      "logout": "Chiqish"
+    }
+  },
+  "talents": {
+    "title": "Iste'dodlar",
+    "searchResults": "Qidiruv natijalari",
+    "searchPlaceholder": "Mutaxassislik yoki ko'nikma...",
+    "resultsCount": "{} ta nomzod topildi",
+    "noData": "Rezyume topilmadi.",
+    "contactInfo": "Kontaktlar",
+    "candidate": "Nomzod",
+    "matchesFilter": "Mos keladi"
+  },
+  "shared": {
+    "validation": {
+      "required": "Bu maydon to'ldirilishi shart",
+      "invalidEmail": "Yaroqsiz elektron pochta manzili",
+      "passwordLength": "Parol kamida 8 ta belgidan iborat bo'lishi kerak",
+      "invalidUrl": "Yaroqsiz URL",
+      "passwordsMustMatch": "Parollar mos kelishi kerak"
+    }
+  }
+}
